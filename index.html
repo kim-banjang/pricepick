@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5B21B6">
+<title>PricePick Design Hub</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --purple-deep: #5B21B6;
+    --purple-light: #845EEE;
+  }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Segoe UI", Roboto, sans-serif;
+    background: linear-gradient(160deg, #5B21B6 0%, #6D3BC9 45%, #845EEE 100%);
+    background-attachment: fixed;
+    color: #fff;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    flex: 1;
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 56px 22px 40px;
+  }
+  /* Header */
+  header { text-align: center; margin-bottom: 44px; }
+  .logo {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+  }
+  .logo .pick { color: #FDE68A; }
+  .slogan {
+    margin-top: 14px;
+    font-size: 17px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: -0.3px;
+  }
+  .subtitle {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.2px;
+  }
+  /* Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 20px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.16);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    text-decoration: none;
+    color: #fff;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    overflow: hidden;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.10), transparent 60%);
+    opacity: 0;
+    transition: opacity .18s ease;
+    pointer-events: none;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.32);
+    box-shadow: 0 14px 34px rgba(30, 0, 70, 0.35);
+  }
+  .card:hover::after { opacity: 1; }
+  .card:active { transform: translateY(-1px); }
+  .icon {
+    font-size: 30px;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .card h2 {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    margin-bottom: 6px;
+  }
+  .card p {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.7);
+  }
+  .card .arrow {
+    margin-top: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.3px;
+  }
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 28px 22px 34px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.3px;
+  }
+  footer .ver {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+  }
+  /* Tablet */
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  /* Mobile */
+  @media (max-width: 480px) {
+    .wrap { padding: 44px 18px 28px; }
+    .logo { font-size: 38px; }
+    .slogan { font-size: 15px; }
+    .grid { grid-template-columns: 1fr; gap: 13px; }
+    .card { padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Price<span class="pick">Pick</span></div>
+      <div class="slogan">픽구매하고 티켓 받는 쇼핑</div>
+      <div class="subtitle">Design Hub — 산출물 최종본 모음</div>
+    </header>
+
+    <main class="grid">
+      <a class="card" href="/prototype.html" target="_blank" rel="noopener">
+        <div class="icon">📱</div>
+        <h2>프로토타입</h2>
+        <p>모바일 최종 확인용 클릭 시뮬레이터</p>
+        <div class="arrow">열기 →</div>
+      </a>
+
+      <a class="card" href="/interactive.html" target="_blank" rel="noopener">
+        <div class="icon">🖥</div>
+        <h2>인터랙티브</h2>
+        <p>웹 기반 기획 도구</p>
+        <div class="arrow">열기 →</div>
+      </a>
+
+      <a class="card" href="/storyboard.html" target="_blank" rel="noopener">
+        <div class="icon">📋</div>
+        <h2>스토리보드</h2>
+        <p>화면 기획 스펙 문서</p>
+        <div class="arrow">열기 →</div>
+      </a>
+
+      <a class="card" href="/screenflow.html" target="_blank" rel="noopener">
+        <div class="icon">🔀</div>
+        <h2>스크린플로</h2>
+        <p>전체 화면 흐름도</p>
+        <div class="arrow">열기 →</div>
+      </a>
+
+      <a class="card" href="/designsystem.html" target="_blank" rel="noopener">
+        <div class="icon">🎨</div>
+        <h2>디자인시스템</h2>
+        <p>컴포넌트 가이드</p>
+        <div class="arrow">열기 →</div>
+      </a>
+
+      <a class="card" href="/cms.html" target="_blank" rel="noopener">
+        <div class="icon">⚙️</div>
+        <h2>CMS</h2>
+        <p>운영 관리자 화면</p>
+        <div class="arrow">열기 →</div>
+      </a>
+    </main>
+  </div>
+
+  <footer>
+    <span class="ver">PricePick v7.0</span>
+  </footer>
+</body>
+</html>
