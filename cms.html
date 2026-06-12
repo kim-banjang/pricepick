@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PricePick v7.0 — CMS</title>
+<title>PricePick v8.2 — CMS</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
@@ -976,7 +976,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           <div class="card-header"><div class="card-title">스케줄러 현황</div></div>
           <div>
             <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">포스트백 수신 처리</div><div class="scheduler-desc">실시간</div></div></div><div class="scheduler-stat"><div class="scheduler-last">방금 전</div><div class="scheduler-next" style="color:var(--success)">정상</div></div></div>
-            <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 확정 처리 (D+7)</div><div class="scheduler-desc">매일 자정</div></div></div><div class="scheduler-stat"><div class="scheduler-last">어제 00:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div></div>
+            <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 확정 처리 (연동 D+7 / 미연동 D+30)</div><div class="scheduler-desc">매일 자정</div></div></div><div class="scheduler-stat"><div class="scheduler-last">어제 00:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div></div>
             <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">알림 발송</div><div class="scheduler-desc">매 5분</div></div></div><div class="scheduler-stat"><div class="scheduler-last">2분 전</div><div class="scheduler-next" style="color:var(--success)">정상</div></div></div>
             <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">주간 추첨 티켓 집계</div><div class="scheduler-desc">매주 월요일 자정</div></div></div><div class="scheduler-stat"><div class="scheduler-last">지난 월요일</div><div class="scheduler-next" style="color:var(--success)">정상</div></div></div>
             <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot stopped"></div><div><div class="scheduler-name">DB 백업</div><div class="scheduler-desc">매일 새벽 3시</div></div></div><div class="scheduler-stat"><div class="scheduler-last">2일 전</div><div class="scheduler-next" style="color:var(--danger)">오류</div></div></div>
@@ -1033,9 +1033,9 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       </div>
       <div class="info-box">
         <strong>회원 가입 안내</strong><br>
-        모든 가입은 <strong>카카오 연동 필수</strong>. 미연동 계정 없음.<br>
+        카카오 연동 회원과 미연동 회원이 모두 존재(로그인 정책 변경). 미연동 회원은 적립 확정 대기 <strong>D+30</strong> 적용.<br>
         가입 경로: <strong>카카오 직접</strong> · <strong>Apple → 카카오</strong> · <strong>Google → 카카오</strong> — 모든 경로 동일하게 적용<br>
-        구매 즉시 <strong>가지급 티켓(랜덤)</strong> 지급 → 포스트백 수신 <strong>D+7 확정</strong> 시 등급 티켓(브론즈/실버/골드)으로 전환
+        구매 즉시 <strong>가지급 티켓(랜덤)</strong> 지급 → 포스트백 수신 후 <strong>연동 D+7 / 미연동 D+30 확정</strong> 시 등급 티켓(브론즈/실버/골드)으로 전환
       </div>
       <div class="toolbar">
         <input class="search-box" placeholder="닉네임 검색...">
@@ -1261,10 +1261,10 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 
     <!-- ── 경품/응모 관리 ── -->
     <div class="section" id="sec-prizes">
-      <div class="amber-box"><strong>⚠️ 정책 미확정</strong> — 이벤트 티켓 지급·사용 정책은 운영 담당자 회의 후 확정 예정. 현재 수치는 임시값으로 운영 전 업데이트 필요합니다.</div>
-      <div class="info-box">🎟 <strong>이벤트 티켓 전용</strong> — 이벤트 티켓 1장 소모 · 매일 1회 응모 · 당일 자정 초기화</div>
+      <div class="info-box"><strong>정책 확정 반영</strong> — 이벤트 티켓 획득 경로·만료·한도 확정 적용. 경품 추첨 주기(월1/격주)만 미정.</div>
+      <div class="info-box">🎟 <strong>이벤트 티켓 전용</strong> — 이벤트 티켓 1장 소모 · 1회 추첨 최대 10장 · 추첨 회차 기준 응모</div>
       <div class="stats-grid">
-        <div class="stat-card purple"><div class="stat-label">오늘 응모 수</div><div class="stat-value">3,421</div><div class="stat-change neutral">1인 1일 1회 제한</div></div>
+        <div class="stat-card purple"><div class="stat-label">오늘 응모 수</div><div class="stat-value">3,421</div><div class="stat-change neutral">1회 추첨 최대 10장</div></div>
         <div class="stat-card green"><div class="stat-label">오늘 당첨자</div><div class="stat-value">127</div><div class="stat-change">1등17 · 2등51 · 3등59</div></div>
         <div class="stat-card amber"><div class="stat-label">소모 이벤트 티켓</div><div class="stat-value">3,421</div><div class="stat-change neutral">응모당 1장</div></div>
         <div class="stat-card red"><div class="stat-label">미발송 경품</div><div class="stat-value">3</div><div class="stat-change down">빠른 발송 필요</div></div>
@@ -1302,30 +1302,31 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       </div>
     </div>
 
-    <!-- ── 주간 이벤트 티켓 추첨 ── -->
+    <!-- ── 주간 이벤트 추첨 (이벤트 티켓 소비·자동응모) ── -->
     <div class="section" id="sec-attendance">
-      <div class="amber-box"><strong>⚠️ 정책 미확정</strong> — 이벤트 티켓 지급·사용 정책은 운영 담당자 회의 후 확정 예정. 현재 수치는 임시값으로 운영 전 업데이트 필요합니다.</div>
-      <div class="info-box"><strong>주간 이벤트 티켓 추첨</strong> — 매주 월요일 전주 접속 회원 중 추첨으로 이벤트 티켓을 지급합니다. 이벤트 티켓은 경품 응모 전용입니다.</div>
+      <div class="info-box"><strong>주간 이벤트 추첨 = 이벤트 티켓 소비처(자동 응모)</strong> — 보유한 이벤트 티켓으로 자동 응모되며, 당첨 시 <strong>경품(기프티콘·실물 등)</strong>을 지급합니다. 추첨이 이벤트 티켓을 새로 발급하지 않습니다. (이벤트 티켓 획득 경로는 출석 5일·행운룰렛·온보딩 가입 3종 그대로)</div>
+      <div class="info-box"><strong>주간 이벤트 추첨</strong> — 매주 월요일, 보유 이벤트 티켓으로 자동 응모된 회원 중 추첨하여 당첨자에게 경품(기프티콘·실물 등)을 지급합니다. 이벤트 티켓은 이 추첨의 <strong>응모 수단(소비)</strong>이며, 추첨이 이벤트 티켓을 발급하지 않습니다.</div>
       <div class="stats-grid">
-        <div class="stat-card purple"><div class="stat-label">이번주 추첨 대상</div><div class="stat-value">12,841</div><div class="stat-change neutral">전주 접속 회원</div></div>
+        <div class="stat-card purple"><div class="stat-label">이번주 자동 응모자</div><div class="stat-value">12,841</div><div class="stat-change neutral">이벤트 티켓 보유 회원</div></div>
         <div class="stat-card green"><div class="stat-label">당첨자 수</div><div class="stat-value">6,184</div><div class="stat-change">당첨률 48.2%</div></div>
-        <div class="stat-card amber"><div class="stat-label">지급된 이벤트 티켓</div><div class="stat-value">6,184</div><div class="stat-change neutral">지난 월요일 지급</div></div>
+        <div class="stat-card amber"><div class="stat-label">지급된 당첨 경품</div><div class="stat-value">6,184</div><div class="stat-change neutral">기프티콘·실물 등</div></div>
         <div class="stat-card red"><div class="stat-label">이번주 소진 티켓</div><div class="stat-value">3,421</div><div class="stat-change down">경품 응모 사용</div></div>
       </div>
       <div class="card-grid">
         <div class="card">
           <div class="card-header"><div class="card-title">추첨 설정</div><button class="btn btn-ghost btn-sm" onclick="toast('수정 기능 준비중')">수정</button></div>
           <div>
-            <div class="policy-item"><div class="policy-label">지급 대상</div><div class="policy-value">전주 1회 이상 접속 회원</div><div class="policy-desc">월~일 중 1회 이상 앱 접속 시 추첨 대상 포함</div></div>
-            <div class="policy-item"><div class="policy-label">지급 일정</div><div class="policy-value">매주 월요일 00:00 자동 추첨</div></div>
-            <div class="policy-item"><div class="policy-label">당첨 확률</div><div class="policy-value">50% (조정 가능)</div><div class="policy-desc">대상 회원 중 50% 확률로 이벤트 티켓 1장 지급</div></div>
-            <div class="policy-item"><div class="policy-label">이벤트 티켓 유효기간</div><div class="policy-value">지급일로부터 30일</div></div>
+            <div class="policy-item"><div class="policy-label">응모 대상</div><div class="policy-value">이벤트 티켓 보유 회원 (자동 응모)</div><div class="policy-desc">보유 이벤트 티켓으로 매 회차 자동 응모. 티켓이 없으면 응모 제외.</div></div>
+            <div class="policy-item"><div class="policy-label">추첨 일정</div><div class="policy-value">매주 월요일 00:00 자동 추첨</div><div class="policy-desc">추첨 주기는 운영 정책에 따름(월1/격주 미정).</div></div>
+            <div class="policy-item"><div class="policy-label">당첨 확률</div><div class="policy-value">50% (조정 가능)</div><div class="policy-desc">응모자 중 50% 확률로 당첨 처리.</div></div>
+            <div class="policy-item"><div class="policy-label">당첨 보상</div><div class="policy-value">경품(기프티콘·실물 등)</div><div class="policy-desc">당첨 시 경품 지급. 이벤트 티켓을 새로 발급하지 않음(소비처).</div></div>
+            <div class="policy-item"><div class="policy-label">이벤트 티켓 만료</div><div class="policy-value">경품응모 추첨 기준 이월</div><div class="policy-desc">30일 고정 만료 폐지 — 당회 추첨 미응모 시 차회로 1회 이월, 차회도 미응모 시 소멸(최대 2회 추첨 유효).</div></div>
           </div>
         </div>
         <div class="card">
           <div class="card-header"><div class="card-title">이번주 추첨 현황</div></div>
           <table>
-            <thead><tr><th>순위</th><th>닉네임(카카오톡 ID)</th><th>이번주</th><th>누적</th><th>이벤트 티켓</th></tr></thead>
+            <thead><tr><th>순위</th><th>닉네임(카카오톡 ID)</th><th>이번주</th><th>누적</th><th>응모 사용 티켓</th></tr></thead>
             <tbody>
               <tr><td>🥇</td><td><div style="font-weight:500">쇼핑왕민준</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(minjun_kko)</div></td><td style="color:#c084fc">당첨</td><td>18회</td><td><span class="tk-chip event bare">3장</span></td></tr>
               <tr><td>🥈</td><td><div style="font-weight:500">가격헌터서연</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(seoyeon_kko)</div></td><td style="color:#c084fc">당첨</td><td>15회</td><td><span class="tk-chip event bare">1장</span></td></tr>
@@ -1607,23 +1608,23 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 
     <!-- ── 이벤트 관리 ── -->
     <div class="section" id="sec-events">
-      <div class="amber-box"><strong>⚠️ 정책 미확정</strong> — 이벤트 티켓 지급·사용 정책은 운영 담당자 회의 후 확정 예정. 현재 수치는 임시값으로 운영 전 업데이트 필요합니다.</div>
+      <div class="info-box"><strong>정책 확정 반영</strong> — 온보딩·이벤트 보상 확정 적용.</div>
       <div class="card">
         <div class="card-header"><div><div class="card-title">이벤트 관리</div></div><div id="event-hdr-actions"></div></div>
         <div style="padding:16px">
           <div class="event-card">
             <div class="event-header"><div><div class="event-title">5월 출석 체크</div><div class="event-period">05/01 ~ 05/31 &nbsp;·&nbsp; 전체 회원</div></div><span class="badge badge-green">진행 중</span></div>
-            <div class="event-desc">5일 연속 출석 시 티켓 1장 적립.</div>
+            <div class="event-desc">5일 연속 출석 달성 시 이벤트 티켓 1장 지급.</div>
             <div class="event-actions" id="event-action-1"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button></div>
           </div>
           <div class="event-card">
             <div class="event-header"><div><div class="event-title">신규 가입 웰컴 보너스</div><div class="event-period">상시 &nbsp;·&nbsp; 신규 가입자</div></div><span class="badge badge-green">진행 중</span></div>
-            <div class="event-desc">첫 가입 완료 시 이벤트 티켓 3장 즉시 지급.</div>
+            <div class="event-desc">가입 즉시 이벤트 티켓 1장 + 200P 지급. (어뷰징 방지: 카카오 연동 후 지급)</div>
             <div class="event-actions" id="event-action-2"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button></div>
           </div>
           <div class="event-card">
-            <div class="event-header"><div><div class="event-title">골드 등급 달성 보너스</div><div class="event-period">상시 &nbsp;·&nbsp; 골드 달성자</div></div><span class="badge badge-gray">비활성</span></div>
-            <div class="event-desc">골드 등급 최초 달성 시 이벤트 티켓 10장 지급.</div>
+            <div class="event-header"><div><div class="event-title">첫 경유 구매 보너스</div><div class="event-period">상시 &nbsp;·&nbsp; 신규 가입 7일 내</div></div><span class="badge badge-green">진행 중</span></div>
+            <div class="event-desc">첫 경유 구매(가입 7일 내) 시 골드 티켓 1장 지급. 구매 확정 후 지급(연동 D+7 / 미연동 D+30).</div>
             <div class="event-actions" id="event-action-3"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button></div>
           </div>
         </div>
@@ -1632,25 +1633,25 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 
     <!-- ── 친구초대 관리 (신규) ── -->
     <div class="section" id="sec-invite">
-      <div class="amber-box"><strong>⚠️ 정책 미확정</strong> — 이벤트 티켓 지급·사용 정책은 운영 담당자 회의 후 확정 예정. 현재 수치는 임시값으로 운영 전 업데이트 필요합니다.</div>
+      <div class="info-box"><strong>정책 확정 반영</strong> — 친구초대 보상 = 양쪽 각 500P(포인트), 초대자 월 최대 10명. (이벤트 티켓 → 포인트 변경)</div>
       <div class="invite-stat-grid">
         <div class="invite-card"><div class="invite-card-value" style="color:var(--main)">4,821</div><div class="invite-card-label">누적 초대 링크 발송</div></div>
         <div class="invite-card"><div class="invite-card-value" style="color:var(--success)">1,284</div><div class="invite-card-label">초대 성공 (가입 완료)</div></div>
         <div class="invite-card"><div class="invite-card-value" style="color:var(--amber)">26.6%</div><div class="invite-card-label">초대 전환율</div></div>
-        <div class="invite-card"><div class="invite-card-value" style="color:var(--info)">6,420</div><div class="invite-card-label">지급된 이벤트 티켓</div></div>
+        <div class="invite-card"><div class="invite-card-value" style="color:var(--info)">642,000P</div><div class="invite-card-label">지급된 초대 포인트</div></div>
       </div>
-      <div class="info-box"><strong>친구초대 보상</strong> — 초대자 이벤트 티켓 1장(피초대자 첫 픽구매 완료 시 성사) · 피초대자 1장(가입 즉시) · 성사 기준 월 20건 한도. 상세 정책은 <strong>운영 정책 &gt; 참여·이벤트</strong> 탭 참조.</div>
+      <div class="info-box"><strong>친구초대 보상</strong> — 초대자·피초대자 양쪽 각 <strong>500P(포인트)</strong> · 성사 기준 피초대자 첫 픽구매 완료(성사 시점 양쪽 지급) · 초대자 월 최대 10명. 상세 정책은 <strong>운영 정책 &gt; 참여·이벤트</strong> 탭 참조.</div>
       <div class="card">
         <div class="card-header"><div class="card-title">초대 현황 TOP 10</div></div>
         <table>
-          <thead><tr><th style="text-align:center">순위</th><th>닉네임(카카오톡 ID)</th><th style="text-align:center">누적 초대</th><th style="text-align:center">성공 초대</th><th style="text-align:center">지급 티켓</th><th style="text-align:center">이번달</th></tr></thead>
+          <thead><tr><th style="text-align:center">순위</th><th>닉네임(카카오톡 ID)</th><th style="text-align:center">누적 초대</th><th style="text-align:center">성공 초대</th><th style="text-align:center">지급 포인트</th><th style="text-align:center">이번달</th></tr></thead>
           <tbody>
             <tr>
               <td style="text-align:center;font-weight:700">1</td>
               <td><div style="font-weight:500">친구초대왕</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(invite_king)</div></td>
               <td style="text-align:center">47명</td>
               <td style="text-align:center">31명</td>
-              <td style="text-align:center"><span class="tk-chip event bare">155장</span></td>
+              <td style="text-align:center">15,500P</td>
               <td style="text-align:center">8명</td>
             </tr>
             <tr>
@@ -1658,7 +1659,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <td><div style="font-weight:500">쇼핑왕민준</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(minjun_kakao)</div></td>
               <td style="text-align:center">23명</td>
               <td style="text-align:center">18명</td>
-              <td style="text-align:center"><span class="tk-chip event bare">90장</span></td>
+              <td style="text-align:center">9,000P</td>
               <td style="text-align:center">3명</td>
             </tr>
             <tr>
@@ -1666,7 +1667,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <td><div style="font-weight:500">가격헌터서연</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(seoyeon_kko)</div></td>
               <td style="text-align:center">19명</td>
               <td style="text-align:center">12명</td>
-              <td style="text-align:center"><span class="tk-chip event bare">60장</span></td>
+              <td style="text-align:center">6,000P</td>
               <td style="text-align:center">5명</td>
             </tr>
           </tbody>
@@ -1872,6 +1873,16 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
         <div class="stat-card amber"><div class="stat-label">예약 대기</div><div class="stat-value">2건</div><div class="stat-change neutral">발송 예정</div></div>
       </div>
       <div class="card">
+        <div class="card-header"><div class="card-title">FCM 푸시 발송 상한 정책 <span style="font-size:11px;color:var(--success);font-weight:600">정책 확정</span></div></div>
+        <div style="padding:16px">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+            <div class="policy-item"><div class="policy-label">거래 알림 (구매·확정·환불)</div><div class="policy-value">상한 없음</div><div class="policy-desc">서비스 필수 알림 — 발송 제한 없음.</div></div>
+            <div class="policy-item"><div class="policy-label">기타 알림 (미션·만료·추첨)</div><div class="policy-value">일 2건</div><div class="policy-desc">1인 1일 최대 2건.</div></div>
+            <div class="policy-item"><div class="policy-label">야간 발송</div><div class="policy-value">22:00~08:00 미발송</div><div class="policy-desc">야간 시간대 푸시 발송 차단.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
         <div class="card-header"><div class="card-title">알림 작성 · 발송</div></div>
         <div style="padding:18px">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
@@ -1989,12 +2000,12 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
                 <div class="policy-item">
                   <div class="policy-label">포스트백 수신 즉시</div>
                   <div class="policy-value">가지급 랜덤 티켓 1장 <span style="font-size:11px;color:var(--text-3)">(유저 화면: 등급 미정)</span> → <span style="color:var(--amber)">적립예정</span></div>
-                  <div class="policy-desc">등급은 구매 금액 기준으로 <strong>내부 확정</strong> — 위 등급별 적립 기준(Greedy) 적용. 적립률 비공개 정책에 따라 유저 앱에는 확정(D+7) 전까지 '랜덤(미정)'으로 표시해 기대감 부여. 운영자는 회원 목록의 '전환예정' 컬럼에서 확정 등급을 미리 확인. 확정 시 등급 티켓으로 전환되어 기프티콘 교환에 사용. <span style="color:var(--text-3)">(경품 응모는 별도 이벤트 티켓 전용)</span></div>
+                  <div class="policy-desc">등급은 구매 금액 기준으로 <strong>내부 확정</strong> — 위 등급별 적립 기준(Greedy) 적용. 적립률 비공개 정책에 따라 유저 앱에는 확정(연동 D+7 / 미연동 D+30) 전까지 '랜덤(미정)'으로 표시해 기대감 부여. 운영자는 회원 목록의 '전환예정' 컬럼에서 확정 등급을 미리 확인. 확정 시 등급 티켓으로 전환되어 기프티콘 교환에 사용. <span style="color:var(--text-3)">(경품 응모는 별도 이벤트 티켓 전용)</span></div>
                 </div>
                 <div class="policy-item">
-                  <div class="policy-label">구매확정 후 — D+7</div>
+                  <div class="policy-label">구매확정 후 — 연동 D+7 / 미연동 D+30</div>
                   <div class="policy-value" style="color:var(--success)">사용 가능 전환 + 구매 금액 기준 등급 티켓 지급</div>
-                  <div class="policy-desc">카카오 연동 필수. 포스트백 수신 7일 후 취소 없으면 자동 처리. 가지급 랜덤 티켓이 구매 금액 기준 등급 티켓으로 전환.</div>
+                  <div class="policy-desc">적립 확정 대기 = 카카오 연동 회원 D+7 / 미연동 회원 D+30. 로그인 정책 변경으로 미연동 유저가 부활하여 미연동은 30일 대기 적용. 해당 기간 내 취소 없으면 자동 처리되어 가지급 랜덤 티켓이 구매 금액 기준 등급 티켓으로 전환.</div>
                 </div>
                 <div class="policy-item">
                   <div class="policy-label">취소 / 반품 처리</div>
@@ -2013,8 +2024,8 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
                 </div>
                 <div class="policy-item">
                   <div class="policy-label">등급 티켓 유효기간</div>
-                  <div class="policy-value">등급 확정일로부터 1년</div>
-                  <div class="policy-desc">D+7 확정으로 랜덤→등급 티켓 전환되는 시점부터 1년. 만료 30일·7일 전 알림, 기한 경과 시 자동 소멸(복구 불가). 이벤트 티켓은 30일 만료 별도.</div>
+                  <div class="policy-value">적립일(랜덤 티켓 받은 날)로부터 1년</div>
+                  <div class="policy-desc">기산일 = 구매로 랜덤 티켓을 받은 적립일. 적립일 기준 1년 경과 시 만료(등급 확정 D+7 시점 아님). 만료 30일·7일 전 알림 유지, 기한 경과 시 자동 소멸(복구 불가). 이벤트 티켓은 경품응모 추첨 기준 이월 만료로 별도 처리.</div>
                 </div>
               </div>
             </div>
@@ -2156,29 +2167,40 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           </div>
 
           <div id="op-event" style="display:none">
-            <div class="amber-box"><strong>⚠️ 정책 미확정</strong> — 이벤트 티켓 지급·사용 정책은 운영 담당자 회의 후 확정 예정. 현재 수치는 임시값으로 운영 전 업데이트 필요합니다.</div>
-            <div class="card-header"><div class="card-title">이벤트 티켓 지급 경로</div></div>
+            <div class="info-box"><strong>정책 확정 반영</strong> — 이벤트 티켓 획득 경로·만료·한도 및 친구초대·온보딩 보상 확정 적용. <span style="color:var(--amber)">경품 추첨 주기(월1/격주)만 미정.</span></div>
+            <div class="card-header"><div class="card-title">이벤트 티켓 획득 경로 <span style="font-size:11px;color:var(--success);font-weight:600">정책 확정</span></div></div>
             <table>
               <thead><tr><th>경로</th><th>지급</th><th>조건</th></tr></thead>
               <tbody>
-                <tr><td>출석 체크</td><td>+1장</td><td>5일 연속 출석 시</td></tr>
-                <tr><td>광고 시청</td><td>+1장</td><td>1일 3회 한도</td></tr>
-                <tr><td>친구 초대</td><td>+1장</td><td>성사 기준: 피초대자 첫 구매 완료</td></tr>
-                <tr><td>주간 미션</td><td>+2장</td><td>주간 미션 달성 시</td></tr>
+                <tr><td>출석 체크</td><td>+1장</td><td>5일 연속 출석 달성 시</td></tr>
                 <tr><td>행운룰렛</td><td>+1~2장</td><td>하루 1회 / 당첨 시 지급</td></tr>
+                <tr><td>온보딩 가입</td><td>+1장</td><td>신규 가입 시 (카카오 연동 후 지급)</td></tr>
               </tbody>
             </table>
-            <div class="info-box" style="margin-top:12px">이벤트 티켓은 <strong>경품 응모 전용</strong>(상품 교환 불가)이며 유효기간은 지급일로부터 30일입니다.</div>
+            <div class="info-box" style="margin-top:12px">이벤트 티켓은 <strong>경품 응모 전용</strong>(상품 교환 불가)이며, 만료는 <strong>경품응모 추첨 기준 이월</strong> 방식입니다 — 당회 추첨 미응모 시 차회로 1회 이월, 차회도 미응모 시 소멸(최대 2회 추첨 유효). 추첨 응모 마감 후 획득분은 다음 회차가 당회. <span style="color:var(--text-3)">(친구초대·광고시청은 포인트 경로로 이동)</span></div>
             <div class="card-header" style="margin-top:18px"><div class="card-title">친구초대 보상 <span style="font-size:11px;color:var(--success);font-weight:600">정책 확정</span></div></div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
               <div class="policy-item"><div class="policy-label">초대 성사 기준</div><div class="policy-value">피초대자 첫 픽구매 완료</div><div class="policy-desc">가입만으로는 미성사. 첫 픽구매 완료 시점에 성사 처리.</div></div>
-              <div class="policy-item"><div class="policy-label">월 한도</div><div class="policy-value">성사 기준 20건/월</div><div class="policy-desc">첫 구매 완료 건수 기준. 자기 초대·동일 IP/기기 차단.</div></div>
-              <div class="policy-item"><div class="policy-label">초대자 보상</div><div class="policy-value">성사 건당 이벤트 티켓 1장</div><div class="policy-desc">피초대자 첫 픽구매 완료 시 지급.</div></div>
-              <div class="policy-item"><div class="policy-label">피초대자 보상</div><div class="policy-value">이벤트 티켓 1장</div><div class="policy-desc">가입 즉시 지급.</div></div>
+              <div class="policy-item"><div class="policy-label">초대자 월 한도</div><div class="policy-value">월 최대 10명</div><div class="policy-desc">성사 기준. 자기 초대·동일 IP/기기 차단.</div></div>
+              <div class="policy-item"><div class="policy-label">초대자 보상</div><div class="policy-value">성사 건당 500P (포인트)</div><div class="policy-desc">성사 시점에 지급. (이벤트 티켓 → 포인트로 변경)</div></div>
+              <div class="policy-item"><div class="policy-label">피초대자 보상</div><div class="policy-value">500P (포인트)</div><div class="policy-desc">성사(첫 픽구매 완료) 시점에 지급 — 가입 즉시 아님.</div></div>
+            </div>
+            <div class="card-header" style="margin-top:18px"><div class="card-title">이벤트 티켓 발급·응모 한도 <span style="font-size:11px;color:var(--success);font-weight:600">정책 확정</span></div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+              <div class="policy-item"><div class="policy-label">1일 발급 한도</div><div class="policy-value">5장 / 일</div><div class="policy-desc">이벤트 티켓 신규 상한. (구매 적립 랜덤 티켓 1일 5/월 50과 별도)</div></div>
+              <div class="policy-item"><div class="policy-label">월 발급 한도</div><div class="policy-value">30장 / 월</div><div class="policy-desc">매월 1일 00:00 초기화.</div></div>
+              <div class="policy-item"><div class="policy-label">1회 추첨 응모 한도</div><div class="policy-value">최대 10장</div><div class="policy-desc">단일 추첨 회차에 응모 가능한 최대 매수.</div></div>
+            </div>
+            <div class="card-header" style="margin-top:18px"><div class="card-title">온보딩 보상 <span style="font-size:11px;color:var(--success);font-weight:600">정책 확정</span></div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div class="policy-item"><div class="policy-label">가입 즉시</div><div class="policy-value">이벤트 티켓 1장 + 200P</div><div class="policy-desc">어뷰징 방지 — 이벤트 티켓·골드 보너스는 카카오 연동 후 지급.</div></div>
+              <div class="policy-item"><div class="policy-label">첫 쿠팡 구경하기</div><div class="policy-value">300P</div><div class="policy-desc">최초 쿠팡 경유 방문 시 지급.</div></div>
+              <div class="policy-item"><div class="policy-label">첫 경유 구매 (가입 7일 내)</div><div class="policy-value">골드 티켓 1장</div><div class="policy-desc">구매 확정 후 지급 (연동 D+7 / 미연동 D+30, 취소 먹튀 방지).</div></div>
+              <div class="policy-item"><div class="policy-label">친구초대</div><div class="policy-value">양쪽 각 500P</div><div class="policy-desc">피초대자 첫 픽구매 성사 시 양쪽 지급.</div></div>
             </div>
             <div class="card-header" style="margin-top:18px"><div class="card-title">경품 응모 규칙</div></div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-              <div class="policy-item"><div class="policy-label">응모 조건</div><div class="policy-value">이벤트 티켓 1장 · 1일 1회</div><div class="policy-desc">매일 자정 초기화.</div></div>
+              <div class="policy-item"><div class="policy-label">응모 조건</div><div class="policy-value">이벤트 티켓 1장 · 1회 추첨 최대 10장</div><div class="policy-desc">추첨 회차 기준. 추첨 주기(월1/격주)는 미정 — 운영 회의 후 확정.</div></div>
               <div class="policy-item"><div class="policy-label">당첨 확률</div><div class="policy-value">1등 5% · 2등 15% · 3등(꽝) 80%</div><div class="policy-desc">등급별 경품·확률은 경품/응모 관리에서 운영.</div></div>
             </div>
           </div>
@@ -2499,7 +2521,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
         <span class="ds-tag coupang">제휴몰 포스트백 (쿠팡·11번가·G마켓·알리·아이허브) · 구매 완료 시 콜백</span>
         <span class="ds-tag ours">우리 DB · postback_logs 테이블 (append-only)</span>
       </div>
-      <div class="info-box"><strong>포스트백</strong> — 회원이 PricePick 경유 링크로 제휴몰에서 구매하면 해당 제휴몰이 우리 서버에 콜백을 보냅니다. 이 데이터로 가지급(적립예정) 처리와 <strong>제휴 수수료(매출)</strong>를 집계하며, 수수료율은 제휴몰·카테고리별로 다릅니다. 등급 티켓은 구매확정(D+7) 후 지급됩니다.</div>
+      <div class="info-box"><strong>포스트백</strong> — 회원이 PricePick 경유 링크로 제휴몰에서 구매하면 해당 제휴몰이 우리 서버에 콜백을 보냅니다. 이 데이터로 가지급(적립예정) 처리와 <strong>제휴 수수료(매출)</strong>를 집계하며, 수수료율은 제휴몰·카테고리별로 다릅니다. 등급 티켓은 구매확정(연동 D+7 / 미연동 D+30) 후 지급됩니다. <strong>예외 처리</strong> — ① 확정 후 환불은 미사용분만 회수 ② 포스트백 미수신 24h 후 영수증 인증으로 수동 지급 ③ 중복 포스트백은 주문번호 UNIQUE로 차단.</div>
       <div class="toolbar">
         <input class="search-box" placeholder="UID, 주문번호 검색...">
         <select class="filter-sel"><option>전체 제휴몰</option><option>쿠팡</option><option>11번가</option><option>G마켓</option><option>알리익스프레스</option><option>아이허브</option></select>
@@ -2610,7 +2632,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
         <div>
           <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">알림 발송</div><div class="scheduler-desc">매 5분 · 예약·이벤트 알림 큐 처리</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">2분 전</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
           <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">주간 추첨 집계</div><div class="scheduler-desc">매주 월요일 자정 · 자동 당첨 처리</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">지난 월요일</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
-          <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 확정 배치</div><div class="scheduler-desc">매일 오전 3시 · 대기 티켓 자동 확정</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">어제 03:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div><div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 만료 배치</div><div class="scheduler-desc">매일 새벽 4시 · 등급 티켓 만료 소멸 + D-30/D-7 임박 알림</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">오늘 04:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
+          <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 확정 배치</div><div class="scheduler-desc">매일 오전 3시 · 대기 티켓 자동 확정 (연동 D+7 / 미연동 D+30)</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">어제 03:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div><div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 만료 배치</div><div class="scheduler-desc">매일 새벽 4시 · 등급 티켓 만료 소멸 + D-30/D-7 임박 알림</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">오늘 04:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
           <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot stopped"></div><div><div class="scheduler-name">DB 백업</div><div class="scheduler-desc">매일 새벽 3시 · S3 자동 업로드</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">2일 전</div><div class="scheduler-next" style="color:var(--danger)">오류</div></div><button class="btn btn-primary btn-sm" onclick="toast('재시작 처리')">재시작</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
         </div>
       </div>
@@ -2896,7 +2918,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             <span id="m-event-count" style="font-size:15px;font-weight:800;color:#c084fc"></span>
           </div>
         </div>
-        <div style="margin-top:6px;font-size:11px;color:var(--text3)">랜덤 티켓: 구매 후 D+7 확정 시 등급 티켓으로 전환. 취소 시 자동 환수.</div>
+        <div style="margin-top:6px;font-size:11px;color:var(--text3)">랜덤 티켓: 구매 후 연동 D+7 / 미연동 D+30 확정 시 등급 티켓으로 전환. 취소 시 자동 환수.</div>
       </div>
       <div class="form-group" id="m-ticket-section">
         <label class="form-label">티켓 수동 지급</label>
@@ -4199,7 +4221,7 @@ function saveTicketEdit() {
 })();
 
 </script>
-<div style="position:fixed;bottom:24px;left:24px;z-index:9999;font-family:Inter,sans-serif;font-size:12px;color:#333333;line-height:1.4;pointer-events:none;">Last Update 2026.06.05</div>
+<div style="position:fixed;bottom:24px;left:24px;z-index:9999;font-family:Inter,sans-serif;font-size:12px;color:#333333;line-height:1.4;pointer-events:none;">Last Update 2026.06.12 17:58</div>
 
 <!-- 교환 티켓 수정 모달 -->
 <div class="modal-overlay" id="m-ticket-edit">
