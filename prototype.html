@@ -15488,13 +15488,15 @@ function csCheck() {
 
 <style id="ip-i18n-style">
 #ip-lang-fab{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:2147483000;display:flex;align-items:center;font-family:'Pretendard Variable',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1;}
+/* 접힘 핸들 — _s04 그대로 유지 (좌측 세로 중앙 얇은 세로 탭) */
 #ip-lang-handle{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:14px;height:48px;padding:0;margin:0;border:none;background:#4A9EFF;border-radius:0 8px 8px 0;box-shadow:1px 0 5px rgba(0,0,0,0.30);cursor:pointer;-webkit-appearance:none;appearance:none;}
 #ip-lang-handle .ip-fab-grip{width:2px;height:16px;border-radius:2px;background:#fff;box-shadow:3px 0 0 #fff;}
-#ip-lang-menu{display:flex;flex-direction:column;gap:4px;overflow:hidden;max-width:0;opacity:0;padding:0;margin-left:-1px;background:#2c333c;border-radius:0 8px 8px 0;box-shadow:2px 2px 8px rgba(0,0,0,0.32);pointer-events:none;transition:max-width .2s ease,opacity .15s ease,padding .2s ease;}
-#ip-lang-fab[data-open="1"] #ip-lang-menu{max-width:72px;opacity:1;padding:5px;pointer-events:auto;}
-#ip-lang-menu button{font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.60);background:transparent;border:none;border-radius:5px;padding:6px 12px;cursor:pointer;line-height:1;white-space:nowrap;transition:background .15s,color .15s;}
-#ip-lang-menu button.on{background:#4A9EFF;color:#fff;}
-#ip-lang-menu button:hover{color:#fff;}
+/* 펼침 — 밝은 라운드 세그먼트 토글 (메타 컨트롤 톤, 앱 보라 UI와 분리) */
+#ip-lang-menu{display:flex;flex-direction:row;align-items:center;gap:4px;overflow:hidden;max-width:0;opacity:0;margin-left:0;padding:0;background:#ffffff;border:1px solid rgba(15,23,42,0.06);border-radius:999px;box-shadow:0 6px 18px rgba(15,23,42,0.18);pointer-events:none;transition:max-width .22s ease,opacity .16s ease,margin-left .22s ease,padding .22s ease;}
+#ip-lang-fab[data-open="1"] #ip-lang-menu{max-width:180px;opacity:1;margin-left:8px;padding:5px;pointer-events:auto;}
+#ip-lang-menu button{font-family:inherit;font-size:13px;font-weight:700;letter-spacing:0.4px;color:#9aa3af;background:transparent;border:none;border-radius:999px;padding:10px 20px;cursor:pointer;line-height:1;white-space:nowrap;transition:background .16s,color .16s;}
+#ip-lang-menu button.on{background:#4A9EFF;color:#fff;box-shadow:0 2px 6px rgba(74,158,255,0.45);}
+#ip-lang-menu button:not(.on):hover{color:#4A9EFF;}
 </style>
 
 <script id="ip-i18n-engine">
