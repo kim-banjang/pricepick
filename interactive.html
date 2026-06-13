@@ -15550,9 +15550,11 @@ function csCheck() {
 <div style="position:fixed;bottom:24px;left:24px;z-index:9999;font-family:Inter,sans-serif;font-size:12px;color:#333333;line-height:1.4;pointer-events:none;">Last Update 2026.06.12 17:57</div>
 
 <button id="ip-nav-handle" onclick="toggleNav()" aria-label="목차 펼치기/접기"><span class="chev">&#8250;</span></button>
+<div id="ip-nav-backdrop" onclick="toggleNav()"></div>
 <div id="ip-nav">
   <div class="ip-nav-header">
     <div class="nh-title">목차</div>
+    <button class="nh-close" type="button" onclick="toggleNav()" aria-label="목차 닫기">&times;</button>
   </div>
 
   <div class="ip-nav-section collapsed" id="sec-entry">
@@ -15629,6 +15631,15 @@ function csCheck() {
 @media (max-width: 1100px){
   body.interactive-mode #ip-nav-handle{display:none !important;}
   body.interactive-mode #ip-nav-mobile-btn{display:inline-flex !important;}
+}
+</style>
+<style id="ip-toc-close-fix">
+.ip-nav-header .nh-close{display:none;margin-left:auto;width:26px;height:26px;align-items:center;justify-content:center;background:#3a424d;border:none;border-radius:6px;color:#fff;font-size:18px;line-height:1;cursor:pointer;font-family:inherit;padding:0;}
+.ip-nav-header .nh-close:hover{background:#4a5563;}
+#ip-nav-backdrop{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.45);z-index:8998;}
+@media (max-width: 1100px){
+  body.interactive-mode .ip-nav-header .nh-close{display:inline-flex !important;}
+  body.interactive-mode:not(.nav-closed) #ip-nav-backdrop{display:block !important;}
 }
 </style>
 <style id="ip-i18n-style">
