@@ -211,6 +211,36 @@
     font-weight: 600;
     color: var(--ink-soft);
   }
+  /* Lang toggle */
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: var(--purple-soft);
+    border: 1px solid #D9CEF7;
+    border-radius: 8px;
+    padding: 3px;
+    height: 34px;
+    position: fixed;
+    top: 16px;
+    right: 18px;
+    z-index: 100;
+  }
+  .lang-btn {
+    padding: 0 10px;
+    height: 26px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--ink-faint);
+    transition: all .15s;
+    letter-spacing: .3px;
+  }
+  .lang-btn.active { background: var(--purple); color: #fff; }
+  .lang-btn:hover:not(.active) { color: var(--ink); }
   /* Tablet */
   @media (max-width: 760px) {
     .grid { grid-template-columns: repeat(2, 1fr); }
@@ -227,10 +257,16 @@
 </style>
 </head>
 <body>
+  <!-- Language toggle -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-ko" onclick="setLang('ko')">KO</button>
+    <button class="lang-btn" id="btn-vi" onclick="setLang('vi')">VI</button>
+  </div>
+
   <div class="wrap">
     <header>
       <div class="logo">Price<span class="pick">Pick</span></div>
-      <div class="subtitle">Design Hub <span class="dot">·</span> 산출물 최종본 모음</div>
+      <div class="subtitle">Design Hub <span class="dot">·</span> <span id="hub-subtitle-text">산출물 최종본 모음</span></div>
     </header>
 
     <!-- Featured: 마스터 정책서 -->
@@ -242,14 +278,14 @@
             <path d="M9 11.5l2 2 4-4.5"/>
           </svg>
         </div>
-        <span class="badge">정책 기준 · SoT</span>
+        <span class="badge" id="featured-badge">정책 기준 · SoT</span>
       </div>
-      <h2>마스터 정책서</h2>
-      <p>모든 정책의 최종 결정 · 기준 · 수치가 모인 단일 진실원(Single Source of Truth). 운영자와 개발자가 참조하는 정책 가이드 문서.</p>
-      <div class="arrow">열기 →</div>
+      <h2 id="featured-title">마스터 정책서</h2>
+      <p id="featured-desc">모든 정책의 최종 결정 · 기준 · 수치가 모인 단일 진실원(Single Source of Truth). 운영자와 개발자가 참조하는 정책 가이드 문서.</p>
+      <div class="arrow" id="featured-arrow">열기 →</div>
     </a>
 
-    <div class="seclabel">기획 · 디자인 산출물</div>
+    <div class="seclabel" id="seclabel">기획 · 디자인 산출물</div>
     <main class="grid">
       <a class="card" href="/prototype.html" target="_blank" rel="noopener">
         <div class="cicon">
@@ -258,9 +294,9 @@
             <line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/>
           </svg>
         </div>
-        <h2>프로토타입</h2>
-        <p>전체 화면을 모은 카탈로그와 클릭 시뮬레이터. 모바일 최종 확인용.</p>
-        <div class="arrow">열기 →</div>
+        <h2 id="card-prototype-title">프로토타입</h2>
+        <p id="card-prototype-desc">전체 화면을 모은 카탈로그와 클릭 시뮬레이터. 모바일 최종 확인용.</p>
+        <div class="arrow" id="card-prototype-arrow">열기 →</div>
       </a>
 
       <a class="card" href="/interactive.html" target="_blank" rel="noopener">
@@ -271,9 +307,9 @@
             <line x1="12" y1="17" x2="12" y2="21"/>
           </svg>
         </div>
-        <h2>인터랙티브</h2>
-        <p>클릭으로 UX 흐름을 직접 체험하는 웹 기반 기획 프로토타입.</p>
-        <div class="arrow">열기 →</div>
+        <h2 id="card-interactive-title">인터랙티브</h2>
+        <p id="card-interactive-desc">클릭으로 UX 흐름을 직접 체험하는 웹 기반 기획 프로토타입.</p>
+        <div class="arrow" id="card-interactive-arrow">열기 →</div>
       </a>
 
       <a class="card" href="/storyboard.html" target="_blank" rel="noopener">
@@ -285,9 +321,9 @@
             <line x1="8" y1="16" x2="13" y2="16"/>
           </svg>
         </div>
-        <h2>스토리보드</h2>
-        <p>화면별 기획 스펙과 의사결정을 정리한 문서.</p>
-        <div class="arrow">열기 →</div>
+        <h2 id="card-storyboard-title">스토리보드</h2>
+        <p id="card-storyboard-desc">화면별 기획 스펙과 의사결정을 정리한 문서.</p>
+        <div class="arrow" id="card-storyboard-arrow">열기 →</div>
       </a>
 
       <a class="card" href="/screenflow.html" target="_blank" rel="noopener">
@@ -299,9 +335,9 @@
             <path d="M12 7.5v4M12 11.5H6v5M12 11.5h6v5"/>
           </svg>
         </div>
-        <h2>스크린플로</h2>
-        <p>전체 화면 흐름을 트리로 시각화한 흐름도.</p>
-        <div class="arrow">열기 →</div>
+        <h2 id="card-screenflow-title">스크린플로</h2>
+        <p id="card-screenflow-desc">전체 화면 흐름을 트리로 시각화한 흐름도.</p>
+        <div class="arrow" id="card-screenflow-arrow">열기 →</div>
       </a>
 
       <a class="card" href="/designsystem.html" target="_blank" rel="noopener">
@@ -313,9 +349,9 @@
             <circle cx="9" cy="15" r="1.3" fill="currentColor" stroke="none"/>
           </svg>
         </div>
-        <h2>디자인시스템</h2>
-        <p>컴포넌트 · 컬러 · 타이포 기준. 개발 핸드오프용.</p>
-        <div class="arrow">열기 →</div>
+        <h2 id="card-designsystem-title">디자인시스템</h2>
+        <p id="card-designsystem-desc">컴포넌트 · 컬러 · 타이포 기준. 개발 핸드오프용.</p>
+        <div class="arrow" id="card-designsystem-arrow">열기 →</div>
       </a>
 
       <a class="card" href="/cms.html" target="_blank" rel="noopener">
@@ -325,9 +361,9 @@
             <path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3 1a7 7 0 0 0-2-1.2l-.3-2.5H10.7l-.3 2.5a7 7 0 0 0-2 1.2l-2.3-1-2 3.4 2 1.5a7 7 0 0 0 0 2.4l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 2 1.2l.3 2.5h2.6l.3-2.5a7 7 0 0 0 2-1.2l2.3 1 2-3.4-2-1.5A7 7 0 0 0 19 12z"/>
           </svg>
         </div>
-        <h2>CMS</h2>
-        <p>어드민 운영 화면 설계.</p>
-        <div class="arrow">열기 →</div>
+        <h2 id="card-cms-title">CMS</h2>
+        <p id="card-cms-desc">어드민 운영 화면 설계.</p>
+        <div class="arrow" id="card-cms-arrow">열기 →</div>
       </a>
     </main>
   </div>
@@ -336,5 +372,97 @@
     <span class="ver">PricePick v8.2</span>
     <span>Last Update 2026-06-14 10:12</span>
   </footer>
+<script>
+// ── i18n 언어 시스템 ──
+let currentLang = 'ko';
+
+const I18N = {
+  ko: {
+    'hub.subtitle': '산출물 최종본 모음',
+    'featured.badge': '정책 기준 · SoT',
+    'featured.title': '마스터 정책서',
+    'featured.desc': '모든 정책의 최종 결정 · 기준 · 수치가 모인 단일 진실원(Single Source of Truth). 운영자와 개발자가 참조하는 정책 가이드 문서.',
+    'featured.arrow': '열기 →',
+    'seclabel': '기획 · 디자인 산출물',
+    'card.prototype.title': '프로토타입',
+    'card.prototype.desc': '전체 화면을 모은 카탈로그와 클릭 시뮬레이터. 모바일 최종 확인용.',
+    'card.interactive.title': '인터랙티브',
+    'card.interactive.desc': '클릭으로 UX 흐름을 직접 체험하는 웹 기반 기획 프로토타입.',
+    'card.storyboard.title': '스토리보드',
+    'card.storyboard.desc': '화면별 기획 스펙과 의사결정을 정리한 문서.',
+    'card.screenflow.title': '스크린플로',
+    'card.screenflow.desc': '전체 화면 흐름을 트리로 시각화한 흐름도.',
+    'card.designsystem.title': '디자인시스템',
+    'card.designsystem.desc': '컴포넌트 · 컬러 · 타이포 기준. 개발 핸드오프용.',
+    'card.cms.title': 'CMS',
+    'card.cms.desc': '어드민 운영 화면 설계.',
+    'card.arrow': '열기 →',
+  },
+  vi: {
+    'hub.subtitle': 'Tổng hợp tài liệu thiết kế',
+    'featured.badge': 'Chính sách · SoT',
+    'featured.title': 'Chính sách tổng hợp',
+    'featured.desc': 'Nguồn sự thật duy nhất (Single Source of Truth) — tập hợp mọi quyết định, tiêu chuẩn và chỉ số chính sách cuối cùng. Tài liệu hướng dẫn chính sách cho vận hành và phát triển.',
+    'featured.arrow': 'Mở →',
+    'seclabel': 'Tài liệu thiết kế & kế hoạch',
+    'card.prototype.title': 'Prototype',
+    'card.prototype.desc': 'Danh mục toàn bộ màn hình và trình mô phỏng click. Dùng để xác nhận cuối trên di động.',
+    'card.interactive.title': 'Interactive',
+    'card.interactive.desc': 'Prototype kế hoạch trên web để trải nghiệm trực tiếp luồng UX qua click.',
+    'card.storyboard.title': 'Storyboard',
+    'card.storyboard.desc': 'Tài liệu đặc tả kế hoạch và quyết định theo từng màn hình.',
+    'card.screenflow.title': 'Screenflow',
+    'card.screenflow.desc': 'Sơ đồ luồng toàn bộ màn hình được trực quan hóa dạng cây.',
+    'card.designsystem.title': 'Design System',
+    'card.designsystem.desc': 'Tiêu chuẩn thành phần, màu sắc và typography. Dùng để bàn giao phát triển.',
+    'card.cms.title': 'CMS',
+    'card.cms.desc': 'Thiết kế màn hình quản trị vận hành.',
+    'card.arrow': 'Mở →',
+  }
+};
+
+function t(key) {
+  return (I18N[currentLang] && I18N[currentLang][key]) || (I18N['ko'][key]) || key;
+}
+
+function setTxt(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+  document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+  applyLang();
+}
+
+function applyLang() {
+  setTxt('hub-subtitle-text',        t('hub.subtitle'));
+  setTxt('featured-badge',           t('featured.badge'));
+  setTxt('featured-title',           t('featured.title'));
+  setTxt('featured-desc',            t('featured.desc'));
+  setTxt('featured-arrow',           t('featured.arrow'));
+  setTxt('seclabel',                 t('seclabel'));
+  setTxt('card-prototype-title',     t('card.prototype.title'));
+  setTxt('card-prototype-desc',      t('card.prototype.desc'));
+  setTxt('card-prototype-arrow',     t('card.arrow'));
+  setTxt('card-interactive-title',   t('card.interactive.title'));
+  setTxt('card-interactive-desc',    t('card.interactive.desc'));
+  setTxt('card-interactive-arrow',   t('card.arrow'));
+  setTxt('card-storyboard-title',    t('card.storyboard.title'));
+  setTxt('card-storyboard-desc',     t('card.storyboard.desc'));
+  setTxt('card-storyboard-arrow',    t('card.arrow'));
+  setTxt('card-screenflow-title',    t('card.screenflow.title'));
+  setTxt('card-screenflow-desc',     t('card.screenflow.desc'));
+  setTxt('card-screenflow-arrow',    t('card.arrow'));
+  setTxt('card-designsystem-title',  t('card.designsystem.title'));
+  setTxt('card-designsystem-desc',   t('card.designsystem.desc'));
+  setTxt('card-designsystem-arrow',  t('card.arrow'));
+  setTxt('card-cms-title',           t('card.cms.title'));
+  setTxt('card-cms-desc',            t('card.cms.desc'));
+  setTxt('card-cms-arrow',           t('card.arrow'));
+}
+</script>
 </body>
 </html>
