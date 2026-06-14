@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PricePick 마스터 정책서 v8.2</title>
+<style>
+  :root{
+    --pp:#845EEE; --pp-d:#6a45d4; --pp-l:#f3efff;
+    --ink:#1f2330; --ink2:#4b5163; --ink3:#7a8093;
+    --line:#e7e3f3; --bg:#f6f5fb; --card:#ffffff;
+    --gold:#d4a017; --gold-bg:#fbf3da;
+    --silver:#8a93a6; --silver-bg:#eef0f5;
+    --bronze:#b5793b; --bronze-bg:#f5e9dc;
+    --ok:#16a34a; --ok-bg:#e7f7ed;
+    --pend:#be185d; --pend-bg:#fdeef4;
+    --note:#92400e; --note-bg:#fff5e6;
+    --new:#0e7490; --new-bg:#e0f5fa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Segoe UI",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 40px}
+
+  header{background:linear-gradient(135deg,var(--pp) 0%,#9b78f0 100%);color:#fff;
+    padding:34px 36px 28px;border-radius:0 0 26px 26px;margin-bottom:8px;box-shadow:0 10px 30px rgba(132,94,238,.25)}
+  header .kicker{font-size:12.5px;letter-spacing:2px;opacity:.85;font-weight:600}
+  header h1{font-size:28px;font-weight:800;margin:8px 0 6px;letter-spacing:-.5px}
+  header .sub{font-size:14px;opacity:.95;font-weight:600}
+  header p{font-size:13px;opacity:.9;max-width:720px;margin-top:8px}
+
+  .sot{max-width:1000px;margin:0 auto 16px;padding:0 20px}
+  .sot-bar{background:#1f2330;color:#fff;border-radius:12px;padding:13px 18px;font-size:13.5px;font-weight:700;
+    display:flex;align-items:center;gap:10px;box-shadow:0 4px 14px rgba(31,35,48,.18)}
+  .sot-bar .dot{width:9px;height:9px;border-radius:50%;background:#845EEE;flex:none;box-shadow:0 0 0 4px rgba(132,94,238,.3)}
+  .sot-bar b{color:#c9b6ff}
+
+  /* ===== ① 대시보드 ===== */
+  .dash{max-width:1000px;margin:0 auto 6px;padding:0 20px}
+  .dash .oneliner{background:var(--pp-l);border:1px solid var(--line);border-radius:14px;padding:15px 20px;margin-bottom:16px;font-size:14.5px;color:var(--ink2)}
+  .dash .oneliner b{color:var(--pp-d);font-weight:800}
+  .quick{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(80,60,140,.05)}
+  .quick h3{font-size:14px;font-weight:800;color:var(--pp-d);margin-bottom:13px;display:flex;align-items:center;gap:8px}
+  .quick h3 svg{width:17px;height:17px;stroke:var(--pp);fill:none;stroke-width:2}
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:10px}
+  .qcell{background:#fafafc;border:1px solid #eee;border-radius:10px;padding:11px 13px}
+  .qcell .k{font-size:10.5px;font-weight:800;letter-spacing:.3px;color:var(--ink3);margin-bottom:4px;text-transform:uppercase}
+  .qcell .v{font-size:13px;font-weight:600;color:var(--ink)}
+  .qcell .v b{font-weight:800;color:var(--pp-d)}
+
+  .pendbox{background:var(--pend-bg);border:2px solid var(--pend);border-radius:14px;padding:15px 20px;margin-bottom:18px}
+  .pendbox h3{font-size:13.5px;font-weight:800;color:var(--pend);margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .pendbox h3 svg{width:15px;height:15px;stroke:var(--pend);fill:none;stroke-width:2}
+  .pendbox p{font-size:12.8px;color:#8a1f54;line-height:1.65;margin:5px 0}
+  .pendbox p b{font-weight:800}
+  .pendbox .rec{color:var(--pp-d);font-weight:700}
+
+  /* ===== ② 탭 네비 ===== */
+  .tabnav{position:sticky;top:0;z-index:40;background:var(--bg);padding:12px 0 8px;margin:6px auto 0;max-width:1000px}
+  .tabnav-inner{max-width:1000px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:7px}
+  .tabnav button{font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;
+    border:1.5px solid var(--line);background:#fff;color:var(--ink2);border-radius:22px;padding:7px 14px;transition:all .14s;white-space:nowrap}
+  .tabnav button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .tabnav button:hover{border-color:var(--pp);color:var(--pp-d)}
+  .tabnav button.on{background:var(--pp);border-color:var(--pp);color:#fff}
+
+  /* ===== ③ 패널 ===== */
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .2s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .ptitle{font-size:19px;font-weight:800;color:var(--ink);margin:6px 0 4px;display:flex;align-items:center;gap:9px}
+  .ptitle svg{width:20px;height:20px;stroke:var(--pp);fill:none;stroke-width:2}
+  .ptitle .badge-new{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:var(--new);padding:3px 9px;border-radius:20px}
+  .pdesc{font-size:13px;color:var(--ink3);margin-bottom:16px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 20px;margin-bottom:13px;box-shadow:0 2px 8px rgba(80,60,140,.04)}
+  .card h4{font-size:15px;font-weight:800;color:var(--pp-d);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .card h4 .n{background:var(--pp);color:#fff;font-weight:800;font-size:12px;min-width:24px;height:24px;padding:0 6px;border-radius:7px;display:grid;place-items:center}
+
+  .rule{font-size:13.8px;line-height:1.72;color:var(--ink2);margin-bottom:9px}
+  .rule:last-child{margin-bottom:0}
+  .rule b{color:var(--ink);font-weight:800}
+  .rule .lead{display:inline-block;font-weight:800;color:var(--pp-d);margin-right:4px}
+  .gloss{color:var(--ink3);font-weight:600;font-size:.92em}
+  ul.r{list-style:none;margin:6px 0 4px}
+  ul.r li{position:relative;padding-left:16px;font-size:13.6px;color:var(--ink2);line-height:1.72;margin:5px 0}
+  ul.r li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--pp)}
+  ul.r li b{color:var(--ink);font-weight:800}
+
+  .chip{display:inline-block;font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:20px;margin:0 2px;white-space:nowrap}
+  .c-gold{background:var(--gold-bg);color:var(--gold)} .c-silver{background:var(--silver-bg);color:var(--silver)} .c-bronze{background:var(--bronze-bg);color:var(--bronze)}
+
+  .ex{background:#f7f5ff;border:1px dashed #d8cef5;border-radius:9px;padding:9px 13px;font-size:12.6px;color:var(--ink2);margin:8px 0}
+  .ex b{color:var(--pp-d)}
+  .note{background:var(--note-bg);border-left:3px solid #f0a830;border-radius:0 8px 8px 0;padding:9px 13px;font-size:12.6px;color:var(--note);margin:8px 0}
+  .src{display:inline-block;font-size:11px;font-weight:700;color:var(--ink3);background:#f1eefb;border-radius:6px;padding:2px 8px;margin-top:6px}
+
+  .pending{background:var(--pend-bg);border:1.5px solid #f4b8d2;border-radius:10px;padding:11px 14px;margin:9px 0;font-size:13px;color:#8a1f54}
+  .pending .pl{display:inline-block;background:var(--pend);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:2px 9px;border-radius:6px;margin-right:7px;vertical-align:middle}
+  .pending b{font-weight:800}
+  .pending .rec{display:block;margin-top:6px;color:var(--pp-d);font-weight:700;font-size:12.6px}
+
+  table.mt{width:100%;border-collapse:collapse;font-size:12.8px;margin-top:4px;background:#fff;border-radius:10px;overflow:hidden}
+  table.mt th{background:var(--pp);color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800;letter-spacing:.3px}
+  table.mt td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.mt tr:last-child td{border-bottom:none}
+  table.mt td b{color:var(--ink);font-weight:800}
+  table.mt .key{font-weight:800;color:var(--pp-d);white-space:nowrap}
+  table.mt .pendval{color:var(--pend);font-weight:800}
+  table.mt tr:nth-child(even) td{background:#fbfaff}
+
+  table.hist{width:100%;border-collapse:collapse;font-size:12.8px;background:#fff;border-radius:10px;overflow:hidden}
+  table.hist th{background:#1f2330;color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800}
+  table.hist td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.hist td.date{white-space:nowrap;font-weight:800;color:var(--pp-d)}
+  table.hist td .arrow{color:var(--ink3)}
+  table.hist td b{color:var(--ink)}
+
+  footer{text-align:center;color:var(--ink3);font-size:11.5px;margin-top:28px;line-height:1.7}
+  .lastupdate{position:fixed;bottom:24px;left:24px;background:rgba(31,35,48,.9);color:#fff;font-size:11px;
+    padding:6px 12px;border-radius:8px;font-weight:600;letter-spacing:.3px;backdrop-filter:blur(4px);z-index:50}
+
+  @media(max-width:680px){
+    .wrap{padding:0 12px 40px}.sot,.dash,.tabnav-inner{padding-left:12px;padding-right:12px}
+    header{padding:24px 18px}header h1{font-size:22px}
+    .qgrid{grid-template-columns:1fr 1fr}
+    .lastupdate{bottom:12px;left:12px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">PRICEPICK · MASTER POLICY · v8.2</div>
+  <h1>PricePick 마스터 정책서</h1>
+  <div class="sub">운영자·개발자를 위한 정책 단일 기준서(SoT)</div>
+  <p>프라이스픽 서비스 전모와 확정된 모든 정책·숫자를 한 문서에 모았습니다. 화면 UI의 기준이 Interactive이듯, 정책의 기준은 이 문서입니다. 이 문서는 "무엇을·왜"(결정·규칙·수치)를 다루며, "어떻게 구현하나"(스키마·코드)는 개발 산출물의 몫입니다.</p>
+</header>
+
+<div class="sot">
+  <div class="sot-bar"><span class="dot"></span><span>이 문서가 <b>모든 정책의 최종 기준(SoT)</b>입니다. 다른 산출물과 정책이 충돌하면 이 문서가 우선합니다.</span></div>
+</div>
+
+<!-- ===== ① 상단 요약 대시보드 ===== -->
+<div class="dash">
+  <div class="oneliner"><b>한 줄 정의:</b> 앱을 거쳐 쇼핑몰(1단계는 쿠팡)에서 구매하면 구매액의 <b>2%</b>를 등급 티켓으로 적립해 주고, 모은 티켓을 <b>기프티콘</b>으로 교환하는 <b>경유 쇼핑 리워드 적립 앱</b>입니다.</div>
+
+  <div class="quick">
+    <h3><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>한눈에 보기 — 지금 확정된 핵심 숫자</h3>
+    <div class="qgrid">
+      <div class="qcell"><div class="k">티켓 1장 가치</div><div class="v">브 <b>100원</b> · 실 <b>1,000원</b> · 골 <b>2,000원</b></div></div>
+      <div class="qcell"><div class="k">등급 적립 단위</div><div class="v">브 5천 · 실 5만 · 골 10만원당 1장</div></div>
+      <div class="qcell"><div class="k">보상률</div><div class="v">구매액의 <b>2%</b></div></div>
+      <div class="qcell"><div class="k">포인트 가치</div><div class="v"><b>10P = 1원</b></div></div>
+      <div class="qcell"><div class="k">포인트 → 티켓</div><div class="v">브 1,000P · 실 10,000P · 골 20,000P</div></div>
+      <div class="qcell"><div class="k">등급 티켓 만료</div><div class="v">받은 날 + <b>1년</b></div></div>
+      <div class="qcell"><div class="k">이벤트 티켓 만료</div><div class="v">받은 날 + <b>30일</b></div></div>
+      <div class="qcell"><div class="k">포인트 만료</div><div class="v">적립일 + <b>1년</b></div></div>
+      <div class="qcell"><div class="k">적립 확정 대기</div><div class="v">연동 <b>D+7</b> · 미연동 <b>D+30</b></div></div>
+      <div class="qcell"><div class="k">출석(쿠팡 구경)</div><div class="v">매일 <b>100P</b> · 30초 체류 · 5일째 룰렛</div></div>
+      <div class="qcell"><div class="k">친구초대</div><div class="v">양쪽 각 <b>500P</b> · 월 10명</div></div>
+      <div class="qcell"><div class="k">이벤트 티켓 적립 한도</div><div class="v">일 5 · 월 30 · 추첨 응모 10장</div></div>
+      <div class="qcell"><div class="k">구매 적립 한도</div><div class="v">일 5건 · 월 50건</div></div>
+      <div class="qcell"><div class="k">등급 간 교환</div><div class="v">브 10 ⇄ 실 1 · 실 2 ⇄ 골 1</div></div>
+      <div class="qcell"><div class="k">제휴몰(1단계)</div><div class="v">쿠팡 직접 + 링크프라이스</div></div>
+      <div class="qcell"><div class="k">로그인</div><div class="v">닉네임 시작 → 카카오 연동 유도</div></div>
+      <div class="qcell"><div class="k">탈퇴 / 정산 보관</div><div class="v">PII D+30 삭제 · 정산 <b>5년</b></div></div>
+    </div>
+  </div>
+
+  <div class="pendbox">
+    <h3><svg viewBox="0 0 24 24"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v5M12 18h0"/></svg>결정 대기 — 확정 전 임의 운영 금지</h3>
+    <p><b>① 경품 추첨 주기</b> — 월 1회 vs 격주. 미확정. <span class="rec">추천: 월 1회(예산 예측·운영 부담 최소). ※ CMS 화면엔 "매주 월요일" 샘플이 남아 있어 정합 필요.</span></p>
+    <p><b>② 광고 시청 포인트 수량</b> — 광고 1회 시청 시 지급 포인트 미확정. <span class="rec">추천: 30~50P(출석 100P보다 낮게, 광고 단가·남용 방지 고려).</span></p>
+    <p><b>③ 경품 예산 비율</b> — 매출 대비 몇 %로 고정할지 미확정. <span class="rec">추천: 매출의 1~2%(손실 상한 보장).</span></p>
+    <p><b>④ 탈퇴 후 재가입 쿨타임</b> — 출처 충돌(약관=동일 카카오 30일 제한 / 화면=즉시 재가입). <span class="rec">추천: 동일 카카오 30일 쿨타임(약관과 일치, 어뷰징 방지). 단 탈퇴 시 데이터는 복구 불가하므로 즉시 허용도 선택지.</span></p>
+  </div>
+</div>
+
+<!-- ===== ② 탭 네비게이션 ===== -->
+<div class="tabnav">
+  <div class="tabnav-inner" id="tabnav"></div>
+</div>
+
+<div class="wrap" id="panels">
+
+  <!-- 1. 서비스모델·제휴 -->
+  <div class="panel" data-tab="t1">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg>서비스 모델 · 제휴몰</div>
+    <div class="pdesc">프라이스픽이 무엇이고, 어떤 쇼핑몰과 손잡는지.</div>
+    <div class="card">
+      <h4><span class="n">1</span>서비스 모델</h4>
+      <div class="rule"><span class="lead">정의</span><b>경유 쇼핑 리워드 적립 앱.</b> 앱을 거쳐(=경유) 제휴 쇼핑몰에서 구매하면 구매액에 따라 티켓이 적립되고, 모은 티켓을 기프티콘으로 교환합니다.</div>
+      <div class="rule"><span class="lead">수익 구조</span>수익 = <b>제휴 수수료</b>(쇼핑몰이 우리에게 주는 광고 중개비) + <b>기프티콘 판매 마진</b> − <b>티켓 적립 비용</b>(유저에게 돌려주는 리워드).</div>
+      <div class="rule"><span class="lead">탭 구조</span><b>홈 · 혜택 · 마이</b> 3탭으로 확정. (관심상품·핫딜 등 추가 탭은 다음 단계)</div>
+      <div class="note">관심상품 등록·가격 하락 알림은 <b>다음 단계(STEP2)</b> 기능입니다. 지금 정책 범위가 아닙니다.</div>
+      <span class="src">출처 PolicySpec 1·2 / FunctionalSpec 정책요약</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">2</span>제휴몰 범위</h4>
+      <div class="rule"><span class="lead">1단계(STEP1)</span><b>쿠팡 단독</b>으로 착수합니다. 쿠팡 <b>직접 연동</b> + <b>링크프라이스</b>(여러 쇼핑몰을 묶어 주는 제휴 중개사 = 어필리에이트 네트워크) 머천트 제휴를 함께 씁니다.</div>
+      <div class="rule"><span class="lead">확장</span>11번가·G마켓·알리·아이허브 등 그 외 쇼핑몰 확장은 다음 단계. 수수료율은 제휴몰별로 다릅니다.</div>
+      <div class="rule"><span class="lead">경유 인식</span>구매가 우리를 거친 것으로 인정되려면 앱의 <b>픽구매 화면</b>을 통해 쇼핑몰로 이동해야 합니다(여기서 우리를 거쳤다는 표시가 붙습니다).</div>
+      <span class="src">출처 PolicySpec 1 / FunctionalSpec(픽구매 브릿지)</span>
+    </div>
+  </div>
+
+  <!-- 2. 티켓·적립 -->
+  <div class="panel" data-tab="t2">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/></svg>쇼핑 티켓 · 적립 메커니즘</div>
+    <div class="pdesc">구매하면 티켓이 어떻게·얼마나 쌓이고, 언제 쓸 수 있게 되는지.</div>
+    <div class="card">
+      <h4><span class="n">1</span>등급 단가 · 적립 단위 · 보상률</h4>
+      <div class="rule"><span class="lead">티켓 1장 가치</span><span class="chip c-bronze">브론즈 100원</span> <span class="chip c-silver">실버 1,000원</span> <span class="chip c-gold">골드 2,000원</span></div>
+      <div class="rule"><span class="lead">적립 단위</span>구매액 기준 <b>5,000원당 브론즈 1장 · 50,000원당 실버 1장 · 100,000원당 골드 1장</b>. 전체 보상률은 구매액의 <b>2%</b>.</div>
+      <div class="rule"><span class="lead">분배 방식 <span class="gloss">(큰 단위부터 채우기)</span></span>큰 단위(골드)부터 채우고 남은 금액을 실버 → 브론즈 순으로 채웁니다. <b>5,000원 미만으로 남는 잔돈은 버립니다("거스름돈" 방식).</b></div>
+      <div class="ex">예) <b>99,999원</b> → 실버 1장 + 브론즈 9장(=1,900원). &nbsp;<b>100,000원</b> → 골드 1장. &nbsp;<b>7,800원</b> → 브론즈 1장 + 남는 2,800원 소멸.</div>
+      <div class="rule"><span class="lead">5천원 미만 구매</span>등급 티켓 대신 <b>이벤트 티켓 1장</b> 지급(단 이벤트 티켓 일 5 / 월 30 한도 적용, 초과 시 0장).</div>
+      <span class="src">출처 PolicySpec 3 / FunctionalSpec 정책요약</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">2</span>등급 확정 · 공개 시점</h4>
+      <div class="rule"><span class="lead">등급 확정</span>구매하는 순간 <b>등급은 내부에서 바로 정해집니다</b>(큰 단위부터 분배). 다만 화면에는 등급을 숨기고 <b>"랜덤 티켓 1장"으로만 표시</b>했다가 나중에 공개합니다.</div>
+      <div class="rule"><span class="lead">공개·사용 시점</span>구매 확정 후 <b>카카오 연동 상태면 D+7, 미연동 상태면 D+30</b>이 지나면 등급이 공개되고 사용 가능해집니다.</div>
+      <div class="rule"><span class="lead">상태 흐름</span><b>적립 예정 → (대기 기간 경과) → 사용 가능.</b></div>
+      <span class="src">출처 PolicySpec 4 / FunctionalSpec(혜택 탭) / CMS 티켓 확정 처리</span>
+    </div>
+  </div>
+
+  <!-- 3. 유효기간·만료 -->
+  <div class="panel" data-tab="t3">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>유효기간 · 만료</div>
+    <div class="pdesc">티켓·포인트가 언제 사라지는지. 세 가지(등급 티켓·이벤트 티켓·포인트)가 각각 다릅니다.</div>
+    <div class="card">
+      <h4><span class="n">1</span>세 가지 만료 규칙</h4>
+      <div class="rule"><span class="lead">등급 티켓</span><b>받은 날(구매로 적립된 날)부터 1년(365일)</b> 뒤 자동 소멸. 등급 확정일이 아니라 <b>적립일 기준</b>입니다. 만료 30일 전·7일 전 알림(D-30 / D-7).</div>
+      <div class="rule"><span class="lead">이벤트 티켓</span><b>받은 날부터 30일</b> 뒤 소멸(고정). 경품 응모 전용이며 기프티콘 교환에는 쓸 수 없습니다.</div>
+      <div class="note"><b>변경 확정:</b> 이벤트 티켓 만료는 과거 "추첨 회차 기준 최대 2회 이월" 방식에서 <b>30일 고정</b>으로 정리·확정됐습니다(v8 결정). 추첨 회차 이월 서술은 폐기.</div>
+      <div class="rule"><span class="lead">포인트</span><b>적립일부터 1년</b> 뒤 만료. 만료 30일 전·7일 전 알림.</div>
+      <span class="src">출처 PolicySpec 5 / FunctionalSpec 정책요약 / 사용자 확정(이벤트 티켓 30일)</span>
+    </div>
+  </div>
+
+  <!-- 4. 포인트 -->
+  <div class="panel" data-tab="t4">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></svg>포인트(P)</div>
+    <div class="pdesc">현금성 보조 화폐. 출석·친구초대·광고 시청 등으로 모으고, 티켓과 바꿀 수 있습니다.</div>
+    <div class="card">
+      <h4><span class="n">1</span>가치 · 교환 · 한도</h4>
+      <div class="rule"><span class="lead">가치</span><b>10P = 1원.</b></div>
+      <div class="rule"><span class="lead">티켓 교환(양방향)</span>포인트 ↔ 티켓 쌍방 교환. <b>브론즈 1,000P · 실버 10,000P · 골드 20,000P.</b> 포인트로 티켓을 사거나, 티켓을 포인트로 바꿀 수 있습니다.</div>
+      <div class="rule"><span class="lead">교환 조건</span>필요 포인트가 정확히 채워져야 교환됩니다(부족하면 거부).</div>
+      <div class="ex">예) 9,999P로 실버(10,000P) 교환 불가. 1,500P면 브론즈 1장(1,000P) 교환 후 500P 잔여.</div>
+      <div class="rule"><span class="lead">적립 한도</span>일일 적립 한도 <b>없음.</b></div>
+      <div class="rule"><span class="lead">획득 경로</span>출석(쿠팡 구경) 100P · 친구초대 500P · 온보딩 보상 · 광고 시청 · 티켓→포인트 전환.</div>
+      <div class="pending"><span class="pl">미결</span><b>광고 시청 포인트</b> — 광고 1회 시청 시 지급할 포인트 수량 미확정.
+        <span class="rec">추천: 30~50P. 출석 100P보다 낮게 잡아 광고 남용·단가 부담을 줄이는 선.</span></div>
+      <span class="src">출처 PolicySpec 6 / FunctionalSpec 정책요약 / CMS 발행유형</span>
+    </div>
+  </div>
+
+  <!-- 5. 참여 -->
+  <div class="panel" data-tab="t5">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.5-7 10-7 10z"/></svg>참여 — 출석 · 행운룰렛 · 친구초대 · 온보딩</div>
+    <div class="pdesc">구매하지 않아도 보상을 얻는 데일리·바이럴 장치들.</div>
+    <div class="card">
+      <h4><span class="n">1</span>출석 — "쿠팡 구경하기"</h4>
+      <div class="rule"><span class="lead">기본</span>기존 출석체크를 <b>"쿠팡 구경하기"로 대체.</b> 매일 앱을 거쳐 쿠팡에 방문하고 <b>30초 이상 머문 게 확인되면 100P</b> 지급.</div>
+      <ul class="r">
+        <li><b>"구경하기" 버튼을 먼저 눌러야</b> 인정됩니다(그냥 쿠팡 앱만 열면 미인정).</li>
+        <li>하루 1회. 자정 경계는 <b>앱으로 복귀한 시점의 날짜</b> 기준.</li>
+        <li>구매를 안 해도 받는 보상이라 <b>환불과 무관(회수 없음).</b></li>
+      </ul>
+      <div class="rule"><span class="lead">5일 연속 보너스</span><b>5일 연속 달성 시 행운룰렛</b>을 돌려 이벤트 티켓을 받습니다(아래 2번).</div>
+      <div class="rule"><span class="lead">2배 부스터</span>출석 직후 <b>일정 시간(현재 30분) 내</b>에 경유 구매가 확정되면 출석 보상이 2배(추가 100P, 총 200P). 일 1회만. 추가 100P는 <b>구매 확정 후</b> 지급(환불 리스크 최소화).</div>
+      <div class="note">부스터 유효시간(현재 30분)은 운영값으로 조정될 수 있습니다.</div>
+      <span class="src">출처 PolicySpec 7 / FunctionalSpec(홈) / CMS</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">2</span>행운룰렛 <span style="font-size:11px;color:var(--new);background:var(--new-bg);border-radius:20px;padding:2px 9px;font-weight:800">독립 정책</span></h4>
+      <div class="rule"><span class="lead">기본</span>출석 <b>5일 연속</b>을 달성하면 돌릴 수 있는 룰렛. <b>하루 1회</b> 참여.</div>
+      <div class="rule"><span class="lead">보상</span>당첨 시 <b>이벤트 티켓 1~2장</b> 지급(미당첨 가능). 이벤트 티켓의 정식 획득 경로 3종(출석 5일·행운룰렛·온보딩 가입) 중 하나입니다.</div>
+      <div class="rule"><span class="lead">연계</span>여기서 받은 이벤트 티켓은 경품 응모(추첨)에만 쓰며, 받은 날부터 30일 만료 규칙을 따릅니다.</div>
+      <div class="pending"><span class="pl">미결</span><b>당첨 확률·배분</b>(1장 vs 2장 비율, 꽝 비율)은 문서에서 구체값이 확인되지 않습니다.
+        <span class="rec">추천: 이벤트 티켓 발행을 어뷰징 한도(일 5/월 30) 안에서 관리하고, 룰렛 기대값은 1회당 평균 1장 안팎으로 설계.</span></div>
+      <span class="src">출처 Interactive(행운룰렛 화면) / CMS 이벤트 티켓 발생 사유</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">3</span>친구초대</h4>
+      <div class="rule"><span class="lead">보상</span>초대자·피초대자 <b>양쪽 각 500P.</b></div>
+      <div class="rule"><span class="lead">지급 시점</span>피초대자의 <b>첫 픽구매(첫 경유 구매)가 성사된 시점</b>에 양쪽 지급. 가입만으로는 지급하지 않습니다(먹튀·중복 차단).</div>
+      <div class="rule"><span class="lead">한도</span>초대자 기준 <b>월 최대 10명</b>(매월 1일 리셋).</div>
+      <div class="rule"><span class="lead">어뷰징 방지</span>한 사람은 한 번만 초대받기, 같은 기기로 자기 초대 차단. 최종 방어선은 <b>환금 시 본인인증(1인 1번호)</b>.</div>
+      <span class="src">출처 PolicySpec 9 / FunctionalSpec 정책요약</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">4</span>온보딩 보상</h4>
+      <ul class="r">
+        <li><b>가입 즉시</b> — 200P 즉시 + 이벤트 티켓 1장 <b>(카카오 연동 후 지급)</b></li>
+        <li><b>첫 쿠팡 구경하기</b> — 300P</li>
+        <li><b>첫 경유 구매(7일 내)</b> — 골드 1장 <b>(구매 확정 후 지급, 연동 D+7 / 미연동 D+30)</b></li>
+        <li><b>친구초대</b> — 양쪽 각 500P(첫 픽구매 성사 시 · 위 3번 참조)</li>
+      </ul>
+      <div class="note">어뷰징 방지: 핵심 보상(이벤트 티켓·골드)은 <b>카카오 연동 후에만</b> 지급. 닉네임만 있는 상태에선 보류됐다가 연동 시 지급 → 재설치 반복 파밍 차단.</div>
+      <span class="src">출처 PolicySpec 8 / FunctionalSpec(시작·카카오 연동)</span>
+    </div>
+  </div>
+
+  <!-- 6. 교환·등급 -->
+  <div class="panel" data-tab="t6">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg>교환 · 등급 업그레이드</div>
+    <div class="pdesc">티켓을 기프티콘으로 바꾸거나, 낮은 등급을 높은 등급으로 올리는 규칙.</div>
+    <div class="card">
+      <h4><span class="n">1</span>기프티콘 등급별 단일 교환</h4>
+      <div class="rule"><span class="lead">단일 교환</span>한 상품은 <b>한 가지 등급 티켓으로만</b> 교환합니다(브론즈끼리·실버끼리·골드끼리). <b>여러 등급을 섞는 혼합 결제는 없습니다.</b></div>
+      <div class="rule"><span class="lead">라인업 규칙 <span class="gloss">(액면가 = 상품의 표시 금액)</span></span>티켓 단위에 <b>딱 떨어지는 액면가 상품만</b> 올립니다(오차·적자 방지). <b>액면가가 교환 가치와 맞지 않으면 등록 자체가 불가</b>해 적자 교환이 발생하지 않습니다.</div>
+      <span class="src">출처 PolicySpec 13 / FunctionalSpec(교환소) / CMS 교환소 라인업</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">2</span>등급 업그레이드(상향만)</h4>
+      <div class="rule"><span class="lead">전환비</span>낮은 등급을 모아 높은 등급으로 등가 전환. <b>브론즈 10장 → 실버 1장, 실버 2장 → 골드 1장.</b> 하향(골드 → 실버 등)은 불가.</div>
+      <div class="ex">예) 브론즈만 50장 있는데 실버 상품이 필요하면 → 브론즈 50장을 실버 5장으로 올려 교환.</div>
+      <div class="rule"><span class="lead">취소</span>교환 완료 후 취소 불가.</div>
+      <span class="src">출처 PolicySpec 13 / FunctionalSpec(등급 교환)</span>
+    </div>
+  </div>
+
+  <!-- 7. 계정 생애주기 -->
+  <div class="panel" data-tab="t7">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>계정 생애주기 <span class="badge-new">신설</span></div>
+    <div class="pdesc">가입부터 연동·탈퇴·차단까지 계정이 어떤 단계를 거치고, 각 단계에서 데이터·보상이 어떻게 처리되는지(정책 기준).</div>
+    <div class="card">
+      <h4><span class="n">1</span>계정의 일생 (단계 흐름)</h4>
+      <div class="rule">계정은 두 가지로 구분됩니다. <b>연동 여부</b> = 미연동(닉네임만) / 연동(카카오), <b>계정 상태</b> = 정상 / 정지 / 탈퇴 요청.</div>
+      <div class="rule"><span class="lead">흐름</span><b>설치 → 닉네임 가입(미연동) → (카카오 연동) → 정상 운영.</b> 여기서 <b>정지</b> 또는 <b>탈퇴</b>로 갈라지고, 탈퇴는 D+30 후 개인정보 삭제로 종료됩니다.</div>
+      <span class="src">출처 FunctionalSpec / DataModel(상태 정책)</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">2</span>가입 · 카카오 연동</h4>
+      <div class="rule"><span class="lead">가입</span>설치 후 <b>닉네임만 설정하면 바로 시작</b>(미연동). 진입 단계 소셜 로그인 없음.</div>
+      <div class="rule"><span class="lead">미연동</span>티켓·포인트 등 데이터를 <b>기기에만 저장</b>. <b>재설치하면 초기화</b>(복구 안 됨). 적립 확정 대기는 <b>D+30</b>.</div>
+      <div class="rule"><span class="lead">연동</span>앱을 쓰며 카카오 연동을 유도. 연동하면 데이터가 <b>서버에 보존</b>되고 재설치해도 유지. 보류됐던 핵심 보상(이벤트 티켓·골드)이 이때 지급되며, 적립 확정 대기는 <b>D+7</b>로 단축.</div>
+      <div class="rule"><span class="lead">계정 충돌</span>이미 다른 계정에 연결된 카카오로 연동을 시도하면 <b>충돌 안내</b>가 뜹니다(자동 병합 없음, 사용자가 직접 선택).</div>
+      <span class="src">출처 PolicySpec 14 / FunctionalSpec(시작·연동) / DataModel(보존 정책)</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">3</span>탈퇴</h4>
+      <div class="rule"><span class="lead">처리</span>설정에서 탈퇴를 요청하면 탈퇴 요청 상태로 전환되고 최종 확인 후 처리됩니다.</div>
+      <ul class="r">
+        <li><b>D+30 유예</b> — 요청 후 30일 안에 재로그인하면 복구 가능.</li>
+        <li><b>개인정보(PII) 삭제</b> — D+30 경과 시 개인식별정보(닉네임·카카오 식별값·기기 식별값 등) 삭제·마스킹.</li>
+        <li><b>정산 데이터 5년 마스킹 보관</b> — 구매·적립·포인트 등 금전 정산 기록은 <b>법적 의무로 5년 마스킹 보관</b>.</li>
+        <li><b>잔여 자산 소멸</b> — 보유 티켓·미사용 기프티콘은 즉시 소멸하며 복구되지 않습니다(약관).</li>
+      </ul>
+      <div class="pending"><span class="pl">미결</span><b>재가입 쿨타임</b> — 출처 충돌: CMS 약관은 "동일 카카오 30일 이내 재가입 제한", 화면 안내는 "즉시 재가입 가능(쿨타임 없음)".
+        <span class="rec">추천: 어뷰징 방지 위해 동일 카카오 30일 쿨타임(약관과 일치). 단 탈퇴 시 데이터가 복구되지 않아 파밍 이득이 작으므로 즉시 허용도 가능 — 대표 확정 필요.</span></div>
+      <span class="src">출처 FunctionalSpec(탈퇴 흐름) / DataModel(탈퇴 처리 정책) / CMS 약관·탈퇴 관리</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">4</span>운영자 차단(정지)</h4>
+      <div class="rule"><span class="lead">상태</span>운영자가 어뷰징 등으로 계정을 정지하면, 진입 시 <b>"운영자 계정 차단" 안내</b>가 뜨고 정지 해제 전까지 로그인 불가.</div>
+      <div class="rule"><span class="lead">자산</span>정지 상태에서도 <b>기존 잔액은 유지</b>되지만 <b>신규 적립·교환은 차단</b>됩니다. 약관 위반 시 보유 티켓 전액 회수·영구 정지 조치 가능.</div>
+      <span class="src">출처 FunctionalSpec(계정 차단·마이) / CMS 약관</span>
+    </div>
+  </div>
+
+  <!-- 8. 어뷰징·환불·예외 -->
+  <div class="panel" data-tab="t8">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>어뷰징 한도 · 환불 · 예외</div>
+    <div class="pdesc">악용을 막는 한도와, 환불·기록 누락 같은 비정상 상황 처리.</div>
+    <div class="card">
+      <h4><span class="n">1</span>어뷰징 한도</h4>
+      <div class="rule"><span class="lead">이벤트 티켓</span><b>일 5장 / 월 30장.</b></div>
+      <div class="rule"><span class="lead">추첨 응모</span>1회 추첨에 <b>최대 10장</b>까지 응모.</div>
+      <div class="rule"><span class="lead">구매 적립</span>구매로 받는 티켓(랜덤/등급)은 <b>1일 5건 / 월 50건.</b></div>
+      <div class="rule"><span class="lead">환불 패턴</span>30일 내 환불 5건 초과 시 어뷰징 플래그 → 운영자가 직접 검토(자동 회수 아님). 임계치 5건/30일은 운영값.</div>
+      <span class="src">출처 PolicySpec 10 / FunctionalSpec 정책요약 / CMS 어뷰징 플래그</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">2</span>환불 처리</h4>
+      <div class="rule"><span class="lead">확정 전 환불</span>아직 "적립 예정"인 보상은 <b>자동 취소</b>(잔액 영향 없음).</div>
+      <div class="rule"><span class="lead">확정 후 환불</span>아직 안 쓴 티켓만 회수합니다. <b>이미 쓴 티켓은 회수하지 않습니다</b>(잔액이 마이너스가 되지 않게 기록만 남김).</div>
+      <div class="rule"><span class="lead">이벤트 티켓</span>환불해도 <b>회수하지 않습니다</b>(부수 보상).</div>
+      <div class="rule"><span class="lead">부스터성 보상</span>이벤트 티켓·출석 2배 포인트 등 추가 보상은 구매 확정 후에도 <b>환불 가능 기간(7일)이 지나야 사용 가능</b>. 그 전 환불되면 자연 취소. (7일은 운영값, 쿠팡 환불 가능 기간 이상으로 설정)</div>
+      <span class="src">출처 PolicySpec 11 / FunctionalSpec(픽구매)</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">3</span>기록 누락 · 중복 예외</h4>
+      <div class="rule"><span class="lead">구매기록 미수신</span>구매 기록(쇼핑몰이 보내는 구매 완료 통보)이 <b>24시간 안에 안 들어오면</b> "주문 확인 중" 표시 → 유저가 <b>영수증 인증</b> 요청 → 한국 CS가 주문번호 확인 후 승인하면 수동 지급.</div>
+      <div class="rule"><span class="lead">중복 기록</span>같은 주문번호로 기록이 두 번 들어오면 <b>1건만 인정</b>(주문번호 중복 자동 차단).</div>
+      <span class="src">출처 PolicySpec 11 / FunctionalSpec(픽구매)</span>
+    </div>
+  </div>
+
+  <!-- 9. 푸시 -->
+  <div class="panel" data-tab="t9">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>푸시 알림 상한</div>
+    <div class="pdesc">알림 피로를 막는 발송 규칙. 거래 알림과 마케팅성 알림을 다르게 다룹니다.</div>
+    <div class="card">
+      <h4><span class="n">1</span>발송 상한 · 야간 정책</h4>
+      <div class="rule"><span class="lead">거래 알림</span>구매·확정·환불 등 거래 알림은 <b>상한 없음</b>(즉시 발송 · 서비스 필수).</div>
+      <div class="rule"><span class="lead">기타 알림</span>미션·만료·추첨 등 마케팅성 알림은 <b>1인 하루 2건</b>까지.</div>
+      <div class="rule"><span class="lead">야간</span><b>22:00~08:00은 미발송</b>(모았다가 아침에 묶음 발송). 단 거래 알림은 야간에도 즉시.</div>
+      <div class="rule"><span class="lead">우선순위·중복 억제</span>거래 > 만료 임박 > 미션 > 추첨 순으로 중요도를 두고, 같은 사유의 알림은 묶어 중복 발송을 억제합니다(하루 상한 안에서).</div>
+      <span class="src">출처 PolicySpec 12 / FunctionalSpec(알림함) / CMS FCM 발송 상한</span>
+    </div>
+  </div>
+
+  <!-- 10. 추첨·경품 -->
+  <div class="panel" data-tab="t10">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/><circle cx="12" cy="12" r="3"/></svg>추첨 · 경품</div>
+    <div class="pdesc">이벤트 티켓으로 응모하는 경품 추첨. 1단계는 관리자가 직접 운영합니다.</div>
+    <div class="card">
+      <h4><span class="n">1</span>응모 · 당첨 · 운영</h4>
+      <div class="rule"><span class="lead">응모</span>이벤트 티켓으로 응모합니다. 응모하면 티켓이 바로 소모되고 <b>취소 불가</b>(1단계 기준). 1회 추첨 누적 <b>최대 10장</b> 응모.</div>
+      <div class="rule"><span class="lead">당첨 확률</span>응모한 <b>티켓 수에 비례</b>해 확률이 높아집니다. 당첨자 수만큼 비복원 추첨(한 번 뽑힌 응모는 다시 안 뽑힘).</div>
+      <div class="rule"><span class="lead">운영</span>1단계는 <b>관리자가 직접 추첨을 실행</b>. 당첨자에게 카톡/이메일로 배송지 입력을 안내하고 수동 발송.</div>
+      <div class="rule"><span class="lead">예산</span>경품 예산은 <b>매출의 일정 비율로 고정</b>(티켓이 아무리 많이 발행돼도 손실 상한 보장).</div>
+      <div class="rule"><span class="lead">티켓 발급과 무관</span>추첨은 이벤트 티켓을 <b>소비</b>할 뿐, 새로 발급하지 않습니다(획득 경로는 출석 5일·행운룰렛·온보딩 가입 3종 고정).</div>
+      <div class="pending"><span class="pl">미결</span><b>추첨 주기</b> — 월 1회 vs 격주 미확정. <b>경품 예산 비율</b>(매출 대비 %)도 운영 확정 필요.
+        <span class="rec">추천: 월 1회 + 예산 매출의 1~2%. ※ CMS 화면엔 "매주 월요일" 샘플이 있어 확정 시 정합 맞춰야 함.</span></div>
+      <span class="src">출처 PolicySpec 16 / FunctionalSpec(경품 응모) / CMS 추첨 회차</span>
+    </div>
+  </div>
+
+  <!-- 11. 본인인증·정산·데이터보존 -->
+  <div class="panel" data-tab="t11">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>본인인증 · 정산 · 데이터 보존 <span class="badge-new">신설</span></div>
+    <div class="pdesc">환금(기프티콘 교환) 게이트와, 돈이 오가는 서비스라 필요한 보존 기간·처리 원칙(정책만, 구현 제외).</div>
+    <div class="card">
+      <h4><span class="n">1</span>본인인증 — 환금 시점</h4>
+      <div class="rule"><span class="lead">시점</span>가입·적립 단계에는 본인인증이 <b>없습니다</b>(진입 허들을 낮춰 많이 쓰게 함). <b>기프티콘으로 처음 교환(환금)하려는 순간 1회 휴대폰 본인인증.</b> 이후 인증 상태 유지.</div>
+      <div class="rule"><span class="lead">1인 1번호</span>한 휴대폰 번호는 <b>한 계정만 환금</b> 가능. 이미 인증에 쓴 번호로 다른 계정을 인증하면 거부.</div>
+      <div class="rule"><span class="lead">역할</span>계정농장(다계정 어뷰징) 차단의 <b>핵심 게이트</b>. 봇 계정이 100개여도 진짜 번호 100개가 없으면 환금 불가.</div>
+      <div class="note">인증사 선택·건당 비용·본인 식별값 처리 정책은 운영 확정 필요 항목(운영값).</div>
+      <span class="src">출처 PolicySpec 15</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">2</span>데이터 보존 · 정산 기록 보관 (정책)</h4>
+      <div class="rule"><span class="lead">미연동 데이터</span>미연동 계정의 티켓·포인트는 <b>기기에만 저장</b>, 재설치 시 초기화. <b>연동 계정만 서버 보존.</b></div>
+      <div class="rule"><span class="lead">동의 이력</span>약관·개인정보·마케팅 동의는 <b>변경분을 새로 기록</b>해 이력을 남깁니다(과거 동의 내역 보존).</div>
+      <div class="rule"><span class="lead">탈퇴 시 개인정보</span>탈퇴 요청 후 <b>D+30 경과 시 개인식별정보 삭제·마스킹.</b></div>
+      <div class="rule"><span class="lead">정산 기록 5년</span>구매·적립·포인트 등 <b>금전 정산 데이터는 5년 마스킹 보관</b>(법적 의무). 환금=금전이라 거래 추적·분쟁 대응을 위해 필요.</div>
+      <div class="note">보존 기간·처리 원칙(무엇을·얼마나·왜)만 정책으로 정합니다. 어떤 형태로 저장·마스킹할지의 구현은 개발(DataModel) 영역.</div>
+      <span class="src">출처 DataModel(보존기간·탈퇴 처리 정책) / FunctionalSpec(활동 내역)</span>
+    </div>
+  </div>
+
+  <!-- 12. CMS 운영값 마스터표 -->
+  <div class="panel" data-tab="t12">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>CMS 운영값 마스터표</div>
+    <div class="pdesc">문서 곳곳에 흩어진 운영값(운영자가 CMS에서 바꾸는 숫자)을 한 표로 모았습니다. <b>키 · 현재값 · 소관 CMS 화면</b> 3열.</div>
+    <div class="card">
+      <table class="mt">
+        <thead><tr><th style="width:32%">키 (운영값)</th><th style="width:34%">현재값</th><th style="width:34%">소관 CMS 화면</th></tr></thead>
+        <tbody>
+          <tr><td class="key">티켓 등급 단가</td><td>브 100원 · 실 1,000원 · 골 2,000원</td><td>등급 티켓 가치 변경(정책 변경 마법사)</td></tr>
+          <tr><td class="key">등급 적립 단위</td><td>브 5천 · 실 5만 · 골 10만원당 1장</td><td>적립 정책 설정</td></tr>
+          <tr><td class="key">보상률</td><td>구매액의 2%</td><td>적립 정책 설정</td></tr>
+          <tr><td class="key">포인트 가치</td><td>10P = 1원</td><td>포인트 정책</td></tr>
+          <tr><td class="key">포인트 → 티켓 교환비</td><td>브 1,000P · 실 10,000P · 골 20,000P</td><td>포인트 정책</td></tr>
+          <tr><td class="key">등급 간 교환비</td><td>브 10 ⇄ 실 1 · 실 2 ⇄ 골 1</td><td>등급 교환 규칙</td></tr>
+          <tr><td class="key">등급 티켓 만료</td><td>적립일 + 365일 (D-30·D-7 알림)</td><td>유효기간 정책</td></tr>
+          <tr><td class="key">이벤트 티켓 만료</td><td>발급일 + 30일</td><td>유효기간 정책</td></tr>
+          <tr><td class="key">포인트 만료</td><td>적립일 + 1년</td><td>유효기간 정책</td></tr>
+          <tr><td class="key">적립 확정 대기</td><td>연동 D+7 · 미연동 D+30</td><td>티켓 확정 처리 / 회원 정책</td></tr>
+          <tr><td class="key">구매기록 미수신 임계</td><td>24시간 → 영수증 인증 수동 지급</td><td>구매기록 / CS 처리</td></tr>
+          <tr><td class="key">출석 체류 검증</td><td>30초 / 100P / 하루 1회</td><td>출석(쿠팡 구경) 정책</td></tr>
+          <tr><td class="key">출석 2배 부스터 유효시간</td><td>30분 (구매 확정 후 +100P)</td><td>출석 부스터 정책</td></tr>
+          <tr><td class="key">행운룰렛</td><td>5일 연속 출석 시 / 하루 1회 / 이벤트 티켓 1~2장</td><td>행운룰렛 / 이벤트 티켓 발생 사유</td></tr>
+          <tr><td class="key">친구초대 보상·한도</td><td>양쪽 각 500P · 초대자 월 10명</td><td>친구초대 정책</td></tr>
+          <tr><td class="key">이벤트 티켓 적립 한도</td><td>일 5장 / 월 30장</td><td>어뷰징 한도</td></tr>
+          <tr><td class="key">구매 적립 한도</td><td>일 5건 / 월 50건</td><td>어뷰징 한도</td></tr>
+          <tr><td class="key">추첨 1인 응모 상한</td><td>1회 추첨당 10장</td><td>추첨 회차 설정</td></tr>
+          <tr><td class="key">환불 어뷰징 플래그</td><td>30일 내 5건 초과 → 운영자 검토</td><td>어뷰징 플래그 임계치</td></tr>
+          <tr><td class="key">부스터성 보상 사용가능</td><td>구매 확정 + 7일 경과 후</td><td>환불·보상 정책</td></tr>
+          <tr><td class="key">FCM 기타 알림 상한</td><td>일 2건 · 야간 22~08시 미발송 (거래 무제한)</td><td>FCM 발송 상한</td></tr>
+          <tr><td class="key">탈퇴 유예</td><td>D+30 후 개인정보 삭제</td><td>탈퇴 관리</td></tr>
+          <tr><td class="key">정산 데이터 보관</td><td>5년 마스킹 (법적 의무)</td><td>탈퇴 관리 / 정산</td></tr>
+          <tr><td class="key">광고 시청 포인트</td><td class="pendval">미결</td><td>포인트 정책</td></tr>
+          <tr><td class="key">경품 추첨 주기</td><td class="pendval">미결 (월1/격주)</td><td>추첨 회차 설정</td></tr>
+          <tr><td class="key">경품 예산 비율</td><td class="pendval">미결 (매출 대비 %)</td><td>추첨 회차 설정</td></tr>
+          <tr><td class="key">재가입 쿨타임</td><td class="pendval">미결 (약관 30일 vs 화면 즉시)</td><td>탈퇴 관리 / 약관</td></tr>
+          <tr><td class="key">본인인증 인증사·단가</td><td class="pendval">미결 (운영 확정)</td><td>본인인증 정책</td></tr>
+        </tbody>
+      </table>
+      <span class="src">출처 PolicySpec 17 / CMS 전반 / FunctionalSpec</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">+</span>등급 티켓 가치 변경 — 정책 변경 마법사 (안전장치 5)</h4>
+      <div class="rule">등급 단가(브 100·실 1,000·골 2,000원)를 운영자가 조정하는 기능. <b>도입 확정.</b> 단순 입력칸 금지 — 아래 안전장치를 갖춘 "정책 변경 마법사"로만 동작합니다. 가치 하나만 바꾸면 차익거래·역마진이 생기기 때문.</div>
+      <ul class="r">
+        <li><b>① 한 세트로 연동 수정</b> — 등급 가치·적립 단위·보상률·등급 교환비·포인트 교환비·기프티콘 라인업을 묶어서 함께 수정. 단독 변경 금지.</li>
+        <li><b>② 저장 전 시뮬레이션</b> — 바꾼 값으로 교환소 상품의 필요 티켓 수·교환비가 어떻게 변하는지, 손해(역마진) 상품이 있는지 저장 전에 미리 보여줌.</li>
+        <li><b>③ 역마진 경고·차단</b> — 바뀐 가치가 커미션 기여분을 넘으면(손해 구간) 빨간 경고로 막거나 재확인.</li>
+        <li><b>④ 기존 발행분 고정</b> — 이미 나간 티켓은 발행 당시 가치로 고정(소급 안 함). 변경 후 새로 발행되는 티켓부터 적용.</li>
+        <li><b>⑤ 권한 제한 + 변경 이력</b> — 권한자만 변경, 누가·언제·이전값→새값 자동 로그.</li>
+      </ul>
+      <div class="note">화면 설계 상세는 별도 산출물 <b>CMS등급가치설계</b>(6단계 마법사 와이어프레임) 참조.</div>
+      <span class="src">출처 PolicySpec 18 / CMS등급가치설계 / 2026-06-09 결정</span>
+    </div>
+  </div>
+
+  <!-- 13. 정책 변경 히스토리 -->
+  <div class="panel" data-tab="t13">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg>정책 변경 히스토리</div>
+    <div class="pdesc">앞으로 정책이 바뀔 때마다 이 표에 한 줄씩 쌓는 <b>공식 변경 로그</b>입니다. 최신이 위로. (시드: 출처 문서에서 날짜·근거가 확인되는 변경만 기재)</div>
+    <div class="card">
+      <table class="hist">
+        <thead><tr><th style="width:13%">날짜</th><th style="width:24%">변경 항목</th><th style="width:33%">이전 → 이후</th><th style="width:30%">결정 근거</th></tr></thead>
+        <tbody>
+          <tr><td class="date">v8 결정<br><span style="font-weight:400;color:var(--ink3)">(날짜 미상)</span></td><td>이벤트 티켓 만료</td><td>추첨 회차 기준 최대 2회 이월 <span class="arrow">→</span> <b>발급일+30일 고정</b></td><td>이월 로직 복잡·운영 혼선 정리. 30일 고정으로 단순화 확정.</td></tr>
+          <tr><td class="date">2026-06-09</td><td>등급 티켓 가치 변경 CMS</td><td>미결(가치 CMS 수정 가능 여부) <span class="arrow">→</span> <b>도입 확정 + 안전장치 5종</b></td><td>가치 단독 변경 시 차익거래·역마진 위험 → 정책 변경 마법사(연동 수정·시뮬레이션·역마진 차단·발행분 고정·권한/로그)로만 허용.</td></tr>
+          <tr><td class="date">2026-06-09</td><td>진입 소셜 로그인</td><td>애플·구글·카카오 진입 로그인(비활성 보존) <span class="arrow">→</span> <b>완전 삭제</b></td><td>닉네임 시작 결정(18번)에 따라 7종 산출물에서 화면·바인딩까지 전부 제거.</td></tr>
+          <tr><td class="date">2026-06-08</td><td>로그인 방식</td><td>소셜 진입 로그인 <span class="arrow">→</span> <b>닉네임만으로 시작 + 앱 내 카카오 연동 유도</b></td><td>이부장 변경안 18번. 진입 허들 최소화, 연동은 보상·보존 조건으로 유도.</td></tr>
+          <tr><td class="date">2026-06-08</td><td>출석체크</td><td>일반 출석체크 <span class="arrow">→</span> <b>"쿠팡 구경하기"(30초 체류 검증 100P)</b></td><td>이부장 변경안. 경유 방문 습관화 + 30초 검증으로 어뷰징 방지.</td></tr>
+          <tr><td class="date">2026-06-08</td><td>친구초대 보상</td><td>(이전 형태) <span class="arrow">→</span> <b>양쪽 각 500P(이벤트티켓→포인트화), 첫 픽구매 성사 시</b></td><td>이부장 변경안. 가입 먹튀 차단 위해 성사 기준 지급.</td></tr>
+          <tr><td class="date">2026-06-08</td><td>등급 티켓 만료</td><td>만료 규정 불명확 <span class="arrow">→</span> <b>적립일 + 1년</b></td><td>이부장 변경안. 적립일(확정일 아님) 기산으로 확정, D-30·D-7 알림.</td></tr>
+          <tr><td class="date">2026-06-08</td><td>온보딩 핵심 보상 지급</td><td>가입 즉시 지급 <span class="arrow">→</span> <b>이벤트티켓·골드는 카카오 연동 후, 골드는 구매 확정 후 지급</b></td><td>닉네임 가입 어뷰징(재설치 파밍) 방지 보완책.</td></tr>
+          <tr><td class="date">2026-06-08</td><td>미연동 적립 확정 대기</td><td>(단일 대기) <span class="arrow">→</span> <b>연동 D+7 / 미연동 D+30</b></td><td>미연동 계정 리스크 반영. 연동 유도 인센티브.</td></tr>
+          <tr><td class="date">2026-06-08</td><td>제휴몰 범위(STEP1)</td><td>다수 제휴몰 <span class="arrow">→</span> <b>쿠팡 단독(직접 + 링크프라이스)</b></td><td>이부장 변경안. 1단계 집중, 관심상품·가격추적은 STEP2로 분리.</td></tr>
+        </tbody>
+      </table>
+      <span class="src">출처 LIVE 세션기록(2026-06-08·09) / 이부장_변경안_최종결정_s15 / PolicySpec / FunctionalSpec</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  PricePick 마스터 정책서 · v8.2 · 운영자·개발자 단일 기준서(SoT)<br>
+  충돌 시 이 문서 우선 · 미결 항목(추첨 주기·광고 포인트·예산 비율·재가입 쿨타임 등)은 확정 전 임의 운영 금지
+</footer>
+
+<div class="lastupdate">Last Update 2026.06.14 10:05</div>
+
+<script>
+  var TABS=[
+    ["t1","서비스·제휴",'<svg viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v11h16V9"/></svg>'],
+    ["t2","티켓·적립",'<svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/></svg>'],
+    ["t3","유효기간·만료",'<svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/></svg>'],
+    ["t4","포인트",'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10"/></svg>'],
+    ["t5","참여",'<svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.5-7 10-7 10z"/></svg>'],
+    ["t6","교환·등급",'<svg viewBox="0 0 24 24"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg>'],
+    ["t7","계정 생애주기",'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>'],
+    ["t8","어뷰징·환불",'<svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>'],
+    ["t9","푸시",'<svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg>'],
+    ["t10","추첨·경품",'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>'],
+    ["t11","인증·정산·보존",'<svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>'],
+    ["t12","CMS 운영값표",'<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>'],
+    ["t13","변경 히스토리",'<svg viewBox="0 0 24 24"><path d="M3 3v5h5M12 7v5l4 2"/><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/></svg>']
+  ];
+  var nav=document.getElementById('tabnav');
+  TABS.forEach(function(t){
+    var b=document.createElement('button');
+    b.innerHTML=t[2]+'<span>'+t[1]+'</span>';
+    b.setAttribute('data-go',t[0]);
+    b.onclick=function(){show(t[0]);};
+    nav.appendChild(b);
+  });
+  function show(id){
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.getAttribute('data-tab')===id);});
+    document.querySelectorAll('#tabnav button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-go')===id);});
+    window.scrollTo({top:document.querySelector('.tabnav').offsetTop-4,behavior:'smooth'});
+  }
+  show('t1');
+</script>
+
+</body>
+</html>
