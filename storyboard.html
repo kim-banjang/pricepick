@@ -12862,7 +12862,7 @@
 
 </main>
 
-<div style="position:fixed;bottom:24px;left:24px;z-index:9999;font-family:Inter,sans-serif;font-size:12px;color:#333333;line-height:1.4;pointer-events:none;">Last Update 2026.06.14 09:27</div>
+<div style="position:fixed;bottom:24px;left:24px;z-index:9999;font-family:Inter,sans-serif;font-size:12px;color:#333333;line-height:1.4;pointer-events:none;">Last Update 2026.06.14 10:48</div>
 
 <!-- ===== Phase 1 모달 — 클릭한 카드의 와이어프레임 + spec 4블록 복제 ===== -->
 <div class="sb-modal" id="sbModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="sbModalName">
@@ -12947,6 +12947,13 @@
 @media (max-width:560px){#sb-lang-switch{top:12px;right:12px;}}
 /* 모달 폰 반응형 fit (JS가 인라인 scale 설정, 데스크탑은 k=1로 불변) */
 .sb-modal-screen{max-width:100%;}
+/* 모바일(≤720) 모달: 폰|설명 좌우배치 → 세로 스택 전체폭 (7799행 비미디어 오버라이드 무력화) */
+@media (max-width:720px){
+  .sb-modal-body{ grid-template-columns:1fr !important; }
+  .sb-modal-screen{ width:auto !important; margin:0 auto 4px; }
+  .sb-modal-spec{ min-width:0; width:100%; }
+  .sb-modal-spec .spec{ width:100%; }
+}
 </style>
 
 <script id="ip-i18n-engine">
