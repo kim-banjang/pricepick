@@ -96,60 +96,47 @@
     padding: 40px clamp(20px, 4vw, 48px) 80px;
   }
 
-  /* 우측 고정 목차 */
-  .toc-fixed {
-    position: fixed;
-    right: 24px;
-    top: 80px;
-    width: 200px;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    padding: 14px 14px 14px 16px;
-    font-size: 11px;
-    z-index: 100;
-    box-shadow: 0 4px 16px rgba(132,94,238,0.06);
-  }
-  .toc-fixed h3 {
-    font-size: 10px;
-    font-weight: 800;
-    color: var(--text3);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-  }
-  .toc-fixed .toc-group { margin-bottom: 10px; }
-  .toc-fixed .toc-group-label {
-    font-size: 9.5px;
-    font-weight: 700;
-    color: var(--main);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin: 6px 0 4px;
-  }
-  .toc-fixed a {
-    display: block;
-    padding: 4px 8px;
-    color: var(--text2);
-    text-decoration: none;
-    font-size: 11px;
-    border-radius: 6px;
-    transition: background 0.15s;
-    line-height: 1.4;
-  }
-  .toc-fixed a:hover { background: var(--sub-4); color: var(--main); }
-  .toc-fixed a .num {
-    display: inline-block;
-    font-family: var(--mono);
-    color: var(--text3);
-    font-size: 9.5px;
-    margin-right: 4px;
-  }
-  @media (max-width: 1320px) { .toc-fixed { display: none; } }
+  /* 목차: 우측 고정 드로어 (DataModel과 동일 디자인/동작 · 라이트 테마) */
+  .toc-fixed{position:fixed;top:0;right:0;bottom:0;width:220px;max-height:100vh;
+    background:#fff;border:1px solid var(--border);border-right:none;border-radius:0;
+    padding:0 4px 8px;box-shadow:-8px 0 24px rgba(80,60,140,.08);overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:#cfc7e6 transparent;z-index:100}
+  .toc-fixed::-webkit-scrollbar{width:3px}
+  .toc-fixed::-webkit-scrollbar-thumb{background:#cfc7e6;border-radius:99px}
+  .toc-head{font-size:13px;font-weight:800;letter-spacing:.3px;color:var(--text1);padding:10px 10px 8px;
+    text-transform:none;border-bottom:1px solid var(--border);margin-bottom:4px;
+    position:sticky;top:0;background:#fff;z-index:2}
+  .toc-fixed a{display:block;padding:6px 8px;font-size:12px;color:var(--text2);text-decoration:none;
+    border-radius:4px;line-height:1.5;transition:background .1s,color .1s}
+  .toc-fixed a:hover{background:var(--sub-4);color:var(--main-dark)}
+  .toc-fixed a.toc-ent{padding-left:16px;font-size:11px;color:var(--text3)}
+  .toc-fixed a.toc-ent:hover{background:var(--sub-4);color:var(--main-dark)}
+  .toc-fixed a .num{display:inline-block;font-family:var(--mono);color:var(--text3);font-size:9.5px;margin-right:4px}
+
+  /* 그룹별 아코디언 */
+  .toc-group{padding:11px 8px 5px;font-size:10px;font-weight:800;letter-spacing:.7px;color:var(--main-dark);text-transform:uppercase;
+    display:flex;align-items:center;justify-content:space-between;gap:6px;cursor:pointer;user-select:none;border-radius:4px}
+  .toc-group:hover{background:var(--sub-4)}
+  .toc-caret{flex-shrink:0;font-size:9px;line-height:1;color:var(--main-dark)}
+  .toc-caret::before{content:"\25BE"} /* ▾ 펼침 */
+  .toc-grp-wrap.collapsed .toc-caret::before{content:"\25B8"} /* ▸ 접힘 */
+  .toc-grp-wrap.collapsed .toc-items{display:none}
+
+  /* 목차 전체 접기/펴기 */
+  .toc-fixed{transition:transform .25s ease}
+  body.toc-collapsed .toc-fixed{transform:translateX(100%)}
+  /* 본문(.page)은 항상 중앙 정렬 고정 — 목차는 fixed 오버레이라 접든 펴든 본문 리플로우 0 */
+  .toc-handle{position:fixed;top:50%;right:220px;transform:translateY(-50%);z-index:101;
+    width:22px;height:66px;display:flex;align-items:center;justify-content:center;padding:0;
+    background:#fff;border:1px solid var(--border);border-right:none;border-radius:8px 0 0 8px;
+    color:var(--main-dark);font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;
+    box-shadow:-4px 0 14px rgba(80,60,140,.10);transition:right .25s ease,background .12s}
+  .toc-handle::before{content:"\203A"} /* › 접기 */
+  body.toc-collapsed .toc-handle{right:0}
+  body.toc-collapsed .toc-handle::before{content:"\2039"} /* ‹ 펴기 */
+  .toc-handle:hover{background:var(--sub-4)}
+
+  @media (max-width: 900px){ .toc-fixed{ display:none; } .toc-handle{ display:none; } }
 
   /* 섹션 그룹 */
   .group-title {
@@ -8146,62 +8133,73 @@
 </header>
 
 <nav class="toc-fixed" aria-label="목차">
-  <h3>목차</h3>
-  <div class="toc-group">
-    <div class="toc-group-label">진입 · 로그인</div>
-    <a href="#s00"><span class="num">00</span>스플래시</a>
-    <a href="#s01"><span class="num">01</span>알림 허용</a>
-    <a href="#s01b"><span class="num">01b</span>ATT 권한 (iOS)</a>
-    <a href="#s02_nick"><span class="num">03</span>닉네임 설정</a>
-    <a href="#s02_K"><span class="num">02-K</span>카카오 인증 중</a>
-    <a href="#s02_K_existing"><span class="num">02-K-e</span>기존 계정 발견</a>
-    <a href="#s02_K_new"><span class="num">02-K-n</span>신규 연결 완료</a>
-    <a href="#s02_withdraw"><span class="num">02-wd</span>탈퇴 확인</a>
-    <a href="#s02_withdraw_done"><span class="num">02-wd-d</span>탈퇴 완료</a>
-    <a href="#s02_err_blocked"><span class="num">02-e-b</span>계정 차단</a>
-    <a href="#s02_err_network"><span class="num">02-e-n</span>네트워크 오류</a>
+  <div class="toc-head">목차</div>
+  <div class="toc-grp-wrap collapsed">
+    <div class="toc-group">진입 · 로그인<span class="toc-caret"></span></div>
+    <div class="toc-items">
+      <a class="toc-ent" href="#s00"><span class="num">00</span>스플래시</a>
+      <a class="toc-ent" href="#s01"><span class="num">01</span>알림 허용</a>
+      <a class="toc-ent" href="#s01b"><span class="num">01b</span>ATT 권한 (iOS)</a>
+      <a class="toc-ent" href="#s02_nick"><span class="num">03</span>닉네임 설정</a>
+      <a class="toc-ent" href="#s02_K"><span class="num">02-K</span>카카오 인증 중</a>
+      <a class="toc-ent" href="#s02_K_existing"><span class="num">02-K-e</span>기존 계정 발견</a>
+      <a class="toc-ent" href="#s02_K_new"><span class="num">02-K-n</span>신규 연결 완료</a>
+      <a class="toc-ent" href="#s02_withdraw"><span class="num">02-wd</span>탈퇴 확인</a>
+      <a class="toc-ent" href="#s02_withdraw_done"><span class="num">02-wd-d</span>탈퇴 완료</a>
+      <a class="toc-ent" href="#s02_err_blocked"><span class="num">02-e-b</span>계정 차단</a>
+      <a class="toc-ent" href="#s02_err_network"><span class="num">02-e-n</span>네트워크 오류</a>
+    </div>
   </div>
-  <div class="toc-group">
-    <div class="toc-group-label">홈 탭</div>
-    <a href="#s10"><span class="num">10</span>홈 메인</a>
-    <a href="#s11"><span class="num">11</span>적립 가능 쇼핑몰</a>
-    <a href="#s12"><span class="num">12</span>쇼핑몰 상세</a>
-    <a href="#s13"><span class="num">13</span>픽구매 브릿지</a>
-    <a href="#s14"><span class="num">14</span>출석체크(쿠팡구경하기)</a>
-    <a href="#s14-win"><span class="num">14-win</span>출석체크(쿠팡구경하기) — 5일 달성</a>
-    <a href="#s14-fail"><span class="num">14-fail</span>출석체크(쿠팡구경하기) — 누락 리셋</a>
-    <a href="#s14-new"><span class="num">14-new</span>출석체크(쿠팡구경하기) — 신규/0일</a>
-    <a href="#s14-done"><span class="num">14-done</span>출석체크(쿠팡구경하기) — 당일완료(미달)</a>
-    <a href="#s15"><span class="num">15</span>행운룰렛</a>
-    <a href="#s16"><span class="num">16</span>친구초대</a>
+  <div class="toc-grp-wrap collapsed">
+    <div class="toc-group">홈 탭<span class="toc-caret"></span></div>
+    <div class="toc-items">
+      <a class="toc-ent" href="#s10"><span class="num">10</span>홈 메인</a>
+      <a class="toc-ent" href="#s11"><span class="num">11</span>적립 가능 쇼핑몰</a>
+      <a class="toc-ent" href="#s12"><span class="num">12</span>쇼핑몰 상세</a>
+      <a class="toc-ent" href="#s13"><span class="num">13</span>픽구매 브릿지</a>
+      <a class="toc-ent" href="#s14"><span class="num">14</span>출석체크(쿠팡구경하기)</a>
+      <a class="toc-ent" href="#s14-win"><span class="num">14-win</span>출석체크(쿠팡구경하기) — 5일 달성</a>
+      <a class="toc-ent" href="#s14-fail"><span class="num">14-fail</span>출석체크(쿠팡구경하기) — 누락 리셋</a>
+      <a class="toc-ent" href="#s14-new"><span class="num">14-new</span>출석체크(쿠팡구경하기) — 신규/0일</a>
+      <a class="toc-ent" href="#s14-done"><span class="num">14-done</span>출석체크(쿠팡구경하기) — 당일완료(미달)</a>
+      <a class="toc-ent" href="#s15"><span class="num">15</span>행운룰렛</a>
+      <a class="toc-ent" href="#s16"><span class="num">16</span>친구초대</a>
+    </div>
   </div>
-  <div class="toc-group">
-    <div class="toc-group-label">혜택 탭</div>
-    <a href="#s20"><span class="num">20</span>혜택 메인</a>
-    <a href="#s21"><span class="num">21</span>적립 티켓 상세</a>
-    <a href="#s22"><span class="num">22</span>티켓 등급 교환</a>
-    <a href="#s23"><span class="num">23</span>적립 조건 안내</a>
-    <a href="#s24"><span class="num">24</span>티켓 교환소</a>
-    <a href="#s25"><span class="num">25</span>기프티콘 교환 상세</a>
-    <a href="#s26"><span class="num">26</span>경품 응모</a>
+  <div class="toc-grp-wrap collapsed">
+    <div class="toc-group">혜택 탭<span class="toc-caret"></span></div>
+    <div class="toc-items">
+      <a class="toc-ent" href="#s20"><span class="num">20</span>혜택 메인</a>
+      <a class="toc-ent" href="#s21"><span class="num">21</span>적립 티켓 상세</a>
+      <a class="toc-ent" href="#s22"><span class="num">22</span>티켓 등급 교환</a>
+      <a class="toc-ent" href="#s23"><span class="num">23</span>적립 조건 안내</a>
+      <a class="toc-ent" href="#s24"><span class="num">24</span>티켓 교환소</a>
+      <a class="toc-ent" href="#s25"><span class="num">25</span>기프티콘 교환 상세</a>
+      <a class="toc-ent" href="#s26"><span class="num">26</span>경품 응모</a>
+    </div>
   </div>
-  <div class="toc-group">
-    <div class="toc-group-label">마이 탭</div>
-    <a href="#s30"><span class="num">30</span>마이페이지</a>
-    <a href="#s30-T"><span class="num">30-T</span>약관 및 정책</a>
-    <a href="#s30-CS"><span class="num">30-CS</span>고객센터</a>
-    <a href="#s30-NT"><span class="num">30-NT</span>공지사항</a>
-    <a href="#s30-N"><span class="num">30-N</span>닉네임 변경</a>
-    <a href="#s31"><span class="num">31</span>설정</a>
-    <a href="#s32"><span class="num">32</span>활동 내역</a>
-    <a href="#s33"><span class="num">33</span>계정 탈퇴</a>
-    <a href="#s34"><span class="num">34</span>구매 내역</a>
+  <div class="toc-grp-wrap collapsed">
+    <div class="toc-group">마이 탭<span class="toc-caret"></span></div>
+    <div class="toc-items">
+      <a class="toc-ent" href="#s30"><span class="num">30</span>마이페이지</a>
+      <a class="toc-ent" href="#s30-T"><span class="num">30-T</span>약관 및 정책</a>
+      <a class="toc-ent" href="#s30-CS"><span class="num">30-CS</span>고객센터</a>
+      <a class="toc-ent" href="#s30-NT"><span class="num">30-NT</span>공지사항</a>
+      <a class="toc-ent" href="#s30-N"><span class="num">30-N</span>닉네임 변경</a>
+      <a class="toc-ent" href="#s31"><span class="num">31</span>설정</a>
+      <a class="toc-ent" href="#s32"><span class="num">32</span>활동 내역</a>
+      <a class="toc-ent" href="#s33"><span class="num">33</span>계정 탈퇴</a>
+      <a class="toc-ent" href="#s34"><span class="num">34</span>구매 내역</a>
+    </div>
   </div>
-  <div class="toc-group">
-    <div class="toc-group-label">시스템</div>
-    <a href="#sS1"><span class="num">S1</span>알림함</a>
+  <div class="toc-grp-wrap collapsed">
+    <div class="toc-group">시스템<span class="toc-caret"></span></div>
+    <div class="toc-items">
+      <a class="toc-ent" href="#sS1"><span class="num">S1</span>알림함</a>
+    </div>
   </div>
 </nav>
+<button id="toc-handle" class="toc-handle" type="button" title="목차 접기/펴기" aria-label="목차 접기/펴기"></button>
 
 <main class="page">
 
@@ -13101,6 +13099,20 @@
     }).observe(host,{childList:true});
   }
   window.addEventListener('resize',function(){ if(modal.classList.contains('open')) fit(); });
+})();
+</script>
+
+<script id="sb-toc">
+// 목차: 그룹별 아코디언 + 전체 접기/펴기 핸들 (DataModel과 동일 동작)
+(function(){
+  document.querySelectorAll('.toc-fixed .toc-group').forEach(function(h){
+    h.addEventListener('click',function(){
+      var w=h.parentElement;
+      if(w&&w.classList.contains('toc-grp-wrap')) w.classList.toggle('collapsed');
+    });
+  });
+  var handle=document.getElementById('toc-handle');
+  if(handle) handle.addEventListener('click',function(){document.body.classList.toggle('toc-collapsed');});
 })();
 </script>
 
