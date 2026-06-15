@@ -129,12 +129,46 @@
   }
 
   /* ===== KO/VI Toggle ===== */
-  #ps-lang-switch{position:fixed;top:18px;right:22px;z-index:1100;}
+  #ps-lang-switch{position:fixed;top:18px;right:22px;z-index:9002;}
   #ip-lang-toggle{display:inline-flex;align-items:center;gap:0;background:#ffffff;border:1px solid #E3E0EC;border-radius:999px;padding:3px;cursor:pointer;font-family:inherit;box-shadow:0 2px 10px rgba(90,60,150,0.12);}
   #ip-lang-toggle span{font-size:12px;font-weight:700;letter-spacing:.4px;color:#9890ad;padding:3px 12px;border-radius:999px;line-height:1.4;transition:background .15s,color .15s;}
   #ip-lang-toggle span.on{background:#845EEE;color:#fff;}
   #ip-lang-toggle:hover{border-color:#845EEE;}
   @media (max-width:560px){#ps-lang-switch{top:12px;right:12px;}}
+
+  /* ===== 표준 목차 드로어 (DataModel 기준, 운영지침3 확정) ===== */
+  .toc-fixed{position:fixed;top:0;right:0;bottom:0;width:220px;max-height:100vh;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:0;
+    padding:0 4px 8px;box-shadow:-8px 0 24px rgba(80,60,140,.08);overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:#cfc7e6 transparent;z-index:9000;transition:transform .25s ease}
+  .toc-fixed::-webkit-scrollbar{width:3px}
+  .toc-fixed::-webkit-scrollbar-thumb{background:#cfc7e6;border-radius:99px}
+  .toc-head{font-size:13px;font-weight:800;letter-spacing:.3px;color:var(--ink);padding:10px 10px 8px;
+    text-transform:none;border-bottom:1px solid var(--line);margin-bottom:4px;
+    position:sticky;top:0;background:var(--card);z-index:2}
+  .toc-fixed a{display:block;padding:6px 8px;font-size:12px;color:var(--ink2);text-decoration:none;
+    border-radius:4px;line-height:1.5;transition:background .1s,color .1s;cursor:pointer}
+  .toc-fixed a:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-fixed a.toc-ent{padding-left:16px;font-size:11px;color:var(--ink3)}
+  .toc-fixed a.toc-ent:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-group{padding:11px 8px 5px;font-size:10px;font-weight:800;letter-spacing:.7px;color:var(--pp-d);text-transform:uppercase;
+    display:flex;align-items:center;justify-content:space-between;gap:6px;cursor:pointer;user-select:none;border-radius:4px}
+  .toc-group:hover{background:var(--pp-l)}
+  .toc-caret{flex-shrink:0;font-size:9px;line-height:1;color:var(--pp-d)}
+  .toc-caret::before{content:"\25BE"}
+  .toc-grp-wrap.collapsed .toc-caret::before{content:"\25B8"}
+  .toc-grp-wrap.collapsed .toc-items{display:none}
+  body.toc-collapsed .toc-fixed{transform:translateX(100%)}
+  .toc-handle{position:fixed;top:50%;right:220px;transform:translateY(-50%);z-index:9001;
+    width:22px;height:66px;display:flex;align-items:center;justify-content:center;padding:0;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:8px 0 0 8px;
+    color:var(--pp-d);font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;
+    box-shadow:-4px 0 14px rgba(80,60,140,.10);transition:right .25s ease,background .12s}
+  .toc-handle::before{content:"\203A"}
+  body.toc-collapsed .toc-handle{right:0}
+  body.toc-collapsed .toc-handle::before{content:"\2039"}
+  .toc-handle:hover{background:var(--pp-l)}
+  @media(max-width:900px){.toc-fixed{display:none}.toc-handle{display:none}}
 </style>
 </head>
 <body>
@@ -693,6 +727,52 @@
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind);
   else bind();
+})();
+</script>
+
+<nav class="toc-fixed">
+  <div class="toc-head">목차</div>
+  <div class="toc-grp-wrap collapsed">
+    <div class="toc-group">기본 구조<span class="toc-caret"></span></div>
+    <div class="toc-items">
+      <a onclick="show('t1');return false;" href="#">서비스 모델 · 제휴몰</a>
+      <a onclick="show('t2');return false;" href="#">쇼핑 티켓 · 적립</a>
+      <a onclick="show('t3');return false;" href="#">유효기간 · 만료</a>
+      <a onclick="show('t4');return false;" href="#">포인트(P)</a>
+    </div>
+  </div>
+  <div class="toc-grp-wrap collapsed">
+    <div class="toc-group">참여 · 운영<span class="toc-caret"></span></div>
+    <div class="toc-items">
+      <a onclick="show('t5');return false;" href="#">참여 — 출석·룰렛·초대·온보딩</a>
+      <a onclick="show('t6');return false;" href="#">교환 · 등급 업그레이드</a>
+      <a onclick="show('t7');return false;" href="#">계정 생애주기</a>
+      <a onclick="show('t8');return false;" href="#">어뷰징 한도 · 환불</a>
+      <a onclick="show('t9');return false;" href="#">푸시 알림 상한</a>
+    </div>
+  </div>
+  <div class="toc-grp-wrap collapsed">
+    <div class="toc-group">기타<span class="toc-caret"></span></div>
+    <div class="toc-items">
+      <a onclick="show('t10');return false;" href="#">추첨 · 경품</a>
+      <a onclick="show('t11');return false;" href="#">본인인증 · 정산 · 보존</a>
+      <a onclick="show('t12');return false;" href="#">CMS 운영값 마스터표</a>
+      <a onclick="show('t13');return false;" href="#">정책 변경 히스토리</a>
+    </div>
+  </div>
+</nav>
+<button id="toc-handle" class="toc-handle" type="button" title="목차 접기/펴기" aria-label="목차 접기/펴기"></button>
+
+<script>
+(function(){
+  document.querySelectorAll('.toc-fixed .toc-group').forEach(function(h){
+    h.addEventListener('click',function(){
+      var w=h.parentElement;
+      if(w&&w.classList.contains('toc-grp-wrap')) w.classList.toggle('collapsed');
+    });
+  });
+  var handle=document.getElementById('toc-handle');
+  if(handle) handle.addEventListener('click',function(){document.body.classList.toggle('toc-collapsed');});
 })();
 </script>
 </body>

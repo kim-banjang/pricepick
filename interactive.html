@@ -15773,6 +15773,79 @@ function csCheck() {
   body.interactive-mode:not(.nav-closed) #ip-nav-backdrop{display:block !important;}
 }
 </style>
+<style id="ip-toc-standard">
+/* ===== 표준 목차 드로어 — 라이트 테마 (DataModel 기준, 운영지침3 확정) ===== */
+#ip-nav {
+  background: #ffffff !important;
+  border: 1px solid #e7e3f3 !important;
+  border-right: none !important;
+  box-shadow: -8px 0 24px rgba(80,60,140,.08) !important;
+  scrollbar-color: #cfc7e6 transparent !important;
+}
+#ip-nav::-webkit-scrollbar-thumb { background: #cfc7e6 !important; border-radius: 99px; }
+
+#ip-nav-handle {
+  background: #ffffff !important;
+  border: 1px solid #e7e3f3 !important;
+  border-right: none !important;
+  border-radius: 8px 0 0 8px !important;
+  box-shadow: -4px 0 14px rgba(80,60,140,.10) !important;
+  width: 22px !important;
+  height: 66px !important;
+}
+#ip-nav-handle:hover { background: #f3efff !important; width: 22px !important; }
+#ip-nav-handle .chev { color: #6a45d4 !important; }
+
+.ip-nav-header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e7e3f3 !important;
+}
+.ip-nav-header .nh-title {
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: .3px !important;
+  color: #1f2330 !important;
+}
+.ip-nav-header .nh-toggle {
+  background: #f3efff !important;
+  color: #6a45d4 !important;
+}
+.ip-nav-header .nh-toggle:hover { background: #e9e3fb !important; }
+
+.ip-nav-grouplbl {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .7px !important;
+  color: #6a45d4 !important;
+  padding: 11px 8px 5px !important;
+  border-radius: 4px !important;
+}
+.ip-nav-grouplbl:hover { background: #f3efff !important; color: #6a45d4 !important; }
+.sec-count { color: #845eee !important; }
+.sec-arrow { color: #6a45d4 !important; opacity: 0.8 !important; }
+
+.ip-nav-btn {
+  font-size: 12px !important;
+  color: #4b5163 !important;
+  background: transparent !important;
+  font-weight: 400 !important;
+}
+.ip-nav-btn.sub { font-size: 11px !important; color: #7a8093 !important; }
+.ip-nav-btn:hover { background: #f3efff !important; color: #6a45d4 !important; }
+.ip-nav-btn.active { background: #f3efff !important; color: #6a45d4 !important; font-weight: 700 !important; }
+.ip-nav-btn.sub.active { background: #f3efff !important; color: #6a45d4 !important; }
+.ip-nav-btn.dead { opacity: .55 !important; text-decoration: line-through !important; }
+
+.ip-nav-sep { background: #e7e3f3 !important; }
+
+@media(prefers-reduced-motion: reduce) {
+  #ip-nav, #ip-nav-handle, #ip-nav-handle .chev { transition: none !important; }
+}
+@media(max-width: 900px) {
+  #ip-nav { display: none !important; }
+  #ip-nav-handle { display: none !important; }
+}
+</style>
 <style id="ip-i18n-style">
 #ip-lang-toggle{flex-shrink:0;margin-right:6px;display:inline-flex;align-items:center;gap:0;background:rgba(255,255,255,0.07);border:1px solid rgba(74,158,255,0.55);border-radius:999px;padding:2px;cursor:pointer;font-family:inherit;}
 #ip-lang-toggle span{font-size:11px;font-weight:700;letter-spacing:0.4px;color:rgba(255,255,255,0.55);padding:2px 9px;border-radius:999px;line-height:1.4;transition:background .15s,color .15s;}
