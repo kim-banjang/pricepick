@@ -44,22 +44,22 @@
   .doc-version{font-size:12px;opacity:.85;margin-left:10px}
   .doc-meta{font-size:12px;opacity:.8;display:block;margin-top:4px}
 
-  /* 목차: 우측 고정 드로어 (Interactive 스타일) */
+  /* 목차: 우측 고정 드로어 (Interactive식 레이아웃 / DataModel 라이트 테마) */
   .toc-fixed{position:fixed;top:0;right:0;bottom:0;width:220px;max-height:100vh;
-    background:#2c333c;border:1px solid #3a424d;border-right:none;border-radius:0;
-    padding:0 4px 8px;box-shadow:-8px 0 24px rgba(61,42,120,.12);overflow-y:auto;
-    scrollbar-width:thin;scrollbar-color:#5a6472 transparent;z-index:9000}
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:0;
+    padding:0 4px 8px;box-shadow:-8px 0 24px rgba(80,60,140,.08);overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:#cfc7e6 transparent;z-index:9000}
   .toc-fixed::-webkit-scrollbar{width:3px}
-  .toc-fixed::-webkit-scrollbar-thumb{background:#5a6472;border-radius:99px}
-  .toc-head{font-size:13px;font-weight:800;letter-spacing:.3px;color:#fff;padding:10px 10px 8px;
-    text-transform:none;border-bottom:1px solid #3a424d;margin-bottom:4px;
-    position:sticky;top:0;background:#2c333c;z-index:2}
-  .toc-fixed a{display:block;padding:6px 8px;font-size:12px;color:#c0cad4;text-decoration:none;
+  .toc-fixed::-webkit-scrollbar-thumb{background:#cfc7e6;border-radius:99px}
+  .toc-head{font-size:13px;font-weight:800;letter-spacing:.3px;color:var(--ink);padding:10px 10px 8px;
+    text-transform:none;border-bottom:1px solid var(--line);margin-bottom:4px;
+    position:sticky;top:0;background:var(--card);z-index:2}
+  .toc-fixed a{display:block;padding:6px 8px;font-size:12px;color:var(--ink2);text-decoration:none;
     border-radius:4px;line-height:1.5;transition:background .1s,color .1s}
-  .toc-fixed a:hover{background:#3a424d;color:#fff}
-  .toc-fixed a.toc-ent{padding-left:16px;font-size:11px;color:#8a97a6}
-  .toc-fixed a.toc-ent:hover{background:#3a424d;color:#fff}
-  .toc-group{padding:11px 8px 5px;font-size:10px;font-weight:700;letter-spacing:.7px;color:#7a8898;text-transform:uppercase}
+  .toc-fixed a:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-fixed a.toc-ent{padding-left:16px;font-size:11px;color:var(--ink3)}
+  .toc-fixed a.toc-ent:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-group{padding:11px 8px 5px;font-size:10px;font-weight:800;letter-spacing:.7px;color:var(--pp-d);text-transform:uppercase}
 
   .doc-body{margin-left:24px;margin-right:248px;max-width:860px;padding:0 0 40px}
   @media(max-width:900px){.toc-fixed{display:none}.doc-body{margin-left:0;margin-right:0;max-width:100%}}
