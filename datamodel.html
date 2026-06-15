@@ -72,8 +72,8 @@
   /* 목차 전체 접기/펴기 */
   .toc-fixed{transition:transform .25s ease}
   body.toc-collapsed .toc-fixed{transform:translateX(100%)}
-  .doc-body{transition:margin-right .25s ease,max-width .25s ease}
-  body.toc-collapsed .doc-body{margin-right:34px;max-width:none}
+  /* 본문(.doc-body)은 목차 접기/펴기와 무관하게 항상 같은 폭/여백 유지 (리플로우 0).
+     목차는 position:fixed 오버레이라 접든 펴든 본문 레이아웃을 건드리지 않는다. */
   .toc-handle{position:fixed;top:50%;right:220px;transform:translateY(-50%);z-index:9001;
     width:22px;height:66px;display:flex;align-items:center;justify-content:center;padding:0;
     background:var(--card);border:1px solid var(--line);border-right:none;border-radius:8px 0 0 8px;
