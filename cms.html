@@ -1393,7 +1393,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 
     <!-- ── 주간 이벤트 추첨 (이벤트 티켓 소비·자동응모) ── -->
     <div class="section" id="sec-attendance">
-      <div class="info-box"><strong>주간 이벤트 추첨 = 이벤트 티켓 소비처(자동 응모)</strong> — 보유한 이벤트 티켓으로 자동 응모되며, 당첨 시 <strong>경품(기프티콘·실물 등)</strong>을 지급합니다. 추첨이 이벤트 티켓을 새로 발급하지 않습니다. (이벤트 티켓 획득 경로는 출석 5일·행운룰렛·온보딩 가입 3종 그대로)</div>
+      <div class="info-box"><strong>주간 이벤트 추첨 = 이벤트 티켓 소비처(자동 응모)</strong> — 보유한 이벤트 티켓으로 자동 응모되며, 당첨 시 <strong>경품(기프티콘·실물 등)</strong>을 지급합니다. 추첨이 이벤트 티켓을 새로 발급하지 않습니다. (이벤트 티켓 획득 경로는 출석 5연속·행운룰렛·이부장 패키지 5종 등 별도 경로)</div>
       <div class="info-box"><strong>주간 이벤트 추첨</strong> — 매주 월요일, 보유 이벤트 티켓으로 자동 응모된 회원 중 추첨하여 당첨자에게 경품(기프티콘·실물 등)을 지급합니다. 이벤트 티켓은 이 추첨의 <strong>응모 수단(소비)</strong>이며, 추첨이 이벤트 티켓을 발급하지 않습니다.</div>
       <div class="stats-grid">
         <div class="stat-card purple"><div class="stat-label">이번주 자동 응모자</div><div class="stat-value">12,841</div><div class="stat-change neutral">이벤트 티켓 보유 회원</div></div>
@@ -2262,7 +2262,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <thead><tr><th>경로</th><th>지급</th><th>조건</th></tr></thead>
               <tbody>
                 <tr><td>출석 체크</td><td>+1장</td><td>5일 연속 출석 달성 시</td></tr>
-                <tr><td>행운룰렛</td><td>+1~2장</td><td>하루 1회 / 당첨 시 지급</td></tr>
+                <tr><td>행운룰렛</td><td>포인트·이벤트티켓(확률 미정)</td><td>하루 1회 / 확률 지급</td></tr>
                 <tr><td>온보딩 가입</td><td>+1장</td><td>신규 가입 시 (카카오 연동 후 지급)</td></tr>
               </tbody>
             </table>
@@ -4575,8 +4575,8 @@ function saveTicketEdit() {
     "구매 확정가 (원)":"Giá xác nhận mua (won)",
     "이벤트 티켓 획득 경로":"Đường lấy vé sự kiện",
     "경로":"Đường dẫn","조건":"Điều kiện",
-    "출석 체크":"Điểm danh","+1장":"+1 vé","+1~2장":"+1~2 vé",
-    "하루 1회 / 당첨 시 지급":"1 lần/ngày / cấp khi trúng",
+    "출석 체크":"Điểm danh","+1장":"+1 vé","포인트·이벤트티켓(확률 미정)":"Điểm·vé sự kiện (tỉ lệ chưa xác định)",
+    "하루 1회 / 확률 지급":"1 lần/ngày / cấp ngẫu nhiên",
     "온보딩 가입":"Đăng ký Onboarding",
     "신규 가입 시 (카카오 연동 후 지급)":"Khi đăng ký mới (cấp sau liên kết Kakao)",
     "이벤트 티켓은":"Vé sự kiện là","경품 응모 전용":"chỉ dùng tham dự giải thưởng",
@@ -5298,7 +5298,7 @@ function saveTicketEdit() {
   "를 집계하며, 수수료율은 제휴몰·카테고리별로 다릅니다. 등급 티켓은 구매확정(연동 D+7 / 미연동 D+30) 후 지급됩니다.":"được tổng hợp, tỷ lệ hoa hồng khác nhau theo cửa hàng LK·danh mục. Vé hạng được cấp sau xác nhận mua (Liên kết D+7 / Chưa LK D+30).",
   "(회원이 티켓을 기프티콘으로 교환할 때 발생하는 마진). 두 수익에서 회원에게 적립해준 티켓의 환산가치(적립 비용)를 차감한 것이":"(Biên phát sinh khi thành viên đổi vé lấy Gifticon). Từ hai nguồn doanh thu trừ giá trị quy đổi (chi phí tích lũy) của vé đã tích lũy cho thành viên thì",
   "— API 키는 마스킹 처리됩니다. 키 노출 시 즉시 재발급 후 교체하세요. 키 교체 시 해당 제휴몰의 적립 추적이 일시 중단됩니다.":"— Khóa API được ẩn. Khi khóa bị lộ, cấp lại ngay và thay thế. Khi thay khóa, theo dõi tích lũy của cửa hàng LK đó tạm dừng.",
-  "을 지급합니다. 추첨이 이벤트 티켓을 새로 발급하지 않습니다. (이벤트 티켓 획득 경로는 출석 5일·행운룰렛·온보딩 가입 3종 그대로)":"được cấp. Rút thăm không phát hành vé sự kiện mới. (Đường dẫn nhận vé sự kiện vẫn là 3 loại: điểm danh 5 ngày·vòng quay may mắn·đăng ký onboarding)",
+  "을 지급합니다. 추첨이 이벤트 티켓을 새로 발급하지 않습니다. (이벤트 티켓 획득 경로는 출석 5연속·행운룰렛·이부장 패키지 5종 등 별도 경로)":"được cấp. Rút thăm không phát hành vé sự kiện mới. (Đường dẫn nhận vé sự kiện: điểm danh 5 lần liên tiếp·vòng quay·gói Trưởng phòng Lee 5 loại, v.v.)",
   "— 회원이 PricePick 경유 링크로 제휴몰에서 구매하면 해당 제휴몰이 우리 서버에 콜백을 보냅니다. 이 데이터로 가지급(적립예정) 처리와":"— Khi thành viên mua tại cửa hàng LK qua liên kết PricePick, cửa hàng LK đó gửi callback đến máy chủ. Dữ liệu này để xử lý tạm cấp (dự kiến tích lũy) và",
   "— 매주 월요일, 보유 이벤트 티켓으로 자동 응모된 회원 중 추첨하여 당첨자에게 경품(기프티콘·실물 등)을 지급합니다. 이벤트 티켓은 이 추첨의":"— Mỗi thứ Hai, rút thăm trong số thành viên đã tự động tham dự bằng vé sự kiện đang giữ và cấp giải thưởng (Gifticon·hiện vật v.v.) cho người trúng. Vé sự kiện là",
   "— ① 확정 후 환불은 미사용분만 회수 ② 포스트백 미수신 24h 후 영수증 인증으로 수동 지급 ③ 중복 포스트백은 주문번호 UNIQUE로 차단.":"— ① Hoàn tiền sau xác nhận chỉ thu hồi phần chưa dùng ② Cấp thủ công bằng xác thực hóa đơn sau 24h không nhận postback ③ Postback trùng bị chặn bằng UNIQUE mã đơn hàng.",
