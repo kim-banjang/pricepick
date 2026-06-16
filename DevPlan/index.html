@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 개발 통합 관리</title><style>
+:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--app:#2f9e9e;--be:#d6722f;--warn:#e8943a;--api:#c0497a}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:24px;font-weight:800}.hsub{font-size:13px;opacity:.85;margin-top:6px}
+.workbar{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:15px;font-size:12px}.chip{background:rgba(255,255,255,.16);padding:5px 12px;border-radius:20px}.chip b{font-weight:700}
+.langtog{position:absolute;top:20px;right:22px;display:flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px}
+.langtog button{border:none;background:none;color:#fff;font-size:12px;font-weight:700;padding:4px 13px;border-radius:16px;cursor:pointer;opacity:.7}.langtog button.on{background:#fff;color:var(--pp-d);opacity:1}
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:13px;margin:22px 0 6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px 17px}.card .lab{font-size:11.5px;color:var(--ink3);font-weight:600}.card .val{font-size:23px;font-weight:800;color:var(--pp-d);margin-top:3px}.card .sub{font-size:11px;color:var(--ink3);margin-top:2px}
+.card.tot{background:linear-gradient(135deg,#f3eeff,#fff);border-color:#dfd6f7}.card.app .val{color:var(--app)}.card.be .val{color:var(--be)}
+.tabs{display:flex;gap:6px;margin:22px 0 0;border-bottom:2px solid var(--line);flex-wrap:wrap}
+.tab{padding:11px 16px;font-size:13.5px;font-weight:700;color:var(--ink3);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px}.tab.on{color:var(--pp-d);border-bottom-color:var(--pp)}
+.tab .cnt{font-size:11px;color:#fff;background:var(--pp);border-radius:10px;padding:1px 7px;margin-left:5px;font-weight:700}
+.panel{display:none;margin-top:16px}.panel.on{display:block}
+.trackhead{display:flex;flex-wrap:wrap;gap:5px 14px;align-items:baseline;margin:14px 0 4px}.trackhead h2{font-size:15px}.trackhead .who{font-size:12px;color:var(--ink3)}.trackhead .sum{margin-left:auto;font-size:12px;color:var(--pp-d);font-weight:700}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;margin-top:8px}
+th{background:#f4f1fc;color:var(--pp-d);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;text-align:left;padding:9px 13px;border-bottom:1px solid var(--line)}
+td{padding:9px 13px;border-bottom:1px solid #f1eff8;font-size:12.7px;vertical-align:middle}tr:last-child td{border-bottom:none}tr:hover td{background:#faf8ff}
+td.num{color:var(--ink3);font-weight:700;width:40px;font-variant-numeric:tabular-nums}.task{font-weight:600}
+td.hrs{font-weight:800;color:var(--pp-d);white-space:nowrap;font-variant-numeric:tabular-nums;width:70px}.tbd{color:var(--ink3);font-weight:700}
+td.date .d1{font-variant-numeric:tabular-nums;color:var(--ink2);font-weight:600}.muted{color:var(--ink3)}
+.qacell{width:54px;text-align:center}.qa{font-size:10px;font-weight:800;color:#fff;background:var(--warn);padding:2px 6px;border-radius:5px;font-family:monospace}.api{font-size:10px;font-weight:800;color:#fff;background:var(--api);padding:2px 6px;border-radius:5px;font-family:monospace}
+.flag{background:#fdf6ec;border:1px solid #f3d9b0;border-radius:9px;padding:9px 13px;margin:10px 0;font-size:12px;color:#9a6b1e}.flag b{color:var(--warn)}
+.note{font-size:11px;color:var(--ink3);margin-top:10px}
+.foot{margin-top:24px;font-size:11px;color:var(--ink3);text-align:right}
+.subhead{font-size:12.5px;font-weight:800;color:var(--be);margin:16px 0 0;padding-top:8px}
+</style></head><body>
+<header><div class="langtog"><button class="on" onclick="lang('ko',this)">KO</button><button onclick="lang('vi',this)">VI</button></div>
+<div class="wrap" style="padding-bottom:0"><div class="htitle"><span class="i18n" data-ko="PricePick 개발 통합 관리" data-vi="PricePick · Quản lý tiến độ phát triển">PricePick 개발 통합 관리</span></div>
+<div class="hsub"><span class="i18n" data-ko="CMS·웹 / 앱 / 백엔드 — 전 트랙 시간 단위 통일" data-vi="CMS·Web / App / Backend — thống nhất theo giờ">CMS·웹 / 앱 / 백엔드 — 전 트랙 시간 단위 통일</span></div>
+<div class="workbar"><span class="chip"><span class="i18n" data-ko="근무 평일 08:00–11:00·12:30–16:30 (7h/일)" data-vi="Giờ làm T2–T6 (7h/ngày)">근무 평일 08:00–11:00·12:30–16:30 (7h/일)</span></span><span class="chip"><span class="i18n" data-ko="착수 2026-06-16" data-vi="Bắt đầu 2026-06-16">착수 2026-06-16</span></span></div></div></header>
+<div class="wrap">
+<div class="dash">
+<div class="card tot"><div class="lab"><span class="i18n" data-ko="전체 공수" data-vi="Tổng khối lượng">전체 공수</span></div><div class="val">494<span style="font-size:13px">h</span></div><div class="sub"><span class="i18n" data-ko="예상 완료 07/15" data-vi="Dự kiến xong 07/15">예상 완료 07/15</span></div></div>
+<div class="card"><div class="lab">CMS·<span class="i18n" data-ko="웹" data-vi="Web">웹</span> (VIN)</div><div class="val">55h</div><div class="sub">33<span class="i18n" data-ko="항목 · ~06/25" data-vi=" mục · ~06/25">항목 · ~06/25</span></div></div>
+<div class="card app"><div class="lab">App (Kevin·John)</div><div class="val">287h</div><div class="sub"><span class="i18n" data-ko="25기능 · 2인 · ~07/14" data-vi="25 cn · 2 người · ~07/14">25기능 · 2인 · ~07/14</span></div></div>
+<div class="card be"><div class="lab"><span class="i18n" data-ko="백엔드" data-vi="Backend">백엔드</span> (Harry)</div><div class="val">152h</div><div class="sub"><span class="i18n" data-ko="App 89+CMS 63 · ~07/15" data-vi="App 89+CMS 63 · ~07/15">App 89+CMS 63 · ~07/15</span></div></div>
+</div>
+<div class="tabs">
+<button class="tab on" onclick="sw(0)">CMS·<span class="i18n" data-ko="웹" data-vi="Web">웹</span> <span class="cnt">33</span></button>
+<button class="tab" onclick="sw(1)">App <span class="cnt">25</span></button>
+<button class="tab" onclick="sw(2)"><span class="i18n" data-ko="백엔드" data-vi="Backend">백엔드</span> <span class="cnt">42</span></button>
+</div>
+
+<div class="panel on" id="p0">
+<div class="trackhead"><h2>CMS · <span class="i18n" data-ko="웹" data-vi="Web">웹</span></h2><span class="who">VIN · Frontend</span><span class="sum"><span class="i18n" data-ko="55h · 33항목 · 6/16→06/25" data-vi="55h · 33 mục">55h · 33항목 · 6/16→06/25</span></span></div>
+<table><thead><tr><th>No</th><th><span class="i18n" data-ko="기능" data-vi="Chức năng">기능</span></th><th><span class="i18n" data-ko="예상" data-vi="Dự kiến">예상</span></th><th><span class="i18n" data-ko="일정" data-vi="Lịch">일정</span></th><th>QA</th></tr></thead><tbody><tr><td class="num">01</td><td class="task"><span class="i18n" data-ko="로그인 페이지" data-vi="Màn hình Đăng Nhập">로그인 페이지</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/16</span></td><td class="qacell"></td></tr>
+<tr><td class="num">02</td><td class="task"><span class="i18n" data-ko="기본 UI 설계" data-vi="사이드바, 상단바, 레이아웃, 다크 모드, 역할별 페이지 권한 관리">기본 UI 설계</span></td><td class="hrs">4h</td><td class="date"><span class="d1">06/16</span></td><td class="qacell"></td></tr>
+<tr><td class="num">03</td><td class="task"><span class="i18n" data-ko="대시보드" data-vi="Dashboard">대시보드</span></td><td class="hrs">2h</td><td class="date"><span class="d1">06/16</span></td><td class="qacell"></td></tr>
+<tr><td class="num">04</td><td class="task"><span class="i18n" data-ko="수익 분석" data-vi="Phân tích doanh thu">수익 분석</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/16→06/17</span></td><td class="qacell"></td></tr>
+<tr><td class="num">05</td><td class="task"><span class="i18n" data-ko="매출 내역" data-vi="Lịch sử doanh thu">매출 내역</span></td><td class="hrs">2h</td><td class="date"><span class="d1">06/17</span></td><td class="qacell"></td></tr>
+<tr><td class="num">06</td><td class="task"><span class="i18n" data-ko="정산 내역" data-vi="Lịch sử quyết toán">정산 내역</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/17</span></td><td class="qacell"></td></tr>
+<tr><td class="num">07</td><td class="task"><span class="i18n" data-ko="회원 목록" data-vi="Danh sách thành viên">회원 목록</span></td><td class="hrs">3h</td><td class="date"><span class="d1">06/17</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">08</td><td class="task"><span class="i18n" data-ko="티켓 내역" data-vi="Lịch sử Ticket">티켓 내역</span></td><td class="hrs">2h</td><td class="date"><span class="d1">06/17→06/18</span></td><td class="qacell"></td></tr>
+<tr><td class="num">09</td><td class="task"><span class="i18n" data-ko="추첨 관리" data-vi="Quản lý rút thăm">추첨 관리</span></td><td class="hrs">3h</td><td class="date"><span class="d1">06/18</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">10</td><td class="task"><span class="i18n" data-ko="경품/응모 관리" data-vi="Quản lý giải thưởng">경품/응모 관리</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/18</span></td><td class="qacell"></td></tr>
+<tr><td class="num">11</td><td class="task"><span class="i18n" data-ko="주간 이벤트 추첨" data-vi="Rút thăm sự kiện tuần">주간 이벤트 추첨</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/18</span></td><td class="qacell"></td></tr>
+<tr><td class="num">12</td><td class="task"><span class="i18n" data-ko="환수 이력" data-vi="Lịch sử thu hồi">환수 이력</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/18→06/19</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">13</td><td class="task"><span class="i18n" data-ko="포인트 내역" data-vi="Lịch sử điểm">포인트 내역</span></td><td class="hrs">2h</td><td class="date"><span class="d1">06/19</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">14</td><td class="task"><span class="i18n" data-ko="출석체크 설정" data-vi="Cài đặt điểm danh">출석체크 설정</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/19</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">15</td><td class="task"><span class="i18n" data-ko="포인트 정책" data-vi="Chính sách điểm">포인트 정책</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/19</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">16</td><td class="task"><span class="i18n" data-ko="구매/사용 내역" data-vi="Lịch sử mua / dùng">구매/사용 내역</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/19</span></td><td class="qacell"></td></tr>
+<tr><td class="num">17</td><td class="task"><span class="i18n" data-ko="취소 내역" data-vi="Lịch sử hủy">취소 내역</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/19</span></td><td class="qacell"></td></tr>
+<tr><td class="num">18</td><td class="task"><span class="i18n" data-ko="상품 목록" data-vi="Danh sách sản phẩm">상품 목록</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/19→06/22</span></td><td class="qacell"></td></tr>
+<tr><td class="num">19</td><td class="task"><span class="i18n" data-ko="상품설명 일괄등록" data-vi="Đăng ký hàng loạt mô tả sản phẩm">상품설명 일괄등록</span></td><td class="hrs">2h</td><td class="date"><span class="d1">06/22</span></td><td class="qacell"></td></tr>
+<tr><td class="num">20</td><td class="task"><span class="i18n" data-ko="배너 관리" data-vi="Quản lý Banner">배너 관리</span></td><td class="hrs">2h</td><td class="date"><span class="d1">06/22</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">21</td><td class="task"><span class="i18n" data-ko="이벤트 관리" data-vi="Quản lý sự kiện">이벤트 관리</span></td><td class="hrs">2h</td><td class="date"><span class="d1">06/22</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">22</td><td class="task"><span class="i18n" data-ko="친구초대 관리" data-vi="Quản lý mời bạn">친구초대 관리</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/22→06/23</span></td><td class="qacell"></td></tr>
+<tr><td class="num">23</td><td class="task"><span class="i18n" data-ko="공지사항 관리" data-vi="Quản lý thông báo">공지사항 관리</span></td><td class="hrs">2h</td><td class="date"><span class="d1">06/23</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">24</td><td class="task"><span class="i18n" data-ko="알림 관리" data-vi="Quản lý Push Notification">알림 관리</span></td><td class="hrs">2h</td><td class="date"><span class="d1">06/23</span></td><td class="qacell"></td></tr>
+<tr><td class="num">25</td><td class="task"><span class="i18n" data-ko="운영 정책" data-vi="Chính sách vận hành">운영 정책</span></td><td class="hrs">4h</td><td class="date"><span class="d1">06/23→06/24</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">26</td><td class="task"><span class="i18n" data-ko="약관 관리" data-vi="Quản lý điều khoản">약관 관리</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/24</span></td><td class="qacell"></td></tr>
+<tr><td class="num">27</td><td class="task"><span class="i18n" data-ko="1:1 문의" data-vi="Hỏi đáp 1:1">1:1 문의</span></td><td class="hrs">2h</td><td class="date"><span class="d1">06/24</span></td><td class="qacell"></td></tr>
+<tr><td class="num">28</td><td class="task"><span class="i18n" data-ko="계정 탈퇴 처리" data-vi="Xử lý hủy tài khoản">계정 탈퇴 처리</span></td><td class="hrs">3h</td><td class="date"><span class="d1">06/24→06/25</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">29</td><td class="task"><span class="i18n" data-ko="포스트백 로그" data-vi="Nhật ký Postback">포스트백 로그</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/25</span></td><td class="qacell"></td></tr>
+<tr><td class="num">30</td><td class="task"><span class="i18n" data-ko="앱 버전 관리" data-vi="Quản lý phiên bản app">앱 버전 관리</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/25</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">31</td><td class="task"><span class="i18n" data-ko="제휴몰 API 관리" data-vi="Quản lý API đối tác">제휴몰 API 관리</span></td><td class="hrs"><span class="tbd"><span class="i18n" data-ko="미산정" data-vi="Chưa tính">미산정</span></span></td><td class="date"><span class="muted"><span class="i18n" data-ko="미정" data-vi="Chưa">미정</span></span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">32</td><td class="task"><span class="i18n" data-ko="스케줄러" data-vi="Lịch trình">스케줄러</span></td><td class="hrs">1h</td><td class="date"><span class="d1">06/25</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">33</td><td class="task"><span class="i18n" data-ko="관리자 계정" data-vi="Tài khoản quản trị">관리자 계정</span></td><td class="hrs">2h</td><td class="date"><span class="d1">06/25</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+</tbody></table>
+</div>
+
+<div class="panel" id="p1">
+<div class="trackhead"><h2>App</h2><span class="who"><span class="i18n" data-ko="프론트 · Kevin·John 2인" data-vi="Frontend · Kevin·John">프론트 · Kevin·John 2인</span></span><span class="sum"><span class="i18n" data-ko="287h · 25기능 · 2인 병렬 ~07/14" data-vi="287h · 2 người ~07/14">287h · 25기능 · 2인 병렬 ~07/14</span></span></div>
+<table><thead><tr><th>No</th><th><span class="i18n" data-ko="기능" data-vi="Chức năng">기능</span></th><th><span class="i18n" data-ko="공수" data-vi="Khối lượng">공수</span></th><th></th></tr></thead><tbody><tr><td class="num">01</td><td class="task"><span class="i18n" data-ko="닉네임 입력" data-vi="Nhập nickname">닉네임 입력</span></td><td class="hrs">3.5h</td><td class="qacell"></td></tr>
+<tr><td class="num">02</td><td class="task"><span class="i18n" data-ko="홈" data-vi="Trang chủ">홈</span></td><td class="hrs">21h</td><td class="qacell"></td></tr>
+<tr><td class="num">03</td><td class="task"><span class="i18n" data-ko="쿠팡 둘러보기(출석체크)" data-vi="Dạo Coupang(điểm danh)">쿠팡 둘러보기(출석체크)</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">04</td><td class="task"><span class="i18n" data-ko="행운의 룰렛" data-vi="Vòng quay may mắn">행운의 룰렛</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">05</td><td class="task"><span class="i18n" data-ko="친구 초대(추천)" data-vi="Mời bạn bè">친구 초대(추천)</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">06</td><td class="task"><span class="i18n" data-ko="쿠팡 연동" data-vi="Liên kết coupang">쿠팡 연동</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">07</td><td class="task"><span class="i18n" data-ko="기프티콘 목록" data-vi="Danh sách gifticon">기프티콘 목록</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">08</td><td class="task"><span class="i18n" data-ko="기프티콘 상세" data-vi="Chi tiết gifticon">기프티콘 상세</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">09</td><td class="task"><span class="i18n" data-ko="기프티콘 교환" data-vi="Đổi gifticon">기프티콘 교환</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">10</td><td class="task"><span class="i18n" data-ko="카카오 연동" data-vi="Liên kết kakao">카카오 연동</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">11</td><td class="task"><span class="i18n" data-ko="혜택 탭" data-vi="Tab ưu đãi">혜택 탭</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">12</td><td class="task"><span class="i18n" data-ko="티켓 적립 방법 안내" data-vi="Hướng dẫn tích lũy vé">티켓 적립 방법 안내</span></td><td class="hrs">3.5h</td><td class="qacell"></td></tr>
+<tr><td class="num">13</td><td class="task"><span class="i18n" data-ko="이벤트 티켓으로 응모 참여" data-vi="Tham gia bốc thăm bằng vé sự kiện">이벤트 티켓으로 응모 참여</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">14</td><td class="task"><span class="i18n" data-ko="내 티켓" data-vi="Vé của tôi">내 티켓</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">15</td><td class="task"><span class="i18n" data-ko="티켓 등급 변경" data-vi="Đổi hạng vé">티켓 등급 변경</span></td><td class="hrs">21h</td><td class="qacell"></td></tr>
+<tr><td class="num">16</td><td class="task"><span class="i18n" data-ko="활동 내역" data-vi="Lịch sử hoạt động">활동 내역</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">17</td><td class="task"><span class="i18n" data-ko="구매 내역" data-vi="Lịch sử mua">구매 내역</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">18</td><td class="task"><span class="i18n" data-ko="고객센터" data-vi="CSKH">고객센터</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">19</td><td class="task"><span class="i18n" data-ko="활동 알림" data-vi="Thông báo hoạt động">활동 알림</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">20</td><td class="task"><span class="i18n" data-ko="시스템 알림" data-vi="Thông báo hệ thống">시스템 알림</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">21</td><td class="task"><span class="i18n" data-ko="이용약관 및 정책" data-vi="Điều khoản và chính sách">이용약관 및 정책</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">22</td><td class="task"><span class="i18n" data-ko="회원 탈퇴" data-vi="Huỷ tài khoản">회원 탈퇴</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">23</td><td class="task"><span class="i18n" data-ko="설정 기능" data-vi="Các chức năng settings">설정 기능</span></td><td class="hrs">14h</td><td class="qacell"></td></tr>
+<tr><td class="num">24</td><td class="task"><span class="i18n" data-ko="앱 버전" data-vi="Phiên bản app">앱 버전</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">25</td><td class="task"><span class="i18n" data-ko="로그아웃" data-vi="Đăng xuất">로그아웃</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+</tbody></table>
+<div class="note"><span class="i18n" data-ko="※ 2인(Kevin·John) 병렬 기준 wall-clock. 1일=7h 환산 통일본." data-vi="※ 2 người song song. Quy đổi 1 ngày=7h.">※ 2인(Kevin·John) 병렬 기준 wall-clock. 1일=7h 환산 통일본.</span></div>
+</div>
+
+<div class="panel" id="p2">
+<div class="trackhead"><h2><span class="i18n" data-ko="백엔드" data-vi="Backend">백엔드</span></h2><span class="who">Harry</span><span class="sum"><span class="i18n" data-ko="152h (App 89 + CMS 63) · ~07/15" data-vi="152h · ~07/15">152h (App 89 + CMS 63) · ~07/15</span></span></div>
+<div class="flag"><b><span class="i18n" data-ko="확정 반영 (Harry 충돌 해소)" data-vi="Đã xác nhận">확정 반영 (Harry 충돌 해소)</span></b> · <span class="i18n" data-ko="① 친구초대 월 한도 = 50명 확정  ② 출석 5연속 = 500P + 이벤트티켓 1장 확정" data-vi="① Giới hạn mời bạn = 50/tháng (chốt)  ② Điểm danh 5 ngày = 500P + 1 vé sự kiện (chốt)">① 친구초대 월 한도 = 50명 확정  ② 출석 5연속 = 500P + 이벤트티켓 1장 확정</span></div>
+<div class="subhead"><span class="i18n" data-ko="App 백엔드" data-vi="Backend App">App 백엔드</span> · 89h</div>
+<table><thead><tr><th>No</th><th><span class="i18n" data-ko="기능" data-vi="Chức năng">기능</span></th><th><span class="i18n" data-ko="공수" data-vi="Khối lượng">공수</span></th><th></th></tr></thead><tbody><tr><td class="num">01</td><td class="task"><span class="i18n" data-ko="프레임워크·코드베이스 구축" data-vi="Xây dựng khung làm việc, code base">프레임워크·코드베이스 구축</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">02</td><td class="task"><span class="i18n" data-ko="닉네임 가입 + 카카오 인증(데이터 보존)" data-vi="Đăng ký Nickname + xác thực Kakao">닉네임 가입 + 카카오 인증(데이터 보존)</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">03</td><td class="task"><span class="i18n" data-ko="티켓 기능(골드·실버·브론즈·이벤트) — 테이블·랜덤 pending/confirm·환수·만료·전환·전환이력" data-vi="Chức năng Ticket (Gold·Silver·Bronze·Event)">티켓 기능(골드·실버·브론즈·이벤트) — 테이블·랜덤 pending/confirm·환수·만료·전환·전환이력</span></td><td class="hrs">22h</td><td class="qacell"></td></tr>
+<tr><td class="num">04</td><td class="task"><span class="i18n" data-ko="포인트 기능 — 테이블·적립·전환·사용" data-vi="Chức năng Point">포인트 기능 — 테이블·적립·전환·사용</span></td><td class="hrs">9h</td><td class="qacell"></td></tr>
+<tr><td class="num">05</td><td class="task"><span class="i18n" data-ko="출석·쿠팡 둘러보기(5일 연속→500P+이벤트티켓 1장)" data-vi="Điểm danh, lướt Coupang">출석·쿠팡 둘러보기(5일 연속→500P+이벤트티켓 1장)</span></td><td class="hrs">4h</td><td class="qacell"></td></tr>
+<tr><td class="num">06</td><td class="task"><span class="i18n" data-ko="친구초대(양쪽 500P·첫구매 성사·월 50명·설치/주문 확인)" data-vi="Mời bạn bè">친구초대(양쪽 500P·첫구매 성사·월 50명·설치/주문 확인)</span></td><td class="hrs">10h</td><td class="qacell"></td></tr>
+<tr><td class="num">07</td><td class="task"><span class="i18n" data-ko="행운룰렛(1일 1회·보상 표시/저장)" data-vi="Vòng quay may mắn">행운룰렛(1일 1회·보상 표시/저장)</span></td><td class="hrs">4h</td><td class="qacell"></td></tr>
+<tr><td class="num">08</td><td class="task"><span class="i18n" data-ko="이벤트 티켓 기능(추첨 응모·만료·당첨자목록·참여상태)" data-vi="Chức năng Event Ticket">이벤트 티켓 기능(추첨 응모·만료·당첨자목록·참여상태)</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">09</td><td class="task"><span class="i18n" data-ko="활동 내역(필터·일자별)" data-vi="Lịch sử hoạt động">활동 내역(필터·일자별)</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">10</td><td class="task"><span class="i18n" data-ko="쿠팡 구매·구매내역" data-vi="Mua hàng Coupang">쿠팡 구매·구매내역</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="api">API</span></td></tr>
+<tr><td class="num">11</td><td class="task"><span class="i18n" data-ko="기프티콘 구매" data-vi="Mua hàng GiftIcon">기프티콘 구매</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="api">API</span></td></tr>
+<tr><td class="num">12</td><td class="task"><span class="i18n" data-ko="고객센터 1:1" data-vi="CSKH 1:1">고객센터 1:1</span></td><td class="hrs">4h</td><td class="qacell"></td></tr>
+<tr><td class="num">13</td><td class="task"><span class="i18n" data-ko="알림" data-vi="Thông báo">알림</span></td><td class="hrs">1h</td><td class="qacell"></td></tr>
+<tr><td class="num">14</td><td class="task"><span class="i18n" data-ko="약관·개인정보" data-vi="Điều khoản·chính sách">약관·개인정보</span></td><td class="hrs">1h</td><td class="qacell"></td></tr>
+<tr><td class="num">15</td><td class="task"><span class="i18n" data-ko="로그아웃" data-vi="Đăng xuất">로그아웃</span></td><td class="hrs">1h</td><td class="qacell"></td></tr>
+<tr><td class="num">16</td><td class="task"><span class="i18n" data-ko="계정 삭제(30일 유예)" data-vi="Xóa tài khoản">계정 삭제(30일 유예)</span></td><td class="hrs">4h</td><td class="qacell"></td></tr>
+<tr><td class="num">17</td><td class="task"><span class="i18n" data-ko="앱 버전" data-vi="Phiên bản app">앱 버전</span></td><td class="hrs">1h</td><td class="qacell"></td></tr>
+</tbody></table>
+<div class="subhead"><span class="i18n" data-ko="CMS 백엔드" data-vi="Backend CMS">CMS 백엔드</span> · 63h</div>
+<table><thead><tr><th>No</th><th><span class="i18n" data-ko="기능" data-vi="Chức năng">기능</span></th><th><span class="i18n" data-ko="공수" data-vi="Khối lượng">공수</span></th><th></th></tr></thead><tbody><tr><td class="num">01</td><td class="task"><span class="i18n" data-ko="수익·매출·정산" data-vi="Doanh thu·quyết toán">수익·매출·정산</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="api">API</span></td></tr>
+<tr><td class="num">02</td><td class="task"><span class="i18n" data-ko="회원 목록(필터·검색)" data-vi="Danh sách thành viên">회원 목록(필터·검색)</span></td><td class="hrs">3h</td><td class="qacell"></td></tr>
+<tr><td class="num">03</td><td class="task"><span class="i18n" data-ko="티켓 이력(수동 발급·회수)" data-vi="Lịch sử vé">티켓 이력(수동 발급·회수)</span></td><td class="hrs">4h</td><td class="qacell"></td></tr>
+<tr><td class="num">04</td><td class="task"><span class="i18n" data-ko="추첨 관리(신규 회차 등록)" data-vi="Quản lý rút thăm">추첨 관리(신규 회차 등록)</span></td><td class="hrs">7h</td><td class="qacell"></td></tr>
+<tr><td class="num">05</td><td class="task"><span class="i18n" data-ko="경품 관리" data-vi="Quản lý giải thưởng">경품 관리</span></td><td class="hrs">7h</td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">06</td><td class="task"><span class="i18n" data-ko="주간 이벤트 추첨" data-vi="Rút thăm sự kiện tuần">주간 이벤트 추첨</span></td><td class="hrs">5h</td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">07</td><td class="task"><span class="i18n" data-ko="환수 이력" data-vi="Lịch sử thu hồi">환수 이력</span></td><td class="hrs">4h</td><td class="qacell"></td></tr>
+<tr><td class="num">08</td><td class="task"><span class="i18n" data-ko="포인트 이력" data-vi="Lịch sử điểm">포인트 이력</span></td><td class="hrs">3h</td><td class="qacell"></td></tr>
+<tr><td class="num">09</td><td class="task"><span class="i18n" data-ko="포인트 수동 발급·회수" data-vi="Cấp·thu hồi điểm">포인트 수동 발급·회수</span></td><td class="hrs">3h</td><td class="qacell"></td></tr>
+<tr><td class="num">10</td><td class="task"><span class="i18n" data-ko="기프티콘(구매·취소·상품·일괄등록)" data-vi="GiftIcon">기프티콘(구매·취소·상품·일괄등록)</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="api">API</span></td></tr>
+<tr><td class="num">11</td><td class="task"><span class="i18n" data-ko="배너 관리" data-vi="Quản lý Banner">배너 관리</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">12</td><td class="task"><span class="i18n" data-ko="이벤트 관리" data-vi="Quản lý sự kiện">이벤트 관리</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">13</td><td class="task"><span class="i18n" data-ko="친구초대 관리" data-vi="Quản lý mời bạn">친구초대 관리</span></td><td class="hrs">5h</td><td class="qacell"></td></tr>
+<tr><td class="num">14</td><td class="task"><span class="i18n" data-ko="알림 관리" data-vi="Quản lý thông báo">알림 관리</span></td><td class="hrs">4h</td><td class="qacell"></td></tr>
+<tr><td class="num">15</td><td class="task"><span class="i18n" data-ko="푸시 알림 관리" data-vi="Push Notification">푸시 알림 관리</span></td><td class="hrs">7h</td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">16</td><td class="task"><span class="i18n" data-ko="운영 정책" data-vi="Chính sách vận hành">운영 정책</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">17</td><td class="task"><span class="i18n" data-ko="약관 관리" data-vi="Quản lý điều khoản">약관 관리</span></td><td class="hrs">2h</td><td class="qacell"></td></tr>
+<tr><td class="num">18</td><td class="task"><span class="i18n" data-ko="1:1 문의" data-vi="Hỏi đáp 1:1">1:1 문의</span></td><td class="hrs">2h</td><td class="qacell"></td></tr>
+<tr><td class="num">19</td><td class="task"><span class="i18n" data-ko="계정 탈퇴 처리" data-vi="Xử lý hủy tài khoản">계정 탈퇴 처리</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">20</td><td class="task"><span class="i18n" data-ko="포스트백 로그" data-vi="Nhật ký Postback">포스트백 로그</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">21</td><td class="task"><span class="i18n" data-ko="앱 버전 관리" data-vi="Quản lý phiên bản App">앱 버전 관리</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">22</td><td class="task"><span class="i18n" data-ko="제휴몰 API 관리" data-vi="Quản lý API đối tác">제휴몰 API 관리</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">23</td><td class="task"><span class="i18n" data-ko="스케줄러" data-vi="Lịch trình">스케줄러</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td></tr>
+<tr><td class="num">24</td><td class="task"><span class="i18n" data-ko="관리자 계정(권한)" data-vi="Tài khoản quản trị">관리자 계정(권한)</span></td><td class="hrs">3h</td><td class="qacell"></td></tr>
+<tr><td class="num">25</td><td class="task"><span class="i18n" data-ko="로그인 체크(Auth·Token)" data-vi="Check login">로그인 체크(Auth·Token)</span></td><td class="hrs">4h</td><td class="qacell"></td></tr>
+</tbody></table>
+<div class="note"><span class="i18n" data-ko="※ 0h = 외부 API 대기(쿠팡·기프티콘) 또는 QA 후 산정. API = 외부 연동 대기, QA = QA 후 변경 예정." data-vi="※ 0h = chờ API ngoài (Coupang·GiftIcon) hoặc tính sau QA.">※ 0h = 외부 API 대기(쿠팡·기프티콘) 또는 QA 후 산정. API = 외부 연동 대기, QA = QA 후 변경 예정.</span></div>
+</div>
+<div class="foot"><span class="i18n" data-ko="PricePick · 개발 통합 관리 · 갱신 2026-06-16 · 출처: VIN(CMS/웹)·Kevin·John(App)·Harry(Backend)" data-vi="PricePick · Cập nhật 2026-06-16">PricePick · 개발 통합 관리 · 갱신 2026-06-16 · 출처: VIN(CMS/웹)·Kevin·John(App)·Harry(Backend)</span></div>
+</div>
+<script>function sw(i){document.querySelectorAll('.tab').forEach((t,x)=>t.classList.toggle('on',x===i));document.querySelectorAll('.panel').forEach((p,x)=>p.classList.toggle('on',x===i));}
+function lang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('.i18n').forEach(el=>{var v=el.getAttribute('data-'+l);if(v!==null)el.innerHTML=v;});document.documentElement.lang=l;}</script>
+</body></html>
