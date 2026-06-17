@@ -198,7 +198,56 @@ input.perin.empty{color:var(--ink3)}
   select.wksel{font-size:11px;padding:3px 7px}
   input.subin{width:22px}
 }
+/* === s36: Firebase 인증바 (구글 로그인) === */
+.ppauth{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap;font-size:12px}
+.ppauth .ppuser{color:var(--ink2);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.ppauth .ppuser .dotok{width:8px;height:8px;border-radius:50%;background:var(--app);display:inline-block}
+.ppauth .ppuser .dotno{width:8px;height:8px;border-radius:50%;background:var(--ink3);display:inline-block}
+.ppauthbtn{font-size:12px;font-weight:700;color:var(--pp-d);background:#fff;border:1px solid var(--line);border-radius:18px;padding:6px 14px;cursor:pointer}
+.ppauthbtn:hover{background:var(--pp-l)}
+.ppauthbtn.busy{opacity:.5;pointer-events:none}
+.ppcloud-warn{font-size:11px;color:var(--be);font-weight:600}
+body.pp-readonly .ppsave{opacity:.4;pointer-events:none}
 </style></head><body>
+<script>
+/* === s36: PPDB 브리지 (클래식 스크립트 — IIFE 모듈보다 먼저 정의) ===
+   Firestore/Auth 본체는 하단 type=module 스크립트가 채운다(_impl).
+   여기서는 동기적으로 cache·구독·쓰기큐 API만 제공한다. */
+(function(){
+ var CATS=['phase','suborder','status','due','start','worker','phasedef','phaseperiod'];
+ var cache={};CATS.forEach(function(c){cache[c]={};});
+ var subs={};CATS.forEach(function(c){subs[c]=[];});
+ var logSubs=[], writeQ=[], logQ=[];
+ var PPDB={
+   cache:cache,
+   ready:false,
+   user:null,          /* {email,name} 또는 null */
+   allowed:false,      /* 로그인 + 허용목록 통과 시 true */
+   impl:null,          /* module 스크립트가 설정 */
+   authListeners:[],
+   subscribe:function(cat,cb){if(subs[cat]){subs[cat].push(cb);}},
+   subscribeLogs:function(cb){logSubs.push(cb);},
+   onAuth:function(cb){this.authListeners.push(cb);try{cb(this.user,this.allowed);}catch(e){}},
+   canWrite:function(){return !!this.allowed;},
+   /* idx→값 맵 한 칸 저장 (필드 단위, 머지) */
+   writeField:function(cat,field,val){if(this.impl){this.impl.writeField(cat,field,val);}else{writeQ.push(['f',cat,field,val]);}},
+   /* 중첩(트랙·단계·필드) 한 칸 저장 */
+   writeNested:function(cat,trk,phase,field,val){if(this.impl){this.impl.writeNested(cat,trk,phase,field,val);}else{writeQ.push(['n',cat,trk,phase,field,val]);}},
+   appendLog:function(entry){if(this.impl){this.impl.appendLog(entry);}else{logQ.push(entry);}},
+   login:function(){if(this.impl)this.impl.login();},
+   logout:function(){if(this.impl)this.impl.logout();},
+   /* module 스크립트가 onSnapshot 수신 시 호출 */
+   _applySnapshot:function(cat,data){var obj=cache[cat];Object.keys(obj).forEach(function(k){delete obj[k];});if(data){Object.keys(data).forEach(function(k){obj[k]=data[k];});}subs[cat].forEach(function(cb){try{cb();}catch(e){console.error('PPDB sub '+cat,e);}});},
+   _applyLogs:function(arr){logSubs.forEach(function(cb){try{cb(arr);}catch(e){console.error('PPDB logs',e);}});},
+   _setAuth:function(user,allowed){this.user=user;this.allowed=allowed;var self=this;this.authListeners.forEach(function(cb){try{cb(user,allowed);}catch(e){}});},
+   _flush:function(){var q=writeQ;writeQ=[];var self=this;q.forEach(function(it){if(it[0]==='f')self.impl.writeField(it[1],it[2],it[3]);else self.impl.writeNested(it[1],it[2],it[3],it[4],it[5]);});var lq=logQ;logQ=[];lq.forEach(function(e){self.impl.appendLog(e);});}
+ };
+ window.PPDB=PPDB;
+ /* 전역 핸들러 (인증바 버튼) */
+ window.ppLogin=function(){PPDB.login();};
+ window.ppLogout=function(){PPDB.logout();};
+})();
+</script>
 <header><div class="langtog"><button class="on" onclick="setLang('ko',this)">KO</button><button onclick="setLang('vi',this)">VI</button></div>
 <div class="wrap" style="padding-bottom:0"><div class="htitle"><span class="i18n" data-ko="PricePick 개발 일정 관리" data-vi="PricePick · Quản lý tiến độ phát triển">PricePick 개발 일정 관리</span></div>
 <div class="hsub"><span class="i18n" data-ko="CMS·웹 / 앱 / 백엔드 — 전 트랙 시간 단위 통일" data-vi="CMS·Web / App / Backend — thống nhất theo giờ">CMS·웹 / 앱 / 백엔드 — 전 트랙 시간 단위 통일</span></div>
@@ -220,7 +269,7 @@ input.perin.empty{color:var(--ink3)}
 <div class="card"><div class="lab">CMS·<span class="i18n" data-ko="웹" data-vi="Web">웹</span> (VIN)</div><div class="val">55h</div><div class="sub">33<span class="i18n" data-ko="항목 · ~06/25" data-vi=" mục · ~06/25">항목 · ~06/25</span></div></div>
 <div class="card be"><div class="lab"><span class="i18n" data-ko="백엔드" data-vi="Backend">백엔드</span> (Harry)</div><div class="val">152h</div><div class="sub"><span class="i18n" data-ko="App 89+CMS 63 · ~07/15" data-vi="App 89+CMS 63 · ~07/15">App 89+CMS 63 · ~07/15</span></div></div>
 </div>
-<div class="sortbar"><div class="sortseg"><button class="segbtn on" data-mode="num" onclick="setSort('num',this)"><span class="i18n" data-ko="넘버순 정렬" data-vi="Sắp theo số thứ tự">넘버순 정렬</span></button><button class="segbtn" data-mode="phase" onclick="setSort('phase',this)"><span class="i18n" data-ko="단계순 정렬" data-vi="Sắp theo giai đoạn">단계순 정렬</span></button></div><span class="ppbar-hint i18n" data-ko="단계·순번·상태·작업 시작일·예상 완료일·작업자(App), 그리고 트랙별 단계 정의(이름·내용)까지 — 여러 항목을 수정한 뒤 저장 버튼을 누르면 한 번에 저장됩니다" data-vi="Giai đoạn·thứ tự·trạng thái·ngày bắt đầu·ngày dự kiến hoàn thành·người làm (App), và cả tên·nội dung định nghĩa giai đoạn theo track — sửa nhiều mục rồi nhấn nút Lưu để lưu tất cả cùng lúc">단계·순번·상태·작업 시작일·예상 완료일·작업자(App), 그리고 트랙별 단계 정의(이름·내용)까지 — 여러 항목을 수정한 뒤 저장 버튼을 누르면 한 번에 저장됩니다</span><button class="ppsave" onclick="ppSave()"><span class="i18n" data-ko="저장" data-vi="Lưu">저장</span></button></div>
+<div class="sortbar"><div class="sortseg"><button class="segbtn on" data-mode="num" onclick="setSort('num',this)"><span class="i18n" data-ko="넘버순 정렬" data-vi="Sắp theo số thứ tự">넘버순 정렬</span></button><button class="segbtn" data-mode="phase" onclick="setSort('phase',this)"><span class="i18n" data-ko="단계순 정렬" data-vi="Sắp theo giai đoạn">단계순 정렬</span></button></div><span class="ppbar-hint i18n" data-ko="단계·순번·상태·작업 시작일·예상 완료일·작업자(App), 그리고 트랙별 단계 정의(이름·내용)까지 — 여러 항목을 수정한 뒤 저장 버튼을 누르면 한 번에 저장됩니다" data-vi="Giai đoạn·thứ tự·trạng thái·ngày bắt đầu·ngày dự kiến hoàn thành·người làm (App), và cả tên·nội dung định nghĩa giai đoạn theo track — sửa nhiều mục rồi nhấn nút Lưu để lưu tất cả cùng lúc">단계·순번·상태·작업 시작일·예상 완료일·작업자(App), 그리고 트랙별 단계 정의(이름·내용)까지 — 여러 항목을 수정한 뒤 저장 버튼을 누르면 한 번에 저장됩니다</span><span class="ppauth" id="ppauth"><span class="ppuser" id="ppuser"><span class="dotno"></span><span class="i18n" data-ko="불러오는 중…" data-vi="Đang tải…">불러오는 중…</span></span><button class="ppauthbtn" id="ppauthbtn" onclick="ppLogin()"><span class="i18n" data-ko="구글 로그인" data-vi="Đăng nhập Google">구글 로그인</span></button></span><button class="ppsave" onclick="ppSave()"><span class="i18n" data-ko="저장" data-vi="Lưu">저장</span></button></div>
 <div class="tabs">
 <button class="tab on" data-t="p1" onclick="sw('p1')">App <span class="cnt">25</span></button>
 <button class="tab" data-t="p0" onclick="sw('p0')">CMS·<span class="i18n" data-ko="웹" data-vi="Web">웹</span> <span class="cnt">33</span></button>
@@ -449,12 +498,12 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
  function fmt(iso){var d=new Date(iso);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+' '+pad(d.getHours())+':'+pad(d.getMinutes());}
  function normSub(v){return (''+(v==null?'':v)).replace(/[^0-9]/g,'');}
  function tok(ph,sub){return (sub!=null&&sub!=='')?(ph+'-'+sub):(''+ph);}
- var saved=loadJSON(PKEY,{});
- var savedSub=loadJSON(SKEY,{});
+ var saved=window.PPDB.cache.phase;
+ var savedSub=window.PPDB.cache.suborder;
  /* === 순번 기본값(개발 가이드) — 단계별 1-1,1-2… · 저장값(savedSub) 우선, 없을 때만 적용. CMS(idx 0~32) + App(idx 33~57) + 백엔드(App백엔드 idx 58~74, CMS백엔드 idx 75~99) — 백엔드는 표별·단계별로 매김 === */
  var defSub={"0":"1","1":"2","2":"3","3":"1","4":"2","5":"3","6":"4","7":"1","8":"2","9":"3","10":"4","11":"1","12":"2","13":"5","14":"6","15":"3","16":"4","17":"5","18":"6","19":"4","20":"7","21":"8","22":"5","23":"6","24":"7","25":"8","26":"9","27":"10","28":"11","29":"12","30":"7","31":"13","32":"5","33":"1","34":"2","35":"1","36":"2","37":"3","38":"1","39":"2","40":"3","41":"4","42":"3","43":"5","44":"4","45":"5","46":"6","47":"7","48":"6","49":"7","50":"1","51":"2","52":"3","53":"4","54":"5","55":"6","56":"7","57":"8","58":"1","59":"2","60":"1","61":"2","62":"3","63":"4","64":"5","65":"6","66":"1","67":"2","68":"3","69":"1","70":"2","71":"3","72":"4","73":"5","74":"6","75":"1","76":"1","77":"1","78":"2","79":"3","80":"4","81":"1","82":"2","83":"3","84":"4","85":"2","86":"5","87":"6","88":"3","89":"4","90":"5","91":"6","92":"7","93":"8","94":"9","95":"10","96":"5","97":"11","98":"2","99":"3"};
  function dsub(idx){return (defSub[idx]!=null)?normSub(defSub[idx]):'';}
- var logs=loadJSON(LKEY,[]);
+ var logs=[];
  function trackOf(tr){var p=tr.closest?tr.closest('.panel'):null;
    if(p&&p.id==='p0')return {ko:'CMS·웹',vi:'CMS·Web'};
    if(p&&p.id==='p1')return {ko:'App',vi:'App'};
@@ -555,6 +604,7 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
  function flash(ko,vi){var t=document.getElementById('pptoast');if(!t)return;t.textContent=curLang()==='vi'?vi:ko;t.classList.add('show');clearTimeout(t._tm);t._tm=setTimeout(function(){t.classList.remove('show');},1900);}
 
  function doSave(){
+   if(!window.PPDB.canWrite()){flash('수정 권한이 없습니다. 구글 로그인 필요','Không có quyền. Cần đăng nhập Google');return;}
    var nowIso=new Date().toISOString();
    var changes=[];
    for(var i=0;i<rows.length;i++){
@@ -567,6 +617,8 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
        changes.push({t:nowIso,idx:r.idx,track:r.track,nameKo:r.nameKo,nameVi:r.nameVi,from:ov,to:nv,fromSub:osub,toSub:nsub});
        saved[r.idx]=nv;
        if(nsub==='')delete savedSub[r.idx];else savedSub[r.idx]=nsub;
+       window.PPDB.writeField('phase',r.idx,nv);
+       window.PPDB.writeField('suborder',r.idx,nsub);
        r.tr.setAttribute('data-ph',nv);
        r.tr.setAttribute('data-sub',nsub);
        r.sel.classList.remove('dirty');
@@ -582,22 +634,34 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
    var wkChanges=(window.ppWorkerCommit)?window.ppWorkerCommit(nowIso):[];
    var total=changes.length+stChanges.length+pdChanges.length+perChanges.length+dueChanges.length+startChanges.length+wkChanges.length;
    if(!total){flash('변경된 내용이 없습니다','Không có thay đổi');return;}
-   for(var j=0;j<changes.length;j++){logs.push(changes[j]);}
-   for(var k=0;k<stChanges.length;k++){logs.push(stChanges[k]);}
-   for(var m2=0;m2<pdChanges.length;m2++){logs.push(pdChanges[m2]);}
-   for(var p2=0;p2<perChanges.length;p2++){logs.push(perChanges[p2]);}
-   for(var n2=0;n2<dueChanges.length;n2++){logs.push(dueChanges[n2]);}
-   for(var s2=0;s2<startChanges.length;s2++){logs.push(startChanges[s2]);}
-   for(var w2=0;w2<wkChanges.length;w2++){logs.push(wkChanges[w2]);}
-   try{localStorage.setItem(PKEY,JSON.stringify(saved));localStorage.setItem(SKEY,JSON.stringify(savedSub));localStorage.setItem(LKEY,JSON.stringify(logs));}catch(e){}
+   var allChg=[].concat(changes,stChanges,pdChanges,perChanges,dueChanges,startChanges,wkChanges);
+   for(var li=0;li<allChg.length;li++){window.PPDB.appendLog(allChg[li]);}
    renderLog();
    if(window.ppApplySort)window.ppApplySort();
    flash('저장됨 ('+total+'건)','Đã lưu ('+total+')');
  }
 
  window.ppSave=doSave;
- window.ppAddLog=function(entry){logs.push(entry);try{localStorage.setItem(LKEY,JSON.stringify(logs));}catch(e){}renderLog();};
+ window.ppAddLog=function(entry){if(window.PPDB.canWrite())window.PPDB.appendLog(entry);};
  window.ppOnLang=function(l){renderLog();};
+ function resyncPhase(){
+   for(var i=0;i<rows.length;i++){
+     var r=rows[i];
+     var cPh=(saved[r.idx]!=null)?parseInt(saved[r.idx],10):r.orig;
+     var cSub=(savedSub[r.idx]!=null)?normSub(savedSub[r.idx]):dsub(r.idx);
+     var dirty=r.sel.classList.contains('dirty')||r.sub.classList.contains('dirty');
+     if(!dirty){
+       r.sel.value=cPh;r.sel.className='phsel pp'+cPh;
+       r.sub.value=cSub;
+       r.tr.setAttribute('data-ph',cPh);
+       r.tr.setAttribute('data-sub',cSub);
+     }
+   }
+   if(window.ppApplySort)window.ppApplySort();
+ }
+ window.PPDB.subscribe('phase',resyncPhase);
+ window.PPDB.subscribe('suborder',resyncPhase);
+ window.PPDB.subscribeLogs(function(arr){logs.length=0;Array.prototype.push.apply(logs,arr);renderLog();});
  renderLog();
 })();
 </script>
@@ -614,7 +678,7 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
    if(p&&p.id==='p0')return {ko:'CMS·웹',vi:'CMS·Web'};
    if(p&&p.id==='p1')return {ko:'App',vi:'App'};
    return {ko:'백엔드',vi:'Backend'};}
- var savedSt=loadJSON(STKEY,{});  /* 확정 저장값 */
+ var savedSt=window.PPDB.cache.status;  /* 확정 저장값 (Firestore 캐시) */
  var pendingSt={};                /* 미저장(드롭다운) 값 */
  var segs=[];
  function savedOf(idx){return savedSt[idx]||'wait';}
@@ -660,13 +724,14 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
      if(code!==prev){
        out.push({t:t,type:'status',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,stFrom:prev,stTo:code});
        if(code==='wait')delete savedSt[idx];else savedSt[idx]=code;
+       window.PPDB.writeField('status',idx,code==='wait'?'':code);
      }
    }
    pendingSt={};
-   try{localStorage.setItem(STKEY,JSON.stringify(savedSt));}catch(e){}
    for(var j=0;j<segs.length;j++){paint(segs[j]);}
    return out;
  };
+ window.PPDB.subscribe('status',function(){for(var i=0;i<segs.length;i++){var rec=segs[i];if(!(rec.idx in pendingSt))paint(rec);}});
  function relabel(l){var map=(l==='vi')?stVi:stKo;segs.forEach(function(r){var opts=r.sel.options;for(var k=0;k<opts.length;k++){opts[k].textContent=map[opts[k].value];}});}
  var _prev=window.ppOnLang;
  window.ppOnLang=function(l){if(_prev)_prev(l);relabel(l);};
@@ -706,12 +771,14 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
  };
  function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
  function curLang(){return document.documentElement.lang==='vi'?'vi':'ko';}
- var defs={},savedDefs=loadJSON(DKEY,{});
- ['p0','p1','p2'].forEach(function(trk){defs[trk]={};for(var p=1;p<=4;p++){var b=(TRACK_DEFAULTS[trk]&&TRACK_DEFAULTS[trk][p])||DEFAULTS[p];var sv=(savedDefs[trk]&&savedDefs[trk][p])||{};defs[trk][p]={tKo:('tKo'in sv)?sv.tKo:b.tKo,tVi:('tVi'in sv)?sv.tVi:b.tVi,dKo:('dKo'in sv)?sv.dKo:b.dKo,dVi:('dVi'in sv)?sv.dVi:b.dVi};}});
+ var savedDefs=window.PPDB.cache.phasedef, defs={};
+ function buildDefs(){['p0','p1','p2'].forEach(function(trk){defs[trk]={};for(var p=1;p<=4;p++){var b=(TRACK_DEFAULTS[trk]&&TRACK_DEFAULTS[trk][p])||DEFAULTS[p];var sv=(savedDefs[trk]&&savedDefs[trk][p])||{};defs[trk][p]={tKo:('tKo'in sv)?sv.tKo:b.tKo,tVi:('tVi'in sv)?sv.tVi:b.tVi,dKo:('dKo'in sv)?sv.dKo:b.dKo,dVi:('dVi'in sv)?sv.dVi:b.dVi};}});}
+ buildDefs();
  var pending={p0:{},p1:{},p2:{}},activeTrack='p1';
  var PERKEY='pp_phaseperiod_v28';
- var periods={},savedPeriods=loadJSON(PERKEY,{});
- ['p0','p1','p2'].forEach(function(trk){periods[trk]={};for(var p=1;p<=4;p++){var sv=(savedPeriods[trk]&&savedPeriods[trk][p])||{};periods[trk][p]={start:('start'in sv)?sv.start:'',end:('end'in sv)?sv.end:''};}});
+ var savedPeriods=window.PPDB.cache.phaseperiod, periods={};
+ function buildPeriods(){['p0','p1','p2'].forEach(function(trk){periods[trk]={};for(var p=1;p<=4;p++){var sv=(savedPeriods[trk]&&savedPeriods[trk][p])||{};periods[trk][p]={start:('start'in sv)?sv.start:'',end:('end'in sv)?sv.end:''};}});}
+ buildPeriods();
  var perPending={p0:{},p1:{},p2:{}};
  function effPer(trk,p,f){var pn=perPending[trk][p];if(pn&&(f in pn))return pn[f];return periods[trk][p][f];}
  function perFieldDirty(trk,p,f){var pn=perPending[trk][p];return !!(pn&&(f in pn)&&pn[f]!==periods[trk][p][f]);}
@@ -743,12 +810,14 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
    ti.addEventListener('input',function(){setPend(activeTrack,p,tf,ti.value);card.classList.toggle('phdirty',(isDirty(activeTrack,p)||isPeriodDirty(activeTrack,p)));});
    de.addEventListener('input',function(){setPend(activeTrack,p,df,de.value);card.classList.toggle('phdirty',(isDirty(activeTrack,p)||isPeriodDirty(activeTrack,p)));});
    box.appendChild(per);box.appendChild(ti);box.appendChild(de);card.appendChild(phn);card.appendChild(box);host.appendChild(card);
- })(p);}refreshDropdownTitles();}
+ })(p);}refreshDropdownTitles();if(window.ppApplyEditable)window.ppApplyEditable();}
  window.ppSetPhTrack=function(trk,btn){activeTrack=trk;document.querySelectorAll('.phtrk').forEach(function(b){b.classList.toggle('on',b.dataset.trk===trk);});render();};
- window.ppPhaseDefCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();['p0','p1','p2'].forEach(function(trk){for(var p=1;p<=4;p++){var pn=pending[trk][p];if(!pn)continue;['tKo','tVi','dKo','dVi'].forEach(function(f){if((f in pn)&&pn[f]!==defs[trk][p][f]){var kind=(f==='tKo'||f==='tVi')?'title':'desc';out.push({t:t,type:'phasedef',trackKo:TRACKS[trk].ko,trackVi:TRACKS[trk].vi,phase:p,kind:kind,field:f,from:defs[trk][p][f],to:pn[f]});defs[trk][p][f]=pn[f];}});delete pending[trk][p];}});if(out.length){try{localStorage.setItem(DKEY,JSON.stringify(defs));}catch(e){}}render();if(window.ppApplySort)window.ppApplySort();return out;};
+ window.ppPhaseDefCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();['p0','p1','p2'].forEach(function(trk){for(var p=1;p<=4;p++){var pn=pending[trk][p];if(!pn)continue;['tKo','tVi','dKo','dVi'].forEach(function(f){if((f in pn)&&pn[f]!==defs[trk][p][f]){var kind=(f==='tKo'||f==='tVi')?'title':'desc';out.push({t:t,type:'phasedef',trackKo:TRACKS[trk].ko,trackVi:TRACKS[trk].vi,phase:p,kind:kind,field:f,from:defs[trk][p][f],to:pn[f]});defs[trk][p][f]=pn[f];window.PPDB.writeNested('phasedef',trk,p,f,pn[f]);}});delete pending[trk][p];}});render();if(window.ppApplySort)window.ppApplySort();return out;};
  window.ppHasPhaseDefDirty=anyDirty;
- window.ppPhasePeriodCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();['p0','p1','p2'].forEach(function(trk){for(var p=1;p<=4;p++){var pn=perPending[trk][p];if(!pn)continue;['start','end'].forEach(function(f){if((f in pn)&&pn[f]!==periods[trk][p][f]){out.push({t:t,type:'phaseperiod',trackKo:TRACKS[trk].ko,trackVi:TRACKS[trk].vi,phase:p,kind:f,from:periods[trk][p][f],to:pn[f]});periods[trk][p][f]=pn[f];}});delete perPending[trk][p];}});if(out.length){try{localStorage.setItem(PERKEY,JSON.stringify(periods));}catch(e){}}render();if(window.ppApplySort)window.ppApplySort();return out;};
+ window.ppPhasePeriodCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();['p0','p1','p2'].forEach(function(trk){for(var p=1;p<=4;p++){var pn=perPending[trk][p];if(!pn)continue;['start','end'].forEach(function(f){if((f in pn)&&pn[f]!==periods[trk][p][f]){out.push({t:t,type:'phaseperiod',trackKo:TRACKS[trk].ko,trackVi:TRACKS[trk].vi,phase:p,kind:f,from:periods[trk][p][f],to:pn[f]});periods[trk][p][f]=pn[f];window.PPDB.writeNested('phaseperiod',trk,p,f,pn[f]);}});delete perPending[trk][p];}});render();if(window.ppApplySort)window.ppApplySort();return out;};
  var _pl=window.ppOnLang;window.ppOnLang=function(l){if(_pl)_pl(l);render();};
+ window.PPDB.subscribe('phasedef',function(){buildDefs();render();if(window.ppApplySort)window.ppApplySort();});
+ window.PPDB.subscribe('phaseperiod',function(){buildPeriods();render();});
  render();
 })();
 </script>
@@ -758,13 +827,14 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
  var UKEY='pp_due_v24';
  function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
  function trackOf(tr){var p=tr.closest?tr.closest('.panel'):null;if(p&&p.id==='p0')return {ko:'CMS·웹',vi:'CMS·Web'};if(p&&p.id==='p1')return {ko:'App',vi:'App'};return {ko:'백엔드',vi:'Backend'};}
- var savedDue=loadJSON(UKEY,{}),pendingDue={},recs=[];
+ var savedDue=window.PPDB.cache.due,pendingDue={},recs=[];
  function savedOf(idx){return savedDue[idx]||'';}
  function effOf(idx){return (idx in pendingDue)?pendingDue[idx]:savedOf(idx);}
  function paint(rec){var v=effOf(rec.idx),dirty=(v!==savedOf(rec.idx));if(rec.input.value!==v)rec.input.value=v;rec.input.classList.toggle('dirty',dirty);rec.input.classList.toggle('empty',!v);}
  var trs=document.querySelectorAll('tr[data-idx]');
  for(var i=0;i<trs.length;i++){(function(tr){var cell=tr.querySelector('td.duecell');if(!cell)return;var idx=tr.getAttribute('data-idx');var nameEl=tr.querySelector('.task .i18n');var input=document.createElement('input');input.type='date';input.className='duein';input.setAttribute('data-idx',idx);input.title='예상 완료일 / Ngày dự kiến hoàn thành';cell.appendChild(input);var rec={idx:idx,tr:tr,input:input,nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',track:trackOf(tr)};input.addEventListener('change',function(){var v=input.value||'';if(v===savedOf(idx))delete pendingDue[idx];else pendingDue[idx]=v;paint(rec);});recs.push(rec);paint(rec);})(trs[i]);}
- window.ppDueCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pendingDue))continue;var prev=savedOf(idx),v=pendingDue[idx];if(v!==prev){out.push({t:t,type:'due',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete savedDue[idx];else savedDue[idx]=v;}}pendingDue={};try{localStorage.setItem(UKEY,JSON.stringify(savedDue));}catch(e){}for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
+ window.ppDueCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pendingDue))continue;var prev=savedOf(idx),v=pendingDue[idx];if(v!==prev){out.push({t:t,type:'due',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete savedDue[idx];else savedDue[idx]=v;window.PPDB.writeField('due',idx,v);}}pendingDue={};for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
+ window.PPDB.subscribe('due',function(){for(var i=0;i<recs.length;i++){if(!(recs[i].idx in pendingDue))paint(recs[i]);}});
 })();
 </script>
 <script>
@@ -773,13 +843,14 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
  var UKEY='pp_start_v25';
  function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
  function trackOf(tr){var p=tr.closest?tr.closest('.panel'):null;if(p&&p.id==='p0')return {ko:'CMS·웹',vi:'CMS·Web'};if(p&&p.id==='p1')return {ko:'App',vi:'App'};return {ko:'백엔드',vi:'Backend'};}
- var savedStart=loadJSON(UKEY,{}),pendingStart={},recs=[];
+ var savedStart=window.PPDB.cache.start,pendingStart={},recs=[];
  function savedOf(idx){return savedStart[idx]||'';}
  function effOf(idx){return (idx in pendingStart)?pendingStart[idx]:savedOf(idx);}
  function paint(rec){var v=effOf(rec.idx),dirty=(v!==savedOf(rec.idx));if(rec.input.value!==v)rec.input.value=v;rec.input.classList.toggle('dirty',dirty);rec.input.classList.toggle('empty',!v);}
  var trs=document.querySelectorAll('tr[data-idx]');
  for(var i=0;i<trs.length;i++){(function(tr){var cell=tr.querySelector('td.startcell');if(!cell)return;var idx=tr.getAttribute('data-idx');var nameEl=tr.querySelector('.task .i18n');var input=document.createElement('input');input.type='date';input.className='startin';input.setAttribute('data-idx',idx);input.title='작업 시작일 / Ngày bắt đầu';cell.appendChild(input);var rec={idx:idx,tr:tr,input:input,nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',track:trackOf(tr)};input.addEventListener('change',function(){var v=input.value||'';if(v===savedOf(idx))delete pendingStart[idx];else pendingStart[idx]=v;paint(rec);});recs.push(rec);paint(rec);})(trs[i]);}
- window.ppStartCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pendingStart))continue;var prev=savedOf(idx),v=pendingStart[idx];if(v!==prev){out.push({t:t,type:'start',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete savedStart[idx];else savedStart[idx]=v;}}pendingStart={};try{localStorage.setItem(UKEY,JSON.stringify(savedStart));}catch(e){}for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
+ window.ppStartCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pendingStart))continue;var prev=savedOf(idx),v=pendingStart[idx];if(v!==prev){out.push({t:t,type:'start',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete savedStart[idx];else savedStart[idx]=v;window.PPDB.writeField('start',idx,v);}}pendingStart={};for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
+ window.PPDB.subscribe('start',function(){for(var i=0;i<recs.length;i++){if(!(recs[i].idx in pendingStart))paint(recs[i]);}});
 })();
 </script>
 <script>
@@ -792,13 +863,14 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
  function curLang(){return document.documentElement.lang==='vi'?'vi':'ko';}
  function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
  function trackOf(tr){var p=tr.closest?tr.closest('.panel'):null;if(p&&p.id==='p0')return {ko:'CMS·웹',vi:'CMS·Web'};if(p&&p.id==='p1')return {ko:'App',vi:'App'};return {ko:'백엔드',vi:'Backend'};}
- var saved=loadJSON(WKEY,{}),pending={},recs=[];
+ var saved=window.PPDB.cache.worker,pending={},recs=[];
  function savedOf(idx){return saved[idx]||'';}
  function effOf(idx){return (idx in pending)?pending[idx]:savedOf(idx);}
  function paint(rec){var v=effOf(rec.idx),dirty=(v!==savedOf(rec.idx));if(rec.sel.value!==v)rec.sel.value=v;rec.sel.className='wksel'+(dirty?' dirty':'')+(v?'':' wk-unset');}
  var trs=document.querySelectorAll('tr[data-idx]');
  for(var i=0;i<trs.length;i++){(function(tr){var cell=tr.querySelector('td.workercell');if(!cell)return;var idx=tr.getAttribute('data-idx');var nameEl=tr.querySelector('.task .i18n');var sel=document.createElement('select');sel.setAttribute('data-idx',idx);sel.title='작업자 / Người làm';ORDER.forEach(function(code){var o=document.createElement('option');o.value=code;o.textContent=(curLang()==='vi'?LV:LK)[code];sel.appendChild(o);});cell.appendChild(sel);var rec={idx:idx,tr:tr,sel:sel,nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',track:trackOf(tr)};sel.addEventListener('change',function(){var v=sel.value;if(v===savedOf(idx))delete pending[idx];else pending[idx]=v;paint(rec);});recs.push(rec);paint(rec);})(trs[i]);}
- window.ppWorkerCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pending))continue;var prev=savedOf(idx),v=pending[idx];if(v!==prev){out.push({t:t,type:'worker',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete saved[idx];else saved[idx]=v;}}pending={};try{localStorage.setItem(WKEY,JSON.stringify(saved));}catch(e){}for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
+ window.ppWorkerCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pending))continue;var prev=savedOf(idx),v=pending[idx];if(v!==prev){out.push({t:t,type:'worker',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete saved[idx];else saved[idx]=v;window.PPDB.writeField('worker',idx,v);}}pending={};for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
+ window.PPDB.subscribe('worker',function(){for(var i=0;i<recs.length;i++){if(!(recs[i].idx in pending))paint(recs[i]);}});
  function relabel(l){var map=(l==='vi')?LV:LK;recs.forEach(function(r){for(var k=0;k<r.sel.options.length;k++){r.sel.options[k].textContent=map[r.sel.options[k].value];}});}
  var _pl=window.ppOnLang;window.ppOnLang=function(l){if(_pl)_pl(l);relabel(l);};
 })();
@@ -819,5 +891,132 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wrapTables);
   else wrapTables();
 })();
+</script>
+
+<!-- === s36: Firebase 연동 (Firestore 실시간 공유 + 구글 로그인) === -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, collection, onSnapshot, setDoc, addDoc, query, orderBy, deleteField } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDLEGTD8uZAxNaudmEIXgnVP5YAbIqGuEw",
+  authDomain: "milklog-v2.firebaseapp.com",
+  projectId: "milklog-v2",
+  storageBucket: "milklog-v2.firebasestorage.app",
+  messagingSenderId: "771095208559",
+  appId: "1:771095208559:web:e7e1b949887cfeec9a639a",
+  measurementId: "G-1VKXQ6R3L6"
+};
+const ALLOW = ["sgkim.mixit@gmail.com","huyhuynhct1@gmail.com","ngvanvuong95@gmail.com","khoiln218@gmail.com","nhontruong96@gmail.com"];
+const COLL = "pricepick_devplan";           /* idx→값 / 중첩 필드 문서 */
+const LOGS = "pricepick_devplan_logs";       /* 변경 로그 (append-only) */
+const CATS = ["phase","suborder","status","due","start","worker","phasedef","phaseperiod"];
+
+const PPDB = window.PPDB;
+let db=null, auth=null;
+
+function lang(){return document.documentElement.lang==='vi'?'vi':'ko';}
+
+function setEditable(on){
+  document.body.classList.toggle('pp-readonly', !on);
+  var sels='select.phsel,input.subin,select.stsel,input.duein,input.startin,select.wksel,.phti,.phde,input.perin';
+  document.querySelectorAll(sels).forEach(function(el){el.disabled=!on;});
+}
+window.ppApplyEditable=function(){setEditable(!!PPDB.allowed);};
+
+function renderAuthUI(){
+  var u=PPDB.user, allowed=PPDB.allowed, l=lang();
+  var userEl=document.getElementById('ppuser');
+  var btn=document.getElementById('ppauthbtn');
+  if(!userEl||!btn)return;
+  if(u){
+    var who=u.email||u.name||'';
+    if(allowed){
+      userEl.innerHTML='<span class="dotok"></span>'+who+(l==='vi'?' · Có quyền sửa':' · 편집 가능');
+    }else{
+      userEl.innerHTML='<span class="dotno"></span>'+who+' <span class="ppcloud-warn">'+(l==='vi'?'(chỉ xem · ngoài danh sách)':'(읽기 전용 · 허용목록 외)')+'</span>';
+    }
+    btn.innerHTML=(l==='vi'?'Đăng xuất':'로그아웃');
+    btn.setAttribute('onclick','ppLogout()');
+  }else{
+    userEl.innerHTML='<span class="dotno"></span>'+(l==='vi'?'Chưa đăng nhập (chỉ xem)':'로그인 안 됨 (읽기 전용)');
+    btn.innerHTML=(l==='vi'?'Đăng nhập Google':'구글 로그인');
+    btn.setAttribute('onclick','ppLogin()');
+  }
+}
+
+/* 언어 토글 시 인증바도 다시 그림 */
+var _ol=window.ppOnLang;
+window.ppOnLang=function(l){if(_ol)_ol(l);renderAuthUI();};
+
+function subscribeAll(){
+  CATS.forEach(function(cat){
+    onSnapshot(doc(db,COLL,cat), function(snap){
+      PPDB._applySnapshot(cat, snap.exists()? snap.data():{});
+    }, function(err){
+      console.warn('[PPDB] onSnapshot '+cat+' 실패:', err.code||err.message);
+      PPDB._applySnapshot(cat, {});  /* 권한/네트워크 실패 → 기본값으로 표시 */
+    });
+  });
+  onSnapshot(query(collection(db,LOGS), orderBy('t','asc')), function(qs){
+    var arr=[];qs.forEach(function(d){arr.push(d.data());});
+    PPDB._applyLogs(arr);
+  }, function(err){
+    console.warn('[PPDB] onSnapshot logs 실패:', err.code||err.message);
+    PPDB._applyLogs([]);
+  });
+}
+
+PPDB.impl = {
+  writeField:function(cat,field,val){
+    if(!PPDB.allowed)return;
+    var payload={};payload[field]=(val===''||val==null)?deleteField():val;
+    setDoc(doc(db,COLL,cat),payload,{merge:true}).catch(function(e){console.error('[PPDB] write '+cat+'.'+field,e);});
+  },
+  writeNested:function(cat,trk,phase,field,val){
+    if(!PPDB.allowed)return;
+    var inner={};inner[field]=val;var mid={};mid[phase]=inner;var payload={};payload[trk]=mid;
+    setDoc(doc(db,COLL,cat),payload,{merge:true}).catch(function(e){console.error('[PPDB] writeNested '+cat,e);});
+  },
+  appendLog:function(entry){
+    if(!PPDB.allowed)return;
+    addDoc(collection(db,LOGS),entry).catch(function(e){console.error('[PPDB] appendLog',e);});
+  },
+  login:function(){
+    var btn=document.getElementById('ppauthbtn');if(btn)btn.classList.add('busy');
+    var provider=new GoogleAuthProvider();
+    signInWithPopup(auth,provider).catch(function(e){
+      console.error('[PPDB] login',e);
+      alert((lang()==='vi'?'Đăng nhập thất bại: ':'로그인 실패: ')+(e.code||e.message));
+    }).finally(function(){if(btn)btn.classList.remove('busy');});
+  },
+  logout:function(){ signOut(auth).catch(function(e){console.error('[PPDB] logout',e);}); }
+};
+
+try{
+  const app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+  auth = getAuth(app);
+  PPDB.ready = true;
+  subscribeAll();
+  setPersistence(auth, browserLocalPersistence).catch(function(e){console.warn('[PPDB] persistence',e);});
+  onAuthStateChanged(auth, function(user){
+    var u = user ? {email:(user.email||'').toLowerCase(), name:user.displayName||''} : null;
+    var allowed = !!(u && ALLOW.indexOf(u.email)>=0);
+    PPDB._setAuth(u, allowed);
+    setEditable(allowed);
+    renderAuthUI();
+    PPDB._flush();  /* 로그인 전 큐에 쌓인 쓰기 처리(권한 있을 때만 실제 전송) */
+  });
+  /* 초기 표시(로그인 콜백 전): 읽기 전용 */
+  setEditable(false);
+  renderAuthUI();
+}catch(e){
+  console.error('[PPDB] Firebase 초기화 실패:', e);
+  setEditable(false);
+  var userEl=document.getElementById('ppuser');
+  if(userEl)userEl.innerHTML='<span class="dotno"></span>'+(lang()==='vi'?'Lỗi kết nối Firebase (chỉ xem)':'Firebase 연결 실패 (읽기 전용)');
+}
 </script>
 </body></html>
