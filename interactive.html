@@ -9848,7 +9848,7 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
         <div class="reward-scroll">
 
           <!-- 카카오 연동 유도 배너 (v8) -->
-          <div class="kakao-link-banner" data-ip-bound="1" style="margin:0 0 14px;background:linear-gradient(135deg,#FFFBEC,#FFF3D2);border:1px solid #FFE69C;border-radius:14px;padding:13px 15px;display:flex;align-items:center;gap:12px;cursor:pointer;" onclick="showScreen('pw-02-K')">
+          <div class="kakao-link-banner" data-ip-bound="1" style="margin:0 16px 14px;background:linear-gradient(135deg,#FFFBEC,#FFF3D2);border:1px solid #FFE69C;border-radius:14px;padding:13px 15px;display:flex;align-items:center;gap:12px;cursor:pointer;" onclick="showScreen('pw-02-K')">
             <div style="width:40px;height:40px;background:#FEE500;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3C6.48 3 2 6.58 2 11C2 13.79 3.79 16.23 6.47 17.66L5.5 21.5L9.5 18.94C10.31 19.06 11.14 19.13 12 19.13C17.52 19.13 22 15.55 22 11.13C22 6.58 17.52 3 12 3Z" fill="#3A1D1D"/></svg></div>
             <div style="flex:1;min-width:0;">
               <div style="font-size:13px;font-weight:800;color:var(--text1);">카카오 연동하고 혜택 받기</div>
@@ -9857,7 +9857,7 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M9 18L15 12L9 6" stroke="var(--text3)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <!-- 티켓/포인트 세그먼트 토글 -->
-          <div class="rwd-seg" style="display:flex;gap:0;background:#F1ECFF;border-radius:12px;padding:4px;margin:0 0 14px;">
+          <div class="rwd-seg" style="display:flex;gap:0;background:#F1ECFF;border-radius:12px;padding:4px;margin:0 16px 14px;">
             <button type="button" class="rwd-seg-btn" onclick="var s=this.closest('.reward-scroll');s.querySelector('#rwd-pane-ticket').style.display='block';s.querySelector('#rwd-pane-point').style.display='none';this.style.background='#fff';this.style.color='var(--main)';this.style.boxShadow='0 1px 3px rgba(0,0,0,0.08)';this.nextElementSibling.style.background='transparent';this.nextElementSibling.style.color='var(--text2)';this.nextElementSibling.style.boxShadow='none';" style="flex:1;border:none;background:#fff;color:var(--main);font-size:13px;font-weight:700;border-radius:9px;padding:9px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,0.08);">티켓</button>
             <button type="button" class="rwd-seg-btn" onclick="var s=this.closest('.reward-scroll');s.querySelector('#rwd-pane-ticket').style.display='none';s.querySelector('#rwd-pane-point').style.display='block';this.style.background='#fff';this.style.color='var(--main)';this.style.boxShadow='0 1px 3px rgba(0,0,0,0.08)';this.previousElementSibling.style.background='transparent';this.previousElementSibling.style.color='var(--text2)';this.previousElementSibling.style.boxShadow='none';" style="flex:1;border:none;background:transparent;color:var(--text2);font-size:13px;font-weight:700;border-radius:9px;padding:9px;cursor:pointer;">포인트</button>
           </div>
@@ -10116,7 +10116,7 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
           </div><!-- /rwd-pane-ticket -->
 
           <!-- 포인트 패널 -->
-          <div class="rwd-pane" id="rwd-pane-point" style="display:none;">
+          <div class="rwd-pane" id="rwd-pane-point" style="display:none;padding:0 16px;">
             <!-- 포인트 잔액 카드 -->
             <div style="background:linear-gradient(135deg,#7B52E1,#9D7BF0);border-radius:16px;padding:18px 18px 16px;color:#fff;margin-bottom:14px;">
               <div style="font-size:12px;opacity:0.85;">사용 가능 포인트</div>
