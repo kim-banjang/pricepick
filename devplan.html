@@ -414,8 +414,8 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
  function tok(ph,sub){return (sub!=null&&sub!=='')?(ph+'-'+sub):(''+ph);}
  var saved=loadJSON(PKEY,{});
  var savedSub=loadJSON(SKEY,{});
- /* === 순번 기본값(개발 가이드) — 단계별 1-1,1-2… · 저장값(savedSub) 우선, 없을 때만 적용. CMS(idx 0~32) + App(idx 33~57). 백엔드(idx 58~)는 맵에 없어 영향 없음 === */
- var defSub={"0":"1","1":"2","2":"3","3":"1","4":"2","5":"3","6":"4","7":"1","8":"2","9":"3","10":"4","11":"1","12":"2","13":"5","14":"6","15":"3","16":"4","17":"5","18":"6","19":"4","20":"7","21":"8","22":"5","23":"6","24":"7","25":"8","26":"9","27":"10","28":"11","29":"12","30":"7","31":"13","32":"5","33":"1","34":"2","35":"1","36":"2","37":"3","38":"1","39":"2","40":"3","41":"4","42":"3","43":"5","44":"4","45":"5","46":"6","47":"7","48":"6","49":"7","50":"1","51":"2","52":"3","53":"4","54":"5","55":"6","56":"7","57":"8"};
+ /* === 순번 기본값(개발 가이드) — 단계별 1-1,1-2… · 저장값(savedSub) 우선, 없을 때만 적용. CMS(idx 0~32) + App(idx 33~57) + 백엔드(App백엔드 idx 58~74, CMS백엔드 idx 75~99) — 백엔드는 표별·단계별로 매김 === */
+ var defSub={"0":"1","1":"2","2":"3","3":"1","4":"2","5":"3","6":"4","7":"1","8":"2","9":"3","10":"4","11":"1","12":"2","13":"5","14":"6","15":"3","16":"4","17":"5","18":"6","19":"4","20":"7","21":"8","22":"5","23":"6","24":"7","25":"8","26":"9","27":"10","28":"11","29":"12","30":"7","31":"13","32":"5","33":"1","34":"2","35":"1","36":"2","37":"3","38":"1","39":"2","40":"3","41":"4","42":"3","43":"5","44":"4","45":"5","46":"6","47":"7","48":"6","49":"7","50":"1","51":"2","52":"3","53":"4","54":"5","55":"6","56":"7","57":"8","58":"1","59":"2","60":"1","61":"2","62":"3","63":"4","64":"5","65":"6","66":"1","67":"2","68":"3","69":"1","70":"2","71":"3","72":"4","73":"5","74":"6","75":"1","76":"1","77":"1","78":"2","79":"3","80":"4","81":"1","82":"2","83":"3","84":"4","85":"2","86":"5","87":"6","88":"3","89":"4","90":"5","91":"6","92":"7","93":"8","94":"9","95":"10","96":"5","97":"11","98":"2","99":"3"};
  function dsub(idx){return (defSub[idx]!=null)?normSub(defSub[idx]):'';}
  var logs=loadJSON(LKEY,[]);
  function trackOf(tr){var p=tr.closest?tr.closest('.panel'):null;
@@ -659,6 +659,12 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
    2:{tKo:'핵심 리워드',tVi:'Vòng lặp thưởng',dKo:'쿠팡 둘러보기(출석체크)·행운룰렛·친구초대와 티켓 적립 안내·이벤트 응모·내 티켓·등급 변경 등 리워드 핵심 루프 화면을 만듭니다.',dVi:'Tạo các màn hình vòng lặp thưởng cốt lõi: dạo Coupang (điểm danh)·vòng quay·mời bạn, hướng dẫn tích vé·dự thưởng·vé của tôi·đổi hạng vé.'},
    3:{tKo:'조회·교환',tVi:'Tra cứu·đổi thưởng',dKo:'쿠팡 연동과 기프티콘 목록·상세·교환, 혜택 탭·활동 내역·구매 내역 등 조회·교환 화면을 구현합니다.',dVi:'Triển khai các màn hình tra cứu·đổi thưởng: liên kết Coupang, danh sách·chi tiết·đổi gifticon, tab ưu đãi, lịch sử hoạt động·mua hàng.'},
    4:{tKo:'지원·설정·마무리',tVi:'Hỗ trợ·cài đặt·hoàn thiện',dKo:'고객센터·활동/시스템 알림·이용약관·설정·회원 탈퇴·로그아웃·앱 버전 등 고객 지원과 설정·계정 마무리 화면을 구현합니다.',dVi:'Triển khai các màn hình hỗ trợ và hoàn thiện: CSKH·thông báo hoạt động/hệ thống·điều khoản·cài đặt·hủy tài khoản·đăng xuất·phiên bản app.'}
+  },
+  p2:{
+   1:{tKo:'서버 기반·인증',tVi:'Nền tảng server·xác thực',dKo:'프레임워크·코드베이스 구축과 닉네임 가입·카카오 인증(데이터 보존), 관리자 계정·권한, 로그인 체크(Auth·Token), 회원 목록 등 서버 기반과 인증 체계를 구축합니다.',dVi:'Xây dựng nền tảng server và hệ thống xác thực: framework·code base, đăng ký nickname·xác thực Kakao (bảo toàn dữ liệu), tài khoản·quyền quản trị, kiểm tra đăng nhập (Auth·Token), danh sách thành viên.'},
+   2:{tKo:'리워드 핵심 로직',tVi:'Logic thưởng cốt lõi',dKo:'티켓(골드·실버·브론즈·이벤트)·포인트 테이블과 적립·전환·환수·만료 로직, 출석·쿠팡 둘러보기·행운룰렛·친구초대·이벤트 티켓 응모 등 리워드 핵심 기능과 CMS의 티켓·추첨·경품·이벤트·친구초대 관리를 구현합니다.',dVi:'Triển khai chức năng thưởng cốt lõi: bảng vé (Gold·Silver·Bronze·Event)·điểm cùng logic tích·chuyển·thu hồi·hết hạn, điểm danh·dạo Coupang·vòng quay·mời bạn·dự thưởng vé sự kiện, và quản lý vé·rút thăm·giải thưởng·sự kiện·mời bạn phía CMS.'},
+   3:{tKo:'내역 조회·외부 연동',tVi:'Tra cứu·tích hợp ngoài',dKo:'활동·포인트·환수 내역 조회와 쿠팡 구매·기프티콘 구매, 포인트 수동 발급·회수, 기프티콘 상품·일괄등록·제휴몰 API 등 내역 조회와 외부 연동을 처리합니다.',dVi:'Xử lý tra cứu lịch sử hoạt động·điểm·thu hồi và mua hàng Coupang·gifticon, cấp·thu hồi điểm thủ công, sản phẩm·đăng ký hàng loạt gifticon·API đối tác — tra cứu và tích hợp bên ngoài.'},
+   4:{tKo:'운영·정산·마무리',tVi:'Vận hành·quyết toán·hoàn thiện',dKo:'고객센터·알림·푸시·약관·계정 삭제·앱 버전 등 앱 운영 기능과 수익·매출·정산, 배너·운영 정책·포스트백 로그·스케줄러 등 CMS 운영·마무리 기능을 완성합니다.',dVi:'Hoàn thiện chức năng vận hành app (CSKH·thông báo·push·điều khoản·xóa tài khoản·phiên bản app) và vận hành CMS (doanh thu·quyết toán, banner·chính sách vận hành·nhật ký postback·lịch trình).'}
   }
  };
  function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
