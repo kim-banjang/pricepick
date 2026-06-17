@@ -59,6 +59,16 @@ section{margin-top:30px;scroll-margin-top:14px}
 .faq details[open] summary::before{content:"\25BE "}
 .faq .ans{font-size:13px;color:var(--ink2);padding:2px 0 13px;border-top:1px solid #f1eff8}
 .foot{margin-top:34px;font-size:11px;color:var(--ink3);text-align:right}
+.ptable{width:100%;border-collapse:collapse;margin-top:4px;font-size:12.5px;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.ptable th,.ptable td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+.ptable th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px}
+.ptable tr:last-child td{border-bottom:none}
+.ptable small{color:var(--ink3);font-size:11px}
+.trk{display:inline-block;font-size:10.5px;font-weight:800;color:#fff;border-radius:5px;padding:1px 7px;margin:1px 2px 1px 0}
+.trk.app{background:var(--app)}.trk.cms{background:var(--pp)}.trk.be{background:var(--be)}.trk.sup{background:#1f8a6d}
+.rolepill{display:inline-block;font-size:11px;font-weight:800;border-radius:5px;padding:2px 8px;background:var(--pp-l);color:var(--pp-d);white-space:nowrap}
+.rolepill.ro{background:#eef0f4;color:#8b93a7}
+@media(max-width:768px){.ptable,.ptable thead,.ptable tbody,.ptable tr{display:block}.ptable thead{display:none}.ptable td{border-bottom:1px solid #f1eff8}.ptable tr{border-bottom:2px solid var(--line);padding:4px 0}}
 @media(max-width:768px){
  .wrap{padding-left:15px;padding-right:15px}
  .htitle{font-size:21px}.hsub{font-size:12.5px}
@@ -81,12 +91,12 @@ section{margin-top:30px;scroll-margin-top:14px}
 <div class="lead"><span class="i18n" data-ko="DevPlan 은 PricePick 의 개발 일정과 진행 상황을 한 화면에서 관리하는 도구입니다. 트랙(App·CMS/웹·백엔드)별로 어떤 작업이 어느 단계에 있고, 누가 언제 시작해 언제 끝낼 예정이며, 지금 진행 상태가 무엇인지를 표로 보고 직접 고칠 수 있습니다. 모든 내용은 클라우드에 저장돼, 팀원 모두가 같은 데이터를 실시간으로 함께 봅니다." data-vi="DevPlan là công cụ quản lý tiến độ và lịch phát triển của PricePick trên cùng một màn hình. Theo từng track (App·CMS/Web·Backend), bạn có thể xem và chỉnh trực tiếp: công việc nào đang ở giai đoạn nào, ai bắt đầu khi nào và dự kiến xong khi nào, trạng thái hiện tại ra sao. Mọi nội dung được lưu trên cloud, nên cả nhóm cùng xem chung một dữ liệu theo thời gian thực.">DevPlan 은 PricePick 의 개발 일정과 진행 상황을 한 화면에서 관리하는 도구입니다. 트랙(App·CMS/웹·백엔드)별로 어떤 작업이 어느 단계에 있고, 누가 언제 시작해 언제 끝낼 예정이며, 지금 진행 상태가 무엇인지를 표로 보고 직접 고칠 수 있습니다. 모든 내용은 클라우드에 저장돼, 팀원 모두가 같은 데이터를 실시간으로 함께 봅니다.</span></div>
 <span class="i18n" data-ko="접속 주소:" data-vi="Địa chỉ truy cập:" style="display:block;font-size:12px;color:var(--ink3);margin-top:12px">접속 주소:</span>
 <span class="url">pricepick.vercel.app/devplan.html</span>
-<div><span class="sharepill i18n" data-ko="● 보기는 누구나 · 수정은 구글 로그인 + 허용 멤버만 · 저장하면 모두에게 실시간 반영" data-vi="● Ai cũng xem được · Sửa cần đăng nhập Google + thành viên được phép · Lưu là cập nhật ngay cho mọi người">● 보기는 누구나 · 수정은 구글 로그인 + 허용 멤버만 · 저장하면 모두에게 실시간 반영</span></div>
+<div><span class="sharepill i18n" data-ko="● 보기는 누구나 · 수정은 본인 담당 트랙만(구글 로그인) · 저장하면 모두에게 실시간 반영" data-vi="● Ai cũng xem được · Chỉ sửa track mình phụ trách (đăng nhập Google) · Lưu là cập nhật ngay cho mọi người">● 보기는 누구나 · 수정은 본인 담당 트랙만(구글 로그인) · 저장하면 모두에게 실시간 반영</span></div>
 </div>
 
 <nav class="toc">
 <a href="#s1"><span class="i18n" data-ko="1. 화면 구성" data-vi="1. Bố cục màn hình">1. 화면 구성</span></a>
-<a href="#s2"><span class="i18n" data-ko="2. 로그인 방법" data-vi="2. Cách đăng nhập">2. 로그인 방법</span></a>
+<a href="#s2"><span class="i18n" data-ko="2. 로그인·권한" data-vi="2. Đăng nhập·quyền">2. 로그인·권한</span></a>
 <a href="#s3"><span class="i18n" data-ko="3. 단계·순번" data-vi="3. Giai đoạn·thứ tự">3. 단계·순번</span></a>
 <a href="#s4"><span class="i18n" data-ko="4. 진행 상태" data-vi="4. Trạng thái">4. 진행 상태</span></a>
 <a href="#s5"><span class="i18n" data-ko="5. 작업자" data-vi="5. Người làm">5. 작업자</span></a>
@@ -136,28 +146,71 @@ section{margin-top:30px;scroll-margin-top:14px}
 </section>
 
 <section id="s2">
-<div class="sechead"><div class="secnum">2</div><div class="sectitle"><span class="i18n" data-ko="로그인 방법 — 보기는 누구나, 수정은 허용 멤버만" data-vi="Cách đăng nhập — ai cũng xem, chỉ thành viên được phép mới sửa">로그인 방법 — 보기는 누구나, 수정은 허용 멤버만</span></div></div>
-<div class="secintro"><span class="i18n" data-ko="DevPlan 은 로그인 없이도 현재 상태를 그대로 볼 수 있습니다(읽기 전용). 값을 고치고 저장하려면 구글 로그인 후 ‘허용 멤버’여야 합니다." data-vi="DevPlan có thể xem trạng thái hiện tại mà không cần đăng nhập (chỉ xem). Để sửa và lưu giá trị, bạn phải đăng nhập Google và là ‘thành viên được phép’.">DevPlan 은 로그인 없이도 현재 상태를 그대로 볼 수 있습니다(읽기 전용). 값을 고치고 저장하려면 구글 로그인 후 ‘허용 멤버’여야 합니다.</span></div>
+<div class="sechead"><div class="secnum">2</div><div class="sectitle"><span class="i18n" data-ko="로그인과 편집 권한 — 보기는 누구나, 수정은 담당 트랙만" data-vi="Đăng nhập và quyền sửa — ai cũng xem, chỉ sửa track phụ trách">로그인과 편집 권한 — 보기는 누구나, 수정은 담당 트랙만</span></div></div>
+<div class="secintro"><span class="i18n" data-ko="DevPlan 은 로그인 없이도 현재 상태를 그대로 볼 수 있습니다(읽기 전용). 값을 고치고 저장하려면 구글 로그인을 해야 하고, 로그인하면 ‘본인이 맡은 트랙’만 편집할 수 있습니다. 다른 트랙은 화면에 보이지만 회색으로 잠겨 고칠 수 없습니다." data-vi="DevPlan có thể xem trạng thái hiện tại mà không cần đăng nhập (chỉ xem). Để sửa và lưu, bạn phải đăng nhập Google; sau khi đăng nhập, bạn chỉ có thể sửa ‘track mình phụ trách’. Các track khác vẫn hiển thị nhưng bị khóa màu xám, không sửa được.">DevPlan 은 로그인 없이도 현재 상태를 그대로 볼 수 있습니다(읽기 전용). 값을 고치고 저장하려면 구글 로그인을 해야 하고, 로그인하면 ‘본인이 맡은 트랙’만 편집할 수 있습니다. 다른 트랙은 화면에 보이지만 회색으로 잠겨 고칠 수 없습니다.</span></div>
 <div class="steps">
+
 <div class="step">
 <div class="slabel"><span class="i18n" data-ko="로그인 버튼 위치" data-vi="Vị trí nút đăng nhập">로그인 버튼 위치</span></div>
 <div class="row"><div class="k"><span class="i18n" data-ko="어디" data-vi="Ở đâu">어디</span></div><div class="v"><span class="i18n" data-ko="정렬 바 오른쪽, ‘저장’ 버튼 바로 옆에 로그인 상태와 ‘구글 로그인’ 버튼이 있습니다. 로그인 전에는" data-vi="Bên phải thanh sắp xếp, ngay cạnh nút ‘Lưu’, có phần trạng thái đăng nhập và nút ‘Đăng nhập Google’. Trước khi đăng nhập, hiển thị">정렬 바 오른쪽, ‘저장’ 버튼 바로 옆에 로그인 상태와 ‘구글 로그인’ 버튼이 있습니다. 로그인 전에는</span> <span class="dotno"></span> <b><span class="i18n" data-ko="로그인 안 됨 (읽기 전용)" data-vi="Chưa đăng nhập (chỉ xem)">로그인 안 됨 (읽기 전용)</span></b> <span class="i18n" data-ko="으로 표시됩니다." data-vi=".">으로 표시됩니다.</span></div></div>
 </div>
+
 <div class="step app">
-<div class="slabel"><span class="i18n" data-ko="로그인 하기" data-vi="Đăng nhập">로그인 하기</span></div>
+<div class="slabel"><span class="i18n" data-ko="로그인 하기 · 역할 표시" data-vi="Đăng nhập · hiển thị vai trò">로그인 하기 · 역할 표시</span></div>
 <div class="row"><div class="k how"><span class="i18n" data-ko="방법" data-vi="Cách">방법</span></div><div class="v"><span class="i18n" data-ko="‘구글 로그인’ 버튼을 누르면 구글 계정 선택 창(팝업)이 뜹니다. 본인 구글 계정을 고르면 됩니다." data-vi="Nhấn nút ‘Đăng nhập Google’, cửa sổ chọn tài khoản Google (popup) sẽ hiện ra. Chọn tài khoản Google của bạn là xong.">‘구글 로그인’ 버튼을 누르면 구글 계정 선택 창(팝업)이 뜹니다. 본인 구글 계정을 고르면 됩니다.</span></div></div>
-<div class="row"><div class="k res"><span class="i18n" data-ko="결과" data-vi="Kết quả">결과</span></div><div class="v"><span class="i18n" data-ko="허용 멤버 계정이면 초록 점과 함께" data-vi="Nếu là tài khoản thành viên được phép, sẽ hiển thị chấm xanh kèm">허용 멤버 계정이면 초록 점과 함께</span> <span class="dotok"></span> <b><span class="i18n" data-ko="이메일 · 편집 가능" data-vi="email · Có quyền sửa">이메일 · 편집 가능</span></b> <span class="i18n" data-ko="으로 바뀌고, 모든 칸을 직접 고칠 수 있습니다. 허용목록에 없는 계정이면" data-vi="và bạn có thể sửa trực tiếp mọi ô. Nếu tài khoản không nằm trong danh sách được phép, sẽ hiển thị">으로 바뀌고, 모든 칸을 직접 고칠 수 있습니다. 허용목록에 없는 계정이면</span> <span class="dotno"></span> <b><span class="i18n" data-ko="이메일 (읽기 전용 · 허용목록 외)" data-vi="email (chỉ xem · ngoài danh sách)">이메일 (읽기 전용 · 허용목록 외)</span></b> <span class="i18n" data-ko="으로 표시되어 보기만 됩니다." data-vi=", chỉ có thể xem.">으로 표시되어 보기만 됩니다.</span></div></div>
+<div class="row"><div class="k res"><span class="i18n" data-ko="결과" data-vi="Kết quả">결과</span></div><div class="v"><span class="i18n" data-ko="로그인하면 오른쪽 상단에 본인 이메일과 함께 ‘역할’이 표시됩니다. 김반장은 초록 점과" data-vi="Sau khi đăng nhập, góc trên bên phải hiển thị email của bạn kèm ‘vai trò’. 김반장 hiện chấm xanh và">로그인하면 오른쪽 상단에 본인 이메일과 함께 ‘역할’이 표시됩니다. 김반장은 초록 점과</span> <span class="rolepill"><span class="i18n" data-ko="슈퍼 · 전 트랙" data-vi="Super · toàn track">슈퍼 · 전 트랙</span></span> <span class="i18n" data-ko=", 담당자는 초록 점과" data-vi=", người phụ trách hiện chấm xanh và">, 담당자는 초록 점과</span> <span class="rolepill"><span class="i18n" data-ko="App · 편집 가능" data-vi="App · sửa được">App · 편집 가능</span></span> <span class="i18n" data-ko="처럼 담당 트랙 이름이 함께 나옵니다. 허용목록에 없는 계정으로 로그인하면 회색 점과" data-vi="kèm tên track mình phụ trách. Nếu đăng nhập bằng tài khoản ngoài danh sách, hiện chấm xám và">처럼 담당 트랙 이름이 함께 나옵니다. 허용목록에 없는 계정으로 로그인하면 회색 점과</span> <span class="rolepill ro"><span class="i18n" data-ko="읽기 전용 · 담당 트랙 없음" data-vi="chỉ xem · không có quyền track">읽기 전용 · 담당 트랙 없음</span></span> <span class="i18n" data-ko="으로 표시되어 보기만 됩니다. 본인 트랙 칸은 바로 고칠 수 있고, 다른 트랙 칸은 회색으로 잠겨 있습니다." data-vi="và chỉ xem được. Ô thuộc track của bạn có thể sửa ngay, còn ô track khác bị khóa màu xám.">으로 표시되어 보기만 됩니다. 본인 트랙 칸은 바로 고칠 수 있고, 다른 트랙 칸은 회색으로 잠겨 있습니다.</span></div></div>
 </div>
+
 <div class="step">
-<div class="slabel"><span class="i18n" data-ko="편집 가능한 허용 멤버 (5명)" data-vi="Thành viên được phép sửa (5 người)">편집 가능한 허용 멤버 (5명)</span></div>
-<div class="row"><div class="k"><span class="i18n" data-ko="누구" data-vi="Ai">누구</span></div><div class="v"><span class="i18n" data-ko="김반장 · Harry · Vin · Kelvin · John 다섯 명입니다. 등록된 계정은 sgkim.mixit@gmail.com · huyhuynhct1@gmail.com · ngvanvuong95@gmail.com · khoiln218@gmail.com · nhontruong96@gmail.com 입니다. 이 외의 계정으로 로그인하면 읽기 전용입니다." data-vi="Gồm năm người: 김반장 · Harry · Vin · Kelvin · John. Các tài khoản đã đăng ký là sgkim.mixit@gmail.com · huyhuynhct1@gmail.com · ngvanvuong95@gmail.com · khoiln218@gmail.com · nhontruong96@gmail.com. Đăng nhập bằng tài khoản khác sẽ chỉ xem được.">김반장 · Harry · Vin · Kelvin · John 다섯 명입니다. 등록된 계정은 sgkim.mixit@gmail.com · huyhuynhct1@gmail.com · ngvanvuong95@gmail.com · khoiln218@gmail.com · nhontruong96@gmail.com 입니다. 이 외의 계정으로 로그인하면 읽기 전용입니다.</span></div></div>
+<div class="slabel"><span class="i18n" data-ko="누가 무엇을 편집할 수 있나 (트랙별 권한)" data-vi="Ai sửa được gì (quyền theo track)">누가 무엇을 편집할 수 있나 (트랙별 권한)</span></div>
+<div class="row"><div class="k"><span class="i18n" data-ko="누구" data-vi="Ai">누구</span></div><div class="v">
+<table class="ptable"><thead><tr>
+<th><span class="i18n" data-ko="담당자" data-vi="Người phụ trách">담당자</span></th>
+<th><span class="i18n" data-ko="편집 가능 트랙" data-vi="Track được sửa">편집 가능 트랙</span></th>
+<th><span class="i18n" data-ko="로그인 후 표시" data-vi="Hiển thị khi đăng nhập">로그인 후 표시</span></th>
+</tr></thead><tbody>
+<tr>
+<td class="who">김반장<br><small><span class="i18n" data-ko="슈퍼관리자" data-vi="Super">슈퍼관리자</span><br>sgkim.mixit@gmail.com</small></td>
+<td><span class="trk sup"><span class="i18n" data-ko="전 트랙" data-vi="Toàn track">전 트랙</span></span> <span class="i18n" data-ko="App·CMS·웹·백엔드 모두 + 변경 로그 삭제" data-vi="App·CMS·Web·Backend + xóa nhật ký">App·CMS·웹·백엔드 모두 + 변경 로그 삭제</span></td>
+<td><span class="rolepill"><span class="i18n" data-ko="슈퍼 · 전 트랙" data-vi="Super · toàn track">슈퍼 · 전 트랙</span></span></td>
+</tr>
+<tr>
+<td class="who">Kelvin · John<br><small>khoiln218@gmail.com<br>nhontruong96@gmail.com</small></td>
+<td><span class="trk app">App</span> <span class="i18n" data-ko="App 트랙만" data-vi="Chỉ track App">App 트랙만</span></td>
+<td><span class="rolepill"><span class="i18n" data-ko="App · 편집 가능" data-vi="App · sửa được">App · 편집 가능</span></span></td>
+</tr>
+<tr>
+<td class="who">Vin<br><small>ngvanvuong95@gmail.com</small></td>
+<td><span class="trk cms">CMS·웹</span> <span class="i18n" data-ko="CMS·웹 트랙만" data-vi="Chỉ track CMS·Web">CMS·웹 트랙만</span></td>
+<td><span class="rolepill"><span class="i18n" data-ko="CMS·웹 · 편집 가능" data-vi="CMS·Web · sửa được">CMS·웹 · 편집 가능</span></span></td>
+</tr>
+<tr>
+<td class="who">Harry<br><small>huyhuynhct1@gmail.com</small></td>
+<td><span class="trk be"><span class="i18n" data-ko="백엔드" data-vi="Backend">백엔드</span></span> <span class="i18n" data-ko="백엔드 트랙만 (App 백엔드 + CMS 백엔드)" data-vi="Chỉ track Backend (Backend của App + CMS)">백엔드 트랙만 (App 백엔드 + CMS 백엔드)</span></td>
+<td><span class="rolepill"><span class="i18n" data-ko="백엔드 · 편집 가능" data-vi="Backend · sửa được">백엔드 · 편집 가능</span></span></td>
+</tr>
+<tr>
+<td class="who"><span class="i18n" data-ko="그 외 계정 · 비로그인" data-vi="Tài khoản khác · chưa đăng nhập">그 외 계정 · 비로그인</span></td>
+<td><span class="i18n" data-ko="없음 — 전체 읽기 전용" data-vi="Không — chỉ xem toàn bộ">없음 — 전체 읽기 전용</span></td>
+<td><span class="rolepill ro"><span class="i18n" data-ko="읽기 전용" data-vi="chỉ xem">읽기 전용</span></span></td>
+</tr>
+</tbody></table>
+</div></div>
 </div>
+
+<div class="step be">
+<div class="slabel"><span class="i18n" data-ko="슈퍼관리자 (김반장) 전용 기능" data-vi="Chức năng chỉ dành cho Super (김반장)">슈퍼관리자 (김반장) 전용 기능</span></div>
+<div class="row"><div class="k"><span class="i18n" data-ko="무엇" data-vi="Là gì">무엇</span></div><div class="v"><span class="i18n" data-ko="슈퍼관리자는 세 트랙(App·CMS·웹·백엔드)을 모두 편집할 수 있고, 변경 로그를 삭제할 수 있는 유일한 계정입니다." data-vi="Super có thể sửa cả ba track (App·CMS·Web·Backend) và là tài khoản duy nhất có thể xóa nhật ký thay đổi.">슈퍼관리자는 세 트랙(App·CMS·웹·백엔드)을 모두 편집할 수 있고, 변경 로그를 삭제할 수 있는 유일한 계정입니다.</span></div></div>
+<div class="row"><div class="k how"><span class="i18n" data-ko="로그 삭제" data-vi="Xóa nhật ký">로그 삭제</span></div><div class="v"><span class="i18n" data-ko="변경 로그를 펼친 뒤(9번 항목) 각 기록 오른쪽의 휴지통(🗑) 버튼을 누르면 그 기록이 삭제됩니다. 이 버튼은 슈퍼관리자에게만 보이며, 삭제는 서버에서도 슈퍼관리자만 허용되고 되돌릴 수 없습니다." data-vi="Mở nhật ký thay đổi (mục 9) rồi nhấn nút thùng rác (🗑) bên phải mỗi mục thì mục đó bị xóa. Nút này chỉ Super nhìn thấy; việc xóa cũng chỉ Super được phép ở phía máy chủ và không thể hoàn lại.">변경 로그를 펼친 뒤(9번 항목) 각 기록 오른쪽의 휴지통(🗑) 버튼을 누르면 그 기록이 삭제됩니다. 이 버튼은 슈퍼관리자에게만 보이며, 삭제는 서버에서도 슈퍼관리자만 허용되고 되돌릴 수 없습니다.</span></div></div>
+</div>
+
 <div class="step">
 <div class="slabel"><span class="i18n" data-ko="로그아웃 / 로그인 유지" data-vi="Đăng xuất / giữ đăng nhập">로그아웃 / 로그인 유지</span></div>
 <div class="row"><div class="k how"><span class="i18n" data-ko="방법" data-vi="Cách">방법</span></div><div class="v"><span class="i18n" data-ko="로그인하면 같은 자리의 버튼이 ‘로그아웃’으로 바뀝니다. 누르면 다시 읽기 전용으로 돌아갑니다." data-vi="Khi đã đăng nhập, nút ở cùng vị trí đổi thành ‘Đăng xuất’. Nhấn vào sẽ quay lại chế độ chỉ xem.">로그인하면 같은 자리의 버튼이 ‘로그아웃’으로 바뀝니다. 누르면 다시 읽기 전용으로 돌아갑니다.</span></div></div>
 <div class="row"><div class="k res"><span class="i18n" data-ko="참고" data-vi="Lưu ý">참고</span></div><div class="v"><span class="i18n" data-ko="한 번 로그인하면 같은 브라우저에서는 로그인 상태가 유지됩니다. 다음에 열 때 매번 다시 로그인하지 않아도 됩니다." data-vi="Đăng nhập một lần thì trạng thái đăng nhập được giữ trên cùng trình duyệt. Lần sau mở lại không cần đăng nhập lại mỗi lần.">한 번 로그인하면 같은 브라우저에서는 로그인 상태가 유지됩니다. 다음에 열 때 매번 다시 로그인하지 않아도 됩니다.</span></div></div>
 <div class="ex"><span class="i18n" data-ko="팁: 로그인하지 않아도, 또 허용목록에 없어도 현재 상태는 실시간으로 볼 수 있습니다. 편집 기능만 잠겨 있을 뿐입니다." data-vi="Mẹo: dù không đăng nhập hay không nằm trong danh sách, bạn vẫn xem được trạng thái hiện tại theo thời gian thực. Chỉ chức năng chỉnh sửa bị khóa.">팁: 로그인하지 않아도, 또 허용목록에 없어도 현재 상태는 실시간으로 볼 수 있습니다. 편집 기능만 잠겨 있을 뿐입니다.</span></div>
 </div>
+
 </div>
 </section>
 
@@ -238,26 +291,30 @@ section{margin-top:30px;scroll-margin-top:14px}
 <div class="steps">
 <div class="step">
 <div class="row"><div class="k"><span class="i18n" data-ko="무엇" data-vi="Là gì">무엇</span></div><div class="v"><span class="i18n" data-ko="앞에서 바꾼 모든 것 — 단계·순번·상태·작업자·작업 시작일·예상 완료일, 그리고 단계 정의(이름·설명·기간)까지 — 을 한 번에 확정합니다." data-vi="Xác nhận cùng lúc tất cả những gì bạn đã đổi — giai đoạn·thứ tự·trạng thái·người làm·ngày bắt đầu·ngày dự kiến hoàn thành, và cả định nghĩa giai đoạn (tên·mô tả·thời gian).">앞에서 바꾼 모든 것 — 단계·순번·상태·작업자·작업 시작일·예상 완료일, 그리고 단계 정의(이름·설명·기간)까지 — 을 한 번에 확정합니다.</span></div></div>
-<div class="row"><div class="k how"><span class="i18n" data-ko="방법" data-vi="Cách">방법</span></div><div class="v"><span class="i18n" data-ko="여러 칸을 마음껏 고친 뒤, 화면 위에 떠 있는 보라색 ‘저장’ 버튼을 한 번 누릅니다. (저장은 로그인한 허용 멤버만 가능합니다.)" data-vi="Sau khi sửa thoải mái nhiều ô, nhấn một lần nút ‘Lưu’ màu tím nổi ở trên màn hình. (Chỉ thành viên được phép đã đăng nhập mới lưu được.)">여러 칸을 마음껏 고친 뒤, 화면 위에 떠 있는 보라색 ‘저장’ 버튼을 한 번 누릅니다. (저장은 로그인한 허용 멤버만 가능합니다.)</span></div></div>
+<div class="row"><div class="k how"><span class="i18n" data-ko="방법" data-vi="Cách">방법</span></div><div class="v"><span class="i18n" data-ko="여러 칸을 마음껏 고친 뒤, 화면 위에 떠 있는 보라색 ‘저장’ 버튼을 한 번 누릅니다. (저장은 본인이 담당한 트랙의 칸만 됩니다. 다른 트랙 칸은 잠겨 있습니다.)" data-vi="Sau khi sửa thoải mái nhiều ô, nhấn một lần nút ‘Lưu’ màu tím nổi ở trên màn hình. (Chỉ lưu được các ô thuộc track mình phụ trách; ô track khác bị khóa.)">여러 칸을 마음껏 고친 뒤, 화면 위에 떠 있는 보라색 ‘저장’ 버튼을 한 번 누릅니다. (저장은 본인이 담당한 트랙의 칸만 됩니다. 다른 트랙 칸은 잠겨 있습니다.)</span></div></div>
 <div class="row"><div class="k res"><span class="i18n" data-ko="결과" data-vi="Kết quả">결과</span></div><div class="v"><span class="i18n" data-ko="화면 아래에 ‘저장됨 (N건)’ 메시지가 잠깐 뜨고, 점선 테두리가 사라집니다. 저장한 내용은 즉시 클라우드에 올라가, 지금 DevPlan 을 보고 있는 다른 팀원 화면에도 자동으로 나타납니다. 새로고침하거나, 다른 기기·다른 사람이 열어도 그대로 보입니다. 바뀐 내용은 변경 로그에도 기록됩니다." data-vi="‘Đã lưu (N)’ hiện ra giây lát ở dưới màn hình, viền nét đứt biến mất. Nội dung đã lưu lập tức tải lên cloud và tự động hiển thị trên màn hình của các thành viên khác đang xem DevPlan. Dù tải lại trang, hay người khác·thiết bị khác mở ra, nội dung vẫn còn nguyên. Thay đổi cũng được ghi vào nhật ký.">화면 아래에 ‘저장됨 (N건)’ 메시지가 잠깐 뜨고, 점선 테두리가 사라집니다. 저장한 내용은 즉시 클라우드에 올라가, 지금 DevPlan 을 보고 있는 다른 팀원 화면에도 자동으로 나타납니다. 새로고침하거나, 다른 기기·다른 사람이 열어도 그대로 보입니다. 바뀐 내용은 변경 로그에도 기록됩니다.</span></div></div>
 </div>
 <div class="step be">
 <div class="slabel"><span class="i18n" data-ko="중요 — 점선 ‘미저장’ 표시" data-vi="Quan trọng — dấu nét đứt ‘chưa lưu’">중요 — 점선 ‘미저장’ 표시</span></div>
 <div class="row"><div class="k"><span class="i18n" data-ko="무엇" data-vi="Là gì">무엇</span></div><div class="v"><span class="i18n" data-ko="값을 고치고 아직 저장하지 않으면, 그 칸에 주황색 점선 테두리" data-vi="Khi bạn sửa giá trị mà chưa lưu, ô đó hiện viền nét đứt màu cam">값을 고치고 아직 저장하지 않으면, 그 칸에 주황색 점선 테두리</span> <span class="dashbox"><span class="i18n" data-ko="미저장" data-vi="chưa lưu">미저장</span></span> <span class="i18n" data-ko="가 생깁니다. ‘아직 저장(공유) 안 됐다’는 뜻입니다." data-vi="xuất hiện. Nghĩa là ‘vẫn chưa được lưu (chưa chia sẻ)’.">가 생깁니다. ‘아직 저장(공유) 안 됐다’는 뜻입니다.</span></div></div>
 <div class="row"><div class="k res"><span class="i18n" data-ko="주의" data-vi="Lưu ý">주의</span></div><div class="v"><span class="i18n" data-ko="점선이 보이는 상태에서 페이지를 새로고침하거나 닫으면 그 변경은 클라우드에 올라가지 않고 사라집니다. 꼭 저장을 눌러 점선을 없앤 뒤 떠나세요." data-vi="Nếu tải lại hoặc đóng trang khi còn nét đứt, thay đổi đó không được tải lên cloud và sẽ mất. Hãy nhấn Lưu để xóa nét đứt trước khi rời đi.">점선이 보이는 상태에서 페이지를 새로고침하거나 닫으면 그 변경은 클라우드에 올라가지 않고 사라집니다. 꼭 저장을 눌러 점선을 없앤 뒤 떠나세요.</span></div></div>
-<div class="ex"><span class="i18n" data-ko="참고: 읽기 전용(로그인 안 함 / 허용목록 외) 상태에서는 저장 버튼이 흐리게 비활성화되어 눌리지 않습니다. 편집하려면 먼저 로그인하세요(2번 항목)." data-vi="Lưu ý: ở chế độ chỉ xem (chưa đăng nhập / ngoài danh sách), nút Lưu bị làm mờ và không nhấn được. Muốn sửa thì đăng nhập trước (mục 2).">참고: 읽기 전용(로그인 안 함 / 허용목록 외) 상태에서는 저장 버튼이 흐리게 비활성화되어 눌리지 않습니다. 편집하려면 먼저 로그인하세요(2번 항목).</span></div>
+<div class="ex"><span class="i18n" data-ko="참고: 로그인을 안 했거나 담당 트랙이 없으면(허용목록 외) 저장 버튼이 흐리게 비활성화됩니다. 담당 트랙이 있으면 저장은 되지만, 본인 트랙이 아닌 칸은 회색으로 잠겨 고칠 수 없습니다. 편집하려면 먼저 본인 계정으로 로그인하세요(2번 항목)." data-vi="Lưu ý: nếu chưa đăng nhập hoặc không có track phụ trách (ngoài danh sách), nút Lưu bị làm mờ. Nếu có track phụ trách thì lưu được, nhưng ô không thuộc track của bạn bị khóa màu xám, không sửa được. Muốn sửa thì đăng nhập bằng tài khoản của bạn trước (mục 2).">참고: 로그인을 안 했거나 담당 트랙이 없으면(허용목록 외) 저장 버튼이 흐리게 비활성화됩니다. 담당 트랙이 있으면 저장은 되지만, 본인 트랙이 아닌 칸은 회색으로 잠겨 고칠 수 없습니다. 편집하려면 먼저 본인 계정으로 로그인하세요(2번 항목).</span></div>
 </div>
 </div>
 </section>
 
 <section id="s9">
-<div class="sechead"><div class="secnum">9</div><div class="sectitle"><span class="i18n" data-ko="변경 로그 — 무엇을 언제 바꿨나" data-vi="Nhật ký thay đổi — đã đổi gì, khi nào">변경 로그 — 무엇을 언제 바꿨나</span></div></div>
+<div class="sechead"><div class="secnum">9</div><div class="sectitle"><span class="i18n" data-ko="변경 로그 — 무엇을 언제 바꿨나 (트랙별로 따로 쌓임)" data-vi="Nhật ký thay đổi — đã đổi gì, khi nào (lưu riêng theo từng track)">변경 로그 — 무엇을 언제 바꿨나 (트랙별로 따로 쌓임)</span></div></div>
 <div class="steps">
 <div class="step">
-<div class="row"><div class="k"><span class="i18n" data-ko="무엇" data-vi="Là gì">무엇</span></div><div class="v"><span class="i18n" data-ko="저장할 때마다 ‘무엇을 → 어떻게 바꿨는지’가 시간과 함께 쌓이는 기록입니다. 이 기록도 클라우드에 저장돼 팀원 모두가 함께 봅니다." data-vi="Là nhật ký ghi lại ‘đã đổi cái gì → thành gì’ kèm thời gian, mỗi lần lưu. Nhật ký này cũng lưu trên cloud và cả nhóm cùng xem.">저장할 때마다 ‘무엇을 → 어떻게 바꿨는지’가 시간과 함께 쌓이는 기록입니다. 이 기록도 클라우드에 저장돼 팀원 모두가 함께 봅니다.</span></div></div>
+<div class="row"><div class="k"><span class="i18n" data-ko="무엇" data-vi="Là gì">무엇</span></div><div class="v"><span class="i18n" data-ko="저장할 때마다 ‘무엇을 → 어떻게 바꿨는지’가 시간과 함께 쌓이는 기록입니다. 로그는 트랙별로 따로 분리돼 쌓입니다 — App 변경은 App 로그에, CMS·웹은 CMS·웹 로그에, 백엔드는 백엔드 로그에 기록됩니다. 이 기록도 클라우드에 저장돼 팀원 모두가 함께 봅니다." data-vi="Là nhật ký ghi lại ‘đã đổi cái gì → thành gì’ kèm thời gian, mỗi lần lưu. Nhật ký được lưu riêng theo từng track — thay đổi App vào nhật ký App, CMS·Web vào nhật ký CMS·Web, Backend vào nhật ký Backend. Nhật ký này cũng lưu trên cloud và cả nhóm cùng xem.">저장할 때마다 ‘무엇을 → 어떻게 바꿨는지’가 시간과 함께 쌓이는 기록입니다. 로그는 트랙별로 따로 분리돼 쌓입니다 — App 변경은 App 로그에, CMS·웹은 CMS·웹 로그에, 백엔드는 백엔드 로그에 기록됩니다. 이 기록도 클라우드에 저장돼 팀원 모두가 함께 봅니다.</span></div></div>
 <div class="row"><div class="k how"><span class="i18n" data-ko="방법" data-vi="Cách">방법</span></div><div class="v"><span class="i18n" data-ko="표 아래 ‘변경 로그’ 줄(▸)을 클릭하면 펼쳐집니다. 옆 숫자는 기록 개수입니다." data-vi="Nhấn dòng ‘nhật ký thay đổi’ (▸) dưới bảng để mở ra. Số bên cạnh là số mục ghi.">표 아래 ‘변경 로그’ 줄(▸)을 클릭하면 펼쳐집니다. 옆 숫자는 기록 개수입니다.</span></div></div>
 <div class="row"><div class="k res"><span class="i18n" data-ko="결과" data-vi="Kết quả">결과</span></div><div class="v"><span class="i18n" data-ko="‘시간 · [트랙] · 작업 이름 · 바뀐 값(이전 → 이후)’ 형태로 최근 것이 맨 위에 보입니다." data-vi="Hiển thị theo dạng ‘thời gian · [track] · tên công việc · giá trị đã đổi (trước → sau)’, mục mới nhất ở trên cùng.">‘시간 · [트랙] · 작업 이름 · 바뀐 값(이전 → 이후)’ 형태로 최근 것이 맨 위에 보입니다.</span></div></div>
 <div class="ex"><span class="i18n" data-ko="예시: 14:32 · [App] · 홈 · 작업대기 → 작업중 — ‘14시 32분에 App 의 홈 작업 상태를 작업대기에서 작업중으로 바꿨다’는 뜻입니다." data-vi="Ví dụ: 14:32 · [App] · Trang chủ · Chờ xử lý → Đang làm — nghĩa là ‘lúc 14:32 đã đổi trạng thái việc Trang chủ của App từ Chờ xử lý sang Đang làm’.">예시: 14:32 · [App] · 홈 · 작업대기 → 작업중 — ‘14시 32분에 App 의 홈 작업 상태를 작업대기에서 작업중으로 바꿨다’는 뜻입니다.</span></div>
+</div>
+<div class="step be">
+<div class="slabel"><span class="i18n" data-ko="로그 삭제 (슈퍼관리자만)" data-vi="Xóa nhật ký (chỉ Super)">로그 삭제 (슈퍼관리자만)</span></div>
+<div class="row"><div class="k"><span class="i18n" data-ko="무엇" data-vi="Là gì">무엇</span></div><div class="v"><span class="i18n" data-ko="변경 로그를 지울 수 있는 사람은 슈퍼관리자(김반장) 한 명뿐입니다. 슈퍼관리자로 로그인하면 각 기록 오른쪽에 휴지통(🗑) 버튼이 보이고, 누르면 그 기록이 삭제됩니다. 다른 멤버에게는 이 버튼이 보이지 않습니다. 삭제는 서버에서도 슈퍼관리자만 허용되며 되돌릴 수 없으니 신중히 누르세요." data-vi="Chỉ một người — Super (김반장) — mới xóa được nhật ký thay đổi. Khi đăng nhập bằng Super, bên phải mỗi mục sẽ có nút thùng rác (🗑); nhấn vào thì mục đó bị xóa. Các thành viên khác không thấy nút này. Việc xóa cũng chỉ Super được phép ở phía máy chủ và không thể hoàn lại, hãy cân nhắc.">변경 로그를 지울 수 있는 사람은 슈퍼관리자(김반장) 한 명뿐입니다. 슈퍼관리자로 로그인하면 각 기록 오른쪽에 휴지통(🗑) 버튼이 보이고, 누르면 그 기록이 삭제됩니다. 다른 멤버에게는 이 버튼이 보이지 않습니다. 삭제는 서버에서도 슈퍼관리자만 허용되며 되돌릴 수 없으니 신중히 누르세요.</span></div></div>
 </div>
 </div>
 </section>
@@ -303,7 +360,7 @@ section{margin-top:30px;scroll-margin-top:14px}
 <ul class="dlist">
 <li><span class="badge">1</span><span><span class="ok"><span class="i18n" data-ko="모두 같은 화면" data-vi="Cùng một màn hình">모두 같은 화면</span></span> — <span class="i18n" data-ko="어느 PC·폰·브라우저에서 열어도 같은 최신 데이터가 보입니다. 새로고침해도 그대로 유지되고, 기기나 사람이 달라도 동일합니다." data-vi="Mở trên bất kỳ PC·điện thoại·trình duyệt nào cũng thấy cùng một dữ liệu mới nhất. Tải lại vẫn giữ nguyên, khác thiết bị hay khác người đều như nhau.">어느 PC·폰·브라우저에서 열어도 같은 최신 데이터가 보입니다. 새로고침해도 그대로 유지되고, 기기나 사람이 달라도 동일합니다.</span></span></li>
 <li><span class="badge">2</span><span><span class="ok"><span class="i18n" data-ko="보기는 누구나" data-vi="Ai cũng xem được">보기는 누구나</span></span> — <span class="i18n" data-ko="로그인하지 않아도 현재 상태를 실시간으로 볼 수 있습니다. 로그인은 ‘수정’할 때만 필요하고, 보기만 할 거라면 필요 없습니다." data-vi="Không cần đăng nhập vẫn xem được trạng thái hiện tại theo thời gian thực. Đăng nhập chỉ cần khi ‘sửa’; nếu chỉ xem thì không cần.">로그인하지 않아도 현재 상태를 실시간으로 볼 수 있습니다. 로그인은 ‘수정’할 때만 필요하고, 보기만 할 거라면 필요 없습니다.</span></span></li>
-<li><span class="badge">3</span><span><span class="ok"><span class="i18n" data-ko="수정은 허용 멤버만" data-vi="Chỉ thành viên được phép sửa">수정은 허용 멤버만</span></span> — <span class="i18n" data-ko="구글 로그인 후 허용 5명(김반장·Harry·Vin·Kelvin·John)만 고칠 수 있습니다. 여러 명이 동시에 편집해도 칸 단위로 저장돼 서로 덮어쓰지 않습니다." data-vi="Sau khi đăng nhập Google, chỉ 5 thành viên được phép (김반장·Harry·Vin·Kelvin·John) mới sửa được. Nhiều người sửa cùng lúc cũng lưu theo từng ô nên không ghi đè lên nhau.">구글 로그인 후 허용 5명(김반장·Harry·Vin·Kelvin·John)만 고칠 수 있습니다. 여러 명이 동시에 편집해도 칸 단위로 저장돼 서로 덮어쓰지 않습니다.</span></span></li>
+<li><span class="badge">3</span><span><span class="ok"><span class="i18n" data-ko="수정은 담당 트랙만" data-vi="Chỉ sửa track phụ trách">수정은 담당 트랙만</span></span> — <span class="i18n" data-ko="구글 로그인 후 본인이 맡은 트랙만 고칠 수 있습니다. App=Kelvin·John, CMS·웹=Vin, 백엔드=Harry, 김반장(슈퍼관리자)은 전 트랙입니다. 다른 트랙 칸은 회색으로 잠기며, 이 권한은 화면뿐 아니라 서버에서도 강제됩니다. 여러 명이 동시에 편집해도 칸 단위로 저장돼 서로 덮어쓰지 않습니다." data-vi="Sau khi đăng nhập Google, bạn chỉ sửa được track mình phụ trách. App=Kelvin·John, CMS·Web=Vin, Backend=Harry, còn 김반장 (Super) sửa toàn bộ track. Ô track khác bị khóa màu xám, và quyền này được áp đặt cả ở giao diện lẫn máy chủ. Nhiều người sửa cùng lúc cũng lưu theo từng ô nên không ghi đè lên nhau.">구글 로그인 후 본인이 맡은 트랙만 고칠 수 있습니다. App=Kelvin·John, CMS·웹=Vin, 백엔드=Harry, 김반장(슈퍼관리자)은 전 트랙입니다. 다른 트랙 칸은 회색으로 잠기며, 이 권한은 화면뿐 아니라 서버에서도 강제됩니다. 여러 명이 동시에 편집해도 칸 단위로 저장돼 서로 덮어쓰지 않습니다.</span></span></li>
 </ul>
 <div class="tip"><span class="i18n" data-ko="※ 이전 버전과 달리, 입력값이 더 이상 ‘내 브라우저에만’ 저장되지 않습니다. 이제 저장을 누르면 팀 전체가 함께 보는 공유 데이터로 반영됩니다. 동료 화면이 바로 안 바뀌면 잠깐 기다리거나 새로고침해 보세요." data-vi="※ Khác với bản trước, giá trị nhập vào không còn chỉ lưu ‘trong trình duyệt của tôi’. Bây giờ khi nhấn Lưu, nội dung trở thành dữ liệu chung mà cả nhóm cùng xem. Nếu màn hình đồng nghiệp chưa đổi ngay, hãy chờ một lát hoặc tải lại trang.">※ 이전 버전과 달리, 입력값이 더 이상 ‘내 브라우저에만’ 저장되지 않습니다. 이제 저장을 누르면 팀 전체가 함께 보는 공유 데이터로 반영됩니다. 동료 화면이 바로 안 바뀌면 잠깐 기다리거나 새로고침해 보세요.</span></div>
 </div>
@@ -312,14 +369,17 @@ section{margin-top:30px;scroll-margin-top:14px}
 <div class="sechead"><div class="secnum">?</div><div class="sectitle"><span class="i18n" data-ko="자주 묻는 질문" data-vi="Câu hỏi thường gặp">자주 묻는 질문</span></div></div>
 <div class="faq">
 <details><summary><span class="i18n" data-ko="저장했는데 동료 화면엔 왜 안 보이나요?" data-vi="Tôi đã lưu nhưng sao màn hình đồng nghiệp không thấy?">저장했는데 동료 화면엔 왜 안 보이나요?</span></summary><div class="ans"><span class="i18n" data-ko="이제는 보입니다. 저장하면 클라우드 공유 DB 에 올라가 모두에게 실시간 반영됩니다. 동료 화면이 안 바뀌면 잠깐 기다리거나 새로고침해 보세요. 혹시 점선(미저장)이 남아 있으면 아직 저장 전이니 저장 버튼을 누르세요." data-vi="Bây giờ thì thấy. Khi lưu, nội dung tải lên DB chia sẻ trên cloud và cập nhật ngay cho mọi người. Nếu màn hình đồng nghiệp chưa đổi, hãy chờ một lát hoặc tải lại. Nếu còn nét đứt (chưa lưu) thì vẫn chưa lưu — hãy nhấn nút Lưu.">이제는 보입니다. 저장하면 클라우드 공유 DB 에 올라가 모두에게 실시간 반영됩니다. 동료 화면이 안 바뀌면 잠깐 기다리거나 새로고침해 보세요. 혹시 점선(미저장)이 남아 있으면 아직 저장 전이니 저장 버튼을 누르세요.</span></div></details>
-<details><summary><span class="i18n" data-ko="수정이 안 돼요 / 칸이 회색으로 잠겨 있어요" data-vi="Tôi không sửa được / ô bị khóa màu xám">수정이 안 돼요 / 칸이 회색으로 잠겨 있어요</span></summary><div class="ans"><span class="i18n" data-ko="읽기 전용 상태입니다. 로그인을 안 했거나, 로그인한 계정이 허용목록에 없어서입니다. 정렬 바 오른쪽 ‘구글 로그인’ 버튼으로 허용 멤버 계정(2번 항목)으로 로그인하면 칸이 풀리고 저장 버튼도 활성화됩니다." data-vi="Đang ở chế độ chỉ xem. Do chưa đăng nhập, hoặc tài khoản đã đăng nhập không nằm trong danh sách được phép. Dùng nút ‘Đăng nhập Google’ bên phải thanh sắp xếp để đăng nhập bằng tài khoản thành viên được phép (mục 2), ô sẽ mở khóa và nút Lưu cũng được kích hoạt.">읽기 전용 상태입니다. 로그인을 안 했거나, 로그인한 계정이 허용목록에 없어서입니다. 정렬 바 오른쪽 ‘구글 로그인’ 버튼으로 허용 멤버 계정(2번 항목)으로 로그인하면 칸이 풀리고 저장 버튼도 활성화됩니다.</span></div></details>
+<details><summary><span class="i18n" data-ko="수정이 안 돼요 / 칸이 회색으로 잠겨 있어요" data-vi="Tôi không sửa được / ô bị khóa màu xám">수정이 안 돼요 / 칸이 회색으로 잠겨 있어요</span></summary><div class="ans"><span class="i18n" data-ko="두 가지 경우입니다. (1) 로그인을 안 했거나 허용목록에 없으면 전체가 읽기 전용으로 잠깁니다. (2) 로그인했더라도 본인 담당 트랙이 아닌 칸은 회색으로 잠겨 있습니다. 정렬 바 오른쪽 ‘구글 로그인’으로 본인 계정(2번 항목 표)으로 로그인하고, 본인 트랙 칸을 고치세요. 다른 트랙을 고쳐야 하면 그 트랙 담당자나 슈퍼관리자(김반장)에게 요청하세요." data-vi="Có hai trường hợp. (1) Nếu chưa đăng nhập hoặc ngoài danh sách thì toàn bộ bị khóa chỉ xem. (2) Dù đã đăng nhập, ô không thuộc track bạn phụ trách vẫn bị khóa màu xám. Dùng ‘Đăng nhập Google’ bên phải thanh sắp xếp để đăng nhập bằng tài khoản của bạn (bảng ở mục 2), rồi sửa ô thuộc track của bạn. Nếu cần sửa track khác, hãy nhờ người phụ trách track đó hoặc Super (김반장).">두 가지 경우입니다. (1) 로그인을 안 했거나 허용목록에 없으면 전체가 읽기 전용으로 잠깁니다. (2) 로그인했더라도 본인 담당 트랙이 아닌 칸은 회색으로 잠겨 있습니다. 정렬 바 오른쪽 ‘구글 로그인’으로 본인 계정(2번 항목 표)으로 로그인하고, 본인 트랙 칸을 고치세요. 다른 트랙을 고쳐야 하면 그 트랙 담당자나 슈퍼관리자(김반장)에게 요청하세요.</span></div></details>
 <details><summary><span class="i18n" data-ko="점선 테두리는 무슨 뜻인가요?" data-vi="Viền nét đứt nghĩa là gì?">점선 테두리는 무슨 뜻인가요?</span></summary><div class="ans"><span class="i18n" data-ko="‘고쳤지만 아직 저장 안 함’이라는 뜻입니다. 저장 버튼을 누르면 사라지고 클라우드에 공유됩니다. 안 누르고 닫으면 그 변경은 사라집니다." data-vi="Nghĩa là ‘đã sửa nhưng chưa lưu’. Nhấn nút Lưu thì biến mất và được chia sẻ lên cloud. Đóng mà không nhấn thì thay đổi đó mất.">‘고쳤지만 아직 저장 안 함’이라는 뜻입니다. 저장 버튼을 누르면 사라지고 클라우드에 공유됩니다. 안 누르고 닫으면 그 변경은 사라집니다.</span></div></details>
 <details><summary><span class="i18n" data-ko="실수로 바꿨어요. 되돌릴 수 있나요?" data-vi="Tôi lỡ đổi rồi. Có hoàn lại được không?">실수로 바꿨어요. 되돌릴 수 있나요?</span></summary><div class="ans"><span class="i18n" data-ko="저장 전이라면 새로고침하면 마지막 저장 상태로 돌아갑니다. 이미 저장했다면 값을 다시 원하는 대로 고친 뒤 저장하세요(모두에게 반영됩니다). 변경 로그에서 이전 값을 확인할 수 있습니다." data-vi="Nếu chưa lưu, tải lại trang sẽ về trạng thái lưu gần nhất. Nếu đã lưu, hãy sửa lại giá trị như ý rồi lưu (sẽ cập nhật cho mọi người). Bạn có thể xem giá trị cũ trong nhật ký thay đổi.">저장 전이라면 새로고침하면 마지막 저장 상태로 돌아갑니다. 이미 저장했다면 값을 다시 원하는 대로 고친 뒤 저장하세요(모두에게 반영됩니다). 변경 로그에서 이전 값을 확인할 수 있습니다.</span></div></details>
+<details><summary><span class="i18n" data-ko="다른 트랙은 왜 수정이 안 되나요?" data-vi="Vì sao tôi không sửa được track khác?">다른 트랙은 왜 수정이 안 되나요?</span></summary><div class="ans"><span class="i18n" data-ko="권한이 트랙별로 나뉘어 있기 때문입니다. App 담당(Kelvin·John)은 App 트랙만, CMS·웹 담당(Vin)은 CMS·웹만, 백엔드 담당(Harry)은 백엔드만 고칠 수 있습니다. 본인 트랙이 아닌 칸은 화면에 보이지만 회색으로 잠겨 있습니다. 이 제한은 화면뿐 아니라 서버(클라우드 보안 규칙)에서도 강제되므로, 개발자 도구로 화면을 우회해 저장을 시도해도 다른 트랙은 서버가 거부합니다. 진짜 보안이라는 뜻입니다. 다른 트랙을 고쳐야 하면 그 담당자나 슈퍼관리자(김반장)에게 요청하세요." data-vi="Vì quyền được chia theo từng track. App (Kelvin·John) chỉ sửa track App, CMS·Web (Vin) chỉ CMS·Web, Backend (Harry) chỉ Backend. Ô không thuộc track của bạn vẫn hiển thị nhưng bị khóa màu xám. Giới hạn này được áp đặt không chỉ ở giao diện mà cả ở máy chủ (quy tắc bảo mật trên cloud), nên dù dùng công cụ nhà phát triển để lách giao diện rồi thử lưu, máy chủ vẫn từ chối track khác. Đây là bảo mật thật sự. Nếu cần sửa track khác, hãy nhờ người phụ trách đó hoặc Super (김반장).">권한이 트랙별로 나뉘어 있기 때문입니다. App 담당(Kelvin·John)은 App 트랙만, CMS·웹 담당(Vin)은 CMS·웹만, 백엔드 담당(Harry)은 백엔드만 고칠 수 있습니다. 본인 트랙이 아닌 칸은 화면에 보이지만 회색으로 잠겨 있습니다. 이 제한은 화면뿐 아니라 서버(클라우드 보안 규칙)에서도 강제되므로, 개발자 도구로 화면을 우회해 저장을 시도해도 다른 트랙은 서버가 거부합니다. 진짜 보안이라는 뜻입니다. 다른 트랙을 고쳐야 하면 그 담당자나 슈퍼관리자(김반장)에게 요청하세요.</span></div></details>
+<details><summary><span class="i18n" data-ko="내가 어느 트랙 담당인지 어떻게 아나요?" data-vi="Làm sao biết tôi phụ trách track nào?">내가 어느 트랙 담당인지 어떻게 아나요?</span></summary><div class="ans"><span class="i18n" data-ko="로그인하면 오른쪽 상단 이메일 옆에 역할이 표시됩니다(예: App · 편집 가능, CMS·웹 · 편집 가능, 백엔드 · 편집 가능, 김반장은 슈퍼 · 전 트랙). 2번 항목의 표에서 담당자별 트랙을 한눈에 확인할 수 있습니다." data-vi="Khi đăng nhập, vai trò hiện bên cạnh email ở góc trên bên phải (ví dụ: App · sửa được, CMS·Web · sửa được, Backend · sửa được; 김반장 là Super · toàn track). Bảng ở mục 2 cho bạn xem nhanh track của từng người.">로그인하면 오른쪽 상단 이메일 옆에 역할이 표시됩니다(예: App · 편집 가능, CMS·웹 · 편집 가능, 백엔드 · 편집 가능, 김반장은 슈퍼 · 전 트랙). 2번 항목의 표에서 담당자별 트랙을 한눈에 확인할 수 있습니다.</span></div></details>
+<details><summary><span class="i18n" data-ko="변경 로그를 지우고 싶어요" data-vi="Tôi muốn xóa nhật ký thay đổi">변경 로그를 지우고 싶어요</span></summary><div class="ans"><span class="i18n" data-ko="로그 삭제는 슈퍼관리자(김반장)만 할 수 있습니다. 슈퍼관리자로 로그인하면 변경 로그를 펼쳤을 때 각 기록 오른쪽에 휴지통(🗑) 버튼이 나타나며, 그것으로 지울 수 있습니다. 다른 멤버 화면에는 이 버튼이 없고, 서버에서도 슈퍼관리자만 삭제가 허용됩니다." data-vi="Chỉ Super (김반장) mới xóa được nhật ký. Khi đăng nhập bằng Super và mở nhật ký, bên phải mỗi mục sẽ có nút thùng rác (🗑) để xóa. Màn hình thành viên khác không có nút này, và máy chủ cũng chỉ cho phép Super xóa.">로그 삭제는 슈퍼관리자(김반장)만 할 수 있습니다. 슈퍼관리자로 로그인하면 변경 로그를 펼쳤을 때 각 기록 오른쪽에 휴지통(🗑) 버튼이 나타나며, 그것으로 지울 수 있습니다. 다른 멤버 화면에는 이 버튼이 없고, 서버에서도 슈퍼관리자만 삭제가 허용됩니다.</span></div></details>
 <details><summary><span class="i18n" data-ko="로그인은 매번 다시 해야 하나요?" data-vi="Mỗi lần đều phải đăng nhập lại à?">로그인은 매번 다시 해야 하나요?</span></summary><div class="ans"><span class="i18n" data-ko="아니요. 한 번 로그인하면 같은 브라우저에서는 상태가 유지됩니다. 직접 ‘로그아웃’을 누르거나 브라우저 데이터를 지우기 전까지는 다시 로그인하지 않아도 됩니다." data-vi="Không. Đăng nhập một lần thì trạng thái được giữ trên cùng trình duyệt. Cho đến khi bạn tự nhấn ‘Đăng xuất’ hoặc xóa dữ liệu trình duyệt, bạn không cần đăng nhập lại.">아니요. 한 번 로그인하면 같은 브라우저에서는 상태가 유지됩니다. 직접 ‘로그아웃’을 누르거나 브라우저 데이터를 지우기 전까지는 다시 로그인하지 않아도 됩니다.</span></div></details>
 </div>
 </section>
 
-<div class="foot"><span class="i18n" data-ko="PricePick · 개발 일정 관리 사용 가이드 · 본체 기준: DevPlan s36 (Firebase 공유 버전)" data-vi="PricePick · Hướng dẫn sử dụng Quản lý tiến độ · Dựa trên bản chính: DevPlan s36 (bản chia sẻ Firebase)">PricePick · 개발 일정 관리 사용 가이드 · 본체 기준: DevPlan s36 (Firebase 공유 버전)</span></div>
+<div class="foot"><span class="i18n" data-ko="PricePick · 개발 일정 관리 사용 가이드 · 본체 기준: DevPlan s37 (트랙별 권한 + 슈퍼관리자 버전)" data-vi="PricePick · Hướng dẫn sử dụng Quản lý tiến độ · Dựa trên bản chính: DevPlan s37 (bản quyền theo track + Super)">PricePick · 개발 일정 관리 사용 가이드 · 본체 기준: DevPlan s37 (트랙별 권한 + 슈퍼관리자 버전)</span></div>
 
 </div>
 <script>
