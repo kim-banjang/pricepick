@@ -161,6 +161,43 @@ input.perin{width:100%;min-width:0;font-size:10px;font-weight:600;color:var(--in
 input.perin:focus{outline:1px solid var(--pp);border-color:var(--pp)}
 input.perin.dirty{outline:2px dashed var(--warn);outline-offset:1px}
 input.perin.empty{color:var(--ink3)}
+
+/* === s35: 모바일 반응형 (<=768px) — 표 가로 스크롤 + 앞 3칸 고정 (No/단계/작업내용). 데스크톱 무영향 === */
+@media(max-width:768px){
+  .wrap{padding-left:14px;padding-right:14px}
+  .htitle{font-size:20px}.hsub{font-size:12px}
+  .langtog{top:14px;right:14px}
+  .dash{grid-template-columns:repeat(2,1fr);gap:10px}
+  .card .val{font-size:20px}
+  .sortbar{gap:8px 10px}
+  .sortbar .sortseg{order:1}
+  .sortbar .ppsave{order:2;margin-left:auto}
+  .sortbar .ppbar-hint{order:3;flex:1 1 100%;min-width:0;font-size:11px;line-height:1.4}
+  .phases{grid-template-columns:1fr}
+  .tabs .tab{padding:10px 12px;font-size:13px}
+
+  /* 표 가로 스크롤 컨테이너 */
+  .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:13px;background:#fff;margin-top:8px}
+  .tscroll>table{margin-top:0;width:auto;min-width:100%;border-collapse:separate;border-spacing:0;border:none;border-radius:0;overflow:visible}
+  .tscroll>table th,.tscroll>table td{white-space:nowrap;padding-left:8px;padding-right:8px}
+  .tscroll>table td.task{white-space:normal;word-break:keep-all;line-height:1.42}
+
+  /* 앞 3칸 고정 */
+  .tscroll thead th:nth-child(1),.tscroll tbody td.num{position:sticky;left:0;z-index:3;width:40px;min-width:40px;max-width:40px;padding-left:10px}
+  .tscroll thead th:nth-child(2),.tscroll tbody td.phcell{position:sticky;left:40px;z-index:3;width:70px;min-width:70px;max-width:70px}
+  .tscroll thead th:nth-child(3),.tscroll tbody td.task{position:sticky;left:110px;z-index:3;width:130px;min-width:130px;max-width:130px;border-right:1px solid var(--line);box-shadow:4px 0 5px -3px rgba(31,35,48,.18)}
+  /* 고정 셀 불투명 배경 */
+  .tscroll thead th:nth-child(1),.tscroll thead th:nth-child(2),.tscroll thead th:nth-child(3){background:#f4f1fc;z-index:4}
+  .tscroll tbody td.num,.tscroll tbody td.phcell,.tscroll tbody td.task{background:#fff}
+  /* 단계 그룹 헤더(단계순)는 고정 제외 — 전체 폭 유지 */
+  .tscroll tbody tr.phgrp td{position:static !important;width:auto !important;min-width:0 !important;max-width:none !important;white-space:normal;box-shadow:none;border-right:none}
+
+  /* 입력/드롭다운 — 터치 여유 */
+  input.duein,input.startin{font-size:12px;padding:4px 6px}
+  select.stsel{font-size:11px;padding:3px 18px 3px 9px}
+  select.wksel{font-size:11px;padding:3px 7px}
+  input.subin{width:22px}
+}
 </style></head><body>
 <header><div class="langtog"><button class="on" onclick="setLang('ko',this)">KO</button><button onclick="setLang('vi',this)">VI</button></div>
 <div class="wrap" style="padding-bottom:0"><div class="htitle"><span class="i18n" data-ko="PricePick 개발 일정 관리" data-vi="PricePick · Quản lý tiến độ phát triển">PricePick 개발 일정 관리</span></div>
@@ -764,6 +801,23 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
  window.ppWorkerCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pending))continue;var prev=savedOf(idx),v=pending[idx];if(v!==prev){out.push({t:t,type:'worker',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete saved[idx];else saved[idx]=v;}}pending={};try{localStorage.setItem(WKEY,JSON.stringify(saved));}catch(e){}for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
  function relabel(l){var map=(l==='vi')?LV:LK;recs.forEach(function(r){for(var k=0;k<r.sel.options.length;k++){r.sel.options[k].textContent=map[r.sel.options[k].value];}});}
  var _pl=window.ppOnLang;window.ppOnLang=function(l){if(_pl)_pl(l);relabel(l);};
+})();
+</script>
+
+<script>
+/* s35: 모바일 가로 스크롤 — 각 표를 .tscroll로 감싼다 (1회, 데스크톱 무영향) */
+(function(){
+  function wrapTables(){
+    var tables=document.querySelectorAll('.panel table');
+    for(var i=0;i<tables.length;i++){
+      var t=tables[i];
+      if(t.parentNode&&t.parentNode.classList&&t.parentNode.classList.contains('tscroll'))continue;
+      var w=document.createElement('div');w.className='tscroll';
+      t.parentNode.insertBefore(w,t);w.appendChild(t);
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wrapTables);
+  else wrapTables();
 })();
 </script>
 </body></html>
