@@ -414,6 +414,9 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
  function tok(ph,sub){return (sub!=null&&sub!=='')?(ph+'-'+sub):(''+ph);}
  var saved=loadJSON(PKEY,{});
  var savedSub=loadJSON(SKEY,{});
+ /* === CMS 순번 기본값(개발 가이드) — 단계별 1-1,1-2… · 저장값(savedSub) 우선, 없을 때만 적용. App·백엔드(idx 33~)는 맵에 없어 영향 없음 === */
+ var defSub={"0":"1","1":"2","2":"3","3":"1","4":"2","5":"3","6":"4","7":"1","8":"2","9":"3","10":"4","11":"1","12":"2","13":"5","14":"6","15":"3","16":"4","17":"5","18":"6","19":"4","20":"7","21":"8","22":"5","23":"6","24":"7","25":"8","26":"9","27":"10","28":"11","29":"12","30":"7","31":"13","32":"5"};
+ function dsub(idx){return (defSub[idx]!=null)?normSub(defSub[idx]):'';}
  var logs=loadJSON(LKEY,[]);
  function trackOf(tr){var p=tr.closest?tr.closest('.panel'):null;
    if(p&&p.id==='p0')return {ko:'CMS·웹',vi:'CMS·Web'};
@@ -426,7 +429,7 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
    var idx=tr.getAttribute('data-idx');
    var orig=parseInt(tr.getAttribute('data-ph'),10);
    var cur=(saved[idx]!=null)?parseInt(saved[idx],10):orig;
-   var curSub=(savedSub[idx]!=null)?normSub(savedSub[idx]):'';
+   var curSub=(savedSub[idx]!=null)?normSub(savedSub[idx]):dsub(idx);
    var nameEl=tr.querySelector('.task .i18n');
    var nameKo=nameEl?nameEl.getAttribute('data-ko'):'';
    var nameVi=nameEl?nameEl.getAttribute('data-vi'):'';
@@ -447,7 +450,7 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
    sub.value=curSub;
    function refreshDirty(){
      var cPh=(saved[idx]!=null)?parseInt(saved[idx],10):orig;
-     var cSub=(savedSub[idx]!=null)?normSub(savedSub[idx]):'';
+     var cSub=(savedSub[idx]!=null)?normSub(savedSub[idx]):dsub(idx);
      var dirty=(parseInt(sel.value,10)!==cPh)||(normSub(sub.value)!==cSub);
      sel.classList.toggle('dirty',dirty);
      sub.classList.toggle('dirty',dirty);
@@ -522,7 +525,7 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
      var nv=parseInt(r.sel.value,10);
      var ov=(saved[r.idx]!=null)?parseInt(saved[r.idx],10):r.orig;
      var nsub=normSub(r.sub.value);
-     var osub=(savedSub[r.idx]!=null)?normSub(savedSub[r.idx]):'';
+     var osub=(savedSub[r.idx]!=null)?normSub(savedSub[r.idx]):dsub(r.idx);
      if(nv!==ov||nsub!==osub){
        changes.push({t:nowIso,idx:r.idx,track:r.track,nameKo:r.nameKo,nameVi:r.nameVi,from:ov,to:nv,fromSub:osub,toSub:nsub});
        saved[r.idx]=nv;
@@ -650,6 +653,12 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
    2:{tKo:'리워드·이벤트 운영',tVi:'Vận hành thưởng·sự kiện',dKo:'티켓·추첨·경품/응모·주간 이벤트 추첨과 출석체크·포인트 정책, 이벤트·친구초대 관리 등 리워드 운영 기능을 만듭니다.',dVi:'Xây chức năng vận hành thưởng: vé·rút thăm·giải thưởng/dự thưởng·rút thăm tuần, điểm danh·chính sách điểm, quản lý sự kiện·mời bạn.'},
    3:{tKo:'내역 조회·상품·연동',tVi:'Tra cứu·sản phẩm·liên kết',dKo:'환수·포인트·구매/사용·취소 내역 조회와 상품 목록·상품설명 일괄등록, 제휴몰 API 연동 관리를 다룹니다.',dVi:'Tra cứu lịch sử thu hồi·điểm·mua/dùng·hủy; quản lý danh sách sản phẩm·đăng ký hàng loạt mô tả và liên kết API đối tác.'},
    4:{tKo:'정산·콘텐츠·운영',tVi:'Quyết toán·nội dung·vận hành',dKo:'수익·매출·정산 분석, 배너·공지·알림 등 콘텐츠 관리와 운영·약관 정책, 1:1 문의·계정 탈퇴·포스트백 로그·앱 버전·스케줄러 등 운영 마무리 기능입니다.',dVi:'Phân tích doanh thu·doanh số·quyết toán; quản lý nội dung (banner·thông báo·push); chính sách vận hành·điều khoản; hỏi đáp 1:1·hủy tài khoản·nhật ký postback·phiên bản app·lịch trình.'}
+  },
+  p1:{
+   1:{tKo:'진입·인증·홈',tVi:'Vào·xác thực·trang chủ',dKo:'닉네임 진입·카카오 연동·홈 등 앱의 기반 진입 화면과 인증 흐름을 구축합니다.',dVi:'Xây dựng các màn hình nền tảng và luồng xác thực của app: nhập nickname, liên kết Kakao, trang chủ.'},
+   2:{tKo:'핵심 리워드',tVi:'Vòng lặp thưởng',dKo:'쿠팡 둘러보기(출석체크)·행운룰렛·친구초대와 티켓 적립 안내·이벤트 응모·내 티켓·등급 변경 등 리워드 핵심 루프 화면을 만듭니다.',dVi:'Tạo các màn hình vòng lặp thưởng cốt lõi: dạo Coupang (điểm danh)·vòng quay·mời bạn, hướng dẫn tích vé·dự thưởng·vé của tôi·đổi hạng vé.'},
+   3:{tKo:'조회·교환',tVi:'Tra cứu·đổi thưởng',dKo:'쿠팡 연동과 기프티콘 목록·상세·교환, 혜택 탭·활동 내역·구매 내역 등 조회·교환 화면을 구현합니다.',dVi:'Triển khai các màn hình tra cứu·đổi thưởng: liên kết Coupang, danh sách·chi tiết·đổi gifticon, tab ưu đãi, lịch sử hoạt động·mua hàng.'},
+   4:{tKo:'지원·설정·마무리',tVi:'Hỗ trợ·cài đặt·hoàn thiện',dKo:'고객센터·활동/시스템 알림·이용약관·설정·회원 탈퇴·로그아웃·앱 버전 등 고객 지원과 설정·계정 마무리 화면을 구현합니다.',dVi:'Triển khai các màn hình hỗ trợ và hoàn thiện: CSKH·thông báo hoạt động/hệ thống·điều khoản·cài đặt·hủy tài khoản·đăng xuất·phiên bản app.'}
   }
  };
  function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
