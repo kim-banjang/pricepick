@@ -1,0 +1,681 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 개발 일정 관리</title><style>
+:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--app:#2f9e9e;--be:#d6722f;--warn:#e8943a;--api:#c0497a}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:24px;font-weight:800}.hsub{font-size:13px;opacity:.85;margin-top:6px}
+.workbar{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:15px;font-size:12px}.chip{background:rgba(255,255,255,.16);padding:5px 12px;border-radius:20px}.chip b{font-weight:700}
+.langtog{position:absolute;top:20px;right:22px;display:flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px}
+.langtog button{border:none;background:none;color:#fff;font-size:12px;font-weight:700;padding:4px 13px;border-radius:16px;cursor:pointer;opacity:.7}.langtog button.on{background:#fff;color:var(--pp-d);opacity:1}
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:13px;margin:22px 0 6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px 17px}.card .lab{font-size:11.5px;color:var(--ink3);font-weight:600}.card .val{font-size:23px;font-weight:800;color:var(--pp-d);margin-top:3px}.card .sub{font-size:11px;color:var(--ink3);margin-top:2px}
+.card.tot{background:linear-gradient(135deg,#f3eeff,#fff);border-color:#dfd6f7}.card.app .val{color:var(--app)}.card.be .val{color:var(--be)}
+/* === 캘린더 === */
+.calsec{display:none}
+.callegend{display:flex;flex-wrap:wrap;gap:7px 16px;font-size:12px;color:var(--ink2);margin-bottom:12px;align-items:center}
+.callegend .lg{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.callegend .dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+.lg-cms .dot{background:var(--pp)}.lg-app .dot{background:var(--app)}.lg-be .dot{background:var(--be)}
+.cals{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:820px){.cals{grid-template-columns:1fr}}
+.cal{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 14px 16px}
+.cal-mon{font-size:13.5px;font-weight:800;color:var(--pp-d);margin-bottom:10px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.dow{font-size:10px;font-weight:700;color:var(--ink3);text-align:center;padding-bottom:3px}
+.dow.sun{color:#d8557a}.dow.sat{color:#4f7bd0}
+.day{min-height:34px;border-radius:7px;padding:3px 0 2px;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+.day.empty{background:transparent}
+.day .dn{font-size:10.5px;color:var(--ink2);font-variant-numeric:tabular-nums;line-height:1}
+.day.sun .dn{color:#d8557a}.day.sat .dn{color:#4f7bd0}
+.day.on{background:#faf8ff}
+.bars{display:flex;flex-direction:column;gap:1.5px;width:78%;margin-top:1px}
+.bars i{height:3.5px;border-radius:2px;display:block}
+.b-cms{background:var(--pp)}.b-app{background:var(--app)}.b-be{background:var(--be)}
+.calnote{font-size:11px;color:var(--ink3);margin-top:11px}
+.phasesec{margin:24px 0 0}
+.phasetop{font-size:13px;font-weight:800;color:var(--pp-d);margin-bottom:10px}
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:720px){.phases{grid-template-columns:repeat(2,1fr)}}
+.ph{display:flex;gap:9px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;border-left:3px solid var(--pp)}
+.ph .phn{font-size:14px;font-weight:800;color:#fff;background:var(--pp);width:23px;height:23px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pht{font-size:13px;font-weight:800;color:var(--ink1)}
+.phd{font-size:10.5px;color:var(--ink3);margin-top:3px;line-height:1.45}
+.phasenote{font-size:11px;color:var(--be);margin-top:11px;font-weight:600}
+.sortbar{margin:18px 0 -4px}.sortbtn{font-size:12px;font-weight:700;color:var(--pp-d);background:#fff;border:1px solid var(--line);border-radius:18px;padding:6px 15px;cursor:pointer}.sortbtn.on{background:var(--pp);color:#fff;border-color:var(--pp)}
+.tabs{display:flex;gap:6px;margin:22px 0 0;border-bottom:2px solid var(--line);flex-wrap:wrap}
+.tab{padding:11px 16px;font-size:13.5px;font-weight:700;color:var(--ink3);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px}.tab.on{color:var(--pp-d);border-bottom-color:var(--pp)}
+.tab .cnt{font-size:11px;color:#fff;background:var(--pp);border-radius:10px;padding:1px 7px;margin-left:5px;font-weight:700}
+.panel{display:none;margin-top:16px}.panel.on{display:block}
+.trackhead{display:flex;flex-wrap:wrap;gap:5px 14px;align-items:baseline;margin:14px 0 4px}.trackhead h2{font-size:15px}.trackhead .who{font-size:12px;color:var(--ink3)}.trackhead .sum{margin-left:auto;font-size:12px;color:var(--pp-d);font-weight:700}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;margin-top:8px}
+th{background:#f4f1fc;color:var(--pp-d);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;text-align:left;padding:9px 13px;border-bottom:1px solid var(--line)}
+td{padding:9px 13px;border-bottom:1px solid #f1eff8;font-size:12.7px;vertical-align:middle}tr:last-child td{border-bottom:none}tr:hover td{background:#faf8ff}
+td.num{color:var(--ink3);font-weight:700;width:40px;font-variant-numeric:tabular-nums}.task{font-weight:600}
+.pp{font-size:9px;font-weight:800;color:#fff;border-radius:4px;padding:1px 5px;margin-right:5px;vertical-align:1px}.pp1{background:#845EEE}.pp2{background:#2f9e9e}.pp3{background:#d6722f}.pp4{background:#8b93a7}
+td.hrs{font-weight:800;color:var(--pp-d);white-space:nowrap;font-variant-numeric:tabular-nums;width:70px}.tbd{color:var(--ink3);font-weight:700}
+td.date .d1{font-variant-numeric:tabular-nums;color:var(--ink2);font-weight:600}.muted{color:var(--ink3)}
+.qacell{width:54px;text-align:center}.qa{font-size:10px;font-weight:800;color:#fff;background:var(--warn);padding:2px 6px;border-radius:5px;font-family:monospace}.api{font-size:10px;font-weight:800;color:#fff;background:var(--api);padding:2px 6px;border-radius:5px;font-family:monospace}
+.flag{background:#fdf6ec;border:1px solid #f3d9b0;border-radius:9px;padding:9px 13px;margin:10px 0;font-size:12px;color:#9a6b1e}.flag b{color:var(--warn)}
+.note{font-size:11px;color:var(--ink3);margin-top:10px}
+.adj{font-variant-numeric:tabular-nums;font-weight:800;color:var(--be);width:62px}.adj.keep{color:var(--ink3)}.adj.cut::before{content:"▼ ";font-size:8px;vertical-align:1px}
+.adj2{font-variant-numeric:tabular-nums;font-weight:800;color:var(--app);width:62px}.adj2.keep{color:var(--ink3)}
+.foot{margin-top:24px;font-size:11px;color:var(--ink3);text-align:right}
+.subhead{font-size:12.5px;font-weight:800;color:var(--be);margin:16px 0 0;padding-top:8px}
+
+/* === s16: 단계 편집·저장 UI === */
+.ppbar{position:sticky;top:0;z-index:30;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 22px;margin:0 -22px 2px}
+.ppsave{background:var(--pp);color:#fff;border:none;font-size:13px;font-weight:800;padding:8px 18px;border-radius:20px;cursor:pointer;box-shadow:0 2px 6px rgba(132,94,238,.3)}
+.ppsave:hover{background:var(--pp-d)}
+.ppbar-hint{font-size:11.5px;color:var(--ink3)}
+.ppbar-right{margin-left:auto;display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;justify-content:flex-end}
+.pptoast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:var(--ink1);color:#fff;font-size:12.5px;font-weight:700;padding:9px 18px;border-radius:22px;opacity:0;transition:opacity .25s;z-index:60;pointer-events:none}
+.pptoast.show{opacity:1}
+select.phsel{font-size:9px;font-weight:800;color:#fff;border:none;border-radius:4px;padding:1px 3px 1px 5px;margin-right:5px;vertical-align:1px;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;font-family:inherit;line-height:1.4}
+select.phsel.pp1{background:#845EEE}select.phsel.pp2{background:#2f9e9e}select.phsel.pp3{background:#d6722f}select.phsel.pp4{background:#8b93a7}
+select.phsel.dirty{outline:2px dashed var(--warn);outline-offset:1px}
+select.phsel option{background:#fff;color:var(--ink1);font-weight:600}
+.pplog{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:2px 16px}
+.pplog>summary{font-size:12.5px;font-weight:800;color:var(--pp-d);cursor:pointer;padding:11px 0;list-style:none}
+.pplog>summary::-webkit-details-marker{display:none}
+.pplog>summary::before{content:"\25B8 ";color:var(--pp)}
+.pplog[open]>summary::before{content:"\25BE "}
+.pplog-cnt{font-size:11px;color:#fff;background:var(--pp);border-radius:10px;padding:1px 7px;margin-left:4px;font-weight:700}
+.pplog-body{padding:2px 0 12px}
+.pplog-empty{font-size:11.5px;color:var(--ink3);padding:6px 0}
+.pplog-item{font-size:11.5px;color:var(--ink2);padding:6px 0;border-top:1px solid #f1eff8;display:flex;flex-wrap:wrap;gap:3px 8px;align-items:baseline}
+.pplog-item:first-child{border-top:none}
+.pplog-time{font-variant-numeric:tabular-nums;color:var(--ink3);font-weight:700}
+.pplog-track{color:var(--pp-d);font-weight:700}
+.pplog-name{font-weight:700;color:var(--ink1)}
+.pplog-chg{font-weight:800}
+.pplog-chg .a{color:var(--ink3)}.pplog-chg .b{color:var(--pp-d)}
+/* === s18: 정렬 토글 + 단계 그룹 합계 === */
+.sortseg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:18px;padding:3px;gap:2px}
+.segbtn{font-size:12px;font-weight:700;color:var(--ink3);background:none;border:none;border-radius:15px;padding:5px 14px;cursor:pointer}
+.segbtn.on{background:var(--pp);color:#fff}
+tr.phgrp td{background:var(--pp-l);padding:7px 13px;border-bottom:1px solid var(--line)}
+tr.phgrp:hover td{background:var(--pp-l)}
+.phgrp-badge{display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;border-radius:5px;width:18px;height:18px;margin-right:7px;vertical-align:middle}
+.phgrp-badge.pp1{background:#845EEE}.phgrp-badge.pp2{background:#2f9e9e}.phgrp-badge.pp3{background:#d6722f}.phgrp-badge.pp4{background:#8b93a7}
+.phgrp-name{font-size:12px;font-weight:800;color:var(--ink1);vertical-align:middle}
+.phgrp-sum{float:right;font-size:12px;font-weight:800;color:var(--pp-d);font-variant-numeric:tabular-nums}
+td.phcell{width:70px;text-align:center;padding-left:6px;padding-right:6px}
+td.phcell .phsel{margin-right:0;vertical-align:baseline}
+
+/* === s20: 순번(서브 순서) UI === */
+.phwrap{display:inline-flex;align-items:center;gap:1px;vertical-align:middle}
+.phwrap .phsel{margin-right:0;vertical-align:baseline}
+.phdash{font-size:10px;font-weight:800;color:var(--ink3);line-height:1}
+input.subin{width:20px;font-size:9px;font-weight:800;color:var(--pp-d);border:1px solid var(--line);border-radius:4px;padding:1px 2px;text-align:center;background:#fff;font-family:inherit;-moz-appearance:textfield;line-height:1.4}
+input.subin::-webkit-outer-spin-button,input.subin::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+input.subin:focus{outline:1px solid var(--pp);border-color:var(--pp)}
+input.subin.dirty{outline:2px dashed var(--warn);outline-offset:1px}
+/* === s22: 진행 상태 드롭다운 === */
+td.statuscell{width:1%;white-space:nowrap;text-align:center;padding-left:8px;padding-right:8px}
+select.stsel{font-size:10px;font-weight:700;color:#fff;border:none;border-radius:6px;padding:2px 17px 2px 8px;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;font-family:inherit;line-height:1.4;vertical-align:middle;background-repeat:no-repeat;background-position:right 5px center;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath d='M1 2.5L4 5.5L7 2.5' stroke='white' stroke-width='1.3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+select.stsel.st-wait{background-color:var(--ink3)}
+select.stsel.st-doing{background-color:var(--pp)}
+select.stsel.st-done{background-color:var(--app)}
+select.stsel.st-hold{background-color:var(--warn)}
+select.stsel.dirty{outline:2px dashed var(--warn);outline-offset:1px}
+select.stsel option{background:#fff;color:var(--ink1);font-weight:600}
+
+/* === s24: 트랙별 단계 정의 편집 + 예상 완료일 + 툴바 === */
+.ppbar.ppbar-center{justify-content:center}
+.ppbar-mid{display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;max-width:780px;margin:0 auto}
+.ppbar-mid .ppbar-hint{max-width:720px}
+.phasetop-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:10px}
+.phasetop-row .phasetop{margin-bottom:0}
+.phtrackseg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:18px;padding:3px;gap:2px;margin-left:auto}
+.phtrk{font-size:12px;font-weight:700;color:var(--ink3);background:none;border:none;border-radius:15px;padding:5px 13px;cursor:pointer;font-family:inherit}
+.phtrk.on{background:var(--pp);color:#fff}
+.ph.phdirty{outline:2px dashed var(--warn);outline-offset:1px}
+.phti{width:100%;font-size:13px;font-weight:800;color:var(--ink1);border:1px solid transparent;border-radius:6px;padding:3px 5px;background:#faf8ff;font-family:inherit}
+.phti:hover{border-color:var(--line)}
+.phti:focus{outline:none;border-color:var(--pp);background:#fff}
+.phde{display:block;width:100%;font-size:10.5px;color:var(--ink3);line-height:1.45;border:1px solid transparent;border-radius:6px;padding:3px 5px;margin-top:3px;background:#faf8ff;font-family:inherit;resize:vertical}
+.phde:hover{border-color:var(--line)}
+.phde:focus{outline:none;border-color:var(--pp);background:#fff;color:var(--ink2)}
+td.duecell{width:1%;white-space:nowrap;text-align:center;padding-left:8px;padding-right:8px}
+input.duein{font-size:11px;font-weight:600;color:var(--ink2);border:1px solid var(--line);border-radius:6px;padding:3px 6px;background:#fff;font-family:inherit;cursor:pointer}
+input.duein:focus{outline:1px solid var(--pp);border-color:var(--pp)}
+input.duein.dirty{outline:2px dashed var(--warn);outline-offset:1px}
+input.duein.empty{color:var(--ink3)}
+td.workercell{width:1%;white-space:nowrap;text-align:center;padding-left:8px;padding-right:8px}
+select.wksel{font-size:11px;font-weight:700;color:var(--ink2);border:1px solid var(--line);border-radius:6px;padding:2px 6px;background:#fff;font-family:inherit;cursor:pointer}
+select.wksel:focus{outline:1px solid var(--pp);border-color:var(--pp)}
+select.wksel.dirty{outline:2px dashed var(--warn);outline-offset:1px}
+select.wksel.wk-unset{color:var(--ink3)}
+</style></head><body>
+<header><div class="langtog"><button class="on" onclick="setLang('ko',this)">KO</button><button onclick="setLang('vi',this)">VI</button></div>
+<div class="wrap" style="padding-bottom:0"><div class="htitle"><span class="i18n" data-ko="PricePick 개발 일정 관리" data-vi="PricePick · Quản lý tiến độ phát triển">PricePick 개발 일정 관리</span></div>
+<div class="hsub"><span class="i18n" data-ko="CMS·웹 / 앱 / 백엔드 — 전 트랙 시간 단위 통일" data-vi="CMS·Web / App / Backend — thống nhất theo giờ">CMS·웹 / 앱 / 백엔드 — 전 트랙 시간 단위 통일</span></div>
+<div class="workbar"><span class="chip"><span class="i18n" data-ko="근무 평일 08:00–11:00·12:30–16:30 (7h/일)" data-vi="Giờ làm T2–T6 (7h/ngày)">근무 평일 08:00–11:00·12:30–16:30 (7h/일)</span></span><span class="chip" style="display:none"><span class="i18n" data-ko="착수 2026-06-16" data-vi="Bắt đầu 2026-06-16">착수 2026-06-16</span></span></div></div></header>
+<div class="ppbar ppbar-center"><div class="ppbar-mid"><button class="ppsave" onclick="ppSave()"><span class="i18n" data-ko="저장" data-vi="Lưu">저장</span></button><span class="ppbar-hint i18n" data-ko="단계·순번·상태·예상 완료일·작업자(App), 그리고 트랙별 단계 정의(이름·내용)까지 — 여러 항목을 수정한 뒤 저장 버튼을 누르면 한 번에 저장됩니다" data-vi="Giai đoạn·thứ tự·trạng thái·ngày dự kiến hoàn thành·người làm (App), và cả tên·nội dung định nghĩa giai đoạn theo track — sửa nhiều mục rồi nhấn nút Lưu để lưu tất cả cùng lúc">단계·순번·상태·예상 완료일·작업자(App), 그리고 트랙별 단계 정의(이름·내용)까지 — 여러 항목을 수정한 뒤 저장 버튼을 누르면 한 번에 저장됩니다</span></div></div>
+<div class="wrap">
+
+<div class="calsec">
+<div class="callegend">
+<span class="lg lg-app"><span class="dot"></span><span class="i18n" data-ko="App (06/16–07/14)" data-vi="App (06/16–07/14)">App (06/16–07/14)</span></span>
+<span class="lg lg-cms"><span class="dot"></span><span class="i18n" data-ko="CMS·웹 (06/16–06/25)" data-vi="CMS·Web (06/16–06/25)">CMS·웹 (06/16–06/25)</span></span>
+<span class="lg lg-be"><span class="dot"></span><span class="i18n" data-ko="백엔드 (06/16–07/15)" data-vi="Backend (06/16–07/15)">백엔드 (06/16–07/15)</span></span>
+</div>
+<div class="cals" id="cals"></div>
+<div class="calnote"><span class="i18n" data-ko="※ CMS·웹은 항목별 일정(06/16–06/25), App·백엔드는 총 기간 바(착수 06/16 → 종료 07/14·07/15). 주말 제외 평일 작업." data-vi="※ CMS·Web theo lịch từng mục (06/16–06/25); App·Backend hiển thị dải tổng thời gian (bắt đầu 06/16 → kết thúc 07/14·07/15). Làm ngày thường, trừ cuối tuần.">※ CMS·웹은 항목별 일정(06/16–06/25), App·백엔드는 총 기간 바(착수 06/16 → 종료 07/14·07/15). 주말 제외 평일 작업.</span></div>
+</div>
+
+<div class="phasesec">
+<div class="phasetop-row">
+<div class="phasetop"><span class="i18n" data-ko="개발 단계 (트랙별 · 편집 가능)" data-vi="Giai đoạn phát triển (theo track · sửa được)">개발 단계 (트랙별 · 편집 가능)</span></div>
+<div class="phtrackseg" id="phTrackSeg">
+<button class="phtrk on" data-trk="p1" onclick="ppSetPhTrack('p1',this)">App</button>
+<button class="phtrk" data-trk="p0" onclick="ppSetPhTrack('p0',this)">CMS·<span class="i18n" data-ko="웹" data-vi="Web">웹</span></button>
+<button class="phtrk" data-trk="p2" onclick="ppSetPhTrack('p2',this)"><span class="i18n" data-ko="백엔드" data-vi="Backend">백엔드</span></button>
+</div>
+</div>
+<div class="phases" id="phaseCards"></div>
+<div class="phasenote i18n" data-ko="※ 트랙(App·CMS·백엔드)마다 단계 1~4의 이름·설명을 따로 편집할 수 있습니다. 수정 후 상단 저장을 누르면 확정되고 변경 로그에 기록됩니다." data-vi="※ Mỗi track (App·CMS·Backend) có thể sửa tên·mô tả của giai đoạn 1~4 riêng. Sửa xong nhấn Lưu ở trên để xác nhận và ghi vào nhật ký.">※ 트랙(App·CMS·백엔드)마다 단계 1~4의 이름·설명을 따로 편집할 수 있습니다. 수정 후 상단 저장을 누르면 확정되고 변경 로그에 기록됩니다.</div>
+</div>
+<div class="dash">
+<div class="card app"><div class="lab">App (Kevin·John)</div><div class="val">287h</div><div class="sub"><span class="i18n" data-ko="25기능 · 2인 · ~07/14" data-vi="25 cn · 2 người · ~07/14">25기능 · 2인 · ~07/14</span></div></div>
+<div class="card"><div class="lab">CMS·<span class="i18n" data-ko="웹" data-vi="Web">웹</span> (VIN)</div><div class="val">55h</div><div class="sub">33<span class="i18n" data-ko="항목 · ~06/25" data-vi=" mục · ~06/25">항목 · ~06/25</span></div></div>
+<div class="card be"><div class="lab"><span class="i18n" data-ko="백엔드" data-vi="Backend">백엔드</span> (Harry)</div><div class="val">152h</div><div class="sub"><span class="i18n" data-ko="App 89+CMS 63 · ~07/15" data-vi="App 89+CMS 63 · ~07/15">App 89+CMS 63 · ~07/15</span></div></div>
+</div>
+<div class="sortbar"><div class="sortseg"><button class="segbtn on" data-mode="num" onclick="setSort('num',this)"><span class="i18n" data-ko="넘버순 정렬" data-vi="Sắp theo số thứ tự">넘버순 정렬</span></button><button class="segbtn" data-mode="phase" onclick="setSort('phase',this)"><span class="i18n" data-ko="단계순 정렬" data-vi="Sắp theo giai đoạn">단계순 정렬</span></button></div></div>
+<div class="tabs">
+<button class="tab on" data-t="p1" onclick="sw('p1')">App <span class="cnt">25</span></button>
+<button class="tab" data-t="p0" onclick="sw('p0')">CMS·<span class="i18n" data-ko="웹" data-vi="Web">웹</span> <span class="cnt">33</span></button>
+<button class="tab" data-t="p2" onclick="sw('p2')"><span class="i18n" data-ko="백엔드" data-vi="Backend">백엔드</span> <span class="cnt">42</span></button>
+</div>
+
+<div class="panel" id="p0">
+<div class="trackhead"><h2>CMS · <span class="i18n" data-ko="웹" data-vi="Web">웹</span></h2><span class="who">VIN · Frontend</span><span class="sum"><span class="i18n" data-ko="55h · 33항목 · 6/16→06/25" data-vi="55h · 33 mục · 6/16→06/25">55h · 33항목 · 6/16→06/25</span></span></div>
+<table><thead><tr><th>No</th><th><span class="i18n" data-ko="단계" data-vi="Giai đoạn">단계</span></th><th><span class="i18n" data-ko="작업 내용" data-vi="Nội dung công việc">작업 내용</span></th><th><span class="i18n" data-ko="예상" data-vi="Dự kiến">예상</span></th><th>QA</th><th><span class="i18n" data-ko="예상 완료일" data-vi="Ngày dự kiến hoàn thành">예상 완료일</span></th><th><span class="i18n" data-ko="상태" data-vi="Trạng thái">상태</span></th></tr></thead><tbody><tr data-ph="1" data-idx="0"><td class="num">01</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="로그인 페이지" data-vi="Màn hình Đăng Nhập">로그인 페이지</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="1" data-idx="1"><td class="num">02</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="기본 UI 설계" data-vi="Thiết kế UI cơ bản">기본 UI 설계</span></td><td class="hrs">4h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="1" data-idx="2"><td class="num">03</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="대시보드" data-vi="Dashboard">대시보드</span></td><td class="hrs">2h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="3"><td class="num">04</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="수익 분석" data-vi="Phân tích doanh thu">수익 분석</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="4"><td class="num">05</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="매출 내역" data-vi="Lịch sử doanh thu">매출 내역</span></td><td class="hrs">2h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="5"><td class="num">06</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="정산 내역" data-vi="Lịch sử quyết toán">정산 내역</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="1" data-idx="6"><td class="num">07</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="회원 목록" data-vi="Danh sách thành viên">회원 목록</span></td><td class="hrs">3h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="7"><td class="num">08</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="티켓 내역" data-vi="Lịch sử Ticket">티켓 내역</span></td><td class="hrs">2h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="8"><td class="num">09</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="추첨 관리" data-vi="Quản lý rút thăm">추첨 관리</span></td><td class="hrs">3h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="9"><td class="num">10</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="경품/응모 관리" data-vi="Quản lý giải thưởng">경품/응모 관리</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="10"><td class="num">11</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="주간 이벤트 추첨" data-vi="Rút thăm sự kiện tuần">주간 이벤트 추첨</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="11"><td class="num">12</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="환수 이력" data-vi="Lịch sử thu hồi">환수 이력</span></td><td class="hrs">1h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="12"><td class="num">13</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="포인트 내역" data-vi="Lịch sử điểm">포인트 내역</span></td><td class="hrs">2h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="13"><td class="num">14</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="출석체크 설정" data-vi="Cài đặt điểm danh">출석체크 설정</span></td><td class="hrs">1h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="14"><td class="num">15</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="포인트 정책" data-vi="Chính sách điểm">포인트 정책</span></td><td class="hrs">1h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="15"><td class="num">16</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="구매/사용 내역" data-vi="Lịch sử mua / dùng">구매/사용 내역</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="16"><td class="num">17</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="취소 내역" data-vi="Lịch sử hủy">취소 내역</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="17"><td class="num">18</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="상품 목록" data-vi="Danh sách sản phẩm">상품 목록</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="18"><td class="num">19</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="상품설명 일괄등록" data-vi="Đăng ký hàng loạt mô tả sản phẩm">상품설명 일괄등록</span></td><td class="hrs">2h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="19"><td class="num">20</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="배너 관리" data-vi="Quản lý Banner">배너 관리</span></td><td class="hrs">2h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="20"><td class="num">21</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="이벤트 관리" data-vi="Quản lý sự kiện">이벤트 관리</span></td><td class="hrs">2h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="21"><td class="num">22</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="친구초대 관리" data-vi="Quản lý mời bạn">친구초대 관리</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="22"><td class="num">23</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="공지사항 관리" data-vi="Quản lý thông báo">공지사항 관리</span></td><td class="hrs">2h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="23"><td class="num">24</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="알림 관리" data-vi="Quản lý Push Notification">알림 관리</span></td><td class="hrs">2h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="24"><td class="num">25</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="운영 정책" data-vi="Chính sách vận hành">운영 정책</span></td><td class="hrs">4h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="25"><td class="num">26</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="약관 관리" data-vi="Quản lý điều khoản">약관 관리</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="26"><td class="num">27</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="1:1 문의" data-vi="Hỏi đáp 1:1">1:1 문의</span></td><td class="hrs">2h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="27"><td class="num">28</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="계정 탈퇴 처리" data-vi="Xử lý hủy tài khoản">계정 탈퇴 처리</span></td><td class="hrs">3h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="28"><td class="num">29</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="포스트백 로그" data-vi="Nhật ký Postback">포스트백 로그</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="29"><td class="num">30</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="앱 버전 관리" data-vi="Quản lý phiên bản app">앱 버전 관리</span></td><td class="hrs">1h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="30"><td class="num">31</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="제휴몰 API 관리" data-vi="Quản lý API đối tác">제휴몰 API 관리</span></td><td class="hrs"><span class="tbd"><span class="i18n" data-ko="미산정" data-vi="Chưa tính">미산정</span></span></td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="31"><td class="num">32</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="스케줄러" data-vi="Lịch trình">스케줄러</span></td><td class="hrs">1h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="1" data-idx="32"><td class="num">33</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="관리자 계정" data-vi="Tài khoản quản trị">관리자 계정</span></td><td class="hrs">2h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+</tbody></table>
+</div>
+
+<div class="panel on" id="p1">
+<div class="trackhead"><h2>App</h2><span class="who"><span class="i18n" data-ko="프론트 · Kevin·John 2인" data-vi="Frontend · Kevin·John">프론트 · Kevin·John 2인</span></span><span class="sum"><span class="i18n" data-ko="287h → 타협안 165h · 25기능 · 2인 병렬 ~07/14" data-vi="287h → Thỏa hiệp 165h · 25 chức năng · 2 người song song ~07/14">287h → 타협안 165h · 25기능 · 2인 병렬 ~07/14</span></span></div>
+<table><thead><tr><th>No</th><th><span class="i18n" data-ko="단계" data-vi="Giai đoạn">단계</span></th><th><span class="i18n" data-ko="작업 내용" data-vi="Nội dung công việc">작업 내용</span></th><th><span class="i18n" data-ko="현재" data-vi="Hiện tại">현재</span></th><th><span class="i18n" data-ko="타협안" data-vi="Thỏa hiệp">타협안</span></th><th><span class="i18n" data-ko="작업자" data-vi="Người làm">작업자</span></th><th><span class="i18n" data-ko="예상 완료일" data-vi="Ngày dự kiến hoàn thành">예상 완료일</span></th><th><span class="i18n" data-ko="상태" data-vi="Trạng thái">상태</span></th></tr></thead><tbody><tr data-ph="1" data-idx="33"><td class="num">01</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="닉네임 입력" data-vi="Nhập nickname">닉네임 입력</span></td><td class="hrs">3.5h</td><td class="adj keep">3.5h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="1" data-idx="34"><td class="num">02</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="홈" data-vi="Trang chủ">홈</span></td><td class="hrs">21h</td><td class="adj cut">16h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="35"><td class="num">03</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="쿠팡 둘러보기(출석체크)" data-vi="Dạo Coupang(điểm danh)">쿠팡 둘러보기(출석체크)</span></td><td class="hrs">7h</td><td class="adj cut">5h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="36"><td class="num">04</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="행운의 룰렛" data-vi="Vòng quay may mắn">행운의 룰렛</span></td><td class="hrs">14h</td><td class="adj cut">10h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="37"><td class="num">05</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="친구 초대(추천)" data-vi="Mời bạn bè">친구 초대(추천)</span></td><td class="hrs">14h</td><td class="adj cut">10h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="38"><td class="num">06</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="쿠팡 연동" data-vi="Liên kết coupang">쿠팡 연동</span></td><td class="hrs">7h</td><td class="adj cut">5h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="39"><td class="num">07</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="기프티콘 목록" data-vi="Danh sách gifticon">기프티콘 목록</span></td><td class="hrs">14h</td><td class="adj cut">7h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="40"><td class="num">08</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="기프티콘 상세" data-vi="Chi tiết gifticon">기프티콘 상세</span></td><td class="hrs">14h</td><td class="adj cut">7h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="41"><td class="num">09</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="기프티콘 교환" data-vi="Đổi gifticon">기프티콘 교환</span></td><td class="hrs">7h</td><td class="adj cut">5h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="1" data-idx="42"><td class="num">10</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="카카오 연동" data-vi="Liên kết kakao">카카오 연동</span></td><td class="hrs">14h</td><td class="adj cut">10h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="43"><td class="num">11</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="혜택 탭" data-vi="Tab ưu đãi">혜택 탭</span></td><td class="hrs">14h</td><td class="adj cut">7h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="44"><td class="num">12</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="티켓 적립 방법 안내" data-vi="Hướng dẫn tích lũy vé">티켓 적립 방법 안내</span></td><td class="hrs">3.5h</td><td class="adj keep">3.5h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="45"><td class="num">13</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="이벤트 티켓으로 응모 참여" data-vi="Tham gia bốc thăm bằng vé sự kiện">이벤트 티켓으로 응모 참여</span></td><td class="hrs">14h</td><td class="adj cut">10h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="46"><td class="num">14</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="내 티켓" data-vi="Vé của tôi">내 티켓</span></td><td class="hrs">14h</td><td class="adj cut">7h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="47"><td class="num">15</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="티켓 등급 변경" data-vi="Đổi hạng vé">티켓 등급 변경</span></td><td class="hrs">21h</td><td class="adj cut">14h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="48"><td class="num">16</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="활동 내역" data-vi="Lịch sử hoạt động">활동 내역</span></td><td class="hrs">14h</td><td class="adj cut">7h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="49"><td class="num">17</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="구매 내역" data-vi="Lịch sử mua">구매 내역</span></td><td class="hrs">14h</td><td class="adj cut">7h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="50"><td class="num">18</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="고객센터" data-vi="CSKH">고객센터</span></td><td class="hrs">14h</td><td class="adj cut">7h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="51"><td class="num">19</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="활동 알림" data-vi="Thông báo hoạt động">활동 알림</span></td><td class="hrs">14h</td><td class="adj cut">5h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="52"><td class="num">20</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="시스템 알림" data-vi="Thông báo hệ thống">시스템 알림</span></td><td class="hrs">7h</td><td class="adj cut">4h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="53"><td class="num">21</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="이용약관 및 정책" data-vi="Điều khoản và chính sách">이용약관 및 정책</span></td><td class="hrs">7h</td><td class="adj cut">2h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="54"><td class="num">22</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="회원 탈퇴" data-vi="Huỷ tài khoản">회원 탈퇴</span></td><td class="hrs">7h</td><td class="adj cut">3h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="55"><td class="num">23</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="설정 기능" data-vi="Các chức năng settings">설정 기능</span></td><td class="hrs">14h</td><td class="adj cut">7h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="56"><td class="num">24</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="앱 버전" data-vi="Phiên bản app">앱 버전</span></td><td class="hrs">7h</td><td class="adj cut">1.5h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="57"><td class="num">25</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="로그아웃" data-vi="Đăng xuất">로그아웃</span></td><td class="hrs">7h</td><td class="adj cut">1.5h</td><td class="workercell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+</tbody></table>
+<div class="note"><span class="i18n" data-ko="※ 2인(Kevin·John) 병렬 기준 wall-clock. 1일=7h 환산 통일본." data-vi="※ 2 người song song. Quy đổi 1 ngày=7h.">※ 2인(Kevin·John) 병렬 기준 wall-clock. 1일=7h 환산 통일본.</span></div>
+</div>
+
+<div class="panel" id="p2">
+<div class="trackhead"><h2><span class="i18n" data-ko="백엔드" data-vi="Backend">백엔드</span></h2><span class="who">Harry</span><span class="sum"><span class="i18n" data-ko="152h (App 89 + CMS 63) · ~07/15" data-vi="152h (App 89 + CMS 63) · ~07/15">152h (App 89 + CMS 63) · ~07/15</span></span></div>
+<div class="flag"><b><span class="i18n" data-ko="확정 반영 (Harry 충돌 해소)" data-vi="Đã xác nhận">확정 반영 (Harry 충돌 해소)</span></b> · <span class="i18n" data-ko="① 친구초대 월 한도 = 50명 확정  ② 출석 5연속 = 500P + 이벤트티켓 1장 확정" data-vi="① Giới hạn mời bạn = 50/tháng (chốt)  ② Điểm danh 5 ngày = 500P + 1 vé sự kiện (chốt)">① 친구초대 월 한도 = 50명 확정  ② 출석 5연속 = 500P + 이벤트티켓 1장 확정</span></div>
+<div class="subhead"><span class="i18n" data-ko="App 백엔드" data-vi="Backend App">App 백엔드</span> · 89h</div>
+<table><thead><tr><th>No</th><th><span class="i18n" data-ko="단계" data-vi="Giai đoạn">단계</span></th><th><span class="i18n" data-ko="작업 내용" data-vi="Nội dung công việc">작업 내용</span></th><th><span class="i18n" data-ko="공수" data-vi="Khối lượng">공수</span></th><th></th><th><span class="i18n" data-ko="예상 완료일" data-vi="Ngày dự kiến hoàn thành">예상 완료일</span></th><th><span class="i18n" data-ko="상태" data-vi="Trạng thái">상태</span></th></tr></thead><tbody><tr data-ph="1" data-idx="58"><td class="num">01</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="프레임워크·코드베이스 구축" data-vi="Xây dựng khung làm việc, code base">프레임워크·코드베이스 구축</span></td><td class="hrs">7h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="1" data-idx="59"><td class="num">02</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="닉네임 가입 + 카카오 인증(데이터 보존)" data-vi="Đăng ký Nickname + xác thực Kakao">닉네임 가입 + 카카오 인증(데이터 보존)</span></td><td class="hrs">7h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="60"><td class="num">03</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="티켓 기능(골드·실버·브론즈·이벤트) — 테이블·랜덤 pending/confirm·환수·만료·전환·전환이력" data-vi="Chức năng Ticket (Gold·Silver·Bronze·Event) — bảng·random pending/confirm·thu hồi·hết hạn·chuyển đổi·lịch sử chuyển đổi">티켓 기능(골드·실버·브론즈·이벤트) — 테이블·랜덤 pending/confirm·환수·만료·전환·전환이력</span></td><td class="hrs">22h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="61"><td class="num">04</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="포인트 기능 — 테이블·적립·전환·사용" data-vi="Chức năng Point">포인트 기능 — 테이블·적립·전환·사용</span></td><td class="hrs">9h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="62"><td class="num">05</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="출석·쿠팡 둘러보기(5일 연속→500P+이벤트티켓 1장)" data-vi="Điểm danh, lướt Coupang">출석·쿠팡 둘러보기(5일 연속→500P+이벤트티켓 1장)</span></td><td class="hrs">4h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="63"><td class="num">06</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="친구초대(양쪽 500P·첫구매 성사·월 50명·설치/주문 확인)" data-vi="Mời bạn bè">친구초대(양쪽 500P·첫구매 성사·월 50명·설치/주문 확인)</span></td><td class="hrs">10h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="64"><td class="num">07</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="행운룰렛(1일 1회·보상 표시/저장)" data-vi="Vòng quay may mắn">행운룰렛(1일 1회·보상 표시/저장)</span></td><td class="hrs">4h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="65"><td class="num">08</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="이벤트 티켓 기능(추첨 응모·만료·당첨자목록·참여상태)" data-vi="Chức năng Event Ticket">이벤트 티켓 기능(추첨 응모·만료·당첨자목록·참여상태)</span></td><td class="hrs">7h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="66"><td class="num">09</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="활동 내역(필터·일자별)" data-vi="Lịch sử hoạt động">활동 내역(필터·일자별)</span></td><td class="hrs">7h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="67"><td class="num">10</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="쿠팡 구매·구매내역" data-vi="Mua hàng Coupang">쿠팡 구매·구매내역</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="api">API</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="68"><td class="num">11</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="기프티콘 구매" data-vi="Mua hàng GiftIcon">기프티콘 구매</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="api">API</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="69"><td class="num">12</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="고객센터 1:1" data-vi="CSKH 1:1">고객센터 1:1</span></td><td class="hrs">4h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="70"><td class="num">13</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="알림" data-vi="Thông báo">알림</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="71"><td class="num">14</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="약관·개인정보" data-vi="Điều khoản·chính sách">약관·개인정보</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="72"><td class="num">15</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="로그아웃" data-vi="Đăng xuất">로그아웃</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="73"><td class="num">16</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="계정 삭제(30일 유예)" data-vi="Xóa tài khoản">계정 삭제(30일 유예)</span></td><td class="hrs">4h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="74"><td class="num">17</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="앱 버전" data-vi="Phiên bản app">앱 버전</span></td><td class="hrs">1h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+</tbody></table>
+<div class="subhead"><span class="i18n" data-ko="CMS 백엔드" data-vi="Backend CMS">CMS 백엔드</span> · 63h</div>
+<table><thead><tr><th>No</th><th><span class="i18n" data-ko="단계" data-vi="Giai đoạn">단계</span></th><th><span class="i18n" data-ko="작업 내용" data-vi="Nội dung công việc">작업 내용</span></th><th><span class="i18n" data-ko="공수" data-vi="Khối lượng">공수</span></th><th></th><th><span class="i18n" data-ko="예상 완료일" data-vi="Ngày dự kiến hoàn thành">예상 완료일</span></th><th><span class="i18n" data-ko="상태" data-vi="Trạng thái">상태</span></th></tr></thead><tbody><tr data-ph="4" data-idx="75"><td class="num">01</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="수익·매출·정산" data-vi="Doanh thu·quyết toán">수익·매출·정산</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="api">API</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="1" data-idx="76"><td class="num">02</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="회원 목록(필터·검색)" data-vi="Danh sách thành viên">회원 목록(필터·검색)</span></td><td class="hrs">3h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="77"><td class="num">03</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="티켓 이력(수동 발급·회수)" data-vi="Lịch sử vé">티켓 이력(수동 발급·회수)</span></td><td class="hrs">4h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="78"><td class="num">04</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="추첨 관리(신규 회차 등록)" data-vi="Quản lý rút thăm">추첨 관리(신규 회차 등록)</span></td><td class="hrs">7h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="79"><td class="num">05</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="경품 관리" data-vi="Quản lý giải thưởng">경품 관리</span></td><td class="hrs">7h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="80"><td class="num">06</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="주간 이벤트 추첨" data-vi="Rút thăm sự kiện tuần">주간 이벤트 추첨</span></td><td class="hrs">5h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="81"><td class="num">07</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="환수 이력" data-vi="Lịch sử thu hồi">환수 이력</span></td><td class="hrs">4h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="82"><td class="num">08</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="포인트 이력" data-vi="Lịch sử điểm">포인트 이력</span></td><td class="hrs">3h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="83"><td class="num">09</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="포인트 수동 발급·회수" data-vi="Cấp·thu hồi điểm">포인트 수동 발급·회수</span></td><td class="hrs">3h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="84"><td class="num">10</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="기프티콘(구매·취소·상품·일괄등록)" data-vi="GiftIcon">기프티콘(구매·취소·상품·일괄등록)</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="api">API</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="85"><td class="num">11</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="배너 관리" data-vi="Quản lý Banner">배너 관리</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="86"><td class="num">12</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="이벤트 관리" data-vi="Quản lý sự kiện">이벤트 관리</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="2" data-idx="87"><td class="num">13</td><td class="phcell"></td><td class="task"><span class="pp pp2" title="핵심 리워드">2</span> <span class="i18n" data-ko="친구초대 관리" data-vi="Quản lý mời bạn">친구초대 관리</span></td><td class="hrs">5h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="88"><td class="num">14</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="알림 관리" data-vi="Quản lý thông báo">알림 관리</span></td><td class="hrs">4h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="89"><td class="num">15</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="푸시 알림 관리" data-vi="Push Notification">푸시 알림 관리</span></td><td class="hrs">7h</td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="90"><td class="num">16</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="운영 정책" data-vi="Chính sách vận hành">운영 정책</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="91"><td class="num">17</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="약관 관리" data-vi="Quản lý điều khoản">약관 관리</span></td><td class="hrs">2h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="92"><td class="num">18</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="1:1 문의" data-vi="Hỏi đáp 1:1">1:1 문의</span></td><td class="hrs">2h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="93"><td class="num">19</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="계정 탈퇴 처리" data-vi="Xử lý hủy tài khoản">계정 탈퇴 처리</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="94"><td class="num">20</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="포스트백 로그" data-vi="Nhật ký Postback">포스트백 로그</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="95"><td class="num">21</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="앱 버전 관리" data-vi="Quản lý phiên bản App">앱 버전 관리</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="3" data-idx="96"><td class="num">22</td><td class="phcell"></td><td class="task"><span class="pp pp3" title="조회·교환">3</span> <span class="i18n" data-ko="제휴몰 API 관리" data-vi="Quản lý API đối tác">제휴몰 API 관리</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="4" data-idx="97"><td class="num">23</td><td class="phcell"></td><td class="task"><span class="pp pp4" title="운영·마무리">4</span> <span class="i18n" data-ko="스케줄러" data-vi="Lịch trình">스케줄러</span></td><td class="hrs"><span class="tbd">0h</span></td><td class="qacell"><span class="qa">QA</span></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="1" data-idx="98"><td class="num">24</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="관리자 계정(권한)" data-vi="Tài khoản quản trị">관리자 계정(권한)</span></td><td class="hrs">3h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+<tr data-ph="1" data-idx="99"><td class="num">25</td><td class="phcell"></td><td class="task"><span class="pp pp1" title="기반">1</span> <span class="i18n" data-ko="로그인 체크(Auth·Token)" data-vi="Check login">로그인 체크(Auth·Token)</span></td><td class="hrs">4h</td><td class="qacell"></td><td class="duecell"></td><td class="statuscell"></td></tr>
+</tbody></table>
+<div class="note"><span class="i18n" data-ko="※ 0h = 외부 API 대기(쿠팡·기프티콘) 또는 QA 후 산정. API = 외부 연동 대기, QA = QA 후 변경 예정." data-vi="※ 0h = chờ API ngoài (Coupang·GiftIcon) hoặc tính sau QA. API = chờ tích hợp bên ngoài, QA = sẽ thay đổi sau QA.">※ 0h = 외부 API 대기(쿠팡·기프티콘) 또는 QA 후 산정. API = 외부 연동 대기, QA = QA 후 변경 예정.</span></div>
+</div>
+<details class="pplog" id="pplog"><summary><span class="i18n" data-ko="변경 로그" data-vi="Nhật ký thay đổi">변경 로그</span><span class="pplog-cnt" id="pplogCnt">0</span></summary><div class="pplog-body" id="pplogBody"></div></details>
+<div class="foot"><span class="i18n" data-ko="PricePick · 개발 일정 관리 · 갱신 2026-06-16 · 출처: VIN(CMS/웹)·Kevin·John(App)·Harry(Backend)" data-vi="PricePick · Quản lý tiến độ phát triển · Cập nhật 2026-06-16 · Nguồn: VIN(CMS/Web)·Kevin·John(App)·Harry(Backend)">PricePick · 개발 일정 관리 · 갱신 2026-06-16 · 출처: VIN(CMS/웹)·Kevin·John(App)·Harry(Backend)</span></div>
+</div>
+<script>
+var _sortMode='num';
+var _phNm={ko:{1:'기반',2:'핵심 리워드',3:'조회·교환',4:'운영·마무리'},vi:{1:'Nền tảng',2:'Vòng lặp thưởng',3:'Tra cứu·đổi thưởng',4:'Vận hành·hoàn thiện'}};
+var _totLab={ko:'합계',vi:'Tổng'};
+function _hrsOf(tr){var h=tr.querySelector('td.hrs');if(!h)return 0;var m=(h.textContent||'').match(/[0-9.]+/);return m?parseFloat(m[0]):0;}
+function applySort(){
+ document.querySelectorAll('tr.phgrp').forEach(function(r){r.parentNode.removeChild(r);});
+ var lang=(document.documentElement.lang==='vi')?'vi':'ko';
+ document.querySelectorAll('tbody').forEach(function(tb){
+  var rows=[].slice.call(tb.querySelectorAll('tr[data-idx]'));
+  if(_sortMode==='phase'){
+   rows.sort(function(a,b){
+    var d=(+a.dataset.ph)-(+b.dataset.ph);if(d)return d;
+    var sa=parseInt(a.dataset.sub,10),sb=parseInt(b.dataset.sub,10);
+    if(isNaN(sa))sa=Infinity;if(isNaN(sb))sb=Infinity;
+    if(sa!==sb)return sa-sb;
+    return (+a.dataset.idx)-(+b.dataset.idx);
+   });
+   rows.forEach(function(r){tb.appendChild(r);});
+   var table=tb.closest('table');var cols=table?table.querySelectorAll('thead th').length:4;
+   var _panel=tb.closest('.panel');var _pid=_panel?_panel.id:'';
+   var groups={},order=[];
+   rows.forEach(function(r){var p=+r.dataset.ph;if(!groups[p]){groups[p]=[];order.push(p);}groups[p].push(r);});
+   order.sort(function(a,b){return a-b;});
+   order.forEach(function(p){
+    var sum=0;groups[p].forEach(function(r){sum+=_hrsOf(r);});
+    var sumStr=(Math.round(sum*10)/10)+'h';
+    var hdr=document.createElement('tr');hdr.className='phgrp';
+    hdr.innerHTML='<td colspan="'+cols+'"><span class="phgrp-badge pp'+p+'">'+p+'</span><span class="phgrp-name">'+(window.ppPhaseName?window.ppPhaseName(_pid,lang,p):_phNm[lang][p])+'</span><span class="phgrp-sum">'+_totLab[lang]+' '+sumStr+'</span></td>';
+    tb.insertBefore(hdr,groups[p][0]);
+   });
+  } else {
+   rows.sort(function(a,b){return (+a.dataset.idx)-(+b.dataset.idx);});
+   rows.forEach(function(r){tb.appendChild(r);});
+  }
+ });
+}
+function setSort(mode,btn){_sortMode=mode;document.querySelectorAll('.segbtn').forEach(function(b){b.classList.toggle('on',b.dataset.mode===mode);});applySort();}
+window.ppApplySort=applySort;
+function sw(id){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.t===id));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id===id));}
+function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('.i18n').forEach(el=>{var v=el.getAttribute('data-'+l);if(v!==null)el.innerHTML=v;});document.documentElement.lang=l;if(window.ppOnLang)window.ppOnLang(l);if(window.ppApplySort)window.ppApplySort();}
+/* === 캘린더 렌더 === */
+(function(){
+ var tracks=[
+  {cls:'b-cms',s:'2026-06-16',e:'2026-06-25'},
+  {cls:'b-app',s:'2026-06-16',e:'2026-07-14'},
+  {cls:'b-be', s:'2026-06-16',e:'2026-07-15'}
+ ];
+ function d(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+ var months=[[2026,5],[2026,6]]; // 6,7월
+ var monLabel=['','','','','','6월','7월','8월'];
+ var dows=['일','월','화','수','목','금','토'];
+ var host=document.getElementById('cals');
+ months.forEach(function(m){
+  var y=m[0],mo=m[1];
+  var first=new Date(y,mo,1),last=new Date(y,mo+1,0);
+  var koM=monLabel[mo+1];var html='<div class="cal"><div class="cal-mon"><span class="i18n" data-ko="'+koM+'" data-vi="Tháng '+(mo+1)+'">'+koM+'</span></div><div class="cal-grid">';
+  dows.forEach(function(dw,i){html+='<div class="dow'+(i===0?' sun':i===6?' sat':'')+'">'+dw+'</div>';});
+  for(var i=0;i<first.getDay();i++){html+='<div class="day empty"></div>';}
+  for(var dt=1;dt<=last.getDate();dt++){
+   var cur=new Date(y,mo,dt),wd=cur.getDay();
+   var bars='';
+   if(wd!==0&&wd!==6){tracks.forEach(function(t){if(cur>=d(t.s)&&cur<=d(t.e)){bars+='<i class="'+t.cls+'"></i>';}});}
+   var on=bars?' on':'';
+   var cls='day'+(wd===0?' sun':wd===6?' sat':'')+on;
+   html+='<div class="'+cls+'"><span class="dn">'+dt+'</span>'+(bars?'<span class="bars">'+bars+'</span>':'')+'</div>';
+  }
+  html+='</div></div>';
+  host.insertAdjacentHTML('beforeend',html);
+ });
+})();
+</script>
+
+<script>
+(function(){
+ var PKEY='pp_phase_v16', LKEY='pp_phaselog_v16', SKEY='pp_suborder_v16';
+ var phKo={1:'기반',2:'핵심 리워드',3:'조회·교환',4:'운영·마무리'};
+ var phVi={1:'Nền tảng',2:'Vòng lặp thưởng',3:'Tra cứu·đổi thưởng',4:'Vận hành·hoàn thiện'};
+ var stKo={wait:'작업대기',doing:'작업중',done:'완료',hold:'보류'};
+ var stVi={wait:'Chờ xử lý',doing:'Đang làm',done:'Hoàn thành',hold:'Tạm hoãn'};
+ function curLang(){return document.documentElement.lang==='vi'?'vi':'ko';}
+ function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
+ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+ function pad(n){return n<10?'0'+n:''+n;}
+ function fmt(iso){var d=new Date(iso);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+' '+pad(d.getHours())+':'+pad(d.getMinutes());}
+ function normSub(v){return (''+(v==null?'':v)).replace(/[^0-9]/g,'');}
+ function tok(ph,sub){return (sub!=null&&sub!=='')?(ph+'-'+sub):(''+ph);}
+ var saved=loadJSON(PKEY,{});
+ var savedSub=loadJSON(SKEY,{});
+ var logs=loadJSON(LKEY,[]);
+ function trackOf(tr){var p=tr.closest?tr.closest('.panel'):null;
+   if(p&&p.id==='p0')return {ko:'CMS·웹',vi:'CMS·Web'};
+   if(p&&p.id==='p1')return {ko:'App',vi:'App'};
+   return {ko:'백엔드',vi:'Backend'};}
+ var rows=[];
+ var trs=document.querySelectorAll('tr[data-idx]');
+ for(var i=0;i<trs.length;i++){(function(tr){
+   var badge=tr.querySelector('.pp');if(!badge)return;
+   var idx=tr.getAttribute('data-idx');
+   var orig=parseInt(tr.getAttribute('data-ph'),10);
+   var cur=(saved[idx]!=null)?parseInt(saved[idx],10):orig;
+   var curSub=(savedSub[idx]!=null)?normSub(savedSub[idx]):'';
+   var nameEl=tr.querySelector('.task .i18n');
+   var nameKo=nameEl?nameEl.getAttribute('data-ko'):'';
+   var nameVi=nameEl?nameEl.getAttribute('data-vi'):'';
+   var wrap=document.createElement('span');
+   wrap.className='phwrap';
+   var sel=document.createElement('select');
+   sel.className='phsel pp'+cur;
+   sel.setAttribute('data-idx',idx);
+   sel.title='단계 편집 / Chỉnh giai đoạn';
+   for(var v=1;v<=4;v++){var o=document.createElement('option');o.value=v;o.textContent=v;sel.appendChild(o);}
+   sel.value=cur;
+   var dash=document.createElement('span');dash.className='phdash';dash.textContent='-';
+   var sub=document.createElement('input');
+   sub.type='text';sub.inputMode='numeric';sub.className='subin';
+   sub.setAttribute('data-idx',idx);
+   sub.setAttribute('aria-label','순번 / Thứ tự');
+   sub.title='순번 / Thứ tự';
+   sub.value=curSub;
+   function refreshDirty(){
+     var cPh=(saved[idx]!=null)?parseInt(saved[idx],10):orig;
+     var cSub=(savedSub[idx]!=null)?normSub(savedSub[idx]):'';
+     var dirty=(parseInt(sel.value,10)!==cPh)||(normSub(sub.value)!==cSub);
+     sel.classList.toggle('dirty',dirty);
+     sub.classList.toggle('dirty',dirty);
+   }
+   sel.addEventListener('change',function(){sel.className='phsel pp'+sel.value;refreshDirty();});
+   sub.addEventListener('input',function(){var c=normSub(sub.value);if(sub.value!==c)sub.value=c;tr.setAttribute('data-sub',c);refreshDirty();});
+   wrap.appendChild(sel);wrap.appendChild(dash);wrap.appendChild(sub);
+   var phcell=tr.querySelector('td.phcell');
+   if(phcell){phcell.appendChild(wrap);badge.parentNode.removeChild(badge);}
+   else{badge.parentNode.replaceChild(wrap,badge);}
+   tr.setAttribute('data-ph',cur);
+   tr.setAttribute('data-sub',curSub);
+   rows.push({tr:tr,sel:sel,sub:sub,idx:idx,orig:orig,nameKo:nameKo,nameVi:nameVi,track:trackOf(tr)});
+ })(trs[i]);}
+
+ function renderLog(){
+   var body=document.getElementById('pplogBody');
+   var cntEl=document.getElementById('pplogCnt');
+   if(!body)return;
+   var lang=curLang();
+   if(cntEl)cntEl.textContent=logs.length;
+   if(!logs.length){body.innerHTML='<div class="pplog-empty">'+(lang==='vi'?'Chưa có thay đổi nào được lưu.':'저장된 변경 이력이 없습니다.')+'</div>';return;}
+   var out=[];
+   for(var i=logs.length-1;i>=0;i--){
+     var e=logs[i];
+     var name=lang==='vi'?e.nameVi:e.nameKo;
+     var track=lang==='vi'?(e.track&&e.track.vi):(e.track&&e.track.ko);
+     if(e.type==='due'){
+       var _df=e.from?e.from:(lang==='vi'?'(trống)':'(없음)');
+       var _dt=e.to?e.to:(lang==='vi'?'(trống)':'(없음)');
+       out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(track||'')+']</span><span class="pplog-name">'+esc(name||'')+'</span><span class="pplog-chg"><span class="a">'+esc(_df)+'</span> \u2192 <span class="b">'+esc(_dt)+'</span> <span class="a">'+(lang==='vi'?'(ngày hoàn thành)':'(예상 완료일)')+'</span></span></div>');continue;
+     }
+     if(e.type==='phasedef'){
+       var _trk=lang==='vi'?e.trackVi:e.trackKo;
+       var _kl=e.kind==='title'?(lang==='vi'?('tên GĐ '+e.phase):('단계'+e.phase+' 이름')):(lang==='vi'?('mô tả GĐ '+e.phase):('단계'+e.phase+' 설명'));
+       out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(_trk||'')+']</span><span class="pplog-name">'+esc(_kl)+'</span><span class="pplog-chg"><span class="a">'+esc(e.from)+'</span> \u2192 <span class="b">'+esc(e.to)+'</span></span></div>');continue;
+     }
+     if(e.type==='worker'){
+       var _wk={'':lang==='vi'?'Chưa chỉ định':'미지정',kevin:'Kevin',john:'John',both:lang==='vi'?'Chung':'공동'};
+       out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(track||'')+']</span><span class="pplog-name">'+esc(name||'')+'</span><span class="pplog-chg"><span class="a">'+esc(_wk[e.from]||e.from)+'</span> \u2192 <span class="b">'+esc(_wk[e.to]||e.to)+'</span> <span class="a">'+(lang==='vi'?'(người làm)':'(작업자)')+'</span></span></div>');continue;
+     }
+     if(e.type==='status'){var sf=(lang==='vi'?stVi:stKo)[e.stFrom]||e.stFrom,st2=(lang==='vi'?stVi:stKo)[e.stTo]||e.stTo;out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(track||'')+']</span><span class="pplog-name">'+esc(name||'')+'</span><span class="pplog-chg"><span class="a">'+esc(sf)+'</span> → <span class="b">'+esc(st2)+'</span></span></div>');continue;}
+     var fl=(lang==='vi'?phVi:phKo)[e.from], tl=(lang==='vi'?phVi:phKo)[e.to];
+     var fromTok=tok(e.from,e.fromSub), toTok=tok(e.to,e.toSub);
+     out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span>'+
+       '<span class="pplog-track">['+esc(track||'')+']</span>'+
+       '<span class="pplog-name">'+esc(name||'')+'</span>'+
+       '<span class="pplog-chg"><span class="a">'+esc(fromTok)+' '+esc(fl)+'</span> → <span class="b">'+esc(toTok)+' '+esc(tl)+'</span></span></div>');
+   }
+   body.innerHTML=out.join('');
+ }
+
+ function flash(ko,vi){var t=document.getElementById('pptoast');if(!t)return;t.textContent=curLang()==='vi'?vi:ko;t.classList.add('show');clearTimeout(t._tm);t._tm=setTimeout(function(){t.classList.remove('show');},1900);}
+
+ function doSave(){
+   var nowIso=new Date().toISOString();
+   var changes=[];
+   for(var i=0;i<rows.length;i++){
+     var r=rows[i];
+     var nv=parseInt(r.sel.value,10);
+     var ov=(saved[r.idx]!=null)?parseInt(saved[r.idx],10):r.orig;
+     var nsub=normSub(r.sub.value);
+     var osub=(savedSub[r.idx]!=null)?normSub(savedSub[r.idx]):'';
+     if(nv!==ov||nsub!==osub){
+       changes.push({t:nowIso,idx:r.idx,track:r.track,nameKo:r.nameKo,nameVi:r.nameVi,from:ov,to:nv,fromSub:osub,toSub:nsub});
+       saved[r.idx]=nv;
+       if(nsub==='')delete savedSub[r.idx];else savedSub[r.idx]=nsub;
+       r.tr.setAttribute('data-ph',nv);
+       r.tr.setAttribute('data-sub',nsub);
+       r.sel.classList.remove('dirty');
+       r.sub.classList.remove('dirty');
+     }
+   }
+   /* 상태(별도 클로저) 미저장 변경을 함께 확정 — 통합 저장 */
+   var stChanges=(window.ppStatusCommit)?window.ppStatusCommit(nowIso):[];
+   var pdChanges=(window.ppPhaseDefCommit)?window.ppPhaseDefCommit(nowIso):[];
+   var dueChanges=(window.ppDueCommit)?window.ppDueCommit(nowIso):[];
+   var wkChanges=(window.ppWorkerCommit)?window.ppWorkerCommit(nowIso):[];
+   var total=changes.length+stChanges.length+pdChanges.length+dueChanges.length+wkChanges.length;
+   if(!total){flash('변경된 내용이 없습니다','Không có thay đổi');return;}
+   for(var j=0;j<changes.length;j++){logs.push(changes[j]);}
+   for(var k=0;k<stChanges.length;k++){logs.push(stChanges[k]);}
+   for(var m2=0;m2<pdChanges.length;m2++){logs.push(pdChanges[m2]);}
+   for(var n2=0;n2<dueChanges.length;n2++){logs.push(dueChanges[n2]);}
+   for(var w2=0;w2<wkChanges.length;w2++){logs.push(wkChanges[w2]);}
+   try{localStorage.setItem(PKEY,JSON.stringify(saved));localStorage.setItem(SKEY,JSON.stringify(savedSub));localStorage.setItem(LKEY,JSON.stringify(logs));}catch(e){}
+   renderLog();
+   if(window.ppApplySort)window.ppApplySort();
+   flash('저장됨 ('+total+'건)','Đã lưu ('+total+')');
+ }
+
+ window.ppSave=doSave;
+ window.ppAddLog=function(entry){logs.push(entry);try{localStorage.setItem(LKEY,JSON.stringify(logs));}catch(e){}renderLog();};
+ window.ppOnLang=function(l){renderLog();};
+ renderLog();
+})();
+</script>
+<div class="pptoast" id="pptoast"></div>
+<script>
+(function(){
+ var STKEY='pp_status_v16';
+ var stOrder=['wait','doing','done','hold'];
+ var stKo={wait:'작업대기',doing:'작업중',done:'완료',hold:'보류'};
+ var stVi={wait:'Chờ xử lý',doing:'Đang làm',done:'Hoàn thành',hold:'Tạm hoãn'};
+ function curLang(){return document.documentElement.lang==='vi'?'vi':'ko';}
+ function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
+ function trackOf(tr){var p=tr.closest?tr.closest('.panel'):null;
+   if(p&&p.id==='p0')return {ko:'CMS·웹',vi:'CMS·Web'};
+   if(p&&p.id==='p1')return {ko:'App',vi:'App'};
+   return {ko:'백엔드',vi:'Backend'};}
+ var savedSt=loadJSON(STKEY,{});  /* 확정 저장값 */
+ var pendingSt={};                /* 미저장(드롭다운) 값 */
+ var segs=[];
+ function savedOf(idx){return savedSt[idx]||'wait';}
+ function effOf(idx){return (idx in pendingSt)?pendingSt[idx]:savedOf(idx);}
+ function paint(rec){
+   var code=effOf(rec.idx);
+   var dirty=(code!==savedOf(rec.idx));
+   rec.sel.className='stsel st-'+code+(dirty?' dirty':'');
+   if(rec.sel.value!==code)rec.sel.value=code;
+ }
+ var trs=document.querySelectorAll('tr[data-idx]');
+ for(var i=0;i<trs.length;i++){(function(tr){
+   var cell=tr.querySelector('td.statuscell');if(!cell)return;
+   var idx=tr.getAttribute('data-idx');
+   var nameEl=tr.querySelector('.task .i18n');
+   var nameKo=nameEl?nameEl.getAttribute('data-ko'):'';
+   var nameVi=nameEl?nameEl.getAttribute('data-vi'):'';
+   var sel=document.createElement('select');
+   sel.setAttribute('data-idx',idx);
+   sel.title='진행 상태 / Trạng thái';
+   stOrder.forEach(function(code){
+     var o=document.createElement('option');
+     o.value=code;o.textContent=(curLang()==='vi'?stVi:stKo)[code];
+     sel.appendChild(o);
+   });
+   cell.appendChild(sel);
+   var rec={idx:idx,tr:tr,sel:sel,nameKo:nameKo,nameVi:nameVi,track:trackOf(tr)};
+   sel.addEventListener('change',function(){
+     var code=sel.value;
+     if(code===savedOf(idx))delete pendingSt[idx];else pendingSt[idx]=code;
+     paint(rec);
+   });
+   segs.push(rec);
+   paint(rec);
+ })(trs[i]);}
+ /* 통합 저장 버튼이 호출 — 미저장 상태를 확정하고 로그 엔트리 배열 반환 */
+ window.ppStatusCommit=function(tIso){
+   var out=[];var t=tIso||new Date().toISOString();
+   for(var i=0;i<segs.length;i++){
+     var rec=segs[i],idx=rec.idx;
+     if(!(idx in pendingSt))continue;
+     var prev=savedOf(idx),code=pendingSt[idx];
+     if(code!==prev){
+       out.push({t:t,type:'status',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,stFrom:prev,stTo:code});
+       if(code==='wait')delete savedSt[idx];else savedSt[idx]=code;
+     }
+   }
+   pendingSt={};
+   try{localStorage.setItem(STKEY,JSON.stringify(savedSt));}catch(e){}
+   for(var j=0;j<segs.length;j++){paint(segs[j]);}
+   return out;
+ };
+ function relabel(l){var map=(l==='vi')?stVi:stKo;segs.forEach(function(r){var opts=r.sel.options;for(var k=0;k<opts.length;k++){opts[k].textContent=map[opts[k].value];}});}
+ var _prev=window.ppOnLang;
+ window.ppOnLang=function(l){if(_prev)_prev(l);relabel(l);};
+})();
+</script>
+<script>
+/* === s24: 트랙별 단계 정의 편집 === */
+(function(){
+ var DKEY='pp_phasedef_v24';
+ var TRACKS={p0:{ko:'CMS·웹',vi:'CMS·Web'},p1:{ko:'App',vi:'App'},p2:{ko:'백엔드',vi:'Backend'}};
+ var PHCOL={1:'#845EEE',2:'#2f9e9e',3:'#d6722f',4:'#8b93a7'};
+ var DEFAULTS={
+  1:{tKo:'기반',tVi:'Nền tảng',dKo:'프레임워크·인증(닉네임/카카오)·홈·코어 테이블(티켓·포인트)',dVi:'Framework·xác thực (nickname/Kakao)·trang chủ·bảng cốt lõi (vé·điểm)'},
+  2:{tKo:'핵심 리워드',tVi:'Vòng lặp thưởng',dKo:'출석·룰렛·친구초대·티켓 적립/등급변경·이벤트티켓 응모',dVi:'Điểm danh·vòng quay·mời bạn·tích/đổi vé·dự thưởng'},
+  3:{tKo:'조회·교환',tVi:'Tra cứu·đổi thưởng',dKo:'내티켓·활동/구매내역·기프티콘 목록/상세/교환·혜택탭',dVi:'Vé của tôi·lịch sử·gifticon·tab ưu đãi'},
+  4:{tKo:'운영·마무리',tVi:'Vận hành·hoàn thiện',dKo:'고객센터·알림·약관·설정·탈퇴·CMS 운영·통합 QA',dVi:'CSKH·thông báo·điều khoản·cài đặt·hủy tài khoản·vận hành CMS·QA tổng hợp'}
+ };
+ function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
+ function curLang(){return document.documentElement.lang==='vi'?'vi':'ko';}
+ var defs={},savedDefs=loadJSON(DKEY,{});
+ ['p0','p1','p2'].forEach(function(trk){defs[trk]={};for(var p=1;p<=4;p++){var b=DEFAULTS[p];var sv=(savedDefs[trk]&&savedDefs[trk][p])||{};defs[trk][p]={tKo:('tKo'in sv)?sv.tKo:b.tKo,tVi:('tVi'in sv)?sv.tVi:b.tVi,dKo:('dKo'in sv)?sv.dKo:b.dKo,dVi:('dVi'in sv)?sv.dVi:b.dVi};}});
+ var pending={p0:{},p1:{},p2:{}},activeTrack='p1';
+ window.ppPhaseName=function(pid,lang,num){var trk=(pid==='p0'||pid==='p1'||pid==='p2')?pid:'p2';var d=defs[trk]&&defs[trk][num];if(!d)return num;return (lang==='vi'?d.tVi:d.tKo)||num;};
+ function effVal(trk,p,f){var pn=pending[trk][p];if(pn&&(f in pn))return pn[f];return defs[trk][p][f];}
+ function isDirty(trk,p){var pn=pending[trk][p];if(!pn)return false;return ['tKo','tVi','dKo','dVi'].some(function(f){return (f in pn)&&pn[f]!==defs[trk][p][f];});}
+ function anyDirty(){return ['p0','p1','p2'].some(function(t){for(var p=1;p<=4;p++)if(isDirty(t,p))return true;return false;});}
+ function setPend(trk,p,f,val){if(val===defs[trk][p][f]){if(pending[trk][p])delete pending[trk][p][f];}else{if(!pending[trk][p])pending[trk][p]={};pending[trk][p][f]=val;}}
+ function refreshDropdownTitles(){var lang=curLang();document.querySelectorAll('select.phsel').forEach(function(sel){var panel=sel.closest('.panel');var pid=panel?panel.id:'';for(var o=0;o<sel.options.length;o++){var num=+sel.options[o].value;sel.options[o].title=num+' '+window.ppPhaseName(pid,lang,num);}var cur=+sel.value;sel.title=window.ppPhaseName(pid,'ko',cur)+' / '+window.ppPhaseName(pid,'vi',cur);});}
+ function render(){var host=document.getElementById('phaseCards');if(!host)return;var lang=curLang();var tf=lang==='vi'?'tVi':'tKo',df=lang==='vi'?'dVi':'dKo';host.innerHTML='';for(var p=1;p<=4;p++){(function(p){
+   var card=document.createElement('div');card.className='ph'+(isDirty(activeTrack,p)?' phdirty':'');card.style.borderLeftColor=PHCOL[p];
+   var phn=document.createElement('span');phn.className='phn';phn.textContent=p;phn.style.background=PHCOL[p];
+   var box=document.createElement('div');box.style.flex='1';box.style.minWidth='0';
+   var ti=document.createElement('input');ti.className='phti';ti.type='text';ti.value=effVal(activeTrack,p,tf);ti.setAttribute('aria-label','단계명 / Tên giai đoạn');
+   var de=document.createElement('textarea');de.className='phde';de.rows=2;de.value=effVal(activeTrack,p,df);de.setAttribute('aria-label','단계 설명 / Mô tả');
+   ti.addEventListener('input',function(){setPend(activeTrack,p,tf,ti.value);card.classList.toggle('phdirty',isDirty(activeTrack,p));});
+   de.addEventListener('input',function(){setPend(activeTrack,p,df,de.value);card.classList.toggle('phdirty',isDirty(activeTrack,p));});
+   box.appendChild(ti);box.appendChild(de);card.appendChild(phn);card.appendChild(box);host.appendChild(card);
+ })(p);}refreshDropdownTitles();}
+ window.ppSetPhTrack=function(trk,btn){activeTrack=trk;document.querySelectorAll('.phtrk').forEach(function(b){b.classList.toggle('on',b.dataset.trk===trk);});render();};
+ window.ppPhaseDefCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();['p0','p1','p2'].forEach(function(trk){for(var p=1;p<=4;p++){var pn=pending[trk][p];if(!pn)continue;['tKo','tVi','dKo','dVi'].forEach(function(f){if((f in pn)&&pn[f]!==defs[trk][p][f]){var kind=(f==='tKo'||f==='tVi')?'title':'desc';out.push({t:t,type:'phasedef',trackKo:TRACKS[trk].ko,trackVi:TRACKS[trk].vi,phase:p,kind:kind,field:f,from:defs[trk][p][f],to:pn[f]});defs[trk][p][f]=pn[f];}});delete pending[trk][p];}});if(out.length){try{localStorage.setItem(DKEY,JSON.stringify(defs));}catch(e){}}render();if(window.ppApplySort)window.ppApplySort();return out;};
+ window.ppHasPhaseDefDirty=anyDirty;
+ var _pl=window.ppOnLang;window.ppOnLang=function(l){if(_pl)_pl(l);render();};
+ render();
+})();
+</script>
+<script>
+/* === s24: 예상 완료일 (date picker) === */
+(function(){
+ var UKEY='pp_due_v24';
+ function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
+ function trackOf(tr){var p=tr.closest?tr.closest('.panel'):null;if(p&&p.id==='p0')return {ko:'CMS·웹',vi:'CMS·Web'};if(p&&p.id==='p1')return {ko:'App',vi:'App'};return {ko:'백엔드',vi:'Backend'};}
+ var savedDue=loadJSON(UKEY,{}),pendingDue={},recs=[];
+ function savedOf(idx){return savedDue[idx]||'';}
+ function effOf(idx){return (idx in pendingDue)?pendingDue[idx]:savedOf(idx);}
+ function paint(rec){var v=effOf(rec.idx),dirty=(v!==savedOf(rec.idx));if(rec.input.value!==v)rec.input.value=v;rec.input.classList.toggle('dirty',dirty);rec.input.classList.toggle('empty',!v);}
+ var trs=document.querySelectorAll('tr[data-idx]');
+ for(var i=0;i<trs.length;i++){(function(tr){var cell=tr.querySelector('td.duecell');if(!cell)return;var idx=tr.getAttribute('data-idx');var nameEl=tr.querySelector('.task .i18n');var input=document.createElement('input');input.type='date';input.className='duein';input.setAttribute('data-idx',idx);input.title='예상 완료일 / Ngày dự kiến hoàn thành';cell.appendChild(input);var rec={idx:idx,tr:tr,input:input,nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',track:trackOf(tr)};input.addEventListener('change',function(){var v=input.value||'';if(v===savedOf(idx))delete pendingDue[idx];else pendingDue[idx]=v;paint(rec);});recs.push(rec);paint(rec);})(trs[i]);}
+ window.ppDueCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pendingDue))continue;var prev=savedOf(idx),v=pendingDue[idx];if(v!==prev){out.push({t:t,type:'due',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete savedDue[idx];else savedDue[idx]=v;}}pendingDue={};try{localStorage.setItem(UKEY,JSON.stringify(savedDue));}catch(e){}for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
+})();
+</script>
+<script>
+/* === s24: 작업자 (App 전용) === */
+(function(){
+ var WKEY='pp_worker_v24';
+ var ORDER=['','kevin','john','both'];
+ var LK={'':'-',kevin:'Kevin',john:'John',both:'공동'};
+ var LV={'':'-',kevin:'Kevin',john:'John',both:'Chung'};
+ function curLang(){return document.documentElement.lang==='vi'?'vi':'ko';}
+ function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
+ function trackOf(tr){var p=tr.closest?tr.closest('.panel'):null;if(p&&p.id==='p0')return {ko:'CMS·웹',vi:'CMS·Web'};if(p&&p.id==='p1')return {ko:'App',vi:'App'};return {ko:'백엔드',vi:'Backend'};}
+ var saved=loadJSON(WKEY,{}),pending={},recs=[];
+ function savedOf(idx){return saved[idx]||'';}
+ function effOf(idx){return (idx in pending)?pending[idx]:savedOf(idx);}
+ function paint(rec){var v=effOf(rec.idx),dirty=(v!==savedOf(rec.idx));if(rec.sel.value!==v)rec.sel.value=v;rec.sel.className='wksel'+(dirty?' dirty':'')+(v?'':' wk-unset');}
+ var trs=document.querySelectorAll('tr[data-idx]');
+ for(var i=0;i<trs.length;i++){(function(tr){var cell=tr.querySelector('td.workercell');if(!cell)return;var idx=tr.getAttribute('data-idx');var nameEl=tr.querySelector('.task .i18n');var sel=document.createElement('select');sel.setAttribute('data-idx',idx);sel.title='작업자 / Người làm';ORDER.forEach(function(code){var o=document.createElement('option');o.value=code;o.textContent=(curLang()==='vi'?LV:LK)[code];sel.appendChild(o);});cell.appendChild(sel);var rec={idx:idx,tr:tr,sel:sel,nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',track:trackOf(tr)};sel.addEventListener('change',function(){var v=sel.value;if(v===savedOf(idx))delete pending[idx];else pending[idx]=v;paint(rec);});recs.push(rec);paint(rec);})(trs[i]);}
+ window.ppWorkerCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pending))continue;var prev=savedOf(idx),v=pending[idx];if(v!==prev){out.push({t:t,type:'worker',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete saved[idx];else saved[idx]=v;}}pending={};try{localStorage.setItem(WKEY,JSON.stringify(saved));}catch(e){}for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
+ function relabel(l){var map=(l==='vi')?LV:LK;recs.forEach(function(r){for(var k=0;k<r.sel.options.length;k++){r.sel.options[k].textContent=map[r.sel.options[k].value];}});}
+ var _pl=window.ppOnLang;window.ppOnLang=function(l){if(_pl)_pl(l);relabel(l);};
+})();
+</script>
+</body></html>
