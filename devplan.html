@@ -151,6 +151,16 @@ select.wksel{font-size:11px;font-weight:700;color:var(--ink2);border:1px solid v
 select.wksel:focus{outline:1px solid var(--pp);border-color:var(--pp)}
 select.wksel.dirty{outline:2px dashed var(--warn);outline-offset:1px}
 select.wksel.wk-unset{color:var(--ink3)}
+/* === s28: 단계 정의 카드 — 단계 기간(시작일·종료일) === */
+.phperiod{margin-bottom:7px;padding:6px 8px;background:#faf8ff;border:1px solid var(--line);border-radius:7px}
+.phperiod-lab{font-size:9px;font-weight:800;color:var(--pp-d);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.phperiod-row{display:grid;grid-template-columns:30px 1fr;align-items:center;gap:6px;margin-top:4px}
+.phperiod-row:first-of-type{margin-top:0}
+.phperiod-row>label{font-size:9.5px;color:var(--ink3);font-weight:700;white-space:nowrap}
+input.perin{width:100%;min-width:0;font-size:10px;font-weight:600;color:var(--ink2);border:1px solid var(--line);border-radius:5px;padding:2px 4px;background:#fff;font-family:inherit;cursor:pointer}
+input.perin:focus{outline:1px solid var(--pp);border-color:var(--pp)}
+input.perin.dirty{outline:2px dashed var(--warn);outline-offset:1px}
+input.perin.empty{color:var(--ink3)}
 </style></head><body>
 <header><div class="langtog"><button class="on" onclick="setLang('ko',this)">KO</button><button onclick="setLang('vi',this)">VI</button></div>
 <div class="wrap" style="padding-bottom:0"><div class="htitle"><span class="i18n" data-ko="PricePick 개발 일정 관리" data-vi="PricePick · Quản lý tiến độ phát triển">PricePick 개발 일정 관리</span></div>
@@ -480,6 +490,13 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
        var _kl=e.kind==='title'?(lang==='vi'?('tên GĐ '+e.phase):('단계'+e.phase+' 이름')):(lang==='vi'?('mô tả GĐ '+e.phase):('단계'+e.phase+' 설명'));
        out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(_trk||'')+']</span><span class="pplog-name">'+esc(_kl)+'</span><span class="pplog-chg"><span class="a">'+esc(e.from)+'</span> \u2192 <span class="b">'+esc(e.to)+'</span></span></div>');continue;
      }
+     if(e.type==='phaseperiod'){
+       var _ptrk=lang==='vi'?e.trackVi:e.trackKo;
+       var _plab=(e.kind==='start')?(lang==='vi'?('GĐ '+e.phase+' bắt đầu (thời gian)'):('단계'+e.phase+' 기간 시작일')):(lang==='vi'?('GĐ '+e.phase+' kết thúc (thời gian)'):('단계'+e.phase+' 기간 종료일'));
+       var _pf=e.from?e.from:(lang==='vi'?'(trống)':'(없음)');
+       var _pt=e.to?e.to:(lang==='vi'?'(trống)':'(없음)');
+       out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(_ptrk||'')+']</span><span class="pplog-name">'+esc(_plab)+'</span><span class="pplog-chg"><span class="a">'+esc(_pf)+'</span> → <span class="b">'+esc(_pt)+'</span></span></div>');continue;
+     }
      if(e.type==='worker'){
        var _wk={'':lang==='vi'?'Chưa chỉ định':'미지정',kevin:'Kevin',john:'John',both:lang==='vi'?'Chung':'공동'};
        out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(track||'')+']</span><span class="pplog-name">'+esc(name||'')+'</span><span class="pplog-chg"><span class="a">'+esc(_wk[e.from]||e.from)+'</span> \u2192 <span class="b">'+esc(_wk[e.to]||e.to)+'</span> <span class="a">'+(lang==='vi'?'(người làm)':'(작업자)')+'</span></span></div>');continue;
@@ -519,14 +536,16 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
    /* 상태(별도 클로저) 미저장 변경을 함께 확정 — 통합 저장 */
    var stChanges=(window.ppStatusCommit)?window.ppStatusCommit(nowIso):[];
    var pdChanges=(window.ppPhaseDefCommit)?window.ppPhaseDefCommit(nowIso):[];
+   var perChanges=(window.ppPhasePeriodCommit)?window.ppPhasePeriodCommit(nowIso):[];
    var dueChanges=(window.ppDueCommit)?window.ppDueCommit(nowIso):[];
    var startChanges=(window.ppStartCommit)?window.ppStartCommit(nowIso):[];
    var wkChanges=(window.ppWorkerCommit)?window.ppWorkerCommit(nowIso):[];
-   var total=changes.length+stChanges.length+pdChanges.length+dueChanges.length+startChanges.length+wkChanges.length;
+   var total=changes.length+stChanges.length+pdChanges.length+perChanges.length+dueChanges.length+startChanges.length+wkChanges.length;
    if(!total){flash('변경된 내용이 없습니다','Không có thay đổi');return;}
    for(var j=0;j<changes.length;j++){logs.push(changes[j]);}
    for(var k=0;k<stChanges.length;k++){logs.push(stChanges[k]);}
    for(var m2=0;m2<pdChanges.length;m2++){logs.push(pdChanges[m2]);}
+   for(var p2=0;p2<perChanges.length;p2++){logs.push(perChanges[p2]);}
    for(var n2=0;n2<dueChanges.length;n2++){logs.push(dueChanges[n2]);}
    for(var s2=0;s2<startChanges.length;s2++){logs.push(startChanges[s2]);}
    for(var w2=0;w2<wkChanges.length;w2++){logs.push(wkChanges[w2]);}
@@ -625,11 +644,27 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
   3:{tKo:'조회·교환',tVi:'Tra cứu·đổi thưởng',dKo:'내티켓·활동/구매내역·기프티콘 목록/상세/교환·혜택탭',dVi:'Vé của tôi·lịch sử·gifticon·tab ưu đãi'},
   4:{tKo:'운영·마무리',tVi:'Vận hành·hoàn thiện',dKo:'고객센터·알림·약관·설정·탈퇴·CMS 운영·통합 QA',dVi:'CSKH·thông báo·điều khoản·cài đặt·hủy tài khoản·vận hành CMS·QA tổng hợp'}
  };
+ var TRACK_DEFAULTS={
+  p0:{
+   1:{tKo:'관리자 기반·회원',tVi:'Nền tảng quản trị·thành viên',dKo:'관리자 로그인·기본 UI·대시보드와 회원 목록·관리자 계정 등 CMS 운영의 기반을 구축합니다.',dVi:'Xây nền tảng vận hành CMS: đăng nhập quản trị, UI cơ bản, dashboard, danh sách thành viên và tài khoản quản trị.'},
+   2:{tKo:'리워드·이벤트 운영',tVi:'Vận hành thưởng·sự kiện',dKo:'티켓·추첨·경품/응모·주간 이벤트 추첨과 출석체크·포인트 정책, 이벤트·친구초대 관리 등 리워드 운영 기능을 만듭니다.',dVi:'Xây chức năng vận hành thưởng: vé·rút thăm·giải thưởng/dự thưởng·rút thăm tuần, điểm danh·chính sách điểm, quản lý sự kiện·mời bạn.'},
+   3:{tKo:'내역 조회·상품·연동',tVi:'Tra cứu·sản phẩm·liên kết',dKo:'환수·포인트·구매/사용·취소 내역 조회와 상품 목록·상품설명 일괄등록, 제휴몰 API 연동 관리를 다룹니다.',dVi:'Tra cứu lịch sử thu hồi·điểm·mua/dùng·hủy; quản lý danh sách sản phẩm·đăng ký hàng loạt mô tả và liên kết API đối tác.'},
+   4:{tKo:'정산·콘텐츠·운영',tVi:'Quyết toán·nội dung·vận hành',dKo:'수익·매출·정산 분석, 배너·공지·알림 등 콘텐츠 관리와 운영·약관 정책, 1:1 문의·계정 탈퇴·포스트백 로그·앱 버전·스케줄러 등 운영 마무리 기능입니다.',dVi:'Phân tích doanh thu·doanh số·quyết toán; quản lý nội dung (banner·thông báo·push); chính sách vận hành·điều khoản; hỏi đáp 1:1·hủy tài khoản·nhật ký postback·phiên bản app·lịch trình.'}
+  }
+ };
  function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
  function curLang(){return document.documentElement.lang==='vi'?'vi':'ko';}
  var defs={},savedDefs=loadJSON(DKEY,{});
- ['p0','p1','p2'].forEach(function(trk){defs[trk]={};for(var p=1;p<=4;p++){var b=DEFAULTS[p];var sv=(savedDefs[trk]&&savedDefs[trk][p])||{};defs[trk][p]={tKo:('tKo'in sv)?sv.tKo:b.tKo,tVi:('tVi'in sv)?sv.tVi:b.tVi,dKo:('dKo'in sv)?sv.dKo:b.dKo,dVi:('dVi'in sv)?sv.dVi:b.dVi};}});
+ ['p0','p1','p2'].forEach(function(trk){defs[trk]={};for(var p=1;p<=4;p++){var b=(TRACK_DEFAULTS[trk]&&TRACK_DEFAULTS[trk][p])||DEFAULTS[p];var sv=(savedDefs[trk]&&savedDefs[trk][p])||{};defs[trk][p]={tKo:('tKo'in sv)?sv.tKo:b.tKo,tVi:('tVi'in sv)?sv.tVi:b.tVi,dKo:('dKo'in sv)?sv.dKo:b.dKo,dVi:('dVi'in sv)?sv.dVi:b.dVi};}});
  var pending={p0:{},p1:{},p2:{}},activeTrack='p1';
+ var PERKEY='pp_phaseperiod_v28';
+ var periods={},savedPeriods=loadJSON(PERKEY,{});
+ ['p0','p1','p2'].forEach(function(trk){periods[trk]={};for(var p=1;p<=4;p++){var sv=(savedPeriods[trk]&&savedPeriods[trk][p])||{};periods[trk][p]={start:('start'in sv)?sv.start:'',end:('end'in sv)?sv.end:''};}});
+ var perPending={p0:{},p1:{},p2:{}};
+ function effPer(trk,p,f){var pn=perPending[trk][p];if(pn&&(f in pn))return pn[f];return periods[trk][p][f];}
+ function perFieldDirty(trk,p,f){var pn=perPending[trk][p];return !!(pn&&(f in pn)&&pn[f]!==periods[trk][p][f]);}
+ function isPeriodDirty(trk,p){return perFieldDirty(trk,p,'start')||perFieldDirty(trk,p,'end');}
+ function setPerPend(trk,p,f,val){if(val===periods[trk][p][f]){if(perPending[trk][p])delete perPending[trk][p][f];}else{if(!perPending[trk][p])perPending[trk][p]={};perPending[trk][p][f]=val;}}
  window.ppPhaseName=function(pid,lang,num){var trk=(pid==='p0'||pid==='p1'||pid==='p2')?pid:'p2';var d=defs[trk]&&defs[trk][num];if(!d)return num;return (lang==='vi'?d.tVi:d.tKo)||num;};
  function effVal(trk,p,f){var pn=pending[trk][p];if(pn&&(f in pn))return pn[f];return defs[trk][p][f];}
  function isDirty(trk,p){var pn=pending[trk][p];if(!pn)return false;return ['tKo','tVi','dKo','dVi'].some(function(f){return (f in pn)&&pn[f]!==defs[trk][p][f];});}
@@ -637,18 +672,30 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
  function setPend(trk,p,f,val){if(val===defs[trk][p][f]){if(pending[trk][p])delete pending[trk][p][f];}else{if(!pending[trk][p])pending[trk][p]={};pending[trk][p][f]=val;}}
  function refreshDropdownTitles(){var lang=curLang();document.querySelectorAll('select.phsel').forEach(function(sel){var panel=sel.closest('.panel');var pid=panel?panel.id:'';for(var o=0;o<sel.options.length;o++){var num=+sel.options[o].value;sel.options[o].title=num+' '+window.ppPhaseName(pid,lang,num);}var cur=+sel.value;sel.title=window.ppPhaseName(pid,'ko',cur)+' / '+window.ppPhaseName(pid,'vi',cur);});}
  function render(){var host=document.getElementById('phaseCards');if(!host)return;var lang=curLang();var tf=lang==='vi'?'tVi':'tKo',df=lang==='vi'?'dVi':'dKo';host.innerHTML='';for(var p=1;p<=4;p++){(function(p){
-   var card=document.createElement('div');card.className='ph'+(isDirty(activeTrack,p)?' phdirty':'');card.style.borderLeftColor=PHCOL[p];
+   var card=document.createElement('div');card.className='ph'+((isDirty(activeTrack,p)||isPeriodDirty(activeTrack,p))?' phdirty':'');card.style.borderLeftColor=PHCOL[p];
    var phn=document.createElement('span');phn.className='phn';phn.textContent=p;phn.style.background=PHCOL[p];
    var box=document.createElement('div');box.style.flex='1';box.style.minWidth='0';
+   var per=document.createElement('div');per.className='phperiod';
+   var plab=document.createElement('div');plab.className='phperiod-lab';plab.textContent=(lang==='vi'?'Thời gian':'기간');per.appendChild(plab);
+   [{f:'start',ko:'시작일',vi:'Bắt đầu'},{f:'end',ko:'종료일',vi:'Kết thúc'}].forEach(function(pf){
+     var row=document.createElement('div');row.className='phperiod-row';
+     var lb=document.createElement('label');lb.textContent=(lang==='vi'?pf.vi:pf.ko);
+     var inp=document.createElement('input');inp.type='date';inp.className='perin';
+     var v=effPer(activeTrack,p,pf.f);inp.value=v;if(!v)inp.classList.add('empty');if(perFieldDirty(activeTrack,p,pf.f))inp.classList.add('dirty');
+     inp.title=(pf.f==='start')?'단계 기간 시작일 / Thời gian GĐ — bắt đầu':'단계 기간 종료일 / Thời gian GĐ — kết thúc';
+     inp.addEventListener('change',function(){var nv=inp.value||'';setPerPend(activeTrack,p,pf.f,nv);inp.classList.toggle('empty',!nv);inp.classList.toggle('dirty',perFieldDirty(activeTrack,p,pf.f));card.classList.toggle('phdirty',(isDirty(activeTrack,p)||isPeriodDirty(activeTrack,p)));});
+     row.appendChild(lb);row.appendChild(inp);per.appendChild(row);
+   });
    var ti=document.createElement('input');ti.className='phti';ti.type='text';ti.value=effVal(activeTrack,p,tf);ti.setAttribute('aria-label','단계명 / Tên giai đoạn');
    var de=document.createElement('textarea');de.className='phde';de.rows=4;de.value=effVal(activeTrack,p,df);de.setAttribute('aria-label','단계 설명 / Mô tả');
-   ti.addEventListener('input',function(){setPend(activeTrack,p,tf,ti.value);card.classList.toggle('phdirty',isDirty(activeTrack,p));});
-   de.addEventListener('input',function(){setPend(activeTrack,p,df,de.value);card.classList.toggle('phdirty',isDirty(activeTrack,p));});
-   box.appendChild(ti);box.appendChild(de);card.appendChild(phn);card.appendChild(box);host.appendChild(card);
+   ti.addEventListener('input',function(){setPend(activeTrack,p,tf,ti.value);card.classList.toggle('phdirty',(isDirty(activeTrack,p)||isPeriodDirty(activeTrack,p)));});
+   de.addEventListener('input',function(){setPend(activeTrack,p,df,de.value);card.classList.toggle('phdirty',(isDirty(activeTrack,p)||isPeriodDirty(activeTrack,p)));});
+   box.appendChild(per);box.appendChild(ti);box.appendChild(de);card.appendChild(phn);card.appendChild(box);host.appendChild(card);
  })(p);}refreshDropdownTitles();}
  window.ppSetPhTrack=function(trk,btn){activeTrack=trk;document.querySelectorAll('.phtrk').forEach(function(b){b.classList.toggle('on',b.dataset.trk===trk);});render();};
  window.ppPhaseDefCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();['p0','p1','p2'].forEach(function(trk){for(var p=1;p<=4;p++){var pn=pending[trk][p];if(!pn)continue;['tKo','tVi','dKo','dVi'].forEach(function(f){if((f in pn)&&pn[f]!==defs[trk][p][f]){var kind=(f==='tKo'||f==='tVi')?'title':'desc';out.push({t:t,type:'phasedef',trackKo:TRACKS[trk].ko,trackVi:TRACKS[trk].vi,phase:p,kind:kind,field:f,from:defs[trk][p][f],to:pn[f]});defs[trk][p][f]=pn[f];}});delete pending[trk][p];}});if(out.length){try{localStorage.setItem(DKEY,JSON.stringify(defs));}catch(e){}}render();if(window.ppApplySort)window.ppApplySort();return out;};
  window.ppHasPhaseDefDirty=anyDirty;
+ window.ppPhasePeriodCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();['p0','p1','p2'].forEach(function(trk){for(var p=1;p<=4;p++){var pn=perPending[trk][p];if(!pn)continue;['start','end'].forEach(function(f){if((f in pn)&&pn[f]!==periods[trk][p][f]){out.push({t:t,type:'phaseperiod',trackKo:TRACKS[trk].ko,trackVi:TRACKS[trk].vi,phase:p,kind:f,from:periods[trk][p][f],to:pn[f]});periods[trk][p][f]=pn[f];}});delete perPending[trk][p];}});if(out.length){try{localStorage.setItem(PERKEY,JSON.stringify(periods));}catch(e){}}render();if(window.ppApplySort)window.ppApplySort();return out;};
  var _pl=window.ppOnLang;window.ppOnLang=function(l){if(_pl)_pl(l);render();};
  render();
 })();
