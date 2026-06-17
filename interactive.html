@@ -9856,6 +9856,14 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             </div>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M9 18L15 12L9 6" stroke="var(--text3)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
+          <!-- 티켓/포인트 세그먼트 토글 -->
+          <div class="rwd-seg" style="display:flex;gap:0;background:#F1ECFF;border-radius:12px;padding:4px;margin:0 0 14px;">
+            <button type="button" class="rwd-seg-btn" onclick="var s=this.closest('.reward-scroll');s.querySelector('#rwd-pane-ticket').style.display='block';s.querySelector('#rwd-pane-point').style.display='none';this.style.background='#fff';this.style.color='var(--main)';this.style.boxShadow='0 1px 3px rgba(0,0,0,0.08)';this.nextElementSibling.style.background='transparent';this.nextElementSibling.style.color='var(--text2)';this.nextElementSibling.style.boxShadow='none';" style="flex:1;border:none;background:#fff;color:var(--main);font-size:13px;font-weight:700;border-radius:9px;padding:9px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,0.08);">티켓</button>
+            <button type="button" class="rwd-seg-btn" onclick="var s=this.closest('.reward-scroll');s.querySelector('#rwd-pane-ticket').style.display='none';s.querySelector('#rwd-pane-point').style.display='block';this.style.background='#fff';this.style.color='var(--main)';this.style.boxShadow='0 1px 3px rgba(0,0,0,0.08)';this.previousElementSibling.style.background='transparent';this.previousElementSibling.style.color='var(--text2)';this.previousElementSibling.style.boxShadow='none';" style="flex:1;border:none;background:transparent;color:var(--text2);font-size:13px;font-weight:700;border-radius:9px;padding:9px;cursor:pointer;">포인트</button>
+          </div>
+
+          <!-- 티켓 패널 -->
+          <div class="rwd-pane" id="rwd-pane-ticket">
           <!-- 내 티켓 카드 (등급별 3분할 + 이벤트 티켓) -->
           <div class="my-ticket-card">
             <div class="mtc-label">
@@ -10104,6 +10112,45 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             </div>
           </div>
 
+
+          </div><!-- /rwd-pane-ticket -->
+
+          <!-- 포인트 패널 -->
+          <div class="rwd-pane" id="rwd-pane-point" style="display:none;">
+            <!-- 포인트 잔액 카드 -->
+            <div style="background:linear-gradient(135deg,#7B52E1,#9D7BF0);border-radius:16px;padding:18px 18px 16px;color:#fff;margin-bottom:14px;">
+              <div style="font-size:12px;opacity:0.85;">사용 가능 포인트</div>
+              <div style="display:flex;align-items:baseline;gap:4px;margin-top:4px;">
+                <span style="font-size:30px;font-weight:800;letter-spacing:-0.5px;">1,550</span><span style="font-size:15px;font-weight:700;">P</span>
+              </div>
+              <div style="margin-top:13px;display:flex;gap:8px;">
+                <button type="button" style="flex:1;background:rgba(255,255,255,0.18);border:none;color:#fff;font-size:13px;font-weight:700;border-radius:10px;padding:10px;cursor:pointer;">포인트 사용</button>
+                <button type="button" style="flex:1;background:#fff;border:none;color:var(--main);font-size:13px;font-weight:700;border-radius:10px;padding:10px;cursor:pointer;">티켓으로 전환</button>
+              </div>
+            </div>
+            <!-- 안내 -->
+            <div style="background:#F7F4FF;border:1px solid #E4DBFF;border-radius:12px;padding:11px 13px;font-size:11px;color:var(--text2);line-height:1.5;margin-bottom:16px;">10P = 1원 · 친구 초대·출석·이벤트로 모은 포인트를 사용하거나 티켓으로 전환할 수 있어요.</div>
+            <!-- 내역 -->
+            <div style="font-size:13px;font-weight:800;color:var(--text1);margin-bottom:6px;padding:0 2px;">최근 적립·사용</div>
+            <div style="display:flex;flex-direction:column;">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 2px;border-bottom:1px solid #EFEAF7;">
+                <div><div style="font-size:13px;font-weight:600;color:var(--text1);">친구 초대 성공</div><div style="font-size:11px;color:var(--text3);margin-top:2px;">2026.06.15</div></div>
+                <div style="font-size:14px;font-weight:800;color:var(--main);">+500P</div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 2px;border-bottom:1px solid #EFEAF7;">
+                <div><div style="font-size:13px;font-weight:600;color:var(--text1);">기프티콘 교환</div><div style="font-size:11px;color:var(--text3);margin-top:2px;">2026.06.12</div></div>
+                <div style="font-size:14px;font-weight:800;color:#E03E3E;">-1,000P</div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 2px;border-bottom:1px solid #EFEAF7;">
+                <div><div style="font-size:13px;font-weight:600;color:var(--text1);">출석 5일 보너스</div><div style="font-size:11px;color:var(--text3);margin-top:2px;">2026.06.10</div></div>
+                <div style="font-size:14px;font-weight:800;color:var(--main);">+200P</div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 2px;">
+                <div><div style="font-size:13px;font-weight:600;color:var(--text1);">가입 축하 포인트</div><div style="font-size:11px;color:var(--text3);margin-top:2px;">2026.06.08</div></div>
+                <div style="font-size:14px;font-weight:800;color:var(--main);">+200P</div>
+              </div>
+            </div>
+          </div><!-- /rwd-pane-point -->
 
         </div><!-- /reward-scroll -->
 
@@ -11357,6 +11404,16 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             <span id="mall12-cta-txt">쿠팡 바로가기</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
+          <!-- 홈 화면에 추가하기 (PWA add-to-homescreen 안내) -->
+          <button type="button" class="C-a2hs-btn" onclick="var g=this.nextElementSibling;g.style.display=(g.style.display==='block')?'none':'block';" style="width:100%;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:7px;background:#fff;border:1.5px solid var(--main);color:var(--main);font-size:13px;font-weight:700;border-radius:12px;padding:12px;cursor:pointer;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="12" y1="8" x2="12" y2="14"/><line x1="9" y1="11" x2="15" y2="11"/></svg>
+            홈 화면에 추가하기
+          </button>
+          <div class="C-a2hs-guide" style="display:none;margin-top:8px;background:#F7F4FF;border:1px solid #E4DBFF;border-radius:12px;padding:13px 14px;font-size:12px;color:var(--text2);line-height:1.6;">
+            <div style="font-weight:700;color:var(--text1);margin-bottom:6px;">홈 화면에 추가하면 한 번에 들어와요</div>
+            <div style="margin-bottom:3px;"><b>iPhone</b> · 사파리 하단 <b>공유</b> → '홈 화면에 추가'</div>
+            <div><b>Android</b> · 크롬 우측 상단 <b>⋮</b> → '홈 화면에 추가'</div>
+          </div>
           <div class="C-steps">
             <div class="C-step">
               <div class="C-step-no">1</div>
@@ -12351,14 +12408,6 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             <div class="my-row-body">
               <div class="my-row-name">다크모드</div>
               <div class="my-row-desc">2차 업데이트 예정</div>
-            </div>
-            <div class="my-toggle"></div>
-          </div>
-          <div class="my-row">
-            <div class="my-row-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></div>
-            <div class="my-row-body">
-              <div class="my-row-name">만원 단위 표시</div>
-              <div class="my-row-desc">5만원 → 5만 형식으로 간략하게</div>
             </div>
             <div class="my-toggle"></div>
           </div>
@@ -13989,7 +14038,7 @@ const SB_SPECS = {
         "h": "핵심 컨텐츠",
         "items": [
           "알림: 픽구매/이벤트·티켓/마케팅 (토글)",
-          "표시: 다크모드/만원단위/기본정렬",
+          "표시: 다크모드/기본정렬",
           "데이터: 캐시 삭제",
           "정보: 약관/앱버전 + 쿠팡 파트너스 고지"
         ]
