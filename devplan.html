@@ -208,44 +208,71 @@ input.perin.empty{color:var(--ink3)}
 .ppauthbtn.busy{opacity:.5;pointer-events:none}
 .ppcloud-warn{font-size:11px;color:var(--be);font-weight:600}
 body.pp-readonly .ppsave{opacity:.4;pointer-events:none}
+.pplogdel{margin-left:auto;border:none;background:#fbe9ec;color:#c0497a;font-weight:800;font-size:12px;line-height:1;border-radius:6px;width:20px;height:20px;cursor:pointer;flex:none}
+.pplogdel:hover{background:#c0497a;color:#fff}
+.pprole{font-size:11px;font-weight:800;color:#fff;background:var(--pp);border-radius:10px;padding:2px 8px}
+.pprole.super{background:var(--be)}
 </style></head><body>
 <script>
 /* === s36: PPDB 브리지 (클래식 스크립트 — IIFE 모듈보다 먼저 정의) ===
    Firestore/Auth 본체는 하단 type=module 스크립트가 채운다(_impl).
    여기서는 동기적으로 cache·구독·쓰기큐 API만 제공한다. */
 (function(){
- var CATS=['phase','suborder','status','due','start','worker','phasedef','phaseperiod'];
+ /* 트랙 정규형: 'app' | 'cms' | 'backend'. 패널 id(p1/p0/p2)와 매핑.
+    idx→값 카테고리는 트랙별 컬렉션에서 읽어 한 cache로 병합(idx 구간이 겹치지 않음).
+    phasedef/phaseperiod는 {p0,p1,p2} 형태로 병합(모듈 buildDefs 호환 유지). */
+ var IDXCATS=['phase','suborder','status','due','start','worker'];
+ var NESTCATS=['phasedef','phaseperiod'];
+ var CATS=IDXCATS.concat(NESTCATS);
+ var P2TRK={p0:'cms',p1:'app',p2:'backend'};   /* 패널 id → 트랙 */
+ var TRK2P={cms:'p0',app:'p1',backend:'p2'};
  var cache={};CATS.forEach(function(c){cache[c]={};});
+ var raw={app:{},cms:{},backend:{}};
  var subs={};CATS.forEach(function(c){subs[c]=[];});
  var logSubs=[], writeQ=[], logQ=[];
+ function rebuild(cat){
+   var c=cache[cat];Object.keys(c).forEach(function(k){delete c[k];});
+   if(cat==='phasedef'||cat==='phaseperiod'){
+     c.p0=raw.cms[cat]||{};c.p1=raw.app[cat]||{};c.p2=raw.backend[cat]||{};
+   }else{
+     ['app','cms','backend'].forEach(function(t){var d=raw[t][cat];if(d)Object.keys(d).forEach(function(k){c[k]=d[k];});});
+   }
+ }
  var PPDB={
    cache:cache,
    ready:false,
-   user:null,          /* {email,name} 또는 null */
-   allowed:false,      /* 로그인 + 허용목록 통과 시 true */
-   impl:null,          /* module 스크립트가 설정 */
+   user:null,                 /* {email,name} 또는 null */
+   allowed:false,             /* 편집 가능한 트랙이 1개 이상이면 true */
+   allowedTracks:[],          /* ['app'] / ['cms'] / ['backend'] / 전체(슈퍼) */
+   isSuper:false,
+   impl:null,
+   P2TRK:P2TRK, TRK2P:TRK2P,
+   trackOfIdx:{},             /* idx(string) → 'app'|'cms'|'backend' (module 스크립트가 DOM에서 채움) */
    authListeners:[],
    subscribe:function(cat,cb){if(subs[cat]){subs[cat].push(cb);}},
    subscribeLogs:function(cb){logSubs.push(cb);},
    onAuth:function(cb){this.authListeners.push(cb);try{cb(this.user,this.allowed);}catch(e){}},
    canWrite:function(){return !!this.allowed;},
-   /* idx→값 맵 한 칸 저장 (필드 단위, 머지) */
+   canWriteTrack:function(tk){return this.allowedTracks.indexOf(tk)>=0;},
+   /* idx→값 맵 한 칸 저장 — 해당 idx의 트랙 컬렉션으로 분기 */
    writeField:function(cat,field,val){if(this.impl){this.impl.writeField(cat,field,val);}else{writeQ.push(['f',cat,field,val]);}},
-   /* 중첩(트랙·단계·필드) 한 칸 저장 */
-   writeNested:function(cat,trk,phase,field,val){if(this.impl){this.impl.writeNested(cat,trk,phase,field,val);}else{writeQ.push(['n',cat,trk,phase,field,val]);}},
+   /* 중첩(단계 정의·기간) 한 칸 — 패널 id(p0/p1/p2)의 트랙 컬렉션으로 분기 */
+   writeNested:function(cat,pTrk,phase,field,val){if(this.impl){this.impl.writeNested(cat,pTrk,phase,field,val);}else{writeQ.push(['n',cat,pTrk,phase,field,val]);}},
    appendLog:function(entry){if(this.impl){this.impl.appendLog(entry);}else{logQ.push(entry);}},
+   deleteLog:function(track,id){if(this.impl)this.impl.deleteLog(track,id);},
    login:function(){if(this.impl)this.impl.login();},
    logout:function(){if(this.impl)this.impl.logout();},
-   /* module 스크립트가 onSnapshot 수신 시 호출 */
-   _applySnapshot:function(cat,data){var obj=cache[cat];Object.keys(obj).forEach(function(k){delete obj[k];});if(data){Object.keys(data).forEach(function(k){obj[k]=data[k];});}subs[cat].forEach(function(cb){try{cb();}catch(e){console.error('PPDB sub '+cat,e);}});},
+   /* module 스크립트: (track, cat, docData) 수신 → raw 저장 후 병합 cache 재구성 */
+   _ingest:function(track,cat,data){raw[track][cat]=data||{};rebuild(cat);subs[cat].forEach(function(cb){try{cb();}catch(e){console.error('PPDB sub '+cat,e);}});},
    _applyLogs:function(arr){logSubs.forEach(function(cb){try{cb(arr);}catch(e){console.error('PPDB logs',e);}});},
-   _setAuth:function(user,allowed){this.user=user;this.allowed=allowed;var self=this;this.authListeners.forEach(function(cb){try{cb(user,allowed);}catch(e){}});},
+   _setAuth:function(user,allowedTracks,isSuper){this.user=user;this.allowedTracks=allowedTracks||[];this.isSuper=!!isSuper;this.allowed=this.allowedTracks.length>0;var self=this;this.authListeners.forEach(function(cb){try{cb(user,self.allowed);}catch(e){}});},
    _flush:function(){var q=writeQ;writeQ=[];var self=this;q.forEach(function(it){if(it[0]==='f')self.impl.writeField(it[1],it[2],it[3]);else self.impl.writeNested(it[1],it[2],it[3],it[4],it[5]);});var lq=logQ;logQ=[];lq.forEach(function(e){self.impl.appendLog(e);});}
  };
  window.PPDB=PPDB;
- /* 전역 핸들러 (인증바 버튼) */
+ /* 전역 핸들러 (인증바·로그 버튼) */
  window.ppLogin=function(){PPDB.login();};
  window.ppLogout=function(){PPDB.logout();};
+ window.ppDeleteLog=function(track,id){PPDB.deleteLog(track,id);};
 })();
 </script>
 <header><div class="langtog"><button class="on" onclick="setLang('ko',this)">KO</button><button onclick="setLang('vi',this)">VI</button></div>
@@ -599,7 +626,22 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
        '<span class="pplog-chg"><span class="a">'+esc(fromTok)+' '+esc(fl)+'</span> → <span class="b">'+esc(toTok)+' '+esc(tl)+'</span></span></div>');
    }
    body.innerHTML=out.join('');
+   /* 슈퍼관리자: 각 로그에 삭제 버튼 (items[k] ↔ logs[len-1-k], 역순 렌더) */
+   if(window.PPDB&&window.PPDB.isSuper){
+     var items=body.querySelectorAll('.pplog-item');
+     for(var k=0;k<items.length;k++){
+       var e2=logs[logs.length-1-k];
+       if(!e2||!e2._id||!e2._track)continue;
+       var b=document.createElement('button');
+       b.className='pplogdel';b.type='button';b.textContent='×';
+       b.title=(lang==='vi'?'Xóa nhật ký':'로그 삭제');
+       b.setAttribute('data-tk',e2._track);b.setAttribute('data-id',e2._id);
+       b.addEventListener('click',function(){window.ppDeleteLog(this.getAttribute('data-tk'),this.getAttribute('data-id'));});
+       items[k].appendChild(b);
+     }
+   }
  }
+ window.ppRenderLog=renderLog;
 
  function flash(ko,vi){var t=document.getElementById('pptoast');if(!t)return;t.textContent=curLang()==='vi'?vi:ko;t.classList.add('show');clearTimeout(t._tm);t._tm=setTimeout(function(){t.classList.remove('show');},1900);}
 
@@ -774,7 +816,7 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
  var savedDefs=window.PPDB.cache.phasedef, defs={};
  function buildDefs(){['p0','p1','p2'].forEach(function(trk){defs[trk]={};for(var p=1;p<=4;p++){var b=(TRACK_DEFAULTS[trk]&&TRACK_DEFAULTS[trk][p])||DEFAULTS[p];var sv=(savedDefs[trk]&&savedDefs[trk][p])||{};defs[trk][p]={tKo:('tKo'in sv)?sv.tKo:b.tKo,tVi:('tVi'in sv)?sv.tVi:b.tVi,dKo:('dKo'in sv)?sv.dKo:b.dKo,dVi:('dVi'in sv)?sv.dVi:b.dVi};}});}
  buildDefs();
- var pending={p0:{},p1:{},p2:{}},activeTrack='p1';
+ var pending={p0:{},p1:{},p2:{}},activeTrack='p1';window.ppActiveTrack='p1';
  var PERKEY='pp_phaseperiod_v28';
  var savedPeriods=window.PPDB.cache.phaseperiod, periods={};
  function buildPeriods(){['p0','p1','p2'].forEach(function(trk){periods[trk]={};for(var p=1;p<=4;p++){var sv=(savedPeriods[trk]&&savedPeriods[trk][p])||{};periods[trk][p]={start:('start'in sv)?sv.start:'',end:('end'in sv)?sv.end:''};}});}
@@ -811,7 +853,7 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
    de.addEventListener('input',function(){setPend(activeTrack,p,df,de.value);card.classList.toggle('phdirty',(isDirty(activeTrack,p)||isPeriodDirty(activeTrack,p)));});
    box.appendChild(per);box.appendChild(ti);box.appendChild(de);card.appendChild(phn);card.appendChild(box);host.appendChild(card);
  })(p);}refreshDropdownTitles();if(window.ppApplyEditable)window.ppApplyEditable();}
- window.ppSetPhTrack=function(trk,btn){activeTrack=trk;document.querySelectorAll('.phtrk').forEach(function(b){b.classList.toggle('on',b.dataset.trk===trk);});render();};
+ window.ppSetPhTrack=function(trk,btn){activeTrack=trk;window.ppActiveTrack=trk;document.querySelectorAll('.phtrk').forEach(function(b){b.classList.toggle('on',b.dataset.trk===trk);});render();};
  window.ppPhaseDefCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();['p0','p1','p2'].forEach(function(trk){for(var p=1;p<=4;p++){var pn=pending[trk][p];if(!pn)continue;['tKo','tVi','dKo','dVi'].forEach(function(f){if((f in pn)&&pn[f]!==defs[trk][p][f]){var kind=(f==='tKo'||f==='tVi')?'title':'desc';out.push({t:t,type:'phasedef',trackKo:TRACKS[trk].ko,trackVi:TRACKS[trk].vi,phase:p,kind:kind,field:f,from:defs[trk][p][f],to:pn[f]});defs[trk][p][f]=pn[f];window.PPDB.writeNested('phasedef',trk,p,f,pn[f]);}});delete pending[trk][p];}});render();if(window.ppApplySort)window.ppApplySort();return out;};
  window.ppHasPhaseDefDirty=anyDirty;
  window.ppPhasePeriodCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();['p0','p1','p2'].forEach(function(trk){for(var p=1;p<=4;p++){var pn=perPending[trk][p];if(!pn)continue;['start','end'].forEach(function(f){if((f in pn)&&pn[f]!==periods[trk][p][f]){out.push({t:t,type:'phaseperiod',trackKo:TRACKS[trk].ko,trackVi:TRACKS[trk].vi,phase:p,kind:f,from:periods[trk][p][f],to:pn[f]});periods[trk][p][f]=pn[f];window.PPDB.writeNested('phaseperiod',trk,p,f,pn[f]);}});delete perPending[trk][p];}});render();if(window.ppApplySort)window.ppApplySort();return out;};
@@ -896,7 +938,7 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
 <!-- === s36: Firebase 연동 (Firestore 실시간 공유 + 구글 로그인) === -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, doc, collection, onSnapshot, setDoc, addDoc, query, orderBy, deleteField } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, doc, collection, onSnapshot, setDoc, addDoc, deleteDoc, query, orderBy, deleteField } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
@@ -908,34 +950,65 @@ const firebaseConfig = {
   appId: "1:771095208559:web:e7e1b949887cfeec9a639a",
   measurementId: "G-1VKXQ6R3L6"
 };
-const ALLOW = ["sgkim.mixit@gmail.com","huyhuynhct1@gmail.com","ngvanvuong95@gmail.com","khoiln218@gmail.com","nhontruong96@gmail.com"];
-const COLL = "pricepick_devplan";           /* idx→값 / 중첩 필드 문서 */
-const LOGS = "pricepick_devplan_logs";       /* 변경 로그 (append-only) */
-const CATS = ["phase","suborder","status","due","start","worker","phasedef","phaseperiod"];
+/* === 역할·트랙 매핑 (서버 규칙과 동일하게 유지) === */
+const SUPER = "sgkim.mixit@gmail.com";          /* 전 트랙 쓰기 + 로그 삭제 */
+const ROLE = {
+  app:     ["khoiln218@gmail.com","nhontruong96@gmail.com"],  /* Kelvin, John */
+  cms:     ["ngvanvuong95@gmail.com"],                        /* Vin */
+  backend: ["huyhuynhct1@gmail.com"]                          /* Harry (App백엔드+CMS백엔드) */
+};
+const TRACKS = ["app","cms","backend"];
+const COLL = { app:"pricepick_devplan_app", cms:"pricepick_devplan_cms", backend:"pricepick_devplan_backend" };
+const LOGS = { app:"pricepick_devplan_app_logs", cms:"pricepick_devplan_cms_logs", backend:"pricepick_devplan_backend_logs" };
+const IDXCATS = ["phase","suborder","status","due","start","worker"];
+const NESTCATS = ["phasedef","phaseperiod"];
+const CATS = IDXCATS.concat(NESTCATS);
+const P2TRK = {p0:"cms",p1:"app",p2:"backend"};   /* 패널 id → 트랙 */
+const TRACK_LABEL = { app:{ko:"App",vi:"App"}, cms:{ko:"CMS·웹",vi:"CMS·Web"}, backend:{ko:"백엔드",vi:"Backend"} };
 
 const PPDB = window.PPDB;
 let db=null, auth=null;
+const logsByTrack = { app:[], cms:[], backend:[] };
 
 function lang(){return document.documentElement.lang==='vi'?'vi':'ko';}
+function trackFromLabel(ko){ if(ko==='App')return 'app'; if(ko==='CMS·웹')return 'cms'; if(ko==='백엔드')return 'backend'; return null; }
 
-function setEditable(on){
-  document.body.classList.toggle('pp-readonly', !on);
-  var sels='select.phsel,input.subin,select.stsel,input.duein,input.startin,select.wksel,.phti,.phde,input.perin';
-  document.querySelectorAll(sels).forEach(function(el){el.disabled=!on;});
+/* idx→트랙 맵을 DOM(패널 id)에서 생성 */
+function buildTrackOfIdx(){
+  document.querySelectorAll('tr[data-idx]').forEach(function(tr){
+    var panel=tr.closest('.panel'); var pid=panel?panel.id:'';
+    PPDB.trackOfIdx[tr.getAttribute('data-idx')] = P2TRK[pid]||'backend';
+  });
 }
-window.ppApplyEditable=function(){setEditable(!!PPDB.allowed);};
+
+/* 트랙별 편집 권한을 DOM에 반영 (행 컨트롤=행의 트랙, 단계카드=활성 트랙) */
+function applyPerms(){
+  document.body.classList.toggle('pp-readonly', !PPDB.allowed);
+  document.querySelectorAll('tr[data-idx]').forEach(function(tr){
+    var tk=PPDB.trackOfIdx[tr.getAttribute('data-idx')];
+    var ok=PPDB.canWriteTrack(tk);
+    tr.querySelectorAll('select.phsel,input.subin,select.stsel,input.duein,input.startin,select.wksel').forEach(function(el){el.disabled=!ok;});
+  });
+  var actTrk=P2TRK[window.ppActiveTrack||'p1'];
+  var okPh=PPDB.canWriteTrack(actTrk);
+  document.querySelectorAll('#phaseCards .phti,#phaseCards .phde,#phaseCards .perin').forEach(function(el){el.disabled=!okPh;});
+}
+window.ppApplyEditable=applyPerms;  /* phasedef render() 후 재적용 훅 */
 
 function renderAuthUI(){
-  var u=PPDB.user, allowed=PPDB.allowed, l=lang();
+  var u=PPDB.user, l=lang();
   var userEl=document.getElementById('ppuser');
   var btn=document.getElementById('ppauthbtn');
   if(!userEl||!btn)return;
   if(u){
     var who=u.email||u.name||'';
-    if(allowed){
-      userEl.innerHTML='<span class="dotok"></span>'+who+(l==='vi'?' · Có quyền sửa':' · 편집 가능');
+    if(PPDB.isSuper){
+      userEl.innerHTML='<span class="dotok"></span>'+who+' <span class="pprole super">'+(l==='vi'?'Super · toàn track':'슈퍼 · 전 트랙')+'</span>';
+    }else if(PPDB.allowedTracks.length){
+      var labs=PPDB.allowedTracks.map(function(tk){return TRACK_LABEL[tk][l];}).join('·');
+      userEl.innerHTML='<span class="dotok"></span>'+who+' <span class="pprole">'+labs+(l==='vi'?' · sửa được':' · 편집 가능')+'</span>';
     }else{
-      userEl.innerHTML='<span class="dotno"></span>'+who+' <span class="ppcloud-warn">'+(l==='vi'?'(chỉ xem · ngoài danh sách)':'(읽기 전용 · 허용목록 외)')+'</span>';
+      userEl.innerHTML='<span class="dotno"></span>'+who+' <span class="ppcloud-warn">'+(l==='vi'?'(chỉ xem · không có quyền track)':'(읽기 전용 · 담당 트랙 없음)')+'</span>';
     }
     btn.innerHTML=(l==='vi'?'Đăng xuất':'로그아웃');
     btn.setAttribute('onclick','ppLogout()');
@@ -950,38 +1023,58 @@ function renderAuthUI(){
 var _ol=window.ppOnLang;
 window.ppOnLang=function(l){if(_ol)_ol(l);renderAuthUI();};
 
+/* 세 트랙 로그를 합쳐 시간순 정렬 후 화면에 전달 (출처 트랙은 각 엔트리에 보존) */
+function mergeLogs(){
+  var arr=[];
+  TRACKS.forEach(function(tk){ for(var i=0;i<logsByTrack[tk].length;i++) arr.push(logsByTrack[tk][i]); });
+  arr.sort(function(a,b){ return (a.t<b.t)?-1:((a.t>b.t)?1:0); });
+  PPDB._applyLogs(arr);
+}
+
 function subscribeAll(){
-  CATS.forEach(function(cat){
-    onSnapshot(doc(db,COLL,cat), function(snap){
-      PPDB._applySnapshot(cat, snap.exists()? snap.data():{});
-    }, function(err){
-      console.warn('[PPDB] onSnapshot '+cat+' 실패:', err.code||err.message);
-      PPDB._applySnapshot(cat, {});  /* 권한/네트워크 실패 → 기본값으로 표시 */
+  TRACKS.forEach(function(tk){
+    CATS.forEach(function(cat){
+      onSnapshot(doc(db,COLL[tk],cat), function(snap){
+        PPDB._ingest(tk, cat, snap.exists()? snap.data():{});
+      }, function(err){
+        console.warn('[PPDB] '+tk+'/'+cat+' 구독 실패:', err.code||err.message);
+        PPDB._ingest(tk, cat, {});  /* 권한/네트워크 실패 → 빈값(기본 시드 표시) */
+      });
     });
-  });
-  onSnapshot(query(collection(db,LOGS), orderBy('t','asc')), function(qs){
-    var arr=[];qs.forEach(function(d){arr.push(d.data());});
-    PPDB._applyLogs(arr);
-  }, function(err){
-    console.warn('[PPDB] onSnapshot logs 실패:', err.code||err.message);
-    PPDB._applyLogs([]);
+    onSnapshot(query(collection(db,LOGS[tk]), orderBy('t','asc')), function(qs){
+      var a=[]; qs.forEach(function(d){ var e=d.data(); e._id=d.id; e._track=tk; a.push(e); });
+      logsByTrack[tk]=a; mergeLogs();
+    }, function(err){
+      console.warn('[PPDB] '+tk+' logs 구독 실패:', err.code||err.message);
+      logsByTrack[tk]=[]; mergeLogs();
+    });
   });
 }
 
 PPDB.impl = {
-  writeField:function(cat,field,val){
-    if(!PPDB.allowed)return;
-    var payload={};payload[field]=(val===''||val==null)?deleteField():val;
-    setDoc(doc(db,COLL,cat),payload,{merge:true}).catch(function(e){console.error('[PPDB] write '+cat+'.'+field,e);});
+  /* idx→값: 해당 idx의 트랙 컬렉션 문서에 칸 단위 머지 */
+  writeField:function(cat,idx,val){
+    var tk=PPDB.trackOfIdx[idx];
+    if(!tk||!PPDB.canWriteTrack(tk))return;
+    var payload={}; payload[idx]=(val===''||val==null)?deleteField():val;
+    setDoc(doc(db,COLL[tk],cat),payload,{merge:true}).catch(function(e){console.error('[PPDB] write '+tk+'/'+cat+'.'+idx,e);});
   },
-  writeNested:function(cat,trk,phase,field,val){
-    if(!PPDB.allowed)return;
-    var inner={};inner[field]=val;var mid={};mid[phase]=inner;var payload={};payload[trk]=mid;
-    setDoc(doc(db,COLL,cat),payload,{merge:true}).catch(function(e){console.error('[PPDB] writeNested '+cat,e);});
+  /* 단계 정의·기간: 패널 id(p0/p1/p2)의 트랙 컬렉션 문서에 {phase:{field}} 머지 */
+  writeNested:function(cat,pTrk,phase,field,val){
+    var tk=P2TRK[pTrk];
+    if(!tk||!PPDB.canWriteTrack(tk))return;
+    var inner={}; inner[field]=val; var mid={}; mid[phase]=inner;
+    setDoc(doc(db,COLL[tk],cat),mid,{merge:true}).catch(function(e){console.error('[PPDB] writeNested '+tk+'/'+cat,e);});
   },
   appendLog:function(entry){
-    if(!PPDB.allowed)return;
-    addDoc(collection(db,LOGS),entry).catch(function(e){console.error('[PPDB] appendLog',e);});
+    var tk=(entry.idx!=null&&entry.idx!=='')?PPDB.trackOfIdx[entry.idx]:trackFromLabel(entry.trackKo);
+    if(!tk||!PPDB.canWriteTrack(tk))return;
+    var e={}; for(var k in entry){ if(entry.hasOwnProperty(k)&&k.charAt(0)!=='_') e[k]=entry[k]; }
+    addDoc(collection(db,LOGS[tk]),e).catch(function(err){console.error('[PPDB] appendLog '+tk,err);});
+  },
+  deleteLog:function(track,id){
+    if(!PPDB.isSuper||!track||!id)return;
+    deleteDoc(doc(db,LOGS[track],id)).catch(function(e){console.error('[PPDB] deleteLog '+track,e);});
   },
   login:function(){
     var btn=document.getElementById('ppauthbtn');if(btn)btn.classList.add('busy');
@@ -999,22 +1092,27 @@ try{
   db = getFirestore(app);
   auth = getAuth(app);
   PPDB.ready = true;
+  buildTrackOfIdx();
   subscribeAll();
   setPersistence(auth, browserLocalPersistence).catch(function(e){console.warn('[PPDB] persistence',e);});
   onAuthStateChanged(auth, function(user){
     var u = user ? {email:(user.email||'').toLowerCase(), name:user.displayName||''} : null;
-    var allowed = !!(u && ALLOW.indexOf(u.email)>=0);
-    PPDB._setAuth(u, allowed);
-    setEditable(allowed);
+    var isSuper = !!(u && u.email===SUPER);
+    var tracks = [];
+    if(isSuper){ tracks=['app','cms','backend']; }
+    else if(u){ TRACKS.forEach(function(tk){ if(ROLE[tk].indexOf(u.email)>=0) tracks.push(tk); }); }
+    PPDB._setAuth(u, tracks, isSuper);
+    applyPerms();
     renderAuthUI();
-    PPDB._flush();  /* 로그인 전 큐에 쌓인 쓰기 처리(권한 있을 때만 실제 전송) */
+    if(window.ppRenderLog)window.ppRenderLog();  /* 슈퍼: 로그 삭제 버튼 갱신 */
+    PPDB._flush();  /* 로그인 전 큐에 쌓인 쓰기 처리(권한 트랙만 실제 전송) */
   });
   /* 초기 표시(로그인 콜백 전): 읽기 전용 */
-  setEditable(false);
+  applyPerms();
   renderAuthUI();
 }catch(e){
   console.error('[PPDB] Firebase 초기화 실패:', e);
-  setEditable(false);
+  applyPerms();
   var userEl=document.getElementById('ppuser');
   if(userEl)userEl.innerHTML='<span class="dotno"></span>'+(lang()==='vi'?'Lỗi kết nối Firebase (chỉ xem)':'Firebase 연결 실패 (읽기 전용)');
 }
