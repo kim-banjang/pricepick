@@ -8947,10 +8947,10 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
           <div style="background:#FFF8F8;border:1px solid #FFD0D0;border-radius:12px;padding:14px 16px;margin-bottom:12px;">
             <div style="font-size:11px;font-weight:800;color:var(--red);margin-bottom:10px;letter-spacing:0.2px;">사라지는 데이터</div>
             <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--text2);line-height:1.45;">
-              <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--red);flex-shrink:0;font-weight:700;">✗</span><span>보유 티켓 <b style="color:var(--text1);">브론즈 12장 · 실버 5장 · 골드 1장</b></span></div>
-              <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--red);flex-shrink:0;font-weight:700;">✗</span><span>누적 절약 내역 및 활동 통계</span></div>
-              <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--red);flex-shrink:0;font-weight:700;">✗</span><span>관심 상품 12개 · 가격 알림 설정</span></div>
-              <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--red);flex-shrink:0;font-weight:700;">✗</span><span>카카오 연동 정보 (재가입 시 초기화)</span></div>
+              <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--red);flex-shrink:0;font-weight:700;">✗</span><span>적립 티켓 <b style="color:var(--text1);">브론즈 12장 · 실버 4장 · 골드 2장</b></span></div>
+              <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--red);flex-shrink:0;font-weight:700;">✗</span><span>포인트 <b style="color:var(--text1);">1,550P</b></span></div>
+              <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--red);flex-shrink:0;font-weight:700;">✗</span><span>활동·구매 내역 (픽구매 이력 · 이벤트 참여 기록)</span></div>
+              <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--red);flex-shrink:0;font-weight:700;">✗</span><span>닉네임 · 카카오 연동 정보 (재가입 시 초기화)</span></div>
             </div>
           </div>
 
@@ -10131,6 +10131,12 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             <!-- 안내 -->
             <div style="background:#F7F4FF;border:1px solid #E4DBFF;border-radius:12px;padding:11px 13px;font-size:11px;color:var(--text2);line-height:1.5;margin-bottom:16px;">10P = 1원 · 친구 초대·출석·이벤트로 모은 포인트를 사용하거나 티켓으로 전환할 수 있어요.</div>
             <!-- 내역 -->
+            <div style="font-size:13px;font-weight:800;color:var(--text1);margin-bottom:6px;padding:0 2px;">만료 예정 포인트</div>
+            <div style="background:#FFF8EE;border:1px solid #FFE2B8;border-radius:12px;padding:11px 13px;margin-bottom:16px;">
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:#9A6A1E;font-weight:800;">300P</span><span style="color:#9A6A1E;font-weight:600;">2026.07.10 만료 (D-22)</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--text2);font-weight:700;">500P</span><span style="color:var(--text3);">2026.11.02 만료</span></div>
+              <div style="font-size:10.5px;color:var(--text3);margin-top:7px;line-height:1.5;">포인트 유효기간 1년(적립일 기준 · FIFO 소멸) · 포인트↔티켓 교환 시 원 적립일을 그대로 승계</div>
+            </div>
             <div style="font-size:13px;font-weight:800;color:var(--text1);margin-bottom:6px;padding:0 2px;">최근 적립·사용</div>
             <div style="display:flex;flex-direction:column;">
               <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 2px;border-bottom:1px solid #EFEAF7;">
@@ -10208,6 +10214,20 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             <div style="font-size:10px;font-weight:700;color:var(--text2);margin-bottom:5px;">골드</div>
             <div><span style="font-size:22px;font-weight:800;color:var(--text1);letter-spacing:-1px;line-height:1;">2</span><span style="font-size:10px;font-weight:600;color:var(--text2);"> 장</span></div>
             <div style="font-size:9.5px;color:var(--text3);margin-top:3px;"></div>
+          </div>
+        </div>
+
+        <!-- 검색 + 정렬 + 교환 내역 -->
+        <div style="flex-shrink:0;padding:8px 0 0;">
+          <div style="display:flex;gap:7px;align-items:center;">
+            <input placeholder="상품·브랜드 검색" style="flex:1;height:34px;border:1px solid #E4DBFF;border-radius:9px;padding:0 11px;font-size:12px;box-sizing:border-box;">
+            <select style="height:34px;border:1px solid #E4DBFF;border-radius:9px;font-size:11.5px;padding:0 6px;color:var(--text2);"><option>추천순</option><option>가격 낮은순</option><option>가격 높은순</option><option>교환 가능순</option></select>
+            <button onclick="var p=document.getElementById('gx-history');p.style.display=(p.style.display==='block')?'none':'block';" style="height:34px;background:#F1ECFF;border:none;border-radius:9px;font-size:11.5px;font-weight:700;color:var(--main);padding:0 11px;cursor:pointer;white-space:nowrap;">교환 내역</button>
+          </div>
+          <div id="gx-history" style="display:none;margin-top:8px;background:#fff;border:1px solid #EFEAF7;border-radius:10px;overflow:hidden;">
+            <div style="font-size:11px;font-weight:800;color:var(--text1);padding:9px 12px;background:#FAF8FF;">기프티콘 교환 내역</div>
+            <div style="padding:10px 12px;border-top:1px solid #F3EFFA;"><div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;"><span style="font-weight:600;">스타벅스 아메리카노 T</span><span style="font-size:10.5px;font-weight:700;color:#1f9d57;background:#e6f7ec;border-radius:8px;padding:2px 7px;">발급완료</span></div><div style="font-size:10.5px;color:var(--text3);margin-top:3px;">바코드 9412 **** 7780 · 유효기간 2026.12.10 · 2026.06.12 교환</div></div>
+            <div style="padding:10px 12px;border-top:1px solid #F3EFFA;"><div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;"><span style="font-weight:600;">GS25 5,000원권</span><span style="font-size:10.5px;font-weight:700;color:#6b7280;background:#f3f4f6;border-radius:8px;padding:2px 7px;">사용완료</span></div><div style="font-size:10.5px;color:var(--text3);margin-top:3px;">바코드 2230 **** 1145 · 2026.05.28 사용</div></div>
           </div>
         </div>
 
@@ -10464,12 +10484,20 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
                 <div style="font-size:9.5px;color:#9B93B0;">만료 2027.05.20</div>
               </div>
             </div>
+            <button type="button" onclick="var p=this.nextElementSibling;p.style.display=(p.style.display==='block')?'none':'block';" style="margin-top:8px;width:100%;background:none;border:none;font-size:11px;font-weight:700;color:var(--main);cursor:pointer;text-align:left;padding:2px;">장별 만료일 자세히 보기 ▾</button>
+            <div style="display:none;margin-top:6px;background:#fff;border:1px solid #EFEAF7;border-radius:8px;overflow:hidden;">
+              <div style="font-size:10px;color:var(--text3);padding:7px 10px;background:#FAF8FF;font-weight:700;">브론즈 12장 · 만료일 오름차순(임박 순)</div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 1장</span><span style="color:#DC2626;font-weight:700;">2026.06.25 (D-7)</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 2장</span><span style="color:#DC2626;font-weight:700;">2026.06.25 (D-7)</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 4장</span><span style="color:var(--text3);">2026.12.10</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 5장</span><span style="color:var(--text3);">2027.02.18</span></div>
+            </div>
           </div>
 
           <div class="gd-section">
             <div class="gd-section-t">티켓 등급 바꾸기</div>
             <div class="gd-swap-card">
-              <div class="gd-swap-desc">상품마다 정해진 등급의 티켓 한 가지만 사용해요. 부족한 등급이 있다면 보유한 티켓을 교환해서 채울 수 있어요.</div>
+              <div class="gd-swap-desc">상품마다 정해진 등급의 티켓 한 가지만 사용해요. 부족한 등급이 있다면 보유한 티켓을 교환해서 채울 수 있어요.<br><br>합칠 때는 <b>만료가 임박한(적립일이 오래된) 티켓부터 자동 사용</b>하고, 새로 생기는 상위 티켓은 <b>원본 중 가장 이른 적립일을 그대로 승계</b>합니다(만료일 연장 없음). 나눌 때도 원 적립일을 그대로 이어받아요.</div>
               <div class="gd-swap-row">
                 <div class="gd-swap-side">
                   <span class="gd-swap-medal"><svg width="40" height="40" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g10c_1013" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C68250"/><stop offset="100%" stop-color="#8B5A2B"/></linearGradient></defs><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="url(#g10c_1013)"/><path d="M316.2,155.8l12.1,6.2c.8.4,1.8.3,2.4-.4l9.6-9.6c1.4-1.4,3.8-.2,3.5,1.8l-2.1,13.5c-.1.9.3,1.8,1.1,2.2l12.1,6.2c1.8.9,1.4,3.6-.6,3.9l-13.5,2.1c-.9.1-1.6.8-1.7,1.7l-2.1,13.5c-.3,2-3,2.4-3.9.6l-6.2-12.1c-.4-.8-1.3-1.3-2.2-1.1l-13.5,2.1c-2,.3-3.2-2.1-1.8-3.5l9.6-9.6c.6-.6.8-1.6.4-2.4l-6.2-12.1c-.9-1.8,1-3.7,2.8-2.8Z" fill="rgba(255,255,255,0.95)"/><path d="M180.7,298.9l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2ZM215.3,319.1l-4.7,4.7-31.6-31.6,4.7-4.7,31.6,31.6ZM231.9,296.8c1.9,1.9,1.9,3.9,0,5.8l-9.9,9.9c-1.9,1.9-3.8,1.8-5.7,0l-25.8-25.8c-1.9-1.9-2-3.8-.1-5.7l9.9-9.9c1.9-1.9,3.9-1.9,5.8,0l7.4,7.4-4.7,4.7-6.2-6.2-6.1,6.1,23.5,23.5,6.1-6.1-6.6-6.6,4.7-4.7,7.8,7.8ZM254.4,280l-5.2,5.2-20.1-8.1,14.1,14.1-4.7,4.7-31.6-31.6,4.7-4.7,13.4,13.4-8.1-18.6,5.2-5.2.2.2,8.6,21.4,23.6,9.2ZM269.5,265l-13.1,13.1-31.6-31.6,13-13,4.2,4.2-8.3,8.3,9.2,9.2,7.1-7.1,4.1,4.1-7.1,7.1,9.9,9.9,8.4-8.4,4.2,4.2ZM259,220.6l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2Z" fill="rgba(255,255,255,0.95)"/></svg></span>
@@ -11005,7 +11033,8 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
         </div>
         <div class="wd-footer">
           <button class="wd-cancel-btn">취소</button>
-          <button class="wd-confirm-btn">탈퇴하기</button>
+          <button class="wd-confirm-btn" onclick="if(confirm('정말 탈퇴하시겠어요?\n보유 티켓·포인트·활동 내역이 모두 삭제되며 복구할 수 없습니다.'))ipToast('탈퇴가 완료되었습니다. 로그인 화면으로 이동합니다.')">탈퇴하기</button>
+          <div style="font-size:10.5px;color:var(--text3);text-align:center;margin-top:8px;line-height:1.5;">카카오 재인증 + 동의 체크 + 최종 확인까지 거쳐야 탈퇴 처리됩니다.</div>
         </div>
       </div>
     </div>
@@ -12378,7 +12407,7 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             <div class="my-row-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
             <div class="my-row-body">
               <div class="my-row-name">픽구매 알림</div>
-              <div class="my-row-desc">티켓 적립 안내</div>
+              <div class="my-row-desc">구매 추적 · 적립/가지급 · 구매확정 · 환수 (거래성)</div>
             </div>
             <div class="my-toggle on"></div>
           </div>
@@ -12386,7 +12415,7 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             <div class="my-row-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
             <div class="my-row-body">
               <div class="my-row-name">이벤트 · 티켓 알림</div>
-              <div class="my-row-desc">신규 이벤트, 경품 응모 안내</div>
+              <div class="my-row-desc">룰렛 · 경품 응모 · 당첨 · 티켓 만료 임박(D-30/D-7)</div>
             </div>
             <div class="my-toggle on"></div>
           </div>
@@ -12394,11 +12423,12 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             <div class="my-row-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9v18L3 13"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
             <div class="my-row-body">
               <div class="my-row-name">마케팅 정보 수신</div>
-              <div class="my-row-desc">프로모션 · 광고성 정보</div>
+              <div class="my-row-desc">프로모션 · 광고성 정보 (기본 꺼짐)</div>
             </div>
             <div class="my-toggle"></div>
           </div>
         </div>
+        <div class="my-version" style="padding:8px 4px 0;font-size:10.5px;color:var(--text3);line-height:1.5;">각 스위치는 푸시·인앱에 공통 적용 · 켜짐/꺼짐 상태는 계정에 저장되어 기기 간 동기화됩니다.</div>
 
         <!-- 표시 -->
         <div class="my-section-title">표시</div>
@@ -12415,8 +12445,9 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             <div class="my-row-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><path d="M4 6h1v4"/><path d="M4 10h2"/><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></div>
             <div class="my-row-body">
               <div class="my-row-name">기본 정렬</div>
+              <div class="my-row-desc">활동 내역 · 구매 내역 목록에 적용</div>
             </div>
-            <div class="my-row-right value">최신순</div>
+            <div class="my-row-right value">최신순 / 오래된순</div>
             <div class="my-row-right">›</div>
           </div>
         </div>
@@ -12490,6 +12521,7 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
           <div class="wd-reauth-card">
             <div class="wd-reauth-t">본인 재확인 필요</div>
             <button class="wd-reauth-btn">카카오 계정 재인증</button>
+            <div style="font-size:10.5px;color:var(--text3);line-height:1.5;margin-top:8px;">카카오 미연동(게스트) 계정은 재인증 단계가 없어요. 아래 <b>동의 체크</b>로 본인 확인을 갈음하고, 탈퇴 시 삭제 항목을 한 번 더 안내드립니다.</div>
           </div>
           <div class="wd-check-row">
             <div class="wd-checkbox on">✓</div>
@@ -12499,6 +12531,7 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
         <div class="wd-footer">
           <button class="wd-cancel-btn">취소</button>
           <button class="wd-confirm-btn">탈퇴하기</button>
+          <div style="font-size:10.5px;color:var(--text3);text-align:center;margin-top:8px;line-height:1.5;">동의 체크(미연동) 또는 카카오 재인증(연동) 후 '탈퇴 최종 확인' 화면에서 삭제 항목을 다시 확인하면 탈퇴 처리됩니다.</div>
         </div>
       </div>
     </div>
@@ -12857,13 +12890,21 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
                 <div style="font-size:9.5px;color:#9B93B0;">만료 2027.05.20</div>
               </div>
             </div>
+            <button type="button" onclick="var p=this.nextElementSibling;p.style.display=(p.style.display==='block')?'none':'block';" style="margin-top:8px;width:100%;background:none;border:none;font-size:11px;font-weight:700;color:var(--main);cursor:pointer;text-align:left;padding:2px;">장별 만료일 자세히 보기 ▾</button>
+            <div style="display:none;margin-top:6px;background:#fff;border:1px solid #EFEAF7;border-radius:8px;overflow:hidden;">
+              <div style="font-size:10px;color:var(--text3);padding:7px 10px;background:#FAF8FF;font-weight:700;">브론즈 12장 · 만료일 오름차순(임박 순)</div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 1장</span><span style="color:#DC2626;font-weight:700;">2026.06.25 (D-7)</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 2장</span><span style="color:#DC2626;font-weight:700;">2026.06.25 (D-7)</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 4장</span><span style="color:var(--text3);">2026.12.10</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 5장</span><span style="color:var(--text3);">2027.02.18</span></div>
+            </div>
           </div>
 
           <!-- 등급 간 교환 -->
           <div class="gd-section">
             <div class="gd-section-t">티켓 등급 바꾸기</div>
             <div class="gd-swap-card">
-              <div class="gd-swap-desc">상품마다 정해진 등급의 티켓 한 가지만 사용해요. 부족한 등급이 있다면 보유한 티켓을 교환해서 채울 수 있어요.</div>
+              <div class="gd-swap-desc">상품마다 정해진 등급의 티켓 한 가지만 사용해요. 부족한 등급이 있다면 보유한 티켓을 교환해서 채울 수 있어요.<br><br>합칠 때는 <b>만료가 임박한(적립일이 오래된) 티켓부터 자동 사용</b>하고, 새로 생기는 상위 티켓은 <b>원본 중 가장 이른 적립일을 그대로 승계</b>합니다(만료일 연장 없음). 나눌 때도 원 적립일을 그대로 이어받아요.</div>
               <div class="gd-swap-row">
                 <div class="gd-swap-side">
                   <span class="gd-swap-medal"><svg width="40" height="40" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g05c_1013" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C68250"/><stop offset="100%" stop-color="#8B5A2B"/></linearGradient></defs><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="url(#g05c_1013)"/><path d="M316.2,155.8l12.1,6.2c.8.4,1.8.3,2.4-.4l9.6-9.6c1.4-1.4,3.8-.2,3.5,1.8l-2.1,13.5c-.1.9.3,1.8,1.1,2.2l12.1,6.2c1.8.9,1.4,3.6-.6,3.9l-13.5,2.1c-.9.1-1.6.8-1.7,1.7l-2.1,13.5c-.3,2-3,2.4-3.9.6l-6.2-12.1c-.4-.8-1.3-1.3-2.2-1.1l-13.5,2.1c-2,.3-3.2-2.1-1.8-3.5l9.6-9.6c.6-.6.8-1.6.4-2.4l-6.2-12.1c-.9-1.8,1-3.7,2.8-2.8Z" fill="rgba(255,255,255,0.95)"/><path d="M180.7,298.9l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2ZM215.3,319.1l-4.7,4.7-31.6-31.6,4.7-4.7,31.6,31.6ZM231.9,296.8c1.9,1.9,1.9,3.9,0,5.8l-9.9,9.9c-1.9,1.9-3.8,1.8-5.7,0l-25.8-25.8c-1.9-1.9-2-3.8-.1-5.7l9.9-9.9c1.9-1.9,3.9-1.9,5.8,0l7.4,7.4-4.7,4.7-6.2-6.2-6.1,6.1,23.5,23.5,6.1-6.1-6.6-6.6,4.7-4.7,7.8,7.8ZM254.4,280l-5.2,5.2-20.1-8.1,14.1,14.1-4.7,4.7-31.6-31.6,4.7-4.7,13.4,13.4-8.1-18.6,5.2-5.2.2.2,8.6,21.4,23.6,9.2ZM269.5,265l-13.1,13.1-31.6-31.6,13-13,4.2,4.2-8.3,8.3,9.2,9.2,7.1-7.1,4.1,4.1-7.1,7.1,9.9,9.9,8.4-8.4,4.2,4.2ZM259,220.6l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2Z" fill="rgba(255,255,255,0.95)"/></svg></span>
@@ -12945,6 +12986,9 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
               <div class="swap-info-rule">브론즈 <b>10장</b> ⇄ 실버 <b>1장</b></div>
               <div class="swap-info-rule">실버 <b>2장</b> ⇄ 골드 <b>1장</b></div>
               <div class="swap-info-foot">환산가치 1:1 등가 교환. 어느 방향으로 바꿔도 보유 가치는 같아요.</div>
+            </div>
+            <div style="margin-top:8px;background:#FFF8EE;border:1px solid #FFE2B8;border-radius:10px;padding:10px 12px;font-size:10.5px;color:#9A6A1E;line-height:1.6;">
+              <b>사용 기한 처리</b><br>· 합칠 때: <b>만료 임박분(적립일이 오래된 티켓)부터 자동 사용</b>(FIFO). 새 상위 티켓은 <b>원본 중 가장 이른 적립일을 승계</b>해 만료일이 연장되지 않아요.<br>· 나눌 때: 새 하위 티켓들은 <b>원본 티켓의 적립일을 그대로 승계</b>(전부 동일).
             </div>
           </div>
 
@@ -13252,6 +13296,12 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
             <div style="flex-shrink:0;padding:6px 13px;border-radius:18px;background:#fff;border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:600;">확인 중</div>
             <div style="flex-shrink:0;padding:6px 13px;border-radius:18px;background:#fff;border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:600;">취소·환불</div>
           </div>
+          <div style="display:flex;justify-content:flex-end;padding:0 16px 4px;">
+            <div style="display:inline-flex;background:#F1ECFF;border-radius:18px;padding:2px;">
+              <button type="button" onclick="ppSortPick(this,'최신순')" style="border:none;background:#fff;color:var(--main);font-size:11px;font-weight:800;border-radius:16px;padding:5px 12px;cursor:pointer;">최신순</button>
+              <button type="button" onclick="ppSortPick(this,'오래된순')" style="border:none;background:transparent;color:var(--text2);font-size:11px;font-weight:600;border-radius:16px;padding:5px 12px;cursor:pointer;">오래된순</button>
+            </div>
+          </div>
           <div style="margin:8px 16px;background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;">
             <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--border);">
               <div style="display:flex;align-items:center;gap:7px;">
@@ -13284,7 +13334,13 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
               <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--text3);margin-bottom:5px;"><span>적립</span><span style="color:var(--text3);font-weight:600;">경유 추적 확인 중</span></div>
               <div style="margin-top:6px;background:#FFF8EE;border:1px solid #FFE2B8;border-radius:10px;padding:10px 12px;">
                 <div style="font-size:11px;color:#9A6A1E;line-height:1.5;margin-bottom:8px;">경유 추적이 아직 확인되지 않았어요. 영수증을 인증하면 적립을 받을 수 있어요.</div>
-                <button onclick="ipToast('영수증 인증 화면으로 이동합니다')" style="width:100%;height:38px;background:var(--main);border:none;border-radius:9px;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;">영수증 인증하기</button>
+                <button onclick="var p=this.nextElementSibling;p.style.display=(p.style.display==='block')?'none':'block';" style="width:100%;height:38px;background:var(--main);border:none;border-radius:9px;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;">영수증 인증하기</button>
+                <div style="display:none;margin-top:10px;">
+                  <div style="font-size:11px;color:#9A6A1E;line-height:1.7;margin-bottom:8px;"><b>처리 단계</b><br>① 주문번호 입력 또는 영수증/캡처 첨부<br>② 자동 대조 (주문번호·금액·일시)<br>③ 매칭 성공 시 적립 가지급 → 구매확정 D+7 후 확정</div>
+                  <input placeholder="쿠팡 주문번호 입력" style="width:100%;height:36px;border:1px solid #FFE2B8;border-radius:8px;padding:0 10px;font-size:12px;margin-bottom:7px;box-sizing:border-box;">
+                  <button onclick="ipToast('영수증 캡처를 첨부했습니다.')" style="width:100%;height:34px;background:#fff;border:1px dashed #E0B070;border-radius:8px;font-size:11.5px;font-weight:600;color:#9A6A1E;cursor:pointer;margin-bottom:7px;">＋ 영수증 캡처 첨부</button>
+                  <button onclick="ipToast('인증 접수 — 자동 대조 후 적립 가지급, 구매확정 D+7에 확정됩니다.')" style="width:100%;height:38px;background:var(--main);border:none;border-radius:9px;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;">인증 제출</button>
+                </div>
               </div>
 
             </div>
@@ -13361,6 +13417,12 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
           <div class="filter-pill">환수</div>
           <div class="filter-pill">응모</div>
           <div class="filter-pill">만료</div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;padding:4px 16px 2px;">
+          <div style="display:inline-flex;background:#F1ECFF;border-radius:18px;padding:2px;">
+            <button type="button" onclick="ppSortPick(this,'최신순')" style="border:none;background:#fff;color:var(--main);font-size:11px;font-weight:800;border-radius:16px;padding:5px 12px;cursor:pointer;">최신순</button>
+            <button type="button" onclick="ppSortPick(this,'오래된순')" style="border:none;background:transparent;color:var(--text2);font-size:11px;font-weight:600;border-radius:16px;padding:5px 12px;cursor:pointer;">오래된순</button>
+          </div>
         </div>
         <div class="activity-list" id="act-list-32">
           <div class="activity-month">2026년 5월</div>
@@ -14296,6 +14358,20 @@ function ipToast(msg) {
   t.classList.add('show');
   if (_toastTimer) clearTimeout(_toastTimer);
   _toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ===== 내역 정렬 토글 (최신순/오래된순) — 06b 활동내역·06d 구매내역 공통 =====
+function ppSortPick(btn, label){
+  var w = btn.parentElement;
+  Array.prototype.forEach.call(w.children, function(c){
+    c.style.background = 'transparent';
+    c.style.color = 'var(--text2)';
+    c.style.fontWeight = '600';
+  });
+  btn.style.background = '#fff';
+  btn.style.color = 'var(--main)';
+  btn.style.fontWeight = '800';
+  ipToast(label + '으로 정렬했습니다.');
 }
 
 // ===== catch-all: 동작 없는 클릭 요소 처리 =====
