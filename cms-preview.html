@@ -5691,7 +5691,7 @@ body.chgview-on #chgvOverlay{display:block}
 (function(){
   var DEVQA="https://pricepick.vercel.app/devqa/cms-vin-20260618.html";
   var CH=[
-    {sel:"#sec-members .toolbar", q:"Vin #1",
+    {sels:["#sec-members .toolbar","#sec-members .card"], q:"Vin #1",
       area:"회원 목록 — 연동 상태 필터·컬럼 / Member List — filter·cột trạng thái liên kết",
       bKo:"‘유형’ 필터 = 전체 / 카카오 / Apple+카카오 / Google+카카오 (구 소셜 로그인 플로우 기준).",
       bVi:"Filter ‘loại’ = Tất cả / Kakao / Apple+Kakao / Google+Kakao (theo flow social cũ).",
@@ -5699,7 +5699,7 @@ body.chgview-on #chgvOverlay{display:block}
       aVi:"Filter ‘trạng thái liên kết’ = Tất cả / Guest(chưa liên kết) / Đã liên kết Kakao; thêm cột ‘trạng thái liên kết’·ngày liên kết, bỏ cột·badge Apple·Google.",
       rKo:"새 플로우(게스트 시작 → 카카오 연동, 애플·구글 폐지)에 맞춰 1단계 계정 모델의 2상태(게스트/연동)로 필터·컬럼을 정렬.",
       rVi:"Theo flow mới (Guest → liên kết Kakao, bỏ Apple·Google), khớp 2 trạng thái của mô hình tài khoản giai đoạn 1."},
-    {sel:"#sec-draws .card-header", q:"Vin #7 (+#4·#5)",
+    {sels:["#sec-draws .card"], q:"Vin #7 (+#4·#5)",
       area:"추첨 관리 — 회차 등록 분리 / Draw — tách form đăng ký kỳ",
       bKo:"‘등록’ 폼이 목록 하단에 위치 — 목록이 길어지면 신규 1건 등록에 스크롤 비용이 큼.",
       bVi:"Form ‘đăng ký’ nằm cuối danh sách — danh sách dài thì tốn cuộn để thêm 1 mục.",
@@ -5707,7 +5707,7 @@ body.chgview-on #chgvOverlay{display:block}
       aVi:"Ghim nút ‘+ đăng ký kỳ’ đầu trang + tách đăng ký ra modal/panel (giữ danh sách bên dưới). Badge (1)=số việc chờ xử lý, thống nhất tên ‘당첨 처리(추첨 실행)’.",
       rKo:"긴 목록과 입력 폼을 한 화면에 두면 둘 다 불편 — 입력은 오버레이가 표준.",
       rVi:"Danh sách dài + form chung một màn thì bất tiện — nhập nên dạng overlay."},
-    {sel:"#sec-banners .card-header", q:"Vin #16",
+    {sels:["#sec-banners .card"], q:"Vin #16",
       area:"배너 관리 — 풀 CRUD / Banner — full CRUD",
       bKo:"배너 3개가 기본 표시되고 각 배너에 ‘수정’만 있음. 생성·삭제 없음.",
       bVi:"3 banner hiển thị mặc định, mỗi banner chỉ có ‘수정’. Không có tạo·xóa.",
@@ -5715,7 +5715,7 @@ body.chgview-on #chgvOverlay{display:block}
       aVi:"Thêm CRUD đầy đủ — ‘+ thêm banner’·xóa·toggle hiển thị·đổi thứ tự (gồm thời gian·link·ảnh).",
       rKo:"배너는 캠페인마다 추가/내림이 잦아 ‘수정’만으론 운영 불가 — 콘텐츠 CRUD가 표준.",
       rVi:"Banner hay thêm/gỡ theo chiến dịch, chỉ ‘sửa’ thì không vận hành được — CRUD là chuẩn."},
-    {sel:"#sec-events .card-header", q:"Vin #17",
+    {sels:["#sec-events .card"], q:"Vin #17",
       area:"이벤트 관리 — 풀 CRUD + 정합 검증 / Event — CRUD + kiểm tra nhất quán",
       bKo:"이벤트 3개가 기본 표시되고 ‘수정’만 있음. 생성·삭제 없음.",
       bVi:"3 sự kiện hiển thị mặc định, chỉ có ‘수정’. Không có tạo·xóa.",
@@ -5723,7 +5723,7 @@ body.chgview-on #chgvOverlay{display:block}
       aVi:"Thêm CRUD — ‘+ tạo sự kiện’·xóa·sửa thời gian/đối tượng/thưởng; khi tạo/sửa kiểm tra nhất quán chính sách (chống thưởng trùng·xung đột hết hạn).",
       rKo:"이벤트는 시즌마다 신설/종료가 잦아 CRUD가 필수, 보상에 직접 영향이라 검증 게이트가 필요.",
       rVi:"Sự kiện hay mở/đóng theo mùa nên cần CRUD; ảnh hưởng thưởng nên cần cổng kiểm."},
-    {sel:"#sec-point-policy .card-header", q:"Vin #14·#15",
+    {sels:["#sec-point-policy .card"], q:"Vin #14·#15",
       area:"포인트 정책 — 수정 모달 신설 / Point Policy — modal chỉnh sửa",
       bKo:"‘수정’ 버튼이 ‘교환 비율 수정 준비중’ 토스트만 표시 — 편집 화면 없음. 적립·만료 정책은 읽기 전용.",
       bVi:"Nút ‘수정’ chỉ hiện toast ‘đang chuẩn bị’ — chưa có màn chỉnh sửa. Chính sách tích·hết hạn chỉ đọc.",
@@ -5745,16 +5745,28 @@ body.chgview-on #chgvOverlay{display:block}
   window.chgvClose=function(){document.getElementById("chgvModal").classList.remove("show");};
   /* s05 fix: 대상 위치를 body 레벨 고정 오버레이 박스로 추적해 그림 (카드 overflow·stacking 무관, 항상 최상단) */
   var overlay=null, targets=[], rafOn=false;
+  /* 여러 selector의 실제 렌더 rect를 합집합 → 카드/섹션 전체를 정확히 감싼다. 활성(display:block) 섹션만 잡힘(비활성=display:none→offsetParent null) */
+  function unionRect(sels){
+    var L=Infinity,T=Infinity,R=-Infinity,B=-Infinity,found=false;
+    for(var i=0;i<sels.length;i++){
+      var el=document.querySelector(sels[i]);
+      if(!el||el.offsetParent===null)continue;     /* 숨김 섹션·미렌더 제외 */
+      var r=el.getBoundingClientRect();
+      if(r.width===0||r.height===0)continue;
+      found=true;
+      if(r.left<L)L=r.left; if(r.top<T)T=r.top;
+      if(r.right>R)R=r.right; if(r.bottom>B)B=r.bottom;
+    }
+    return found?{left:L,top:T,width:R-L,height:B-T}:null;
+  }
   function positionBoxes(){
     if(!document.body.classList.contains("chgview-on"))return;
     for(var i=0;i<targets.length;i++){
-      var el=targets[i].el, box=targets[i].box;
-      var vis=el&&el.offsetParent!==null;           /* 현재 활성 섹션에 보이는 대상만 */
-      var r=vis?el.getBoundingClientRect():null;
-      if(!vis||!r||r.width===0||r.height===0){box.style.display="none";continue;}
+      var u=unionRect(targets[i].sels), box=targets[i].box;
+      if(!u){box.style.display="none";continue;}
       box.style.display="block";
-      box.style.left=(r.left-3)+"px";box.style.top=(r.top-3)+"px";
-      box.style.width=(r.width+6)+"px";box.style.height=(r.height+6)+"px";
+      box.style.left=(u.left-4)+"px";box.style.top=(u.top-4)+"px";
+      box.style.width=(u.width+8)+"px";box.style.height=(u.height+8)+"px";
     }
   }
   function loop(){if(!document.body.classList.contains("chgview-on")){rafOn=false;return;}positionBoxes();requestAnimationFrame(loop);}
@@ -5765,15 +5777,15 @@ body.chgview-on #chgvOverlay{display:block}
     overlay=document.createElement("div");overlay.id="chgvOverlay";document.body.appendChild(overlay);
     var applied=0;
     CH.forEach(function(c,i){
-      var el=document.querySelector(c.sel);
-      if(!el){console.warn("[chgview] 대상 없음:",c.sel);return;}
+      var has=c.sels.some(function(s){return !!document.querySelector(s);});
+      if(!has){console.warn("[chgview] 대상 없음:",c.sels);return;}
       var box=document.createElement("div");box.className="chgv-ovbox";box.style.display="none";
       box.title="변경 보기: "+c.area;
       var lab=document.createElement("span");lab.className="chgv-ovlabel";lab.textContent="수정됨 · Đã sửa";
       box.appendChild(lab);
       box.addEventListener("click",function(e){e.stopPropagation();e.preventDefault();chgvOpen(i);});
       overlay.appendChild(box);
-      targets.push({el:el,box:box});
+      targets.push({sels:c.sels,box:box});
       applied++;
     });
     window.addEventListener("scroll",positionBoxes,true);  /* 내부 스크롤 컨테이너 포함(capture) */
