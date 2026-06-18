@@ -5650,11 +5650,13 @@ Object.assign(KO2VI,{"카카오 연동 회원과 미연동 회원이 모두 존�
 .chgv-toggle .dot{width:8px;height:8px;border-radius:50%;background:#c3bdd2;transition:background .15s}
 .chgv-toggle.on{background:#5b39b8;color:#fff;border-color:#5b39b8}
 .chgv-toggle.on .dot{background:#7CF5A0}
-body.chgview-on .chg-mark{position:relative;outline:2px dashed #845EEE;outline-offset:3px;border-radius:6px;cursor:pointer;background:rgba(132,94,238,.045);transition:background .12s}
-body.chgview-on .chg-mark:hover{background:rgba(132,94,238,.11)}
-.chg-label{display:none}
-body.chgview-on .chg-mark>.chg-label{display:inline-flex;align-items:center;position:absolute;top:-11px;left:12px;z-index:6;background:#845EEE;color:#fff;font-size:10px;font-weight:800;line-height:1;padding:3px 9px;border-radius:10px;letter-spacing:.02em;box-shadow:0 1px 5px rgba(132,94,238,.45);pointer-events:none;white-space:nowrap}
-.chgv-modal{position:fixed;inset:0;background:rgba(26,17,48,.5);display:none;align-items:center;justify-content:center;z-index:9000;padding:20px}
+/* s05 fix: 점선·라벨을 body 레벨 고정 오버레이로 — 카드 overflow:hidden·stacking에 안 가리고 항상 최상단. (CMS 내부 최대 z-index 9999 위로) */
+#chgvOverlay{position:fixed;inset:0;pointer-events:none;z-index:2147483000;display:none}
+body.chgview-on #chgvOverlay{display:block}
+.chgv-ovbox{position:fixed;box-sizing:border-box;border:2px dashed #845EEE;border-radius:7px;background:rgba(132,94,238,.06);pointer-events:auto;cursor:pointer;transition:background .12s}
+.chgv-ovbox:hover{background:rgba(132,94,238,.15)}
+.chgv-ovlabel{position:absolute;top:-11px;left:10px;display:inline-flex;align-items:center;background:#845EEE;color:#fff;font-size:10px;font-weight:800;line-height:1;padding:3px 9px;border-radius:10px;letter-spacing:.02em;box-shadow:0 1px 6px rgba(132,94,238,.5);white-space:nowrap;pointer-events:none}
+.chgv-modal{position:fixed;inset:0;background:rgba(26,17,48,.5);display:none;align-items:center;justify-content:center;z-index:2147483600;padding:20px}
 .chgv-modal.show{display:flex}
 .chgv-box{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:88vh;overflow:auto;box-shadow:0 14px 50px rgba(26,17,48,.35);padding:0 0 18px}
 .chgv-h{display:flex;align-items:flex-start;gap:10px;padding:18px 20px 14px;border-bottom:1px solid #efecf7;position:sticky;top:0;background:#fff}
@@ -5741,27 +5743,49 @@ body.chgview-on .chg-mark>.chg-label{display:inline-flex;align-items:center;posi
     document.getElementById("chgvModal").classList.add("show");
   };
   window.chgvClose=function(){document.getElementById("chgvModal").classList.remove("show");};
+  /* s05 fix: 대상 위치를 body 레벨 고정 오버레이 박스로 추적해 그림 (카드 overflow·stacking 무관, 항상 최상단) */
+  var overlay=null, targets=[], rafOn=false;
+  function positionBoxes(){
+    if(!document.body.classList.contains("chgview-on"))return;
+    for(var i=0;i<targets.length;i++){
+      var el=targets[i].el, box=targets[i].box;
+      var vis=el&&el.offsetParent!==null;           /* 현재 활성 섹션에 보이는 대상만 */
+      var r=vis?el.getBoundingClientRect():null;
+      if(!vis||!r||r.width===0||r.height===0){box.style.display="none";continue;}
+      box.style.display="block";
+      box.style.left=(r.left-3)+"px";box.style.top=(r.top-3)+"px";
+      box.style.width=(r.width+6)+"px";box.style.height=(r.height+6)+"px";
+    }
+  }
+  function loop(){if(!document.body.classList.contains("chgview-on")){rafOn=false;return;}positionBoxes();requestAnimationFrame(loop);}
+  function startLoop(){if(rafOn)return;rafOn=true;requestAnimationFrame(loop);}
   function init(){
     var modal=document.getElementById("chgvModal");
     if(modal)modal.addEventListener("click",function(e){if(e.target===modal)chgvClose();});
+    overlay=document.createElement("div");overlay.id="chgvOverlay";document.body.appendChild(overlay);
     var applied=0;
     CH.forEach(function(c,i){
       var el=document.querySelector(c.sel);
       if(!el){console.warn("[chgview] 대상 없음:",c.sel);return;}
-      el.classList.add("chg-mark");el.setAttribute("data-chg",i);
-      el.setAttribute("title","변경 보기: "+c.area);
-      var lab=document.createElement("span");lab.className="chg-label";lab.textContent="수정됨 · Đã sửa";
-      el.appendChild(lab);
-      el.addEventListener("click",function(e){
-        if(!document.body.classList.contains("chgview-on"))return;  /* OFF: 평소 동작 그대로 */
-        e.stopPropagation();e.preventDefault();chgvOpen(i);
-      },true);  /* capture: ON일 때 내부 버튼보다 먼저 가로채 모달 표시 */
+      var box=document.createElement("div");box.className="chgv-ovbox";box.style.display="none";
+      box.title="변경 보기: "+c.area;
+      var lab=document.createElement("span");lab.className="chgv-ovlabel";lab.textContent="수정됨 · Đã sửa";
+      box.appendChild(lab);
+      box.addEventListener("click",function(e){e.stopPropagation();e.preventDefault();chgvOpen(i);});
+      overlay.appendChild(box);
+      targets.push({el:el,box:box});
       applied++;
     });
+    window.addEventListener("scroll",positionBoxes,true);  /* 내부 스크롤 컨테이너 포함(capture) */
+    window.addEventListener("resize",positionBoxes);
     var tr=document.querySelector(".topbar-right");
     var btn=document.createElement("button");btn.type="button";btn.className="chgv-toggle";
     btn.innerHTML='<span class="dot"></span><span>변경 보기 · Xem thay đổi</span>';
-    btn.addEventListener("click",function(){var on=document.body.classList.toggle("chgview-on");btn.classList.toggle("on",on);});
+    btn.addEventListener("click",function(){
+      var on=document.body.classList.toggle("chgview-on");
+      btn.classList.toggle("on",on);
+      if(on){positionBoxes();startLoop();}
+    });
     if(tr)tr.insertBefore(btn,tr.firstChild);
     console.log("[chgview] 적용 영역 "+applied+"/"+CH.length);
   }
