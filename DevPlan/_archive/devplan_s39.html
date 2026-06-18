@@ -212,31 +212,6 @@ body.pp-readonly .ppsave{opacity:.4;pointer-events:none}
 .pplogdel:hover{background:#c0497a;color:#fff}
 .pprole{font-size:11px;font-weight:800;color:#fff;background:var(--pp);border-radius:10px;padding:2px 8px}
 .pprole.super{background:var(--be)}
-/* === s40: 작업 추가·삭제 + 작업별 메모 === */
-.ppmemo{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;margin-left:6px;padding:0;border:none;background:none;cursor:pointer;color:var(--ink3);opacity:.4;vertical-align:middle;border-radius:5px}
-.ppmemo:hover{opacity:1;background:var(--pp-l)}
-.ppmemo.has{color:var(--pp);opacity:1}
-.pprowdel{margin-left:7px;border:none;background:#fbe9ec;color:#c0497a;font-weight:800;font-size:13px;line-height:1;border-radius:6px;width:20px;height:20px;cursor:pointer;vertical-align:middle;flex:none}
-.pprowdel:hover{background:#c0497a;color:#fff}
-.ppaddrow{margin-top:11px}
-.ppaddbtn{font-size:12.5px;font-weight:800;color:var(--pp-d);background:#fff;border:1px dashed var(--pp);border-radius:10px;padding:8px 16px;cursor:pointer}
-.ppaddbtn:hover{background:var(--pp-l)}
-.ppmodal{position:fixed;inset:0;background:rgba(31,35,48,.45);display:none;align-items:center;justify-content:center;z-index:80;padding:18px}
-.ppmodal.show{display:flex}
-.ppmodal-box{background:#fff;border-radius:15px;padding:20px 20px 16px;width:100%;max-width:440px;max-height:90vh;overflow:auto;box-shadow:0 10px 40px rgba(31,35,48,.3)}
-.ppmodal-h{font-size:15px;font-weight:800;color:var(--pp-d);margin-bottom:10px}
-.ppmodal-task{font-size:12.5px;font-weight:700;color:var(--ink2);background:var(--pp-l);border-radius:8px;padding:7px 11px;margin-bottom:11px}
-.ppmodal-ta{width:100%;font-size:13px;font-family:inherit;color:var(--ink1);border:1px solid var(--line);border-radius:9px;padding:9px 11px;resize:vertical;line-height:1.5}
-.ppmodal-ta:focus{outline:none;border-color:var(--pp)}
-.ppmodal-ro{font-size:11.5px;color:var(--be);font-weight:700;margin-top:7px}
-.ppmodal-row{display:flex;align-items:center;gap:9px;margin-bottom:9px}
-.ppmodal-row>label{font-size:11.5px;font-weight:700;color:var(--ink3);width:84px;flex:none}
-.ppmodal-row>input,.ppmodal-row>select{flex:1;min-width:0;font-size:13px;font-family:inherit;color:var(--ink1);border:1px solid var(--line);border-radius:8px;padding:7px 9px;background:#fff}
-.ppmodal-row>input:focus,.ppmodal-row>select:focus{outline:none;border-color:var(--pp)}
-.ppmodal-btns{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
-.ppmodal-cancel{font-size:13px;font-weight:700;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px 16px;cursor:pointer}
-.ppmodal-save{font-size:13px;font-weight:800;color:#fff;background:var(--pp);border:none;border-radius:18px;padding:8px 18px;cursor:pointer}
-.ppmodal-save:hover{background:var(--pp-d)}
 </style></head><body>
 <script>
 /* === s36: PPDB 브리지 (클래식 스크립트 — IIFE 모듈보다 먼저 정의) ===
@@ -246,7 +221,7 @@ body.pp-readonly .ppsave{opacity:.4;pointer-events:none}
  /* 트랙 정규형: 'app' | 'cms' | 'backend'. 패널 id(p1/p0/p2)와 매핑.
     idx→값 카테고리는 트랙별 컬렉션에서 읽어 한 cache로 병합(idx 구간이 겹치지 않음).
     phasedef/phaseperiod는 {p0,p1,p2} 형태로 병합(모듈 buildDefs 호환 유지). */
- var IDXCATS=['phase','suborder','status','due','start','worker','memo'];
+ var IDXCATS=['phase','suborder','status','due','start','worker'];
  var NESTCATS=['phasedef','phaseperiod'];
  var CATS=IDXCATS.concat(NESTCATS);
  var P2TRK={p0:'cms',p1:'app',p2:'backend'};   /* 패널 id → 트랙 */
@@ -285,9 +260,6 @@ body.pp-readonly .ppsave{opacity:.4;pointer-events:none}
    writeNested:function(cat,pTrk,phase,field,val){if(this.impl){this.impl.writeNested(cat,pTrk,phase,field,val);}else{writeQ.push(['n',cat,pTrk,phase,field,val]);}},
    appendLog:function(entry){if(this.impl){this.impl.appendLog(entry);}else{logQ.push(entry);}},
    deleteLog:function(track,id){if(this.impl)this.impl.deleteLog(track,id);},
-   /* s40: 커스텀 행(추가) · 숨김(정적 행 삭제) 문서 */
-   writeCustomRow:function(tk,idx,obj){if(this.impl)this.impl.writeCustomRow(tk,idx,obj);},
-   writeHidden:function(tk,idx,val){if(this.impl)this.impl.writeHidden(tk,idx,val);},
    login:function(){if(this.impl)this.impl.login();},
    logout:function(){if(this.impl)this.impl.logout();},
    /* module 스크립트: (track, cat, docData) 수신 → raw 저장 후 병합 cache 재구성 */
@@ -320,8 +292,7 @@ body.pp-readonly .ppsave{opacity:.4;pointer-events:none}
 <div class="calnote"><span class="i18n" data-ko="※ CMS·웹은 항목별 일정(06/16–06/25), App·백엔드는 총 기간 바(착수 06/16 → 종료 07/14·07/15). 주말 제외 평일 작업." data-vi="※ CMS·Web theo lịch từng mục (06/16–06/25); App·Backend hiển thị dải tổng thời gian (bắt đầu 06/16 → kết thúc 07/14·07/15). Làm ngày thường, trừ cuối tuần.">※ CMS·웹은 항목별 일정(06/16–06/25), App·백엔드는 총 기간 바(착수 06/16 → 종료 07/14·07/15). 주말 제외 평일 작업.</span></div>
 </div>
 
-<!-- s40: 트랙별 예상시간 합계 카드(App 287h / CMS·웹 55h / 백엔드 152h) 숨김 처리 — 제거 아닌 숨김 -->
-<div class="dash" style="display:none">
+<div class="dash">
 <div class="card app"><div class="lab">App (Kevin·John)</div><div class="val">287h</div><div class="sub"><span class="i18n" data-ko="25기능 · 2인 · ~07/14" data-vi="25 cn · 2 người · ~07/14">25기능 · 2인 · ~07/14</span></div></div>
 <div class="card"><div class="lab">CMS·<span class="i18n" data-ko="웹" data-vi="Web">웹</span> (VIN)</div><div class="val">55h</div><div class="sub">33<span class="i18n" data-ko="항목 · ~06/25" data-vi=" mục · ~06/25">항목 · ~06/25</span></div></div>
 <div class="card be"><div class="lab"><span class="i18n" data-ko="백엔드" data-vi="Backend">백엔드</span> (Harry)</div><div class="val">152h</div><div class="sub"><span class="i18n" data-ko="App 89+CMS 63 · ~07/15" data-vi="App 89+CMS 63 · ~07/15">App 89+CMS 63 · ~07/15</span></div></div>
@@ -542,13 +513,6 @@ function setLang(l,b){document.querySelectorAll('.langtog button').forEach(x=>x.
 </script>
 
 <script>
-/* === s40: 동적 행(추가/삭제) 배선 레지스트리 — 새 행을 기존 컬럼 컨트롤로 균일 배선 === */
-window._ppWirers=window._ppWirers||[];   /* attach(tr) 함수 모음 (각 컬럼 클로저가 등록) */
-window._ppPurgers=window._ppPurgers||[]; /* DOM에서 제거된 행 레코드를 배열에서 정리 */
-window.ppWireRow=function(tr){window._ppWirers.forEach(function(w){try{w(tr);}catch(e){console.error('[pp] wireRow',e);}});};
-window.ppPurgeRows=function(){window._ppPurgers.forEach(function(p){try{p();}catch(e){}});};
-</script>
-<script>
 (function(){
  var PKEY='pp_phase_v16', LKEY='pp_phaselog_v16', SKEY='pp_suborder_v16';
  var phKo={1:'기반',2:'핵심 리워드',3:'조회·교환',4:'운영·마무리'};
@@ -574,7 +538,7 @@ window.ppPurgeRows=function(){window._ppPurgers.forEach(function(p){try{p();}cat
    return {ko:'백엔드',vi:'Backend'};}
  var rows=[];
  var trs=document.querySelectorAll('tr[data-idx]');
- function _wirePhase(tr){
+ for(var i=0;i<trs.length;i++){(function(tr){
    var badge=tr.querySelector('.pp');if(!badge)return;
    var idx=tr.getAttribute('data-idx');
    var orig=parseInt(tr.getAttribute('data-ph'),10);
@@ -614,10 +578,7 @@ window.ppPurgeRows=function(){window._ppPurgers.forEach(function(p){try{p();}cat
    tr.setAttribute('data-ph',cur);
    tr.setAttribute('data-sub',curSub);
    rows.push({tr:tr,sel:sel,sub:sub,idx:idx,orig:orig,nameKo:nameKo,nameVi:nameVi,track:trackOf(tr)});
- }
- for(var i=0;i<trs.length;i++){_wirePhase(trs[i]);}
- window._ppWirers.push(_wirePhase);
- window._ppPurgers.push(function(){for(var pi=rows.length-1;pi>=0;pi--){if(!document.body.contains(rows[pi].tr))rows.splice(pi,1);}});
+ })(trs[i]);}
 
  function renderLog(){
    var body=document.getElementById('pplogBody');
@@ -658,18 +619,6 @@ window.ppPurgeRows=function(){window._ppPurgers.forEach(function(p){try{p();}cat
        out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(track||'')+']</span><span class="pplog-name">'+esc(name||'')+'</span><span class="pplog-chg"><span class="a">'+esc(_wk[e.from]||e.from)+'</span> \u2192 <span class="b">'+esc(_wk[e.to]||e.to)+'</span> <span class="a">'+(lang==='vi'?'(người làm)':'(작업자)')+'</span></span></div>');continue;
      }
      if(e.type==='status'){var sf=(lang==='vi'?stVi:stKo)[e.stFrom]||e.stFrom,st2=(lang==='vi'?stVi:stKo)[e.stTo]||e.stTo;out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(track||'')+']</span><span class="pplog-name">'+esc(name||'')+'</span><span class="pplog-chg"><span class="a">'+esc(sf)+'</span> → <span class="b">'+esc(st2)+'</span></span></div>');continue;}
-     if(e.type==='memo'){
-       var _mtr=function(s){s=s||'';return s.length>22?(s.slice(0,22)+'…'):s;};
-       var _mf=e.from?('"'+_mtr(e.from)+'"'):(lang==='vi'?'(trống)':'(없음)');
-       var _mt=e.to?('"'+_mtr(e.to)+'"'):(lang==='vi'?'(trống)':'(없음)');
-       out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(track||'')+']</span><span class="pplog-name">'+esc(name||'')+'</span><span class="pplog-chg"><span class="a">'+esc(_mf)+'</span> → <span class="b">'+esc(_mt)+'</span> <span class="a">'+(lang==='vi'?'(ghi chú)':'(메모)')+'</span></span></div>');continue;
-     }
-     if(e.type==='addrow'){
-       out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(track||'')+']</span><span class="pplog-name">'+esc(name||'')+'</span><span class="pplog-chg"><span class="b">'+(lang==='vi'?'+ Thêm dòng công việc':'+ 작업 행 추가')+'</span></span></div>');continue;
-     }
-     if(e.type==='delrow'){
-       out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span><span class="pplog-track">['+esc(track||'')+']</span><span class="pplog-name">'+esc(name||'')+'</span><span class="pplog-chg"><span class="a">'+(lang==='vi'?'− Xóa dòng công việc':'− 작업 행 삭제')+'</span></span></div>');continue;
-     }
      var fl=(lang==='vi'?phVi:phKo)[e.from], tl=(lang==='vi'?phVi:phKo)[e.to];
      var fromTok=tok(e.from,e.fromSub), toTok=tok(e.to,e.toSub);
      out.push('<div class="pplog-item"><span class="pplog-time">'+fmt(e.t)+'</span>'+
@@ -784,7 +733,7 @@ window.ppPurgeRows=function(){window._ppPurgers.forEach(function(p){try{p();}cat
    if(rec.sel.value!==code)rec.sel.value=code;
  }
  var trs=document.querySelectorAll('tr[data-idx]');
- function _wireStatus(tr){
+ for(var i=0;i<trs.length;i++){(function(tr){
    var cell=tr.querySelector('td.statuscell');if(!cell)return;
    var idx=tr.getAttribute('data-idx');
    var nameEl=tr.querySelector('.task .i18n');
@@ -807,10 +756,7 @@ window.ppPurgeRows=function(){window._ppPurgers.forEach(function(p){try{p();}cat
    });
    segs.push(rec);
    paint(rec);
- }
- for(var i=0;i<trs.length;i++){_wireStatus(trs[i]);}
- window._ppWirers.push(_wireStatus);
- window._ppPurgers.push(function(){for(var pi=segs.length-1;pi>=0;pi--){if(!document.body.contains(segs[pi].tr))segs.splice(pi,1);}});
+ })(trs[i]);}
  /* 통합 저장 버튼이 호출 — 미저장 상태를 확정하고 로그 엔트리 배열 반환 */
  window.ppStatusCommit=function(tIso){
    var out=[];var t=tIso||new Date().toISOString();
@@ -929,10 +875,7 @@ window.ppPurgeRows=function(){window._ppPurgers.forEach(function(p){try{p();}cat
  function effOf(idx){return (idx in pendingDue)?pendingDue[idx]:savedOf(idx);}
  function paint(rec){var v=effOf(rec.idx),dirty=(v!==savedOf(rec.idx));if(rec.input.value!==v)rec.input.value=v;rec.input.classList.toggle('dirty',dirty);rec.input.classList.toggle('empty',!v);}
  var trs=document.querySelectorAll('tr[data-idx]');
- function _wireDue(tr){var cell=tr.querySelector('td.duecell');if(!cell)return;var idx=tr.getAttribute('data-idx');var nameEl=tr.querySelector('.task .i18n');var input=document.createElement('input');input.type='date';input.className='duein';input.setAttribute('data-idx',idx);input.title='예상 완료일 / Ngày dự kiến hoàn thành';cell.appendChild(input);var rec={idx:idx,tr:tr,input:input,nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',track:trackOf(tr)};input.addEventListener('change',function(){var v=input.value||'';if(v===savedOf(idx))delete pendingDue[idx];else pendingDue[idx]=v;paint(rec);});recs.push(rec);paint(rec);}
- for(var i=0;i<trs.length;i++){_wireDue(trs[i]);}
- window._ppWirers.push(_wireDue);
- window._ppPurgers.push(function(){for(var pi=recs.length-1;pi>=0;pi--){if(!document.body.contains(recs[pi].tr))recs.splice(pi,1);}});
+ for(var i=0;i<trs.length;i++){(function(tr){var cell=tr.querySelector('td.duecell');if(!cell)return;var idx=tr.getAttribute('data-idx');var nameEl=tr.querySelector('.task .i18n');var input=document.createElement('input');input.type='date';input.className='duein';input.setAttribute('data-idx',idx);input.title='예상 완료일 / Ngày dự kiến hoàn thành';cell.appendChild(input);var rec={idx:idx,tr:tr,input:input,nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',track:trackOf(tr)};input.addEventListener('change',function(){var v=input.value||'';if(v===savedOf(idx))delete pendingDue[idx];else pendingDue[idx]=v;paint(rec);});recs.push(rec);paint(rec);})(trs[i]);}
  window.ppDueCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pendingDue))continue;var prev=savedOf(idx),v=pendingDue[idx];if(v!==prev){out.push({t:t,type:'due',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete savedDue[idx];else savedDue[idx]=v;window.PPDB.writeField('due',idx,v);}}pendingDue={};for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
  window.PPDB.subscribe('due',function(){for(var i=0;i<recs.length;i++){if(!(recs[i].idx in pendingDue))paint(recs[i]);}});
 })();
@@ -948,10 +891,7 @@ window.ppPurgeRows=function(){window._ppPurgers.forEach(function(p){try{p();}cat
  function effOf(idx){return (idx in pendingStart)?pendingStart[idx]:savedOf(idx);}
  function paint(rec){var v=effOf(rec.idx),dirty=(v!==savedOf(rec.idx));if(rec.input.value!==v)rec.input.value=v;rec.input.classList.toggle('dirty',dirty);rec.input.classList.toggle('empty',!v);}
  var trs=document.querySelectorAll('tr[data-idx]');
- function _wireStart(tr){var cell=tr.querySelector('td.startcell');if(!cell)return;var idx=tr.getAttribute('data-idx');var nameEl=tr.querySelector('.task .i18n');var input=document.createElement('input');input.type='date';input.className='startin';input.setAttribute('data-idx',idx);input.title='작업 시작일 / Ngày bắt đầu';cell.appendChild(input);var rec={idx:idx,tr:tr,input:input,nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',track:trackOf(tr)};input.addEventListener('change',function(){var v=input.value||'';if(v===savedOf(idx))delete pendingStart[idx];else pendingStart[idx]=v;paint(rec);});recs.push(rec);paint(rec);}
- for(var i=0;i<trs.length;i++){_wireStart(trs[i]);}
- window._ppWirers.push(_wireStart);
- window._ppPurgers.push(function(){for(var pi=recs.length-1;pi>=0;pi--){if(!document.body.contains(recs[pi].tr))recs.splice(pi,1);}});
+ for(var i=0;i<trs.length;i++){(function(tr){var cell=tr.querySelector('td.startcell');if(!cell)return;var idx=tr.getAttribute('data-idx');var nameEl=tr.querySelector('.task .i18n');var input=document.createElement('input');input.type='date';input.className='startin';input.setAttribute('data-idx',idx);input.title='작업 시작일 / Ngày bắt đầu';cell.appendChild(input);var rec={idx:idx,tr:tr,input:input,nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',track:trackOf(tr)};input.addEventListener('change',function(){var v=input.value||'';if(v===savedOf(idx))delete pendingStart[idx];else pendingStart[idx]=v;paint(rec);});recs.push(rec);paint(rec);})(trs[i]);}
  window.ppStartCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pendingStart))continue;var prev=savedOf(idx),v=pendingStart[idx];if(v!==prev){out.push({t:t,type:'start',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete savedStart[idx];else savedStart[idx]=v;window.PPDB.writeField('start',idx,v);}}pendingStart={};for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
  window.PPDB.subscribe('start',function(){for(var i=0;i<recs.length;i++){if(!(recs[i].idx in pendingStart))paint(recs[i]);}});
 })();
@@ -971,10 +911,7 @@ window.ppPurgeRows=function(){window._ppPurgers.forEach(function(p){try{p();}cat
  function effOf(idx){return (idx in pending)?pending[idx]:savedOf(idx);}
  function paint(rec){var v=effOf(rec.idx),dirty=(v!==savedOf(rec.idx));if(rec.sel.value!==v)rec.sel.value=v;rec.sel.className='wksel'+(dirty?' dirty':'')+(v?'':' wk-unset');}
  var trs=document.querySelectorAll('tr[data-idx]');
- function _wireWorker(tr){var cell=tr.querySelector('td.workercell');if(!cell)return;var idx=tr.getAttribute('data-idx');var nameEl=tr.querySelector('.task .i18n');var sel=document.createElement('select');sel.setAttribute('data-idx',idx);sel.title='작업자 / Người làm';ORDER.forEach(function(code){var o=document.createElement('option');o.value=code;o.textContent=(curLang()==='vi'?LV:LK)[code];sel.appendChild(o);});cell.appendChild(sel);var rec={idx:idx,tr:tr,sel:sel,nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',track:trackOf(tr)};sel.addEventListener('change',function(){var v=sel.value;if(v===savedOf(idx))delete pending[idx];else pending[idx]=v;paint(rec);});recs.push(rec);paint(rec);}
- for(var i=0;i<trs.length;i++){_wireWorker(trs[i]);}
- window._ppWirers.push(_wireWorker);
- window._ppPurgers.push(function(){for(var pi=recs.length-1;pi>=0;pi--){if(!document.body.contains(recs[pi].tr))recs.splice(pi,1);}});
+ for(var i=0;i<trs.length;i++){(function(tr){var cell=tr.querySelector('td.workercell');if(!cell)return;var idx=tr.getAttribute('data-idx');var nameEl=tr.querySelector('.task .i18n');var sel=document.createElement('select');sel.setAttribute('data-idx',idx);sel.title='작업자 / Người làm';ORDER.forEach(function(code){var o=document.createElement('option');o.value=code;o.textContent=(curLang()==='vi'?LV:LK)[code];sel.appendChild(o);});cell.appendChild(sel);var rec={idx:idx,tr:tr,sel:sel,nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',track:trackOf(tr)};sel.addEventListener('change',function(){var v=sel.value;if(v===savedOf(idx))delete pending[idx];else pending[idx]=v;paint(rec);});recs.push(rec);paint(rec);})(trs[i]);}
  window.ppWorkerCommit=function(tIso){var out=[],t=tIso||new Date().toISOString();for(var i=0;i<recs.length;i++){var rec=recs[i],idx=rec.idx;if(!(idx in pending))continue;var prev=savedOf(idx),v=pending[idx];if(v!==prev){out.push({t:t,type:'worker',idx:idx,track:rec.track,nameKo:rec.nameKo,nameVi:rec.nameVi,from:prev,to:v});if(v==='')delete saved[idx];else saved[idx]=v;window.PPDB.writeField('worker',idx,v);}}pending={};for(var j=0;j<recs.length;j++)paint(recs[j]);return out;};
  window.PPDB.subscribe('worker',function(){for(var i=0;i<recs.length;i++){if(!(recs[i].idx in pending))paint(recs[i]);}});
  function relabel(l){var map=(l==='vi')?LV:LK;recs.forEach(function(r){for(var k=0;k<r.sel.options.length;k++){r.sel.options[k].textContent=map[r.sel.options[k].value];}});}
@@ -982,228 +919,6 @@ window.ppPurgeRows=function(){window._ppPurgers.forEach(function(p){try{p();}cat
 })();
 </script>
 
-<script>
-/* === s40: 작업 행 추가·삭제 + 작업별 메모 (Firestore 트랙별 공유, 권한 정합) === */
-(function(){
- var STATIC={};
- document.querySelectorAll('tr[data-idx]').forEach(function(tr){STATIC[tr.getAttribute('data-idx')]=1;});
- window.ppIsStatic=function(idx){return !!STATIC[idx];};
- function PPDB(){return window.PPDB;}
- function curLang(){return document.documentElement.lang==='vi'?'vi':'ko';}
- function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
- function attr(s){return esc(s).replace(/"/g,'&quot;');}
- function trackObj(tk){return tk==='app'?{ko:'App',vi:'App'}:tk==='cms'?{ko:'CMS·웹',vi:'CMS·Web'}:{ko:'백엔드',vi:'Backend'};}
- function flash(ko,vi){var t=document.getElementById('pptoast');if(!t)return;t.textContent=curLang()==='vi'?vi:ko;t.classList.add('show');clearTimeout(t._tm);t._tm=setTimeout(function(){t.classList.remove('show');},1900);}
- function canEdit(tk){return !!(window.PPDB&&PPDB().canWriteTrack(tk));}
- function P2ID(tk){return tk==='app'?'p1':tk==='cms'?'p0':'p2';}
- function tbodyFor(tk){if(tk==='app')return document.querySelector('#p1 tbody');if(tk==='cms')return document.querySelector('#p0 tbody');var tbs=document.querySelectorAll('#p2 tbody');return tbs[tbs.length-1];}
-
- /* ===================== 작업별 메모 ===================== */
- var MEMO_SVG='<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M5 4h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4V5a1 1 0 0 1 1-1z" fill="currentColor"/></svg>';
- var memoModal=null, memoIdx=null, memoTk=null;
- function buildMemoModal(){
-   var ov=document.createElement('div');ov.className='ppmodal';ov.id='ppMemoModal';
-   ov.innerHTML='<div class="ppmodal-box"><div class="ppmodal-h"><span class="i18n" data-ko="작업 메모" data-vi="Ghi chú công việc">작업 메모</span></div>'+
-     '<div class="ppmodal-task" id="ppMemoTask"></div>'+
-     '<textarea class="ppmodal-ta" id="ppMemoTa" rows="6"></textarea>'+
-     '<div class="ppmodal-ro" id="ppMemoRo" style="display:none"><span class="i18n" data-ko="읽기 전용 (이 트랙 편집 권한 없음)" data-vi="Chỉ xem (không có quyền sửa track này)">읽기 전용 (이 트랙 편집 권한 없음)</span></div>'+
-     '<div class="ppmodal-btns"><button class="ppmodal-cancel" type="button" onclick="ppMemoClose()"><span class="i18n" data-ko="닫기" data-vi="Đóng">닫기</span></button>'+
-     '<button class="ppmodal-save" id="ppMemoSave" type="button" onclick="ppMemoSave()"><span class="i18n" data-ko="저장" data-vi="Lưu">저장</span></button></div></div>';
-   document.body.appendChild(ov);
-   ov.addEventListener('click',function(e){if(e.target===ov)ppMemoClose();});
-   return ov;
- }
- window.ppMemoClose=function(){if(memoModal)memoModal.classList.remove('show');memoIdx=null;};
- window.ppMemoOpen=function(idx){
-   if(!memoModal)memoModal=buildMemoModal();
-   memoIdx=idx;memoTk=PPDB().trackOfIdx[idx];
-   var tr=document.querySelector('tr[data-idx="'+idx+'"]');
-   var nameEl=tr?tr.querySelector('.task .i18n'):null;
-   var nm=nameEl?(curLang()==='vi'?nameEl.getAttribute('data-vi'):nameEl.getAttribute('data-ko')):'';
-   document.getElementById('ppMemoTask').textContent=nm||'';
-   var ta=document.getElementById('ppMemoTa');
-   ta.value=(PPDB().cache.memo&&PPDB().cache.memo[idx])||'';
-   var ed=canEdit(memoTk);
-   ta.readOnly=!ed;
-   document.getElementById('ppMemoSave').style.display=ed?'':'none';
-   document.getElementById('ppMemoRo').style.display=ed?'none':'';
-   memoModal.classList.add('show');
-   if(ed)setTimeout(function(){ta.focus();},30);
- };
- window.ppMemoSave=function(){
-   var idx=memoIdx,tk=memoTk;if(idx==null)return;
-   if(!canEdit(tk)){flash('수정 권한이 없습니다','Không có quyền');return;}
-   var nv=(document.getElementById('ppMemoTa').value||'').trim();
-   var ov=(PPDB().cache.memo&&PPDB().cache.memo[idx])||'';
-   if(nv===ov){ppMemoClose();return;}
-   var tr=document.querySelector('tr[data-idx="'+idx+'"]');
-   var nameEl=tr?tr.querySelector('.task .i18n'):null;
-   PPDB().writeField('memo',idx,nv);
-   PPDB().appendLog({t:new Date().toISOString(),type:'memo',idx:idx,track:trackObj(tk),
-     nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):'',from:ov,to:nv});
-   if(!PPDB().cache.memo)PPDB().cache.memo={};
-   if(nv==='')delete PPDB().cache.memo[idx];else PPDB().cache.memo[idx]=nv;
-   restyleMemo(idx);ppMemoClose();flash('메모 저장됨','Đã lưu ghi chú');
- };
- function restyleMemo(idx){
-   var tr=document.querySelector('tr[data-idx="'+idx+'"]');if(!tr)return;
-   var btn=tr.querySelector('.ppmemo');if(!btn)return;
-   var has=!!(window.PPDB&&PPDB().cache.memo&&PPDB().cache.memo[idx]);
-   btn.classList.toggle('has',has);
-   btn.title=has?(curLang()==='vi'?'Xem/sửa ghi chú':'메모 보기/수정'):(curLang()==='vi'?'Thêm ghi chú':'메모 추가');
- }
- function restyleAllMemo(){document.querySelectorAll('tr[data-idx]').forEach(function(tr){restyleMemo(tr.getAttribute('data-idx'));});}
- function attachMemo(tr){
-   var idx=tr.getAttribute('data-idx');
-   var task=tr.querySelector('td.task');if(!task)return;
-   if(task.querySelector('.ppmemo'))return;
-   var btn=document.createElement('button');btn.type='button';btn.className='ppmemo';
-   btn.setAttribute('data-idx',idx);btn.innerHTML=MEMO_SVG;
-   btn.addEventListener('click',function(e){e.preventDefault();ppMemoOpen(idx);});
-   task.appendChild(btn);restyleMemo(idx);
- }
- document.querySelectorAll('tr[data-idx]').forEach(attachMemo);
- window._ppWirers.push(attachMemo);
- if(window.PPDB)PPDB().subscribe('memo',function(){restyleAllMemo();});
-
- /* ===================== 행 삭제 (슈퍼관리자 전용) ===================== */
- function attachDelete(tr){
-   var cell=tr.querySelector('td.statuscell');if(!cell)return;
-   if(cell.querySelector('.pprowdel'))return;
-   var idx=tr.getAttribute('data-idx');
-   var btn=document.createElement('button');btn.type='button';btn.className='pprowdel';
-   btn.setAttribute('data-idx',idx);btn.textContent='×';
-   btn.title=curLang()==='vi'?'Xóa dòng':'행 삭제';
-   btn.style.display=(window.PPDB&&PPDB().isSuper)?'':'none';
-   btn.addEventListener('click',function(){ppDeleteRow(idx);});
-   cell.appendChild(btn);
- }
- document.querySelectorAll('tr[data-idx]').forEach(attachDelete);
- window._ppWirers.push(attachDelete);
- window.ppDeleteRow=function(idx){
-   if(!(window.PPDB&&PPDB().isSuper)){flash('삭제 권한이 없습니다','Không có quyền xóa');return;}
-   var tr=document.querySelector('tr[data-idx="'+idx+'"]');if(!tr)return;
-   var tk=PPDB().trackOfIdx[idx];
-   var nameEl=tr.querySelector('.task .i18n');
-   var nm=nameEl?(curLang()==='vi'?nameEl.getAttribute('data-vi'):nameEl.getAttribute('data-ko')):idx;
-   if(!window.confirm((curLang()==='vi'?'Xóa dòng công việc này?\n':'이 작업 행을 삭제할까요?\n')+nm))return;
-   PPDB().appendLog({t:new Date().toISOString(),type:'delrow',idx:idx,track:trackObj(tk),
-     nameKo:nameEl?nameEl.getAttribute('data-ko'):'',nameVi:nameEl?nameEl.getAttribute('data-vi'):''});
-   if(STATIC[idx]){PPDB().writeHidden(tk,idx,1);}
-   else{PPDB().writeCustomRow(tk,idx,null);['phase','suborder','status','due','start','worker','memo'].forEach(function(c){PPDB().writeField(c,idx,'');});}
-   if(tr.parentNode)tr.parentNode.removeChild(tr);
-   if(window.ppPurgeRows)ppPurgeRows();
-   if(window.ppApplySort)ppApplySort();
-   flash('행 삭제됨','Đã xóa dòng');
- };
-
- /* ===================== 행 추가 ===================== */
- function buildRow(tk,idx,ph,nameKo,nameVi){
-   var L=curLang(),tr=document.createElement('tr');
-   tr.setAttribute('data-ph',ph);tr.setAttribute('data-idx',idx);
-   var tb=tbodyFor(tk);var num=tb?(tb.querySelectorAll('tr[data-idx]').length+1):0;var numStr=(num<10?'0':'')+num;
-   var mid=(tk==='app')?'<td class="adj keep">–</td><td class="workercell"></td>':'<td class="qacell"></td>';
-   tr.innerHTML='<td class="num">'+numStr+'</td><td class="phcell"></td>'+
-     '<td class="task"><span class="pp pp'+ph+'">'+ph+'</span> <span class="i18n" data-ko="'+attr(nameKo)+'" data-vi="'+attr(nameVi||nameKo)+'">'+esc(L==='vi'?(nameVi||nameKo):nameKo)+'</span></td>'+
-     '<td class="hrs"><span class="tbd">–</span></td>'+mid+
-     '<td class="startcell"></td><td class="duecell"></td><td class="statuscell"></td>';
-   return tr;
- }
- window.ppEnsureRow=function(tk,idx,rec){
-   if(document.querySelector('tr[data-idx="'+idx+'"]'))return false;
-   PPDB().trackOfIdx[idx]=tk;
-   var tb=tbodyFor(tk);if(!tb)return false;
-   var tr=buildRow(tk,idx,rec.ph||1,rec.nameKo||'',rec.nameVi||'');
-   tb.appendChild(tr);
-   if(window.ppWireRow)ppWireRow(tr);
-   return true;
- };
- window.ppSyncCustomRows=function(tk,map){
-   map=map||{};var changed=false;
-   Object.keys(map).forEach(function(idx){if(map[idx]&&ppEnsureRow(tk,idx,map[idx]))changed=true;});
-   document.querySelectorAll('#'+P2ID(tk)+' tr[data-idx]').forEach(function(tr){
-     var idx=tr.getAttribute('data-idx');if(STATIC[idx])return;
-     if(!map[idx]){if(tr.parentNode)tr.parentNode.removeChild(tr);changed=true;}
-   });
-   if(changed){if(window.ppPurgeRows)ppPurgeRows();if(window.ppApplyEditable)ppApplyEditable();if(window.ppApplySort)ppApplySort();if(window.ppRenderLog)ppRenderLog();}
- };
- window.ppSyncHidden=function(tk,map){
-   map=map||{};var changed=false;
-   Object.keys(map).forEach(function(idx){if(!map[idx])return;var tr=document.querySelector('tr[data-idx="'+idx+'"]');if(tr&&tr.parentNode){tr.parentNode.removeChild(tr);changed=true;}});
-   if(changed){if(window.ppPurgeRows)ppPurgeRows();if(window.ppApplySort)ppApplySort();}
- };
-
- var addModal=null, addTk='app';
- function buildAddModal(){
-   var ov=document.createElement('div');ov.className='ppmodal';ov.id='ppAddModal';
-   ov.innerHTML='<div class="ppmodal-box"><div class="ppmodal-h"><span class="i18n" data-ko="작업 추가" data-vi="Thêm công việc">작업 추가</span> · <span id="ppAddTk"></span></div>'+
-     '<div class="ppmodal-row"><label class="i18n" data-ko="단계" data-vi="Giai đoạn">단계</label><select id="ppAddPh"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>'+
-     '<div class="ppmodal-row"><label class="i18n" data-ko="작업 내용" data-vi="Nội dung (KO)">작업 내용</label><input id="ppAddKo" type="text"></div>'+
-     '<div class="ppmodal-row"><label class="i18n" data-ko="내용(VI)" data-vi="Nội dung(VI)">내용(VI)</label><input id="ppAddVi" type="text"></div>'+
-     '<div class="ppmodal-row"><label class="i18n" data-ko="순번" data-vi="Thứ tự">순번</label><input id="ppAddSub" type="text" inputmode="numeric"></div>'+
-     '<div class="ppmodal-row"><label class="i18n" data-ko="상태" data-vi="Trạng thái">상태</label><select id="ppAddSt"></select></div>'+
-     '<div class="ppmodal-row" id="ppAddWkRow"><label class="i18n" data-ko="작업자" data-vi="Người làm">작업자</label><select id="ppAddWk"></select></div>'+
-     '<div class="ppmodal-row"><label class="i18n" data-ko="작업 시작일" data-vi="Ngày bắt đầu">작업 시작일</label><input id="ppAddStart" type="date"></div>'+
-     '<div class="ppmodal-row"><label class="i18n" data-ko="예상 완료일" data-vi="Hoàn thành">예상 완료일</label><input id="ppAddDue" type="date"></div>'+
-     '<div class="ppmodal-btns"><button class="ppmodal-cancel" type="button" onclick="ppAddClose()"><span class="i18n" data-ko="취소" data-vi="Hủy">취소</span></button>'+
-     '<button class="ppmodal-save" type="button" onclick="ppCreateRow()"><span class="i18n" data-ko="추가" data-vi="Thêm">추가</span></button></div></div>';
-   document.body.appendChild(ov);
-   ov.addEventListener('click',function(e){if(e.target===ov)ppAddClose();});
-   var stMap=curLang()==='vi'?{wait:'Chờ xử lý',doing:'Đang làm',done:'Hoàn thành',hold:'Tạm hoãn'}:{wait:'작업대기',doing:'작업중',done:'완료',hold:'보류'};
-   var st=ov.querySelector('#ppAddSt');['wait','doing','done','hold'].forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=stMap[c];st.appendChild(o);});
-   var wkMap=curLang()==='vi'?{'':'-',kevin:'Kevin',john:'John',both:'Chung'}:{'':'-',kevin:'Kevin',john:'John',both:'공동'};
-   var wk=ov.querySelector('#ppAddWk');['','kevin','john','both'].forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=wkMap[c];wk.appendChild(o);});
-   return ov;
- }
- window.ppAddClose=function(){if(addModal)addModal.classList.remove('show');};
- window.ppAddOpen=function(tk){
-   if(!canEdit(tk)){flash('이 트랙 편집 권한이 없습니다','Không có quyền track này');return;}
-   if(!addModal)addModal=buildAddModal();
-   addTk=tk;
-   document.getElementById('ppAddTk').textContent=trackObj(tk)[curLang()];
-   document.getElementById('ppAddPh').value='1';
-   document.getElementById('ppAddKo').value='';document.getElementById('ppAddVi').value='';
-   document.getElementById('ppAddSub').value='';document.getElementById('ppAddSt').value='wait';
-   document.getElementById('ppAddWk').value='';document.getElementById('ppAddStart').value='';document.getElementById('ppAddDue').value='';
-   document.getElementById('ppAddWkRow').style.display=(tk==='app')?'':'none';
-   addModal.classList.add('show');
-   setTimeout(function(){document.getElementById('ppAddKo').focus();},30);
- };
- window.ppCreateRow=function(){
-   var tk=addTk;if(!canEdit(tk)){flash('권한이 없습니다','Không có quyền');return;}
-   var ph=parseInt(document.getElementById('ppAddPh').value,10)||1;
-   var nameKo=(document.getElementById('ppAddKo').value||'').trim();
-   var nameVi=(document.getElementById('ppAddVi').value||'').trim();
-   if(!nameKo){flash('작업 내용을 입력하세요','Nhập nội dung công việc');return;}
-   var sub=(document.getElementById('ppAddSub').value||'').replace(/[^0-9]/g,'');
-   var status=document.getElementById('ppAddSt').value;
-   var worker=(tk==='app')?document.getElementById('ppAddWk').value:'';
-   var start=document.getElementById('ppAddStart').value||'';
-   var due=document.getElementById('ppAddDue').value||'';
-   var idx=String(Date.now()*1000+Math.floor(Math.random()*1000));
-   PPDB().trackOfIdx[idx]=tk;
-   if(sub)PPDB().writeField('suborder',idx,sub);
-   if(status&&status!=='wait')PPDB().writeField('status',idx,status);
-   if(start)PPDB().writeField('start',idx,start);
-   if(due)PPDB().writeField('due',idx,due);
-   if(worker)PPDB().writeField('worker',idx,worker);
-   PPDB().writeCustomRow(tk,idx,{ph:ph,nameKo:nameKo,nameVi:nameVi||nameKo,sub:sub,hrs:''});
-   PPDB().appendLog({t:new Date().toISOString(),type:'addrow',idx:idx,track:trackObj(tk),nameKo:nameKo,nameVi:nameVi||nameKo});
-   ppAddClose();flash('작업 추가됨 (저장 중…)','Đã thêm (đang lưu…)');
- };
-
- /* "+ 작업 추가" 버튼을 각 트랙 패널 하단에 주입 (권한자에게만 표시 — applyPerms가 토글) */
- [['p0','cms'],['p1','app'],['p2','backend']].forEach(function(pr){
-   var panel=document.getElementById(pr[0]);if(!panel||panel.querySelector('.ppaddrow'))return;
-   var wrap=document.createElement('div');wrap.className='ppaddrow';
-   var b=document.createElement('button');b.type='button';b.className='ppaddbtn';b.setAttribute('data-track',pr[1]);
-   b.innerHTML='+ <span class="i18n" data-ko="작업 추가" data-vi="Thêm công việc">작업 추가</span>';
-   b.style.display='none';
-   b.addEventListener('click',function(){ppAddOpen(pr[1]);});
-   wrap.appendChild(b);panel.appendChild(wrap);
- });
-})();
-</script>
 <script>
 /* s35: 모바일 가로 스크롤 — 각 표를 .tscroll로 감싼다 (1회, 데스크톱 무영향) */
 (function(){
@@ -1245,7 +960,7 @@ const ROLE = {
 const TRACKS = ["app","cms","backend"];
 const COLL = { app:"pricepick_devplan_app", cms:"pricepick_devplan_cms", backend:"pricepick_devplan_backend" };
 const LOGS = { app:"pricepick_devplan_app_logs", cms:"pricepick_devplan_cms_logs", backend:"pricepick_devplan_backend_logs" };
-const IDXCATS = ["phase","suborder","status","due","start","worker","memo"];
+const IDXCATS = ["phase","suborder","status","due","start","worker"];
 const NESTCATS = ["phasedef","phaseperiod"];
 const CATS = IDXCATS.concat(NESTCATS);
 const P2TRK = {p0:"cms",p1:"app",p2:"backend"};   /* 패널 id → 트랙 */
@@ -1277,9 +992,6 @@ function applyPerms(){
   var actTrk=P2TRK[window.ppActiveTrack||'p1'];
   var okPh=PPDB.canWriteTrack(actTrk);
   document.querySelectorAll('#phaseCards .phti,#phaseCards .phde,#phaseCards .perin').forEach(function(el){el.disabled=!okPh;});
-  /* s40: "작업 추가" 버튼은 해당 트랙 권한자에게만, 행 삭제 버튼은 슈퍼관리자에게만 노출 */
-  document.querySelectorAll('.ppaddbtn').forEach(function(b){b.style.display=PPDB.canWriteTrack(b.getAttribute('data-track'))?'':'none';});
-  document.querySelectorAll('.pprowdel').forEach(function(b){b.style.display=PPDB.isSuper?'':'none';});
 }
 window.ppApplyEditable=applyPerms;  /* phasedef render() 후 재적용 훅 */
 
@@ -1336,13 +1048,6 @@ function subscribeAll(){
       console.warn('[PPDB] '+tk+' logs 구독 실패:', err.code||err.message);
       logsByTrack[tk]=[]; mergeLogs();
     });
-    /* s40: 커스텀 행(추가) · 숨김(정적 행 삭제) 문서 구독 */
-    onSnapshot(doc(db,COLL[tk],'customrows'), function(snap){
-      if(window.ppSyncCustomRows) window.ppSyncCustomRows(tk, snap.exists()? snap.data():{});
-    }, function(err){ console.warn('[PPDB] '+tk+' customrows 구독 실패:', err.code||err.message); });
-    onSnapshot(doc(db,COLL[tk],'hidden'), function(snap){
-      if(window.ppSyncHidden) window.ppSyncHidden(tk, snap.exists()? snap.data():{});
-    }, function(err){ console.warn('[PPDB] '+tk+' hidden 구독 실패:', err.code||err.message); });
   });
 }
 
@@ -1370,18 +1075,6 @@ PPDB.impl = {
   deleteLog:function(track,id){
     if(!PPDB.isSuper||!track||!id)return;
     deleteDoc(doc(db,LOGS[track],id)).catch(function(e){console.error('[PPDB] deleteLog '+track,e);});
-  },
-  /* s40: 커스텀 행 — 트랙 컬렉션의 customrows 문서에 idx 단위 머지(obj=null이면 삭제) */
-  writeCustomRow:function(tk,idx,obj){
-    if(!tk||!PPDB.canWriteTrack(tk))return;
-    var p={}; p[idx]= obj ? obj : deleteField();
-    setDoc(doc(db,COLL[tk],'customrows'),p,{merge:true}).catch(function(e){console.error('[PPDB] customrow '+tk,e);});
-  },
-  /* s40: 정적 행 삭제 — 트랙 컬렉션의 hidden 문서에 idx 표시(val 거짓이면 해제) */
-  writeHidden:function(tk,idx,val){
-    if(!tk||!PPDB.canWriteTrack(tk))return;
-    var p={}; p[idx]= val ? 1 : deleteField();
-    setDoc(doc(db,COLL[tk],'hidden'),p,{merge:true}).catch(function(e){console.error('[PPDB] hidden '+tk,e);});
   },
   login:function(){
     var btn=document.getElementById('ppauthbtn');if(btn)btn.classList.add('busy');
