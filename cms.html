@@ -1122,13 +1122,13 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       </div>
       <div class="info-box">
         <strong>회원 가입 안내</strong><br>
-        카카오 연동 회원과 미연동 회원이 모두 존재(로그인 정책 변경). 미연동 회원은 적립 확정 대기 <strong>D+30</strong> 적용.<br>
-        가입 경로: <strong>카카오 직접</strong> · <strong>Apple → 카카오</strong> · <strong>Google → 카카오</strong> — 모든 경로 동일하게 적용<br>
+        카카오 연동 회원과 미연동(게스트) 회원이 모두 존재(로그인 정책 변경). 미연동 회원은 적립 확정 대기 <strong>D+30</strong> 적용.<br>
+        계정 모델: <strong>게스트(닉네임)로 시작</strong> → 앱 내 <strong>카카오 연동</strong> (애플·구글 로그인 폐지). 게스트는 적립만 누적, 사용·교환은 연동 후 가능.<br>
         구매 즉시 <strong>가지급 티켓(랜덤)</strong> 지급 → 포스트백 수신 후 <strong>연동 D+7 / 미연동 D+30 확정</strong> 시 등급 티켓(브론즈/실버/골드)으로 전환
       </div>
       <div class="toolbar">
         <input class="search-box" placeholder="닉네임 검색...">
-        <select class="filter-sel"><option>전체 유형</option><option>카카오</option><option>Apple+카카오</option><option>Google+카카오</option></select>
+        <select class="filter-sel"><option>전체 연동상태</option><option>게스트(미연동)</option><option>카카오 연동</option></select>
         <select class="filter-sel"><option>전체 상태</option><option>정상</option><option>정지</option><option>탈퇴</option></select>
         <select class="filter-sel"><option>전체 마케팅</option><option>전체 동의</option><option>선택 동의</option><option>전체 거부</option></select>
         <div style="margin-left:auto;display:flex;gap:8px;" id="member-hdr-actions"></div>
@@ -1136,19 +1136,18 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding:0 2px;">
         <div style="font-size:13px;font-weight:700;">회원 목록 <span style="color:var(--text-3);font-weight:500">총 12,847명</span></div>
         <div style="display:flex;align-items:center;gap:16px;font-size:12px;">
-          <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--main);margin-right:5px;vertical-align:middle;"></span>카카오 <strong style="color:var(--main-hover)">9,841명</strong></span>
-          <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#1F1F1F;margin-right:5px;vertical-align:middle;"></span>Apple <strong style="color:var(--text-2)">1,823명</strong></span>
-          <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4285F4;margin-right:5px;vertical-align:middle;"></span>Google <strong style="color:#4285F4">1,183명</strong></span>
+          <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--main);margin-right:5px;vertical-align:middle;"></span>카카오 연동 <strong style="color:var(--main-hover)">10,432명</strong> (81.2%)</span>
+          <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#d97a17;margin-right:5px;vertical-align:middle;"></span>게스트(미연동) <strong style="color:#d97a17">2,415명</strong> (18.8%)</span>
           <span style="color:var(--text-3)">마케팅 수신 동의 <strong style="color:var(--text-2)">12,418명</strong> (67.4%)</span>
         </div>
       </div>
       <div class="card">
         <table>
-          <thead><tr><th>닉네임(카카오톡 ID)</th><th>가입 유형</th><th>가입일</th><th>랜덤 티켓</th><th>전환예정</th><th>등급 티켓 (브론즈/실버/골드)</th><th>이벤트 티켓</th><th>마케팅 수신</th><th>상태</th><th>관리</th></tr></thead>
+          <thead><tr><th>닉네임 / 식별자</th><th>연동 상태</th><th>가입일</th><th>랜덤 티켓</th><th>전환예정</th><th>등급 티켓 (브론즈/실버/골드)</th><th>이벤트 티켓</th><th>마케팅 수신</th><th>상태</th><th>관리</th></tr></thead>
           <tbody>
             <tr>
-              <td><div style="font-weight:500">쇼핑왕민준</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(minjun_kakao)</div></td>
-              <td><span class="member-type-kakao">카카오</span></td>
+              <td><div style="font-weight:500">쇼핑왕민준</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">minjun_kakao</div></td>
+              <td><span class="member-type-kakao">카카오 연동</span><div style="font-size:10px;color:var(--text-3);margin-top:3px;">연동 2024/08/12</div></td>
               <td style="text-align:center"><div style="font-weight:700;color:#333333">2024/08/12</div><div style="color:var(--text-3)">09:14:22</div></td>
               <td><div class="rnd-chip-wrap"><span class="tk-chip random">2</span><span class="conv-arrow">→</span></div></td><td><div class="conv-preview"><span class="tk-chip bronze">+1</span><span class="tk-chip silver">+1</span></div></td><td><div style="display:flex;gap:5px;align-items:center;justify-content:center;"><span class="tk-chip bronze">12</span><span class="tk-chip silver">8</span><span class="tk-chip gold">27</span></div></td>
               <td><span class="tk-chip event">3</span></td>
@@ -1157,8 +1156,8 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <td><div style="display:flex;gap:5px;justify-content:center;" id="mact-1"><button class="btn btn-ghost btn-sm" onclick="openMemberModal(1)">상세</button></div></td>
             </tr>
             <tr>
-              <td><div style="font-weight:500">가격헌터서연</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(seoyeon_kko)</div></td>
-              <td><div style="display:flex;flex-direction:column;gap:4px;"><span class="member-type-apple">Apple</span><span style="font-size:10px;color:var(--text3)">seoyeon@icloud.com</span><div style="margin-top:2px;"><span class="member-type-kakao">카카오</span><div style="font-size:10px;color:var(--text3);margin-top:2px;">seoyeon_kakao</div></div></div></td>
+              <td><div style="font-weight:500">가격헌터서연</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">seoyeon_kakao</div></td>
+              <td><span class="member-type-kakao">카카오 연동</span><div style="font-size:10px;color:var(--text-3);margin-top:3px;">연동 2024/11/03</div></td>
               <td style="text-align:center"><div style="font-weight:700;color:#333333">2024/11/03</div><div style="color:var(--text-3)">14:37:05</div></td>
               <td><div class="rnd-chip-wrap"><span class="tk-chip random">1</span><span class="conv-arrow">→</span></div></td><td><div class="conv-preview"><span class="tk-chip gold">+1</span></div></td><td><div style="display:flex;gap:5px;align-items:center;justify-content:center;"><span class="tk-chip bronze">9</span><span class="tk-chip silver">14</span><span class="tk-chip gold dim">0</span></div></td>
               <td><span class="tk-chip event">1</span></td>
@@ -1167,8 +1166,8 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <td><div style="display:flex;gap:5px;justify-content:center;" id="mact-2"><button class="btn btn-ghost btn-sm" onclick="openMemberModal(2)">상세</button></div></td>
             </tr>
             <tr>
-              <td><div style="font-weight:500">절약러지호</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(jiho_kakao)</div></td>
-              <td><div style="display:flex;flex-direction:column;gap:4px;"><span class="member-type-google">Google</span><span style="font-size:10px;color:var(--text3)">jiho@gmail.com</span><div style="margin-top:2px;"><span class="member-type-kakao">카카오</span><div style="font-size:10px;color:var(--text3);margin-top:2px;">jiho_kakao</div></div></div></td>
+              <td><div style="font-weight:500">절약러지호 <span style="font-size:10px;font-weight:700;color:#d97a17;background:#fdf1e3;border:1px solid #f3d2a0;border-radius:10px;padding:1px 7px;margin-left:3px;">미연동</span></div><div style="font-size:11px;color:var(--text-2);font-family:monospace">app_uid: 8f3a21c0</div></td>
+              <td><span style="display:inline-block;font-size:11px;font-weight:700;color:#d97a17;background:#fdf1e3;border:1px solid #f3d2a0;border-radius:20px;padding:3px 10px;">게스트(미연동)</span><div style="font-size:10px;color:var(--text-3);margin-top:3px;">적립만 누적 · 사용 불가</div></td>
               <td style="text-align:center"><div style="font-weight:700;color:#333333">2025/02/28</div><div style="color:var(--text-3)">11:02:48</div></td>
               <td><span class="tk-chip random dim">0</span></td><td></td><td><div style="display:flex;gap:5px;align-items:center;justify-content:center;"><span class="tk-chip bronze dim">0</span><span class="tk-chip silver dim">0</span><span class="tk-chip gold dim">0</span></div></td>
               <td><span class="tk-chip event dim">0</span></td>
@@ -1177,8 +1176,8 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <td><div style="display:flex;gap:5px;justify-content:center;" id="mact-3"><button class="btn btn-ghost btn-sm" onclick="openMemberModal(3)">상세</button></div></td>
             </tr>
             <tr>
-              <td><div style="font-weight:500">핫딜탐정</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(hotdeal_kko)</div></td>
-              <td><span class="member-type-kakao">카카오</span></td>
+              <td><div style="font-weight:500">핫딜탐정</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">hotdeal_kakao</div></td>
+              <td><span class="member-type-kakao">카카오 연동</span><div style="font-size:10px;color:var(--text-3);margin-top:3px;">연동 2025/05/14</div></td>
               <td style="text-align:center"><div style="font-weight:700;color:#333333">2025/05/14</div><div style="color:var(--text-3)">16:55:33</div></td>
               <td><div class="rnd-chip-wrap"><span class="tk-chip random">3</span><span class="conv-arrow">→</span></div></td><td><div class="conv-preview"><span class="tk-chip bronze">+2</span><span class="tk-chip silver">+1</span></div></td><td><div style="display:flex;gap:5px;align-items:center;justify-content:center;"><span class="tk-chip bronze">5</span><span class="tk-chip silver">7</span><span class="tk-chip gold dim">0</span></div></td>
               <td><span class="tk-chip event">2</span></td>
@@ -1211,22 +1210,22 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       <div class="card">
           <div class="card-header"><div class="card-title">최근 티켓 이력</div></div>
           <table>
-            <thead><tr><th>닉네임(카카오톡 ID)</th><th>사유</th><th>티켓</th><th>일시</th></tr></thead>
+            <thead><tr><th>닉네임(카카오톡 ID)</th><th>사유</th><th>티켓</th><th>상태</th><th>일시</th></tr></thead>
             <tbody>
-              <tr><td><div style="font-weight:500">쇼핑왕민준</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(minjun_kko)</div></td><td style="color:var(--success)">구매확정 전환</td><td><div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:center;"><span class="tk-chip gold bare">골드 1장</span><span class="tk-chip bronze bare">브론즈 2장</span></div></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>14:23:07</div></td></tr>
-              <tr><td><div style="font-weight:500">가격헌터서연</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(seoyeon_kko)</div></td><td style="color:var(--text-2)">구매 대기 (가지급)</td><td><span class="tk-chip random bare">랜덤 1장</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>14:10:33</div></td></tr>
-              <tr><td><div style="font-weight:500">가격헌터서연</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(seoyeon_kko)</div></td><td style="color:var(--success)">구매확정 전환</td><td><span class="tk-chip bronze bare">브론즈 1장</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>13:47:51</div></td></tr>
-              <tr><td><div style="font-weight:500">딜헌터지민</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(jiho_deal)</div></td><td style="color:var(--success)">구매확정 전환</td><td><span class="tk-chip silver bare">실버 1장</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>13:05:22</div></td></tr>
-              <tr><td><div style="font-weight:500">핫딜탐정</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(hotdeal_kko)</div></td><td style="color:var(--text-2)">구매 대기 (가지급)</td><td><span class="tk-chip random bare">랜덤 1장</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>12:51:09</div></td></tr>
-              <tr><td><div style="font-weight:500">가격마스터</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(price_master)</div></td><td style="color:var(--success)">구매확정 전환</td><td><div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:center;"><span class="tk-chip gold bare">골드 2장</span><span class="tk-chip silver bare">실버 1장</span><span class="tk-chip bronze bare">브론즈 3장</span></div></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>12:40:44</div></td></tr>
-              <tr><td><div style="font-weight:500">절약마스터</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(saving_master)</div></td><td style="color:#c084fc">주간 미션 완료</td><td><span class="tk-chip event bare">이벤트 2장</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>12:31:18</div></td></tr>
-              <tr><td><div style="font-weight:500">쇼핑고수한나</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(hanna_shop)</div></td><td style="color:#c084fc">출석 체크</td><td><span class="tk-chip event bare">이벤트 1장</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>12:15:03</div></td></tr>
-              <tr><td><div style="font-weight:500">딜헌터지민</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(jiho_deal)</div></td><td style="color:#c084fc">광고 시청</td><td><span class="tk-chip event bare">이벤트 1장</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>11:50:37</div></td></tr>
-              <tr><td><div style="font-weight:500">친구초대왕</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(invite_king)</div></td><td style="color:#c084fc">친구초대 보상</td><td><span class="tk-chip event bare">이벤트 5장</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>11:30:55</div></td></tr>
-              <tr><td><div style="font-weight:500">절약생활러</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(saving_life)</div></td><td style="color:var(--danger)">기프티콘 교환 소모</td><td><span style="color:var(--danger);font-size:12px;font-weight:700">−골드 1장</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>11:10:29</div></td></tr>
-              <tr><td><div style="font-weight:500">가격사냥꾼</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(price_hunter)</div></td><td style="color:var(--danger)">경품 응모 소모</td><td><span style="color:var(--danger);font-size:12px;font-weight:700">−이벤트 3장</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>10:55:14</div></td></tr>
-              <tr><td><div style="font-weight:500">최수아</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(choisua_kko)</div></td><td style="color:var(--danger)">부정행위 회수</td><td><span style="color:var(--danger);font-size:12px;font-weight:700">−5장 전액</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>10:40:02</div></td></tr>
-              <tr><td><div style="font-weight:500">운영자지급</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(admin_system)</div></td><td style="color:var(--main)">관리자 지급</td><td><div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:center;"><span class="tk-chip gold bare">골드 2장</span></div></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>10:20:48</div></td></tr>
+              <tr><td><div style="font-weight:500">쇼핑왕민준</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(minjun_kko)</div></td><td style="color:var(--success)">구매확정 전환</td><td><div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:center;"><span class="tk-chip gold bare">골드 1장</span><span class="tk-chip bronze bare">브론즈 2장</span></div></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#1f9d57;background:#e6f7ec;border:1px solid #b6e6c8;border-radius:20px;padding:3px 10px;white-space:nowrap;">보유 중</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>14:23:07</div></td></tr>
+              <tr><td><div style="font-weight:500">가격헌터서연</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(seoyeon_kko)</div></td><td style="color:var(--text-2)">구매 대기 (가지급)</td><td><span class="tk-chip random bare">랜덤 1장</span></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#d97a17;background:#fdf1e3;border:1px solid #f3d2a0;border-radius:20px;padding:3px 10px;white-space:nowrap;">가지급(대기)</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>14:10:33</div></td></tr>
+              <tr><td><div style="font-weight:500">가격헌터서연</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(seoyeon_kko)</div></td><td style="color:var(--success)">구매확정 전환</td><td><span class="tk-chip bronze bare">브론즈 1장</span></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#1f9d57;background:#e6f7ec;border:1px solid #b6e6c8;border-radius:20px;padding:3px 10px;white-space:nowrap;">보유 중</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>13:47:51</div></td></tr>
+              <tr><td><div style="font-weight:500">딜헌터지민</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(jiho_deal)</div></td><td style="color:var(--success)">구매확정 전환</td><td><span class="tk-chip silver bare">실버 1장</span></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#1f9d57;background:#e6f7ec;border:1px solid #b6e6c8;border-radius:20px;padding:3px 10px;white-space:nowrap;">보유 중</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>13:05:22</div></td></tr>
+              <tr><td><div style="font-weight:500">핫딜탐정</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(hotdeal_kko)</div></td><td style="color:var(--text-2)">구매 대기 (가지급)</td><td><span class="tk-chip random bare">랜덤 1장</span></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#d97a17;background:#fdf1e3;border:1px solid #f3d2a0;border-radius:20px;padding:3px 10px;white-space:nowrap;">가지급(대기)</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>12:51:09</div></td></tr>
+              <tr><td><div style="font-weight:500">가격마스터</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(price_master)</div></td><td style="color:var(--success)">구매확정 전환</td><td><div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:center;"><span class="tk-chip gold bare">골드 2장</span><span class="tk-chip silver bare">실버 1장</span><span class="tk-chip bronze bare">브론즈 3장</span></div></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#1f9d57;background:#e6f7ec;border:1px solid #b6e6c8;border-radius:20px;padding:3px 10px;white-space:nowrap;">보유 중</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>12:40:44</div></td></tr>
+              <tr><td><div style="font-weight:500">절약마스터</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(saving_master)</div></td><td style="color:#c084fc">주간 미션 완료</td><td><span class="tk-chip event bare">이벤트 2장</span></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#1f9d57;background:#e6f7ec;border:1px solid #b6e6c8;border-radius:20px;padding:3px 10px;white-space:nowrap;">보유 중</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>12:31:18</div></td></tr>
+              <tr><td><div style="font-weight:500">쇼핑고수한나</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(hanna_shop)</div></td><td style="color:#c084fc">출석 체크</td><td><span class="tk-chip event bare">이벤트 1장</span></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#1f9d57;background:#e6f7ec;border:1px solid #b6e6c8;border-radius:20px;padding:3px 10px;white-space:nowrap;">보유 중</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>12:15:03</div></td></tr>
+              <tr><td><div style="font-weight:500">딜헌터지민</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(jiho_deal)</div></td><td style="color:#c084fc">광고 시청</td><td><span class="tk-chip event bare">이벤트 1장</span></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#1f9d57;background:#e6f7ec;border:1px solid #b6e6c8;border-radius:20px;padding:3px 10px;white-space:nowrap;">보유 중</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>11:50:37</div></td></tr>
+              <tr><td><div style="font-weight:500">친구초대왕</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(invite_king)</div></td><td style="color:#c084fc">친구초대 보상</td><td><span class="tk-chip event bare">이벤트 5장</span></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#1f9d57;background:#e6f7ec;border:1px solid #b6e6c8;border-radius:20px;padding:3px 10px;white-space:nowrap;">보유 중</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>11:30:55</div></td></tr>
+              <tr><td><div style="font-weight:500">절약생활러</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(saving_life)</div></td><td style="color:var(--danger)">기프티콘 교환 소모</td><td><span style="color:var(--danger);font-size:12px;font-weight:700">−골드 1장</span></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#6b7280;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:20px;padding:3px 10px;white-space:nowrap;">사용 완료</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>11:10:29</div></td></tr>
+              <tr><td><div style="font-weight:500">가격사냥꾼</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(price_hunter)</div></td><td style="color:var(--danger)">경품 응모 소모</td><td><span style="color:var(--danger);font-size:12px;font-weight:700">−이벤트 3장</span></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#6b7280;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:20px;padding:3px 10px;white-space:nowrap;">사용 완료</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>10:55:14</div></td></tr>
+              <tr><td><div style="font-weight:500">최수아</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(choisua_kko)</div></td><td style="color:var(--danger)">부정행위 회수</td><td><span style="color:var(--danger);font-size:12px;font-weight:700">−5장 전액</span></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#dc2626;background:#fef2f2;border:1px solid #fecaca;border-radius:20px;padding:3px 10px;white-space:nowrap;">회수</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>10:40:02</div></td></tr>
+              <tr><td><div style="font-weight:500">운영자지급</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(admin_system)</div></td><td style="color:var(--main)">관리자 지급</td><td><div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:center;"><span class="tk-chip gold bare">골드 2장</span></div></td><td style="text-align:center"><span style="display:inline-block;font-size:11px;font-weight:700;color:#1f9d57;background:#e6f7ec;border:1px solid #b6e6c8;border-radius:20px;padding:3px 10px;white-space:nowrap;">보유 중</span></td><td style="color:var(--text-3);font-size:12px;white-space:nowrap;text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>10:20:48</div></td></tr>
             </tbody>
           </table>
         </div>
@@ -1235,8 +1234,9 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
     <!-- ── 티켓 등급 설정 (신규) ── -->
     <!-- ── 추첨 관리 ── -->
     <div class="section" id="sec-draws">
+      <div class="info-box"><strong>좌측 메뉴 (1) 배지 = 관리자 처리 대기 추첨 건수</strong> — 마감됐으나 아직 '당첨 처리(추첨 실행)'를 안 한 회차 수입니다. 해당 회차의 당첨 처리를 완료하면 카운트가 줄고, 0이 되면 배지가 사라집니다.</div>
       <div class="card">
-        <div class="card-header"><div><div class="card-title">추첨 회차 목록</div><div class="card-sub">매주 월요일 당첨자 발표</div></div><div id="draw-hdr-actions"></div></div>
+        <div class="card-header"><div><div class="card-title">추첨 회차 목록</div><div class="card-sub">추첨 방식: 매주 월요일 자동 발표 (자동/수동 전환 가능)</div></div><div id="draw-hdr-actions"><button class="btn btn-primary btn-sm" onclick="document.getElementById('draw-create-ov').style.display='block'">+ 회차 등록</button></div></div>
         <table>
           <thead><tr><th>회차</th><th>경품 구성</th><th>추첨 기간</th><th>마감일</th><th>참여 티켓</th><th>당첨자</th><th>상태</th><th>액션</th></tr></thead>
           <tbody>
@@ -1259,8 +1259,8 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
                   <div>3등 5명</div>
                 </div>
               </td>
-              <td><span class="badge badge-amber">진행 중</span></td>
-              <td id="draw-action-col"><button class="btn btn-primary btn-sm" onclick="openModal('m-draw')">당첨 처리</button></td>
+              <td><span class="badge badge-amber">마감 · 처리 대기</span></td>
+              <td id="draw-action-col"><button class="btn btn-primary btn-sm" onclick="openModal('m-draw')">당첨 처리(추첨 실행)</button></td>
             </tr>
             <tr>
               <td><strong>11회</strong></td>
@@ -1305,8 +1305,9 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           </tbody>
         </table>
       </div>
-      <div class="card" id="draw-create-card">
-        <div class="card-header"><div class="card-title">새 추첨 회차 등록</div></div>
+      <div id="draw-create-ov" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.45)" onclick="if(event.target===this)this.style.display='none'">
+      <div class="card" id="draw-create-card" style="max-width:580px;margin:5vh auto;max-height:86vh;overflow:auto">
+        <div class="card-header"><div class="card-title">새 추첨 회차 등록</div><button class="btn btn-ghost btn-sm" onclick="document.getElementById('draw-create-ov').style.display='none'">✕ 닫기</button></div>
         <div style="padding:18px">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
             <div class="form-group"><label class="form-label">회차명</label><input class="form-input" placeholder="예: 13회차 경품 추첨"></div>
@@ -1318,7 +1319,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           <!-- 등수별 경품 구성 -->
           <div style="margin-top:20px">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-              <label class="form-label" style="margin:0">등수별 경품 구성</label>
+              <label class="form-label" style="margin:0">등수별 경품 구성 <span style="font-weight:500;color:var(--text-sub);font-size:11px">· 등수당 1행(중복 등수 금지), 한 등수에 경품 여러 개 가능</span></label>
               <button class="btn btn-ghost btn-sm" onclick="addPrizeRow()">+ 등수 추가</button>
             </div>
             <div style="display:grid;grid-template-columns:80px 1fr 100px 36px;gap:8px;margin-bottom:6px;padding:0 4px">
@@ -1343,8 +1344,9 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             </div>
           </div>
 
-          <button class="btn btn-primary" style="margin-top:16px" onclick="toast('새 추첨 회차가 등록되었습니다.')">회차 등록</button>
+          <button class="btn btn-primary" style="margin-top:16px" onclick="toast('새 추첨 회차가 등록되었습니다.');document.getElementById('draw-create-ov').style.display='none'">회차 등록</button>
         </div>
+      </div>
       </div>
     </div>
 
@@ -1389,6 +1391,18 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           </table>
         </div>
       </div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-header"><div><div class="card-title">경품 변경 이력</div><div class="card-sub">현재 버전 v4 · 변경·공표 추적(누가·언제·전후·공표 여부)</div></div></div>
+        <table>
+          <thead><tr><th>버전</th><th>변경 내용 (전 → 후)</th><th>변경자</th><th>변경일시</th><th>공표</th></tr></thead>
+          <tbody>
+            <tr><td><strong>v4</strong></td><td>2등 경품 '편의점 상품권 1만' → '편의점 아이스크림 교환권'</td><td>이운영</td><td style="color:var(--text-3);font-size:12px">2026/05/20 10:32</td><td><span class="badge badge-green">공표됨 · 13회차~</span></td></tr>
+            <tr><td>v3</td><td>1등 당첨 확률 3% → 5%</td><td>이운영</td><td style="color:var(--text-3);font-size:12px">2026/05/06 14:10</td><td><span class="badge badge-green">공표됨 · 11회차~</span></td></tr>
+            <tr><td>v2</td><td>3등 '꽝(재도전)' 신설</td><td>김반장</td><td style="color:var(--text-3);font-size:12px">2026/04/22 09:05</td><td><span class="badge badge-green">공표됨 · 9회차~</span></td></tr>
+            <tr><td>v1</td><td>최초 경품 구성 등록</td><td>김반장</td><td style="color:var(--text-3);font-size:12px">2026/04/01 11:00</td><td><span class="badge badge-green">공표됨</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- ── 주간 이벤트 추첨 (이벤트 티켓 소비·자동응모) ── -->
@@ -1403,7 +1417,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       </div>
       <div class="card-grid">
         <div class="card">
-          <div class="card-header"><div class="card-title">추첨 설정</div><button class="btn btn-ghost btn-sm" onclick="toast('수정 기능 준비중')">수정</button></div>
+          <div class="card-header"><div class="card-title">추첨 설정</div><button class="btn btn-ghost btn-sm" onclick="openModal('m-weekly-edit')">수정</button></div>
           <div>
             <div class="policy-item"><div class="policy-label">응모 대상</div><div class="policy-value">이벤트 티켓 보유 회원 (자동 응모)</div><div class="policy-desc">보유 이벤트 티켓으로 매 회차 자동 응모. 티켓이 없으면 응모 제외.</div></div>
             <div class="policy-item"><div class="policy-label">추첨 일정</div><div class="policy-value">매주 월요일 00:00 자동 추첨</div><div class="policy-desc">추첨 주기는 운영 정책에 따름(월1/격주 미정).</div></div>
@@ -1662,7 +1676,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
     <!-- ── 배너 관리 ── -->
     <div class="section" id="sec-banners">
       <div class="card">
-        <div class="card-header"><div><div class="card-title">배너 관리</div><div class="card-sub">홈 상단 슬라이드 · 현재 2개 노출</div></div><div id="banner-hdr-actions"></div></div>
+        <div class="card-header"><div><div class="card-title">배너 관리</div><div class="card-sub">홈 상단 슬라이드 · 현재 2개 노출 · 카드 순서 드래그로 노출 순서 변경</div></div><div id="banner-hdr-actions"><button class="btn btn-primary btn-sm" onclick="openModal('m-banner')">+ 배너 추가</button></div></div>
         <div class="banner-grid">
           <div class="banner-card">
             <div class="banner-preview" style="background:linear-gradient(135deg,#845EEE,#C6AFFF)">이번 주 추첨 참여하기</div>
@@ -1670,7 +1684,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <div class="banner-name">이번 주 추첨 참여하기</div>
               <div class="banner-meta">05/05 ~ 05/12 &nbsp;·&nbsp; /benefits/draw</div>
               <div class="banner-meta" style="margin-top:4px"><span class="badge badge-green">노출 중</span></div>
-              <div class="banner-actions" id="banner-action-1"><button class="btn btn-ghost btn-sm" onclick="openModal('m-banner')">수정</button></div>
+              <div class="banner-actions" id="banner-action-1"><button class="btn btn-ghost btn-sm" onclick="openModal('m-banner')">수정</button><button class="btn btn-ghost btn-sm" onclick="toast('노출/비노출 전환')">노출 전환</button><button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="if(confirm('이 배너를 삭제할까요?'))toast('배너가 삭제되었습니다.')">삭제</button></div>
             </div>
           </div>
           <div class="banner-card">
@@ -1679,7 +1693,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <div class="banner-name">신규 가입 티켓 3장 증정</div>
               <div class="banner-meta">상시 &nbsp;·&nbsp; /onboarding</div>
               <div class="banner-meta" style="margin-top:4px"><span class="badge badge-green">노출 중</span></div>
-              <div class="banner-actions" id="banner-action-2"><button class="btn btn-ghost btn-sm" onclick="openModal('m-banner')">수정</button></div>
+              <div class="banner-actions" id="banner-action-2"><button class="btn btn-ghost btn-sm" onclick="openModal('m-banner')">수정</button><button class="btn btn-ghost btn-sm" onclick="toast('노출/비노출 전환')">노출 전환</button><button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="if(confirm('이 배너를 삭제할까요?'))toast('배너가 삭제되었습니다.')">삭제</button></div>
             </div>
           </div>
           <div class="banner-card">
@@ -1688,7 +1702,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <div class="banner-name">골드 등급 전용 이벤트</div>
               <div class="banner-meta">05/01 ~ 05/31 &nbsp;·&nbsp; /benefits/grade</div>
               <div class="banner-meta" style="margin-top:4px"><span class="badge badge-gray">비노출</span></div>
-              <div class="banner-actions" id="banner-action-3"><button class="btn btn-ghost btn-sm" onclick="openModal('m-banner')">수정</button></div>
+              <div class="banner-actions" id="banner-action-3"><button class="btn btn-ghost btn-sm" onclick="openModal('m-banner')">수정</button><button class="btn btn-ghost btn-sm" onclick="toast('노출/비노출 전환')">노출 전환</button><button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="if(confirm('이 배너를 삭제할까요?'))toast('배너가 삭제되었습니다.')">삭제</button></div>
             </div>
           </div>
         </div>
@@ -1697,24 +1711,24 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 
     <!-- ── 이벤트 관리 ── -->
     <div class="section" id="sec-events">
-      <div class="info-box"><strong>정책 확정 반영</strong> — 온보딩·이벤트 보상 확정 적용.</div>
+      <div class="info-box"><strong>정책 확정 반영</strong> — 온보딩·이벤트 보상 확정 적용. 이벤트 생성·수정 시 <strong>운영정책과의 보상 정합 검증</strong>(중복 보상·만료 충돌 차단) 후 저장.</div>
       <div class="card">
-        <div class="card-header"><div><div class="card-title">이벤트 관리</div></div><div id="event-hdr-actions"></div></div>
+        <div class="card-header"><div><div class="card-title">이벤트 관리</div></div><div id="event-hdr-actions"><button class="btn btn-primary btn-sm" onclick="openModal('m-event')">+ 이벤트 생성</button></div></div>
         <div style="padding:16px">
           <div class="event-card">
             <div class="event-header"><div><div class="event-title">5월 출석 체크</div><div class="event-period">05/01 ~ 05/31 &nbsp;·&nbsp; 전체 회원</div></div><span class="badge badge-green">진행 중</span></div>
             <div class="event-desc">5일 연속 출석 달성 시 500P + 이벤트 티켓 1장 지급.</div>
-            <div class="event-actions" id="event-action-1"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button></div>
+            <div class="event-actions" id="event-action-1"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button><button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="if(confirm('이 이벤트를 삭제할까요?'))toast('이벤트가 삭제되었습니다.')">삭제</button></div>
           </div>
           <div class="event-card">
             <div class="event-header"><div><div class="event-title">신규 가입 웰컴 보너스</div><div class="event-period">상시 &nbsp;·&nbsp; 신규 가입자</div></div><span class="badge badge-green">진행 중</span></div>
             <div class="event-desc">가입 즉시 이벤트 티켓 1장 + 200P 지급. (어뷰징 방지: 카카오 연동 후 지급)</div>
-            <div class="event-actions" id="event-action-2"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button></div>
+            <div class="event-actions" id="event-action-2"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button><button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="if(confirm('이 이벤트를 삭제할까요?'))toast('이벤트가 삭제되었습니다.')">삭제</button></div>
           </div>
           <div class="event-card">
             <div class="event-header"><div><div class="event-title">첫 경유 구매 보너스</div><div class="event-period">상시 &nbsp;·&nbsp; 신규 가입 7일 내</div></div><span class="badge badge-green">진행 중</span></div>
             <div class="event-desc">첫 경유 구매(가입 7일 내) 시 골드 티켓 1장 지급. 구매 확정 후 지급(연동 D+7 / 미연동 D+30).</div>
-            <div class="event-actions" id="event-action-3"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button></div>
+            <div class="event-actions" id="event-action-3"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button><button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="if(confirm('이 이벤트를 삭제할까요?'))toast('이벤트가 삭제되었습니다.')">삭제</button></div>
           </div>
         </div>
       </div>
@@ -1944,11 +1958,11 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
         <table>
           <thead><tr><th>제목</th><th style="text-align:center">분류</th><th style="text-align:center">게시일</th><th style="text-align:center">조회수</th><th style="text-align:center">노출</th><th style="text-align:center">관리</th></tr></thead>
           <tbody>
-            <tr><td style="font-weight:500">[점검] 5/15 새벽 서버 정기 점검 안내</td><td style="text-align:center"><span class="badge badge-amber">서비스 점검</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/12</div></td><td style="text-align:center">1,204</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button></td></tr>
-            <tr><td style="font-weight:500">v1.4.3 업데이트 안내 (ATT·포스트백 개선)</td><td style="text-align:center"><span class="badge badge-purple">업데이트</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/08</div></td><td style="text-align:center">3,821</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button></td></tr>
-            <tr><td style="font-weight:500">개인정보처리방침 개정 안내 (시행 6/1)</td><td style="text-align:center"><span class="badge badge-red">정책 변경</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/05</div></td><td style="text-align:center">2,015</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button></td></tr>
-            <tr><td style="font-weight:500">제휴몰 추가 안내 (11번가·G마켓 오픈)</td><td style="text-align:center"><span class="badge badge-gray">일반</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/04/28</div></td><td style="text-align:center">5,640</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button></td></tr>
-            <tr><td style="font-weight:500">[임시저장] 여름 시즌 이벤트 사전 공지</td><td style="text-align:center"><span class="badge badge-green">이벤트</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/13</div></td><td style="text-align:center">—</td><td style="text-align:center"><span class="badge badge-gray">숨김</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button></td></tr>
+            <tr><td style="font-weight:500">[점검] 5/15 새벽 서버 정기 점검 안내</td><td style="text-align:center"><span class="badge badge-amber">서비스 점검</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/12</div></td><td style="text-align:center">1,204</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 숨김 처리했습니다(소프트삭제·보존).')">숨김</button></td></tr>
+            <tr><td style="font-weight:500">v1.4.3 업데이트 안내 (ATT·포스트백 개선)</td><td style="text-align:center"><span class="badge badge-purple">업데이트</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/08</div></td><td style="text-align:center">3,821</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 숨김 처리했습니다(소프트삭제·보존).')">숨김</button></td></tr>
+            <tr><td style="font-weight:500">개인정보처리방침 개정 안내 (시행 6/1)</td><td style="text-align:center"><span class="badge badge-red">정책 변경</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/05</div></td><td style="text-align:center">2,015</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 숨김 처리했습니다(소프트삭제·보존).')">숨김</button></td></tr>
+            <tr><td style="font-weight:500">제휴몰 추가 안내 (11번가·G마켓 오픈)</td><td style="text-align:center"><span class="badge badge-gray">일반</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/04/28</div></td><td style="text-align:center">5,640</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 숨김 처리했습니다(소프트삭제·보존).')">숨김</button></td></tr>
+            <tr><td style="font-weight:500">[임시저장] 여름 시즌 이벤트 사전 공지</td><td style="text-align:center"><span class="badge badge-green">이벤트</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/13</div></td><td style="text-align:center">—</td><td style="text-align:center"><span class="badge badge-gray">숨김</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 숨김 처리했습니다(소프트삭제·보존).')">숨김</button></td></tr>
           </tbody>
         </table>
         <div class="pagination"><button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">›</button></div>
@@ -2007,10 +2021,11 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><div class="card-title">알림 발송 내역</div><div id="noti-hdr-actions"></div></div>
+        <div class="card-header"><div><div class="card-title">알림 발송 내역</div><div class="card-sub">발송 완료 건은 불변 로그 · '예약' 상태만 발송 전 취소·수정 가능</div></div><div id="noti-hdr-actions"></div></div>
         <table>
-          <thead><tr><th style="text-align:center">발송일시</th><th style="text-align:center">채널</th><th>제목</th><th style="text-align:center">대상</th><th style="text-align:center">발송 수</th><th style="text-align:center">열람율</th><th style="text-align:center">상태</th></tr></thead>
+          <thead><tr><th style="text-align:center">발송일시</th><th style="text-align:center">채널</th><th>제목</th><th style="text-align:center">대상</th><th style="text-align:center">발송 수</th><th style="text-align:center">열람율</th><th style="text-align:center">상태 / 액션</th></tr></thead>
           <tbody>
+            <tr><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/06/02</div><div style="color:var(--text-3)">10:00 예정</div></td><td style="text-align:center"><span class="badge badge-purple">앱 푸시</span></td><td>6월 첫째주 추첨 안내</td><td style="text-align:center">전체</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center"><span class="badge badge-amber">예약</span> <button class="btn btn-ghost btn-sm" onclick="toast('예약 발송을 취소했습니다.')">취소</button> <button class="btn btn-ghost btn-sm" onclick="toast('예약 알림 수정')">수정</button></td></tr>
             <tr><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/30</div><div style="color:var(--text-3)">04:00</div></td><td style="text-align:center"><span class="badge badge-purple">앱 푸시</span></td><td>등급 티켓 만료 7일 전 안내</td><td style="text-align:center">맞춤</td><td style="text-align:center">284명</td><td style="text-align:center;color:var(--success)">46.5%</td><td style="text-align:center"><span class="badge badge-green">완료</span></td></tr>
             <tr><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/11</div><div style="color:var(--text-3)">10:00</div></td><td style="text-align:center"><span class="badge badge-purple">앱 푸시</span></td><td>이번 주 추첨 마감 D-1</td><td style="text-align:center">전체</td><td style="text-align:center">12,840명</td><td style="text-align:center;color:var(--success)">38.2%</td><td style="text-align:center"><span class="badge badge-green">완료</span></td></tr>
             <tr><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/10</div><div style="color:var(--text-3)">09:00</div></td><td style="text-align:center"><span class="badge badge-amber">알림톡</span></td><td>골드 등급 이벤트 안내</td><td style="text-align:center">골드</td><td style="text-align:center">1,240명</td><td style="text-align:center;color:var(--success)">52.1%</td><td style="text-align:center"><span class="badge badge-green">완료</span></td></tr>
@@ -2024,6 +2039,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
     <!-- ── 1:1 문의 (신규) ── -->
     <!-- ── 운영 정책 (신규 · 조회 전용) ── -->
     <div class="section" id="sec-op-policy">
+      <div class="info-box">운영 정책은 <strong>조회 전용</strong>입니다 — 정책 수치·기준 변경은 별도 승인 절차로 반영되며 이 화면에서 직접 수정하지 않습니다.</div>
       <div class="info-box"><strong>조회 전용</strong> — 앱·서비스 운영의 핵심 정책 기준을 한곳에서 확인하는 페이지입니다. 정책 수치·기준 변경은 별도 승인 절차를 거쳐 반영되며, 이 화면에서 직접 수정하지 않습니다. (이용약관·개인정보처리방침 등 앱 노출용 약관은 <strong>약관 관리</strong>에서 별도 관리)</div>
       <div class="card">
         <div style="padding:18px;">
@@ -2317,6 +2333,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 
     <!-- ── 1:1 문의 (신규) ── -->
     <div class="section" id="sec-inquiries">
+      <div class="info-box">1:1 문의 처리 — 수정에서 <strong>처리 상태는 '완료' 건도 변경(재오픈) 가능</strong>합니다. 재오픈 시 변경 사유·이력(누가·언제)을 기록합니다.</div>
       <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
         <div class="stat-card red"><div class="stat-label">미처리</div><div class="stat-value">7</div><div class="stat-change down">빠른 처리 필요</div></div>
         <div class="stat-card amber"><div class="stat-label">처리 중</div><div class="stat-value">3</div><div class="stat-change neutral">답변 대기</div></div>
@@ -2419,7 +2436,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       </div>
       <div class="card-grid" style="margin-top:16px">
         <div class="card">
-          <div class="card-header"><div class="card-title">탈퇴 사유 분포 (이번달)</div></div>
+          <div class="card-header"><div class="card-title">탈퇴 사유 분포</div><select class="filter-sel"><option>이번 달</option><option>지난 달</option><option>최근 3개월</option><option>사용자 지정</option></select></div>
           <div>
             <div class="policy-item"><div class="policy-label">알림이 너무 많음</div><div class="policy-value">42명 (29.6%)</div><div class="policy-desc">→ 알림 정책 검토 필요</div></div>
             <div class="policy-item"><div class="policy-label">앱 자주 안 씀</div><div class="policy-value">38명 (26.8%)</div><div class="policy-desc">→ 리텐션 캠페인 검토</div></div>
@@ -2429,7 +2446,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           </div>
         </div>
         <div class="card">
-          <div class="card-header"><div class="card-title">탈퇴 정책 설정</div><button class="btn btn-ghost btn-sm" onclick="toast('수정 기능 준비중')">수정</button></div>
+          <div class="card-header"><div class="card-title">탈퇴 정책 설정</div><button class="btn btn-ghost btn-sm" onclick="openModal('m-withdrawal-policy')">수정</button></div>
           <div>
             <div class="policy-item"><div class="policy-label">유예 기간</div><div class="policy-value">30일</div><div class="policy-desc">개인정보보호법 권장 · Apple/Google 심사 통과 기준</div></div>
             <div class="policy-item"><div class="policy-label">보유 티켓 처리</div><div class="policy-value">탈퇴 즉시 회수</div><div class="policy-desc">철회 시 자동 복구</div></div>
@@ -2636,6 +2653,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 
     <!-- ── 앱 버전 관리 (신규) ── -->
     <div class="section" id="sec-appver">
+      <div class="info-box"><strong>강제 업데이트 게이트</strong> — '최소 지원 버전' 미만 사용자는 앱 진입 시 강제 업데이트로 차단합니다(결함·보안 패치 시 구버전 차단 필수).</div>
       <div class="warn-box"><strong>주의</strong> — 강제 업데이트 활성화 시 최소버전 미만 사용자는 즉시 앱 진입이 차단됩니다.</div>
       <div class="card-grid">
         <div class="card">
@@ -2672,6 +2690,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 
     <!-- ── 제휴몰 API 관리 (신규) ── -->
     <div class="section" id="sec-apikeys">
+      <div class="info-box">제휴몰 API 모니터링 — 키 상태·일일 호출 한도·장애를 추적합니다. <strong>쿠팡 파트너스 우선 연동</strong>, 나머지 제휴몰은 표시·추후 연동 단계.</div>
       <div class="warn-box"><strong>보안 주의</strong> — API 키는 마스킹 처리됩니다. 키 노출 시 즉시 재발급 후 교체하세요. 키 교체 시 해당 제휴몰의 적립 추적이 일시 중단됩니다.</div>
       <div class="card-grid">
         <div class="card">
@@ -2717,7 +2736,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
     <div class="section" id="sec-scheduler">
       <div class="info-box"><strong>스케줄러</strong>는 백그라운드 자동 작업입니다. 비정상 상태 감지 시 즉시 재시작하세요.</div>
       <div class="card">
-        <div class="card-header"><div class="card-title">스케줄러 목록</div></div>
+        <div class="card-header"><div><div class="card-title">스케줄러 목록</div><div class="card-sub">시스템 정의 배치 — 생성·삭제 없음 · 활성/비활성 토글·주기 조정·즉시 실행만 제공</div></div></div>
         <div>
           <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">알림 발송</div><div class="scheduler-desc">매 5분 · 예약·이벤트 알림 큐 처리</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">2분 전</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
           <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">주간 추첨 집계</div><div class="scheduler-desc">매주 월요일 자정 · 자동 당첨 처리</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">지난 월요일</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
@@ -2761,7 +2780,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           </div>
         </div>
         <div class="card">
-          <div class="card-header"><div class="card-title">최근 접근 로그</div></div>
+          <div class="card-header"><div><div class="card-title">최근 접근 로그</div><div class="card-sub">IP 마스킹 저장 · 보존 90일 · 정책/계정/API키 변경은 별도 강조 로깅</div></div></div>
           <table>
             <thead><tr><th>시각</th><th>이름</th><th>작업</th><th>IP</th></tr></thead>
             <tbody>
@@ -2805,7 +2824,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <td><span class="tk-chip bronze bare">브론즈 2장</span></td>
               <td><span class="badge" style="background:var(--surface-2);color:var(--text-2)">만료</span></td>
               <td style="font-size:12px;color:var(--text-3);text-align:center"><div style="font-weight:700;color:#333333">2025/05/29</div><div>03:58:00</div></td>
-              <td><button class="btn btn-ghost btn-sm" onclick="toast('상세 보기')">상세</button></td>
+              <td><button class="btn btn-ghost btn-sm" onclick="openModal('m-clawback-detail')">상세</button></td>
             </tr>
             <tr>
               <td style="text-align:center"><div style="font-weight:700;color:#333333">2026/05/11</div><div style="color:var(--text-3)">14:32:00</div></td>
@@ -2941,7 +2960,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
     <div class="section" id="sec-point-policy">
       <div class="info-box"><strong>포인트 기준 환율</strong> — 10P = 1원. 포인트는 티켓과 양방향 교환되며, 교환 비율은 환산가치 1:1 등가입니다.</div>
       <div class="card">
-        <div class="card-header"><div class="card-title">포인트 ↔ 티켓 교환 비율</div><button class="btn btn-ghost btn-sm" onclick="toast('교환 비율 수정 준비중')">수정</button></div>
+        <div class="card-header"><div class="card-title">포인트 ↔ 티켓 교환 비율</div><button class="btn btn-ghost btn-sm" onclick="openModal('m-point-policy-edit')">수정</button></div>
         <table>
           <thead><tr><th>등급</th><th>포인트 → 티켓</th><th>티켓 → 포인트</th><th>원화 환산</th></tr></thead>
           <tbody>
@@ -3424,6 +3443,79 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       <button class="btn btn-ghost" onclick="closeModal('m-send-prize')">취소</button>
       <button class="btn btn-primary" onclick="toast('발송되었습니다.');closeModal('m-send-prize')">발송하기</button>
     </div>
+  </div>
+</div>
+
+<!-- ── 모달: 주간 이벤트 추첨 설정 수정 ── -->
+<div class="modal-overlay" id="m-weekly-edit">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">주간 이벤트 추첨 설정 수정</div><button class="modal-close" onclick="closeModal('m-weekly-edit')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">당첨 확률 (%)</label><input class="form-input" type="number" value="50" min="0" max="100"></div>
+        <div class="form-group"><label class="form-label">추첨 방식</label><select class="form-select"><option>자동 (매주 월요일 00:00)</option><option>수동 (관리자 실행)</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">추첨 요일</label><select class="form-select"><option>월요일</option><option>화요일</option><option>수요일</option><option>목요일</option><option>금요일</option></select></div>
+        <div class="form-group"><label class="form-label">추첨 시각</label><input class="form-input" type="time" value="00:00"></div>
+      </div>
+      <div class="form-group"><label class="form-label">당첨 보상 구성</label><input class="form-input" value="기프티콘·실물 경품 (등수별 구성은 경품/응모 관리 연동)"></div>
+      <div class="form-group"><label class="form-label">이벤트 티켓 이월/만료 회차</label><select class="form-select"><option>미응모 시 1회 이월 · 최대 2회 추첨 후 소멸</option><option>이월 없음 (당회 미응모 시 소멸)</option></select></div>
+      <div class="info-box">변경 시 변경 이력(누가·언제·전후)이 기록됩니다.</div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('m-weekly-edit')">취소</button><button class="btn btn-primary" onclick="toast('주간 추첨 설정이 저장되었습니다.');closeModal('m-weekly-edit')">저장</button></div>
+  </div>
+</div>
+
+<!-- ── 모달: 포인트 정책 수정 ── -->
+<div class="modal-overlay" id="m-point-policy-edit">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">포인트 정책 수정</div><button class="modal-close" onclick="closeModal('m-point-policy-edit')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">교환 비율 (P = 원)</label><input class="form-input" value="10P = 1원"></div>
+        <div class="form-group"><label class="form-label">만료 기간</label><select class="form-select"><option>적립일 + 1년 (FIFO 소멸)</option><option>적립일 + 6개월</option><option>만료 없음</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">일일 적립 한도</label><input class="form-input" value="없음"></div>
+        <div class="form-group"><label class="form-label">교환 방향</label><select class="form-select"><option>양방향 (포인트 ↔ 티켓)</option><option>단방향 (포인트 → 티켓)</option></select></div>
+      </div>
+      <div class="form-group"><label class="form-label">적용 시점</label><select class="form-select"><option>즉시 적용</option><option>예약 적용</option></select></div>
+      <div class="warn-box"><strong>주의:</strong> 포인트 환율·만료는 비용·민원 직결. 저장 시 변경 전후 비교 + 변경 이력이 기록됩니다.</div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('m-point-policy-edit')">취소</button><button class="btn btn-primary" onclick="toast('포인트 정책이 저장되었습니다.');closeModal('m-point-policy-edit')">저장</button></div>
+  </div>
+</div>
+
+<!-- ── 모달: 탈퇴 정책 설정 ── -->
+<div class="modal-overlay" id="m-withdrawal-policy">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">탈퇴 정책 설정</div><button class="modal-close" onclick="closeModal('m-withdrawal-policy')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">유예 기간 (일)</label><input class="form-input" type="number" value="30"></div>
+        <div class="form-group"><label class="form-label">재가입 쿨타임</label><select class="form-select"><option>없음 (즉시 재가입)</option><option>7일</option><option>30일</option></select></div>
+      </div>
+      <div class="form-group"><label class="form-label">보유 티켓 처리</label><select class="form-select"><option>탈퇴 즉시 회수</option><option>유예 만료 시 회수</option></select></div>
+      <div class="form-group"><label class="form-label">PII 영구 삭제 항목</label><input class="form-input" value="이메일, 닉네임, 카카오ID"></div>
+      <div class="form-group"><label class="form-label">통계용 보존 항목 (익명화)</label><input class="form-input" value="탈퇴 사유, 가입일, 티켓 패턴"></div>
+      <div class="info-box">설정값이 바뀌면 탈퇴 처리 절차·D-day 계산이 이 값을 따라 동적으로 반영됩니다.</div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('m-withdrawal-policy')">취소</button><button class="btn btn-primary" onclick="toast('탈퇴 정책이 저장되었습니다.');closeModal('m-withdrawal-policy')">저장</button></div>
+  </div>
+</div>
+
+<!-- ── 모달: 환수·소멸 상세 ── -->
+<div class="modal-overlay" id="m-clawback-detail">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">티켓 회수·소멸 상세</div><button class="modal-close" onclick="closeModal('m-clawback-detail')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="modal-body">
+      <div class="policy-item"><div class="policy-label">원본 티켓</div><div class="policy-value">실버 1장 (등급 티켓)</div><div class="policy-desc">적립일 2025/11/02 · 원 주문 ORD-20251102-8841 (쿠팡 · 289,000원)</div></div>
+      <div class="policy-item"><div class="policy-label">회수 사유</div><div class="policy-value">반품 (구매 취소)</div><div class="policy-desc">주문 ORD-20251102-8841 반품 확정 → 가지급 환수. CS 메모: 단순 변심 반품.</div></div>
+      <div class="policy-item"><div class="policy-label">회수 전후 잔액</div><div class="policy-value">실버 5장 → 4장</div><div class="policy-desc">사용 가능 잔액에서 즉시 차감.</div></div>
+      <div class="policy-item"><div class="policy-label">관련 환수 부채</div><div class="policy-value">없음 (잔액 충분, 즉시 회수)</div><div class="policy-desc">잔액 부족 시 음수 부채로 기록 후 다음 적립 시 자동 상계.</div></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-primary" onclick="closeModal('m-clawback-detail')">닫기</button></div>
   </div>
 </div>
 
