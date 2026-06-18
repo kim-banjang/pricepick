@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 질문 답변 · Vin</title>
+<style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.langtog{position:absolute;top:20px;right:22px;display:flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:700;font-size:14px;flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap} .atxt b{color:var(--ink1);font-weight:700}
+.atxt .need{color:var(--ck);font-weight:800}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+/* ── 모달 ── */
+.modal{display:none;position:fixed;inset:0;z-index:100}
+.modal.open{display:block}
+.modal-bg{position:absolute;inset:0;background:rgba(31,35,48,.55)}
+.modal-card{position:relative;max-width:560px;margin:8vh auto 0;background:var(--bg);border-radius:18px;overflow:hidden;box-shadow:0 24px 70px rgba(31,35,48,.34);animation:pop .16s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.modal-top{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mt-title{font-size:15px;font-weight:800}
+.mt-ctrl{display:flex;align-items:center;gap:10px}
+.modal .langtog{position:static;top:auto;right:auto}
+#langsw:checked ~ .modal .ko{display:none}
+#langsw:checked ~ .modal .vi{display:inline}
+#langsw:checked ~ .modal .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ .modal .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.modal-x{background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.modal-x:hover{background:rgba(255,255,255,.32)}
+.modal-body{padding:20px 20px 24px;max-height:68vh;overflow:auto}
+/* ── 메신저 말풍선 ── */
+.chat{display:flex;gap:11px;align-items:flex-start}
+.ava{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#845EEE,#6a45d4);color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 7px rgba(132,94,238,.35)}
+.bubblewrap{flex:1;min-width:0}
+.who{font-size:11.5px;color:var(--ink3);font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.who .badge{font-size:10px;font-weight:800;color:#fff;background:var(--pp);padding:2px 8px;border-radius:20px;letter-spacing:.02em}
+.bubble{position:relative;background:#fff;border:1px solid var(--line);border-radius:3px 16px 16px 16px;padding:15px 17px 16px;font-size:13.4px;color:var(--ink2);line-height:1.62;white-space:pre-wrap;box-shadow:0 1px 4px rgba(31,35,48,.05)}
+.bubble::before{content:"";position:absolute;top:12px;left:-6px;width:12px;height:12px;background:#fff;border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
+.bubble::after{content:"\201C";position:absolute;top:4px;right:14px;font-size:34px;line-height:1;color:var(--pp-l);font-family:Georgia,'Times New Roman',serif;pointer-events:none}
+</style>
+</head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 질문 답변 · Vin</span><span class="vi">Giải đáp câu hỏi CMS PricePick · Vin</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Vin · CMS · 질문 34건 · CMS 프로토타입/운영정책 기반 · 답변 KO/VI</span><span class="vi">Vin · CMS · 34 câu hỏi · Dựa trên prototype CMS/chính sách · Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/Danh-s-ch-c-u-h-i-li-n-quan-Price-Pick-380b92a1096480828d6bc4aaea833520" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 34건</span><span class="vi">34 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 7</span><span class="vi">Đã chốt 7</span></span></span><span class="chip"><span class="i18n"><span class="ko">확인 필요 27</span><span class="vi">Cần xác nhận 27</span></span></span></div>
+<h2 class="grp"><span class="i18n"><span class="ko">회원 목록</span><span class="vi">Member List</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">새 플로우는 Apple/Google을 더 이상 쓰지 않고 게스트로 시작 후 카카오톡 연동입니다. 그러면 CMS의 필터와 목록 표시는 어떻게 되나요?</span><span class="vi">Vì flow mới không còn đụng đến Apple / Google nữa mà sẽ là flow Guest sau đó liên kết với Kakao Talk, thì ở mục filter và danh sách hiển thị trên CMS sẽ hiển thị như thế nào?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 프로토타입의 회원 목록 '유형' 필터는 '전체/카카오/Apple+카카오/Google+카카오'로 돼 있어 구 플로우 기준입니다. 새 플로우(게스트→카카오 연동, 애플·구글 제거)에 맞춰 갱신이 필요합니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> '유형' 필터를 <b>연동 상태 기준(전체 / 게스트(미연동) / 카카오 연동)</b>으로 교체 권장. 목록엔 '연동 상태' 컬럼(게스트/연동 배지)·연동일을 추가하고 Apple·Google 컬럼/배지는 제거. (이유: 1단계 계정 모델이 게스트·연동 2상태뿐이라 필터·컬럼도 그 축으로 맞춰야 운영이 일관됨.)</span><span class="vi">Hiện filter 'loại' của Member List là 'Tất cả/Kakao/Apple+Kakao/Google+Kakao' — theo flow cũ. Cần cập nhật theo flow mới (Guest→liên kết Kakao, bỏ Apple·Google).
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất thay filter 'loại' bằng <b>trạng thái liên kết (Tất cả / Guest (chưa liên kết) / Đã liên kết Kakao)</b>. Thêm cột 'trạng thái liên kết' (badge Guest/Đã liên kết)·ngày liên kết; bỏ cột/badge Apple·Google. (Lý do: mô hình tài khoản giai đoạn 1 chỉ có 2 trạng thái nên filter·cột phải theo trục đó.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">'닉네임(카카오톡 ID)' 컬럼: 게스트인 경우 이 사용자는 어떻게 표시되나요?</span><span class="vi">Cột 닉네임(카카오톡 ID): trường hợp guest thì sẽ hiển thị user này như thế nào?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">게스트는 카카오 ID가 없으므로 현재 '닉네임(카카오톡 ID)' 형식으로는 괄호 안을 채울 수 없습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 게스트는 <b>닉네임 + '(미연동)' 배지 + 내부 식별자(앱 user ID 또는 기기 UUID 일부)</b>로 표시 권장. 연동 후엔 카카오 ID로 자동 대체. (이유: 게스트도 식별·CS 응대가 가능해야 하므로 내부 ID를 노출하되 카카오 ID 없음을 배지로 명확히 구분.)</span><span class="vi">Guest không có Kakao ID nên với định dạng '닉네임(카카오톡 ID)' hiện tại không có gì để điền trong ngoặc.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất hiển thị guest bằng <b>biệt danh + badge '(chưa liên kết)' + định danh nội bộ (app user ID hoặc một phần UUID thiết bị)</b>; sau khi liên kết tự thay bằng Kakao ID. (Lý do: vẫn cần định danh·hỗ trợ CS cho guest nên lộ ID nội bộ và phân biệt bằng badge.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">티켓 내역</span><span class="vi">Ticket History</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">발행 종류 컬럼과 상태 컬럼을 표시하는 게 좋을까요? 그리고 [사유] 항목은 어떤 조건에 따라 표시되나요?</span><span class="vi">Có nên hiển thị cột loại phát hành và trạng thái không, ngoài ra mục [사유] này sẽ dựa theo điều kiện gì để hiển thị?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 프로토타입엔 별도 '발행 종류'·'상태' 컬럼은 없고, 발행유형·상태는 상단 필터(발행유형: 구매적립/출석/광고/친구초대/주간미션/관리자지급, 상태: 보유중/사용완료)로만 거릅니다. '사유' 컬럼은 이미 있으며 각 티켓 트랜잭션의 발생 원인(구매확정 전환·가지급·주간미션·출석·광고·친구초대·기프티콘 교환 소모·경품 응모 소모·부정행위 회수·관리자 지급)을 행마다 표시합니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> '사유'가 이미 발행 종류를 사실상 담고 있으므로, <b>'사유'는 유지하고 '상태(보유중/사용완료/회수)'만 컬럼으로 승격</b> 권장(필터+컬럼 병행이 조회에 유리). 별도 '발행 종류' 컬럼은 사유와 중복이라 비권장. (이유: 컬럼 과다는 가독성↓, 상태는 한눈에 필요해 컬럼화 가치가 큼.)</span><span class="vi">Prototype hiện không có cột 'loại phát hành'·'trạng thái' riêng; chúng chỉ lọc bằng filter trên cùng. Cột '사유 (lý do)' đã có sẵn, hiển thị nguyên nhân từng giao dịch vé theo từng dòng (chuyển khi xác nhận mua·tạm cấp·nhiệm vụ tuần·điểm danh·quảng cáo·thưởng mời bạn·tiêu đổi gifticon·tiêu dự thưởng·thu hồi gian lận·cấp thủ công).
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Vì '사유' đã chứa loại phát hành, đề xuất <b>giữ '사유' và chỉ nâng 'trạng thái (đang giữ/đã dùng/đã thu hồi)' thành cột</b>; không nên thêm cột 'loại phát hành' riêng vì trùng. (Lý do: quá nhiều cột giảm dễ đọc; trạng thái cần thấy ngay nên đáng đưa thành cột.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">추첨 관리</span><span class="vi">Draw Management</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">4</span><div class="qtxt"><span class="i18n"><span class="ko">좌측 메뉴의 (1) 숫자는 언제 나타나고 무슨 값을 의미하며, 어떤 동작을 하면 그 (1)이 꺼지나요?</span><span class="vi">Cái số (1) ở menu bên trái khi nào xuất hiện, nó biểu thị cho giá trị gì, và xử lý hành động gì sẽ tắt cái số (1) đó?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 프로토타입은 '추첨 관리' 메뉴에 (1) 배지가 정적으로 붙어 있고, 생성/해제 동작 로직은 구현돼 있지 않습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> (1)은 <b>'관리자 처리가 필요한 추첨 건수'(예: 당첨 처리 대기 중인 마감 회차 수)</b>를 의미하도록 권장. 해당 회차 '당첨 처리'를 완료하면 카운트 감소 → 0이면 배지 숨김. (이유: 좌측 메뉴 배지는 '액션 필요' 알림이 표준 — 미처리 업무가 있을 때만 떠야 놓치지 않음.)</span><span class="vi">Prototype hiện gắn badge (1) tĩnh ở menu '추첨 관리', chưa có logic bật/tắt.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất (1) nghĩa là <b>'số việc추첨 cần admin xử lý' (vd kỳ đã đóng đang chờ xử lý trúng thưởng)</b>. Hoàn tất '당첨 처리' kỳ đó thì giảm đếm → bằng 0 thì ẩn badge. (Lý do: badge menu chuẩn để báo 'cần hành động', chỉ hiện khi có việc tồn.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">5</span><div class="qtxt"><span class="i18n"><span class="ko">'추첨 실행' 버튼을 누르면 어떻게 처리되며, '추첨 방식' 항목은 무슨 뜻인가요?</span><span class="vi">Khi nhấn button 추첨 실행 thì sẽ xử lý như thế nào, ngoài ra ở mục 추첨 방식 có nghĩa là gì?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 프로토타입엔 '추첨 실행'이라는 버튼명은 없고, 진행 중 회차에 '당첨 처리' 버튼이 있어 누르면 '당첨 처리 — N회차' 모달이 열립니다(당첨자 확정 흐름). '추첨 방식'은 정책 표시값으로 '매주 월요일 당첨자 발표'처럼 추첨 주기/발표 기준을 나타냅니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 버튼명을 <b>'당첨 처리(추첨 실행)'로 통일</b>하고, 누르면 [응모 풀 확정 → 추첨 알고리즘 실행(랜덤/가중) → 등수별 당첨자 산출 → 검토 후 발표/지급] 단계를 모달로 처리 권장. '추첨 방식'은 <b>'자동(매주 월요일 자동 추첨) / 수동(관리자 실행)' 선택값</b>으로 정의 권장. (이유: 명칭 일치로 혼선 제거 + 자동/수동 운영을 명확히.)</span><span class="vi">Prototype không có nút tên '추첨 실행'; ở kỳ đang chạy có nút '당첨 처리', nhấn mở modal '당첨 처리 — kỳ N' (luồng chốt người trúng). '추첨 방식' là giá trị chính sách hiển thị chu kỳ/cơ sở công bố (vd 'công bố người trúng mỗi Thứ Hai').
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất <b>thống nhất tên nút '당첨 처리(추첨 실행)'</b>, khi nhấn xử lý trong modal [chốt pool → chạy thuật toán (ngẫu nhiên/trọng số) → ra người trúng theo hạng → duyệt rồi công bố/cấp]. '추첨 방식' nên là <b>giá trị chọn 'Tự động (mỗi Thứ Hai) / Thủ công (admin chạy)'</b>. (Lý do: thống nhất tên để hết nhầm + làm rõ tự/thủ công.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">6</span><div class="qtxt"><span class="i18n"><span class="ko">'등수별 경품 구성' 항목은 어떻게 처리되며, 중복 생성이 허용되나요?</span><span class="vi">Cái mục 등수별 경품 구성 sẽ xử lý như thế nào, và được phép tạo trùng không?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 '새 추첨 회차 등록' 폼의 '등수별 경품 구성'은 '등수 추가'로 행을 무제한 추가할 수 있고, 각 행에 등수(1~5등) 드롭다운·경품명·수량을 입력합니다. UI상 같은 등수를 중복 선택하는 것이 막혀 있지 않습니다(중복 가능).
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> <b>같은 등수의 중복 행은 막고(등수당 1행), 한 등수 안에 경품 여러 개는 허용</b>하도록 권장(예: 1등에 A·B). 등록 시 '등수 중복' 검증 + 합계 수량/예산 미리보기 추가. (이유: 등수 중복은 데이터 모순을 낳음 — 등수는 유일, 경품은 다중이 올바른 모델.)</span><span class="vi">Hiện '등수별 경품 구성' trong form 'đăng ký kỳ mới' cho thêm dòng không giới hạn bằng '등수 추가', mỗi dòng chọn hạng (1~5)·tên quà·số lượng. Trên UI việc chọn trùng cùng một hạng không bị chặn (có thể trùng).
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất <b>chặn dòng trùng cùng hạng (mỗi hạng 1 dòng), nhưng cho nhiều quà trong một hạng</b> (vd 1등 có A·B). Thêm kiểm tra 'trùng hạng' + xem trước tổng số lượng/ngân sách khi đăng ký. (Lý do: trùng hạng gây mâu thuẫn dữ liệu; đúng mô hình là hạng duy nhất, quà nhiều.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">7</span><div class="qtxt"><span class="i18n"><span class="ko">(Vin 제안) 등록 항목을 페이지 상단으로 올리거나 새 페이지로 분리하자 — 목록 데이터가 너무 길면 새 항목 1개 등록이 매우 어렵기 때문.</span><span class="vi">(Vin 제안) Đề xuất: mục đăng ký nên kéo lên đầu trang hoặc tạo trang mới, vì nếu dữ liệu danh sách quá dài sẽ rất khó khăn để đăng ký 1 mục mới</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">타당한 지적입니다. 현재 '등록' 폼이 목록 하단(카드 아래쪽)에 있어 목록이 길어지면 스크롤 비용이 큽니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> <b>등록은 별도 모달/우측 패널로 분리하고 페이지 상단에 '회차 등록' 버튼을 고정</b> 권장(목록은 그대로 아래 유지). 페이지 신설보다 모달이 맥락 유지·구현 비용 면에서 유리. (이유: 긴 목록과 입력 폼을 한 화면에 두면 둘 다 불편 — 입력은 오버레이가 표준.)</span><span class="vi">Góp ý hợp lý. Hiện form 'đăng ký' nằm dưới danh sách nên khi danh sách dài thì tốn cuộn.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất <b>tách đăng ký ra modal/panel phải, ghim nút '등록 kỳ' ở đầu trang</b> (giữ danh sách bên dưới). Dùng modal hơn tạo trang mới vì giữ ngữ cảnh và rẻ hơn. (Lý do: để cả danh sách dài và form trên cùng màn thì bất tiện cả hai; nhập nên dạng overlay.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">경품·응모 관리</span><span class="vi">Prize·Entry Management</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">8</span><div class="qtxt"><span class="i18n"><span class="ko">아직 생성 버튼이 안 보이는데, 기본값을 표시하고 어드민이 들어가서 수정하는 방식인가요?</span><span class="vi">Vẫn chưa thấy nút tạo, hay sẽ hiển thị mặc định và admin sẽ vào sửa?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 경품/응모 관리는 '현재 경품 설정'을 기본값(1등 스타벅스·2등 편의점 아이스크림·3등 꽝)으로 보여주고 '수정' 버튼으로만 편집합니다 — 생성 버튼은 없습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 주간 추첨 경품이 '고정 1세트'라면 <b>현행 '기본 표시 + 수정' 유지가 적절</b>(생성 불필요). 회차마다 경품을 다르게 운영할 계획이면 '추첨 관리'의 회차 등록과 연동해 회차별 경품 세트를 등록하는 구조로 통합 권장. (이유: 단일 상시 구성엔 CRUD가 과함, 회차별 운영이면 회차-경품을 묶는 게 정합적.)</span><span class="vi">Hiện Prize/Entry hiển thị '현재 경품 설정' theo mặc định (1등 Starbucks·2등 kem tiện lợi·3등 trượt) và chỉ sửa bằng nút '수정' — không có nút tạo.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Nếu quà추첨 tuần là 'cố định 1 bộ' thì <b>giữ cách 'hiển thị mặc định + sửa' là phù hợp</b> (không cần tạo). Nếu định vận hành quà khác theo kỳ thì tích hợp với đăng ký kỳ ở '추첨 관리' để đăng ký bộ quà theo kỳ. (Lý do: cấu hình đơn cố định thì CRUD thừa; nếu theo kỳ thì gắn kỳ-quà mới nhất quán.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">9</span><div class="qtxt"><span class="i18n"><span class="ko">몇 종류의 경품이 변경·공표됐는지 어떻게 관리하나요?</span><span class="vi">Làm thế nào để quản lý là có bao nhiêu loại giải thưởng đã được thay đổi và công bố?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 프로토타입은 경품 변경 이력/공표 추적 기능이 없고 '현재 경품 설정'만 정적으로 보여줍니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> <b>경품 설정에 '변경 이력' 로그(변경 일시·변경자·이전→이후 값·공표 여부)와 버전 번호</b> 추가 권장. 공표 시점·대상 회차를 기록해 추적. (이유: 보상은 정산·민원이 잦아 누가 언제 무엇을 바꿔 공표했는지 감사 추적이 필수.)</span><span class="vi">Prototype hiện không có chức năng theo dõi lịch sử thay đổi/công bố quà, chỉ hiển thị '현재 경품 설정' tĩnh.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất thêm <b>nhật ký 'lịch sử thay đổi' (thời điểm·người sửa·trước→sau·đã công bố?) và số phiên bản</b>; ghi thời điểm·kỳ công bố để truy vết. (Lý do: phần thưởng hay phát sinh tranh chấp·quyết toán nên cần audit.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">주간 이벤트 추첨</span><span class="vi">Weekly Event Draw</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">10</span><div class="qtxt"><span class="i18n"><span class="ko">이 기능의 플로우를 다시 설명해 주세요. 그리고 Edit 버튼을 누르면 무엇을 수정하나요?</span><span class="vi">Giải thích lại flow của cái này, ngoài ra khi nhấn nút Edit sẽ chỉnh sửa những gì?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">플로우: 이벤트 티켓 보유자가 매주 월요일 0시 자동 응모되고, 당첨 확률(현재 50%)로 추첨해 당첨자에게 경품(기프티콘/실물)을 지급하며, 이벤트 티켓은 발행이 아니라 '소모'되는 구조입니다(미사용 시 다음 회차 이월, 최대 2회 후 만료). 현재 Edit 버튼은 '수정 기능 준비중' 토스트만 뜨고 실제 편집은 미구현입니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> Edit 모달에서 <b>당첨 확률(%)·추첨 일정(요일/시각)·당첨 보상 구성·이벤트 티켓 이월/만료 회차</b>를 수정하도록 권장(변경 이력 동반). (이유: 이 4개가 주간 추첨의 핵심 운영 파라미터라 관리자가 조정할 수 있어야 함.)</span><span class="vi">Flow: người giữ vé sự kiện tự động dự thưởng vào 00:00 mỗi Thứ Hai, quay theo xác suất (hiện 50%), người trúng nhận quà (gifticon/hiện vật); vé sự kiện bị 'tiêu' chứ không phát hành (chưa dùng thì rollover, tối đa 2 kỳ rồi hết hạn). Nút Edit hiện chỉ hiện toast 'đang chuẩn bị'.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất Edit cho sửa <b>xác suất trúng (%)·lịch quay (thứ/giờ)·cấu hình quà·số kỳ rollover/hết hạn vé sự kiện</b> (kèm nhật ký). (Lý do: 4 tham số này là cốt lõi vận hành quay tuần, admin cần điều chỉnh được.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">11</span><div class="qtxt"><span class="i18n"><span class="ko">이벤트 생성 기능이 있나요?</span><span class="vi">Có chức năng tạo event không?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재는 별도의 '이벤트 생성' 기능 없이 정책 기반 자동 추첨(매주 단일 상시 추첨)으로 동작합니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 주간 이벤트 추첨은 <b>상시 반복 정책 1개로 운영하므로 회차별 '이벤트 생성'은 불필요</b> 권장 — 대신 위 Edit로 파라미터만 조정. 특별 회차(명절 등)가 필요하면 '추첨 관리'의 회차 등록을 활용. (이유: 주간 추첨은 반복 스케줄이 본질 — 매번 생성은 운영 부담만 늘림.)</span><span class="vi">Hiện không có chức năng 'tạo event' riêng; chạy bằng quay tự động theo chính sách (một quay定期 hằng tuần).
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất <b>không cần 'tạo event' theo kỳ vì quay tuần chạy bằng 1 chính sách lặp</b> — chỉ chỉnh tham số bằng Edit. Cần kỳ đặc biệt (lễ tết) thì dùng đăng ký kỳ ở '추첨 관리'. (Lý do: quay tuần bản chất là lịch lặp; tạo mỗi lần chỉ tăng gánh.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">환수 이력</span><span class="vi">Clawback History</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">12</span><div class="qtxt"><span class="i18n"><span class="ko">이 페이지엔 '티켓 회수·소멸 이력'과 '환수 부채 추적' 두 항목이 있는데, 각각의 표시 목적은 무엇인가요?</span><span class="vi">Trang này có 2 mục 티켓 회수·소멸 이력 và 환수 부채 추적, mục đích hiển thị của từng mục này là gì?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">두 항목은 목적이 다릅니다. <b>티켓 회수·소멸 이력</b> = 이미 처리된 회수/소멸 기록(처리일시·닉네임·주문ID·환수 티켓·원인[만료/반품/취소]·원 적립일)으로 '무엇이 회수·소멸됐는지'의 결과 로그입니다. <b>환수 부채 추적</b> = 이미 사용된 티켓에 취소·반품이 생겨 즉시 회수가 불가할 때 음수 잔액(부채)으로 기록하고 '다음 적립 시 자동 상계'를 기다리는 미결 추적입니다(부채 티켓·발생일·예상 상계일·상태).</span><span class="vi">Hai mục khác mục đích. <b>티켓 회수·소멸 이력</b> = log kết quả các vụ thu hồi/tiêu hủy đã xử lý (thời điểm·biệt danh·mã đơn·vé thu hồi·nguyên nhân [hết hạn/trả/hủy]·ngày tích lũy gốc). <b>환수 부채 추적</b> = khi vé đã dùng mà phát sinh hủy·trả không thể thu hồi ngay thì ghi số dư âm (nợ) và theo dõi chờ 'tự bù khi tích lũy lần sau' (vé nợ·ngày phát sinh·ngày dự kiến bù·trạng thái).</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">13</span><div class="qtxt"><span class="i18n"><span class="ko">'티켓 회수·소멸 이력'의 상세 버튼을 누르면 무엇이 표시되나요?</span><span class="vi">Khi nhấn nút chi tiết của mục 티켓 회수·소멸 이력 sẽ hiển thị những gì?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 상세 버튼은 '상세 보기' 토스트만 뜨는 placeholder로, 실제 상세 내용은 미구현입니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 상세는 <b>원본 티켓 정보(등급·적립일·원 주문)·회수 사유 상세(만료/반품/취소 + 연계 주문/CS 메모)·회수 전후 잔액·관련 환수 부채 연결</b>을 표시 권장. (이유: 회수는 분쟁 소지가 커 '왜·무엇이·어디서' 근거를 한 화면에서 추적할 수 있어야 함.)</span><span class="vi">Nút chi tiết hiện là placeholder hiện toast '상세 보기', nội dung chưa làm.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất chi tiết hiển thị <b>thông tin vé gốc (hạng·ngày tích lũy·đơn gốc)·chi tiết lý do thu hồi (hết hạn/trả/hủy + đơn liên quan/ghi chú CS)·số dư trước-sau·liên kết khoản nợ</b>. (Lý do: thu hồi dễ tranh chấp nên cần truy 'tại sao·cái gì·ở đâu' trong một màn.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">포인트 정책</span><span class="vi">Point Policy</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">14</span><div class="qtxt"><span class="i18n"><span class="ko">정책 수정(Edit)을 눌렀을 때의 화면이 없습니다.</span><span class="vi">Thiếu màn hình khi nhấn chỉnh sửa Policy</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">맞습니다. 현재 포인트 정책의 '수정' 버튼은 '교환 비율 수정 준비중' 토스트만 뜨고 편집 화면이 없습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 수정 모달에 <b>교환 비율(10P=1원)·만료 기간(1년·FIFO)·일일 적립 한도·교환 방향</b> 필드를 두고, 저장 시 변경 이력 + 적용 시점(즉시/예약) 선택을 권장. (이유: 포인트 핵심 파라미터를 한 모달에서 안전하게 수정하고 감사 로그가 필요.)</span><span class="vi">Đúng. Nút '수정' của Point Policy hiện chỉ hiện toast '준비중', chưa có màn chỉnh sửa.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất modal sửa có <b>tỷ lệ đổi (10P=1₩)·thời hạn (1 năm·FIFO)·hạn mức tích/ngày·hướng đổi</b>, khi lưu kèm nhật ký + chọn thời điểm áp dụng (ngay/hẹn). (Lý do: cần sửa an toàn các tham số điểm cốt lõi + log audit.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">15</span><div class="qtxt"><span class="i18n"><span class="ko">'적립·만료 정책' 항목은 필요한가요? 그리고 어드민이 정책을 수정할 때 어떻게 표시되나요?</span><span class="vi">Mục 적립·만료 정책 có cần thiết không, và cách thức hiển thị ra sao khi Admin chỉnh sửa policy?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 '적립·만료 정책'은 읽기 전용으로 표시됩니다(기준 환율 10P=1원, 만료 1년 FIFO·매일 04:00 배치, 일일 한도 없음, 양방향 교환, 주 적립 경로 출석 100P/일).
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> <b>필요합니다 — 유지 권장.</b> 다만 위 '수정 화면'과 합쳐 하나의 '포인트 정책 수정' 모달로 통합해 적립·만료 값까지 같이 편집하고, 저장 시 변경 전후 비교·적용 시점을 표시 권장. (이유: 적립·만료는 비용·민원에 직결되는 핵심값이라 운영자가 통제·감사할 수 있어야 함.)</span><span class="vi">Hiện '적립·만료 정책' hiển thị chỉ đọc (10P=1₩, hết hạn 1 năm FIFO·batch 04:00, không hạn mức/ngày, đổi hai chiều, đường tích chính điểm danh 100P/ngày).
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> <b>Cần thiết — nên giữ.</b> Nên gộp với 'màn sửa' ở trên thành một modal 'sửa chính sách điểm' để sửa luôn giá trị tích·hết hạn; khi lưu hiển thị so sánh trước-sau·thời điểm áp dụng. (Lý do: tích·hết hạn là giá trị cốt lõi liên quan chi phí·khiếu nại.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">배너 관리</span><span class="vi">Banner Management</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">16</span><div class="qtxt"><span class="i18n"><span class="ko">이 배너 3개만 기본 표시되고 이후 어드민이 수정 권한만 갖는 게 맞나요, 아니면 생성·삭제 기능도 추가되나요?</span><span class="vi">Chỉ có 3 banner này và hiển thị mặc định, sau đó Admin sẽ có quyền chỉnh sửa đúng không hay có thêm chức năng tạo và xóa?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 프로토타입은 배너 3개가 기본값으로 표시되고 각 배너에 '수정'만 있습니다 — 생성·삭제 버튼은 없습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 배너는 운영 중 자주 바뀌는 콘텐츠이므로 <b>생성·삭제·노출 토글·순서 변경까지 풀 CRUD 추가 권장</b>(노출 기간·링크·이미지 포함). (이유: 배너는 캠페인마다 추가/내림이 잦아 수정만으론 운영 불가 — 콘텐츠 CRUD가 표준.)</span><span class="vi">Prototype hiện hiển thị 3 banner mặc định, mỗi banner chỉ có '수정' — không có nút tạo·xóa.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Banner là nội dung hay đổi nên đề xuất <b>thêm CRUD đầy đủ: tạo·xóa·toggle hiển thị·đổi thứ tự</b> (gồm thời gian·link·ảnh). (Lý do: banner thường thêm/gỡ theo chiến dịch, chỉ sửa thì không vận hành được.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">이벤트 관리</span><span class="vi">Event Management</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">17</span><div class="qtxt"><span class="i18n"><span class="ko">이 이벤트 3개만 기본 표시되고 이후 어드민이 수정 권한만 갖는 게 맞나요, 아니면 생성·삭제 기능도 추가되나요?</span><span class="vi">Chỉ hiển thị 3 sự kiện này và hiển thị mặc định, sau đó Admin sẽ có quyền chỉnh sửa đúng không hay có thêm chức năng tạo và xóa?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재는 이벤트 3개(5월 출석·웰컴 보너스·첫 경유구매)가 기본값으로 표시되고 '수정'만 있습니다 — 생성·삭제는 없습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 이벤트도 <b>생성·삭제·기간/대상/보상 편집·진행상태 토글까지 CRUD 추가 권장.</b> 단 적립·보상에 직접 영향을 주므로 생성/수정 시 운영정책과의 정합 검증(중복 보상 방지)을 함께. (이유: 이벤트는 시즌마다 신설/종료가 잦아 CRUD 필수, 보상 연동이라 검증 게이트 필요.)</span><span class="vi">Hiện 3 sự kiện (điểm danh tháng 5·welcome·mua qua link đầu) hiển thị mặc định và chỉ có '수정' — không tạo·xóa.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất event cũng <b>thêm CRUD: tạo·xóa·sửa thời gian/đối tượng/thưởng·toggle trạng thái.</b> Vì ảnh hưởng trực tiếp tích·thưởng nên khi tạo/sửa cần kiểm tra nhất quán với chính sách (chống thưởng trùng). (Lý do: event hay mở/đóng theo mùa nên cần CRUD nhưng cần cổng kiểm.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">공지사항 관리</span><span class="vi">Notices</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">18</span><div class="qtxt"><span class="i18n"><span class="ko">아직 수정·삭제 기능이 안 보입니다.</span><span class="vi">Vẫn chưa thấy tính năng edit và xóa?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">공지사항은 '공지 작성' 폼(제목·분류·내용·즉시노출/상단고정·임시저장/게시)으로 생성·게시되고 목록의 각 공지에 '수정' 버튼이 있습니다 — 다만 '삭제' 버튼은 목록에 없습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 생성·수정은 이미 있으므로, <b>'삭제'(또는 안전하게 '숨김/게시중단' 토글) + 게시 상태 변경을 목록 액션에 추가</b> 권장. 법적 고지성 공지는 하드 삭제보다 '숨김 + 보존'이 안전. (이유: 잘못 올린 공지 내림은 필수지만 공지는 이력 보존이 중요해 소프트 삭제 권장.)</span><span class="vi">Notice có form '공지 작성' (tiêu đề·phân loại·nội dung·hiện ngay/ghim·lưu nháp/đăng) để tạo·đăng, và mỗi공지 có nút '수정' — nhưng danh sách không có nút '삭제'.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Tạo·sửa đã có, nên đề xuất <b>thêm '삭제' (hoặc an toàn hơn là toggle '숨김/ngừng đăng') + đổi trạng thái đăng vào action danh sách.</b> Thông báo có tính pháp lý nên 'ẩn + lưu' an toàn hơn xóa cứng. (Lý do: cần gỡ공지 đăng nhầm nhưng nên soft-delete vì cần lưu lịch sử.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">알림 관리</span><span class="vi">Notifications</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">19</span><div class="qtxt"><span class="i18n"><span class="ko">수정·삭제 기능을 추가하나요?</span><span class="vi">Có thêm tính năng edit và xóa không?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 알림 관리는 '알림 작성·발송' 폼(채널·대상·제목·내용·즉시/예약·테스트 발송)과 '발송 내역' 표가 있고, 지난 발송 건에 대한 수정·삭제는 없습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 이미 발송된 알림은 회수가 불가하므로 <b>수정·삭제 대신 '발송 내역'은 불변 로그로 유지하고, '예약 발송' 건만 발송 전 취소/수정 허용</b>을 권장. (이유: 발송 완료 푸시는 되돌릴 수 없어 로그 보존이 정확, 미래 예약분만 통제 가능하면 충분.)</span><span class="vi">Hiện Notification có form '알림 작성·발송' (kênh·đối tượng·tiêu đề·nội dung·ngay/hẹn·gửi thử) và bảng '발송 내역'; không có sửa·xóa cho các lần đã gửi.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Vì đã gửi thì không thu hồi, đề xuất <b>không sửa·xóa mà giữ '발송 내역' làm log bất biến, chỉ cho hủy/sửa các bản '예약' trước khi gửi.</b> (Lý do: push đã gửi không hoàn được, giữ log là chính xác; kiểm soát phần hẹn là đủ.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">20</span><div class="qtxt"><span class="i18n"><span class="ko">'발송 테스트(Gửi thử)' 기능은 무엇인가요?</span><span class="vi">Tính năng Gửi thử là gì?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">'테스트 발송(본인)' 기능으로, 작성 중인 알림(제목·내용·변수 치환)을 전체 대상이 아니라 <b>현재 로그인한 관리자 본인에게만 미리 보내 실제 표시·변수 치환·링크를 확인</b>하는 기능입니다(대량 발송 전 검수용).</span><span class="vi">Là chức năng '테스트 발송 (본인)' — gửi thông báo đang soạn (tiêu đề·nội dung·thay biến) <b>chỉ cho chính admin đang đăng nhập</b> để xem trước hiển thị·thay biến·link trước khi gửi đại trà (để kiểm duyệt).</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">운영 정책</span><span class="vi">Operating Policy</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">21</span><div class="qtxt"><span class="i18n"><span class="ko">이 기능(운영 정책)의 처리 흐름을 설명해 주세요.</span><span class="vi">Giải thích luồng xử lý của tính năng này</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">운영 정책은 <b>조회 전용</b> 화면입니다. 3개 탭(적립·보상 / 참여·이벤트 / 적립 제외 정책)으로 등급별 적립 기준·Greedy 산정 알고리즘·지급(D+7/D+30)·교환 정책·기프티콘 카탈로그 등 운영 기준을 구조화해 보여줍니다. 안내문대로 '정책 수치·기준 변경은 별도 승인 절차로 반영되며 이 화면에서 직접 수정하지 않습니다'.</span><span class="vi">Operating Policy là màn <b>chỉ đọc</b>. 3 tab (tích·thưởng / tham gia·sự kiện / loại trừ tích) hiển thị có cấu trúc các chuẩn vận hành: tiêu chí tích theo hạng·thuật toán Greedy·cấp (D+7/D+30)·chính sách đổi·catalog gifticon. Theo ghi chú: 'thay đổi số·chuẩn đi qua quy trình duyệt riêng, không sửa trực tiếp ở màn này'.</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">1:1 문의</span><span class="vi">1:1 Inquiries</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">22</span><div class="qtxt"><span class="i18n"><span class="ko">edit 기능에서 이미 '완료'된 건도 처리 상태를 변경할 수 있는 게 맞나요?</span><span class="vi">Ở chức năng edit, chúng ta có thể thay đổi trạng thái xử lý được cho cả trường hợp đã completed đúng không?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">네. 현재 프로토타입의 1:1 문의 수정 모달은 '처리 상태' 드롭다운(미처리/처리 중/완료)이 이미 '완료'인 경우에도 활성이라, 완료 건도 상태를 되돌리거나 변경할 수 있습니다. 운영상 완료→재오픈 시 변경 사유·이력(누가·언제) 기록을 권장합니다.</span><span class="vi">Đúng. Modal sửa 1:1 hiện có dropdown '처리 상태' (chưa xử lý/đang xử lý/hoàn tất) vẫn hoạt động cả khi đã 'hoàn tất', nên có thể đổi/khôi phục trạng thái case đã hoàn tất. Nên ghi lý do·nhật ký (ai·khi nào) khi hoàn tất→mở lại.</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">계정 탈퇴 처리</span><span class="vi">Account Deletion</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">23</span><div class="qtxt"><span class="i18n"><span class="ko">정책 설정 기능이 없습니다.</span><span class="vi">Thiếu tính năng về cài đặt chính sách</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 '계정 탈퇴 처리'에 '탈퇴 정책 설정' 카드와 '수정' 버튼이 있으나, 누르면 '준비중' 토스트만 뜨고 실제 설정 화면은 미구현입니다(정책 표시값: 유예 30일·티켓 즉시 회수·PII 영구삭제 항목·통계 보존 항목).
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 수정 모달에 <b>유예 기간(일)·보유 티켓 처리 방식·PII 삭제 항목·통계 보존 항목·재가입 쿨타임</b>을 편집 가능하게 하고, 저장 시 변경 이력을 남기도록 권장. (이유: 탈퇴는 개인정보·법적 이슈라 정책값을 운영자가 명시적으로 통제·감사해야 함.)</span><span class="vi">Hiện '계정 탈퇴 처리' có thẻ '탈퇴 정책 설정' với nút '수정' nhưng nhấn chỉ hiện toast '준비중', màn cài đặt chưa làm (giá trị: gia hạn 30 ngày·thu hồi vé ngay·mục xóa PII·mục lưu thống kê).
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất modal sửa cho chỉnh <b>thời gian gia hạn (ngày)·cách xử lý vé·mục xóa PII·mục lưu thống kê·thời gian chờ đăng ký lại</b>, lưu kèm nhật ký. (Lý do: hủy TK liên quan PII·pháp lý nên admin phải kiểm soát·audit rõ.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">24</span><div class="qtxt"><span class="i18n"><span class="ko">상세 처리 기능이 없습니다.</span><span class="vi">Thiếu tính năng chi tiết xử lý</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">각 탈퇴 요청에 '상세' 버튼은 있으나 상세 처리 화면 내용은 미구현 상태입니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 상세에 <b>회원 식별·탈퇴 사유·유예 만료일(D-day)·보유 자산(티켓/포인트) 회수 내역·철회 가능 여부·관리자 강제 처리(즉시 삭제/철회) 액션</b>을 표시 권장. (이유: 탈퇴 건별로 유예·자산·철회를 한 화면에서 처리·추적해야 운영 가능.)</span><span class="vi">Mỗi yêu cầu hủy có nút '상세' nhưng nội dung màn xử lý chi tiết chưa làm.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất chi tiết hiển thị <b>định danh·lý do hủy·ngày hết gia hạn (D-day)·lịch sử thu hồi tài sản (vé/điểm)·có thể rút lại không·hành động admin (xóa ngay/khôi phục)</b>. (Lý do: cần xử lý·theo dõi gia hạn·tài sản·rút lại theo từng case trong một màn.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">25</span><div class="qtxt"><span class="i18n"><span class="ko">탈퇴 처리 절차는 정책 설정에 기반해 표시되나요, 아니면 기본값으로 표시되나요?</span><span class="vi">Quy trình xử lý hủy TK sẽ hiển thị dựa trên cài đặt chính sách hay sẽ hiển thị mặc định?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 프로토타입은 정책값(유예 30일→자동 영구삭제)을 기준으로 한 처리 흐름 다이어그램·통계(유예중/오늘 삭제예정/이번달 탈퇴/철회)를 보여줍니다 — 즉 정책 기반 표시 구조이나, 현재 정책값은 하드코딩입니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 위 '정책 설정'과 연동해 <b>설정값(유예 기간 등)이 바뀌면 처리 절차·D-day 계산이 그 값을 따라 동적으로 반영</b>되도록 권장. (이유: 정책-처리 분리 시 불일치 위험 — 단일 소스(정책 설정)에서 절차가 파생돼야 함.)</span><span class="vi">Prototype hiện hiển thị sơ đồ luồng·thống kê (đang gia hạn/xóa hôm nay/hủy tháng này/đã rút) dựa trên giá trị chính sách (gia hạn 30 ngày→tự xóa) — tức cấu trúc theo chính sách, nhưng giá trị đang hardcode.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất gắn với 'cài đặt chính sách' ở trên để <b>khi đổi giá trị (gia hạn...) thì quy trình·tính D-day tự phản ánh động</b>. (Lý do: tách chính sách-xử lý dễ lệch; quy trình nên phái sinh từ một nguồn duy nhất.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">26</span><div class="qtxt"><span class="i18n"><span class="ko">'탈퇴 사유 분포(이번 달)' 항목의 표시 흐름은 어떻게 되나요?</span><span class="vi">Flow hiển thị cho danh mục Phân bố lý do hủy TK (tháng này) như thế nào</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 '탈퇴 사유 분포(이번 달)'는 사유별 인원·비율을 막대형으로 보여줍니다(알림 과다 29.6%·앱 미사용 26.8%·티켓 적립 어려움 19.7%·기프티콘 문제 9.9%·기타/무응답 14.0%). 탈퇴 시 수집한 '탈퇴 사유' 값을 이번 달 기준으로 집계·표시하는 구조입니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 탈퇴 플로우의 '탈퇴 사유 선택'(고정 보기 + 기타 자유입력) 값을 그대로 집계하도록 권장하고, 기간 필터(이번달/지난달/사용자지정)와 사유 항목의 CMS 편집을 추가. (이유: 사유 보기가 바뀌면 통계도 따라가야 하고 기간 비교가 인사이트에 유용.)</span><span class="vi">Hiện '탈퇴 사유 분포(이번 달)' hiển thị số người·tỷ lệ theo lý do dạng thanh (thông báo nhiều 29.6%·ít dùng app 26.8%·khó tích vé 19.7%·vấn đề gifticon 9.9%·khác/không trả lời 14.0%). Là cấu trúc tổng hợp giá trị 'lý do hủy' thu khi hủy, theo tháng hiện tại.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Đề xuất tổng hợp đúng giá trị 'chọn lý do hủy' (danh sách cố định + ô tự nhập) từ flow hủy, thêm filter thời gian (tháng này/trước/tùy chọn) và cho sửa danh mục lý do trong CMS. (Lý do: đổi danh sách lý do thì thống kê phải theo; so sánh kỳ giúp có insight.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">앱 버전 관리</span><span class="vi">App Version</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">27</span><div class="qtxt"><span class="i18n"><span class="ko">이 기능(앱 버전 관리)을 꼭 넣어야 하나요?</span><span class="vi">Có cần thiết áp dụng tính năng này vào không?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 앱 버전 관리는 iOS/Android 최신·최소 지원 버전·강제 업데이트 토글·스토어 링크·버전 히스토리 + 수정 모달(m-appver)까지 구성돼 있습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> <b>필요합니다 — 적용 권장.</b> 특히 '최소 지원 버전 + 강제 업데이트'는 결함/보안 패치 시 구버전 사용자를 막는 필수 안전장치라 1단계에 포함 권장. (이유: 강제 업데이트 게이트가 없으면 치명 버그 배포 후 대응 수단이 없음.)</span><span class="vi">App Version Management hiện có: phiên bản mới nhất·tối thiểu iOS/Android·toggle ép cập nhật·link store·lịch sử + modal sửa (m-appver).
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> <b>Cần thiết — nên áp dụng.</b> Đặc biệt 'phiên bản tối thiểu + ép cập nhật' là cơ chế an toàn bắt buộc để chặn bản cũ khi vá lỗi/bảo mật, nên đưa vào giai đoạn 1. (Lý do: không có cổng ép cập nhật thì khi phát hành lỗi nặng sẽ không ứng phó được.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">제휴몰 API 관리</span><span class="vi">Partner API</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">28</span><div class="qtxt"><span class="i18n"><span class="ko">이 기능(제휴몰 API 관리)을 꼭 넣어야 하나요?</span><span class="vi">Có cần thiết áp dụng tính năng này vào không?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 제휴몰 API 관리는 쿠팡 파트너스 API 키(마스킹)·상태·일일 호출 한도/사용량·호출 현황 차트·제휴몰 연동 현황(쿠팡·11번가·G마켓·알리·아이허브) 표로 구성돼 있습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> <b>필요합니다 — 적용 권장</b>(경유 적립의 핵심이 제휴몰 API라 키 상태·호출 한도·장애 모니터링이 필수). 단 1단계 실제 연동이 쿠팡 중심이면 나머지 제휴몰은 '표시만/추후 연동'으로 두는 절충 가능. (이유: 적립 추적이 API에 전적으로 의존 — 키 만료·장애를 못 보면 적립 전체가 멈춤.)</span><span class="vi">Partner API Management hiện có: khóa API Coupang Partners (ẩn)·trạng thái·hạn mức/lượng gọi ngày·biểu đồ gọi·bảng liên kết đối tác (Coupang·11st·Gmarket·Ali·iHerb).
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> <b>Cần thiết — nên áp dụng</b> (API đối tác là cốt lõi của tích lũy qua link nên cần theo dõi trạng thái khóa·hạn mức·sự cố). Nếu giai đoạn 1 chủ yếu Coupang thì đối tác khác để 'chỉ hiển thị/liên kết sau'. (Lý do: theo dõi tích lũy phụ thuộc hoàn toàn API — không thấy khóa hết hạn·sự cố thì toàn bộ tích lũy dừng.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">스케줄러</span><span class="vi">Scheduler</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">29</span><div class="qtxt"><span class="i18n"><span class="ko">이 기능(스케줄러)을 간단히 설명해 주세요.</span><span class="vi">Giải thích sơ qua về tính năng này</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">스케줄러는 백그라운드 배치 작업을 모니터링·제어하는 화면입니다. 현재 5개 잡(알림 발송·주간 추첨 집계·티켓 확정 배치·티켓 만료 배치·DB 백업)의 주기·상태(정상/오류)·마지막 실행을 보여주고, 일시정지/즉시 실행/재시작 버튼과 최근 실행 로그(처리 건수·소요·성공/실패)를 제공합니다.</span><span class="vi">Scheduler là màn theo dõi·điều khiển các job batch nền. Hiện hiển thị 5 job (gửi thông báo·tổng hợp quay tuần·batch xác nhận vé·batch hết hạn vé·backup DB) với chu kỳ·trạng thái (bình thường/lỗi)·lần chạy cuối, kèm nút tạm dừng/chạy ngay/khởi động lại và log thực thi gần đây.</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">30</span><div class="qtxt"><span class="i18n"><span class="ko">생성·삭제 기능을 추가할 필요가 있나요?</span><span class="vi">Có cần thêm chức năng tạo xóa không?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 스케줄러는 시스템 정의 잡 5개를 모니터링·제어만 하고, 잡 생성·삭제 기능은 없습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> <b>관리자용 잡 생성·삭제는 불필요</b> 권장 — 배치 잡은 코드/인프라 레벨에서 정의되는 게 안전(임의 생성은 장애 위험). 대신 각 잡에 <b>'활성/비활성 토글'과 '실행 주기 조정'</b> 정도만 노출 권장. (이유: 운영자가 임의로 배치를 만들면 데이터 정합성·부하 사고 위험 — 모니터·제어로 한정이 안전.)</span><span class="vi">Scheduler hiện chỉ theo dõi·điều khiển 5 job hệ thống, không có tạo·xóa job.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> <b>Không cần tạo·xóa job cho admin</b> — job batch nên định nghĩa ở mức code/hạ tầng (tự tạo dễ gây sự cố). Thay vào đó chỉ nên lộ <b>'toggle bật/tắt' và 'chỉnh chu kỳ chạy'</b> mỗi job. (Lý do: admin tự tạo batch dễ gây lỗi nhất quán·tải; giới hạn ở theo dõi·điều khiển là an toàn.)</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">관리자 계정</span><span class="vi">Admin Accounts</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">31</span><div class="qtxt"><span class="i18n"><span class="ko">(관리자 계정) 추가·수정 화면이 없습니다.</span><span class="vi">Thiếu màn hình thêm mới, chỉnh sửa</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 프로토타입엔 '관리자 계정 추가' 모달(m-account: 이름·이메일·역할[운영자/CS]·임시 비밀번호·계정 생성)이 이미 있고, 목록에서 '역할 변경'·'삭제' 액션도 제공합니다(슈퍼어드민 추가 불가, 본인 삭제 불가 제약 포함). 즉 추가·수정 기능은 존재합니다.</span><span class="vi">Prototype hiện ĐÃ có modal '관리자 계정 추가' (m-account: tên·email·vai trò [운영자/CS]·mật khẩu tạm·tạo tài khoản) và danh sách có action 'đổi vai trò'·'xóa' (ràng buộc: không thêm superadmin, không tự xóa). Tức chức năng thêm·sửa có tồn tại.</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">32</span><div class="qtxt"><span class="i18n"><span class="ko">IP·action을 포함한 접근 로그까지 관리할 필요가 있나요?</span><span class="vi">Có cần thiết phải quản lý cả nhật ký truy cập bao gồm IP, action luôn không?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 프로토타입엔 '최근 접근 로그'(시각·이름·작업·IP[마스킹])가 이미 표시돼 있습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> <b>필요합니다 — 유지·강화 권장</b>(관리자 행위 감사는 보안·내부통제 필수). 단 IP는 개인정보라 마스킹 저장 + 보존 기간(예: 90일) 정책을 두고, 중요 작업(정책/계정/키 변경)은 별도 강조 로깅 권장. (이유: 어드민 권한 오·남용 추적과 사고 대응에 접근 로그가 필수 근거.)</span><span class="vi">Prototype hiện ĐÃ hiển thị '최근 접근 로그' (thời gian·tên·hành động·IP [ẩn]).
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> <b>Cần thiết — nên giữ·tăng cường</b> (audit hành vi admin là bắt buộc cho bảo mật). Nhưng IP là PII nên lưu ẩn + đặt thời hạn lưu (vd 90 ngày), và log riêng nổi bật cho thao tác quan trọng (đổi chính sách/tài khoản/khóa). (Lý do: log truy cập là bằng chứng cốt lõi để truy vết lạm quyền·ứng phó sự cố.)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">33</span><div class="qtxt"><span class="i18n"><span class="ko">권한 기능에서, 계정 유형별로 보여주는 표시 기능이 아직 안 보입니다.</span><span class="vi">Về chức năng phân quyền, vẫn chưa thấy thêm tính năng hiển thị cho từng loại tài khoản</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현재 프로토타입엔 '권한별 가능 작업' 카드가 이미 있어 계정 유형별 권한을 표시합니다 — 슈퍼어드민(전체+계정관리+API키), 운영자(설정/정책/콘텐츠 변경 가능·계정관리 불가), CS(조회 전용·1:1 답변·수정 불가). 권한 표시 기능은 이미 있으며, 역할이 늘면 역할 편집 시 권한을 체크박스 매트릭스(메뉴×권한)로 보여주는 상세 뷰를 더하면 더 명확합니다.</span><span class="vi">Prototype hiện ĐÃ có thẻ '권한별 가능 작업' hiển thị quyền theo loại tài khoản — superadmin (toàn quyền+quản lý TK+khóa API), 운영자 (sửa cài đặt/chính sách/nội dung·không quản lý TK), CS (chỉ đọc·trả lời 1:1·không sửa). Chức năng hiển thị quyền đã có; khi nhiều vai trò thì thêm view ma trận checkbox (menu×quyền) khi sửa vai trò sẽ rõ hơn.</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">34</span><div class="qtxt"><span class="i18n"><span class="ko">아래 항목들은 표시할 필요가 있나요?</span><span class="vi">Những mục bên dưới có cần thiết phải hiển thị không?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">이 질문은 원문 노션의 특정 화면(이미지) 하단 항목들을 가리키는데, 어떤 항목인지 캡처 없이는 프로토타입에서 단정할 수 없습니다.
+
+<span class="need">[확인 필요]</span> 이 항목은 기획·구현 결정 사항입니다.
+
+<span style="color:#5b39b8;font-weight:800">추천안:</span> 관리자 계정 화면 기준 권장 노출 항목은 <b>계정 목록(이름·이메일·역할·최종 로그인·상태)·추가/역할변경/삭제 액션·권한별 가능 작업·최근 접근 로그</b>로 충분하며, 그 외 부가 통계·실험적 항목은 1단계에선 숨김 권장. 정확한 대상은 노션 캡처의 해당 항목을 알려주시면 항목별로 답하겠습니다. (이유: 어드민 화면은 운영 필수 정보에 집중하고 부가 항목은 후순위.)</span><span class="vi">Câu này trỏ tới các mục ở cuối một màn cụ thể (ảnh) trong Notion gốc; không có ảnh thì không thể xác định chính xác là mục nào trên prototype.
+
+<span class="need">[Cần xác nhận]</span> Đây là hạng mục cần quyết định (thiết kế/triển khai).
+
+<span style="color:#5b39b8;font-weight:800">Đề xuất:</span> Trên màn Admin Accounts, mục nên hiển thị là <b>danh sách TK (tên·email·vai trò·đăng nhập cuối·trạng thái)·action thêm/đổi vai trò/xóa·quyền theo vai trò·log truy cập gần đây</b> là đủ; thống kê phụ·mục thử nghiệm nên ẩn ở giai đoạn 1. Cho biết mục cụ thể trong ảnh Notion thì sẽ trả lời từng mục. (Lý do: màn admin nên tập trung thông tin vận hành cốt lõi.)</span></span></div></div></div>
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 질문 답변 · Vin · 2026-06-18</span><span class="vi">PricePick · Giải đáp CMS · Vin · 2026-06-18</span></span></div></div>
+</body></html>
