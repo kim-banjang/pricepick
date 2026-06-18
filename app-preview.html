@@ -16113,5 +16113,200 @@ function csCheck() {
   else bind();
 })();
 </script>
+
+<!-- ===== 앱 변경 보기 데모 — 2단계 8항목(존·켈빈 DEVQA) 수정 영역 오버레이 ===== -->
+<style>
+.chgv-toggle{position:fixed;top:14px;right:14px;z-index:2147483550;display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:#5b39b8;background:#fff;border:1px solid #e0d8f5;border-radius:18px;padding:6px 14px;cursor:pointer;white-space:nowrap;box-shadow:0 2px 10px rgba(31,35,48,.14)}
+.chgv-toggle .dot{width:8px;height:8px;border-radius:50%;background:#c3bdd2;transition:background .15s}
+.chgv-toggle.on{background:#5b39b8;color:#fff;border-color:#5b39b8}
+.chgv-toggle.on .dot{background:#7CF5A0}
+#chgvOverlay{position:fixed;inset:0;pointer-events:none;z-index:2147483000;display:none}
+body.chgview-on #chgvOverlay{display:block}
+.chgv-ovbox{position:fixed;box-sizing:border-box;border:2px dashed #845EEE;border-radius:7px;background:rgba(132,94,238,.06);pointer-events:auto;cursor:pointer;transition:background .12s}
+.chgv-ovbox:hover{background:rgba(132,94,238,.15)}
+.chgv-ovlabel{position:absolute;top:-11px;left:10px;display:inline-flex;align-items:center;background:#845EEE;color:#fff;font-size:10px;font-weight:800;line-height:1;padding:3px 9px;border-radius:10px;letter-spacing:.02em;box-shadow:0 1px 6px rgba(132,94,238,.5);white-space:nowrap;pointer-events:none}
+.chgv-modal{position:fixed;inset:0;background:rgba(26,17,48,.5);display:none;align-items:center;justify-content:center;z-index:2147483600;padding:20px}
+.chgv-modal.show{display:flex}
+.chgv-box{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:88vh;overflow:auto;box-shadow:0 14px 50px rgba(26,17,48,.35);padding:0 0 18px;font-family:-apple-system,'Apple SD Gothic Neo',sans-serif}
+.chgv-h{display:flex;align-items:flex-start;gap:10px;padding:18px 20px 14px;border-bottom:1px solid #efecf7;position:sticky;top:0;background:#fff}
+.chgv-q{display:inline-block;font-size:10px;font-weight:800;color:#fff;background:#845EEE;border-radius:8px;padding:2px 7px;margin-bottom:6px;letter-spacing:.02em}
+.chgv-area{font-size:15px;font-weight:800;color:#3a2d63;line-height:1.4}
+.chgv-x{flex:none;border:none;background:#f3f0fa;color:#5b39b8;font-size:18px;font-weight:800;line-height:1;width:28px;height:28px;border-radius:8px;cursor:pointer}
+.chgv-x:hover{background:#845EEE;color:#fff}
+.chgv-row{padding:13px 20px 0}
+.chgv-k{font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px}
+.chgv-before .chgv-k{color:#9a8f86}.chgv-after .chgv-k{color:#1f9d6b}.chgv-reason .chgv-k{color:#5b39b8}
+.chgv-v{font-size:13px;line-height:1.6;color:#2a2440;border-left:3px solid #e9e7f2;padding:2px 0 2px 11px}
+.chgv-before .chgv-v{border-left-color:#e0d6cc;color:#6b6275}
+.chgv-after .chgv-v{border-left-color:#37c98a}
+.chgv-reason .chgv-v{border-left-color:#845EEE;background:#faf8ff;border-radius:0 7px 7px 0;padding:8px 11px}
+.chgv-vi{display:block;font-size:12px;color:#8b8398;margin-top:3px}.chgv-after .chgv-vi{color:#5a9b80}
+.chgv-link{display:inline-block;margin:15px 20px 0;font-size:12px;font-weight:700;color:#5b39b8;text-decoration:none}
+.chgv-link:hover{text-decoration:underline}
+</style>
+<div class="chgv-modal" id="chgvModal">
+  <div class="chgv-box">
+    <div class="chgv-h"><div style="flex:1"><span class="chgv-q" id="chgvQ"></span><div class="chgv-area" id="chgvArea"></div></div><button class="chgv-x" type="button" onclick="chgvClose()">&times;</button></div>
+    <div class="chgv-row chgv-before"><div class="chgv-k">이전 · Trước</div><div class="chgv-v"><span id="chgvBeforeKo"></span><span class="chgv-vi" id="chgvBeforeVi"></span></div></div>
+    <div class="chgv-row chgv-after"><div class="chgv-k">이후 · Sau</div><div class="chgv-v"><span id="chgvAfterKo"></span><span class="chgv-vi" id="chgvAfterVi"></span></div></div>
+    <div class="chgv-row chgv-reason"><div class="chgv-k">사유 · Lý do</div><div class="chgv-v"><span id="chgvReasonKo"></span><span class="chgv-vi" id="chgvReasonVi"></span></div></div>
+    <a class="chgv-link" id="chgvLink" target="_blank" rel="noopener">관련 DEVQA 문의 보기 · Xem câu hỏi DEVQA ↗</a>
+  </div>
+</div>
+<script>
+(function(){
+  var JOHN="https://pricepick.vercel.app/devqa/app-john-20260618.html";
+  var KELVIN="https://pricepick.vercel.app/devqa/app-kelvin-20260618.html";
+  var CH=[
+    {at:[{sec:"pw-31",contains:"기본 정렬",wrap:".my-row"}], q:"John #5(b)", dq:JOHN,
+      area:"설정 — 내역 기본 정렬 / Cài đặt — sắp xếp mặc định",
+      bKo:"내역형 목록의 정렬 기준이 설정에 노출되지 않음.",
+      bVi:"Tiêu chí sắp xếp danh sách lịch sử chưa lộ trong Cài đặt.",
+      aKo:"설정>표시에 ‘기본 정렬’ 추가 — 최신순(기본)/오래된순 2종, 활동 내역·구매 내역 등 시간축 리스트에 공통 적용. 상품 그리드(기프티콘)는 별도 정렬(추천·가격).",
+      aVi:"Thêm ‘sắp xếp mặc định’ ở Cài đặt>Hiển thị — Mới nhất(mặc định)/Cũ nhất, áp dụng chung cho list theo thời gian. Lưới sản phẩm (gifticon) tách riêng (Đề xuất·Giá).",
+      rKo:"내역형은 시간 정렬이 본질이라 2종이면 충분, 모바일에서 옵션 과다는 부담.",
+      rVi:"List lịch sử bản chất theo thời gian, 2 lựa chọn là đủ; quá nhiều tùy chọn nặng trên mobile."},
+    {at:[{sec:"pw-33",contains:"본인 재확인",wrap:".wd-reauth-card"}], q:"John #2", dq:JOHN,
+      area:"계정 탈퇴 — 미연동(게스트) 본인확인 / Hủy TK — xác minh cho guest",
+      bKo:"탈퇴 본인확인이 카카오 재인증만 전제 — 미연동(닉네임) 계정은 카카오가 없어 재인증 불가.",
+      bVi:"Xác minh hủy chỉ dựa xác thực lại Kakao — TK chưa liên kết (biệt danh) không có Kakao nên không thể.",
+      aKo:"연동 계정은 카카오 재인증 유지. 미연동 계정은 ‘동의 체크박스 + 삭제 항목 재고지 확인 모달 + 2차 확인’으로 본인확인 대체. 탈퇴 후 시작 화면 복귀(즉시 재가입).",
+      aVi:"TK đã liên kết giữ xác thực lại Kakao. TK chưa liên kết thay bằng ‘ô đồng ý + modal nhắc lại mục bị xóa + xác nhận lần 2’. Sau hủy về màn bắt đầu (đăng ký lại ngay).",
+      rKo:"미연동은 식별 수단이 카카오뿐이라 강제 재인증 불가 — 마찰 최소화와 오탈퇴 방지의 균형(1단계엔 이메일·휴대폰 인증 없음).",
+      rVi:"Guest chỉ định danh bằng Kakao nên không ép xác thực được — cân bằng giảm ma sát và chống hủy nhầm (giai đoạn 1 chưa có xác thực email·SĐT)."},
+    {at:[{sec:"pw-34",contains:"영수증 인증하기",up:3}], q:"John #3", dq:JOHN,
+      area:"구매 내역 — 영수증 인증 / Lịch sử mua — xác thực hóa đơn",
+      bKo:"영수증 인증 버튼의 표시 조건·처리 흐름이 정의되지 않음.",
+      bVi:"Điều kiện hiển thị·luồng xử lý nút xác thực hóa đơn chưa định nghĩa.",
+      aKo:"경유(픽구매) 자동 추적이 미확인된 ‘주문 확인 중’ 주문에만 ‘영수증 인증하기’ 노출. 누르면 주문번호 입력+영수증 첨부→자동 대조→성공 시 가지급(구매확정 D+7 후 확정), 실패 시 수동검수. 1주문 1회.",
+      aVi:"Chỉ hiện ‘xác thực hóa đơn’ ở đơn ‘đang xác nhận’ chưa theo dõi tự động. Nhấn → nhập mã đơn+đính ảnh→tự đối chiếu→khớp thì tạm cấp (xác định sau D+7), không khớp thì kiểm thủ công. 1 lần/đơn.",
+      rKo:"경유 추적 실패분 구제 수단이므로 사용자 입력 최소화 + 자동매칭 우선, 안 되면 사람이 확인.",
+      rVi:"Là phương tiện cứu phần theo dõi lỗi → giảm nhập tay, ưu tiên tự khớp, không được thì người kiểm."},
+    {at:[{sec:"pw-31",contains:"픽구매 알림",wrap:".my-section"}], q:"John #5(c)", dq:JOHN,
+      area:"설정 — 알림 3종 스위치 / Cài đặt — 3 switch thông báo",
+      bKo:"알림 스위치의 종류·적용 범위·저장 방식이 불명확.",
+      bVi:"Loại·phạm vi·cách lưu của switch thông báo chưa rõ.",
+      aKo:"3개 스위치 — 픽구매 알림(거래성)/이벤트·티켓 알림(룰렛·응모·만료 임박)/마케팅(기본 OFF). 각 스위치는 푸시·인앱 공통 1토글, 상태는 서버 저장+계정 기준 기기 간 동기화(게스트는 로컬→연동 시 승계).",
+      aVi:"3 switch — Pick-mua(giao dịch)/Sự kiện·Vé(quay·dự thưởng·sắp hết hạn)/Tiếp thị(mặc định TẮT). Mỗi switch 1 toggle chung push·in-app, lưu server+đồng bộ theo tài khoản (guest lưu cục bộ→kế thừa khi liên kết).",
+      rKo:"‘알림 종류 on/off’가 직관적이고 푸시/인앱 분리는 혼란, 멀티기기 일관성 위해 서버 동기화가 표준.",
+      rVi:"Bật/tắt ‘theo loại’ trực quan hơn tách push/in-app; đồng bộ server là chuẩn cho đa thiết bị."},
+    {at:[{sec:"pw-21",contains:"장별 만료일 자세히 보기",wrap:".gd-section"}], q:"Kelvin #1", dq:KELVIN,
+      area:"내 적립 티켓 — 장별 만료 펼침 / Vé của tôi — hết hạn theo từng vé",
+      bKo:"내 티켓은 등급별 요약/대표 만료일만 표시, 한 등급 안 개별 티켓 장별 만료일은 미표시.",
+      bVi:"Vé của tôi chỉ hiển thị tóm tắt/ngày đại diện theo hạng, chưa có hết hạn từng vé trong một hạng.",
+      aKo:"메인은 등급별 요약+임박 경고 유지하되, 각 등급 카드를 탭하면 ‘장별 만료 리스트’(만료일 오름차순·D-day)를 펼치는 상세 추가.",
+      aVi:"Giữ màn chính (tóm tắt theo hạng+cảnh báo), nhưng thêm khi chạm thẻ hạng thì mở ‘danh sách hết hạn theo từng vé’ (sắp tăng dần·D-day).",
+      rKo:"메인은 간결해야 하고 만료 관리가 필요한 유저만 깊이 보게 하는 점진적 노출이 적합 — 전 장 평면 노출은 정보 과부하.",
+      rVi:"Màn chính cần gọn, chỉ ai cần mới xem sâu (progressive disclosure); phơi toàn bộ gây quá tải."},
+    {at:[{sec:"pw-21",contains:"가장 이른 적립일",wrap:".gd-swap-card"}], q:"Kelvin #2", dq:KELVIN,
+      area:"티켓 등급 교환 — 합치기/나누기 기한 승계 / Đổi hạng vé — kế thừa hạn",
+      bKo:"교환은 ‘합칠 총 수량’만 입력, 어떤 티켓을 고를지·만료일 규칙 정보 없음.",
+      bVi:"Đổi chỉ nhập ‘tổng số gộp’, không có thông tin chọn vé nào·quy tắc hết hạn.",
+      aKo:"시스템 자동 선택 — 병합 시 만료 임박(적립일 오래된) 티켓부터 FIFO 소모, 새 상위 티켓 적립일=원본 중 가장 이른 적립일(MIN) 승계+1년. 분할도 원 적립일 승계.",
+      aVi:"Hệ thống tự chọn — gộp thì tiêu FIFO vé sắp hết hạn (ngày cũ nhất) trước; ngày vé mới=MIN ngày gốc+1 năm. Tách cũng kế thừa ngày gốc.",
+      rKo:"FIFO는 유저 유리 + ‘만료 임박분 끼워 무한 연장’ 어뷰징 방지와 일관, 원적립일 유지가 만료 정책의 핵심.",
+      rVi:"FIFO có lợi user + chống lạm dụng gia hạn vô hạn; giữ ngày gốc là cốt lõi chính sách hết hạn."},
+    {at:["#rwd-pane-point"], q:"Kelvin #3", dq:KELVIN,
+      area:"포인트 — 만료 예정 + 교환 규칙 / Điểm — sắp hết hạn + quy tắc đổi",
+      bKo:"포인트 사용 기한 상세·교차 전환 규칙이 화면에 없음(‘유효기간 1년’ 문구만).",
+      bVi:"Chi tiết hạn dùng điểm·quy tắc quy đổi chéo chưa có trên màn (chỉ dòng ‘hạn 1 năm’).",
+      aKo:"혜택>포인트 탭에 ‘만료 예정 포인트’ 섹션(배치별 만료일·금액·임박순) 추가. 포인트↔티켓 교차 전환은 원 적립일 승계(여러 배치면 MIN). 10P=1원·유효기간 1년·일일 한도 없음.",
+      aVi:"Thêm mục ‘Điểm sắp hết hạn’ (ngày·số tiền theo lô·gần nhất trước) trong tab Điểm. Quy đổi chéo điểm↔vé kế thừa ngày gốc (nhiều lô thì MIN). 10P=1₩·hạn 1 năm·không giới hạn ngày.",
+      rKo:"자산 종류만 바뀌고 만료 시계는 원적립일 기준 유지해야 포인트 경유 무한연장 어뷰징을 차단 — 티켓 MIN 승계와 정합.",
+      rVi:"Chỉ đổi loại tài sản, đồng hồ hết hạn vẫn theo ngày gốc để chặn lách qua điểm — nhất quán quy tắc MIN của vé."},
+    {at:[{sec:"pw-24",contains:"교환 내역",up:2}], q:"Kelvin #4", dq:KELVIN,
+      area:"기프티콘 교환소 — 검색·정렬·교환 내역 / Quầy Gifticon — tìm·sắp·lịch sử",
+      bKo:"교환소에 카테고리 필터·‘교환 가능만’ 토글만 있고 검색·정렬 없음. 기프티콘 전용 교환 내역 화면도 없음.",
+      bVi:"Quầy chỉ có lọc danh mục·toggle ‘đổi được’, không có tìm·sắp. Cũng chưa có màn lịch sử đổi gifticon riêng.",
+      aKo:"검색(상품·브랜드)+정렬(추천 기본·가격↑↓·교환 가능순) 추가, 기프티콘 전용 ‘교환 내역’(발급 상태·바코드/사용처·유효기간) 신설.",
+      aVi:"Thêm tìm (tên·thương hiệu)+sắp (Đề xuất·Giá↑↓·Đổi được trước), lập màn ‘Lịch sử đổi gifticon’ riêng (trạng thái·mã vạch/nơi dùng·hạn dùng).",
+      rKo:"상품이 늘면 카테고리 필터만으론 탐색 비용↑ — 검색·정렬은 커머스 기본, 발급 기프티콘 관리(바코드 재확인)에 전용 내역 필수.",
+      rVi:"Nhiều sản phẩm thì chỉ lọc danh mục sẽ khó tìm — tìm·sắp là cơ bản; cần lịch sử riêng để quản lý gifticon (xem lại mã vạch)."}
+  ];
+  function setTxt(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
+  window.chgvOpen=function(i){
+    var c=CH[i];if(!c)return;
+    setTxt("chgvQ","DEVQA "+c.q);setTxt("chgvArea",c.area);
+    setTxt("chgvBeforeKo",c.bKo);setTxt("chgvBeforeVi",c.bVi);
+    setTxt("chgvAfterKo",c.aKo);setTxt("chgvAfterVi",c.aVi);
+    setTxt("chgvReasonKo",c.rKo);setTxt("chgvReasonVi",c.rVi);
+    document.getElementById("chgvLink").href=c.dq;
+    document.getElementById("chgvModal").classList.add("show");
+  };
+  window.chgvClose=function(){document.getElementById("chgvModal").classList.remove("show");};
+  /* 텍스트 기반 앵커 resolver: 문자열=selector, {sec,contains,wrap|up}=섹션 내 텍스트로 요소 찾고 상위 컨테이너 래핑 */
+  function findByText(scope,text){
+    var all=scope.getElementsByTagName("*");
+    for(var i=0;i<all.length;i++){
+      var el=all[i];
+      if((el.textContent||"").indexOf(text)<0)continue;
+      var ch=el.children,has=false;
+      for(var c=0;c<ch.length;c++){if((ch[c].textContent||"").indexOf(text)>=0){has=true;break;}}
+      if(!has)return el;
+    }
+    return null;
+  }
+  function resolveEl(f){
+    if(typeof f==="string")return document.querySelector(f);
+    var scope=f.sec?document.getElementById(f.sec):document;
+    if(!scope)return null;
+    var el=findByText(scope,f.contains);
+    if(!el)return null;
+    if(f.wrap){var w=el.closest(f.wrap);if(w)return w;}
+    if(f.up){for(var k=0;k<f.up&&el.parentElement&&el.parentElement!==scope;k++)el=el.parentElement;}
+    return el;
+  }
+  function isVis(el){
+    var pw=el.closest(".phone-wrap");
+    if(pw&&!pw.classList.contains("ip-active"))return false;
+    if(el.getClientRects().length===0)return false;
+    var r=el.getBoundingClientRect();
+    return r.width>0&&r.height>0;
+  }
+  function unionRect(els){
+    var L=1/0,T=1/0,R=-1/0,B=-1/0,f=false;
+    for(var i=0;i<els.length;i++){ if(!isVis(els[i]))continue; var r=els[i].getBoundingClientRect(); f=true; if(r.left<L)L=r.left;if(r.top<T)T=r.top;if(r.right>R)R=r.right;if(r.bottom>B)B=r.bottom; }
+    return f?{left:L,top:T,width:R-L,height:B-T}:null;
+  }
+  var overlay=null, targets=[], rafOn=false;
+  function positionBoxes(){
+    if(!document.body.classList.contains("chgview-on"))return;
+    for(var i=0;i<targets.length;i++){
+      var u=unionRect(targets[i].els), box=targets[i].box;
+      if(!u){box.style.display="none";continue;}
+      box.style.display="block";
+      box.style.left=(u.left-4)+"px";box.style.top=(u.top-4)+"px";box.style.width=(u.width+8)+"px";box.style.height=(u.height+8)+"px";
+    }
+  }
+  function loop(){if(!document.body.classList.contains("chgview-on")){rafOn=false;return;}positionBoxes();requestAnimationFrame(loop);}
+  function startLoop(){if(rafOn)return;rafOn=true;requestAnimationFrame(loop);}
+  function init(){
+    var modal=document.getElementById("chgvModal");
+    if(modal)modal.addEventListener("click",function(e){if(e.target===modal)chgvClose();});
+    overlay=document.createElement("div");overlay.id="chgvOverlay";document.body.appendChild(overlay);
+    var applied=0;
+    CH.forEach(function(c,i){
+      var els=c.at.map(resolveEl).filter(Boolean);
+      if(!els.length){console.warn("[chgview] 대상 없음:",c.q,c.at);return;}
+      var box=document.createElement("div");box.className="chgv-ovbox";box.style.display="none";
+      box.title="변경 보기: "+c.area;
+      var lab=document.createElement("span");lab.className="chgv-ovlabel";lab.textContent="수정됨 · Đã sửa";
+      box.appendChild(lab);
+      box.addEventListener("click",function(e){e.stopPropagation();e.preventDefault();chgvOpen(i);});
+      overlay.appendChild(box);
+      targets.push({els:els,box:box});
+      applied++;
+    });
+    window.addEventListener("scroll",positionBoxes,true);
+    window.addEventListener("resize",positionBoxes);
+    var btn=document.createElement("button");btn.type="button";btn.className="chgv-toggle";
+    btn.innerHTML='<span class="dot"></span><span>변경 보기 · Xem thay đổi</span>';
+    btn.addEventListener("click",function(){var on=document.body.classList.toggle("chgview-on");btn.classList.toggle("on",on);if(on){positionBoxes();startLoop();}});
+    document.body.appendChild(btn);
+    console.log("[chgview] 적용 영역 "+applied+"/"+CH.length);
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();
+</script>
 </body>
 </html>
