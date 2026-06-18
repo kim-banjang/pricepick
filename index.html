@@ -354,6 +354,17 @@
         <div class="arrow" id="card-storyboard-arrow">열기 →</div>
       </a>
 
+      <a class="card" href="/cms-storyboard.html" target="_blank" rel="noopener">
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <h2 id="card-cmssb-title">CMS 스토리보드</h2>
+        <p id="card-cmssb-desc">CMS 화면별 동작·권한·데이터 흐름을 정리한 개발자용 명세.</p>
+        <div class="arrow" id="card-cmssb-arrow">열기 →</div>
+      </a>
+
       <a class="card" href="/screenflow.html" target="_blank" rel="noopener">
         <div class="cicon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -453,6 +464,8 @@ const I18N = {
     'card.interactive.desc': '클릭으로 UX 흐름을 직접 체험하는 웹 기반 기획 프로토타입.',
     'card.storyboard.title': '스토리보드',
     'card.storyboard.desc': '화면별 기획 스펙과 의사결정을 정리한 문서.',
+    'card.cmssb.title': 'CMS 스토리보드',
+    'card.cmssb.desc': 'CMS 화면별 동작·권한·데이터 흐름을 정리한 개발자용 명세.',
     'card.screenflow.title': '스크린플로',
     'card.screenflow.desc': '전체 화면 흐름을 트리로 시각화한 흐름도.',
     'card.designsystem.title': '디자인시스템',
@@ -478,6 +491,8 @@ const I18N = {
     'card.prototype.desc': 'Danh mục toàn bộ màn hình và trình mô phỏng click. Dùng để xác nhận cuối trên di động.',
     'card.interactive.title': 'Interactive',
     'card.interactive.desc': 'Prototype kế hoạch trên web để trải nghiệm trực tiếp luồng UX qua click.',
+    'card.cmssb.title': 'CMS Storyboard',
+    'card.cmssb.desc': 'Đặc tả cho dev: thao tác·quyền·luồng dữ liệu theo từng màn hình CMS.',
     'card.storyboard.title': 'Storyboard',
     'card.storyboard.desc': 'Tài liệu đặc tả kế hoạch và quyết định theo từng màn hình.',
     'card.screenflow.title': 'Screenflow',
@@ -529,6 +544,9 @@ function applyLang() {
   setTxt('card-storyboard-title',    t('card.storyboard.title'));
   setTxt('card-storyboard-desc',     t('card.storyboard.desc'));
   setTxt('card-storyboard-arrow',    t('card.arrow'));
+  setTxt('card-cmssb-title',         t('card.cmssb.title'));
+  setTxt('card-cmssb-desc',          t('card.cmssb.desc'));
+  setTxt('card-cmssb-arrow',         t('card.arrow'));
   setTxt('card-screenflow-title',    t('card.screenflow.title'));
   setTxt('card-screenflow-desc',     t('card.screenflow.desc'));
   setTxt('card-screenflow-arrow',    t('card.arrow'));

@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PricePick v8.2 — CMS Storyboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--main:#845EEE;--main-d:#6C4AB6;--sub4:#F1EEFF;--sub3:#E2D9FF;--text1:#1A1130;--text2:#5A5370;--text3:#9B93B0;--border:#EEEAF3;--bg:#FFFFFF;--surface:#FAFAFA;--green:#1f9d57;--amber:#d97a17;--mono:'IBM Plex Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--text1);background:var(--bg);font-size:13px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(18px,4vw,48px)}
+.doc-hd{padding:46px 0 28px;border-bottom:1px solid var(--border)}
+.doc-hd .kicker{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--main);text-transform:uppercase}
+.doc-hd h1{font-size:27px;font-weight:800;margin:8px 0 6px;letter-spacing:-.5px}
+.doc-hd p{font-size:13.5px;color:var(--text2);max-width:760px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.legend span{font-size:11.5px;font-weight:600;color:var(--text2);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:5px 12px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 6px}
+.toc a{font-size:12px;font-weight:700;color:var(--main-d);background:var(--sub4);border:1px solid var(--sub3);border-radius:9px;padding:7px 12px;text-decoration:none}
+.toc a span{color:var(--text3);font-weight:600;margin-left:4px}
+h2.grp{font-size:15px;font-weight:800;color:var(--main-d);margin:38px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--sub3)}
+.area{border:1px solid var(--border);border-radius:14px;margin-bottom:16px;overflow:hidden;background:var(--bg)}
+.area-hd{display:flex;align-items:center;gap:12px;padding:14px 18px;background:linear-gradient(120deg,#FBFAFF,#F5F1FF);border-bottom:1px solid var(--border)}
+.area-num{font-family:var(--mono);font-size:13px;font-weight:600;color:#fff;background:var(--main);border-radius:7px;padding:4px 9px}
+.area-tt{flex:1;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.area-tt h3{font-size:16px;font-weight:800}
+.area-en{font-size:11.5px;color:var(--text3);font-weight:600}
+.area-grp{font-size:10.5px;font-weight:700;color:var(--main-d);background:#fff;border:1px solid var(--sub3);border-radius:20px;padding:3px 10px}
+.area-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.facet{background:var(--bg);padding:13px 16px}
+.facet.purpose,.facet.edge{grid-column:1/-1}
+.facet-l{font-size:10.5px;font-weight:800;color:var(--main);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.facet-b{font-size:12.7px;color:var(--text2)}
+.facet-b.mono{font-family:var(--mono);font-size:12px;color:var(--text1)}
+ul.facet-b{padding-left:16px}
+ul.facet-b li{margin-bottom:3px}
+.facet.edge .facet-l{color:var(--amber)}
+.facet.edge{background:#FFFCF6}
+.foot{margin:32px 0 60px;padding-top:18px;border-top:1px solid var(--border);font-size:11.5px;color:var(--text3)}
+@media(max-width:680px){.area-grid{grid-template-columns:1fr}.facet.purpose,.facet.edge{grid-column:auto}}
+</style></head><body>
+<div class="wrap">
+<header class="doc-hd">
+<div class="kicker">PricePick · CMS</div>
+<h1>CMS Storyboard — 화면별 동작·의도 명세</h1>
+<p>개발팀(Vin)이 화면만 보고 추측하지 않도록, CMS 18개 영역의 <b>목적 · 주요 동작/플로우 · 상태 전환 · 권한 · 데이터 흐름 · 예외/엣지케이스</b>를 정리한 문서입니다. DEVQA 27건 확정 답변 + CMS 프로토타입을 기준으로 작성했습니다.</p>
+<div class="legend"><span>기준: DEVQA #5(Vin) 확정 27건</span><span>프로토타입: Pricepick-v8_2-CMS.html</span><span>역할: 슈퍼어드민 / 운영자 / CS</span><span>적립: 가지급 → D+7(연동)·D+30(미연동) 확정</span></div>
+<nav class="toc"><a href="#grp-회원 관리">회원 관리 <span>1</span></a><a href="#grp-티켓 · 보상">티켓 · 보상 <span>5</span></a><a href="#grp-포인트 관리">포인트 관리 <span>1</span></a><a href="#grp-콘텐츠">콘텐츠 <span>4</span></a><a href="#grp-운영">운영 <span>3</span></a><a href="#grp-시스템">시스템 <span>3</span></a><a href="#grp-계정 관리">계정 관리 <span>1</span></a></nav>
+</header>
+<h2 class="grp" id="grp-회원 관리">회원 관리</h2><article class="area" id="area-01">
+  <header class="area-hd">
+    <span class="area-num">01</span>
+    <div class="area-tt"><h3>회원 목록</h3><span class="area-en">Member List</span></div>
+    <span class="area-grp">회원 관리</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">전체 회원을 조회·관리하는 화면. PII(개인식별정보)를 포함하므로 보안 1순위.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>상단 필터(연동상태 / 계정상태 / 마케팅 수신)·닉네임 검색으로 목록 좁히기</li><li>행의 '상세'로 회원 상세(보유 자산·활동 이력·정지/해제) 진입</li><li>컬럼: 닉네임/식별자 · 연동 상태 · 가입일 · 랜덤/등급/이벤트 티켓 · 마케팅 수신 · 계정 상태</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>계정 상태: 정상 ↔ 정지 ↔ 탈퇴</li><li>연동 상태: 게스트(미연동) → 카카오 연동 (단방향, 연동 후 사용 가능)</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자 = 조회+관리(정지 등), CS = 조회 전용.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">users 테이블(PII). 집계: 티켓 보유량·가입일·마지막 접속.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>애플·구글 로그인 폐지 → 가입유형이 아니라 '연동 상태(게스트/카카오)' 2축으로 필터·표시</li><li>게스트는 카카오ID가 없으므로 '닉네임 + (미연동) 배지 + 내부 식별자(app_uid)'로 표시, 적립만 누적·사용 불가. 연동 시 카카오ID로 자동 대체</li></ul></div>
+  </div>
+</article><h2 class="grp" id="grp-티켓 · 보상">티켓 · 보상</h2><article class="area" id="area-02">
+  <header class="area-hd">
+    <span class="area-num">02</span>
+    <div class="area-tt"><h3>티켓 내역</h3><span class="area-en">Ticket History</span></div>
+    <span class="area-grp">티켓 · 보상</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">티켓 발행·소모·회수를 기록하는 원장(append-only). 회계·세무·부정거래 추적의 근거.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>발행유형·상태 필터로 조회 → 행별 사유·티켓·상태·일시</li><li>'수동 지급/회수'로 관리자 직접 조정(로그 남김)</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>티켓 상태: 보유 중 / 가지급(대기) / 사용 완료 / 회수</li><li>'사유'가 발행 종류(구매확정·가지급·출석·광고·친구초대·주간미션·관리자지급·소모·회수)를 표현</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">tickets 원장. 절대 삭제 금지 — 회수 시에도 음수 레코드를 추가하고 원본 보존.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>'발행 종류' 별도 컬럼은 '사유'와 중복이라 만들지 않음 — 사유 유지 + '상태'만 컬럼으로 승격(필터+컬럼 병행)</li></ul></div>
+  </div>
+</article><article class="area" id="area-03">
+  <header class="area-hd">
+    <span class="area-num">03</span>
+    <div class="area-tt"><h3>추첨 관리</h3><span class="area-en">Draw Management</span></div>
+    <span class="area-grp">티켓 · 보상</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">이벤트 티켓 기반 경품 추첨 회차를 등록·운영하고 당첨자를 확정하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>회차 목록(경품 구성·기간·마감·참여 티켓·당첨자·상태)</li><li>상단 '+ 회차 등록'(오버레이 폼: 등수별 경품 구성) → 등록</li><li>마감된 회차의 '당첨 처리(추첨 실행)' → 모달: 응모 풀 확정 → 추첨 알고리즘 → 등수별 당첨자 산출 → 발표/지급</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>회차: 진행 중 → 마감·처리 대기 → 완료</li><li>좌측 메뉴 (1) 배지 = '당첨 처리 대기 회차 수'. 처리 완료 시 감소 → 0이면 숨김</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">draws / draw_prizes / entries(응모) 테이블.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>추첨 방식 = '자동(매주 월요일 자동 추첨) / 수동(관리자 실행)' 선택값</li><li>등수별 경품: 같은 등수 중복 행 금지(등수당 1행), 한 등수에 경품 여러 개는 허용</li><li>등록 폼은 목록과 분리(오버레이/우측 패널) + 상단 고정 버튼</li></ul></div>
+  </div>
+</article><article class="area" id="area-04">
+  <header class="area-hd">
+    <span class="area-num">04</span>
+    <div class="area-tt"><h3>경품 · 응모 관리</h3><span class="area-en">Prize / Entry Management</span></div>
+    <span class="area-grp">티켓 · 보상</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">현재 경품 구성을 설정·수정하고 미발송 경품을 처리하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>'현재 경품 설정'(등수별 경품·확률) → '수정' 모달로 편집</li><li>미발송 경품 목록 → '발송'으로 처리</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>경품 설정: 변경 → 공표(특정 회차부터 적용)</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">prize_config(버전) / entries / prizes 테이블.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>고정 1세트 운영이면 '기본 표시 + 수정'만으로 충분(생성 불필요)</li><li>'경품 변경 이력' 로그(버전·변경자·전후·공표 여부) 필요 — 정산·민원 감사 추적</li></ul></div>
+  </div>
+</article><article class="area" id="area-05">
+  <header class="area-hd">
+    <span class="area-num">05</span>
+    <div class="area-tt"><h3>주간 이벤트 추첨</h3><span class="area-en">Weekly Event Draw</span></div>
+    <span class="area-grp">티켓 · 보상</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">이벤트 티켓 '소비처' — 보유자 자동 응모 후 추첨해 경품 지급(티켓을 새로 발급하지 않음).</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>매주 월요일 0시 자동 응모(이벤트 티켓 보유 회원) → 당첨 확률로 추첨 → 당첨자 경품 지급</li><li>'수정'(Edit) 모달로 운영 파라미터 조정</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>이벤트 티켓: 당회 미응모 시 1회 이월 → 최대 2회 추첨 후 소멸(소비)</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">weekly_draws / event_tickets 테이블, 스케줄러(주간 추첨 집계) 연동.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>Edit는 당첨 확률(%)·추첨 일정(요일/시각)·당첨 보상·이벤트 티켓 이월/만료 회차를 편집</li><li>상시 반복 정책 1개라 회차별 '이벤트 생성'은 불필요(특별 회차는 추첨 관리 활용)</li></ul></div>
+  </div>
+</article><article class="area" id="area-06">
+  <header class="area-hd">
+    <span class="area-num">06</span>
+    <div class="area-tt"><h3>환수 이력</h3><span class="area-en">Clawback History</span></div>
+    <span class="area-grp">티켓 · 보상</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">티켓 회수·소멸 결과와, 즉시 회수 불가한 '부채'를 추적하는 화면(두 섹션).</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>① 티켓 회수·소멸 이력 = 처리된 회수/소멸 결과 로그(처리일시·닉네임·주문ID·환수 티켓·원인·원 적립일) — '상세'로 근거 확인</li><li>② 환수 부채 추적 = 사용된 티켓에 취소·반품 발생 시 음수 잔액(부채) 기록 → 다음 적립 시 자동 상계 대기</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>원인: 만료 / 반품 / 취소</li><li>부채: 상계 대기 → 다음 적립 시 자동 상계</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">clawbacks / clawback_debts 테이블, orders(반품·취소) 연동.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>상세 모달 = 원본 티켓(등급·적립일·원 주문) + 회수 사유 상세(CS 메모) + 회수 전후 잔액 + 관련 부채 연결</li></ul></div>
+  </div>
+</article><h2 class="grp" id="grp-포인트 관리">포인트 관리</h2><article class="area" id="area-07">
+  <header class="area-hd">
+    <span class="area-num">07</span>
+    <div class="area-tt"><h3>포인트 정책</h3><span class="area-en">Point Policy</span></div>
+    <span class="area-grp">포인트 관리</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">포인트 환율·만료·교환 규칙을 조회·수정하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>'포인트 ↔ 티켓 교환 비율'·'적립·만료 정책' 표시 → '수정' 모달로 편집</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>정책 변경: 즉시 적용 / 예약 적용 선택</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자(비용 직결, 변경 이력 필수).</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">point_policy(버전) / point_transactions 테이블.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>수정 모달 = 교환 비율(10P=1원)·만료 기간(적립일+1년·FIFO)·일일 적립 한도·교환 방향 편집 + 변경 전후 비교·이력 기록</li><li>'적립·만료 정책'은 필요 — 비용·민원 핵심값이라 운영자 통제·감사 가능해야 함</li></ul></div>
+  </div>
+</article><h2 class="grp" id="grp-콘텐츠">콘텐츠</h2><article class="area" id="area-08">
+  <header class="area-hd">
+    <span class="area-num">08</span>
+    <div class="area-tt"><h3>배너 관리</h3><span class="area-en">Banner Management</span></div>
+    <span class="area-grp">콘텐츠</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">홈 상단 슬라이드 배너를 운영하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>배너 카드 목록(제목·기간·링크·노출 상태) → 수정/노출 전환/삭제</li><li>'+ 배너 추가'로 신규 생성, 카드 순서 드래그로 노출 순서 변경</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>노출 중 ↔ 비노출(토글)</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">banners 테이블.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>배너는 캠페인마다 추가/내림이 잦음 → 생성·삭제·노출토글·순서변경까지 풀 CRUD 필요</li></ul></div>
+  </div>
+</article><article class="area" id="area-09">
+  <header class="area-hd">
+    <span class="area-num">09</span>
+    <div class="area-tt"><h3>이벤트 관리</h3><span class="area-en">Event Management</span></div>
+    <span class="area-grp">콘텐츠</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">출석·가입·구매 등 보상 이벤트를 운영하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>이벤트 카드(기간·대상·보상·상태) → 수정/삭제, '+ 이벤트 생성'으로 신규</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>진행 중 ↔ 종료(토글)</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">events 테이블, 운영 정책 연동.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>시즌마다 신설/종료가 잦음 → CRUD 필요</li><li>적립·보상에 직접 영향 → 생성/수정 시 운영정책과 보상 정합 검증(중복 보상·만료 충돌 차단)</li></ul></div>
+  </div>
+</article><article class="area" id="area-10">
+  <header class="area-hd">
+    <span class="area-num">10</span>
+    <div class="area-tt"><h3>공지사항 관리</h3><span class="area-en">Notices</span></div>
+    <span class="area-grp">콘텐츠</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">앱에 노출되는 공지를 작성·게시·관리하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>'공지 작성'(제목·분류·내용·즉시노출/상단고정·임시저장/게시)</li><li>공지 목록(분류·게시일·조회수·노출) → 수정 / 숨김</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>임시저장 → 게시 → (숨김)</li><li>노출 ↔ 숨김(소프트삭제)</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">notices 테이블.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>공지는 법적 고지성이 있어 하드 삭제 대신 '숨김 + 보존'(소프트삭제) 권장 — 이력 유지</li></ul></div>
+  </div>
+</article><article class="area" id="area-11">
+  <header class="area-hd">
+    <span class="area-num">11</span>
+    <div class="area-tt"><h3>알림 관리</h3><span class="area-en">Notifications</span></div>
+    <span class="area-grp">콘텐츠</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">푸시·알림톡을 작성·발송하고 발송 내역을 관리하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>'알림 작성·발송'(채널·대상·제목·내용·즉시/예약) → '테스트 발송(본인)'으로 미리보기 → 발송</li><li>발송 내역(채널·대상·발송수·열람율·상태)</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>예약 → 발송 → 완료</li><li>FCM 상한: 거래 알림 무제한 / 기타 1일 2건 / 야간(22~08) 미발송</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">notifications / notification_logs 테이블, FCM·알림톡 API.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>'테스트 발송' = 작성 중 알림을 전체가 아니라 로그인한 관리자 본인에게만 보내 표시·변수·링크 검수</li><li>발송 완료 건은 불변 로그(회수 불가) — '예약' 상태 건만 발송 전 취소·수정 가능</li></ul></div>
+  </div>
+</article><h2 class="grp" id="grp-운영">운영</h2><article class="area" id="area-12">
+  <header class="area-hd">
+    <span class="area-num">12</span>
+    <div class="area-tt"><h3>운영 정책</h3><span class="area-en">Operating Policy</span></div>
+    <span class="area-grp">운영</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">적립·보상·참여·제외 정책을 한곳에서 보는 조회 전용 기준 문서 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>3개 탭(적립·보상 / 참여·이벤트 / 적립 제외) — 등급별 적립 기준·Greedy 산정·지급(D+7/D+30)·교환·기프티콘 카탈로그 표시</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>조회 전용 — 이 화면에서 직접 수정하지 않음</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">전 권한 조회. 변경은 별도 승인 절차로만 반영.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">operating_policy(읽기 전용 뷰).</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>정책 수치·기준 변경은 별도 승인 절차를 거쳐 반영 — CMS에서 직접 편집 불가</li></ul></div>
+  </div>
+</article><article class="area" id="area-13">
+  <header class="area-hd">
+    <span class="area-num">13</span>
+    <div class="area-tt"><h3>1:1 문의</h3><span class="area-en">1:1 Inquiries</span></div>
+    <span class="area-grp">운영</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">사용자 문의를 확인·답변·상태 관리하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>문의 목록 → 'Edit' 모달(문의 내용·처리 상태·답변 작성) → 답변 발송</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>미처리 → 처리 중 → 완료 (완료 후 재오픈 가능)</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자·CS(답변 가능).</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">inquiries 테이블.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>처리 상태 드롭다운은 '완료' 건에서도 활성 → 상태 변경(재오픈) 가능. 재오픈 시 변경 사유·이력(누가·언제) 기록 권장</li></ul></div>
+  </div>
+</article><article class="area" id="area-14">
+  <header class="area-hd">
+    <span class="area-num">14</span>
+    <div class="area-tt"><h3>계정 탈퇴 처리</h3><span class="area-en">Account Deletion</span></div>
+    <span class="area-grp">운영</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">탈퇴 정책을 설정하고 탈퇴 요청을 처리·추적하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>'탈퇴 정책 설정'(수정 모달) + 탈퇴 요청별 '상세' 처리</li><li>처리 흐름 다이어그램·통계(유예중/오늘 삭제예정/이번달 탈퇴/철회) + 탈퇴 사유 분포(기간 필터)</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>요청 → 유예(30일) → 영구 삭제 / 철회</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민·운영자(PII·법적 이슈).</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">withdrawals 테이블, 스케줄러(PII D+30 삭제) 연동.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>정책 모달 = 유예 기간·보유 티켓 처리·PII 삭제 항목·통계 보존 항목·재가입 쿨타임 편집</li><li>설정값이 바뀌면 처리 절차·D-day 계산이 동적으로 반영(단일 소스)</li><li>탈퇴 사유 분포 = 탈퇴 시 수집한 사유 집계 + 기간 필터(이번달/지난달/지정)</li></ul></div>
+  </div>
+</article><h2 class="grp" id="grp-시스템">시스템</h2><article class="area" id="area-15">
+  <header class="area-hd">
+    <span class="area-num">15</span>
+    <div class="area-tt"><h3>앱 버전 관리</h3><span class="area-en">App Version</span></div>
+    <span class="area-grp">시스템</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">iOS/Android 최신·최소 지원 버전과 강제 업데이트를 관리하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>플랫폼별 최신/최소 지원 버전·스토어 링크·버전 히스토리 → '수정'(m-appver) 모달로 등록</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>강제 업데이트 활성/비활성</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민(키·게이트성 설정).</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">app_versions 테이블.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>필요 기능 — '최소 지원 버전 + 강제 업데이트'는 결함·보안 패치 시 구버전 사용자를 진입 차단하는 필수 안전장치</li></ul></div>
+  </div>
+</article><article class="area" id="area-16">
+  <header class="area-hd">
+    <span class="area-num">16</span>
+    <div class="area-tt"><h3>제휴몰 API 관리</h3><span class="area-en">Partner API</span></div>
+    <span class="area-grp">시스템</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">제휴몰 API 키·호출 한도·장애를 모니터링하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>쿠팡 파트너스 API 키(마스킹)·상태·일일 호출 한도/사용량·호출 차트</li><li>제휴몰 연동 현황(쿠팡·11번가·G마켓·알리·아이허브)</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>API 상태: 정상 / 점검 중 / 오류</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민(API 키 관리).</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">partner_api_keys / api_call_logs.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>필요 기능 — 경유 적립이 API에 전적으로 의존(키 만료·장애 시 적립 전체 중단). 1단계는 쿠팡 우선, 나머지는 표시·추후 연동</li></ul></div>
+  </div>
+</article><article class="area" id="area-17">
+  <header class="area-hd">
+    <span class="area-num">17</span>
+    <div class="area-tt"><h3>스케줄러</h3><span class="area-en">Scheduler</span></div>
+    <span class="area-grp">시스템</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">백그라운드 배치 작업을 모니터링·제어하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>잡 목록(알림 발송·주간 추첨 집계·티켓 확정·티켓 만료·DB 백업)의 주기·상태·마지막 실행</li><li>일시정지 / 즉시 실행 / 재시작, 최근 실행 로그(건수·소요·성공/실패)</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>정상(실행) / 일시정지 / 오류</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민.</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">scheduler_jobs / job_run_logs.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>시스템 정의 배치라 관리자용 '생성·삭제'는 두지 않음(임의 생성은 데이터 정합·부하 사고 위험) — 활성/비활성 토글·주기 조정·즉시 실행만</li></ul></div>
+  </div>
+</article><h2 class="grp" id="grp-계정 관리">계정 관리</h2><article class="area" id="area-18">
+  <header class="area-hd">
+    <span class="area-num">18</span>
+    <div class="area-tt"><h3>관리자 계정</h3><span class="area-en">Admin Accounts</span></div>
+    <span class="area-grp">계정 관리</span>
+  </header>
+  <div class="area-grid">
+    <div class="facet purpose"><div class="facet-l">목적</div><div class="facet-b">관리자 계정·권한·접근 로그를 관리하는 화면.</div></div>
+    <div class="facet"><div class="facet-l">주요 동작 · 플로우</div><ul class="facet-b"><li>계정 목록(이름·이메일·역할·최종 로그인·상태) → '관리자 계정 추가'(m-account)·역할 변경·삭제</li><li>'권한별 가능 작업' 카드 + '최근 접근 로그'(시각·이름·작업·IP)</li></ul></div>
+    <div class="facet"><div class="facet-l">상태 전환</div><ul class="facet-b"><li>역할: 슈퍼어드민 / 운영자 / CS</li></ul></div>
+    <div class="facet"><div class="facet-l">권한</div><div class="facet-b">슈퍼어드민만 계정 추가·삭제(슈퍼어드민 추가 불가, 본인 삭제 불가). 운영자=설정/정책/콘텐츠 변경(계정관리 X), CS=조회·1:1 답변(수정 X).</div></div>
+    <div class="facet"><div class="facet-l">데이터 흐름</div><div class="facet-b mono">admin_accounts / access_logs.</div></div>
+    <div class="facet edge"><div class="facet-l">예외 · 엣지케이스 / 확정 사양</div><ul class="facet-b"><li>접근 로그 = 권한 감사·보안 필수. IP는 PII라 마스킹 저장 + 보존 기간(예 90일) + 중요 작업(정책/계정/키 변경)은 별도 강조 로깅</li><li>화면 하단 부가 항목 = <b>확정: 표시</b>. 수익/정산 영역의 '데이터 출처' 박스(우리 DB 집계 — clicks·orders·tickets·gifticons + 제휴몰 정산 API·수수료 D+30)와 '수익 구조' 박스(① 제휴 수수료 ② 기프티콘 판매 마진 − 회원 적립 티켓 환산가치 = 순수익, 제휴몰별 D+30 정산)를 노출 — 운영자가 수치 출처·순수익 산식을 이해하도록</li></ul></div>
+  </div>
+</article>
+<div class="foot">PricePick v8.2 · CMS Storyboard · 18개 영역 · 2026-06-18 · 노란 박스(예외·엣지케이스)는 DEVQA 확정 사양 반영분</div>
+</div></body></html>
