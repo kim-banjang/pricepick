@@ -5691,23 +5691,119 @@ body.chgview-on #chgvOverlay{display:block}
 (function(){
   var DEVQA="https://pricepick.vercel.app/devqa/cms-vin-20260618.html";
   var CH=[
-    {sels:["#sec-members .toolbar","#sec-members .card"], q:"Vin #1",
-      area:"회원 목록 — 연동 상태 필터·컬럼 / Member List — filter·cột trạng thái liên kết",
-      bKo:"‘유형’ 필터 = 전체 / 카카오 / Apple+카카오 / Google+카카오 (구 소셜 로그인 플로우 기준).",
-      bVi:"Filter ‘loại’ = Tất cả / Kakao / Apple+Kakao / Google+Kakao (theo flow social cũ).",
-      aKo:"‘연동 상태’ 필터 = 전체 / 게스트(미연동) / 카카오 연동. 목록에 ‘연동 상태’ 컬럼·연동일 추가, Apple·Google 컬럼·배지 제거.",
-      aVi:"Filter ‘trạng thái liên kết’ = Tất cả / Guest(chưa liên kết) / Đã liên kết Kakao; thêm cột ‘trạng thái liên kết’·ngày liên kết, bỏ cột·badge Apple·Google.",
-      rKo:"새 플로우(게스트 시작 → 카카오 연동, 애플·구글 폐지)에 맞춰 1단계 계정 모델의 2상태(게스트/연동)로 필터·컬럼을 정렬.",
-      rVi:"Theo flow mới (Guest → liên kết Kakao, bỏ Apple·Google), khớp 2 trạng thái của mô hình tài khoản giai đoạn 1."},
-    {sels:["#sec-draws .card"], q:"Vin #7 (+#4·#5)",
-      area:"추첨 관리 — 회차 등록 분리 / Draw — tách form đăng ký kỳ",
-      bKo:"‘등록’ 폼이 목록 하단에 위치 — 목록이 길어지면 신규 1건 등록에 스크롤 비용이 큼.",
-      bVi:"Form ‘đăng ký’ nằm cuối danh sách — danh sách dài thì tốn cuộn để thêm 1 mục.",
-      aKo:"‘+ 회차 등록’ 버튼을 상단 고정 + 등록을 별도 모달/패널로 분리(목록은 아래 유지). (1)배지=처리 대기 건수, ‘당첨 처리(추첨 실행)’ 명칭 통일 반영.",
-      aVi:"Ghim nút ‘+ đăng ký kỳ’ đầu trang + tách đăng ký ra modal/panel (giữ danh sách bên dưới). Badge (1)=số việc chờ xử lý, thống nhất tên ‘당첨 처리(추첨 실행)’.",
+    {at:["#sec-members .toolbar"], q:"Vin #1",
+      area:"회원 목록 — 연동 상태 필터 / Member List — filter trạng thái liên kết",
+      bKo:"‘유형’ 필터 = 전체/카카오/Apple+카카오/Google+카카오 (구 소셜 플로우).",
+      bVi:"Filter ‘loại’ = Tất cả/Kakao/Apple+Kakao/Google+Kakao (flow cũ).",
+      aKo:"‘연동 상태’ 필터 = 전체/게스트(미연동)/카카오 연동. Apple·Google 필터 제거.",
+      aVi:"Filter ‘trạng thái liên kết’ = Tất cả/Guest(chưa liên kết)/Đã liên kết Kakao; bỏ Apple·Google.",
+      rKo:"새 플로우(게스트→카카오 연동, 애플·구글 폐지)의 2상태 계정 모델에 맞춤.",
+      rVi:"Khớp mô hình 2 trạng thái của flow mới (Guest→Kakao, bỏ Apple·Google)."},
+    {at:["#sec-members .card"], q:"Vin #2",
+      area:"회원 목록 — 게스트 표시·연동 컬럼 / Member List — hiển thị guest·cột liên kết",
+      bKo:"‘닉네임(카카오톡 ID)’ 형식이라 게스트는 괄호 안 카카오 ID를 채울 수 없음.",
+      bVi:"Định dạng ‘닉네임(Kakao ID)’ nên guest không có gì điền trong ngoặc.",
+      aKo:"게스트 = 닉네임 + ‘(미연동)’ 배지 + 내부 식별자. 연동 시 카카오 ID로 자동 대체. ‘연동 상태’ 컬럼·연동일 추가.",
+      aVi:"Guest = biệt danh + badge ‘(chưa liên kết)’ + định danh nội bộ; liên kết xong tự thay bằng Kakao ID. Thêm cột ‘trạng thái liên kết’·ngày liên kết.",
+      rKo:"게스트도 식별·CS 응대가 가능해야 하므로 내부 ID 노출 + 배지로 구분.",
+      rVi:"Vẫn cần định danh·CS cho guest nên lộ ID nội bộ và phân biệt bằng badge."},
+    {at:[{sec:"sec-tickets",title:"최근 티켓 이력"}], q:"Vin #3",
+      area:"티켓 내역 — 상태 컬럼 승격 / Ticket — nâng cột trạng thái",
+      bKo:"발행유형·상태는 상단 필터로만 거르고 별도 컬럼 없음. ‘사유’ 컬럼은 이미 존재.",
+      bVi:"Loại phát hành·trạng thái chỉ lọc bằng filter, không có cột riêng. Cột ‘lý do’ đã có.",
+      aKo:"‘사유’는 유지하고 ‘상태(보유중/사용완료/회수)’만 컬럼으로 승격. 별도 ‘발행 종류’ 컬럼은 사유와 중복이라 비추가.",
+      aVi:"Giữ ‘lý do’, chỉ nâng ‘trạng thái (đang giữ/đã dùng/đã thu hồi)’ thành cột; không thêm cột ‘loại phát hành’ vì trùng.",
+      rKo:"컬럼 과다는 가독성↓, 상태는 한눈에 필요해 컬럼화 가치가 큼.",
+      rVi:"Quá nhiều cột giảm dễ đọc; trạng thái cần thấy ngay nên đáng làm cột."},
+    {at:["#badge-draws"], q:"Vin #4",
+      area:"추첨 관리 — 좌측 메뉴 (1) 배지 / Draw — badge (1) menu trái",
+      bKo:"‘추첨 관리’ 메뉴에 (1) 배지가 정적으로 붙어 있고 생성/해제 로직 없음.",
+      bVi:"Badge (1) gắn tĩnh ở menu ‘추첨 관리’, chưa có logic bật/tắt.",
+      aKo:"(1) = ‘관리자 처리 필요한 추첨 건수’(당첨 처리 대기 회차). 당첨 처리 완료 시 감소, 0이면 배지 숨김.",
+      aVi:"(1) = ‘số việc추첨 cần admin xử lý’ (kỳ chờ xử lý trúng). Xong thì giảm, =0 thì ẩn badge.",
+      rKo:"좌측 메뉴 배지는 ‘액션 필요’ 알림이 표준 — 미처리 업무가 있을 때만 떠야 함.",
+      rVi:"Badge menu chuẩn báo ‘cần hành động’, chỉ hiện khi có việc tồn."},
+    {at:[{sec:"sec-draws",title:"추첨 회차 목록"}], q:"Vin #5",
+      area:"추첨 관리 — 당첨 처리(추첨 실행) / Draw — xử lý trúng (chạy quay)",
+      bKo:"‘추첨 실행’ 버튼명 없음. 진행 회차에 ‘당첨 처리’ 버튼만 있음.",
+      bVi:"Không có nút ‘추첨 실행’; chỉ có nút ‘당첨 처리’ ở kỳ đang chạy.",
+      aKo:"버튼명을 ‘당첨 처리(추첨 실행)’로 통일. 누르면 [응모 풀 확정→추첨 실행→등수별 당첨자→검토 후 발표] 모달. ‘추첨 방식’=자동/수동 선택값.",
+      aVi:"Thống nhất tên ‘당첨 처리(추첨 실행)’; nhấn mở modal [chốt pool→chạy→ra người trúng theo hạng→duyệt rồi công bố]. ‘추첨 방식’=chọn Tự động/Thủ công.",
+      rKo:"명칭 일치로 혼선 제거 + 자동/수동 운영을 명확히.",
+      rVi:"Thống nhất tên để hết nhầm + làm rõ tự/thủ công."},
+    {at:[{sec:"sec-draws",title:"새 추첨 회차 등록"}], q:"Vin #6",
+      area:"추첨 관리 — 등수별 경품 구성 / Draw — cấu hình quà theo hạng",
+      bKo:"‘등수 추가’로 행 무제한 추가, 같은 등수 중복 선택이 막혀 있지 않음.",
+      bVi:"Thêm dòng không giới hạn bằng ‘등수 추가’, chọn trùng cùng hạng không bị chặn.",
+      aKo:"같은 등수 중복 행은 막고(등수당 1행), 한 등수에 경품 여러 개는 허용. 등록 시 ‘등수 중복’ 검증 + 합계 수량/예산 미리보기.",
+      aVi:"Chặn dòng trùng cùng hạng (mỗi hạng 1 dòng), cho nhiều quà trong 1 hạng. Khi đăng ký kiểm ‘trùng hạng’ + xem trước tổng/ngân sách.",
+      rKo:"등수 중복은 데이터 모순 — 등수는 유일, 경품은 다중이 올바른 모델.",
+      rVi:"Trùng hạng gây mâu thuẫn dữ liệu; đúng là hạng duy nhất, quà nhiều."},
+    {at:["#draw-hdr-actions"], q:"Vin #7",
+      area:"추첨 관리 — 회차 등록 분리 / Draw — tách đăng ký kỳ",
+      bKo:"‘등록’ 폼이 목록 하단에 있어 목록이 길면 스크롤 비용 큼.",
+      bVi:"Form ‘đăng ký’ ở cuối danh sách nên danh sách dài thì tốn cuộn.",
+      aKo:"‘+ 회차 등록’ 버튼 상단 고정 + 등록을 별도 모달/패널로 분리(목록은 아래 유지).",
+      aVi:"Ghim nút ‘+ đăng ký kỳ’ đầu trang + tách đăng ký ra modal/panel (giữ danh sách dưới).",
       rKo:"긴 목록과 입력 폼을 한 화면에 두면 둘 다 불편 — 입력은 오버레이가 표준.",
-      rVi:"Danh sách dài + form chung một màn thì bất tiện — nhập nên dạng overlay."},
-    {sels:["#sec-banners .card"], q:"Vin #16",
+      rVi:"Danh sách dài + form chung màn bất tiện — nhập nên dạng overlay."},
+    {at:[{sec:"sec-prizes",title:"현재 경품 설정"}], q:"Vin #8",
+      area:"경품·응모 관리 — 기본 표시 + 수정 유지 / Prize — giữ ‘mặc định + sửa’",
+      bKo:"‘현재 경품 설정’을 기본값으로 보여주고 ‘수정’으로만 편집 — 생성 버튼 없음.",
+      bVi:"Hiển thị ‘현재 경품 설정’ mặc định, chỉ sửa bằng ‘수정’ — không có nút tạo.",
+      aKo:"경품이 고정 1세트면 현행 ‘기본 표시 + 수정’ 유지(생성 불필요). 회차별 운영이면 추첨 회차 등록과 연동.",
+      aVi:"Nếu quà cố định 1 bộ thì giữ ‘mặc định + sửa’ (không cần tạo). Nếu theo kỳ thì gắn với đăng ký kỳ ở ‘추첨 관리’.",
+      rKo:"단일 상시 구성엔 CRUD가 과함, 회차별이면 회차-경품을 묶는 게 정합적.",
+      rVi:"Cấu hình đơn cố định thì CRUD thừa; theo kỳ thì gắn kỳ-quà mới nhất quán."},
+    {at:[{sec:"sec-prizes",title:"경품 변경 이력"}], q:"Vin #9",
+      area:"경품·응모 관리 — 변경 이력 추적 / Prize — theo dõi lịch sử",
+      bKo:"경품 변경 이력/공표 추적 기능이 없고 ‘현재 경품 설정’만 정적으로 표시.",
+      bVi:"Không có theo dõi lịch sử/công bố, chỉ hiển thị ‘현재 경품 설정’ tĩnh.",
+      aKo:"‘변경 이력’ 로그(변경 일시·변경자·이전→이후·공표 여부)와 버전 번호 추가. 공표 시점·대상 회차 기록.",
+      aVi:"Thêm log ‘lịch sử thay đổi’ (thời điểm·người sửa·trước→sau·đã công bố?) và số phiên bản; ghi thời điểm·kỳ công bố.",
+      rKo:"보상은 정산·민원이 잦아 누가 언제 무엇을 바꿔 공표했는지 감사 추적이 필수.",
+      rVi:"Phần thưởng hay tranh chấp·quyết toán nên cần audit ai·khi nào·sửa gì."},
+    {at:[{sec:"sec-attendance",title:"추첨 설정"}], q:"Vin #10",
+      area:"주간 이벤트 추첨 — Edit 파라미터 / Weekly Draw — tham số Edit",
+      bKo:"이벤트 티켓 보유자 매주 월요일 자동 응모·추첨(현재 50%). Edit 버튼은 ‘준비중’ 토스트만.",
+      bVi:"Người giữ vé tự dự thưởng·quay mỗi Thứ Hai (hiện 50%). Nút Edit chỉ hiện ‘준비중’.",
+      aKo:"Edit 모달에서 당첨 확률(%)·추첨 일정(요일/시각)·당첨 보상 구성·이벤트 티켓 이월/만료 회차 수정(변경 이력 동반).",
+      aVi:"Modal Edit sửa: xác suất(%)·lịch quay(thứ/giờ)·cấu hình quà·số kỳ rollover/hết hạn vé (kèm nhật ký).",
+      rKo:"이 4개가 주간 추첨의 핵심 운영 파라미터라 관리자가 조정할 수 있어야 함.",
+      rVi:"4 tham số này là cốt lõi vận hành quay tuần, admin cần chỉnh được."},
+    {at:[{sec:"sec-attendance",title:"이번주 추첨 현황"}], q:"Vin #11",
+      area:"주간 이벤트 추첨 — 이벤트 생성 불필요 / Weekly — không cần tạo event",
+      bKo:"별도 ‘이벤트 생성’ 없이 정책 기반 자동 추첨(매주 단일 상시)으로 동작.",
+      bVi:"Không có ‘tạo event’ riêng; chạy bằng quay tự động theo chính sách (1 quay/tuần).",
+      aKo:"상시 반복 정책 1개로 운영하므로 회차별 ‘이벤트 생성’ 불필요 — Edit로 파라미터만 조정. 특별 회차는 ‘추첨 관리’ 회차 등록 활용.",
+      aVi:"Vận hành bằng 1 chính sách lặp nên không cần ‘tạo event’ theo kỳ — chỉ chỉnh tham số bằng Edit. Kỳ đặc biệt dùng đăng ký kỳ ở ‘추첨 관리’.",
+      rKo:"주간 추첨은 반복 스케줄이 본질 — 매번 생성은 운영 부담만 늘림.",
+      rVi:"Quay tuần bản chất là lịch lặp; tạo mỗi lần chỉ tăng gánh."},
+    {at:[{sec:"sec-clawback",title:"티켓 회수"}], q:"Vin #13",
+      area:"환수 이력 — 회수 상세 / Clawback — chi tiết thu hồi",
+      bKo:"‘티켓 회수·소멸 이력’ 상세 버튼은 ‘상세 보기’ 토스트만 뜨는 placeholder.",
+      bVi:"Nút chi tiết của ‘회수·소멸 이력’ chỉ là placeholder hiện toast.",
+      aKo:"상세 = 원본 티켓 정보·회수 사유 상세(만료/반품/취소 + 연계 주문/CS)·회수 전후 잔액·관련 환수 부채 연결 표시.",
+      aVi:"Chi tiết = thông tin vé gốc·lý do thu hồi (hết hạn/trả/hủy + đơn/CS)·số dư trước-sau·liên kết khoản nợ.",
+      rKo:"회수는 분쟁 소지가 커 ‘왜·무엇이·어디서’를 한 화면에서 추적할 수 있어야 함.",
+      rVi:"Thu hồi dễ tranh chấp nên cần truy ‘tại sao·cái gì·ở đâu’ trong một màn."},
+    {at:[{sec:"sec-point-policy",title:"교환 비율"}], q:"Vin #14",
+      area:"포인트 정책 — 교환 비율 수정 모달 / Point — modal sửa tỷ lệ đổi",
+      bKo:"‘수정’ 버튼이 ‘교환 비율 수정 준비중’ 토스트만 표시 — 편집 화면 없음.",
+      bVi:"Nút ‘수정’ chỉ hiện toast ‘준비중’ — chưa có màn sửa.",
+      aKo:"수정 모달에 교환 비율·만료 기간(1년·FIFO)·일일 적립 한도·교환 방향 필드. 저장 시 변경 이력 + 적용 시점(즉시/예약).",
+      aVi:"Modal sửa có: tỷ lệ đổi·thời hạn(1 năm·FIFO)·hạn mức/ngày·hướng đổi. Khi lưu kèm nhật ký + thời điểm áp dụng(ngay/hẹn).",
+      rKo:"포인트 핵심 파라미터를 한 모달에서 안전하게 수정하고 감사 로그가 필요.",
+      rVi:"Cần sửa an toàn các tham số điểm cốt lõi trong 1 modal + log audit."},
+    {at:[{sec:"sec-point-policy",title:"적립·만료"}], q:"Vin #15",
+      area:"포인트 정책 — 적립·만료 통합 / Point — gộp tích·hết hạn",
+      bKo:"‘적립·만료 정책’은 읽기 전용으로 표시(10P=1원, 1년 FIFO, 일일 한도 없음 등).",
+      bVi:"‘적립·만료 정책’ hiển thị chỉ đọc (10P=1₩, 1 năm FIFO, không hạn mức/ngày...).",
+      aKo:"유지하되 위 수정 모달과 합쳐 하나의 ‘포인트 정책 수정’으로 통합 — 적립·만료 값까지 함께 편집. 저장 시 변경 전후 비교·적용 시점 표시.",
+      aVi:"Giữ nhưng gộp với modal sửa trên thành ‘sửa chính sách điểm’ — sửa luôn tích·hết hạn. Khi lưu hiển thị so sánh trước-sau·thời điểm.",
+      rKo:"적립·만료는 비용·민원에 직결되는 핵심값이라 운영자가 통제·감사할 수 있어야 함.",
+      rVi:"Tích·hết hạn là giá trị cốt lõi liên quan chi phí·khiếu nại nên admin phải kiểm soát·audit."},
+    {at:["#sec-banners .card"], q:"Vin #16",
       area:"배너 관리 — 풀 CRUD / Banner — full CRUD",
       bKo:"배너 3개가 기본 표시되고 각 배너에 ‘수정’만 있음. 생성·삭제 없음.",
       bVi:"3 banner hiển thị mặc định, mỗi banner chỉ có ‘수정’. Không có tạo·xóa.",
@@ -5715,7 +5811,7 @@ body.chgview-on #chgvOverlay{display:block}
       aVi:"Thêm CRUD đầy đủ — ‘+ thêm banner’·xóa·toggle hiển thị·đổi thứ tự (gồm thời gian·link·ảnh).",
       rKo:"배너는 캠페인마다 추가/내림이 잦아 ‘수정’만으론 운영 불가 — 콘텐츠 CRUD가 표준.",
       rVi:"Banner hay thêm/gỡ theo chiến dịch, chỉ ‘sửa’ thì không vận hành được — CRUD là chuẩn."},
-    {sels:["#sec-events .card"], q:"Vin #17",
+    {at:["#sec-events .card"], q:"Vin #17",
       area:"이벤트 관리 — 풀 CRUD + 정합 검증 / Event — CRUD + kiểm tra nhất quán",
       bKo:"이벤트 3개가 기본 표시되고 ‘수정’만 있음. 생성·삭제 없음.",
       bVi:"3 sự kiện hiển thị mặc định, chỉ có ‘수정’. Không có tạo·xóa.",
@@ -5723,14 +5819,94 @@ body.chgview-on #chgvOverlay{display:block}
       aVi:"Thêm CRUD — ‘+ tạo sự kiện’·xóa·sửa thời gian/đối tượng/thưởng; khi tạo/sửa kiểm tra nhất quán chính sách (chống thưởng trùng·xung đột hết hạn).",
       rKo:"이벤트는 시즌마다 신설/종료가 잦아 CRUD가 필수, 보상에 직접 영향이라 검증 게이트가 필요.",
       rVi:"Sự kiện hay mở/đóng theo mùa nên cần CRUD; ảnh hưởng thưởng nên cần cổng kiểm."},
-    {sels:["#sec-point-policy .card"], q:"Vin #14·#15",
-      area:"포인트 정책 — 수정 모달 신설 / Point Policy — modal chỉnh sửa",
-      bKo:"‘수정’ 버튼이 ‘교환 비율 수정 준비중’ 토스트만 표시 — 편집 화면 없음. 적립·만료 정책은 읽기 전용.",
-      bVi:"Nút ‘수정’ chỉ hiện toast ‘đang chuẩn bị’ — chưa có màn chỉnh sửa. Chính sách tích·hết hạn chỉ đọc.",
-      aKo:"‘포인트 정책 수정’ 모달 신설 — 교환 비율·만료 기간(1년 FIFO)·일일 적립 한도·교환 방향을 한 화면에서 편집. 저장 시 변경 이력 + 적용 시점(즉시/예약).",
-      aVi:"Modal ‘sửa chính sách điểm’ — tỷ lệ đổi·thời hạn(1 năm FIFO)·hạn mức tích/ngày·hướng đổi trong một màn. Khi lưu kèm nhật ký + thời điểm áp dụng(ngay/hẹn).",
-      rKo:"포인트 핵심 파라미터(비용·민원 직결)를 한 모달에서 안전하게 수정하고 감사 로그가 필요.",
-      rVi:"Cần sửa an toàn các tham số điểm cốt lõi (liên quan chi phí·khiếu nại) trong 1 modal + log audit."}
+    {at:[{sec:"sec-notice",title:"공지 목록"}], q:"Vin #18",
+      area:"공지사항 관리 — 삭제/숨김 추가 / Notices — thêm xóa/ẩn",
+      bKo:"공지 생성·게시·각 공지 ‘수정’은 있으나 목록에 ‘삭제’ 버튼이 없음.",
+      bVi:"Có tạo·đăng·‘수정’ mỗi công báo nhưng danh sách không có nút ‘삭제’.",
+      aKo:"‘삭제’(또는 안전하게 ‘숨김/게시중단’ 토글) + 게시 상태 변경을 목록 액션에 추가. 법적 고지성 공지는 하드 삭제보다 ‘숨김+보존’.",
+      aVi:"Thêm ‘삭제’ (an toàn hơn là toggle ‘숨김/ngừng đăng’) + đổi trạng thái vào action. Thông báo pháp lý nên ‘ẩn+lưu’ hơn xóa cứng.",
+      rKo:"잘못 올린 공지 내림은 필수지만 공지는 이력 보존이 중요해 소프트 삭제 권장.",
+      rVi:"Cần gỡ công báo đăng nhầm nhưng nên soft-delete vì cần lưu lịch sử."},
+    {at:[{sec:"sec-notifications",title:"알림 발송 내역"}], q:"Vin #19",
+      area:"알림 관리 — 발송 내역 불변 / Notifications — log gửi bất biến",
+      bKo:"‘알림 작성·발송’ 폼과 ‘발송 내역’ 표가 있고, 지난 발송 건 수정·삭제는 없음.",
+      bVi:"Có form ‘작성·발송’ và bảng ‘발송 내역’; không sửa·xóa các lần đã gửi.",
+      aKo:"수정·삭제 대신 ‘발송 내역’은 불변 로그로 유지, ‘예약 발송’ 건만 발송 전 취소/수정 허용.",
+      aVi:"Không sửa·xóa mà giữ ‘발송 내역’ làm log bất biến, chỉ cho hủy/sửa bản ‘예약’ trước khi gửi.",
+      rKo:"발송 완료 푸시는 되돌릴 수 없어 로그 보존이 정확, 미래 예약분만 통제 가능하면 충분.",
+      rVi:"Push đã gửi không hoàn được, giữ log là chính xác; kiểm soát phần hẹn là đủ."},
+    {at:[{sec:"sec-withdrawal",title:"탈퇴 정책 설정"}], q:"Vin #23",
+      area:"계정 탈퇴 처리 — 정책 설정 모달 / Deletion — modal cài đặt chính sách",
+      bKo:"‘탈퇴 정책 설정’ 카드·‘수정’ 버튼은 있으나 누르면 ‘준비중’ 토스트만, 정책값은 하드코딩.",
+      bVi:"Có thẻ ‘탈퇴 정책 설정’·nút ‘수정’ nhưng chỉ hiện ‘준비중’, giá trị hardcode.",
+      aKo:"수정 모달에서 유예 기간·보유 티켓 처리·PII 삭제 항목·통계 보존·재가입 쿨타임 편집. 저장 시 변경 이력.",
+      aVi:"Modal sửa cho chỉnh: thời gian gia hạn·xử lý vé·mục xóa PII·mục lưu thống kê·thời gian chờ đăng ký lại. Lưu kèm nhật ký.",
+      rKo:"탈퇴는 개인정보·법적 이슈라 정책값을 운영자가 명시적으로 통제·감사해야 함.",
+      rVi:"Hủy TK liên quan PII·pháp lý nên admin phải kiểm soát·audit rõ."},
+    {at:[{sec:"sec-withdrawal",title:"탈퇴 요청 목록"}], q:"Vin #24",
+      area:"계정 탈퇴 처리 — 상세 처리 / Deletion — xử lý chi tiết",
+      bKo:"각 탈퇴 요청에 ‘상세’ 버튼은 있으나 상세 처리 화면이 미구현.",
+      bVi:"Mỗi yêu cầu có nút ‘상세’ nhưng màn xử lý chi tiết chưa làm.",
+      aKo:"상세에 회원 식별·탈퇴 사유·유예 만료일(D-day)·보유 자산 회수 내역·철회 가능 여부·관리자 강제 처리 액션 표시.",
+      aVi:"Chi tiết hiển thị: định danh·lý do·D-day·lịch sử thu hồi tài sản·có thể rút lại·hành động admin.",
+      rKo:"탈퇴 건별로 유예·자산·철회를 한 화면에서 처리·추적해야 운영 가능.",
+      rVi:"Cần xử lý·theo dõi gia hạn·tài sản·rút lại theo từng case trong một màn."},
+    {at:[{sec:"sec-withdrawal",title:"탈퇴 처리 흐름"}], q:"Vin #25",
+      area:"계정 탈퇴 처리 — 정책-처리 동적 연동 / Deletion — quy trình động",
+      bKo:"처리 흐름·통계는 정책값(유예 30일) 기반으로 표시되나 현재 정책값은 하드코딩.",
+      bVi:"Luồng·thống kê hiển thị theo giá trị chính sách (gia hạn 30 ngày) nhưng đang hardcode.",
+      aKo:"‘정책 설정’과 연동해 설정값(유예 기간 등)이 바뀌면 처리 절차·D-day 계산이 동적으로 반영.",
+      aVi:"Gắn với ‘cài đặt chính sách’ để khi đổi giá trị thì quy trình·tính D-day tự phản ánh động.",
+      rKo:"정책-처리 분리 시 불일치 위험 — 단일 소스(정책 설정)에서 절차가 파생돼야 함.",
+      rVi:"Tách chính sách-xử lý dễ lệch; quy trình nên phái sinh từ một nguồn."},
+    {at:[{sec:"sec-withdrawal",title:"탈퇴 사유 분포"}], q:"Vin #26",
+      area:"계정 탈퇴 처리 — 사유 분포 집계 / Deletion — phân bố lý do",
+      bKo:"‘탈퇴 사유 분포(이번 달)’를 사유별 인원·비율 막대형으로 표시.",
+      bVi:"‘탈퇴 사유 분포’ hiển thị số người·tỷ lệ theo lý do dạng thanh.",
+      aKo:"탈퇴 플로우의 ‘탈퇴 사유 선택’ 값을 그대로 집계 + 기간 필터(이번달/지난달/사용자지정)와 사유 항목 CMS 편집 추가.",
+      aVi:"Tổng hợp đúng ‘chọn lý do hủy’ + thêm filter thời gian (tháng này/trước/tùy chọn) và cho sửa danh mục lý do trong CMS.",
+      rKo:"사유 보기가 바뀌면 통계도 따라가야 하고 기간 비교가 인사이트에 유용.",
+      rVi:"Đổi danh sách lý do thì thống kê phải theo; so sánh kỳ giúp có insight."},
+    {at:[{sec:"sec-appver",title:"iOS"}], q:"Vin #27",
+      area:"앱 버전 관리 — 강제 업데이트 게이트 / App Version — cổng ép cập nhật",
+      bKo:"iOS/Android 최신·최소 지원 버전·강제 업데이트 토글·스토어 링크·버전 히스토리·수정 모달까지 구성됨.",
+      bVi:"Đã có: phiên bản mới nhất·tối thiểu·toggle ép cập nhật·link store·lịch sử·modal sửa.",
+      aKo:"필요 — 적용 권장. 특히 ‘최소 지원 버전 + 강제 업데이트’는 결함/보안 패치 시 구버전 차단 필수 안전장치.",
+      aVi:"Cần — nên áp dụng. Đặc biệt ‘phiên bản tối thiểu + ép cập nhật’ là cơ chế an toàn bắt buộc khi vá lỗi/bảo mật.",
+      rKo:"강제 업데이트 게이트가 없으면 치명 버그 배포 후 대응 수단이 없음.",
+      rVi:"Không có cổng ép cập nhật thì khi phát hành lỗi nặng không ứng phó được."},
+    {at:[{sec:"sec-apikeys",title:"쿠팡 파트너스 API 키"}], q:"Vin #28",
+      area:"제휴몰 API 관리 — 키·호출 모니터링 / Partner API — theo dõi khóa·gọi",
+      bKo:"쿠팡 파트너스 API 키(마스킹)·상태·일일 호출 한도/사용량·호출 차트·제휴몰 연동 현황 표로 구성됨.",
+      bVi:"Đã có: khóa API Coupang(ẩn)·trạng thái·hạn mức/lượng gọi·biểu đồ·bảng liên kết đối tác.",
+      aKo:"필요 — 적용 권장. 1단계 실제 연동이 쿠팡 중심이면 나머지 제휴몰은 ‘표시만/추후 연동’ 절충 가능.",
+      aVi:"Cần — nên áp dụng. Nếu giai đoạn 1 chủ yếu Coupang thì đối tác khác để ‘chỉ hiển thị/liên kết sau’.",
+      rKo:"적립 추적이 API에 전적으로 의존 — 키 만료·장애를 못 보면 적립 전체가 멈춤.",
+      rVi:"Theo dõi tích lũy phụ thuộc hoàn toàn API — không thấy khóa hết hạn·sự cố thì tích lũy dừng."},
+    {at:[{sec:"sec-scheduler",title:"스케줄러 목록"}], q:"Vin #30",
+      area:"스케줄러 — 생성·삭제 제외, 토글만 / Scheduler — bỏ tạo·xóa, chỉ toggle",
+      bKo:"시스템 정의 잡 5개를 모니터링·제어만 하고 잡 생성·삭제 기능은 없음.",
+      bVi:"Chỉ theo dõi·điều khiển 5 job hệ thống, không có tạo·xóa job.",
+      aKo:"관리자용 잡 생성·삭제는 불필요 — 각 잡에 ‘활성/비활성 토글’과 ‘실행 주기 조정’ 정도만 노출.",
+      aVi:"Không cần tạo·xóa job cho admin — chỉ lộ ‘toggle bật/tắt’ và ‘chỉnh chu kỳ’ mỗi job.",
+      rKo:"운영자가 임의로 배치를 만들면 데이터 정합성·부하 사고 위험 — 모니터·제어로 한정이 안전.",
+      rVi:"Admin tự tạo batch dễ gây lỗi nhất quán·tải; giới hạn ở theo dõi·điều khiển là an toàn."},
+    {at:[{sec:"sec-accounts",title:"최근 접근 로그"}], q:"Vin #32",
+      area:"관리자 계정 — 접근 로그 강화 / Admin — tăng cường log truy cập",
+      bKo:"‘최근 접근 로그’(시각·이름·작업·IP 마스킹)가 이미 표시됨.",
+      bVi:"Đã hiển thị ‘최근 접근 로그’ (thời gian·tên·hành động·IP ẩn).",
+      aKo:"유지·강화 — IP 마스킹 저장 + 보존 기간(예 90일) 정책, 중요 작업(정책/계정/키 변경)은 별도 강조 로깅.",
+      aVi:"Giữ·tăng cường — lưu IP ẩn + thời hạn lưu (vd 90 ngày), log riêng nổi bật cho thao tác quan trọng (chính sách/TK/khóa).",
+      rKo:"어드민 권한 오·남용 추적과 사고 대응에 접근 로그가 필수 근거.",
+      rVi:"Log truy cập là bằng chứng cốt lõi để truy vết lạm quyền·ứng phó sự cố."},
+    {at:[{sec:"sec-accounts",title:"관리자 계정"}], q:"Vin #34 · 확인 대기/Chờ xác nhận",
+      area:"관리자 계정 — 노출 항목 정리 / Admin — mục hiển thị (확인 대기)",
+      bKo:"원문 노션 특정 화면 하단 항목들을 가리키나, 캡처 없이는 어느 항목인지 단정 불가.",
+      bVi:"Trỏ tới các mục cuối một màn trong Notion gốc; không có ảnh thì chưa xác định được mục nào.",
+      aKo:"권장 노출 = 계정 목록·추가/역할변경/삭제 액션·권한별 가능 작업·최근 접근 로그. 그 외 부가·실험 항목은 1단계 숨김. 정확한 대상은 노션 캡처 확인 후 확정.",
+      aVi:"Nên hiển thị = danh sách TK·action thêm/đổi vai trò/xóa·quyền theo vai trò·log truy cập. Mục phụ·thử nghiệm ẩn ở giai đoạn 1. Chốt sau khi xem ảnh Notion.",
+      rKo:"어드민 화면은 운영 필수 정보에 집중하고 부가 항목은 후순위. (B-10 · 노션 캡처 확인 대기)",
+      rVi:"Màn admin nên tập trung thông tin vận hành cốt lõi. (B-10 · chờ ảnh Notion)"}
   ];
   function setTxt(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
   window.chgvOpen=function(i){
@@ -5745,11 +5921,24 @@ body.chgview-on #chgvOverlay{display:block}
   window.chgvClose=function(){document.getElementById("chgvModal").classList.remove("show");};
   /* s05 fix: 대상 위치를 body 레벨 고정 오버레이 박스로 추적해 그림 (카드 overflow·stacking 무관, 항상 최상단) */
   var overlay=null, targets=[], rafOn=false;
-  /* 여러 selector의 실제 렌더 rect를 합집합 → 카드/섹션 전체를 정확히 감싼다. 활성(display:block) 섹션만 잡힘(비활성=display:none→offsetParent null) */
-  function unionRect(sels){
+  /* 앵커 resolver: 문자열=CSS selector, {sec,title}=해당 섹션의 card-title 텍스트로 .card 찾기 */
+  function resolveEl(f){
+    if(typeof f==="string")return document.querySelector(f);
+    var scope=f.sec?document.getElementById(f.sec):document;
+    if(!scope)return null;
+    var ts=scope.querySelectorAll(".card-title");
+    for(var i=0;i<ts.length;i++){
+      if((ts[i].textContent||"").indexOf(f.title)>=0){
+        var card=ts[i].closest(".card"); if(card)return card;
+      }
+    }
+    return null;
+  }
+  /* 여러 앵커의 실제 렌더 rect를 합집합 → 카드/섹션 전체를 정확히 감싼다. 활성(display:block) 섹션만 잡힘(비활성=display:none→offsetParent null) */
+  function unionRect(at){
     var L=Infinity,T=Infinity,R=-Infinity,B=-Infinity,found=false;
-    for(var i=0;i<sels.length;i++){
-      var el=document.querySelector(sels[i]);
+    for(var i=0;i<at.length;i++){
+      var el=resolveEl(at[i]);
       if(!el||el.offsetParent===null)continue;     /* 숨김 섹션·미렌더 제외 */
       var r=el.getBoundingClientRect();
       if(r.width===0||r.height===0)continue;
@@ -5762,7 +5951,7 @@ body.chgview-on #chgvOverlay{display:block}
   function positionBoxes(){
     if(!document.body.classList.contains("chgview-on"))return;
     for(var i=0;i<targets.length;i++){
-      var u=unionRect(targets[i].sels), box=targets[i].box;
+      var u=unionRect(targets[i].at), box=targets[i].box;
       if(!u){box.style.display="none";continue;}
       box.style.display="block";
       box.style.left=(u.left-4)+"px";box.style.top=(u.top-4)+"px";
@@ -5777,15 +5966,15 @@ body.chgview-on #chgvOverlay{display:block}
     overlay=document.createElement("div");overlay.id="chgvOverlay";document.body.appendChild(overlay);
     var applied=0;
     CH.forEach(function(c,i){
-      var has=c.sels.some(function(s){return !!document.querySelector(s);});
-      if(!has){console.warn("[chgview] 대상 없음:",c.sels);return;}
+      var has=c.at.some(function(f){return !!resolveEl(f);});
+      if(!has){console.warn("[chgview] 대상 없음:",c.at);return;}
       var box=document.createElement("div");box.className="chgv-ovbox";box.style.display="none";
       box.title="변경 보기: "+c.area;
       var lab=document.createElement("span");lab.className="chgv-ovlabel";lab.textContent="수정됨 · Đã sửa";
       box.appendChild(lab);
       box.addEventListener("click",function(e){e.stopPropagation();e.preventDefault();chgvOpen(i);});
       overlay.appendChild(box);
-      targets.push({sels:c.sels,box:box});
+      targets.push({at:c.at,box:box});
       applied++;
     });
     window.addEventListener("scroll",positionBoxes,true);  /* 내부 스크롤 컨테이너 포함(capture) */
