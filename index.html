@@ -187,6 +187,29 @@
     color: var(--purple-deep);
     letter-spacing: 0.2px;
   }
+  /* 변경 보기 두 갈래 (인터랙티브 · CMS 카드) */
+  .card-foot {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .card-foot .arrow { margin-top: 0; }
+  .chg-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--purple-deep);
+    background: var(--purple-soft);
+    border: 1px solid #E4DAFB;
+    border-radius: 999px;
+    padding: 3px 10px;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .chg-badge:hover { background: #E9E0FB; border-color: #D6C6F6; }
   /* Footer */
   footer {
     max-width: 960px;
@@ -309,7 +332,12 @@
         </div>
         <h2 id="card-interactive-title">인터랙티브</h2>
         <p id="card-interactive-desc">클릭으로 UX 흐름을 직접 체험하는 웹 기반 기획 프로토타입.</p>
-        <div class="arrow" id="card-interactive-arrow">열기 →</div>
+        <div class="card-foot">
+          <span class="arrow" id="card-interactive-arrow">열기 →</span>
+          <span class="chg-badge" id="card-interactive-chg" role="link" tabindex="0"
+            onclick="event.preventDefault();event.stopPropagation();window.open('/app-preview.html','_blank','noopener');"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/app-preview.html','_blank','noopener');}">변경 보기 ↗</span>
+        </div>
       </a>
 
       <a class="card" href="/storyboard.html" target="_blank" rel="noopener">
@@ -363,7 +391,12 @@
         </div>
         <h2 id="card-cms-title">CMS</h2>
         <p id="card-cms-desc">어드민 운영 화면 설계.</p>
-        <div class="arrow" id="card-cms-arrow">열기 →</div>
+        <div class="card-foot">
+          <span class="arrow" id="card-cms-arrow">열기 →</span>
+          <span class="chg-badge" id="card-cms-chg" role="link" tabindex="0"
+            onclick="event.preventDefault();event.stopPropagation();window.open('/cms-preview.html','_blank','noopener');"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/cms-preview.html','_blank','noopener');}">변경 보기 ↗</span>
+        </div>
       </a>
     </main>
 
@@ -432,6 +465,7 @@ const I18N = {
     'card.functionalspec.title': '기능 명세서 (개발참고용)',
     'card.functionalspec.desc': '화면별 기능 요구사항 · 데이터 읽기/쓰기 명세.',
     'card.arrow': '열기 →',
+    'card.preview': '변경 보기 ↗',
   },
   vi: {
     'hub.subtitle': 'Tổng hợp tài liệu thiết kế',
@@ -458,6 +492,7 @@ const I18N = {
     'card.functionalspec.title': 'Đặc tả chức năng (Tham khảo dev)',
     'card.functionalspec.desc': 'Yêu cầu chức năng · đặc tả đọc/ghi dữ liệu theo màn hình.',
     'card.arrow': 'Mở →',
+    'card.preview': 'Xem thay đổi ↗',
   }
 };
 
@@ -490,6 +525,7 @@ function applyLang() {
   setTxt('card-interactive-title',   t('card.interactive.title'));
   setTxt('card-interactive-desc',    t('card.interactive.desc'));
   setTxt('card-interactive-arrow',   t('card.arrow'));
+  setTxt('card-interactive-chg',     t('card.preview'));
   setTxt('card-storyboard-title',    t('card.storyboard.title'));
   setTxt('card-storyboard-desc',     t('card.storyboard.desc'));
   setTxt('card-storyboard-arrow',    t('card.arrow'));
@@ -502,6 +538,7 @@ function applyLang() {
   setTxt('card-cms-title',           t('card.cms.title'));
   setTxt('card-cms-desc',            t('card.cms.desc'));
   setTxt('card-cms-arrow',           t('card.arrow'));
+  setTxt('card-cms-chg',             t('card.preview'));
   setTxt('seclabel-devref',          t('seclabel.devref'));
   setTxt('card-datamodel-title',     t('card.datamodel.title'));
   setTxt('card-datamodel-desc',      t('card.datamodel.desc'));
