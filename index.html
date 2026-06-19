@@ -339,7 +339,12 @@
         </div>
         <h2 id="card-prototype-title">프로토타입</h2>
         <p id="card-prototype-desc">전체 화면을 모은 카탈로그와 클릭 시뮬레이터. 모바일 최종 확인용.</p>
-        <div class="arrow" id="card-prototype-arrow">열기 →</div>
+        <div class="card-foot">
+          <span class="arrow" id="card-prototype-arrow">열기 →</span>
+          <span class="chg-badge" id="card-prototype-install" role="link" tabindex="0"
+            onclick="event.preventDefault();event.stopPropagation();window.open('/prototype.html?install=1','_blank','noopener');"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/prototype.html?install=1','_blank','noopener');}">홈화면 바로가기 ↓</span>
+        </div>
       </a>
 
       <a class="card" href="/screenflow.html" target="_blank" rel="noopener">
@@ -520,6 +525,7 @@ const I18N = {
     'card.functionalspec.desc': '화면별 기능 요구사항 · 데이터 읽기/쓰기 명세.',
     'card.arrow': '열기 →',
     'card.preview': '변경 보기 ↗',
+    'card.install': '홈화면 바로가기 ↓',
   },
   vi: {
     'hub.subtitle': 'Tổng hợp tài liệu thiết kế',
@@ -554,6 +560,7 @@ const I18N = {
     'card.functionalspec.desc': 'Yêu cầu chức năng · đặc tả đọc/ghi dữ liệu theo màn hình.',
     'card.arrow': 'Mở →',
     'card.preview': 'Xem thay đổi ↗',
+    'card.install': 'Thêm màn hình chính ↓',
   }
 };
 
@@ -589,6 +596,7 @@ function applyLang() {
   setTxt('card-prototype-title',      t('card.prototype.title'));
   setTxt('card-prototype-desc',       t('card.prototype.desc'));
   setTxt('card-prototype-arrow',      t('card.arrow'));
+  setTxt('card-prototype-install',    t('card.install'));
   setTxt('card-screenflow-title',     t('card.screenflow.title'));
   setTxt('card-screenflow-desc',      t('card.screenflow.desc'));
   setTxt('card-screenflow-arrow',     t('card.arrow'));

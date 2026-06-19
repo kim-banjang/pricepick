@@ -15905,5 +15905,88 @@ function csCheck() {
 <!-- 쿠팡픽 홈 바로가기 URL: 파트너 코드 주입 자리 — https://www.coupang.com/  (TODO: 배포 시 ?lptag=AF... 제휴 추적 코드 주입, 현재 미포함) -->
 <script>function cpkOpen(){var m=document.getElementById('cpk-modal');if(m)m.style.display='flex';}function cpkClose(){var m=document.getElementById('cpk-modal');if(m)m.style.display='none';}</script>
 
+<!-- ===== PWA 홈화면 바로가기 (프로토타입 설치) ===== -->
+<div id="pp-install" style="display:none;position:fixed;inset:0;z-index:2147483601;background:rgba(20,12,30,.5);align-items:flex-end;justify-content:center;">
+  <div id="pp-install-sheet" role="dialog" aria-modal="true" style="background:#fff;border-radius:20px 20px 0 0;max-width:430px;width:100%;box-shadow:0 -10px 40px rgba(0,0,0,.28);font-family:'Pretendard Variable',-apple-system,'Apple SD Gothic Neo',sans-serif;padding:0 0 max(22px,env(safe-area-inset-bottom));">
+    <div style="display:flex;justify-content:center;padding:10px 0 2px;"><span style="width:38px;height:4px;border-radius:999px;background:#E0D9ED;"></span></div>
+    <div style="padding:8px 22px 0;text-align:center;">
+      <img src="/icons/icon-192.png" alt="PricePick" width="64" height="64" style="border-radius:16px;box-shadow:0 6px 18px rgba(132,94,238,.32);"/>
+      <div id="pp-install-title" style="font-size:17px;font-weight:800;color:#1A1130;margin:12px 0 5px;"></div>
+      <div id="pp-install-sub" style="font-size:12.5px;color:#5A5370;line-height:1.6;"></div>
+    </div>
+    <div id="pp-install-body" style="padding:15px 22px 4px;"></div>
+    <div style="padding:6px 22px 0;">
+      <button type="button" id="pp-install-close" style="width:100%;height:46px;background:#F1EEFF;border:none;border-radius:12px;color:#6C4AB6;font-size:14px;font-weight:700;cursor:pointer;"></button>
+    </div>
+  </div>
+</div>
+<script>(function(){
+  'use strict';
+  var deferred=null, sheetOpen=false;
+  function L(){ try{ return (window.ipGetLang&&window.ipGetLang()==='vi')?'vi':'ko'; }catch(e){ return 'ko'; } }
+  var T={
+    ko:{ title:"홈 화면에 프로토타입 추가",
+         sub:"PricePick 프로토타입을 홈 화면 / 바탕화면 아이콘으로 추가해요. 브라우저를 안 거치고 바로 열려요.",
+         install:"지금 설치", close:"닫기",
+         ios_h:"iPhone · iPad (Safari)", ios_1:"하단 공유 버튼 누르기", ios_2:"'홈 화면에 추가' 선택", ios_3:"오른쪽 위 '추가' 누르기",
+         mac_h:"Mac (Safari)", mac_1:"상단 공유 버튼 (또는 파일 메뉴)", mac_2:"'Dock에 추가' 선택",
+         and_h:"설치 안내", and_1:"브라우저 메뉴(점 3개) 열기", and_2:"'홈 화면에 추가' 또는 '앱 설치' 선택",
+         done:"이미 홈 화면 아이콘에서 실행 중이에요." },
+    vi:{ title:"Thêm prototype vào màn hình chính",
+         sub:"Thêm PricePick Prototype thành biểu tượng trên màn hình chính / desktop. Mở trực tiếp, không qua trình duyệt.",
+         install:"Cài đặt ngay", close:"Đóng",
+         ios_h:"iPhone · iPad (Safari)", ios_1:"Nhấn nút Chia sẻ ở dưới", ios_2:"Chọn 'Thêm vào MH chính'", ios_3:"Nhấn 'Thêm' ở góc trên phải",
+         mac_h:"Mac (Safari)", mac_1:"Nút Chia sẻ trên cùng (hoặc menu Tệp)", mac_2:"Chọn 'Thêm vào Dock'",
+         and_h:"Hướng dẫn cài đặt", and_1:"Mở menu trình duyệt (3 chấm)", and_2:"Chọn 'Thêm vào MH chính' hoặc 'Cài ứng dụng'",
+         done:"Đang chạy từ biểu tượng màn hình chính." }
+  };
+  function ua(){ return navigator.userAgent||''; }
+  function isStandalone(){ return (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone===true; }
+  function isIOS(){ var u=ua(); return /iPhone|iPad|iPod/i.test(u) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1); }
+  function isMacSafari(){ var u=ua(); return /Macintosh/.test(u) && /Safari/.test(u) && !/Chrome|Chromium|Edg|OPR|CriOS|FxiOS/.test(u) && !(navigator.maxTouchPoints>1); }
+  var shareSvg='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px;"><path d="M12 16V4"/><path d="M8 8l4-4 4 4"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg>';
+  function step(n,txt){ return '<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:9px;"><span style="flex:0 0 auto;width:22px;height:22px;border-radius:999px;background:#845EEE;color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;">'+n+'</span><span style="font-size:13px;color:#1A1130;line-height:1.5;padding-top:1px;">'+txt+'</span></div>'; }
+  function render(){
+    var t=T[L()];
+    document.getElementById('pp-install-title').textContent=t.title;
+    document.getElementById('pp-install-sub').textContent=t.sub;
+    document.getElementById('pp-install-close').textContent=t.close;
+    var body=document.getElementById('pp-install-body'); body.innerHTML='';
+    if(isStandalone()){ body.innerHTML='<div style="text-align:center;font-size:13px;color:#5A5370;padding:6px 0 10px;">'+t.done+'</div>'; return; }
+    if(deferred){
+      var b=document.createElement('button');
+      b.type='button'; b.textContent=t.install;
+      b.style.cssText='width:100%;height:50px;background:#845EEE;border:none;border-radius:13px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(132,94,238,.32);';
+      b.addEventListener('click',doPrompt);
+      body.appendChild(b);
+      return;
+    }
+    var head, steps;
+    if(isIOS()){ head=t.ios_h; steps=[shareSvg+t.ios_1, t.ios_2, t.ios_3]; }
+    else if(isMacSafari()){ head=t.mac_h; steps=[shareSvg+t.mac_1, t.mac_2]; }
+    else { head=t.and_h; steps=[t.and_1, t.and_2]; }
+    var html='<div style="font-size:12px;font-weight:800;color:#6C4AB6;letter-spacing:.3px;margin-bottom:11px;">'+head+'</div>';
+    for(var i=0;i<steps.length;i++){ html+=step(i+1, steps[i]); }
+    body.innerHTML=html;
+  }
+  function doPrompt(){
+    if(!deferred) return;
+    deferred.prompt();
+    deferred.userChoice.then(function(){ deferred=null; close(); });
+  }
+  function open(){ sheetOpen=true; render(); document.getElementById('pp-install').style.display='flex'; }
+  function close(){ sheetOpen=false; document.getElementById('pp-install').style.display='none'; }
+  window.ppInstallOpen=open; window.ppInstallClose=close;
+  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); deferred=e; if(sheetOpen) render(); });
+  window.addEventListener('appinstalled',function(){ deferred=null; if(sheetOpen) close(); });
+  function init(){
+    document.getElementById('pp-install-close').addEventListener('click',close);
+    document.getElementById('pp-install').addEventListener('click',function(e){ if(e.target.id==='pp-install') close(); });
+    if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js').catch(function(){}); }
+    try{ if(/[?&]install=1(?:&|$)/.test(location.search)){ setTimeout(open,350); } }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();</script>
+
 </body>
 </html>
