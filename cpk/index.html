@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>쿠팡픽</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#E4002B">
+<meta name="description" content="쿠팡픽 — 홈 화면에 추가하면 앱 없이 픽구매·제휴 적립이 유지돼요.">
+
+<!-- PWA / 홈 화면 추가용 -->
+<link rel="manifest" href="/cpk/manifest.json">
+<link rel="apple-touch-icon" href="/cpk/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/cpk/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="쿠팡픽">
+<meta name="application-name" content="쿠팡픽">
+
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,'Apple SD Gothic Neo','Helvetica Neue',Arial,sans-serif;
+    background:#FAF7F6;color:#211A18;min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    padding:24px 18px calc(24px + env(safe-area-inset-bottom));
+    -webkit-font-smoothing:antialiased;
+  }
+  .card{
+    width:100%;max-width:360px;background:#fff;border-radius:22px;
+    box-shadow:0 18px 50px rgba(0,0,0,.10);overflow:hidden;
+  }
+  .hero{background:#E4002B;color:#fff;text-align:center;padding:30px 20px 24px;}
+  .badge{
+    width:82px;height:82px;margin:0 auto 16px;background:#E4002B;border-radius:21px;
+    box-shadow:0 8px 22px rgba(0,0,0,.30),0 0 0 4px rgba(255,255,255,.30);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .badge .stack{display:flex;flex-direction:column;align-items:center;line-height:1.02;}
+  .badge .c1{font-size:17px;font-weight:800;letter-spacing:-.5px;}
+  .badge .c2{font-size:13px;font-weight:900;letter-spacing:2px;margin-top:1px;text-indent:2px;}
+  .hero h1{margin:0;font-size:19px;font-weight:800;letter-spacing:-.3px;}
+  .hero .h-vi{margin:5px 0 0;font-size:12px;font-weight:600;color:rgba(255,255,255,.85);}
+  .body{padding:20px 20px 24px;}
+  .lead{font-size:13.5px;line-height:1.6;color:#2A2320;font-weight:600;margin:0 0 4px;}
+  .lead-vi{font-size:12px;line-height:1.55;color:#8A6F68;margin:0 0 18px;}
+  .step{
+    display:flex;gap:12px;align-items:flex-start;
+    background:#FFF4F1;border:1px solid #FFDCD2;border-radius:14px;
+    padding:13px 14px;margin-bottom:10px;
+  }
+  .step .ico{flex:0 0 auto;width:30px;height:30px;border-radius:9px;background:#E4002B;
+    display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .step .ico svg{width:17px;height:17px;}
+  .step .txt{flex:1;min-width:0;}
+  .step .os{font-size:12.5px;font-weight:800;color:#B5160C;margin-bottom:3px;}
+  .step .ko{font-size:13px;font-weight:700;color:#2A2320;line-height:1.45;}
+  .step .vi{font-size:11.5px;color:#8A6F68;line-height:1.45;margin-top:2px;}
+  .go{
+    display:block;width:100%;margin-top:14px;text-align:center;text-decoration:none;
+    background:#211A18;color:#fff;border-radius:13px;padding:14px;font-size:13.5px;font-weight:800;
+  }
+  .go .vi{display:block;font-size:11px;font-weight:600;color:rgba(255,255,255,.7);margin-top:2px;}
+  .redirect-note{
+    text-align:center;color:#8A6F68;font-size:13px;font-weight:600;
+    padding:60px 20px;line-height:1.6;
+  }
+  .hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="hero">
+    <div class="badge"><div class="stack"><span class="c1">coupang</span><span class="c2">PICK</span></div></div>
+    <h1>홈 화면에 '쿠팡픽' 추가</h1>
+    <p class="h-vi">Thêm 'Coupang Pick' vào màn hình chính</p>
+  </div>
+
+  <!-- 일반 브라우저 안내 -->
+  <div class="body" id="guide">
+    <p class="lead">홈 화면에 추가하면 앱 없이 픽구매·제휴 적립이 유지돼요.</p>
+    <p class="lead-vi">Thêm vào màn hình chính để giữ tích lũy mua qua link mà không cần mở app.</p>
+
+    <div class="step">
+      <div class="ico">
+        <!-- iOS 공유 아이콘 (라인아트) -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a1 1 0 001 1h12a1 1 0 001-1v-7"/></svg>
+      </div>
+      <div class="txt">
+        <div class="os">iPhone · Safari</div>
+        <div class="ko">공유 버튼 → '홈 화면에 추가'</div>
+        <div class="vi">Nút Chia sẻ → 'Thêm vào MH chính'</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="ico">
+        <!-- Android 메뉴 점 3개 (라인아트) -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="5" r=".6"/><circle cx="12" cy="12" r=".6"/><circle cx="12" cy="19" r=".6"/></svg>
+      </div>
+      <div class="txt">
+        <div class="os">Android · Chrome</div>
+        <div class="ko">메뉴 → '홈 화면에 추가' / '앱 설치'</div>
+        <div class="vi">Menu → 'Thêm vào MH chính' / 'Cài đặt ứng dụng'</div>
+      </div>
+    </div>
+
+    <a class="go" id="go-now" href="https://www.coupang.com/">
+      지금 쿠팡으로 이동
+      <span class="vi">Mở Coupang ngay</span>
+    </a>
+  </div>
+
+  <!-- 홈 아이콘(standalone)으로 실행 시 -->
+  <div class="redirect-note hidden" id="redirecting">
+    쿠팡으로 이동 중…<br><span style="font-size:11.5px;">Đang chuyển đến Coupang…</span>
+  </div>
+</div>
+
+<script>
+  // 리다이렉트 목적지 — 제휴 코드가 생기면 이 한 줄만 교체하면 됨.
+  const COUPANG_URL = 'https://www.coupang.com/'; // TODO: 파트너스 제휴 코드 주입 자리 (예: ?lptag=AF...)
+
+  // 수동 이동 링크도 동일 목적지로 동기화
+  document.getElementById('go-now').setAttribute('href', COUPANG_URL);
+
+  // 홈 화면 아이콘(standalone)으로 실행됐는지 판별
+  var isStandalone =
+    (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+    (window.matchMedia && window.matchMedia('(display-mode: fullscreen)').matches) ||
+    window.navigator.standalone === true;
+
+  if (isStandalone) {
+    // 홈 아이콘 실행 → 즉시 쿠팡으로 리다이렉트
+    document.getElementById('guide').classList.add('hidden');
+    document.getElementById('redirecting').classList.remove('hidden');
+    window.location.replace(COUPANG_URL);
+  }
+  // 일반 브라우저로 열리면 위 안내 화면이 그대로 표시됨.
+</script>
+</body>
+</html>
