@@ -7191,7 +7191,8 @@
   .wd-checkbox { width: 20px; height: 20px; border: 2px solid var(--border-strong); border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: white; cursor: pointer; margin-top: 1px; }
   .wd-checkbox.on { background: var(--red); border-color: var(--red); color: white; font-size: 12px; }
   .wd-check-lbl { font-size: 13px; color: var(--text1); line-height: 1.5; }
-  .wd-footer { padding: 12px 16px 32px; background: white; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+  .wd-footer { padding: 12px 16px 32px; background: white; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 8px; }
+.wd-footer > div { flex-basis: 100%; }
   .wd-cancel-btn { flex: 1; height: 48px; background: var(--bg); border: 1.5px solid var(--border-strong); border-radius: var(--r); font-size: 14px; font-weight: 700; color: var(--text2); cursor: pointer; font-family: inherit; }
   .wd-confirm-btn { flex: 1; height: 48px; background: var(--red); border: none; border-radius: var(--r); font-size: 14px; font-weight: 700; color: white; cursor: pointer; font-family: inherit; }
   .wd-confirm-btn:disabled { background: var(--border-strong); color: var(--text3); }
