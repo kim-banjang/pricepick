@@ -31,12 +31,12 @@
   .wrap {
     flex: 1;
     width: 100%;
-    max-width: 960px;
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 64px 24px 32px;
+    padding: 56px 24px 28px;
   }
   /* Header */
-  header { margin-bottom: 40px; }
+  header { margin-bottom: 32px; }
   .logo {
     font-size: 40px;
     font-weight: 800;
@@ -57,8 +57,8 @@
   .featured {
     position: relative;
     display: block;
-    margin-bottom: 32px;
-    padding: 30px 32px;
+    margin-bottom: 30px;
+    padding: 26px 30px;
     border-radius: 20px;
     background: var(--card-bg);
     border: 1px solid var(--line);
@@ -84,11 +84,11 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   .ficon {
     flex: 0 0 auto;
-    width: 48px; height: 48px;
+    width: 46px; height: 46px;
     border-radius: 13px;
     background: var(--purple-soft);
     display: flex; align-items: center; justify-content: center;
@@ -106,20 +106,20 @@
     letter-spacing: 0.2px;
   }
   .featured h2 {
-    font-size: 23px;
+    font-size: 22px;
     font-weight: 800;
     letter-spacing: -0.6px;
-    margin-bottom: 8px;
+    margin-bottom: 7px;
   }
   .featured p {
-    font-size: 14.5px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 1.6;
+    line-height: 1.55;
     color: var(--ink-soft);
     max-width: 640px;
   }
   .featured .arrow {
-    margin-top: 18px;
+    margin-top: 15px;
     font-size: 13.5px;
     font-weight: 700;
     color: var(--purple-deep);
@@ -132,20 +132,21 @@
     letter-spacing: 0.6px;
     color: var(--ink-faint);
     text-transform: uppercase;
-    margin: 0 4px 14px;
+    margin: 26px 4px 12px;
   }
-  /* Grid */
+  .seclabel:first-of-type { margin-top: 0; }
+  /* Grid — desktop 4-up, compact */
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 13px;
   }
   .card {
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 24px 22px;
-    border-radius: 16px;
+    padding: 17px 16px;
+    border-radius: 15px;
     background: var(--card-bg);
     border: 1px solid var(--line);
     box-shadow: 0 1px 3px rgba(20, 20, 40, 0.04);
@@ -160,50 +161,50 @@
   }
   .card:active { transform: translateY(-1px); }
   .cicon {
-    width: 42px; height: 42px;
-    border-radius: 11px;
+    width: 36px; height: 36px;
+    border-radius: 10px;
     background: var(--purple-soft);
     display: flex; align-items: center; justify-content: center;
     color: var(--purple-deep);
-    margin-bottom: 16px;
+    margin-bottom: 11px;
   }
   .card h2 {
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 700;
-    letter-spacing: -0.4px;
-    margin-bottom: 7px;
+    letter-spacing: -0.3px;
+    margin-bottom: 5px;
   }
   .card p {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
-    line-height: 1.55;
+    line-height: 1.5;
     color: var(--ink-soft);
     flex: 1;
   }
   .card .arrow {
-    margin-top: 18px;
-    font-size: 12.5px;
+    margin-top: 13px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--purple-deep);
     letter-spacing: 0.2px;
   }
   /* 변경 보기 두 갈래 (인터랙티브 · CMS 카드) */
   .card-foot {
-    margin-top: 18px;
+    margin-top: 13px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 6px;
   }
   .card-foot .arrow { margin-top: 0; }
   .chg-badge {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 700;
     color: var(--purple-deep);
     background: var(--purple-soft);
     border: 1px solid #E4DAFB;
     border-radius: 999px;
-    padding: 3px 10px;
+    padding: 3px 9px;
     letter-spacing: 0.2px;
     cursor: pointer;
     white-space: nowrap;
@@ -212,10 +213,10 @@
   .chg-badge:hover { background: #E9E0FB; border-color: #D6C6F6; }
   /* Footer */
   footer {
-    max-width: 960px;
+    max-width: 1080px;
     width: 100%;
     margin: 0 auto;
-    padding: 28px 28px 36px;
+    padding: 24px 28px 36px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -264,17 +265,17 @@
   }
   .lang-btn.active { background: var(--purple); color: #fff; }
   .lang-btn:hover:not(.active) { color: var(--ink); }
-  /* Tablet */
-  @media (max-width: 760px) {
+  /* Tablet — 2-up */
+  @media (max-width: 860px) {
     .grid { grid-template-columns: repeat(2, 1fr); }
   }
-  /* Mobile */
+  /* Mobile — 1-up */
   @media (max-width: 480px) {
     .wrap { padding: 44px 18px 24px; }
     .logo { font-size: 33px; }
-    .featured { padding: 24px 22px; }
+    .featured { padding: 22px 20px; }
     .featured h2 { font-size: 20px; }
-    .grid { grid-template-columns: 1fr; gap: 13px; }
+    .grid { grid-template-columns: 1fr; gap: 11px; }
     footer { flex-direction: column; align-items: flex-start; padding: 24px 20px 32px; }
   }
 </style>
@@ -292,7 +293,7 @@
       <div class="subtitle">Design Hub <span class="dot">·</span> <span id="hub-subtitle-text">산출물 최종본 모음</span></div>
     </header>
 
-    <!-- Featured: 마스터 정책서 -->
+    <!-- Featured: 마스터 정책서 (SoT) -->
     <a class="featured" href="/policyspec.html" target="_blank" rel="noopener">
       <div class="ftop">
         <div class="ficon">
@@ -308,20 +309,9 @@
       <div class="arrow" id="featured-arrow">열기 →</div>
     </a>
 
-    <div class="seclabel" id="seclabel">기획 · 디자인 산출물</div>
+    <!-- ── 핵심 산출물 ── -->
+    <div class="seclabel" id="seclabel-core">핵심 산출물</div>
     <main class="grid">
-      <a class="card" href="/prototype.html" target="_blank" rel="noopener">
-        <div class="cicon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="6" y="2.5" width="12" height="19" rx="2.5"/>
-            <line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/>
-          </svg>
-        </div>
-        <h2 id="card-prototype-title">프로토타입</h2>
-        <p id="card-prototype-desc">전체 화면을 모은 카탈로그와 클릭 시뮬레이터. 모바일 최종 확인용.</p>
-        <div class="arrow" id="card-prototype-arrow">열기 →</div>
-      </a>
-
       <a class="card" href="/interactive.html" target="_blank" rel="noopener">
         <div class="cicon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -340,29 +330,16 @@
         </div>
       </a>
 
-      <a class="card" href="/storyboard.html" target="_blank" rel="noopener">
+      <a class="card" href="/prototype.html" target="_blank" rel="noopener">
         <div class="cicon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="4" y="3" width="16" height="18" rx="2"/>
-            <line x1="8" y1="8" x2="16" y2="8"/>
-            <line x1="8" y1="12" x2="16" y2="12"/>
-            <line x1="8" y1="16" x2="13" y2="16"/>
+            <rect x="6" y="2.5" width="12" height="19" rx="2.5"/>
+            <line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/>
           </svg>
         </div>
-        <h2 id="card-storyboard-title">스토리보드</h2>
-        <p id="card-storyboard-desc">화면별 기획 스펙과 의사결정을 정리한 문서.</p>
-        <div class="arrow" id="card-storyboard-arrow">열기 →</div>
-      </a>
-
-      <a class="card" href="/cms-storyboard.html" target="_blank" rel="noopener">
-        <div class="cicon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-          </svg>
-        </div>
-        <h2 id="card-cmssb-title">CMS 스토리보드</h2>
-        <p id="card-cmssb-desc">CMS 화면별 동작·권한·데이터 흐름을 정리한 개발자용 명세.</p>
-        <div class="arrow" id="card-cmssb-arrow">열기 →</div>
+        <h2 id="card-prototype-title">프로토타입</h2>
+        <p id="card-prototype-desc">전체 화면을 모은 카탈로그와 클릭 시뮬레이터. 모바일 최종 확인용.</p>
+        <div class="arrow" id="card-prototype-arrow">열기 →</div>
       </a>
 
       <a class="card" href="/screenflow.html" target="_blank" rel="noopener">
@@ -379,20 +356,24 @@
         <div class="arrow" id="card-screenflow-arrow">열기 →</div>
       </a>
 
-      <a class="card" href="/designsystem.html" target="_blank" rel="noopener">
+      <a class="card" href="/storyboard.html" target="_blank" rel="noopener">
         <div class="cicon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <circle cx="8.5" cy="9.5" r="1.3" fill="currentColor" stroke="none"/>
-            <circle cx="15.5" cy="9.5" r="1.3" fill="currentColor" stroke="none"/>
-            <circle cx="9" cy="15" r="1.3" fill="currentColor" stroke="none"/>
+            <rect x="4" y="3" width="16" height="18" rx="2"/>
+            <line x1="8" y1="8" x2="16" y2="8"/>
+            <line x1="8" y1="12" x2="16" y2="12"/>
+            <line x1="8" y1="16" x2="13" y2="16"/>
           </svg>
         </div>
-        <h2 id="card-designsystem-title">디자인시스템</h2>
-        <p id="card-designsystem-desc">컴포넌트 · 컬러 · 타이포 기준. 개발 핸드오프용.</p>
-        <div class="arrow" id="card-designsystem-arrow">열기 →</div>
+        <h2 id="card-storyboard-title">스토리보드</h2>
+        <p id="card-storyboard-desc">화면별 기획 스펙과 의사결정을 정리한 문서.</p>
+        <div class="arrow" id="card-storyboard-arrow">열기 →</div>
       </a>
+    </main>
 
+    <!-- ── 운영 · 개발 협업 ── -->
+    <div class="seclabel" id="seclabel-ops">운영 · 개발 협업</div>
+    <div class="grid">
       <a class="card" href="/cms.html" target="_blank" rel="noopener">
         <div class="cicon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -409,10 +390,64 @@
             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/cms-preview.html','_blank','noopener');}">변경 보기 ↗</span>
         </div>
       </a>
-    </main>
 
-    <div class="seclabel" id="seclabel-devref" style="margin-top:28px;">개발 참고용</div>
-    <div class="grid" style="grid-template-columns:repeat(2,1fr);">
+      <a class="card" href="/cms-storyboard.html" target="_blank" rel="noopener">
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <h2 id="card-cmssb-title">CMS 스토리보드</h2>
+        <p id="card-cmssb-desc">CMS 화면별 동작·권한·데이터 흐름을 정리한 개발자용 명세.</p>
+        <div class="arrow" id="card-cmssb-arrow">열기 →</div>
+      </a>
+
+      <a class="card" href="/devplan.html" target="_blank" rel="noopener">
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3.5" y="4.5" width="17" height="16" rx="2"/>
+            <line x1="3.5" y1="9" x2="20.5" y2="9"/>
+            <line x1="8" y1="2.5" x2="8" y2="6"/>
+            <line x1="16" y1="2.5" x2="16" y2="6"/>
+            <path d="M8.5 14l2 2 4-4.5"/>
+          </svg>
+        </div>
+        <h2 id="card-devplan-title">DevPlan</h2>
+        <p id="card-devplan-desc">개발 일정 · 진행 상태 관리 (앱 · CMS · 백엔드 트랙).</p>
+        <div class="arrow" id="card-devplan-arrow">열기 →</div>
+      </a>
+
+      <a class="card" href="/devqa/" target="_blank" rel="noopener">
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.3 9.6 9.6 0 0 1-3.9-.8L3 20.5l1.4-4.2a8 8 0 0 1-1-3.8A8.38 8.38 0 0 1 12 3.7a8.38 8.38 0 0 1 9 7.8z"/>
+            <path d="M10 9.3a2 2 0 0 1 3.7 1c0 1.3-2 2-2 2"/>
+            <line x1="11.7" y1="15.3" x2="11.7" y2="15.4"/>
+          </svg>
+        </div>
+        <h2 id="card-devqa-title">DevQA</h2>
+        <p id="card-devqa-desc">개발팀 Q&A 답변 모음 (앱 · CMS · 백엔드).</p>
+        <div class="arrow" id="card-devqa-arrow">열기 →</div>
+      </a>
+    </div>
+
+    <!-- ── 개발 참고 기준 ── -->
+    <div class="seclabel" id="seclabel-devref">개발 참고 기준</div>
+    <div class="grid">
+      <a class="card" href="/designsystem.html" target="_blank" rel="noopener">
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="8.5" cy="9.5" r="1.3" fill="currentColor" stroke="none"/>
+            <circle cx="15.5" cy="9.5" r="1.3" fill="currentColor" stroke="none"/>
+            <circle cx="9" cy="15" r="1.3" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h2 id="card-designsystem-title">디자인시스템</h2>
+        <p id="card-designsystem-desc">컴포넌트 · 컬러 · 타이포 기준. 개발 핸드오프용.</p>
+        <div class="arrow" id="card-designsystem-arrow">열기 →</div>
+      </a>
+
       <a class="card" href="/datamodel.html" target="_blank" rel="noopener">
         <div class="cicon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -421,10 +456,11 @@
             <path d="M3 11v6c0 1.66 4.03 3 9 3s9-1.34 9-3v-6"/>
           </svg>
         </div>
-        <h2 id="card-datamodel-title">데이터 모델 (개발참고용)</h2>
+        <h2 id="card-datamodel-title">데이터 모델</h2>
         <p id="card-datamodel-desc">DB 스키마 · 엔티티 · 관계 정의. 개발 구현 기준.</p>
         <div class="arrow" id="card-datamodel-arrow">열기 →</div>
       </a>
+
       <a class="card" href="/functionalspec.html" target="_blank" rel="noopener">
         <div class="cicon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -435,7 +471,7 @@
             <polyline points="10 9 9 9 8 9"/>
           </svg>
         </div>
-        <h2 id="card-functionalspec-title">기능 명세서 (개발참고용)</h2>
+        <h2 id="card-functionalspec-title">기능 명세서</h2>
         <p id="card-functionalspec-desc">화면별 기능 요구사항 · 데이터 읽기/쓰기 명세.</p>
         <div class="arrow" id="card-functionalspec-arrow">열기 →</div>
       </a>
@@ -444,7 +480,7 @@
 
   <footer>
     <span class="ver">PricePick v8.2</span>
-    <span>Last Update 2026-06-15</span>
+    <span>Last Update 2026-06-19</span>
   </footer>
 <script>
 // ── i18n 언어 시스템 ──
@@ -457,25 +493,30 @@ const I18N = {
     'featured.title': '마스터 정책서',
     'featured.desc': '모든 정책의 최종 결정 · 기준 · 수치가 모인 단일 진실원(Single Source of Truth). 운영자와 개발자가 참조하는 정책 가이드 문서.',
     'featured.arrow': '열기 →',
-    'seclabel': '기획 · 디자인 산출물',
-    'card.prototype.title': '프로토타입',
-    'card.prototype.desc': '전체 화면을 모은 카탈로그와 클릭 시뮬레이터. 모바일 최종 확인용.',
+    'seclabel.core': '핵심 산출물',
+    'seclabel.ops': '운영 · 개발 협업',
+    'seclabel.devref': '개발 참고 기준',
     'card.interactive.title': '인터랙티브',
     'card.interactive.desc': '클릭으로 UX 흐름을 직접 체험하는 웹 기반 기획 프로토타입.',
-    'card.storyboard.title': '스토리보드',
-    'card.storyboard.desc': '화면별 기획 스펙과 의사결정을 정리한 문서.',
-    'card.cmssb.title': 'CMS 스토리보드',
-    'card.cmssb.desc': 'CMS 화면별 동작·권한·데이터 흐름을 정리한 개발자용 명세.',
+    'card.prototype.title': '프로토타입',
+    'card.prototype.desc': '전체 화면을 모은 카탈로그와 클릭 시뮬레이터. 모바일 최종 확인용.',
     'card.screenflow.title': '스크린플로',
     'card.screenflow.desc': '전체 화면 흐름을 트리로 시각화한 흐름도.',
-    'card.designsystem.title': '디자인시스템',
-    'card.designsystem.desc': '컴포넌트 · 컬러 · 타이포 기준. 개발 핸드오프용.',
+    'card.storyboard.title': '스토리보드',
+    'card.storyboard.desc': '화면별 기획 스펙과 의사결정을 정리한 문서.',
     'card.cms.title': 'CMS',
     'card.cms.desc': '어드민 운영 화면 설계.',
-    'seclabel.devref': '개발 참고용',
-    'card.datamodel.title': '데이터 모델 (개발참고용)',
+    'card.cmssb.title': 'CMS 스토리보드',
+    'card.cmssb.desc': 'CMS 화면별 동작·권한·데이터 흐름을 정리한 개발자용 명세.',
+    'card.devplan.title': 'DevPlan',
+    'card.devplan.desc': '개발 일정 · 진행 상태 관리 (앱 · CMS · 백엔드 트랙).',
+    'card.devqa.title': 'DevQA',
+    'card.devqa.desc': '개발팀 Q&A 답변 모음 (앱 · CMS · 백엔드).',
+    'card.designsystem.title': '디자인시스템',
+    'card.designsystem.desc': '컴포넌트 · 컬러 · 타이포 기준. 개발 핸드오프용.',
+    'card.datamodel.title': '데이터 모델',
     'card.datamodel.desc': 'DB 스키마 · 엔티티 · 관계 정의. 개발 구현 기준.',
-    'card.functionalspec.title': '기능 명세서 (개발참고용)',
+    'card.functionalspec.title': '기능 명세서',
     'card.functionalspec.desc': '화면별 기능 요구사항 · 데이터 읽기/쓰기 명세.',
     'card.arrow': '열기 →',
     'card.preview': '변경 보기 ↗',
@@ -486,25 +527,30 @@ const I18N = {
     'featured.title': 'Chính sách tổng hợp',
     'featured.desc': 'Nguồn sự thật duy nhất (Single Source of Truth) — tập hợp mọi quyết định, tiêu chuẩn và chỉ số chính sách cuối cùng. Tài liệu hướng dẫn chính sách cho vận hành và phát triển.',
     'featured.arrow': 'Mở →',
-    'seclabel': 'Tài liệu thiết kế & kế hoạch',
-    'card.prototype.title': 'Prototype',
-    'card.prototype.desc': 'Danh mục toàn bộ màn hình và trình mô phỏng click. Dùng để xác nhận cuối trên di động.',
+    'seclabel.core': 'Tài liệu cốt lõi',
+    'seclabel.ops': 'Vận hành · Hợp tác phát triển',
+    'seclabel.devref': 'Tiêu chuẩn tham khảo phát triển',
     'card.interactive.title': 'Interactive',
     'card.interactive.desc': 'Prototype kế hoạch trên web để trải nghiệm trực tiếp luồng UX qua click.',
-    'card.cmssb.title': 'CMS Storyboard',
-    'card.cmssb.desc': 'Đặc tả cho dev: thao tác·quyền·luồng dữ liệu theo từng màn hình CMS.',
-    'card.storyboard.title': 'Storyboard',
-    'card.storyboard.desc': 'Tài liệu đặc tả kế hoạch và quyết định theo từng màn hình.',
+    'card.prototype.title': 'Prototype',
+    'card.prototype.desc': 'Danh mục toàn bộ màn hình và trình mô phỏng click. Dùng để xác nhận cuối trên di động.',
     'card.screenflow.title': 'Screenflow',
     'card.screenflow.desc': 'Sơ đồ luồng toàn bộ màn hình được trực quan hóa dạng cây.',
-    'card.designsystem.title': 'Design System',
-    'card.designsystem.desc': 'Tiêu chuẩn thành phần, màu sắc và typography. Dùng để bàn giao phát triển.',
+    'card.storyboard.title': 'Storyboard',
+    'card.storyboard.desc': 'Tài liệu đặc tả kế hoạch và quyết định theo từng màn hình.',
     'card.cms.title': 'CMS',
     'card.cms.desc': 'Thiết kế màn hình quản trị vận hành.',
-    'seclabel.devref': 'Tài liệu phát triển',
-    'card.datamodel.title': 'Mô hình dữ liệu (Tham khảo dev)',
+    'card.cmssb.title': 'CMS Storyboard',
+    'card.cmssb.desc': 'Đặc tả cho dev: thao tác·quyền·luồng dữ liệu theo từng màn hình CMS.',
+    'card.devplan.title': 'DevPlan',
+    'card.devplan.desc': 'Quản lý lịch trình · trạng thái phát triển (track App · CMS · Backend).',
+    'card.devqa.title': 'DevQA',
+    'card.devqa.desc': 'Tổng hợp Q&A giải đáp cho nhóm phát triển (App · CMS · Backend).',
+    'card.designsystem.title': 'Design System',
+    'card.designsystem.desc': 'Tiêu chuẩn thành phần, màu sắc và typography. Dùng để bàn giao phát triển.',
+    'card.datamodel.title': 'Mô hình dữ liệu',
     'card.datamodel.desc': 'Lược đồ DB · thực thể · định nghĩa quan hệ. Chuẩn triển khai phát triển.',
-    'card.functionalspec.title': 'Đặc tả chức năng (Tham khảo dev)',
+    'card.functionalspec.title': 'Đặc tả chức năng',
     'card.functionalspec.desc': 'Yêu cầu chức năng · đặc tả đọc/ghi dữ liệu theo màn hình.',
     'card.arrow': 'Mở →',
     'card.preview': 'Xem thay đổi ↗',
@@ -528,42 +574,49 @@ function setLang(lang) {
 }
 
 function applyLang() {
-  setTxt('hub-subtitle-text',        t('hub.subtitle'));
-  setTxt('featured-badge',           t('featured.badge'));
-  setTxt('featured-title',           t('featured.title'));
-  setTxt('featured-desc',            t('featured.desc'));
-  setTxt('featured-arrow',           t('featured.arrow'));
-  setTxt('seclabel',                 t('seclabel'));
-  setTxt('card-prototype-title',     t('card.prototype.title'));
-  setTxt('card-prototype-desc',      t('card.prototype.desc'));
-  setTxt('card-prototype-arrow',     t('card.arrow'));
-  setTxt('card-interactive-title',   t('card.interactive.title'));
-  setTxt('card-interactive-desc',    t('card.interactive.desc'));
-  setTxt('card-interactive-arrow',   t('card.arrow'));
-  setTxt('card-interactive-chg',     t('card.preview'));
-  setTxt('card-storyboard-title',    t('card.storyboard.title'));
-  setTxt('card-storyboard-desc',     t('card.storyboard.desc'));
-  setTxt('card-storyboard-arrow',    t('card.arrow'));
-  setTxt('card-cmssb-title',         t('card.cmssb.title'));
-  setTxt('card-cmssb-desc',          t('card.cmssb.desc'));
-  setTxt('card-cmssb-arrow',         t('card.arrow'));
-  setTxt('card-screenflow-title',    t('card.screenflow.title'));
-  setTxt('card-screenflow-desc',     t('card.screenflow.desc'));
-  setTxt('card-screenflow-arrow',    t('card.arrow'));
-  setTxt('card-designsystem-title',  t('card.designsystem.title'));
-  setTxt('card-designsystem-desc',   t('card.designsystem.desc'));
-  setTxt('card-designsystem-arrow',  t('card.arrow'));
-  setTxt('card-cms-title',           t('card.cms.title'));
-  setTxt('card-cms-desc',            t('card.cms.desc'));
-  setTxt('card-cms-arrow',           t('card.arrow'));
-  setTxt('card-cms-chg',             t('card.preview'));
-  setTxt('seclabel-devref',          t('seclabel.devref'));
-  setTxt('card-datamodel-title',     t('card.datamodel.title'));
-  setTxt('card-datamodel-desc',      t('card.datamodel.desc'));
-  setTxt('card-datamodel-arrow',     t('card.arrow'));
-  setTxt('card-functionalspec-title',t('card.functionalspec.title'));
-  setTxt('card-functionalspec-desc', t('card.functionalspec.desc'));
-  setTxt('card-functionalspec-arrow',t('card.arrow'));
+  setTxt('hub-subtitle-text',         t('hub.subtitle'));
+  setTxt('featured-badge',            t('featured.badge'));
+  setTxt('featured-title',            t('featured.title'));
+  setTxt('featured-desc',             t('featured.desc'));
+  setTxt('featured-arrow',            t('featured.arrow'));
+  setTxt('seclabel-core',             t('seclabel.core'));
+  setTxt('seclabel-ops',              t('seclabel.ops'));
+  setTxt('seclabel-devref',           t('seclabel.devref'));
+  setTxt('card-interactive-title',    t('card.interactive.title'));
+  setTxt('card-interactive-desc',     t('card.interactive.desc'));
+  setTxt('card-interactive-arrow',    t('card.arrow'));
+  setTxt('card-interactive-chg',      t('card.preview'));
+  setTxt('card-prototype-title',      t('card.prototype.title'));
+  setTxt('card-prototype-desc',       t('card.prototype.desc'));
+  setTxt('card-prototype-arrow',      t('card.arrow'));
+  setTxt('card-screenflow-title',     t('card.screenflow.title'));
+  setTxt('card-screenflow-desc',      t('card.screenflow.desc'));
+  setTxt('card-screenflow-arrow',     t('card.arrow'));
+  setTxt('card-storyboard-title',     t('card.storyboard.title'));
+  setTxt('card-storyboard-desc',      t('card.storyboard.desc'));
+  setTxt('card-storyboard-arrow',     t('card.arrow'));
+  setTxt('card-cms-title',            t('card.cms.title'));
+  setTxt('card-cms-desc',             t('card.cms.desc'));
+  setTxt('card-cms-arrow',            t('card.arrow'));
+  setTxt('card-cms-chg',              t('card.preview'));
+  setTxt('card-cmssb-title',          t('card.cmssb.title'));
+  setTxt('card-cmssb-desc',           t('card.cmssb.desc'));
+  setTxt('card-cmssb-arrow',          t('card.arrow'));
+  setTxt('card-devplan-title',        t('card.devplan.title'));
+  setTxt('card-devplan-desc',         t('card.devplan.desc'));
+  setTxt('card-devplan-arrow',        t('card.arrow'));
+  setTxt('card-devqa-title',          t('card.devqa.title'));
+  setTxt('card-devqa-desc',           t('card.devqa.desc'));
+  setTxt('card-devqa-arrow',          t('card.arrow'));
+  setTxt('card-designsystem-title',   t('card.designsystem.title'));
+  setTxt('card-designsystem-desc',    t('card.designsystem.desc'));
+  setTxt('card-designsystem-arrow',   t('card.arrow'));
+  setTxt('card-datamodel-title',      t('card.datamodel.title'));
+  setTxt('card-datamodel-desc',       t('card.datamodel.desc'));
+  setTxt('card-datamodel-arrow',      t('card.arrow'));
+  setTxt('card-functionalspec-title', t('card.functionalspec.title'));
+  setTxt('card-functionalspec-desc',  t('card.functionalspec.desc'));
+  setTxt('card-functionalspec-arrow', t('card.arrow'));
 }
 </script>
 </body>
