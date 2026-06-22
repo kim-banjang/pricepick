@@ -1190,77 +1190,38 @@
   .tb-name { font-size: 12px; color: var(--text1); margin-bottom: 2px; }
   .tb-msg { font-size: 11px; color: #9A6B00; line-height: 1.4; }
 
-  /* ============== 하단 탭바 (CloseUsVoice 정본 동일 — 떠 있는 고정폭 바, 활성=단일 슬라이딩 다크 알약 #16213A) ============== */
+  /* ============== 하단 탭바 (스토리보드 정확 반영) ============== */
   .tabbar {
-    /* 흐름 내 flex 자식: 본문 스크롤 영역이 바 위에서 끝나 겹침 없음(clbo 정본 방식). margin-top:auto로 폰 하단 고정 */
-    position: relative;
-    flex-shrink: 0;
-    align-self: center;
-    margin: auto auto calc(10px + env(safe-area-inset-bottom, 0px));
-    width: 288px; max-width: calc(100% - 28px);
-    height: 62px; box-sizing: border-box; /* 높이 명시 고정 — 자식/iOS 렌더로 세로 폭주 방지(아이콘행48 + 패딩12 + 보더2) */
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 6px;
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid #E6EBF2;
-    border-radius: 99px;
-    box-shadow: 0 6px 20px rgba(27, 43, 75, 0.10), 0 1px 3px rgba(27, 43, 75, 0.06);
-    /* backdrop-filter 제거: iOS Safari에서 transform:scale 조상(.phone 모바일 축소) 아래
-       backdrop-filter가 바 배경을 거대 흰 스타디움(세로 200px급)으로 잘못 페인트하는 버그 회피.
-       반투명 흰 배경(0.94)으로 떠있는 알약 느낌은 유지. */
-  }
-  /* 탭바 있는 화면: 바가 흐름 밖 아래에 있으므로 본문 스크롤 하단 과한 패딩 정리(겹침 방지는 flex 배치가 담당) */
-  .app-screen:has(> .tabbar) .scroll,
-  .app-screen:has(> .tabbar) .my-scroll,
-  .app-screen:has(> .tabbar) .reward-scroll,
-  .app-screen:has(> .tabbar) .activity-list,
-  .app-screen:has(> .tabbar) .wd-body,
-  .app-screen:has(> .tabbar) .info-body {
-    padding-bottom: 16px;
-  }
-  /* 슬라이딩 다크 알약(CloseUsVoice .tabbar-thumb 1:1 이식): JS가 활성 버튼의 offsetLeft·offsetWidth로
-     left·width를 지정 → 흐르듯 이동+리사이즈. top·bottom 6px로 높이를 바 안쪽에 고정 → 측정 타이밍과
-     무관하게 절대 거대화/이탈 불가. (클보는 getBoundingClientRect를 쓰지만 PricePick은 .phone에
-     transform:scale이 걸려 rect를 그대로 쓰면 이중 스케일로 폭주 → offset 측정으로 치환) */
-  .tab-thumb {
-    position: absolute; top: 6px; bottom: 6px; left: 6px; width: 0;
-    background: #16213A; border-radius: 99px; pointer-events: none; z-index: 0;
-    transition: left .34s cubic-bezier(.22,1,.36,1), width .34s cubic-bezier(.22,1,.36,1);
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 78px;
+    background: white;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -4px 16px rgba(26, 17, 48, 0.08), 0 -1px 4px rgba(26, 17, 48, 0.04);
+    display: flex;
+    padding-top: 8px;
+    padding-bottom: 24px;
   }
   .tab-item {
-    position: relative; z-index: 1;   /* 알약(z0) 위에 아이콘·라벨 */
-    flex: 0 0 auto;
-    height: 48px; padding: 0 15px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 99px;
-    background: transparent;
-    color: #8A95A8;
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 3px;
     cursor: pointer;
-    white-space: nowrap;
-    transition: color .26s cubic-bezier(.22,1,.36,1);
+    padding: 2px;
   }
-  .tab-item:active { transform: scale(0.95); }
   .tab-ico {
-    display: inline-flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    color: inherit;
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text4);
   }
-  .tab-ico svg { width: 23px; height: 23px; }
-  /* 라벨: 활성에서만 노출. 폭(max-width)·margin은 즉시 확정 → thumb가 정확한 최종 rect 측정.
-     보이는 부드러움은 thumb 슬라이드 + 라벨 opacity 크로스페이드가 담당(클보 1:1). */
+  .tab-ico svg { width: 22px; height: 22px; }
   .tab-lbl {
-    max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; margin-left: 0;
-    font-size: 13px; font-weight: 700; letter-spacing: -0.2px; line-height: 1;
-    color: #fff;
-    transition: opacity .26s cubic-bezier(.22,1,.36,1);
+    font-size: 10px;
+    color: var(--text4);
+    font-weight: 500;
   }
-  /* 활성 탭 = 흰 아이콘/라벨. 배경(알약)은 .tab-thumb가 담당(버튼 자체 배경 없음) */
-  .tab-item.active { color: #fff; }
-  .tab-item.active .tab-ico { color: #fff; }
-  .tab-item.active .tab-lbl { max-width: 96px; opacity: 1; margin-left: 7px; }
-  @media (prefers-reduced-motion: reduce) {
-    .tab-thumb, .tab-item, .tab-lbl { transition: none !important; }
-  }
+  .tab-item.active .tab-ico { color: var(--text1); }
+  .tab-item.active .tab-lbl { color: var(--text1); font-weight: 700; }
   /* 라인/솔리드 듀얼 SVG 토글 */
   .tab-ico .ico-line { display: block; }
   .tab-ico .ico-solid { display: none; }
@@ -7488,17 +7449,6 @@ body.interactive-mode .phone-wrap.ip-active .phone {
   width: 390px;
   height: 844px;
   transform-origin: center center;
-}
-/* 화면 전환 시 콘텐츠 살짝 페이드 */
-body.interactive-mode .phone-wrap.ip-active .app-screen {
-  animation: ipScreenFade .26s ease-out both;
-}
-@keyframes ipScreenFade {
-  from { opacity: .5; }
-  to   { opacity: 1; }
-}
-@media (prefers-reduced-motion: reduce) {
-  body.interactive-mode .phone-wrap.ip-active .app-screen { animation: none !important; }
 }
 body.interactive-mode .phone-label {
   display: none !important;
@@ -14335,9 +14285,6 @@ function showScreen(screenId, pushHistory = true) {
     }
     rlApplyDailyLock();
   }
-
-  // 화면이 보여진 뒤 활성 탭 알약(thumb) 재측정·정위치 (display:none→block 측정 타이밍 대응)
-  if(window.ppPlaceTabThumbs) window.ppPlaceTabThumbs();
 }
 
 function ipGoBack() {
@@ -16041,57 +15988,5 @@ function csCheck() {
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
 })();</script>
 
-<script>
-/* PricePick 하단 탭바 — CloseUsVoice 정본의 슬라이딩 알약(thumb) 메커니즘 1:1 이식.
-   클보는 getBoundingClientRect로 측정하지만 PricePick은 .phone에 transform:scale이 걸려 있어
-   rect(스케일 후 좌표)를 스케일 컨테이너 내부 요소에 다시 쓰면 이중 스케일로 폭주한다.
-   → offsetLeft/offsetWidth(레이아웃 좌표, transform 비의존)로 측정해 thumb의 left·width를 지정.
-   화면은 display:none↔block 토글이라, 보일 때(showScreen) 재측정해야 정위치(거대화/오배치 방지). */
-(function(){
-  function ensureThumb(bar){
-    var th = bar.querySelector(':scope > .tab-thumb');
-    if(!th){
-      th = document.createElement('span');
-      th.className = 'tab-thumb'; th.setAttribute('aria-hidden','true');
-      bar.insertBefore(th, bar.firstChild);
-    }
-    return th;
-  }
-  /* 활성 버튼 박스(offset)에 맞춰 thumb를 배치. animate=false면 트랜지션 없이 즉시(정위치 스냅). */
-  function place(bar, animate){
-    var th = ensureThumb(bar);
-    var on = bar.querySelector('.tab-item.active');
-    if(!on) return;
-    var w = on.offsetWidth, l = on.offsetLeft;
-    if(!w) return; /* display:none 등 미측정 — 다음 showScreen에서 재시도 */
-    if(!animate) th.style.transition = 'none';
-    th.style.left = l + 'px';
-    th.style.width = w + 'px';
-    if(!animate){ void th.offsetWidth; th.style.transition = ''; } /* 리플로우 후 트랜지션 복원 */
-  }
-  function placeAll(animate){
-    document.querySelectorAll('.tabbar').forEach(function(bar){ place(bar, animate); });
-  }
-  /* showScreen/openModal 등 화면이 보일 때 호출 → 보이는 탭바 thumb 재측정·정위치(애니 없이) */
-  window.ppPlaceTabThumbs = function(){ placeAll(false); };
-  function onClick(e){
-    var item = e.target.closest ? e.target.closest('.tab-item') : null;
-    if(!item) return;
-    var bar = item.closest('.tabbar');
-    if(!bar || item.classList.contains('active')) return;
-    bar.querySelectorAll('.tab-item').forEach(function(x){ x.classList.remove('active'); });
-    item.classList.add('active');
-    place(bar, true); /* 같은 바 안에서의 전환은 슬라이드 애니메이션(클보 동일) */
-  }
-  function init(){
-    document.querySelectorAll('.tabbar').forEach(ensureThumb);
-    placeAll(false);
-    document.addEventListener('click', onClick, true);
-    window.addEventListener('resize', function(){ placeAll(false); });
-  }
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-})();
-</script>
 </body>
 </html>
