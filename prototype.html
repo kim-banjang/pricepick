@@ -1192,9 +1192,11 @@
 
   /* ============== 하단 탭바 (CloseUsVoice 정본 동일 — 떠 있는 고정폭 바, 활성=단일 슬라이딩 다크 알약 #16213A) ============== */
   .tabbar {
-    position: absolute;
-    left: 50%; transform: translateX(-50%);
-    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    /* 흐름 내 flex 자식: 본문 스크롤 영역이 바 위에서 끝나 겹침 없음(clbo 정본 방식). margin-top:auto로 폰 하단 고정 */
+    position: relative;
+    flex-shrink: 0;
+    align-self: center;
+    margin: auto auto calc(10px + env(safe-area-inset-bottom, 0px));
     width: 288px; max-width: calc(100% - 28px);
     display: flex; align-items: center; justify-content: space-between;
     padding: 6px;
@@ -1204,6 +1206,15 @@
     box-shadow: 0 6px 20px rgba(27, 43, 75, 0.10), 0 1px 3px rgba(27, 43, 75, 0.06);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
     backdrop-filter: blur(18px) saturate(160%);
+  }
+  /* 탭바 있는 화면: 바가 흐름 밖 아래에 있으므로 본문 스크롤 하단 과한 패딩 정리(겹침 방지는 flex 배치가 담당) */
+  .app-screen:has(> .tabbar) .scroll,
+  .app-screen:has(> .tabbar) .my-scroll,
+  .app-screen:has(> .tabbar) .reward-scroll,
+  .app-screen:has(> .tabbar) .activity-list,
+  .app-screen:has(> .tabbar) .wd-body,
+  .app-screen:has(> .tabbar) .info-body {
+    padding-bottom: 16px;
   }
   /* 단일 슬라이딩 알약(thumb): JS가 활성 탭 rect에 맞춰 left·width 지정 → 흐르듯 이동+리사이즈 */
   .tab-thumb {
