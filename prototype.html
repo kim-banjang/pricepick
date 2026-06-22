@@ -1216,16 +1216,11 @@
   .app-screen:has(> .tabbar) .info-body {
     padding-bottom: 16px;
   }
-  /* 단일 슬라이딩 알약(thumb): JS가 활성 탭 rect에 맞춰 left·width 지정 → 흐르듯 이동+리사이즈 */
-  .tab-thumb {
-    position: absolute;
-    top: 6px; bottom: 6px; left: 6px; width: 0;
-    border-radius: 99px;
-    background: #16213A;
-    pointer-events: none;
-    z-index: 0;
-    transition: left .34s cubic-bezier(0.22, 1, 0.36, 1), width .34s cubic-bezier(0.22, 1, 0.36, 1);
-  }
+  /* 활성 알약: 활성 탭 버튼이 자기 배경을 직접 가짐 (CSS-only).
+     구버전 .tab-thumb는 JS가 offsetLeft/offsetWidth를 측정해 left·width를 매 전환마다 인라인 지정했는데,
+     iOS Safari에서 화면 display:none→block 직후 측정 타이밍이 불안정해 thumb가 거대 원형으로 폭주(실기기 한정).
+     측정 의존 제거 → 기기/타이밍 무관, 버튼 박스에 묶여 절대 거대화 안 됨. 남은 thumb 노드는 숨김. */
+  .tab-thumb { display: none !important; }
   .tab-item {
     position: relative; z-index: 1;
     flex: 0 0 auto;
@@ -1236,7 +1231,7 @@
     color: #8A95A8;
     cursor: pointer;
     white-space: nowrap;
-    transition: color .28s cubic-bezier(0.22, 1, 0.36, 1), padding .34s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: color .28s cubic-bezier(0.22, 1, 0.36, 1), padding .34s cubic-bezier(0.22, 1, 0.36, 1), background-color .3s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .tab-item:active { transform: scale(0.96); }
   .tab-ico {
@@ -1252,8 +1247,10 @@
     color: #fff;
     transition: max-width .34s cubic-bezier(0.22, 1, 0.36, 1), opacity .26s ease, margin-left .34s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  /* 활성 탭 = 흰 아이콘/라벨 (배경은 단일 thumb가 담당) */
+  /* 활성 탭 = 흰 아이콘/라벨 + 버튼 자체 다크 알약 배경 */
   .tab-item.active { color: #fff; }
+  /* 활성 탭 다크 알약 — 검색 FAB은 제외(자체 보라 원형 유지) */
+  .tab-item.active:not(.tab-search) { background: #16213A; }
   .tab-item.active .tab-ico { color: #fff; }
   .tab-item.active .tab-lbl { max-width: 96px; opacity: 1; margin-left: 7px; }
   @media (prefers-reduced-motion: reduce) {
@@ -16037,27 +16034,13 @@ function csCheck() {
 })();</script>
 
 <script>
-/* PricePick 탭바 단일 슬라이딩 thumb — 활성 탭으로 흐르듯 이동+리사이즈 (CloseUsVoice langtoggle 동일 원리) */
+/* PricePick 탭바 활성 알약 — CSS-only (활성 버튼 자체 배경). JS는 클릭 시 active 토글만 담당.
+   과거: offsetLeft/offsetWidth 측정으로 단일 thumb의 left·width를 매 전환마다 인라인 지정 →
+   iOS Safari에서 화면 display:none→block 직후 측정 타이밍 불안정으로 thumb가 거대 원형으로 폭주(실기기 한정).
+   측정 의존을 완전히 제거 → 기기·타이밍 무관, 절대 안 깨짐. */
 (function(){
-  function activeItem(bar){ return bar.querySelector('.tab-item.active'); }
-  function ensureThumb(bar){
-    var t = bar.querySelector('.tab-thumb');
-    if(!t){ t = document.createElement('div'); t.className = 'tab-thumb'; bar.insertBefore(t, bar.firstChild); }
-    return t;
-  }
-  function place(bar, animate){
-    var t = ensureThumb(bar), it = activeItem(bar);
-    if(!it){ t.style.width = '0px'; return; }
-    if(it.offsetWidth === 0){ return; } /* 숨김 화면이면 스킵 */
-    if(!animate){ t.style.transition = 'none'; }
-    t.style.left = it.offsetLeft + 'px';
-    t.style.width = it.offsetWidth + 'px';
-    if(!animate){ void t.offsetWidth; t.style.transition = ''; }
-  }
-  function placeAll(animate){
-    document.querySelectorAll('.tabbar').forEach(function(b){ place(b, animate); });
-  }
-  window.ppPlaceTabThumbs = placeAll;
+  function purgeThumbs(){ document.querySelectorAll('.tab-thumb').forEach(function(t){ t.remove(); }); }
+  window.ppPlaceTabThumbs = function(){}; /* 외부 호출 호환용 no-op */
   function onClick(e){
     var item = e.target.closest ? e.target.closest('.tab-item') : null;
     if(!item) return;
@@ -16065,20 +16048,10 @@ function csCheck() {
     if(!bar || item.classList.contains('active')) return;
     bar.querySelectorAll('.tab-item').forEach(function(x){ x.classList.remove('active'); });
     item.classList.add('active');
-    place(bar, true); /* 흐르듯 슬라이드 */
   }
   function init(){
-    placeAll(false);
+    purgeThumbs();
     document.addEventListener('click', onClick, true);
-    window.addEventListener('resize', function(){ placeAll(false); });
-    if(typeof window.showScreen === 'function'){
-      var _ss = window.showScreen;
-      window.showScreen = function(){ var r = _ss.apply(this, arguments); try{ placeAll(false); }catch(e){} return r; };
-    }
-    if(typeof window.ipSetLang === 'function'){
-      var _sl = window.ipSetLang;
-      window.ipSetLang = function(){ var r = _sl.apply(this, arguments); try{ placeAll(true); }catch(e){} return r; };
-    }
   }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
