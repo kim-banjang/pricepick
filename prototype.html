@@ -1190,7 +1190,7 @@
   .tb-name { font-size: 12px; color: var(--text1); margin-bottom: 2px; }
   .tb-msg { font-size: 11px; color: #9A6B00; line-height: 1.4; }
 
-  /* ============== 하단 탭바 (CloseUsVoice 정본 동일 — 떠 있는 고정폭 알약, 활성=다크 #16213A) ============== */
+  /* ============== 하단 탭바 (CloseUsVoice 정본 동일 — 떠 있는 고정폭 바, 활성=단일 슬라이딩 다크 알약 #16213A) ============== */
   .tabbar {
     position: absolute;
     left: 50%; transform: translateX(-50%);
@@ -1205,7 +1205,18 @@
     -webkit-backdrop-filter: blur(18px) saturate(160%);
     backdrop-filter: blur(18px) saturate(160%);
   }
+  /* 단일 슬라이딩 알약(thumb): JS가 활성 탭 rect에 맞춰 left·width 지정 → 흐르듯 이동+리사이즈 */
+  .tab-thumb {
+    position: absolute;
+    top: 6px; bottom: 6px; left: 6px; width: 0;
+    border-radius: 99px;
+    background: #16213A;
+    pointer-events: none;
+    z-index: 0;
+    transition: left .34s cubic-bezier(0.22, 1, 0.36, 1), width .34s cubic-bezier(0.22, 1, 0.36, 1);
+  }
   .tab-item {
+    position: relative; z-index: 1;
     flex: 0 0 auto;
     height: 48px; padding: 0 15px;
     display: flex; align-items: center; justify-content: center;
@@ -1214,28 +1225,28 @@
     color: #8A95A8;
     cursor: pointer;
     white-space: nowrap;
-    transition: background-color .26s cubic-bezier(.22,.61,.36,1), color .22s ease, padding .26s ease;
+    transition: color .28s cubic-bezier(0.22, 1, 0.36, 1), padding .34s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .tab-item:active { transform: scale(0.95); }
+  .tab-item:active { transform: scale(0.96); }
   .tab-ico {
     display: inline-flex; align-items: center; justify-content: center;
     flex-shrink: 0;
     color: inherit;
   }
   .tab-ico svg { width: 23px; height: 23px; }
-  /* 라벨: 활성에서만 펼침(max-width 0→열림 = 알약이 부드럽게 넓어짐). 비활성은 아이콘만. */
+  /* 라벨 크로스페이드: 이전 활성은 페이드아웃+접힘, 새 활성은 페이드인+펼침(thumb 슬라이드와 동기) */
   .tab-lbl {
     max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; margin-left: 0;
     font-size: 13px; font-weight: 700; letter-spacing: -0.2px; line-height: 1;
     color: #fff;
-    transition: max-width .26s cubic-bezier(.22,.61,.36,1), opacity .2s ease, margin-left .26s ease;
+    transition: max-width .34s cubic-bezier(0.22, 1, 0.36, 1), opacity .26s ease, margin-left .34s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  /* 활성 탭 = 다크 네이비 알약 (아이콘 + 흰 라벨) */
-  .tab-item.active { background: #16213A; color: #fff; }
+  /* 활성 탭 = 흰 아이콘/라벨 (배경은 단일 thumb가 담당) */
+  .tab-item.active { color: #fff; }
   .tab-item.active .tab-ico { color: #fff; }
   .tab-item.active .tab-lbl { max-width: 96px; opacity: 1; margin-left: 7px; }
   @media (prefers-reduced-motion: reduce) {
-    .tab-item, .tab-lbl { transition: none !important; }
+    .tab-thumb, .tab-item, .tab-lbl { transition: none !important; }
   }
   /* 라인/솔리드 듀얼 SVG 토글 */
   .tab-ico .ico-line { display: block; }
@@ -16014,5 +16025,53 @@ function csCheck() {
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
 })();</script>
 
+<script>
+/* PricePick 탭바 단일 슬라이딩 thumb — 활성 탭으로 흐르듯 이동+리사이즈 (CloseUsVoice langtoggle 동일 원리) */
+(function(){
+  function activeItem(bar){ return bar.querySelector('.tab-item.active'); }
+  function ensureThumb(bar){
+    var t = bar.querySelector('.tab-thumb');
+    if(!t){ t = document.createElement('div'); t.className = 'tab-thumb'; bar.insertBefore(t, bar.firstChild); }
+    return t;
+  }
+  function place(bar, animate){
+    var t = ensureThumb(bar), it = activeItem(bar);
+    if(!it){ t.style.width = '0px'; return; }
+    if(it.offsetWidth === 0){ return; } /* 숨김 화면이면 스킵 */
+    if(!animate){ t.style.transition = 'none'; }
+    t.style.left = it.offsetLeft + 'px';
+    t.style.width = it.offsetWidth + 'px';
+    if(!animate){ void t.offsetWidth; t.style.transition = ''; }
+  }
+  function placeAll(animate){
+    document.querySelectorAll('.tabbar').forEach(function(b){ place(b, animate); });
+  }
+  window.ppPlaceTabThumbs = placeAll;
+  function onClick(e){
+    var item = e.target.closest ? e.target.closest('.tab-item') : null;
+    if(!item) return;
+    var bar = item.closest('.tabbar');
+    if(!bar || item.classList.contains('active')) return;
+    bar.querySelectorAll('.tab-item').forEach(function(x){ x.classList.remove('active'); });
+    item.classList.add('active');
+    place(bar, true); /* 흐르듯 슬라이드 */
+  }
+  function init(){
+    placeAll(false);
+    document.addEventListener('click', onClick, true);
+    window.addEventListener('resize', function(){ placeAll(false); });
+    if(typeof window.showScreen === 'function'){
+      var _ss = window.showScreen;
+      window.showScreen = function(){ var r = _ss.apply(this, arguments); try{ placeAll(false); }catch(e){} return r; };
+    }
+    if(typeof window.ipSetLang === 'function'){
+      var _sl = window.ipSetLang;
+      window.ipSetLang = function(){ var r = _sl.apply(this, arguments); try{ placeAll(true); }catch(e){} return r; };
+    }
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
 </body>
 </html>
