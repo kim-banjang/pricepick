@@ -1198,14 +1198,16 @@
     align-self: center;
     margin: auto auto calc(10px + env(safe-area-inset-bottom, 0px));
     width: 288px; max-width: calc(100% - 28px);
+    height: 62px; box-sizing: border-box; /* 높이 명시 고정 — 자식/iOS 렌더로 세로 폭주 방지(아이콘행48 + 패딩12 + 보더2) */
     display: flex; align-items: center; justify-content: space-between;
     padding: 6px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.94);
     border: 1px solid #E6EBF2;
     border-radius: 99px;
     box-shadow: 0 6px 20px rgba(27, 43, 75, 0.10), 0 1px 3px rgba(27, 43, 75, 0.06);
-    -webkit-backdrop-filter: blur(18px) saturate(160%);
-    backdrop-filter: blur(18px) saturate(160%);
+    /* backdrop-filter 제거: iOS Safari에서 transform:scale 조상(.phone 모바일 축소) 아래
+       backdrop-filter가 바 배경을 거대 흰 스타디움(세로 200px급)으로 잘못 페인트하는 버그 회피.
+       반투명 흰 배경(0.94)으로 떠있는 알약 느낌은 유지. */
   }
   /* 탭바 있는 화면: 바가 흐름 밖 아래에 있으므로 본문 스크롤 하단 과한 패딩 정리(겹침 방지는 flex 배치가 담당) */
   .app-screen:has(> .tabbar) .scroll,
