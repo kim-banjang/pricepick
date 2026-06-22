@@ -1199,13 +1199,15 @@
     border-top: 1px solid var(--border);
     border-radius: 22px 22px 0 0;
     box-shadow: 0 -6px 20px rgba(26, 17, 48, 0.07), 0 -1px 4px rgba(26, 17, 48, 0.04);
-    display: flex;
+    /* 고정폭 바: 균등 컬럼(minmax 0 1fr)으로 활성 알약 morph를 내부에서 흡수 → 바 외곽·형제 위치 불변 */
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
     align-items: center;
-    justify-content: space-evenly;
-    gap: 6px;
     padding: 6px 12px 26px;
   }
   .tab-item {
+    justify-self: center;
     display: flex; flex-direction: row;
     align-items: center; justify-content: center;
     cursor: pointer;
