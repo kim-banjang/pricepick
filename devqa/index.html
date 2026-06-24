@@ -52,6 +52,8 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 <header><div class="wrap" style="padding-bottom:0"><div class="htitle">PricePick · 개발 QA</div>
 <div class="hsub">Dev Q&amp;A · 개발팀 질문·답변 모음 (Tổng hợp hỏi đáp đội phát triển)</div></div></header>
 <div class="wrap"><div class="sec">Q&amp;A 문서 / Tài liệu</div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260624.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #3 <span class="rvi">/ Giải đáp câu hỏi Backend #3</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-06-24</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion btn" role="button" tabindex="0" onclick="openOrigin(event,'harry0624Modal')" onkeydown="if(event.key==='Enter'||event.key===' '){openOrigin(event,'harry0624Modal')}">원문 질문 보기 / Xem câu hỏi gốc</a></div>
 <div class="rowwrap"><a class="row" href="/devqa/app-john-20260622.html"><div class="rmain"><div class="rt">앱 질문 답변 #6 · John <span class="rvi">/ Giải đáp câu hỏi App #6 · John</span></div><div class="rwho">John (Nhon Truong) · App</div></div><div class="rdate">2026-06-22</div><div class="rarrow">&rsaquo;</div></a>
 <a class="srcnotion" href="https://app.notion.com/p/Danh-s-ch-QnA-app-PricePick-3823ac69e71180c49495dc3017d92c06" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
 <div class="rowwrap"><a class="row" href="/devqa/cms-vin-20260618.html"><div class="rmain"><div class="rt">CMS 질문 답변 · Vin <span class="rvi">/ Giải đáp câu hỏi CMS · Vin</span></div><div class="rwho">Vin · CMS</div></div><div class="rdate">2026-06-18</div><div class="rarrow">&rsaquo;</div></a>
@@ -96,6 +98,25 @@ Ví dụ:
 1 ticket bronze C có hạn sử dụng tới 6.6.2027
 7 ticket bronze khác có hạn sử dụng tới 7.7.2027
 Thì khi chuyển đổi 10 ticket bronze này sang 1 ticket silver thì hạn sử dụng của Ticket Silver là khi nào?</span></span></div></div></div></div>
+</div></div>
+<div class="modal" id="harry0624Modal" role="dialog" aria-modal="true" aria-label="원문 질문">
+<div class="modal-bg" data-close></div>
+<div class="modal-card">
+<div class="modal-top"><div class="mt-title"><span class="i18n"><span class="ko">원문 질문</span><span class="vi">Câu hỏi gốc</span></span></div>
+<div class="mt-ctrl"><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><button class="modal-x" data-close aria-label="Close">&times;</button></div></div>
+<div class="modal-body"><div class="chat"><div class="ava">H</div><div class="bubblewrap"><div class="who"><span class="badge">Harry</span><span class="i18n"><span class="ko">Backend · 메신저로 보낸 질문</span><span class="vi">Backend · Câu hỏi đã gửi qua tin nhắn</span></span></div><div class="bubble"><span class="i18n"><span class="ko">Mr Mark SUNG GWON KIM! 카카오톡 계정 연동 function을 작성 중입니다. 적립 티켓·포인트·기타 데이터를 계정에 통합하는 부분이 있습니다. 좀 더 설명해 주실 수 있나요:
+
+기존 카카오톡 계정에 합산되는 티켓 종류는 BRONZE, SILVER, GOLD뿐이 맞나요. EVENT TICKET은 합산 안 함. 포인트 수량도 합산되나요?
+
+그리고 PENDING 상태(쿠팡 구매확정까지 7일간 lock)인 티켓 수량도 합산되나요?
+
+그리고 이 적립 티켓 통합 Transaction은 어떻게 되나요? Transaction type이 또 다른 한 종류인가요?</span><span class="vi">Mr Mark SUNG GWON KIM! Tôi đang viết function liên kết tài khoản với KakaoTalk. Có phần hợp nhất tài khoản với các Vé tích lũy, Point và các data khác. Bạn có thể giải thích thêm giúp tôi:
+
+Các loại Ticket được cộng dồn vào tài khoản KakaoTalk cũ có phải chỉ là: BRONZE, SILVER, GOLD. Không cộng dồn EVENT TICKET. Số lượng Point có được cộng dồn không?
+
+Và số lượng các Ticket đang PENDING (đang lock trong 7 ngày chờ coupang xác nhận mua hàng thành công) có được cộng dồn vào không?
+
+Và Transaction phần hợp nhất Vé tích lũy này sẽ như thế nào? Transaction type là 1 loại khác nữa?</span></span></div></div></div></div>
 </div></div>
 <script>
 let _open=null;
