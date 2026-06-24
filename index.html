@@ -125,6 +125,20 @@
     color: var(--purple-deep);
     letter-spacing: 0.2px;
   }
+  /* Featured row — 마스터 정책서 + DevPlan 나란히 */
+  .featured-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+  .featured-row .featured {
+    flex: 1 1 0;
+    min-width: 0;
+    margin-bottom: 0;
+  }
+  @media (max-width: 600px) {
+    .featured-row { flex-direction: column; gap: 14px; }
+  }
   /* Section label */
   .seclabel {
     font-size: 12px;
@@ -293,21 +307,41 @@
       <div class="subtitle">Design Hub <span class="dot">·</span> <span id="hub-subtitle-text">산출물 최종본 모음</span></div>
     </header>
 
-    <!-- Featured: 마스터 정책서 (SoT) -->
-    <a class="featured" href="/policyspec.html" target="_blank" rel="noopener">
-      <div class="ftop">
-        <div class="ficon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/>
-            <path d="M9 11.5l2 2 4-4.5"/>
-          </svg>
+    <!-- Featured: 마스터 정책서 (SoT) + DevPlan -->
+    <div class="featured-row">
+      <a class="featured" href="/policyspec.html" target="_blank" rel="noopener">
+        <div class="ftop">
+          <div class="ficon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/>
+              <path d="M9 11.5l2 2 4-4.5"/>
+            </svg>
+          </div>
+          <span class="badge" id="featured-badge">정책 기준 · SoT</span>
         </div>
-        <span class="badge" id="featured-badge">정책 기준 · SoT</span>
-      </div>
-      <h2 id="featured-title">마스터 정책서</h2>
-      <p id="featured-desc">모든 정책의 최종 결정 · 기준 · 수치가 모인 단일 진실원(Single Source of Truth). 운영자와 개발자가 참조하는 정책 가이드 문서.</p>
-      <div class="arrow" id="featured-arrow">열기 →</div>
-    </a>
+        <h2 id="featured-title">마스터 정책서</h2>
+        <p id="featured-desc">모든 정책의 최종 결정 · 기준 · 수치가 모인 단일 진실원(Single Source of Truth). 운영자와 개발자가 참조하는 정책 가이드 문서.</p>
+        <div class="arrow" id="featured-arrow">열기 →</div>
+      </a>
+
+      <a class="featured" href="/devplan.html" target="_blank" rel="noopener">
+        <div class="ftop">
+          <div class="ficon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.5" y="4.5" width="17" height="16" rx="2"/>
+              <line x1="3.5" y1="9" x2="20.5" y2="9"/>
+              <line x1="8" y1="2.5" x2="8" y2="6"/>
+              <line x1="16" y1="2.5" x2="16" y2="6"/>
+              <path d="M8.5 14l2 2 4-4.5"/>
+            </svg>
+          </div>
+          <span class="badge" id="featured-devplan-badge">개발 트래킹</span>
+        </div>
+        <h2 id="card-devplan-title">DevPlan</h2>
+        <p id="card-devplan-desc">개발 일정 · 진행 상태 관리 (앱 · CMS · 백엔드 트랙).</p>
+        <div class="arrow" id="card-devplan-arrow">열기 →</div>
+      </a>
+    </div>
 
     <!-- ── 핵심 산출물 ── -->
     <div class="seclabel" id="seclabel-core">핵심 산출물</div>
@@ -407,21 +441,6 @@
         <div class="arrow" id="card-cmssb-arrow">열기 →</div>
       </a>
 
-      <a class="card" href="/devplan.html" target="_blank" rel="noopener">
-        <div class="cicon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3.5" y="4.5" width="17" height="16" rx="2"/>
-            <line x1="3.5" y1="9" x2="20.5" y2="9"/>
-            <line x1="8" y1="2.5" x2="8" y2="6"/>
-            <line x1="16" y1="2.5" x2="16" y2="6"/>
-            <path d="M8.5 14l2 2 4-4.5"/>
-          </svg>
-        </div>
-        <h2 id="card-devplan-title">DevPlan</h2>
-        <p id="card-devplan-desc">개발 일정 · 진행 상태 관리 (앱 · CMS · 백엔드 트랙).</p>
-        <div class="arrow" id="card-devplan-arrow">열기 →</div>
-      </a>
-
       <a class="card" href="/devqa/" target="_blank" rel="noopener">
         <div class="cicon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -515,6 +534,7 @@ const I18N = {
     'card.cmssb.desc': 'CMS 화면별 동작·권한·데이터 흐름을 정리한 개발자용 명세.',
     'card.devplan.title': 'DevPlan',
     'card.devplan.desc': '개발 일정 · 진행 상태 관리 (앱 · CMS · 백엔드 트랙).',
+    'devplan.badge': '개발 트래킹',
     'card.devqa.title': 'DevQA',
     'card.devqa.desc': '개발팀 Q&A 답변 모음 (앱 · CMS · 백엔드).',
     'card.designsystem.title': '디자인시스템',
@@ -550,6 +570,7 @@ const I18N = {
     'card.cmssb.desc': 'Đặc tả cho dev: thao tác·quyền·luồng dữ liệu theo từng màn hình CMS.',
     'card.devplan.title': 'DevPlan',
     'card.devplan.desc': 'Quản lý lịch trình · trạng thái phát triển (track App · CMS · Backend).',
+    'devplan.badge': 'Theo dõi phát triển',
     'card.devqa.title': 'DevQA',
     'card.devqa.desc': 'Tổng hợp Q&A giải đáp cho nhóm phát triển (App · CMS · Backend).',
     'card.designsystem.title': 'Design System',
@@ -610,6 +631,7 @@ function applyLang() {
   setTxt('card-cmssb-title',          t('card.cmssb.title'));
   setTxt('card-cmssb-desc',           t('card.cmssb.desc'));
   setTxt('card-cmssb-arrow',          t('card.arrow'));
+  setTxt('featured-devplan-badge',    t('devplan.badge'));
   setTxt('card-devplan-title',        t('card.devplan.title'));
   setTxt('card-devplan-desc',         t('card.devplan.desc'));
   setTxt('card-devplan-arrow',        t('card.arrow'));
