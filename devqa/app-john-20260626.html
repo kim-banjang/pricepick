@@ -61,23 +61,23 @@ Lý do chỉ Bronze có mở rộng: Bronze tích lũy nhiều vé từ nhiều 
 <h2 class="grp"><span class="i18n"><span class="ko">2. 로그아웃 <span class="vn">(Đăng xuất)</span></span><span class="vi">2. Đăng xuất</span></span></h2>
 <div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">게스트로 앱을 사용하는 경우와 카카오 계정 연동된 경우 각각 로그아웃 처리가 어떻게 되나요?</span><span class="vi">Logout sẽ xử lý như thế nào cho mỗi trường hợp sử dụng app dưới dạng guest và trường hợp khi đã liên kết tài khoản Kakao?</span></span>
 <button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq7-2.png','로그아웃 다이얼로그')"><img src="/devqa/img/jq7-2.png" alt="로그아웃 다이얼로그" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">로그아웃 다이얼로그 (클릭하면 크게)</span><span class="vi">Dialog đăng xuất (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>1. 게스트 계정 (닉네임 전용 · 카카오 미연동)</b>
-로그아웃 → 앱 세션 해제(기기 토큰 만료) → <b>닉네임 입력 화면</b>으로 복귀.
-⚠ 기존 계정 재연결 불가: 카카오 인증 수단이 없어 앱 재설치·기기 변경 시 계정 복원이 불가능합니다. 로그아웃 다이얼로그에 "카카오 계정을 연동하면 재설치 후에도 데이터를 유지할 수 있어요." 안내를 표시합니다.
-로그아웃 후 동일 닉네임으로 재입력해도 기존 계정과 <b>별개의 신규 게스트</b>로 시작합니다.
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>로그아웃 기능 없음.</b> 폴센트(fallcent.com)와 동일 구조로 확정. 로그인 버튼·로그아웃 버튼 모두 없습니다. 카카오 연동은 로그인 수단이 아니라 <b>데이터 백업/복원 수단</b>으로만 존재합니다. 계정 종료는 <b>탈퇴만</b> 제공합니다.
+
+<b>1. 게스트 계정 (닉네임 전용 · 카카오 미연동)</b>
+로그아웃 개념 없이 계속 사용. 카카오 미연동이라 앱 재설치·기기 변경 시 복원 불가. "카카오 연동하면 재설치 후에도 데이터를 유지할 수 있어요" 안내만 표시.
 
 <b>2. 카카오 연동 계정</b>
-로그아웃 → 카카오 세션 해제 → 닉네임 입력 화면으로 복귀 (카카오 연동 버튼 제공).
-카카오 재로그인 시 기존 계정(적립 티켓·포인트·구매 내역 전체) <b>완전 복원</b>됩니다.
-기기 변경·재설치 후에도 카카오 계정으로 복원 가능.</span><span class="vi"><b>1. Tài khoản guest (chỉ biệt danh · chưa liên kết Kakao)</b>
-Đăng xuất → hủy phiên app (token thiết bị hết hạn) → quay về <b>màn nhập biệt danh</b>.
-⚠ Không thể kết nối lại tài khoản cũ: không có phương thức xác thực Kakao nên không thể khôi phục khi gỡ app hoặc đổi thiết bị. Dialog đăng xuất hiển thị "Liên kết tài khoản Kakao để giữ dữ liệu sau khi cài lại app".
-Nhập lại biệt danh cũ sau đăng xuất vẫn bắt đầu như <b>guest mới, tách biệt hoàn toàn</b> với tài khoản trước.
+카카오 연동 = 데이터 백업/복원 수단. 별도 로그아웃 없음. 재설치·기기 변경 시 카카오로 데이터 복원.
+
+※ 스토리보드·정책 문서는 이 구조(로그아웃 없음, 폴센트 동일, 탈퇴만)에 맞춰 수정 예정.</span><span class="vi"><b>Không có chức năng đăng xuất.</b> Đã chốt theo cấu trúc giống fallcent.com. Không có nút đăng nhập lẫn nút đăng xuất. Liên kết Kakao không phải phương thức đăng nhập mà chỉ là <b>phương tiện sao lưu/khôi phục dữ liệu</b>. Kết thúc tài khoản chỉ có <b>hủy tài khoản</b>.
+
+<b>1. Tài khoản guest (chỉ biệt danh · chưa liên kết Kakao)</b>
+Dùng tiếp mà không có khái niệm đăng xuất. Do chưa liên kết Kakao nên không thể khôi phục khi cài lại app hoặc đổi thiết bị. Chỉ hiển thị hướng dẫn "Liên kết Kakao để giữ dữ liệu sau khi cài lại app".
 
 <b>2. Tài khoản đã liên kết Kakao</b>
-Đăng xuất → hủy phiên Kakao → quay về màn nhập biệt danh (có nút liên kết Kakao).
-Đăng nhập lại Kakao thì <b>khôi phục toàn bộ</b> tài khoản cũ (vé tích lũy · điểm · lịch sử mua).
-Có thể khôi phục sau khi đổi thiết bị hoặc cài lại app.</span></span></div></div></div>
+Liên kết Kakao = phương tiện sao lưu/khôi phục dữ liệu. Không có đăng xuất riêng. Khôi phục dữ liệu bằng Kakao khi cài lại app hoặc đổi thiết bị.
+
+※ Storyboard và tài liệu chính sách sẽ được sửa theo cấu trúc này (không đăng xuất, giống fallcent, chỉ hủy tài khoản).</span></span></div></div></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">3. Progress bar</span><span class="vi">3. Progress bar</span></span></h2>
 <div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">이 progress bar는 D-N 진행률이 정확히 어떻게 표시되나요?</span><span class="vi">Phần progress bar này hiển thị tiến độ D-N chính xác là như thế nào?</span></span>
