@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱(프론트) 질문 답변 #7 · John</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+h2.grp .vn{color:var(--ink3);font-weight:600}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:700;font-size:14px;flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap} .atxt b{color:var(--ink1);font-weight:700}
+.atxt .need{color:var(--ck);font-weight:800}
+.atxt .hold{color:var(--hold);font-weight:800}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;margin-top:11px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱(프론트) 질문 답변 #7 · John</span><span class="vi">Giải đáp câu hỏi App (Frontend) PricePick #7 · John</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">John(Nhon Truong) · App 프론트 · 화면별 질문 3건 · 프로토타입/확정 사양 기반 · 답변 KO/VI</span><span class="vi">John(Nhon Truong) · App Frontend · 3 câu hỏi theo màn · Dựa trên prototype/spec đã chốt · Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/QnA-app-PricePick-38a3ac69e711807b845cee96586dec12" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 3건</span><span class="vi">3 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 3</span><span class="vi">Đã chốt 3</span></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 내 적립 티켓 <span class="vn">(Vé tôi tích luỹ)</span></span><span class="vi">1. Vé tôi tích luỹ</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">이 화면에서 펼침 상세 섹션(만료일 자세히 보기)은 브론즈 12장에 대한 것 맞죠? 실버·골드 티켓 상세는 어떻게 되나요?</span><span class="vi">Ở màn hình này có section thông tin xổ xuống nghĩa là chi tiết hết hạn cho 12 vé đồng đúng không, vậy còn chi tiết cho các vé silver và gold thì sao?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq7-1.png','내 적립 티켓 화면')"><img src="/devqa/img/jq7-1.png" alt="내 적립 티켓 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">내 적립 티켓 화면 (클릭하면 크게)</span><span class="vi">Màn vé tích lũy (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">맞습니다. '장별 만료일 자세히 보기' 펼침 섹션은 <b>브론즈 전용</b>입니다. 실버·골드는 별도 펼침 섹션 없이 해당 등급 행에 <b>가장 가까운 만료일 1개만</b> 요약 표시합니다 (예시: Silver 4장 → Hết hạn 2027.03.15 / Gold 2장 → Hết hạn 2027.05.20).
+
+브론즈만 펼침을 두는 이유: 브론즈는 반복 구매로 수십 장이 쌓이고 구매 시점마다 만료일이 달라 개별 목록이 필요합니다. 실버·골드는 상대적으로 적고 등급 교환 단위로 관리되므로 가장 임박한 만료일 요약만 표시합니다.</span><span class="vi">Đúng. Section 'Xem chi tiết ngày hết hạn' chỉ dành riêng cho <b>Bronze</b>. Silver và Gold không có section mở rộng — chỉ hiển thị <b>1 ngày hết hạn gần nhất</b> ngay trên dòng của từng hạng (VD: Silver 4 vé → Hết hạn 2027.03.15 / Gold 2 vé → Hết hạn 2027.05.20).
+
+Lý do chỉ Bronze có mở rộng: Bronze tích lũy nhiều vé từ nhiều lần mua với ngày hết hạn khác nhau, cần danh sách chi tiết. Silver·Gold số lượng ít hơn, được quản lý theo batch đổi hạng, nên chỉ hiển thị ngày hết hạn gần nhất.</span></span></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 로그아웃 <span class="vn">(Đăng xuất)</span></span><span class="vi">2. Đăng xuất</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">게스트로 앱을 사용하는 경우와 카카오 계정 연동된 경우 각각 로그아웃 처리가 어떻게 되나요?</span><span class="vi">Logout sẽ xử lý như thế nào cho mỗi trường hợp sử dụng app dưới dạng guest và trường hợp khi đã liên kết tài khoản Kakao?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq7-2.png','로그아웃 다이얼로그')"><img src="/devqa/img/jq7-2.png" alt="로그아웃 다이얼로그" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">로그아웃 다이얼로그 (클릭하면 크게)</span><span class="vi">Dialog đăng xuất (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>로그아웃 기능 없음.</b> 폴센트(fallcent.com)와 동일 구조로 확정. 로그인 버튼·로그아웃 버튼 모두 없습니다. 카카오 연동은 로그인 수단이 아니라 <b>데이터 백업/복원 수단</b>으로만 존재합니다. 계정 종료는 <b>탈퇴만</b> 제공합니다.
+
+<b>1. 게스트 계정 (닉네임 전용 · 카카오 미연동)</b>
+로그아웃 개념 없이 계속 사용. 카카오 미연동이라 앱 재설치·기기 변경 시 복원 불가. "카카오 연동하면 재설치 후에도 데이터를 유지할 수 있어요" 안내만 표시.
+
+<b>2. 카카오 연동 계정</b>
+카카오 연동 = 데이터 백업/복원 수단. 별도 로그아웃 없음. 재설치·기기 변경 시 카카오로 데이터 복원.
+
+※ 스토리보드·정책 문서는 이 구조(로그아웃 없음, 폴센트 동일, 탈퇴만)에 맞춰 수정 예정.</span><span class="vi"><b>Không có chức năng đăng xuất.</b> Đã chốt theo cấu trúc giống fallcent.com. Không có nút đăng nhập lẫn nút đăng xuất. Liên kết Kakao không phải phương thức đăng nhập mà chỉ là <b>phương tiện sao lưu/khôi phục dữ liệu</b>. Kết thúc tài khoản chỉ có <b>hủy tài khoản</b>.
+
+<b>1. Tài khoản guest (chỉ biệt danh · chưa liên kết Kakao)</b>
+Dùng tiếp mà không có khái niệm đăng xuất. Do chưa liên kết Kakao nên không thể khôi phục khi cài lại app hoặc đổi thiết bị. Chỉ hiển thị hướng dẫn "Liên kết Kakao để giữ dữ liệu sau khi cài lại app".
+
+<b>2. Tài khoản đã liên kết Kakao</b>
+Liên kết Kakao = phương tiện sao lưu/khôi phục dữ liệu. Không có đăng xuất riêng. Khôi phục dữ liệu bằng Kakao khi cài lại app hoặc đổi thiết bị.
+
+※ Storyboard và tài liệu chính sách sẽ được sửa theo cấu trúc này (không đăng xuất, giống fallcent, chỉ hủy tài khoản).</span></span></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. Progress bar</span><span class="vi">3. Progress bar</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">이 progress bar는 D-N 진행률이 정확히 어떻게 표시되나요?</span><span class="vi">Phần progress bar này hiển thị tiến độ D-N chính xác là như thế nào?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq7-3.png','Progress bar 화면')"><img src="/devqa/img/jq7-3.png" alt="Progress bar 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">Progress bar 화면 (클릭하면 크게)</span><span class="vi">Màn progress bar (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">랜덤 티켓이 등급 티켓으로 전환되기까지의 대기 기간을 시각화합니다.
+
+<b>D-N 계산 기준</b>
+• N = 전환 예정일까지 남은 일수 (오늘 기준)
+• 전환 예정일 = 쿠팡 구매확정일 <b>+ 7일</b> (카카오 연동) / <b>+ 30일</b> (미연동·게스트)
+
+<b>프로그레스 바 진행률</b>
+진행률 = (총 대기일 − 남은 일) ÷ 총 대기일 × 100%
+예) 카카오 연동(총 7일), 3일 경과 → D-4, 바 43%
+예) 미연동(총 30일), 5일 경과 → D-25, 바 17%
+
+<b>상태 변경</b>
+D-0 도달 시 자동으로 해당 등급 티켓으로 전환, 이 랜덤 티켓 항목은 사라집니다 (앱 알림 발송).</span><span class="vi">Trực quan hóa thời gian chờ trước khi vé ngẫu nhiên chuyển thành vé hạng.
+
+<b>Cách tính D-N</b>
+• N = số ngày còn lại đến ngày chuyển đổi (tính từ hôm nay)
+• Ngày chuyển = Ngày xác nhận mua Coupang <b>+ 7 ngày</b> (đã liên kết Kakao) / <b>+ 30 ngày</b> (chưa liên kết·guest)
+
+<b>Tỷ lệ tiến độ</b>
+Tiến độ = (Tổng ngày − Ngày còn lại) ÷ Tổng ngày × 100%
+Ví dụ: đã liên kết Kakao (tổng 7 ngày), đã qua 3 ngày → D-4, thanh 43%
+Ví dụ: chưa liên kết (tổng 30 ngày), đã qua 5 ngày → D-25, thanh 17%
+
+<b>Thay đổi trạng thái</b>
+Khi D-0, tự động chuyển thành vé hạng tương ứng, mục vé ngẫu nhiên này biến mất (gửi thông báo app).</span></span></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱(프론트) 질문 답변 #7 · John(Nhon Truong) · 2026-06-26</span><span class="vi">PricePick · Giải đáp App (Frontend) #7 · John(Nhon Truong) · 2026-06-26</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
