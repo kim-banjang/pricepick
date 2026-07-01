@@ -140,6 +140,65 @@
     .featured-row { flex-direction: column; gap: 14px; }
     .featured-row .featured { flex: none; }
   }
+  /* 오늘 변경 내역 카드 */
+  .changelog {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+    padding: 20px 24px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #FBF9FF, #F5F0FD);
+    border: 1px solid #E4DAFB;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    overflow: hidden;
+  }
+  .changelog::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #F5A623, var(--purple));
+  }
+  .changelog:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(132, 94, 238, 0.14);
+    border-color: #D9CEF7;
+  }
+  .changelog:active { transform: translateY(-1px); }
+  .changelog .cl-pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: var(--purple-deep);
+    background: #fff;
+    border: 1px solid #E4DAFB;
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+  }
+  .changelog h2 {
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    margin-bottom: 6px;
+  }
+  .changelog p {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 700px;
+  }
+  .changelog .cl-foot {
+    margin-top: 13px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--purple-deep);
+    letter-spacing: 0.2px;
+  }
   /* Section label */
   .seclabel {
     font-size: 12px;
@@ -322,12 +381,7 @@
         </div>
         <h2 id="featured-title">마스터 정책서</h2>
         <p id="featured-desc">모든 정책의 최종 결정 · 기준 · 수치가 모인 단일 진실원(Single Source of Truth). 운영자와 개발자가 참조하는 정책 가이드 문서.</p>
-        <div class="card-foot">
-          <span class="arrow" id="featured-arrow">열기 →</span>
-          <span class="chg-badge" id="featured-compare" role="link" tabindex="0"
-            onclick="event.preventDefault();event.stopPropagation();window.open('/policy-comparison.html','_blank','noopener');"
-            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/policy-comparison.html','_blank','noopener');}">정책 비교표 ↗</span>
-        </div>
+        <div class="arrow" id="featured-arrow">열기 →</div>
       </a>
 
       <a class="featured" href="/devplan.html" target="_blank" rel="noopener">
@@ -348,6 +402,14 @@
         <div class="arrow" id="card-devplan-arrow">열기 →</div>
       </a>
     </div>
+
+    <!-- 오늘 변경 내역 -->
+    <a class="changelog" href="/policy-comparison.html" target="_blank" rel="noopener">
+      <span class="cl-pill" id="changelog-pill">오늘 변경</span>
+      <h2 id="changelog-title">정책 수정 내역 2026-07-01</h2>
+      <p id="changelog-desc">이부장 미팅 반영 — 카카오 선택화, 격주 추첨, 픽→구매, 이벤트 티켓 100일 외</p>
+      <div class="cl-foot" id="changelog-foot">변경 내용 보기 ↗</div>
+    </a>
 
     <!-- ── 핵심 산출물 ── -->
     <div class="seclabel" id="seclabel-core">핵심 산출물</div>
@@ -523,7 +585,10 @@ const I18N = {
     'featured.title': '마스터 정책서',
     'featured.desc': '모든 정책의 최종 결정 · 기준 · 수치가 모인 단일 진실원(Single Source of Truth). 운영자와 개발자가 참조하는 정책 가이드 문서.',
     'featured.arrow': '열기 →',
-    'featured.compare': '정책 비교표 ↗',
+    'changelog.pill': '오늘 변경',
+    'changelog.title': '정책 수정 내역 2026-07-01',
+    'changelog.desc': '이부장 미팅 반영 — 카카오 선택화, 격주 추첨, 픽→구매, 이벤트 티켓 100일 외',
+    'changelog.foot': '변경 내용 보기 ↗',
     'seclabel.core': '핵심 산출물',
     'seclabel.ops': '운영 · 개발 협업',
     'seclabel.devref': '개발 참고 기준',
@@ -560,7 +625,10 @@ const I18N = {
     'featured.title': 'Chính sách tổng hợp',
     'featured.desc': 'Nguồn sự thật duy nhất (Single Source of Truth) — tập hợp mọi quyết định, tiêu chuẩn và chỉ số chính sách cuối cùng. Tài liệu hướng dẫn chính sách cho vận hành và phát triển.',
     'featured.arrow': 'Mở →',
-    'featured.compare': 'Bảng so sánh chính sách ↗',
+    'changelog.pill': 'Cập nhật hôm nay',
+    'changelog.title': 'Lịch sử sửa đổi chính sách 2026-07-01',
+    'changelog.desc': 'Phản ánh cuộc họp với Phó phòng Lee — Kakao tùy chọn, rút thăm 2 tuần/lần, Pick→Mua, vé sự kiện 100 ngày, v.v.',
+    'changelog.foot': 'Xem nội dung thay đổi ↗',
     'seclabel.core': 'Tài liệu cốt lõi',
     'seclabel.ops': 'Vận hành · Hợp tác phát triển',
     'seclabel.devref': 'Tiêu chuẩn tham khảo phát triển',
@@ -615,7 +683,10 @@ function applyLang() {
   setTxt('featured-title',            t('featured.title'));
   setTxt('featured-desc',             t('featured.desc'));
   setTxt('featured-arrow',            t('featured.arrow'));
-  setTxt('featured-compare',          t('featured.compare'));
+  setTxt('changelog-pill',            t('changelog.pill'));
+  setTxt('changelog-title',           t('changelog.title'));
+  setTxt('changelog-desc',            t('changelog.desc'));
+  setTxt('changelog-foot',            t('changelog.foot'));
   setTxt('seclabel-core',             t('seclabel.core'));
   setTxt('seclabel-ops',              t('seclabel.ops'));
   setTxt('seclabel-devref',           t('seclabel.devref'));
