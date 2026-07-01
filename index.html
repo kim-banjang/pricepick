@@ -322,7 +322,12 @@
         </div>
         <h2 id="featured-title">마스터 정책서</h2>
         <p id="featured-desc">모든 정책의 최종 결정 · 기준 · 수치가 모인 단일 진실원(Single Source of Truth). 운영자와 개발자가 참조하는 정책 가이드 문서.</p>
-        <div class="arrow" id="featured-arrow">열기 →</div>
+        <div class="card-foot">
+          <span class="arrow" id="featured-arrow">열기 →</span>
+          <span class="chg-badge" id="featured-compare" role="link" tabindex="0"
+            onclick="event.preventDefault();event.stopPropagation();window.open('/policy-comparison.html','_blank','noopener');"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/policy-comparison.html','_blank','noopener');}">정책 비교표 ↗</span>
+        </div>
       </a>
 
       <a class="featured" href="/devplan.html" target="_blank" rel="noopener">
@@ -518,6 +523,7 @@ const I18N = {
     'featured.title': '마스터 정책서',
     'featured.desc': '모든 정책의 최종 결정 · 기준 · 수치가 모인 단일 진실원(Single Source of Truth). 운영자와 개발자가 참조하는 정책 가이드 문서.',
     'featured.arrow': '열기 →',
+    'featured.compare': '정책 비교표 ↗',
     'seclabel.core': '핵심 산출물',
     'seclabel.ops': '운영 · 개발 협업',
     'seclabel.devref': '개발 참고 기준',
@@ -554,6 +560,7 @@ const I18N = {
     'featured.title': 'Chính sách tổng hợp',
     'featured.desc': 'Nguồn sự thật duy nhất (Single Source of Truth) — tập hợp mọi quyết định, tiêu chuẩn và chỉ số chính sách cuối cùng. Tài liệu hướng dẫn chính sách cho vận hành và phát triển.',
     'featured.arrow': 'Mở →',
+    'featured.compare': 'Bảng so sánh chính sách ↗',
     'seclabel.core': 'Tài liệu cốt lõi',
     'seclabel.ops': 'Vận hành · Hợp tác phát triển',
     'seclabel.devref': 'Tiêu chuẩn tham khảo phát triển',
@@ -608,6 +615,7 @@ function applyLang() {
   setTxt('featured-title',            t('featured.title'));
   setTxt('featured-desc',             t('featured.desc'));
   setTxt('featured-arrow',            t('featured.arrow'));
+  setTxt('featured-compare',          t('featured.compare'));
   setTxt('seclabel-core',             t('seclabel.core'));
   setTxt('seclabel-ops',              t('seclabel.ops'));
   setTxt('seclabel-devref',           t('seclabel.devref'));
