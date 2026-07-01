@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PricePick 서버 설정 가이드</title>
+<style>
+  :root {
+    --primary: #2A66D0;
+    --primary-light: #EEF3FC;
+    --accent: #10B981;
+    --accent-light: #ECFDF5;
+    --warn: #F59E0B;
+    --warn-light: #FFFBEB;
+    --danger: #EF4444;
+    --text: #111827;
+    --text-muted: #6B7280;
+    --border: #E5E7EB;
+    --bg: #F9FAFB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .header {
+    background: var(--primary);
+    color: white;
+    padding: 32px 40px 28px;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .header .sub { opacity: 0.75; font-size: 13px; }
+  .container { max-width: 860px; margin: 0 auto; padding: 32px 24px 60px; }
+
+  .section { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+  .section-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-header .num {
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 15px; font-weight: 600; }
+  .section-body { padding: 20px; }
+
+  /* 서버 스펙 카드 */
+  .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .spec-card {
+    background: var(--primary-light);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .spec-card .label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .spec-card .value { font-size: 14px; font-weight: 700; color: var(--primary); }
+  .spec-card .note { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .equiv-box {
+    margin-top: 14px;
+    background: var(--accent-light);
+    border: 1px solid #A7F3D0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #065F46;
+  }
+  .equiv-box strong { display: block; font-size: 14px; margin-bottom: 2px; }
+
+  /* 태그 */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tag.green { background: var(--accent-light); color: #065F46; }
+  .tag.red { background: #FEF2F2; color: #991B1B; }
+  .tag.blue { background: var(--primary-light); color: #1E40AF; }
+
+  /* 표 */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: #F3F4F6;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #FAFAFA; }
+  .td-val { font-weight: 700; color: var(--primary); }
+
+  /* 부하 단계 */
+  .load-items { display: flex; flex-direction: column; gap: 10px; }
+  .load-item { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 8px; }
+  .load-item .users { font-size: 18px; font-weight: 800; min-width: 80px; }
+  .load-item .desc { font-size: 13px; }
+  .load-item.ok { background: var(--accent-light); }
+  .load-item.ok .users { color: var(--accent); }
+  .load-item.warn { background: var(--warn-light); }
+  .load-item.warn .users { color: var(--warn); }
+
+  /* RAM 분배 */
+  .ram-bar { margin-bottom: 16px; }
+  .ram-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+  .ram-label { width: 120px; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+  .ram-track { flex: 1; background: #E5E7EB; border-radius: 4px; height: 18px; overflow: hidden; }
+  .ram-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 700; color: white; }
+  .ram-gb { font-size: 12px; color: var(--text-muted); width: 36px; text-align: right; }
+
+  /* 로드맵 */
+  .roadmap { display: flex; flex-direction: column; gap: 0; }
+  .roadmap-item { display: flex; gap: 16px; }
+  .roadmap-left { display: flex; flex-direction: column; align-items: center; width: 36px; flex-shrink: 0; }
+  .roadmap-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--primary); border: 3px solid white; box-shadow: 0 0 0 2px var(--primary); flex-shrink: 0; margin-top: 4px; }
+  .roadmap-line { flex: 1; width: 2px; background: var(--border); }
+  .roadmap-content { padding-bottom: 20px; flex: 1; }
+  .roadmap-stage { font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 3px; }
+  .roadmap-detail { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+  .roadmap-infra { font-size: 12px; color: var(--text-muted); }
+
+  /* 체크리스트 */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* 결론 박스 */
+  .conclusion {
+    background: linear-gradient(135deg, #EEF3FC 0%, #E8F5E9 100%);
+    border: 1px solid #A7C4F7;
+    border-radius: 10px;
+    padding: 20px 24px;
+  }
+  .conclusion h3 { font-size: 15px; font-weight: 700; margin-bottom: 14px; color: var(--primary); }
+  .conclusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .c-card { background: white; border-radius: 8px; padding: 14px 16px; }
+  .c-card .c-label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 6px; }
+  .c-card .c-val { font-size: 14px; font-weight: 700; color: var(--primary); }
+  .c-card .c-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .conclusion-note { margin-top: 14px; font-size: 13px; color: #374151; line-height: 1.7; }
+
+  .note-box {
+    background: var(--warn-light);
+    border: 1px solid #FDE68A;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #78350F;
+    margin-top: 14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>PricePick 서버 설정 가이드</h1>
+  <div class="sub">서버 현황 분석 · 용량 계획 · 인프라 로드맵 | 출처: Notion (베트남어 원문 번역 정리)</div>
+</div>
+
+<div class="container">
+
+  <!-- 1. 서버 스펙 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">1</div>
+      <h2>현재 서버 스펙 (IP: 111.67.210.110)</h2>
+    </div>
+    <div class="section-body">
+      <div class="spec-grid">
+        <div class="spec-card">
+          <div class="label">CPU</div>
+          <div class="value">2× Intel Xeon E5-2650</div>
+          <div class="note">16코어 / 32스레드</div>
+        </div>
+        <div class="spec-card">
+          <div class="label">RAM</div>
+          <div class="value">32GB</div>
+          <div class="note">충분한 용량</div>
+        </div>
+        <div class="spec-card">
+          <div class="label">SSD</div>
+          <div class="value">220GB</div>
+          <div class="note">여유 공간 ~138GB</div>
+        </div>
+        <div class="spec-card">
+          <div class="label">OS / 네트워크</div>
+          <div class="value">Ubuntu</div>
+          <div class="note">네트워크 1Gbps 추정</div>
+        </div>
+      </div>
+      <div class="equiv-box">
+        <strong>현세대 VPS 환산 성능</strong>
+        2012년형 서버지만 현세대 클라우드 VPS 기준 12~16 vCPU 수준. 절대 약한 서버가 아님.
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 시스템 특성 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">2</div>
+      <h2>PricePick 시스템 특성 — CPU 부담 낮음</h2>
+    </div>
+    <div class="section-body">
+      <div class="tag-row" style="margin-bottom:12px;">
+        <span class="tag green">✓ CRUD 위주</span>
+        <span class="tag green">✓ 트랜잭션 DB</span>
+        <span class="tag green">✓ REST API</span>
+        <span class="tag red">✗ AI 없음</span>
+        <span class="tag red">✗ 영상 없음</span>
+        <span class="tag red">✗ 스트리밍 없음</span>
+      </div>
+      <div style="font-size:13px;color:var(--text-muted);">쿠팡픽 구매·티켓 적립·기프티콘 교환·포인트·출석체크 등 일반적인 데이터 읽기/쓰기가 주 업무. CPU 병목 발생 가능성 낮음.</div>
+    </div>
+  </div>
+
+  <!-- 3. 처리 능력 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">3</div>
+      <h2>처리 능력 (NodeJS + PostgreSQL + Redis + Nginx 기준)</h2>
+    </div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr><th>지표</th><th>예상 처리량</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>초당 요청(req/s)</td><td class="td-val">300 ~ 800</td></tr>
+          <tr><td>동시 연결</td><td class="td-val">10,000+</td></tr>
+          <tr><td>동시 온라인 유저</td><td class="td-val">2,000 ~ 5,000명</td></tr>
+          <tr><td>총 가입자</td><td class="td-val">100,000명+</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:16px;">
+        <div class="load-items">
+          <div class="load-item ok">
+            <div class="users">500명</div>
+            <div class="desc">동시 온라인 — 매우 가벼움. 여유 충분.</div>
+          </div>
+          <div class="load-item ok">
+            <div class="users">1,000명</div>
+            <div class="desc">동시 온라인 — 충분히 처리 가능.</div>
+          </div>
+          <div class="load-item warn">
+            <div class="users">3,000명</div>
+            <div class="desc">동시 온라인 — 처리 가능하나 업그레이드 검토 시점.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 쿠팡 연동 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">4</div>
+      <h2>쿠팡 연동 시 주의사항</h2>
+    </div>
+    <div class="section-body">
+      <div style="font-size:13px;line-height:1.8;">
+        쿠팡 API를 호출하는 순간 응답 지연은 <strong>서버가 아닌 쿠팡 쪽</strong>에서 옴.<br>
+        외부 API 연동 작업(쿠팡 픽 구매 처리, 기프티콘 발급, 이메일/SMS 발송 등)은 반드시 <strong>백그라운드 워커(Worker Queue)</strong>로 분리해 처리할 것.
+      </div>
+      <div class="note-box" style="margin-top:14px;">
+        RabbitMQ 또는 Redis Streams 사용 권장 — 유저가 결과를 기다리지 않게 비동기 처리
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. RAM 분배 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">5</div>
+      <h2>RAM 32GB 분배 권장안</h2>
+    </div>
+    <div class="section-body">
+      <div class="ram-bar">
+        <div class="ram-row">
+          <div class="ram-label">Ubuntu OS</div>
+          <div class="ram-track"><div class="ram-fill" style="width:6.25%;background:#94A3B8;">2G</div></div>
+          <div class="ram-gb">2GB</div>
+        </div>
+        <div class="ram-row">
+          <div class="ram-label">PostgreSQL</div>
+          <div class="ram-track"><div class="ram-fill" style="width:25%;background:#2A66D0;">8G</div></div>
+          <div class="ram-gb">8GB</div>
+        </div>
+        <div class="ram-row">
+          <div class="ram-label">Backend (Node)</div>
+          <div class="ram-track"><div class="ram-fill" style="width:25%;background:#3B82F6;">8G</div></div>
+          <div class="ram-gb">8GB</div>
+        </div>
+        <div class="ram-row">
+          <div class="ram-label">Worker</div>
+          <div class="ram-track"><div class="ram-fill" style="width:12.5%;background:#8B5CF6;">4G</div></div>
+          <div class="ram-gb">4GB</div>
+        </div>
+        <div class="ram-row">
+          <div class="ram-label">Redis</div>
+          <div class="ram-track"><div class="ram-fill" style="width:6.25%;background:#10B981;">2G</div></div>
+          <div class="ram-gb">2GB</div>
+        </div>
+        <div class="ram-row">
+          <div class="ram-label">Nginx</div>
+          <div class="ram-track"><div class="ram-fill" style="width:3.125%;background:#F59E0B;">1G</div></div>
+          <div class="ram-gb">1GB</div>
+        </div>
+        <div class="ram-row">
+          <div class="ram-label">예비</div>
+          <div class="ram-track"><div class="ram-fill" style="width:21.875%;background:#E5E7EB;color:#6B7280;">7G</div></div>
+          <div class="ram-gb">7GB</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 인프라 로드맵 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">6</div>
+      <h2>인프라 성장 로드맵</h2>
+    </div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr><th>단계</th><th>총 가입자</th><th>동시 온라인</th><th>인프라 구성</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag green">MVP</span></td>
+            <td>5,000명</td>
+            <td>300명</td>
+            <td>서버 1대</td>
+          </tr>
+          <tr>
+            <td><span class="tag green">Beta</span></td>
+            <td>20,000명</td>
+            <td>800명</td>
+            <td>서버 1대 + Redis</td>
+          </tr>
+          <tr>
+            <td><span class="tag blue">Launch</span></td>
+            <td>50,000명</td>
+            <td>2,000명</td>
+            <td>서버 1대 최적화 + Monitoring</td>
+          </tr>
+          <tr>
+            <td><span class="tag blue">Growth</span></td>
+            <td>100,000명</td>
+            <td>5,000명</td>
+            <td>서버 2대 (앱 + DB 분리)</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#FEF2F2;color:#991B1B;">Scale</span></td>
+            <td>300,000명</td>
+            <td>10,000명</td>
+            <td>Load Balancer + API 3대 + DB Replica</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#FEF2F2;color:#991B1B;">Enterprise</span></td>
+            <td>1,000,000명</td>
+            <td>30,000명</td>
+            <td>Kubernetes + Redis Cluster + MQ + CDN</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 7. 처음부터 해야 할 것 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">7</div>
+      <h2>처음부터 잡아야 할 것 (나중에 갈아엎기 방지)</h2>
+    </div>
+    <div class="section-body">
+      <ul class="checklist">
+        <li>
+          <span class="icon">🏗</span>
+          <div><strong>Stateless API 설계</strong> — 나중에 백엔드 서버를 여러 대로 늘릴 수 있게 서버가 상태를 저장하지 않는 구조로 설계</div>
+        </li>
+        <li>
+          <span class="icon">⚡</span>
+          <div><strong>Redis 적극 활용</strong> — 캐시, 세션, 레이트 리밋, 티켓·포인트 정보 등 자주 읽는 데이터 캐싱</div>
+        </li>
+        <li>
+          <span class="icon">🔄</span>
+          <div><strong>외부 연동은 백그라운드 워커로</strong> — 쿠팡, 기프티콘, 이메일/SMS 등 외부 API 호출은 RabbitMQ 또는 Redis Streams로 큐잉</div>
+        </li>
+        <li>
+          <span class="icon">📊</span>
+          <div><strong>로깅 · 모니터링 표준화</strong> — 처음부터 Prometheus + Grafana(또는 동급) 도입</div>
+        </li>
+        <li>
+          <span class="icon">💾</span>
+          <div><strong>DB 자동 백업</strong> — 매일 자동 백업 + 주기적 복구 테스트</div>
+        </li>
+        <li>
+          <span class="icon">🚀</span>
+          <div><strong>CI/CD 구축</strong> — 빠른 배포 + 업데이트 리스크 최소화</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 결론 -->
+  <div class="conclusion">
+    <h3>결론 — 현재 서버로 초기에 충분히 운영 가능</h3>
+    <div class="conclusion-grid">
+      <div class="c-card">
+        <div class="c-label">처리 가능 가입자</div>
+        <div class="c-val">20,000 ~ 50,000명</div>
+        <div class="c-desc">현재 서버로 안정 운영 가능</div>
+      </div>
+      <div class="c-card">
+        <div class="c-label">동시 온라인</div>
+        <div class="c-val">500 ~ 1,000명</div>
+        <div class="c-desc">일반적인 조건에서 여유 있음</div>
+      </div>
+      <div class="c-card">
+        <div class="c-label">피크 처리량</div>
+        <div class="c-val">100 ~ 200 req/s</div>
+        <div class="c-desc">인프라 확장 없이 처리 가능</div>
+      </div>
+      <div class="c-card">
+        <div class="c-label">앱/DB 분리 시점</div>
+        <div class="c-val">50,000명 초과 시</div>
+        <div class="c-desc">또는 동시 2,000~3,000명 초과 시</div>
+      </div>
+    </div>
+    <div class="conclusion-note">
+      300,000명 이상 규모가 되면 로드 밸런서 + Redis 클러스터 + 메시지 큐 + DB 레플리카 구조로 전환. 초기에 비용을 아끼면서도 성장에 대비할 수 있는 합리적인 로드맵.
+    </div>
+  </div>
+
+</div>
+
+<div style="position:fixed;bottom:16px;left:16px;font-size:11px;color:#9CA3AF;">Last Update 2026.07.01</div>
+
+</body>
+</html>
