@@ -30,37 +30,46 @@
   .new-text { color: #1a1a2e; font-weight: 500; }
   .note { font-size: 11px; color: #888; margin-top: 4px; }
   .strike { text-decoration: line-through; color: #aaa; }
+  .lang-toggle { position: fixed; top: 20px; right: 24px; z-index: 100; display: flex; gap: 0; background: #fff; border: 1px solid #dde3ef; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .lang-toggle button { border: none; background: #fff; color: #555; font-size: 13px; font-weight: 600; padding: 8px 16px; cursor: pointer; transition: background 0.15s, color 0.15s; }
+  .lang-toggle button + button { border-left: 1px solid #dde3ef; }
+  .lang-toggle button.active { background: #2d3a5e; color: #fff; }
 </style>
 </head>
 <body>
 
-<h1>PricePick 정책 변경 비교표</h1>
-<p class="meta">작성일: 2026-07-01 | 요청자: 이부장 | 기준: 현행 노션 정책 vs 미팅 수정 요청</p>
+<div class="lang-toggle">
+  <button id="btn-ko" class="active" onclick="setLang('ko')">KO</button>
+  <button id="btn-vi" onclick="setLang('vi')">VI</button>
+</div>
+
+<h1 class="i18n" data-ko="PricePick 정책 변경 비교표" data-vi="Bảng so sánh thay đổi chính sách PricePick">PricePick 정책 변경 비교표</h1>
+<p class="meta i18n" data-ko="작성일: 2026-07-01 | 요청자: 이부장 | 기준: 현행 노션 정책 vs 미팅 수정 요청" data-vi="Ngày tạo: 2026-07-01 | Người yêu cầu: Trưởng phòng Lee | Căn cứ: Chính sách Notion hiện tại vs Yêu cầu sửa đổi từ cuộc họp">작성일: 2026-07-01 | 요청자: 이부장 | 기준: 현행 노션 정책 vs 미팅 수정 요청</p>
 
 <!-- 1. 가입·온보딩 -->
 <div class="section">
-  <div class="section-title">1. 가입 · 온보딩</div>
+  <div class="section-title i18n" data-ko="1. 가입 · 온보딩" data-vi="1. Đăng ký &amp; Onboarding">1. 가입 · 온보딩</div>
   <table>
     <thead>
       <tr>
-        <th class="col-item">항목</th>
-        <th class="col-current">현행</th>
-        <th class="col-new">변경 요청</th>
-        <th class="col-status">구분</th>
+        <th class="col-item i18n" data-ko="항목" data-vi="Mục">항목</th>
+        <th class="col-current i18n" data-ko="현행" data-vi="Hiện tại">현행</th>
+        <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
+        <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="col-item">이용약관<br>카카오 연동 문구</td>
-        <td class="col-current current-text">약관에 "카카오 연동 필수" 명시<br><span class="note">※ 2026-05-26 정책변경 로그: "카카오 미연동 사용자 = 존재하지 않음(연동 필수)"으로 기록돼 있으나, 실제 앱 동작은 닉네임 입력 시작·연동 선택</span></td>
-        <td class="col-new new-text">약관 문구를 실제 동작에 맞게 수정<br>→ "닉네임으로 시작, 카카오 연동은 선택"<br><span class="note">이유: 약관과 실제 동작 불일치 = 법적 리스크</span></td>
-        <td class="col-status"><span class="badge badge-change">수정</span></td>
+        <td class="col-item i18n" data-ko='이용약관<br>카카오 연동 문구' data-vi='Điều khoản sử dụng<br>Câu về liên kết Kakao'>이용약관<br>카카오 연동 문구</td>
+        <td class="col-current current-text i18n" data-ko='약관에 "카카오 연동 필수" 명시<br><span class="note">※ 2026-05-26 정책변경 로그: "카카오 미연동 사용자 = 존재하지 않음(연동 필수)"으로 기록돼 있으나, 실제 앱 동작은 닉네임 입력 시작·연동 선택</span>' data-vi='Điều khoản ghi rõ "bắt buộc liên kết Kakao"<br><span class="note">※ Log thay đổi chính sách 2026-05-26: được ghi là "Người dùng chưa liên kết Kakao = không tồn tại (bắt buộc liên kết)", nhưng hoạt động thực tế của app là bắt đầu bằng nhập biệt danh · liên kết là tùy chọn</span>'>약관에 "카카오 연동 필수" 명시<br><span class="note">※ 2026-05-26 정책변경 로그: "카카오 미연동 사용자 = 존재하지 않음(연동 필수)"으로 기록돼 있으나, 실제 앱 동작은 닉네임 입력 시작·연동 선택</span></td>
+        <td class="col-new new-text i18n" data-ko='약관 문구를 실제 동작에 맞게 수정<br>→ "닉네임으로 시작, 카카오 연동은 선택"<br><span class="note">이유: 약관과 실제 동작 불일치 = 법적 리스크</span>' data-vi='Sửa câu điều khoản cho khớp với hoạt động thực tế<br>→ "Bắt đầu bằng biệt danh, liên kết Kakao là tùy chọn"<br><span class="note">Lý do: Điều khoản không khớp hoạt động thực tế = rủi ro pháp lý</span>'>약관 문구를 실제 동작에 맞게 수정<br>→ "닉네임으로 시작, 카카오 연동은 선택"<br><span class="note">이유: 약관과 실제 동작 불일치 = 법적 리스크</span></td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="수정" data-vi="Sửa đổi">수정</span></td>
       </tr>
       <tr>
-        <td class="col-item">재가입 쿨타임</td>
-        <td class="col-current current-text">약관: 탈퇴 후 30일 재가입 제한<br>화면: 즉시 재가입 가능<br><span class="note">→ 현재 충돌 상태</span></td>
-        <td class="col-new new-text">즉시 재가입 허용 (약관도 맞춰 수정)<br>단, 탈퇴-재가입 반복 어뷰징 의심 계정만 30일 제한 적용<br><span class="note">→ 약관 + 화면 양쪽 정합 필요</span></td>
-        <td class="col-status"><span class="badge badge-conflict">충돌 해소</span></td>
+        <td class="col-item i18n" data-ko="재가입 쿨타임" data-vi="Thời gian chờ đăng ký lại">재가입 쿨타임</td>
+        <td class="col-current current-text i18n" data-ko='약관: 탈퇴 후 30일 재가입 제한<br>화면: 즉시 재가입 가능<br><span class="note">→ 현재 충돌 상태</span>' data-vi='Điều khoản: Giới hạn đăng ký lại trong 30 ngày sau khi hủy tài khoản<br>Màn hình: Có thể đăng ký lại ngay<br><span class="note">→ Đang xung đột</span>'>약관: 탈퇴 후 30일 재가입 제한<br>화면: 즉시 재가입 가능<br><span class="note">→ 현재 충돌 상태</span></td>
+        <td class="col-new new-text i18n" data-ko='즉시 재가입 허용 (약관도 맞춰 수정)<br>단, 탈퇴-재가입 반복 어뷰징 의심 계정만 30일 제한 적용<br><span class="note">→ 약관 + 화면 양쪽 정합 필요</span>' data-vi='Cho phép đăng ký lại ngay (sửa cả điều khoản cho khớp)<br>Tuy nhiên chỉ áp dụng giới hạn 30 ngày với tài khoản nghi lạm dụng hủy-đăng ký lại lặp lại<br><span class="note">→ Cần đồng bộ cả điều khoản + màn hình</span>'>즉시 재가입 허용 (약관도 맞춰 수정)<br>단, 탈퇴-재가입 반복 어뷰징 의심 계정만 30일 제한 적용<br><span class="note">→ 약관 + 화면 양쪽 정합 필요</span></td>
+        <td class="col-status"><span class="badge badge-conflict i18n" data-ko="충돌 해소" data-vi="Giải quyết xung đột">충돌 해소</span></td>
       </tr>
     </tbody>
   </table>
@@ -68,22 +77,22 @@
 
 <!-- 2. 홈·경유 구매 -->
 <div class="section">
-  <div class="section-title">2. 홈 · 경유 구매</div>
+  <div class="section-title i18n" data-ko="2. 홈 · 경유 구매" data-vi="2. Trang chủ &amp; Mua hàng">2. 홈 · 경유 구매</div>
   <table>
     <thead>
       <tr>
-        <th class="col-item">항목</th>
-        <th class="col-current">현행</th>
-        <th class="col-new">변경 요청</th>
-        <th class="col-status">구분</th>
+        <th class="col-item i18n" data-ko="항목" data-vi="Mục">항목</th>
+        <th class="col-current i18n" data-ko="현행" data-vi="Hiện tại">현행</th>
+        <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
+        <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="col-item">용어 통일</td>
-        <td class="col-current current-text">"픽구매", "픽" 용어 사용<br><span class="note">전 화면·약관·CMS 전반</span></td>
-        <td class="col-new new-text"><span class="strike">픽구매</span> → <strong>구매</strong><br>"픽" 전체 제거<br><span class="note">이유: 자체 조어, 신규 유저 이해 어려움</span></td>
-        <td class="col-status"><span class="badge badge-change">전체 치환</span></td>
+        <td class="col-item i18n" data-ko="용어 통일" data-vi="Thống nhất thuật ngữ">용어 통일</td>
+        <td class="col-current current-text i18n" data-ko='"픽구매", "픽" 용어 사용<br><span class="note">전 화면·약관·CMS 전반</span>' data-vi='Dùng thuật ngữ "Pick mua", "Pick"<br><span class="note">Toàn bộ màn hình · điều khoản · CMS</span>'>"픽구매", "픽" 용어 사용<br><span class="note">전 화면·약관·CMS 전반</span></td>
+        <td class="col-new new-text i18n" data-ko='<span class="strike">픽구매</span> → <strong>구매</strong><br>"픽" 전체 제거<br><span class="note">이유: 자체 조어, 신규 유저 이해 어려움</span>' data-vi='<span class="strike">Pick mua</span> → <strong>Mua hàng</strong><br>Xóa toàn bộ "Pick"<br><span class="note">Lý do: Từ tự chế, người dùng mới khó hiểu</span>'><span class="strike">픽구매</span> → <strong>구매</strong><br>"픽" 전체 제거<br><span class="note">이유: 자체 조어, 신규 유저 이해 어려움</span></td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="전체 치환" data-vi="Thay thế toàn bộ">전체 치환</span></td>
       </tr>
     </tbody>
   </table>
@@ -91,40 +100,40 @@
 
 <!-- 3. 혜택·보상 -->
 <div class="section">
-  <div class="section-title">3. 혜택 · 보상</div>
+  <div class="section-title i18n" data-ko="3. 혜택 · 보상" data-vi="3. Phúc lợi &amp; Phần thưởng">3. 혜택 · 보상</div>
   <table>
     <thead>
       <tr>
-        <th class="col-item">항목</th>
-        <th class="col-current">현행</th>
-        <th class="col-new">변경 요청</th>
-        <th class="col-status">구분</th>
+        <th class="col-item i18n" data-ko="항목" data-vi="Mục">항목</th>
+        <th class="col-current i18n" data-ko="현행" data-vi="Hiện tại">현행</th>
+        <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
+        <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="col-item">출석 보상 방식</td>
-        <td class="col-current current-text">매일 100P 지급 (2026-06-05 정책)<br>+ 5일 연속 → 이벤트 티켓 1장<br>30초 체류 검증 방식</td>
-        <td class="col-new new-text">클릭(경유 이동) 즉시 100P 지급<br>→ 30초 체류 검증 폐기<br>+ 재방문 구매 이벤트 추가 (경유 구매 시 포인트 추가)</td>
-        <td class="col-status"><span class="badge badge-change">수정</span></td>
+        <td class="col-item i18n" data-ko="출석 보상 방식" data-vi="Cách thưởng điểm danh">출석 보상 방식</td>
+        <td class="col-current current-text i18n" data-ko='매일 100P 지급 (2026-06-05 정책)<br>+ 5일 연속 → 이벤트 티켓 1장<br>30초 체류 검증 방식' data-vi='Cấp 100P mỗi ngày (chính sách 2026-06-05)<br>+ 5 ngày liên tục → 1 vé sự kiện<br>Phương thức xác minh lưu lại 30 giây'>매일 100P 지급 (2026-06-05 정책)<br>+ 5일 연속 → 이벤트 티켓 1장<br>30초 체류 검증 방식</td>
+        <td class="col-new new-text i18n" data-ko='클릭(경유 이동) 즉시 100P 지급<br>→ 30초 체류 검증 폐기<br>+ 재방문 구매 이벤트 추가 (경유 구매 시 포인트 추가)' data-vi='Cấp 100P ngay khi click (chuyển tiếp)<br>→ Bỏ xác minh lưu lại 30 giây<br>+ Thêm sự kiện mua khi quay lại (thêm điểm khi mua qua chuyển tiếp)'>클릭(경유 이동) 즉시 100P 지급<br>→ 30초 체류 검증 폐기<br>+ 재방문 구매 이벤트 추가 (경유 구매 시 포인트 추가)</td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="수정" data-vi="Sửa đổi">수정</span></td>
       </tr>
       <tr>
-        <td class="col-item">등급 교환</td>
-        <td class="col-current current-text">명세상 교환 방향 미명시<br><span class="note">(포인트↔티켓 쌍방교환은 2026-06-05 확정)</span></td>
-        <td class="col-new new-text">하향 교환(상위→하위 등급)도 가능하게 추가<br><span class="note">예: 골드 → 실버/브론즈 방향 허용</span></td>
-        <td class="col-status"><span class="badge badge-add">추가</span></td>
+        <td class="col-item i18n" data-ko="등급 교환" data-vi="Đổi hạng">등급 교환</td>
+        <td class="col-current current-text i18n" data-ko='명세상 교환 방향 미명시<br><span class="note">(포인트↔티켓 쌍방교환은 2026-06-05 확정)</span>' data-vi='Hướng đổi chưa ghi rõ trong đặc tả<br><span class="note">(Đổi hai chiều điểm↔vé đã xác nhận 2026-06-05)</span>'>명세상 교환 방향 미명시<br><span class="note">(포인트↔티켓 쌍방교환은 2026-06-05 확정)</span></td>
+        <td class="col-new new-text i18n" data-ko='하향 교환(상위→하위 등급)도 가능하게 추가<br><span class="note">예: 골드 → 실버/브론즈 방향 허용</span>' data-vi='Thêm cho phép đổi xuống (hạng cao→hạng thấp)<br><span class="note">VD: cho phép hướng Vàng → Bạc/Đồng</span>'>하향 교환(상위→하위 등급)도 가능하게 추가<br><span class="note">예: 골드 → 실버/브론즈 방향 허용</span></td>
+        <td class="col-status"><span class="badge badge-add i18n" data-ko="추가" data-vi="Thêm">추가</span></td>
       </tr>
       <tr>
-        <td class="col-item">광고 시청 포인트</td>
-        <td class="col-current current-text">2026-06-05 포인트 정책에 포함됨<br>"광고 시청: 포인트 지급 (수량 미정)"</td>
-        <td class="col-new new-text">계획에 없던 항목 → <strong>정책서에서 삭제</strong><br><span class="note">광고 시청 화면·기능 제거</span></td>
-        <td class="col-status"><span class="badge badge-delete">삭제</span></td>
+        <td class="col-item i18n" data-ko="광고 시청 포인트" data-vi="Điểm xem quảng cáo">광고 시청 포인트</td>
+        <td class="col-current current-text i18n" data-ko='2026-06-05 포인트 정책에 포함됨<br>"광고 시청: 포인트 지급 (수량 미정)"' data-vi='Được đưa vào chính sách điểm 2026-06-05<br>"Xem quảng cáo: cấp điểm (số lượng chưa định)"'>2026-06-05 포인트 정책에 포함됨<br>"광고 시청: 포인트 지급 (수량 미정)"</td>
+        <td class="col-new new-text i18n" data-ko='계획에 없던 항목 → <strong>정책서에서 삭제</strong><br><span class="note">광고 시청 화면·기능 제거</span>' data-vi='Mục không có trong kế hoạch → <strong>Xóa khỏi tài liệu chính sách</strong><br><span class="note">Loại bỏ màn hình · chức năng xem quảng cáo</span>'>계획에 없던 항목 → <strong>정책서에서 삭제</strong><br><span class="note">광고 시청 화면·기능 제거</span></td>
+        <td class="col-status"><span class="badge badge-delete i18n" data-ko="삭제" data-vi="Xóa">삭제</span></td>
       </tr>
       <tr>
-        <td class="col-item">교환소 상품명</td>
-        <td class="col-current current-text">1단계 교환소 상품명 표기 여부 불명확</td>
-        <td class="col-new new-text">1단계 교환 상품명 제거<br><span class="note">※ 기 반영 여부 확인 필요</span></td>
-        <td class="col-status"><span class="badge badge-check">확인 필요</span></td>
+        <td class="col-item i18n" data-ko="교환소 상품명" data-vi="Tên sản phẩm tại quầy đổi">교환소 상품명</td>
+        <td class="col-current current-text i18n" data-ko='1단계 교환소 상품명 표기 여부 불명확' data-vi='Chưa rõ có hiển thị tên sản phẩm ở quầy đổi bước 1 hay không'>1단계 교환소 상품명 표기 여부 불명확</td>
+        <td class="col-new new-text i18n" data-ko='1단계 교환 상품명 제거<br><span class="note">※ 기 반영 여부 확인 필요</span>' data-vi='Xóa tên sản phẩm đổi bước 1<br><span class="note">※ Cần kiểm tra đã phản ánh hay chưa</span>'>1단계 교환 상품명 제거<br><span class="note">※ 기 반영 여부 확인 필요</span></td>
+        <td class="col-status"><span class="badge badge-check i18n" data-ko="확인 필요" data-vi="Cần kiểm tra">확인 필요</span></td>
       </tr>
     </tbody>
   </table>
@@ -132,40 +141,40 @@
 
 <!-- 4. 추첨·경품 -->
 <div class="section">
-  <div class="section-title">4. 추첨 · 경품</div>
+  <div class="section-title i18n" data-ko="4. 추첨 · 경품" data-vi="4. Rút thăm &amp; Quà tặng">4. 추첨 · 경품</div>
   <table>
     <thead>
       <tr>
-        <th class="col-item">항목</th>
-        <th class="col-current">현행</th>
-        <th class="col-new">변경 요청</th>
-        <th class="col-status">구분</th>
+        <th class="col-item i18n" data-ko="항목" data-vi="Mục">항목</th>
+        <th class="col-current i18n" data-ko="현행" data-vi="Hiện tại">현행</th>
+        <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
+        <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="col-item">추첨 주기</td>
-        <td class="col-current current-text">CMS 화면 샘플: "매주 월요일"</td>
-        <td class="col-new new-text">격주 (월 2회)<br><span class="note">→ CMS "매주 월요일" 샘플 정합 수정 필요</span></td>
-        <td class="col-status"><span class="badge badge-change">수정</span></td>
+        <td class="col-item i18n" data-ko="추첨 주기" data-vi="Chu kỳ rút thăm">추첨 주기</td>
+        <td class="col-current current-text i18n" data-ko='CMS 화면 샘플: "매주 월요일"' data-vi='Mẫu màn hình CMS: "Mỗi thứ Hai hàng tuần"'>CMS 화면 샘플: "매주 월요일"</td>
+        <td class="col-new new-text i18n" data-ko='격주 (월 2회)<br><span class="note">→ CMS "매주 월요일" 샘플 정합 수정 필요</span>' data-vi='Hai tuần một lần (2 lần/tháng)<br><span class="note">→ Cần sửa mẫu CMS "Mỗi thứ Hai hàng tuần" cho khớp</span>'>격주 (월 2회)<br><span class="note">→ CMS "매주 월요일" 샘플 정합 수정 필요</span></td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="수정" data-vi="Sửa đổi">수정</span></td>
       </tr>
       <tr>
-        <td class="col-item">1회 응모 제한</td>
-        <td class="col-current current-text">명세 확인 필요 (미명시 또는 별도 정책)</td>
-        <td class="col-new new-text">15장/회<br><span class="note">근거: 월 적립 한도 30장 ÷ 월 2회 = 회당 15장, 전부 소모 가능</span></td>
-        <td class="col-status"><span class="badge badge-check">확인 후 수정</span></td>
+        <td class="col-item i18n" data-ko="1회 응모 제한" data-vi="Giới hạn mỗi lần dự thưởng">1회 응모 제한</td>
+        <td class="col-current current-text i18n" data-ko='명세 확인 필요 (미명시 또는 별도 정책)' data-vi='Cần kiểm tra đặc tả (chưa ghi rõ hoặc chính sách riêng)'>명세 확인 필요 (미명시 또는 별도 정책)</td>
+        <td class="col-new new-text i18n" data-ko='15장/회<br><span class="note">근거: 월 적립 한도 30장 ÷ 월 2회 = 회당 15장, 전부 소모 가능</span>' data-vi='15 vé/lần<br><span class="note">Căn cứ: Hạn mức tích lũy tháng 30 vé ÷ 2 lần/tháng = 15 vé/lần, có thể dùng hết</span>'>15장/회<br><span class="note">근거: 월 적립 한도 30장 ÷ 월 2회 = 회당 15장, 전부 소모 가능</span></td>
+        <td class="col-status"><span class="badge badge-check i18n" data-ko="확인 후 수정" data-vi="Kiểm tra rồi sửa">확인 후 수정</span></td>
       </tr>
       <tr>
-        <td class="col-item">경품 예산</td>
-        <td class="col-current current-text">미정</td>
-        <td class="col-new new-text">매출의 1~2%</td>
-        <td class="col-status"><span class="badge badge-add">신규 확정</span></td>
+        <td class="col-item i18n" data-ko="경품 예산" data-vi="Ngân sách quà tặng">경품 예산</td>
+        <td class="col-current current-text i18n" data-ko='미정' data-vi='Chưa định'>미정</td>
+        <td class="col-new new-text i18n" data-ko='매출의 1~2%' data-vi='1~2% doanh thu'>매출의 1~2%</td>
+        <td class="col-status"><span class="badge badge-add i18n" data-ko="신규 확정" data-vi="Xác nhận mới">신규 확정</span></td>
       </tr>
       <tr>
-        <td class="col-item">이벤트 티켓 만료</td>
-        <td class="col-current current-text">30일<br><span class="note">(2026-05-30 정책: 등급 티켓은 1년, 이벤트 티켓 30일 유지)</span></td>
-        <td class="col-new new-text"><span class="strike">30일</span> → <strong>100일</strong><br><span class="note">이유: 모았는데 못 쓰는 상황 방지</span></td>
-        <td class="col-status"><span class="badge badge-change">수정</span></td>
+        <td class="col-item i18n" data-ko="이벤트 티켓 만료" data-vi="Hết hạn vé sự kiện">이벤트 티켓 만료</td>
+        <td class="col-current current-text i18n" data-ko='30일<br><span class="note">(2026-05-30 정책: 등급 티켓은 1년, 이벤트 티켓 30일 유지)</span>' data-vi='30 ngày<br><span class="note">(Chính sách 2026-05-30: vé hạng giữ 1 năm, vé sự kiện giữ 30 ngày)</span>'>30일<br><span class="note">(2026-05-30 정책: 등급 티켓은 1년, 이벤트 티켓 30일 유지)</span></td>
+        <td class="col-new new-text i18n" data-ko='<span class="strike">30일</span> → <strong>100일</strong><br><span class="note">이유: 모았는데 못 쓰는 상황 방지</span>' data-vi='<span class="strike">30 ngày</span> → <strong>100 ngày</strong><br><span class="note">Lý do: Tránh tình trạng gom được mà không dùng được</span>'><span class="strike">30일</span> → <strong>100일</strong><br><span class="note">이유: 모았는데 못 쓰는 상황 방지</span></td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="수정" data-vi="Sửa đổi">수정</span></td>
       </tr>
     </tbody>
   </table>
@@ -173,22 +182,22 @@
 
 <!-- 5. 마이페이지 -->
 <div class="section">
-  <div class="section-title">5. 마이페이지</div>
+  <div class="section-title i18n" data-ko="5. 마이페이지" data-vi="5. Trang cá nhân">5. 마이페이지</div>
   <table>
     <thead>
       <tr>
-        <th class="col-item">항목</th>
-        <th class="col-current">현행</th>
-        <th class="col-new">변경 요청</th>
-        <th class="col-status">구분</th>
+        <th class="col-item i18n" data-ko="항목" data-vi="Mục">항목</th>
+        <th class="col-current i18n" data-ko="현행" data-vi="Hiện tại">현행</th>
+        <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
+        <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="col-item">고객센터 메뉴</td>
-        <td class="col-current current-text">기본 고객센터 메뉴</td>
-        <td class="col-new new-text">"쿠팡 적립 신청 & 내역" 항목 추가</td>
-        <td class="col-status"><span class="badge badge-add">추가</span></td>
+        <td class="col-item i18n" data-ko="고객센터 메뉴" data-vi="Menu trung tâm hỗ trợ">고객센터 메뉴</td>
+        <td class="col-current current-text i18n" data-ko='기본 고객센터 메뉴' data-vi='Menu trung tâm hỗ trợ cơ bản'>기본 고객센터 메뉴</td>
+        <td class="col-new new-text i18n" data-ko='"쿠팡 적립 신청 &amp; 내역" 항목 추가' data-vi='Thêm mục "Đăng ký tích lũy Coupang &amp; Lịch sử"'>"쿠팡 적립 신청 &amp; 내역" 항목 추가</td>
+        <td class="col-status"><span class="badge badge-add i18n" data-ko="추가" data-vi="Thêm">추가</span></td>
       </tr>
     </tbody>
   </table>
@@ -196,40 +205,52 @@
 
 <!-- 6. 정책·적립 로직 -->
 <div class="section">
-  <div class="section-title">6. 정책 · 적립 로직</div>
+  <div class="section-title i18n" data-ko="6. 정책 · 적립 로직" data-vi="6. Chính sách &amp; Tích lũy">6. 정책 · 적립 로직</div>
   <table>
     <thead>
       <tr>
-        <th class="col-item">항목</th>
-        <th class="col-current">현행</th>
-        <th class="col-new">변경 요청</th>
-        <th class="col-status">구분</th>
+        <th class="col-item i18n" data-ko="항목" data-vi="Mục">항목</th>
+        <th class="col-current i18n" data-ko="현행" data-vi="Hiện tại">현행</th>
+        <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
+        <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="col-item">영수증 검증 수준</td>
-        <td class="col-current current-text">명세 미정 (폴센트 수준 언급만)</td>
-        <td class="col-new new-text">주문번호 실제 대조 방식 (폴센트 동일 수준)<br><span class="note">아무 영수증으로 통과 불가</span></td>
-        <td class="col-status"><span class="badge badge-decide">확정 필요</span></td>
+        <td class="col-item i18n" data-ko="영수증 검증 수준" data-vi="Mức xác minh hóa đơn">영수증 검증 수준</td>
+        <td class="col-current current-text i18n" data-ko='명세 미정 (폴센트 수준 언급만)' data-vi='Đặc tả chưa định (chỉ đề cập mức của Folcent)'>명세 미정 (폴센트 수준 언급만)</td>
+        <td class="col-new new-text i18n" data-ko='주문번호 실제 대조 방식 (폴센트 동일 수준)<br><span class="note">아무 영수증으로 통과 불가</span>' data-vi='Phương thức đối chiếu mã đơn hàng thực tế (cùng mức với Folcent)<br><span class="note">Không thể qua bằng hóa đơn bất kỳ</span>'>주문번호 실제 대조 방식 (폴센트 동일 수준)<br><span class="note">아무 영수증으로 통과 불가</span></td>
+        <td class="col-status"><span class="badge badge-decide i18n" data-ko="확정 필요" data-vi="Cần xác nhận">확정 필요</span></td>
       </tr>
       <tr>
-        <td class="col-item">환불 시 보상 회수</td>
-        <td class="col-current current-text">"이벤트 티켓은 회수 안 함"<br><span class="note">→ 5천원 미만 구매도 이벤트 티켓 지급 = 사서 받고 환불로 티켓 챙기는 구멍 존재</span></td>
-        <td class="col-new new-text"><strong>출처별 구분:</strong><br>① 구매 기반 보상 (등급 티켓 + 5천원 미만 이벤트 티켓) → 환불 시 <strong>회수</strong><br>② 순수 부수 보상 (출석·룰렛·미션 이벤트 티켓) → 환불 시 <strong>회수 안 함</strong></td>
-        <td class="col-status"><span class="badge badge-change">수정</span></td>
+        <td class="col-item i18n" data-ko="환불 시 보상 회수" data-vi="Thu hồi phần thưởng khi hoàn tiền">환불 시 보상 회수</td>
+        <td class="col-current current-text i18n" data-ko='"이벤트 티켓은 회수 안 함"<br><span class="note">→ 5천원 미만 구매도 이벤트 티켓 지급 = 사서 받고 환불로 티켓 챙기는 구멍 존재</span>' data-vi='"Không thu hồi vé sự kiện"<br><span class="note">→ Mua dưới 5.000 won cũng cấp vé sự kiện = tồn tại lỗ hổng mua để nhận rồi hoàn tiền giữ vé</span>'>"이벤트 티켓은 회수 안 함"<br><span class="note">→ 5천원 미만 구매도 이벤트 티켓 지급 = 사서 받고 환불로 티켓 챙기는 구멍 존재</span></td>
+        <td class="col-new new-text i18n" data-ko='<strong>출처별 구분:</strong><br>① 구매 기반 보상 (등급 티켓 + 5천원 미만 이벤트 티켓) → 환불 시 <strong>회수</strong><br>② 순수 부수 보상 (출석·룰렛·미션 이벤트 티켓) → 환불 시 <strong>회수 안 함</strong>' data-vi='<strong>Phân loại theo nguồn:</strong><br>① Phần thưởng dựa trên mua hàng (vé hạng + vé sự kiện mua dưới 5.000 won) → khi hoàn tiền <strong>thu hồi</strong><br>② Phần thưởng phụ thuần túy (vé sự kiện điểm danh · vòng quay · nhiệm vụ) → khi hoàn tiền <strong>không thu hồi</strong>'><strong>출처별 구분:</strong><br>① 구매 기반 보상 (등급 티켓 + 5천원 미만 이벤트 티켓) → 환불 시 <strong>회수</strong><br>② 순수 부수 보상 (출석·룰렛·미션 이벤트 티켓) → 환불 시 <strong>회수 안 함</strong></td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="수정" data-vi="Sửa đổi">수정</span></td>
       </tr>
       <tr>
-        <td class="col-item">구매→취소 반복 방지</td>
-        <td class="col-current current-text">별도 어뷰징 방지 정책 없음</td>
-        <td class="col-new new-text">구매 기반 보상은 "반품 기간 경과 후 확정" 원칙 적용<br>적립 예정 → 반품 기간 지나야 사용 가능<br><span class="note">※ 현행 티켓 정책(D+7 확정)과 연계 검토 필요</span></td>
-        <td class="col-status"><span class="badge badge-add">신규</span></td>
+        <td class="col-item i18n" data-ko="구매→취소 반복 방지" data-vi="Ngăn lặp mua→hủy">구매→취소 반복 방지</td>
+        <td class="col-current current-text i18n" data-ko='별도 어뷰징 방지 정책 없음' data-vi='Không có chính sách chống lạm dụng riêng'>별도 어뷰징 방지 정책 없음</td>
+        <td class="col-new new-text i18n" data-ko='구매 기반 보상은 "반품 기간 경과 후 확정" 원칙 적용<br>적립 예정 → 반품 기간 지나야 사용 가능<br><span class="note">※ 현행 티켓 정책(D+7 확정)과 연계 검토 필요</span>' data-vi='Áp dụng nguyên tắc phần thưởng dựa trên mua hàng "xác nhận sau khi hết thời gian đổi trả"<br>Dự kiến tích lũy → chỉ dùng được sau khi qua thời gian đổi trả<br><span class="note">※ Cần xem xét liên kết với chính sách vé hiện tại (xác nhận D+7)</span>'>구매 기반 보상은 "반품 기간 경과 후 확정" 원칙 적용<br>적립 예정 → 반품 기간 지나야 사용 가능<br><span class="note">※ 현행 티켓 정책(D+7 확정)과 연계 검토 필요</span></td>
+        <td class="col-status"><span class="badge badge-add i18n" data-ko="신규" data-vi="Mới">신규</span></td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<p style="font-size:12px;color:#aaa;margin-top:8px;">PricePick 내부 정책 검토용 | Dispatch 자동 생성 2026-07-01</p>
+<p style="font-size:12px;color:#aaa;margin-top:8px;" class="i18n" data-ko="PricePick 내부 정책 검토용 | Dispatch 자동 생성 2026-07-01" data-vi="Dùng cho xem xét chính sách nội bộ PricePick | Dispatch tự động tạo 2026-07-01">PricePick 내부 정책 검토용 | Dispatch 자동 생성 2026-07-01</p>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.i18n').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val !== null) el.innerHTML = val;
+  });
+  document.documentElement.lang = lang;
+  document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+  document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+}
+</script>
 
 </body>
 </html>
