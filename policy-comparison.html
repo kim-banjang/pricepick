@@ -20,6 +20,7 @@
   .col-new { width: 26%; }
   .col-target { width: 21%; font-size: 12px; color: #444; }
   .col-status { width: 13%; text-align: center; }
+  .col-state { width: 12%; text-align: center; }
   .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; white-space: nowrap; }
   .badge-change { background: #fff3cd; color: #856404; }
   .badge-delete { background: #fde8e8; color: #b91c1c; }
@@ -59,6 +60,7 @@
         <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
         <th class="col-target i18n" data-ko="수정 대상" data-vi="Trang cần sửa">수정 대상</th>
         <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
+        <th class="col-state i18n" data-ko="상태" data-vi="Trạng thái">상태</th>
       </tr>
     </thead>
     <tbody>
@@ -67,14 +69,16 @@
         <td class="col-current current-text i18n" data-ko='약관에 "카카오 연동 필수" 명시<br><span class="note">※ 2026-05-26 정책변경 로그: "카카오 미연동 사용자 = 존재하지 않음(연동 필수)"으로 기록돼 있으나, 실제 앱 동작은 닉네임 입력 시작·연동 선택</span>' data-vi='Điều khoản ghi rõ "bắt buộc liên kết Kakao"<br><span class="note">※ Log thay đổi chính sách 2026-05-26: được ghi là "Người dùng chưa liên kết Kakao = không tồn tại (bắt buộc liên kết)", nhưng hoạt động thực tế của app là bắt đầu bằng nhập biệt danh · liên kết là tùy chọn</span>'>약관에 "카카오 연동 필수" 명시<br><span class="note">※ 2026-05-26 정책변경 로그: "카카오 미연동 사용자 = 존재하지 않음(연동 필수)"으로 기록돼 있으나, 실제 앱 동작은 닉네임 입력 시작·연동 선택</span></td>
         <td class="col-new new-text i18n" data-ko='약관 문구를 실제 동작에 맞게 수정<br>→ "닉네임으로 시작, 카카오 연동은 선택"<br><span class="note">이유: 약관과 실제 동작 불일치 = 법적 리스크</span>' data-vi='Sửa câu điều khoản cho khớp với hoạt động thực tế<br>→ "Bắt đầu bằng biệt danh, liên kết Kakao là tùy chọn"<br><span class="note">Lý do: Điều khoản không khớp hoạt động thực tế = rủi ro pháp lý</span>'>약관 문구를 실제 동작에 맞게 수정<br>→ "닉네임으로 시작, 카카오 연동은 선택"<br><span class="note">이유: 약관과 실제 동작 불일치 = 법적 리스크</span></td>
         <td class="col-target i18n" data-ko='① 노션 화면 기획 스펙 (화면 02·02-A·02-G)<br>② storyboard.html / interactive.html / screenflow.html<br>③ policyspec.html 약관 본문' data-vi='① Đặc tả màn hình (Notion) (màn hình 02·02-A·02-G)<br>② storyboard.html / interactive.html / screenflow.html<br>③ policyspec.html nội dung điều khoản'>① 노션 화면 기획 스펙 (화면 02·02-A·02-G)<br>② storyboard.html / interactive.html / screenflow.html<br>③ policyspec.html 약관 본문</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="수정" data-vi="Sửa đổi">수정</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
       <tr>
         <td class="col-item i18n" data-ko="재가입 쿨타임" data-vi="Thời gian chờ đăng ký lại">재가입 쿨타임</td>
         <td class="col-current current-text i18n" data-ko='약관: 탈퇴 후 30일 재가입 제한<br>화면: 즉시 재가입 가능<br><span class="note">→ 현재 충돌 상태</span>' data-vi='Điều khoản: Giới hạn đăng ký lại trong 30 ngày sau khi hủy tài khoản<br>Màn hình: Có thể đăng ký lại ngay<br><span class="note">→ Đang xung đột</span>'>약관: 탈퇴 후 30일 재가입 제한<br>화면: 즉시 재가입 가능<br><span class="note">→ 현재 충돌 상태</span></td>
         <td class="col-new new-text i18n" data-ko='즉시 재가입 허용 (약관도 맞춰 수정)<br>단, 탈퇴-재가입 반복 어뷰징 의심 계정만 30일 제한 적용<br><span class="note">→ 약관 + 화면 양쪽 정합 필요</span>' data-vi='Cho phép đăng ký lại ngay (sửa cả điều khoản cho khớp)<br>Tuy nhiên chỉ áp dụng giới hạn 30 ngày với tài khoản nghi lạm dụng hủy-đăng ký lại lặp lại<br><span class="note">→ Cần đồng bộ cả điều khoản + màn hình</span>'>즉시 재가입 허용 (약관도 맞춰 수정)<br>단, 탈퇴-재가입 반복 어뷰징 의심 계정만 30일 제한 적용<br><span class="note">→ 약관 + 화면 양쪽 정합 필요</span></td>
         <td class="col-target i18n" data-ko='① 노션 정책 변경 로그 (append)<br>② 노션 화면 기획 스펙 (화면 02-withdraw·02-withdraw-done)<br>③ storyboard.html / interactive.html' data-vi='① Nhật ký thay đổi chính sách (Notion) (append)<br>② Đặc tả màn hình (Notion) (màn hình 02-withdraw·02-withdraw-done)<br>③ storyboard.html / interactive.html'>① 노션 정책 변경 로그 (append)<br>② 노션 화면 기획 스펙 (화면 02-withdraw·02-withdraw-done)<br>③ storyboard.html / interactive.html</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-conflict i18n" data-ko="충돌 해소" data-vi="Giải quyết xung đột">충돌 해소</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
     </tbody>
   </table>
@@ -91,6 +95,7 @@
         <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
         <th class="col-target i18n" data-ko="수정 대상" data-vi="Trang cần sửa">수정 대상</th>
         <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
+        <th class="col-state i18n" data-ko="상태" data-vi="Trạng thái">상태</th>
       </tr>
     </thead>
     <tbody>
@@ -99,7 +104,8 @@
         <td class="col-current current-text i18n" data-ko='"픽구매", "픽" 용어 사용<br><span class="note">전 화면·약관·CMS 전반</span>' data-vi='Dùng thuật ngữ "Pick mua", "Pick"<br><span class="note">Toàn bộ màn hình · điều khoản · CMS</span>'>"픽구매", "픽" 용어 사용<br><span class="note">전 화면·약관·CMS 전반</span></td>
         <td class="col-new new-text i18n" data-ko='<span class="strike">픽구매</span> → <strong>구매</strong><br>"픽" 전체 제거<br><span class="note">이유: 자체 조어, 신규 유저 이해 어려움</span>' data-vi='<span class="strike">Pick mua</span> → <strong>Mua hàng</strong><br>Xóa toàn bộ "Pick"<br><span class="note">Lý do: Từ tự chế, người dùng mới khó hiểu</span>'><span class="strike">픽구매</span> → <strong>구매</strong><br>"픽" 전체 제거<br><span class="note">이유: 자체 조어, 신규 유저 이해 어려움</span></td>
         <td class="col-target i18n" data-ko='① 노션 화면 기획 스펙 전체<br>② storyboard.html / interactive.html / screenflow.html<br>③ cms.html / policyspec.html / prototype.html / index.html' data-vi='① Đặc tả màn hình (Notion) toàn bộ<br>② storyboard.html / interactive.html / screenflow.html<br>③ cms.html / policyspec.html / prototype.html / index.html'>① 노션 화면 기획 스펙 전체<br>② storyboard.html / interactive.html / screenflow.html<br>③ cms.html / policyspec.html / prototype.html / index.html</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="전체 치환" data-vi="Thay thế toàn bộ">전체 치환</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
     </tbody>
   </table>
@@ -116,6 +122,7 @@
         <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
         <th class="col-target i18n" data-ko="수정 대상" data-vi="Trang cần sửa">수정 대상</th>
         <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
+        <th class="col-state i18n" data-ko="상태" data-vi="Trạng thái">상태</th>
       </tr>
     </thead>
     <tbody>
@@ -124,28 +131,32 @@
         <td class="col-current current-text i18n" data-ko='매일 100P 지급 (2026-06-05 정책)<br>+ 5일 연속 → 이벤트 티켓 1장<br>30초 체류 검증 방식' data-vi='Cấp 100P mỗi ngày (chính sách 2026-06-05)<br>+ 5 ngày liên tục → 1 vé sự kiện<br>Phương thức xác minh lưu lại 30 giây'>매일 100P 지급 (2026-06-05 정책)<br>+ 5일 연속 → 이벤트 티켓 1장<br>30초 체류 검증 방식</td>
         <td class="col-new new-text i18n" data-ko='클릭(경유 이동) 즉시 100P 지급<br>→ 30초 체류 검증 폐기<br>+ 재방문 구매 이벤트 추가 (경유 구매 시 포인트 추가)' data-vi='Cấp 100P ngay khi click (chuyển tiếp)<br>→ Bỏ xác minh lưu lại 30 giây<br>+ Thêm sự kiện mua khi quay lại (thêm điểm khi mua qua chuyển tiếp)'>클릭(경유 이동) 즉시 100P 지급<br>→ 30초 체류 검증 폐기<br>+ 재방문 구매 이벤트 추가 (경유 구매 시 포인트 추가)</td>
         <td class="col-target i18n" data-ko='① 노션 정책 변경 로그 (append)<br>② 노션 화면 기획 스펙 (화면 20 혜택 메인)<br>③ storyboard.html / interactive.html (화면 20)' data-vi='① Nhật ký thay đổi chính sách (Notion) (append)<br>② Đặc tả màn hình (Notion) (màn hình 20 trang chính phúc lợi)<br>③ storyboard.html / interactive.html (màn hình 20)'>① 노션 정책 변경 로그 (append)<br>② 노션 화면 기획 스펙 (화면 20 혜택 메인)<br>③ storyboard.html / interactive.html (화면 20)</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="수정" data-vi="Sửa đổi">수정</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
       <tr>
         <td class="col-item i18n" data-ko="등급 교환" data-vi="Đổi hạng">등급 교환</td>
         <td class="col-current current-text i18n" data-ko='명세상 교환 방향 미명시<br><span class="note">(포인트↔티켓 쌍방교환은 2026-06-05 확정)</span>' data-vi='Hướng đổi chưa ghi rõ trong đặc tả<br><span class="note">(Đổi hai chiều điểm↔vé đã xác nhận 2026-06-05)</span>'>명세상 교환 방향 미명시<br><span class="note">(포인트↔티켓 쌍방교환은 2026-06-05 확정)</span></td>
         <td class="col-new new-text i18n" data-ko='하향 교환(상위→하위 등급)도 가능하게 추가<br><span class="note">예: 골드 → 실버/브론즈 방향 허용</span>' data-vi='Thêm cho phép đổi xuống (hạng cao→hạng thấp)<br><span class="note">VD: cho phép hướng Vàng → Bạc/Đồng</span>'>하향 교환(상위→하위 등급)도 가능하게 추가<br><span class="note">예: 골드 → 실버/브론즈 방향 허용</span></td>
         <td class="col-target i18n" data-ko='① 노션 화면 기획 스펙 (화면 22 티켓 등급 교환)<br>② storyboard.html / interactive.html (화면 22·s05d)' data-vi='① Đặc tả màn hình (Notion) (màn hình 22 đổi hạng vé)<br>② storyboard.html / interactive.html (màn hình 22·s05d)'>① 노션 화면 기획 스펙 (화면 22 티켓 등급 교환)<br>② storyboard.html / interactive.html (화면 22·s05d)</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-add i18n" data-ko="추가" data-vi="Thêm">추가</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
       <tr>
         <td class="col-item i18n" data-ko="광고 시청 포인트" data-vi="Điểm xem quảng cáo">광고 시청 포인트</td>
         <td class="col-current current-text i18n" data-ko='2026-06-05 포인트 정책에 포함됨<br>"광고 시청: 포인트 지급 (수량 미정)"' data-vi='Được đưa vào chính sách điểm 2026-06-05<br>"Xem quảng cáo: cấp điểm (số lượng chưa định)"'>2026-06-05 포인트 정책에 포함됨<br>"광고 시청: 포인트 지급 (수량 미정)"</td>
         <td class="col-new new-text i18n" data-ko='계획에 없던 항목 → <strong>정책서에서 삭제</strong><br><span class="note">광고 시청 화면·기능 제거</span>' data-vi='Mục không có trong kế hoạch → <strong>Xóa khỏi tài liệu chính sách</strong><br><span class="note">Loại bỏ màn hình · chức năng xem quảng cáo</span>'>계획에 없던 항목 → <strong>정책서에서 삭제</strong><br><span class="note">광고 시청 화면·기능 제거</span></td>
         <td class="col-target i18n" data-ko='① 노션 정책 변경 로그 (append — 삭제 기록)<br>② 노션 화면 기획 스펙 (화면 26 — 이벤트 티켓 경로에서 제거)<br>③ storyboard.html / interactive.html (화면 26)' data-vi='① Nhật ký thay đổi chính sách (Notion) (append — bản ghi xóa)<br>② Đặc tả màn hình (Notion) (màn hình 26 — xóa khỏi luồng vé sự kiện)<br>③ storyboard.html / interactive.html (màn hình 26)'>① 노션 정책 변경 로그 (append — 삭제 기록)<br>② 노션 화면 기획 스펙 (화면 26 — 이벤트 티켓 경로에서 제거)<br>③ storyboard.html / interactive.html (화면 26)</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-delete i18n" data-ko="삭제" data-vi="Xóa">삭제</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
       <tr>
         <td class="col-item i18n" data-ko="교환소 상품명" data-vi="Tên sản phẩm tại quầy đổi">교환소 상품명</td>
         <td class="col-current current-text i18n" data-ko='1단계 교환소 상품명 표기 여부 불명확' data-vi='Chưa rõ có hiển thị tên sản phẩm ở quầy đổi bước 1 hay không'>1단계 교환소 상품명 표기 여부 불명확</td>
         <td class="col-new new-text i18n" data-ko='1단계 교환 상품명 제거<br><span class="note">※ 기 반영 여부 확인 필요</span>' data-vi='Xóa tên sản phẩm đổi bước 1<br><span class="note">※ Cần kiểm tra đã phản ánh hay chưa</span>'>1단계 교환 상품명 제거<br><span class="note">※ 기 반영 여부 확인 필요</span></td>
         <td class="col-target i18n" data-ko='① storyboard.html / interactive.html (화면 24·25 확인)' data-vi='① storyboard.html / interactive.html (màn hình 24·25 kiểm tra)'>① storyboard.html / interactive.html (화면 24·25 확인)</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-check i18n" data-ko="확인 필요" data-vi="Cần kiểm tra">확인 필요</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
     </tbody>
   </table>
@@ -162,6 +173,7 @@
         <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
         <th class="col-target i18n" data-ko="수정 대상" data-vi="Trang cần sửa">수정 대상</th>
         <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
+        <th class="col-state i18n" data-ko="상태" data-vi="Trạng thái">상태</th>
       </tr>
     </thead>
     <tbody>
@@ -170,28 +182,32 @@
         <td class="col-current current-text i18n" data-ko='CMS 화면 샘플: "매주 월요일"' data-vi='Mẫu màn hình CMS: "Mỗi thứ Hai hàng tuần"'>CMS 화면 샘플: "매주 월요일"</td>
         <td class="col-new new-text i18n" data-ko='격주 (월 2회)<br><span class="note">→ CMS "매주 월요일" 샘플 정합 수정 필요</span>' data-vi='Hai tuần một lần (2 lần/tháng)<br><span class="note">→ Cần sửa mẫu CMS "Mỗi thứ Hai hàng tuần" cho khớp</span>'>격주 (월 2회)<br><span class="note">→ CMS "매주 월요일" 샘플 정합 수정 필요</span></td>
         <td class="col-target i18n" data-ko='① 노션 정책 변경 로그 (append)<br>② 노션 화면 기획 스펙 (화면 26 — "매주 월요일" → "격주")<br>③ storyboard.html / interactive.html (화면 26·s05b)' data-vi='① Nhật ký thay đổi chính sách (Notion) (append)<br>② Đặc tả màn hình (Notion) (màn hình 26 — "Mỗi thứ Hai" → "Hai tuần một lần")<br>③ storyboard.html / interactive.html (màn hình 26·s05b)'>① 노션 정책 변경 로그 (append)<br>② 노션 화면 기획 스펙 (화면 26 — "매주 월요일" → "격주")<br>③ storyboard.html / interactive.html (화면 26·s05b)</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="수정" data-vi="Sửa đổi">수정</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
       <tr>
         <td class="col-item i18n" data-ko="1회 응모 제한" data-vi="Giới hạn mỗi lần dự thưởng">1회 응모 제한</td>
         <td class="col-current current-text i18n" data-ko='명세 확인 필요 (미명시 또는 별도 정책)' data-vi='Cần kiểm tra đặc tả (chưa ghi rõ hoặc chính sách riêng)'>명세 확인 필요 (미명시 또는 별도 정책)</td>
         <td class="col-new new-text i18n" data-ko='15장/회<br><span class="note">근거: 월 적립 한도 30장 ÷ 월 2회 = 회당 15장, 전부 소모 가능</span>' data-vi='15 vé/lần<br><span class="note">Căn cứ: Hạn mức tích lũy tháng 30 vé ÷ 2 lần/tháng = 15 vé/lần, có thể dùng hết</span>'>15장/회<br><span class="note">근거: 월 적립 한도 30장 ÷ 월 2회 = 회당 15장, 전부 소모 가능</span></td>
         <td class="col-target i18n" data-ko='① 노션 정책 변경 로그 (append)<br>② 노션 화면 기획 스펙 (화면 26)' data-vi='① Nhật ký thay đổi chính sách (Notion) (append)<br>② Đặc tả màn hình (Notion) (màn hình 26)'>① 노션 정책 변경 로그 (append)<br>② 노션 화면 기획 스펙 (화면 26)</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-check i18n" data-ko="확인 후 수정" data-vi="Kiểm tra rồi sửa">확인 후 수정</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
       <tr>
         <td class="col-item i18n" data-ko="경품 예산" data-vi="Ngân sách quà tặng">경품 예산</td>
         <td class="col-current current-text i18n" data-ko='미정' data-vi='Chưa định'>미정</td>
         <td class="col-new new-text i18n" data-ko='매출의 1~2%' data-vi='1~2% doanh thu'>매출의 1~2%</td>
         <td class="col-target i18n" data-ko='① 노션 정책 변경 로그 (append)' data-vi='① Nhật ký thay đổi chính sách (Notion) (append)'>① 노션 정책 변경 로그 (append)</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-add i18n" data-ko="신규 확정" data-vi="Xác nhận mới">신규 확정</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
       <tr>
         <td class="col-item i18n" data-ko="이벤트 티켓 만료" data-vi="Hết hạn vé sự kiện">이벤트 티켓 만료</td>
         <td class="col-current current-text i18n" data-ko='30일<br><span class="note">(2026-05-30 정책: 등급 티켓은 1년, 이벤트 티켓 30일 유지)</span>' data-vi='30 ngày<br><span class="note">(Chính sách 2026-05-30: vé hạng giữ 1 năm, vé sự kiện giữ 30 ngày)</span>'>30일<br><span class="note">(2026-05-30 정책: 등급 티켓은 1년, 이벤트 티켓 30일 유지)</span></td>
         <td class="col-new new-text i18n" data-ko='<span class="strike">30일</span> → <strong>100일</strong><br><span class="note">이유: 모았는데 못 쓰는 상황 방지</span>' data-vi='<span class="strike">30 ngày</span> → <strong>100 ngày</strong><br><span class="note">Lý do: Tránh tình trạng gom được mà không dùng được</span>'><span class="strike">30일</span> → <strong>100일</strong><br><span class="note">이유: 모았는데 못 쓰는 상황 방지</span></td>
         <td class="col-target i18n" data-ko='① 노션 정책 변경 로그 (append)<br>② 노션 화면 기획 스펙 (화면 23 — "이벤트 티켓 30일 만료")<br>③ policyspec.html 관련 섹션' data-vi='① Nhật ký thay đổi chính sách (Notion) (append)<br>② Đặc tả màn hình (Notion) (màn hình 23 — "vé sự kiện hết hạn 30 ngày")<br>③ policyspec.html phần liên quan'>① 노션 정책 변경 로그 (append)<br>② 노션 화면 기획 스펙 (화면 23 — "이벤트 티켓 30일 만료")<br>③ policyspec.html 관련 섹션</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="수정" data-vi="Sửa đổi">수정</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
     </tbody>
   </table>
@@ -208,6 +224,7 @@
         <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
         <th class="col-target i18n" data-ko="수정 대상" data-vi="Trang cần sửa">수정 대상</th>
         <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
+        <th class="col-state i18n" data-ko="상태" data-vi="Trạng thái">상태</th>
       </tr>
     </thead>
     <tbody>
@@ -216,7 +233,8 @@
         <td class="col-current current-text i18n" data-ko='기본 고객센터 메뉴' data-vi='Menu trung tâm hỗ trợ cơ bản'>기본 고객센터 메뉴</td>
         <td class="col-new new-text i18n" data-ko='"쿠팡 적립 신청 &amp; 내역" 항목 추가' data-vi='Thêm mục "Đăng ký tích lũy Coupang &amp; Lịch sử"'>"쿠팡 적립 신청 &amp; 내역" 항목 추가</td>
         <td class="col-target i18n" data-ko='① 노션 화면 기획 스펙 (화면 30 마이페이지 — 도움말 섹션)<br>② storyboard.html / interactive.html (화면 30·s11)' data-vi='① Đặc tả màn hình (Notion) (màn hình 30 trang cá nhân — phần trợ giúp)<br>② storyboard.html / interactive.html (màn hình 30·s11)'>① 노션 화면 기획 스펙 (화면 30 마이페이지 — 도움말 섹션)<br>② storyboard.html / interactive.html (화면 30·s11)</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-add i18n" data-ko="추가" data-vi="Thêm">추가</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
     </tbody>
   </table>
@@ -233,6 +251,7 @@
         <th class="col-new i18n" data-ko="변경 요청" data-vi="Yêu cầu thay đổi">변경 요청</th>
         <th class="col-target i18n" data-ko="수정 대상" data-vi="Trang cần sửa">수정 대상</th>
         <th class="col-status i18n" data-ko="구분" data-vi="Phân loại">구분</th>
+        <th class="col-state i18n" data-ko="상태" data-vi="Trạng thái">상태</th>
       </tr>
     </thead>
     <tbody>
@@ -241,21 +260,24 @@
         <td class="col-current current-text i18n" data-ko='명세 미정 (폴센트 수준 언급만)' data-vi='Đặc tả chưa định (chỉ đề cập mức của Folcent)'>명세 미정 (폴센트 수준 언급만)</td>
         <td class="col-new new-text i18n" data-ko='주문번호 실제 대조 방식 (폴센트 동일 수준)<br><span class="note">아무 영수증으로 통과 불가</span>' data-vi='Phương thức đối chiếu mã đơn hàng thực tế (cùng mức với Folcent)<br><span class="note">Không thể qua bằng hóa đơn bất kỳ</span>'>주문번호 실제 대조 방식 (폴센트 동일 수준)<br><span class="note">아무 영수증으로 통과 불가</span></td>
         <td class="col-target i18n" data-ko='① 노션 정책 변경 로그 (append)<br>② policyspec.html 영수증 검증 섹션' data-vi='① Nhật ký thay đổi chính sách (Notion) (append)<br>② policyspec.html phần xác minh hóa đơn'>① 노션 정책 변경 로그 (append)<br>② policyspec.html 영수증 검증 섹션</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-decide i18n" data-ko="확정 필요" data-vi="Cần xác nhận">확정 필요</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
       <tr>
         <td class="col-item i18n" data-ko="환불 시 보상 회수" data-vi="Thu hồi phần thưởng khi hoàn tiền">환불 시 보상 회수</td>
         <td class="col-current current-text i18n" data-ko='"이벤트 티켓은 회수 안 함"<br><span class="note">→ 5천원 미만 구매도 이벤트 티켓 지급 = 사서 받고 환불로 티켓 챙기는 구멍 존재</span>' data-vi='"Không thu hồi vé sự kiện"<br><span class="note">→ Mua dưới 5.000 won cũng cấp vé sự kiện = tồn tại lỗ hổng mua để nhận rồi hoàn tiền giữ vé</span>'>"이벤트 티켓은 회수 안 함"<br><span class="note">→ 5천원 미만 구매도 이벤트 티켓 지급 = 사서 받고 환불로 티켓 챙기는 구멍 존재</span></td>
         <td class="col-new new-text i18n" data-ko='<strong>출처별 구분:</strong><br>① 구매 기반 보상 (등급 티켓 + 5천원 미만 이벤트 티켓) → 환불 시 <strong>회수</strong><br>② 순수 부수 보상 (출석·룰렛·미션 이벤트 티켓) → 환불 시 <strong>회수 안 함</strong>' data-vi='<strong>Phân loại theo nguồn:</strong><br>① Phần thưởng dựa trên mua hàng (vé hạng + vé sự kiện mua dưới 5.000 won) → khi hoàn tiền <strong>thu hồi</strong><br>② Phần thưởng phụ thuần túy (vé sự kiện điểm danh · vòng quay · nhiệm vụ) → khi hoàn tiền <strong>không thu hồi</strong>'><strong>출처별 구분:</strong><br>① 구매 기반 보상 (등급 티켓 + 5천원 미만 이벤트 티켓) → 환불 시 <strong>회수</strong><br>② 순수 부수 보상 (출석·룰렛·미션 이벤트 티켓) → 환불 시 <strong>회수 안 함</strong></td>
         <td class="col-target i18n" data-ko='① 노션 정책 변경 로그 (append)<br>② policyspec.html 환불 정책 섹션' data-vi='① Nhật ký thay đổi chính sách (Notion) (append)<br>② policyspec.html phần chính sách hoàn tiền'>① 노션 정책 변경 로그 (append)<br>② policyspec.html 환불 정책 섹션</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-change i18n" data-ko="수정" data-vi="Sửa đổi">수정</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
       <tr>
         <td class="col-item i18n" data-ko="구매→취소 반복 방지" data-vi="Ngăn lặp mua→hủy">구매→취소 반복 방지</td>
         <td class="col-current current-text i18n" data-ko='별도 어뷰징 방지 정책 없음' data-vi='Không có chính sách chống lạm dụng riêng'>별도 어뷰징 방지 정책 없음</td>
         <td class="col-new new-text i18n" data-ko='구매 기반 보상은 "반품 기간 경과 후 확정" 원칙 적용<br>적립 예정 → 반품 기간 지나야 사용 가능<br><span class="note">※ 현행 티켓 정책(D+7 확정)과 연계 검토 필요</span>' data-vi='Áp dụng nguyên tắc phần thưởng dựa trên mua hàng "xác nhận sau khi hết thời gian đổi trả"<br>Dự kiến tích lũy → chỉ dùng được sau khi qua thời gian đổi trả<br><span class="note">※ Cần xem xét liên kết với chính sách vé hiện tại (xác nhận D+7)</span>'>구매 기반 보상은 "반품 기간 경과 후 확정" 원칙 적용<br>적립 예정 → 반품 기간 지나야 사용 가능<br><span class="note">※ 현행 티켓 정책(D+7 확정)과 연계 검토 필요</span></td>
         <td class="col-target i18n" data-ko='① 노션 정책 변경 로그 (append)<br>② policyspec.html 적립 확정 로직' data-vi='① Nhật ký thay đổi chính sách (Notion) (append)<br>② policyspec.html logic xác nhận tích lũy'>① 노션 정책 변경 로그 (append)<br>② policyspec.html 적립 확정 로직</td>
-        <td class="col-status"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
+        <td class="col-status"><span class="badge badge-add i18n" data-ko="신규" data-vi="Mới">신규</span></td>
+        <td class="col-state"><span class="badge badge-done i18n" data-ko="반영 완료" data-vi="Đã áp dụng">반영 완료</span></td>
       </tr>
     </tbody>
   </table>
