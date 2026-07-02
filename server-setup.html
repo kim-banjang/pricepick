@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PricePick 서버 설정 가이드</title>
+<title>프라이스픽 서버 운용 계획 및 설정</title>
 <style>
   :root {
     --primary: #2A66D0;
@@ -30,6 +30,7 @@
     background: var(--primary);
     color: white;
     padding: 32px 40px 28px;
+    position: relative;
   }
   .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
   .header .sub { opacity: 0.75; font-size: 13px; }
@@ -174,13 +175,31 @@
     color: #78350F;
     margin-top: 14px;
   }
+
+  /* KO/VI 토글 */
+  .vi { display: none; }
+  #langsw { position: absolute; opacity: 0; pointer-events: none; }
+  #langsw:checked ~ .header .ko,
+  #langsw:checked ~ .container .ko { display: none; }
+  #langsw:checked ~ .header .vi,
+  #langsw:checked ~ .container .vi { display: inline; }
+  .langtog { display: inline-flex; background: rgba(255,255,255,.18); border-radius: 20px; padding: 3px; gap: 2px; cursor: pointer; position: absolute; top: 20px; right: 24px; }
+  .langtog .seg { font-size: 12px; font-weight: 700; color: #fff; padding: 4px 13px; border-radius: 16px; opacity: .7; }
+  .langtog .sk { background: #fff; color: var(--primary); opacity: 1; }
+  #langsw:checked ~ .header .langtog .sk { background: none; color: #fff; opacity: .7; }
+  #langsw:checked ~ .header .langtog .sv { background: #fff; color: var(--primary); opacity: 1; }
+  .srclink { display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; font-size: 12px; color: #fff; background: rgba(255,255,255,.18); padding: 6px 13px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+  .srclink:hover { background: rgba(255,255,255,.28); }
 </style>
 </head>
 <body>
 
+<input type="checkbox" id="langsw">
 <div class="header">
-  <h1>PricePick 서버 설정 가이드</h1>
-  <div class="sub">서버 현황 분석 · 용량 계획 · 인프라 로드맵 | 출처: Notion (베트남어 원문 번역 정리)</div>
+  <label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+  <h1><span class="i18n"><span class="ko">프라이스픽 서버 운용 계획 및 설정</span><span class="vi">PricePick — Kế hoạch vận hành &amp; Thiết lập Server</span></span></h1>
+  <div class="sub"><span class="i18n"><span class="ko">서버 현황 분석 · 용량 계획 · 인프라 로드맵</span><span class="vi">Phân tích hiện trạng Server · Kế hoạch công suất · Lộ trình hạ tầng</span></span></div>
+  <a class="srclink" href="https://app.notion.com/p/PricePick-Thi-t-l-p-m-y-ch-Server-39086f66c224801bb3cce008102b5cf7" target="_blank" rel="noopener"><span class="i18n"><span class="ko">해리 원문 보기 (Notion) ↗</span><span class="vi">Xem bản gốc của Harry (Notion) ↗</span></span></a>
 </div>
 
 <div class="container">
@@ -189,34 +208,34 @@
   <div class="section">
     <div class="section-header">
       <div class="num">1</div>
-      <h2>현재 서버 스펙 (IP: 111.67.210.110)</h2>
+      <h2><span class="i18n"><span class="ko">현재 서버 스펙 (IP: 111.67.210.110)</span><span class="vi">Cấu hình Server hiện tại (IP: 111.67.210.110)</span></span></h2>
     </div>
     <div class="section-body">
       <div class="spec-grid">
         <div class="spec-card">
           <div class="label">CPU</div>
           <div class="value">2× Intel Xeon E5-2650</div>
-          <div class="note">16코어 / 32스레드</div>
+          <div class="note"><span class="i18n"><span class="ko">16코어 / 32스레드</span><span class="vi">16 nhân / 32 luồng</span></span></div>
         </div>
         <div class="spec-card">
           <div class="label">RAM</div>
           <div class="value">32GB</div>
-          <div class="note">충분한 용량</div>
+          <div class="note"><span class="i18n"><span class="ko">충분한 용량</span><span class="vi">Dung lượng đủ dùng</span></span></div>
         </div>
         <div class="spec-card">
           <div class="label">SSD</div>
           <div class="value">220GB</div>
-          <div class="note">여유 공간 ~138GB</div>
+          <div class="note"><span class="i18n"><span class="ko">여유 공간 ~138GB</span><span class="vi">Dung lượng trống ~138GB</span></span></div>
         </div>
         <div class="spec-card">
-          <div class="label">OS / 네트워크</div>
+          <div class="label"><span class="i18n"><span class="ko">OS / 네트워크</span><span class="vi">OS / Mạng</span></span></div>
           <div class="value">Ubuntu</div>
-          <div class="note">네트워크 1Gbps 추정</div>
+          <div class="note"><span class="i18n"><span class="ko">네트워크 1Gbps 추정</span><span class="vi">Mạng ước tính 1Gbps</span></span></div>
         </div>
       </div>
       <div class="equiv-box">
-        <strong>현세대 VPS 환산 성능</strong>
-        2012년형 서버지만 현세대 클라우드 VPS 기준 12~16 vCPU 수준. 절대 약한 서버가 아님.
+        <strong><span class="i18n"><span class="ko">현세대 VPS 환산 성능</span><span class="vi">Hiệu năng quy đổi VPS thế hệ hiện tại</span></span></strong>
+        <span class="i18n"><span class="ko">2012년형 서버지만 현세대 클라우드 VPS 기준 12~16 vCPU 수준. 절대 약한 서버가 아님.</span><span class="vi">Server đời 2012 nhưng tương đương 12–16 vCPU theo chuẩn VPS cloud thế hệ hiện tại. Hoàn toàn không phải server yếu.</span></span>
       </div>
     </div>
   </div>
@@ -225,18 +244,18 @@
   <div class="section">
     <div class="section-header">
       <div class="num">2</div>
-      <h2>PricePick 시스템 특성 — CPU 부담 낮음</h2>
+      <h2><span class="i18n"><span class="ko">PricePick 시스템 특성 — CPU 부담 낮음</span><span class="vi">Đặc tính hệ thống PricePick — Tải CPU thấp</span></span></h2>
     </div>
     <div class="section-body">
       <div class="tag-row" style="margin-bottom:12px;">
-        <span class="tag green">✓ CRUD 위주</span>
-        <span class="tag green">✓ 트랜잭션 DB</span>
+        <span class="tag green"><span class="i18n"><span class="ko">✓ CRUD 위주</span><span class="vi">✓ Chủ yếu CRUD</span></span></span>
+        <span class="tag green"><span class="i18n"><span class="ko">✓ 트랜잭션 DB</span><span class="vi">✓ DB giao dịch</span></span></span>
         <span class="tag green">✓ REST API</span>
-        <span class="tag red">✗ AI 없음</span>
-        <span class="tag red">✗ 영상 없음</span>
-        <span class="tag red">✗ 스트리밍 없음</span>
+        <span class="tag red"><span class="i18n"><span class="ko">✗ AI 없음</span><span class="vi">✗ Không AI</span></span></span>
+        <span class="tag red"><span class="i18n"><span class="ko">✗ 영상 없음</span><span class="vi">✗ Không video</span></span></span>
+        <span class="tag red"><span class="i18n"><span class="ko">✗ 스트리밍 없음</span><span class="vi">✗ Không streaming</span></span></span>
       </div>
-      <div style="font-size:13px;color:var(--text-muted);">쿠팡픽 구매·티켓 적립·기프티콘 교환·포인트·출석체크 등 일반적인 데이터 읽기/쓰기가 주 업무. CPU 병목 발생 가능성 낮음.</div>
+      <div style="font-size:13px;color:var(--text-muted);"><span class="i18n"><span class="ko">쿠팡픽 구매·티켓 적립·기프티콘 교환·포인트·출석체크 등 일반적인 데이터 읽기/쓰기가 주 업무. CPU 병목 발생 가능성 낮음.</span><span class="vi">Mua Coupang Pick · tích Ticket · đổi Gift Card · Point · điểm danh — chủ yếu là đọc/ghi dữ liệu thông thường. Khả năng nghẽn CPU thấp.</span></span></div>
     </div>
   </div>
 
@@ -244,33 +263,33 @@
   <div class="section">
     <div class="section-header">
       <div class="num">3</div>
-      <h2>처리 능력 (NodeJS + PostgreSQL + Redis + Nginx 기준)</h2>
+      <h2><span class="i18n"><span class="ko">처리 능력 (NodeJS + PostgreSQL + Redis + Nginx 기준)</span><span class="vi">Năng lực xử lý (chuẩn NodeJS + PostgreSQL + Redis + Nginx)</span></span></h2>
     </div>
     <div class="section-body">
       <table>
         <thead>
-          <tr><th>지표</th><th>예상 처리량</th></tr>
+          <tr><th><span class="i18n"><span class="ko">지표</span><span class="vi">Chỉ số</span></span></th><th><span class="i18n"><span class="ko">예상 처리량</span><span class="vi">Công suất dự kiến</span></span></th></tr>
         </thead>
         <tbody>
-          <tr><td>초당 요청(req/s)</td><td class="td-val">300 ~ 800</td></tr>
-          <tr><td>동시 연결</td><td class="td-val">10,000+</td></tr>
-          <tr><td>동시 온라인 유저</td><td class="td-val">2,000 ~ 5,000명</td></tr>
-          <tr><td>총 가입자</td><td class="td-val">100,000명+</td></tr>
+          <tr><td><span class="i18n"><span class="ko">초당 요청(req/s)</span><span class="vi">Request/giây (req/s)</span></span></td><td class="td-val">300 ~ 800</td></tr>
+          <tr><td><span class="i18n"><span class="ko">동시 연결</span><span class="vi">Kết nối đồng thời</span></span></td><td class="td-val">10,000+</td></tr>
+          <tr><td><span class="i18n"><span class="ko">동시 온라인 유저</span><span class="vi">User online đồng thời</span></span></td><td class="td-val"><span class="i18n"><span class="ko">2,000 ~ 5,000명</span><span class="vi">2,000 – 5,000 người</span></span></td></tr>
+          <tr><td><span class="i18n"><span class="ko">총 가입자</span><span class="vi">Tổng người dùng đăng ký</span></span></td><td class="td-val"><span class="i18n"><span class="ko">100,000명+</span><span class="vi">100,000+ người</span></span></td></tr>
         </tbody>
       </table>
       <div style="margin-top:16px;">
         <div class="load-items">
           <div class="load-item ok">
-            <div class="users">500명</div>
-            <div class="desc">동시 온라인 — 매우 가벼움. 여유 충분.</div>
+            <div class="users"><span class="i18n"><span class="ko">500명</span><span class="vi">500 người</span></span></div>
+            <div class="desc"><span class="i18n"><span class="ko">동시 온라인 — 매우 가벼움. 여유 충분.</span><span class="vi">Online đồng thời — rất nhẹ. Dư sức xử lý.</span></span></div>
           </div>
           <div class="load-item ok">
-            <div class="users">1,000명</div>
-            <div class="desc">동시 온라인 — 충분히 처리 가능.</div>
+            <div class="users"><span class="i18n"><span class="ko">1,000명</span><span class="vi">1,000 người</span></span></div>
+            <div class="desc"><span class="i18n"><span class="ko">동시 온라인 — 충분히 처리 가능.</span><span class="vi">Online đồng thời — xử lý thoải mái.</span></span></div>
           </div>
           <div class="load-item warn">
-            <div class="users">3,000명</div>
-            <div class="desc">동시 온라인 — 처리 가능하나 업그레이드 검토 시점.</div>
+            <div class="users"><span class="i18n"><span class="ko">3,000명</span><span class="vi">3,000 người</span></span></div>
+            <div class="desc"><span class="i18n"><span class="ko">동시 온라인 — 처리 가능하나 업그레이드 검토 시점.</span><span class="vi">Online đồng thời — vẫn xử lý được nhưng là lúc cân nhắc nâng cấp.</span></span></div>
           </div>
         </div>
       </div>
@@ -281,15 +300,14 @@
   <div class="section">
     <div class="section-header">
       <div class="num">4</div>
-      <h2>쿠팡 연동 시 주의사항</h2>
+      <h2><span class="i18n"><span class="ko">쿠팡 연동 시 주의사항</span><span class="vi">Lưu ý khi tích hợp Coupang</span></span></h2>
     </div>
     <div class="section-body">
       <div style="font-size:13px;line-height:1.8;">
-        쿠팡 API를 호출하는 순간 응답 지연은 <strong>서버가 아닌 쿠팡 쪽</strong>에서 옴.<br>
-        외부 API 연동 작업(쿠팡 픽 구매 처리, 기프티콘 발급, 이메일/SMS 발송 등)은 반드시 <strong>백그라운드 워커(Worker Queue)</strong>로 분리해 처리할 것.
+        <span class="i18n"><span class="ko">쿠팡 API를 호출하는 순간 응답 지연은 <strong>서버가 아닌 쿠팡 쪽</strong>에서 옴.<br>외부 API 연동 작업(쿠팡 픽 구매 처리, 기프티콘 발급, 이메일/SMS 발송 등)은 반드시 <strong>백그라운드 워커(Worker Queue)</strong>로 분리해 처리할 것.</span><span class="vi">Khi gọi API Coupang, độ trễ phản hồi đến từ <strong>phía Coupang, không phải server của mình</strong>.<br>Các tác vụ tích hợp API bên ngoài (xử lý mua Coupang Pick, phát hành Gift Card, gửi email/SMS...) bắt buộc phải tách riêng và xử lý bằng <strong>Worker nền (Worker Queue)</strong>.</span></span>
       </div>
       <div class="note-box" style="margin-top:14px;">
-        RabbitMQ 또는 Redis Streams 사용 권장 — 유저가 결과를 기다리지 않게 비동기 처리
+        <span class="i18n"><span class="ko">RabbitMQ 또는 Redis Streams 사용 권장 — 유저가 결과를 기다리지 않게 비동기 처리</span><span class="vi">Khuyến nghị dùng RabbitMQ hoặc Redis Streams — xử lý bất đồng bộ để user không phải chờ kết quả</span></span>
       </div>
     </div>
   </div>
@@ -298,7 +316,7 @@
   <div class="section">
     <div class="section-header">
       <div class="num">5</div>
-      <h2>RAM 32GB 분배 권장안</h2>
+      <h2><span class="i18n"><span class="ko">RAM 32GB 분배 권장안</span><span class="vi">Đề xuất phân bổ RAM 32GB</span></span></h2>
     </div>
     <div class="section-body">
       <div class="ram-bar">
@@ -333,7 +351,7 @@
           <div class="ram-gb">1GB</div>
         </div>
         <div class="ram-row">
-          <div class="ram-label">예비</div>
+          <div class="ram-label"><span class="i18n"><span class="ko">예비</span><span class="vi">Dự phòng</span></span></div>
           <div class="ram-track"><div class="ram-fill" style="width:21.875%;background:#E5E7EB;color:#6B7280;">7G</div></div>
           <div class="ram-gb">7GB</div>
         </div>
@@ -345,48 +363,48 @@
   <div class="section">
     <div class="section-header">
       <div class="num">6</div>
-      <h2>인프라 성장 로드맵</h2>
+      <h2><span class="i18n"><span class="ko">인프라 성장 로드맵</span><span class="vi">Lộ trình tăng trưởng hạ tầng</span></span></h2>
     </div>
     <div class="section-body">
       <table>
         <thead>
-          <tr><th>단계</th><th>총 가입자</th><th>동시 온라인</th><th>인프라 구성</th></tr>
+          <tr><th><span class="i18n"><span class="ko">단계</span><span class="vi">Giai đoạn</span></span></th><th><span class="i18n"><span class="ko">총 가입자</span><span class="vi">Tổng người dùng</span></span></th><th><span class="i18n"><span class="ko">동시 온라인</span><span class="vi">Online đồng thời</span></span></th><th><span class="i18n"><span class="ko">인프라 구성</span><span class="vi">Cấu hình hạ tầng</span></span></th></tr>
         </thead>
         <tbody>
           <tr>
             <td><span class="tag green">MVP</span></td>
-            <td>5,000명</td>
-            <td>300명</td>
-            <td>서버 1대</td>
+            <td><span class="i18n"><span class="ko">5,000명</span><span class="vi">5,000 người</span></span></td>
+            <td><span class="i18n"><span class="ko">300명</span><span class="vi">300 người</span></span></td>
+            <td><span class="i18n"><span class="ko">서버 1대</span><span class="vi">1 server</span></span></td>
           </tr>
           <tr>
             <td><span class="tag green">Beta</span></td>
-            <td>20,000명</td>
-            <td>800명</td>
-            <td>서버 1대 + Redis</td>
+            <td><span class="i18n"><span class="ko">20,000명</span><span class="vi">20,000 người</span></span></td>
+            <td><span class="i18n"><span class="ko">800명</span><span class="vi">800 người</span></span></td>
+            <td><span class="i18n"><span class="ko">서버 1대 + Redis</span><span class="vi">1 server + Redis</span></span></td>
           </tr>
           <tr>
             <td><span class="tag blue">Launch</span></td>
-            <td>50,000명</td>
-            <td>2,000명</td>
-            <td>서버 1대 최적화 + Monitoring</td>
+            <td><span class="i18n"><span class="ko">50,000명</span><span class="vi">50,000 người</span></span></td>
+            <td><span class="i18n"><span class="ko">2,000명</span><span class="vi">2,000 người</span></span></td>
+            <td><span class="i18n"><span class="ko">서버 1대 최적화 + Monitoring</span><span class="vi">1 server tối ưu + Monitoring</span></span></td>
           </tr>
           <tr>
             <td><span class="tag blue">Growth</span></td>
-            <td>100,000명</td>
-            <td>5,000명</td>
-            <td>서버 2대 (앱 + DB 분리)</td>
+            <td><span class="i18n"><span class="ko">100,000명</span><span class="vi">100,000 người</span></span></td>
+            <td><span class="i18n"><span class="ko">5,000명</span><span class="vi">5,000 người</span></span></td>
+            <td><span class="i18n"><span class="ko">서버 2대 (앱 + DB 분리)</span><span class="vi">2 server (tách App + DB)</span></span></td>
           </tr>
           <tr>
             <td><span class="tag" style="background:#FEF2F2;color:#991B1B;">Scale</span></td>
-            <td>300,000명</td>
-            <td>10,000명</td>
-            <td>Load Balancer + API 3대 + DB Replica</td>
+            <td><span class="i18n"><span class="ko">300,000명</span><span class="vi">300,000 người</span></span></td>
+            <td><span class="i18n"><span class="ko">10,000명</span><span class="vi">10,000 người</span></span></td>
+            <td>Load Balancer + API 3<span class="i18n"><span class="ko">대</span><span class="vi"> server</span></span> + DB Replica</td>
           </tr>
           <tr>
             <td><span class="tag" style="background:#FEF2F2;color:#991B1B;">Enterprise</span></td>
-            <td>1,000,000명</td>
-            <td>30,000명</td>
+            <td><span class="i18n"><span class="ko">1,000,000명</span><span class="vi">1,000,000 người</span></span></td>
+            <td><span class="i18n"><span class="ko">30,000명</span><span class="vi">30,000 người</span></span></td>
             <td>Kubernetes + Redis Cluster + MQ + CDN</td>
           </tr>
         </tbody>
@@ -398,33 +416,33 @@
   <div class="section">
     <div class="section-header">
       <div class="num">7</div>
-      <h2>처음부터 잡아야 할 것 (나중에 갈아엎기 방지)</h2>
+      <h2><span class="i18n"><span class="ko">처음부터 잡아야 할 것 (나중에 갈아엎기 방지)</span><span class="vi">Những điều cần thiết lập ngay từ đầu (tránh phải làm lại về sau)</span></span></h2>
     </div>
     <div class="section-body">
       <ul class="checklist">
         <li>
           <span class="icon">🏗</span>
-          <div><strong>Stateless API 설계</strong> — 나중에 백엔드 서버를 여러 대로 늘릴 수 있게 서버가 상태를 저장하지 않는 구조로 설계</div>
+          <div><span class="i18n"><span class="ko"><strong>Stateless API 설계</strong> — 나중에 백엔드 서버를 여러 대로 늘릴 수 있게 서버가 상태를 저장하지 않는 구조로 설계</span><span class="vi"><strong>Thiết kế Stateless API</strong> — thiết kế server không lưu trạng thái để sau này có thể mở rộng backend ra nhiều server</span></span></div>
         </li>
         <li>
           <span class="icon">⚡</span>
-          <div><strong>Redis 적극 활용</strong> — 캐시, 세션, 레이트 리밋, 티켓·포인트 정보 등 자주 읽는 데이터 캐싱</div>
+          <div><span class="i18n"><span class="ko"><strong>Redis 적극 활용</strong> — 캐시, 세션, 레이트 리밋, 티켓·포인트 정보 등 자주 읽는 데이터 캐싱</span><span class="vi"><strong>Tận dụng Redis triệt để</strong> — cache, session, rate limit, cache dữ liệu hay đọc như Ticket·Point</span></span></div>
         </li>
         <li>
           <span class="icon">🔄</span>
-          <div><strong>외부 연동은 백그라운드 워커로</strong> — 쿠팡, 기프티콘, 이메일/SMS 등 외부 API 호출은 RabbitMQ 또는 Redis Streams로 큐잉</div>
+          <div><span class="i18n"><span class="ko"><strong>외부 연동은 백그라운드 워커로</strong> — 쿠팡, 기프티콘, 이메일/SMS 등 외부 API 호출은 RabbitMQ 또는 Redis Streams로 큐잉</span><span class="vi"><strong>Tích hợp bên ngoài qua Worker nền</strong> — các lệnh gọi API bên ngoài (Coupang, Gift Card, email/SMS...) xếp hàng qua RabbitMQ hoặc Redis Streams</span></span></div>
         </li>
         <li>
           <span class="icon">📊</span>
-          <div><strong>로깅 · 모니터링 표준화</strong> — 처음부터 Prometheus + Grafana(또는 동급) 도입</div>
+          <div><span class="i18n"><span class="ko"><strong>로깅 · 모니터링 표준화</strong> — 처음부터 Prometheus + Grafana(또는 동급) 도입</span><span class="vi"><strong>Chuẩn hóa Logging · Monitoring</strong> — áp dụng Prometheus + Grafana (hoặc tương đương) ngay từ đầu</span></span></div>
         </li>
         <li>
           <span class="icon">💾</span>
-          <div><strong>DB 자동 백업</strong> — 매일 자동 백업 + 주기적 복구 테스트</div>
+          <div><span class="i18n"><span class="ko"><strong>DB 자동 백업</strong> — 매일 자동 백업 + 주기적 복구 테스트</span><span class="vi"><strong>Tự động backup DB</strong> — backup tự động hàng ngày + kiểm tra khôi phục định kỳ</span></span></div>
         </li>
         <li>
           <span class="icon">🚀</span>
-          <div><strong>CI/CD 구축</strong> — 빠른 배포 + 업데이트 리스크 최소화</div>
+          <div><span class="i18n"><span class="ko"><strong>CI/CD 구축</strong> — 빠른 배포 + 업데이트 리스크 최소화</span><span class="vi"><strong>Xây dựng CI/CD</strong> — deploy nhanh + giảm thiểu rủi ro khi update</span></span></div>
         </li>
       </ul>
     </div>
@@ -432,31 +450,31 @@
 
   <!-- 결론 -->
   <div class="conclusion">
-    <h3>결론 — 현재 서버로 초기에 충분히 운영 가능</h3>
+    <h3><span class="i18n"><span class="ko">결론 — 현재 서버로 초기에 충분히 운영 가능</span><span class="vi">Kết luận — Server hiện tại đủ sức vận hành giai đoạn đầu</span></span></h3>
     <div class="conclusion-grid">
       <div class="c-card">
-        <div class="c-label">처리 가능 가입자</div>
-        <div class="c-val">20,000 ~ 50,000명</div>
-        <div class="c-desc">현재 서버로 안정 운영 가능</div>
+        <div class="c-label"><span class="i18n"><span class="ko">처리 가능 가입자</span><span class="vi">Người dùng có thể xử lý</span></span></div>
+        <div class="c-val"><span class="i18n"><span class="ko">20,000 ~ 50,000명</span><span class="vi">20,000 – 50,000 người</span></span></div>
+        <div class="c-desc"><span class="i18n"><span class="ko">현재 서버로 안정 운영 가능</span><span class="vi">Vận hành ổn định với server hiện tại</span></span></div>
       </div>
       <div class="c-card">
-        <div class="c-label">동시 온라인</div>
-        <div class="c-val">500 ~ 1,000명</div>
-        <div class="c-desc">일반적인 조건에서 여유 있음</div>
+        <div class="c-label"><span class="i18n"><span class="ko">동시 온라인</span><span class="vi">Online đồng thời</span></span></div>
+        <div class="c-val"><span class="i18n"><span class="ko">500 ~ 1,000명</span><span class="vi">500 – 1,000 người</span></span></div>
+        <div class="c-desc"><span class="i18n"><span class="ko">일반적인 조건에서 여유 있음</span><span class="vi">Dư sức trong điều kiện thông thường</span></span></div>
       </div>
       <div class="c-card">
-        <div class="c-label">피크 처리량</div>
+        <div class="c-label"><span class="i18n"><span class="ko">피크 처리량</span><span class="vi">Công suất đỉnh</span></span></div>
         <div class="c-val">100 ~ 200 req/s</div>
-        <div class="c-desc">인프라 확장 없이 처리 가능</div>
+        <div class="c-desc"><span class="i18n"><span class="ko">인프라 확장 없이 처리 가능</span><span class="vi">Xử lý được mà không cần mở rộng hạ tầng</span></span></div>
       </div>
       <div class="c-card">
-        <div class="c-label">앱/DB 분리 시점</div>
-        <div class="c-val">50,000명 초과 시</div>
-        <div class="c-desc">또는 동시 2,000~3,000명 초과 시</div>
+        <div class="c-label"><span class="i18n"><span class="ko">앱/DB 분리 시점</span><span class="vi">Thời điểm tách App/DB</span></span></div>
+        <div class="c-val"><span class="i18n"><span class="ko">50,000명 초과 시</span><span class="vi">Khi vượt 50,000 người</span></span></div>
+        <div class="c-desc"><span class="i18n"><span class="ko">또는 동시 2,000~3,000명 초과 시</span><span class="vi">Hoặc khi online đồng thời vượt 2,000–3,000 người</span></span></div>
       </div>
     </div>
     <div class="conclusion-note">
-      300,000명 이상 규모가 되면 로드 밸런서 + Redis 클러스터 + 메시지 큐 + DB 레플리카 구조로 전환. 초기에 비용을 아끼면서도 성장에 대비할 수 있는 합리적인 로드맵.
+      <span class="i18n"><span class="ko">300,000명 이상 규모가 되면 로드 밸런서 + Redis 클러스터 + 메시지 큐 + DB 레플리카 구조로 전환. 초기에 비용을 아끼면서도 성장에 대비할 수 있는 합리적인 로드맵.</span><span class="vi">Khi quy mô vượt 300,000 người, chuyển sang cấu trúc Load Balancer + Redis Cluster + Message Queue + DB Replica. Đây là lộ trình hợp lý giúp tiết kiệm chi phí ban đầu mà vẫn sẵn sàng cho tăng trưởng.</span></span>
     </div>
   </div>
 
