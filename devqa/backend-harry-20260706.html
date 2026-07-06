@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 백엔드 질문 답변 #4</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.langtog{position:absolute;top:20px;right:22px;display:flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:700;font-size:14px;flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap} .atxt b{color:var(--ink1);font-weight:700}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+/* ── 모달 ── */
+.modal{display:none;position:fixed;inset:0;z-index:100}
+.modal.open{display:block}
+.modal-bg{position:absolute;inset:0;background:rgba(31,35,48,.55)}
+.modal-card{position:relative;max-width:560px;margin:8vh auto 0;background:var(--bg);border-radius:18px;overflow:hidden;box-shadow:0 24px 70px rgba(31,35,48,.34);animation:pop .16s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.modal-top{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mt-title{font-size:15px;font-weight:800}
+.mt-ctrl{display:flex;align-items:center;gap:10px}
+.modal .langtog{position:static;top:auto;right:auto}
+#langsw:checked ~ .modal .ko{display:none}
+#langsw:checked ~ .modal .vi{display:inline}
+#langsw:checked ~ .modal .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ .modal .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.modal-x{background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.modal-x:hover{background:rgba(255,255,255,.32)}
+.modal-body{padding:20px 20px 24px;max-height:68vh;overflow:auto}
+/* ── 메신저 말풍선 ── */
+.chat{display:flex;gap:11px;align-items:flex-start}
+.ava{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#845EEE,#6a45d4);color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 7px rgba(132,94,238,.35)}
+.bubblewrap{flex:1;min-width:0}
+.who{font-size:11.5px;color:var(--ink3);font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.who .badge{font-size:10px;font-weight:800;color:#fff;background:var(--pp);padding:2px 8px;border-radius:20px;letter-spacing:.02em}
+.bubble{position:relative;background:#fff;border:1px solid var(--line);border-radius:3px 16px 16px 16px;padding:15px 17px 16px;font-size:13.4px;color:var(--ink2);line-height:1.62;white-space:pre-wrap;box-shadow:0 1px 4px rgba(31,35,48,.05)}
+.bubble::before{content:"";position:absolute;top:12px;left:-6px;width:12px;height:12px;background:#fff;border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
+.bubble::after{content:"\201C";position:absolute;top:4px;right:14px;font-size:34px;line-height:1;color:var(--pp-l);font-family:Georgia,'Times New Roman',serif;pointer-events:none}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 백엔드 질문 답변 #4</span><span class="vi">Giải đáp câu hỏi Backend PricePick #4</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry 친구 초대(레퍼럴) 플로우 문의 · 답변 작성 중</span><span class="vi">Harry hỏi về flow mời bạn bè (Referral) · Đang chuẩn bị câu trả lời</span></span></div>
+<a class="srclink" role="button" tabindex="0" onclick="openOrigin(event)" onkeydown="if(event.key==='Enter'||event.key===' '){openOrigin(event)}"><span class="i18n"><span class="ko">원문 질문 보기</span><span class="vi">Xem câu hỏi gốc</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건</span><span class="vi">1 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">답변 예정 1</span><span class="vi">Đang chuẩn bị 1</span></span></span></div>
+<h2 class="grp"><span class="i18n"><span class="ko">친구 초대(레퍼럴) 플로우</span><span class="vi">Flow mời bạn bè (Referral)</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">친구 초대(레퍼럴) 플로우를 상세히 설명해 달라 — Flow 1(닉네임 가입 시 추천코드 직접 입력, Android·iOS 공통) vs Flow 2(설치 URL에 추천코드 파라미터 포함, Android 전용) 중 어떤 방식으로 구현할지 확인 요청</span><span class="vi">Giải thích chi tiết flow mời bạn bè — xác nhận triển khai theo Flow 1 (nhập mã giới thiệu thủ công khi đăng ký nickname, dùng chung Android·iOS) hay Flow 2 (mã giới thiệu gắn trong URL cài đặt, chỉ Android)</span></span></div><span class="bd hold"><span class="i18n"><span class="ko">답변 예정</span><span class="vi">Đang chuẩn bị</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">(답변 작성 예정)</span><span class="vi">(Đang chuẩn bị câu trả lời)</span></span></div></div></div>
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 백엔드 질문 답변 #4 (친구 초대 플로우) · 2026-07-06</span><span class="vi">PricePick · Giải đáp Backend #4 (Flow mời bạn bè) · 2026-07-06</span></span></div></div>
+<div class="modal" id="originModal" role="dialog" aria-modal="true" aria-label="원문 질문">
+<div class="modal-bg" data-close></div>
+<div class="modal-card">
+<div class="modal-top"><div class="mt-title"><span class="i18n"><span class="ko">원문 질문</span><span class="vi">Câu hỏi gốc</span></span></div>
+<div class="mt-ctrl"><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><button class="modal-x" data-close aria-label="Close">&times;</button></div></div>
+<div class="modal-body"><div class="chat"><div class="ava">H</div><div class="bubblewrap"><div class="who"><span class="badge">Harry</span><span class="i18n"><span class="ko">Backend · 메신저로 보낸 질문</span><span class="vi">Backend · Câu hỏi đã gửi qua tin nhắn</span></span></div><div class="bubble"><span class="i18n"><span class="ko">Mark 성권 김님 안녕하세요
+
+친구 초대 기능을 개발 중입니다. 친구 초대 플로우가 정확히 어떻게 되는지 자세히 설명해 주실 수 있나요?
+참고하실 수 있도록 2가지 방안을 제시합니다:
+
+1. Flow 1: 이 방식은 Android·iOS 양쪽 모두 가능합니다
+사용자 A는 고정된 추천 코드(레퍼럴 코드)를 가지고 있습니다. 예: abcde
+사용자 A가 B를 앱 설치로 초대하고 싶을 때: A는 앱 설치 링크와 추천 코드(abcde)를 함께 보냅니다. B가 앱을 설치한 후 이 추천 코드를 입력하면, 앱은 A가 B를 성공적으로 초대했다고 인식하고, B가 첫 주문(쿠팡)을 성사시키면 그때 A·B 둘 다 500 포인트를 받습니다. 이 플로우를 선택하면 회원가입 시 닉네임 입력 UI를 변경하고 추천 코드 입력란을 추가해야 합니다.
+
+2. Flow 2: 이 방식은 Android에서만 가능합니다. iOS는 설치 링크에 추천 코드를 실어 보낼 수 없어서 다른 방법을 찾아야 합니다.
+사용자 A는 고정된 추천 코드를 가지고 있습니다. 예: abcde
+이 코드는 앱 설치 URL에 함께 실려서 전달됩니다. 예: url_cai_dat_app?ref=abcde
+사용자가 B를 초대하고 싶으면 위 URL만 보내면 됩니다. B가 이 URL로 앱을 설치하고 가입하면 앱이 자동으로 B를 A가 초대한 것으로 기록합니다. 그리고 B가 첫 주문(쿠팡)을 성사시키면 A·B 둘 다 500 포인트를 받습니다.
+
+문서를 봐도 친구 초대 기능의 상세 플로우 설명이 없어서, 자세히 설명해 주시면 감사하겠습니다.</span><span class="vi">Hi Mr Mark SUNG GWON KIM
+
+Tôi đang viết chức năng mời bạn bè: Bạn có thể giải thích chi tiết flow mời bạn bè như thế nào không?
+Tôi đang có 2 tùy chọn để bạn tham khảo:
+
+1. Flow 1: Flow này sẽ Ok trên cả Android và IOS
+User A có mã referral cố định ví dụ: abcde
+User A muốn mời B cài đặt app: User A sẽ gửi liên kết cài đặt app và mã giới thiệu: abcde. Khi User A cài đặt App thì sẽ nhập mã giới thiệu này vào thì khi đó app xác nhận là A đã giới thiệu B thành công và chờ B đặt đơn hàng đầu tiên (Coupang) thành công thì cả 2 sẽ nhận được 500 Point. Nếu chọn flow này thi cần thay đổi UI lúc user đăng ký nhập Nickname và thêm ô nhập mã giới thiệu
+
+2. Flow 2: Flow này chỉ Ok trên Android. Còn IOS cần tìm cách khác vì không thể gửi referral code trong link cài đặt app
+User A có mã referral cố định, ví dụ: abcde
+Mã này sẽ được gửi kèm cùng với url cài đặt app. Ví dụ: url_cai_dat_app?ref=abcde
+User muốn mời B cài đặt app thì chỉ cần gửi url trên. Nếu user B cài đặt App và đăng ký thì mặc định app sẽ ghi nhận B là do A mời. Và nếu B đặt đơn hàng đầu tiên (Coupang) thành công thì cả 2 sẽ nhận được 500 Point
+
+Tôi đọc tài liệu không thấy mô tả luồng chi tiết của chức năng mời bạn bè nên vui lòng giải thích chi tiết giúp tôi.</span></span></div></div></div>
+</div></div>
+<script>
+const _m=document.getElementById('originModal');
+function openOrigin(e){if(e)e.preventDefault();_m.classList.add('open');document.body.style.overflow='hidden';}
+function closeOrigin(){_m.classList.remove('open');document.body.style.overflow='';}
+_m.addEventListener('click',e=>{if(e.target.hasAttribute('data-close'))closeOrigin();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&_m.classList.contains('open'))closeOrigin();});
+</script>
+</body></html>
