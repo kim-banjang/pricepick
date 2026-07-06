@@ -58,12 +58,38 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
 <div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 백엔드 질문 답변 #4</span><span class="vi">Giải đáp câu hỏi Backend PricePick #4</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">Harry 친구 초대(레퍼럴) 플로우 문의 · 답변 작성 중</span><span class="vi">Harry hỏi về flow mời bạn bè (Referral) · Đang chuẩn bị câu trả lời</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry 친구 초대(레퍼럴) 플로우 문의 · 답변 KO/VI</span><span class="vi">Harry hỏi về flow mời bạn bè (Referral) · Trả lời KO/VI</span></span></div>
 <a class="srclink" role="button" tabindex="0" onclick="openOrigin(event)" onkeydown="if(event.key==='Enter'||event.key===' '){openOrigin(event)}"><span class="i18n"><span class="ko">원문 질문 보기</span><span class="vi">Xem câu hỏi gốc</span></span></a></div></header>
-<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건</span><span class="vi">1 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">답변 예정 1</span><span class="vi">Đang chuẩn bị 1</span></span></span></div>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건</span><span class="vi">1 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 1</span><span class="vi">Đã chốt 1</span></span></span></div>
 <h2 class="grp"><span class="i18n"><span class="ko">친구 초대(레퍼럴) 플로우</span><span class="vi">Flow mời bạn bè (Referral)</span></span></h2>
-<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">친구 초대(레퍼럴) 플로우를 상세히 설명해 달라 — Flow 1(닉네임 가입 시 추천코드 직접 입력, Android·iOS 공통) vs Flow 2(설치 URL에 추천코드 파라미터 포함, Android 전용) 중 어떤 방식으로 구현할지 확인 요청</span><span class="vi">Giải thích chi tiết flow mời bạn bè — xác nhận triển khai theo Flow 1 (nhập mã giới thiệu thủ công khi đăng ký nickname, dùng chung Android·iOS) hay Flow 2 (mã giới thiệu gắn trong URL cài đặt, chỉ Android)</span></span></div><span class="bd hold"><span class="i18n"><span class="ko">답변 예정</span><span class="vi">Đang chuẩn bị</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">(답변 작성 예정)</span><span class="vi">(Đang chuẩn bị câu trả lời)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">친구 초대(레퍼럴) 플로우를 상세히 설명해 달라 — Flow 1(닉네임 가입 시 추천코드 직접 입력, Android·iOS 공통) vs Flow 2(설치 URL에 추천코드 파라미터 포함, Android 전용) 중 어떤 방식으로 구현할지 확인 요청</span><span class="vi">Giải thích chi tiết flow mời bạn bè — xác nhận triển khai theo Flow 1 (nhập mã giới thiệu thủ công khi đăng ký nickname, dùng chung Android·iOS) hay Flow 2 (mã giới thiệu gắn trong URL cài đặt, chỉ Android)</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>[결론/추천]</b> Flow 1(추천코드 수동 입력)을 권장합니다.
+
+<b>[이유]</b> Flow 2를 iOS에서 자동화하려면 deferred deep linking(설치 후 앱이 추천코드를 넘겨받는 기술)이 필요합니다. 이를 무료로 제공하던 Firebase Dynamic Links가 2025년 8월 종료되어 현재 작동하지 않습니다(모든 링크 404). 대안은 Branch·Adjust·AppsFlyer 등 유료 외부 서비스뿐이라 현 단계에선 비용·복잡도가 과합니다. 반면 Flow 1은 iOS·Android 모두 확실히 동작하고 구현이 단순합니다.
+
+<b>[Flow 1 상세 흐름]</b>
+1) A는 가입 시 고정 추천코드를 발급받는다.
+2) A가 B에게 앱 설치 링크 + 추천코드를 전달한다.
+3) B가 앱 설치 후 가입(닉네임 입력) 화면에서 추천코드 입력칸에 A의 코드를 입력한다. → 가입 UI에 추천코드 입력칸 추가 필요.
+4) 서버가 코드로 A를 확인하고 B를 A의 추천으로 기록한다(pending).
+5) B가 첫 쿠팡 주문을 성공(포스트백 confirmed)하면 A·B 각각 500 포인트를 지급한다.
+
+<b>[추가 구현]</b> referral 매핑 저장, 포스트백 확정 시 양쪽 지급 로직, 자기추천·중복 사용 방지.
+
+<b>[향후]</b> 서비스 규모가 커지면 Branch 등 deep linking 서비스를 도입해 Flow 2(링크만으로 자동 기록)로 확장 권장.</span><span class="vi"><b>[Kết luận/Đề xuất]</b> Đề xuất chọn Flow 1 (nhập mã giới thiệu thủ công).
+
+<b>[Lý do]</b> Để tự động hóa Flow 2 trên iOS thì cần deferred deep linking (công nghệ giúp app nhận được mã giới thiệu sau khi cài đặt). Firebase Dynamic Links — dịch vụ từng cung cấp miễn phí công nghệ này — đã ngừng hoạt động từ tháng 8/2025 (mọi link đều trả về lỗi 404). Các lựa chọn thay thế chỉ còn các dịch vụ trả phí bên ngoài như Branch, Adjust, AppsFlyer, nên ở giai đoạn hiện tại chi phí và độ phức tạp là quá mức cần thiết. Trong khi đó, Flow 1 hoạt động chắc chắn trên cả iOS lẫn Android và cách triển khai đơn giản hơn.
+
+<b>[Chi tiết luồng Flow 1]</b>
+1) A được cấp mã giới thiệu cố định khi đăng ký.
+2) A gửi cho B liên kết cài đặt app + mã giới thiệu.
+3) Sau khi cài đặt app, ở màn hình đăng ký (nhập Nickname), B nhập mã giới thiệu của A vào ô mã giới thiệu. → Cần thêm ô nhập mã giới thiệu vào UI đăng ký.
+4) Server xác nhận A bằng mã giới thiệu và ghi nhận B là do A mời (ở trạng thái pending).
+5) Khi B đặt đơn hàng Coupang đầu tiên thành công (postback confirmed), cả A và B mỗi người nhận 500 Point.
+
+<b>[Cần triển khai thêm]</b> Lưu mapping referral, logic cấp điểm cho cả hai bên khi postback được xác nhận, chặn tự giới thiệu bản thân và sử dụng trùng mã.
+
+<b>[Định hướng sau này]</b> Khi quy mô dịch vụ lớn hơn, đề xuất áp dụng dịch vụ deep linking như Branch để mở rộng sang Flow 2 (tự động ghi nhận chỉ bằng link).</span></span></div></div></div>
 <div class="foot"><span class="i18n"><span class="ko">PricePick · 백엔드 질문 답변 #4 (친구 초대 플로우) · 2026-07-06</span><span class="vi">PricePick · Giải đáp Backend #4 (Flow mời bạn bè) · 2026-07-06</span></span></div></div>
 <div class="modal" id="originModal" role="dialog" aria-modal="true" aria-label="원문 질문">
 <div class="modal-bg" data-close></div>
