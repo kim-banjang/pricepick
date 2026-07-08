@@ -441,6 +441,9 @@ body.dark .member-type-apple::before{background:#E5E7EB;}
 #sec-members table .tk-chip.event,
 #sec-members table .tk-chip.random{background:transparent!important;border:none!important;padding:2px 4px!important;}
 
+/* ── 회원 목록: 등급 티켓 세로 3행 배치 ── */
+.grade-ticket-stack{display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;}
+
 /* ── 회원 목록 테이블 컬럼 너비 ── */
 #sec-members table{table-layout:fixed;width:100%;}
 #sec-members table th:nth-child(1){width:120px;}  /* 닉네임 */
@@ -1149,7 +1152,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <td><div style="font-weight:500">쇼핑왕민준</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">minjun_kakao</div></td>
               <td><span class="member-type-kakao">카카오 연동</span><div style="font-size:10px;color:var(--text-3);margin-top:3px;">연동 2024/08/12</div></td>
               <td style="text-align:center"><div style="font-weight:700;color:#333333">2024/08/12</div><div style="color:var(--text-3)">09:14:22</div></td>
-              <td><div class="rnd-chip-wrap"><span class="tk-chip random">2</span><span class="conv-arrow">→</span></div></td><td><div class="conv-preview"><span class="tk-chip bronze">+1</span><span class="tk-chip silver">+1</span></div></td><td><div style="display:flex;gap:5px;align-items:center;justify-content:center;"><span class="tk-chip bronze">12</span><span class="tk-chip silver">8</span><span class="tk-chip gold">27</span></div></td>
+              <td><div class="rnd-chip-wrap"><span class="tk-chip random">2</span><span class="conv-arrow">→</span></div></td><td><div class="conv-preview"><span class="tk-chip bronze">+1</span><span class="tk-chip silver">+1</span></div></td><td><div class="grade-ticket-stack"><span class="tk-chip bronze">12</span><span class="tk-chip silver">8</span><span class="tk-chip gold">27</span></div></td>
               <td><span class="tk-chip event">3</span></td>
               <td><span class="mkt-badge all">전체 동의</span></td>
               <td><span class="badge badge-green">정상</span></td>
@@ -1159,7 +1162,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <td><div style="font-weight:500">가격헌터서연</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">seoyeon_kakao</div></td>
               <td><span class="member-type-kakao">카카오 연동</span><div style="font-size:10px;color:var(--text-3);margin-top:3px;">연동 2024/11/03</div></td>
               <td style="text-align:center"><div style="font-weight:700;color:#333333">2024/11/03</div><div style="color:var(--text-3)">14:37:05</div></td>
-              <td><div class="rnd-chip-wrap"><span class="tk-chip random">1</span><span class="conv-arrow">→</span></div></td><td><div class="conv-preview"><span class="tk-chip gold">+1</span></div></td><td><div style="display:flex;gap:5px;align-items:center;justify-content:center;"><span class="tk-chip bronze">9</span><span class="tk-chip silver">14</span><span class="tk-chip gold dim">0</span></div></td>
+              <td><div class="rnd-chip-wrap"><span class="tk-chip random">1</span><span class="conv-arrow">→</span></div></td><td><div class="conv-preview"><span class="tk-chip gold">+1</span></div></td><td><div class="grade-ticket-stack"><span class="tk-chip bronze">9</span><span class="tk-chip silver">14</span><span class="tk-chip gold dim">0</span></div></td>
               <td><span class="tk-chip event">1</span></td>
               <td><span class="mkt-badge sel">선택 동의</span></td>
               <td><span class="badge badge-green">정상</span></td>
@@ -1169,7 +1172,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <td><div style="font-weight:500">절약러지호 <span style="font-size:10px;font-weight:700;color:#d97a17;background:#fdf1e3;border:1px solid #f3d2a0;border-radius:10px;padding:1px 7px;margin-left:3px;">미연동</span></div><div style="font-size:11px;color:var(--text-2);font-family:monospace">app_uid: 8f3a21c0</div></td>
               <td><span style="display:inline-block;font-size:11px;font-weight:700;color:#d97a17;background:#fdf1e3;border:1px solid #f3d2a0;border-radius:20px;padding:3px 10px;">게스트(미연동)</span><div style="font-size:10px;color:var(--text-3);margin-top:3px;">적립만 누적 · 사용 불가</div></td>
               <td style="text-align:center"><div style="font-weight:700;color:#333333">2025/02/28</div><div style="color:var(--text-3)">11:02:48</div></td>
-              <td><span class="tk-chip random dim">0</span></td><td></td><td><div style="display:flex;gap:5px;align-items:center;justify-content:center;"><span class="tk-chip bronze dim">0</span><span class="tk-chip silver dim">0</span><span class="tk-chip gold dim">0</span></div></td>
+              <td><span class="tk-chip random dim">0</span></td><td></td><td><div class="grade-ticket-stack"><span class="tk-chip bronze dim">0</span><span class="tk-chip silver dim">0</span><span class="tk-chip gold dim">0</span></div></td>
               <td><span class="tk-chip event dim">0</span></td>
               <td><span class="mkt-badge none">전체 거부</span></td>
               <td><span class="badge badge-red">정지</span></td>
@@ -1179,7 +1182,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <td><div style="font-weight:500">핫딜탐정</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">hotdeal_kakao</div></td>
               <td><span class="member-type-kakao">카카오 연동</span><div style="font-size:10px;color:var(--text-3);margin-top:3px;">연동 2025/05/14</div></td>
               <td style="text-align:center"><div style="font-weight:700;color:#333333">2025/05/14</div><div style="color:var(--text-3)">16:55:33</div></td>
-              <td><div class="rnd-chip-wrap"><span class="tk-chip random">3</span><span class="conv-arrow">→</span></div></td><td><div class="conv-preview"><span class="tk-chip bronze">+2</span><span class="tk-chip silver">+1</span></div></td><td><div style="display:flex;gap:5px;align-items:center;justify-content:center;"><span class="tk-chip bronze">5</span><span class="tk-chip silver">7</span><span class="tk-chip gold dim">0</span></div></td>
+              <td><div class="rnd-chip-wrap"><span class="tk-chip random">3</span><span class="conv-arrow">→</span></div></td><td><div class="conv-preview"><span class="tk-chip bronze">+2</span><span class="tk-chip silver">+1</span></div></td><td><div class="grade-ticket-stack"><span class="tk-chip bronze">5</span><span class="tk-chip silver">7</span><span class="tk-chip gold dim">0</span></div></td>
               <td><span class="tk-chip event">2</span></td>
               <td><span class="mkt-badge all">전체 동의</span></td>
               <td><span class="badge badge-green">정상</span></td>
