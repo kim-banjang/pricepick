@@ -65,37 +65,21 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <div style="background:var(--pp-l);border-left:3px solid var(--pp);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:var(--ink2);font-weight:600"><span class="i18n"><span class="ko">기존에 확인하신 정책은 변경되었습니다.</span><span class="vi">Chính sách bạn đã xem trước đây đã được thay đổi.</span></span></div>
 
 <div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">사용자가 탈퇴 요청을 클릭하면 이후 처리 흐름이 어떻게 되는가</span><span class="vi">Khi user click yêu cầu hủy tài khoản thì luồng xử lý tiếp theo như thế nào</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">탈퇴는 <b>즉시 처리</b>됩니다. 별도의 유예기간이나 취소(철회) 절차 없이 그 자리에서 확정되며, 이후에는 같은 계정으로 다시 로그인할 수 없습니다.
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">회원이 탈퇴하면 <b>즉시 탈퇴 처리</b>됩니다. 기다리는 기간이나 되돌리는 절차는 없습니다.
 
-이때 아래 원칙이 함께 적용됩니다.
-- 이름·이메일·카카오 정보 등 <b>개인을 알아볼 수 있는 정보는 탈퇴와 동시에 완전히 삭제</b>합니다.
-- 다만 <b>탈퇴했다는 사실과 그동안의 구매·적립 이력은 남깁니다.</b> 개인정보만 지우고 "누구인지 알 수 없는 탈퇴 회원"으로 남기는 것으로, 그 사람이 받았던 티켓·결제 내역과의 연결이 끊겨 기존 데이터가 어긋나지 않도록 하기 위함입니다.
-- 구매·결제 이력은 <b>전자상거래법상 보존 의무(5년)</b>가 있어 개인정보와 별개로 계속 보존합니다.
-- 해당 기기에 남아 있던 로그인 정보 등도 함께 정리되어, 재실행해도 예전 계정으로 복원되지 않습니다.
+해당 기기에 저장돼 있던 데이터는 <b>모두 삭제</b>됩니다. 카카오 연동 정보 등 개인정보도 기록에서 <b>즉시 완전히 삭제</b>됩니다.
 
-캡처에서 1번 질문 문장 뒷부분이 잘려 있어 정확히 어떤 세부를 물으신 건지 다 확인하지 못했습니다. 놓친 부분이 있으면 말씀해 주시면 추가로 답해드리겠습니다.</span><span class="vi">Việc hủy tài khoản được <b>xử lý ngay lập tức.</b> Không có thời gian gia hạn hay thủ tục hủy bỏ(thu hồi) riêng, việc hủy được xác nhận ngay tại chỗ, và sau đó không thể đăng nhập lại bằng cùng tài khoản đó.
+다만 <b>회원 탈퇴 기록 자체는 개인정보가 지워진 상태로 DB에 남깁니다.</b> 데이터 정합 때문이고, 구매·결제 기록은 법적으로 보관해야 하기 때문입니다.</span><span class="vi">Khi thành viên hủy tài khoản thì việc hủy được <b>xử lý ngay lập tức.</b> Không có thời gian chờ hay thủ tục hủy bỏ(khôi phục).
 
-Khi đó, các nguyên tắc sau được áp dụng đồng thời:
-- Thông tin có thể nhận diện cá nhân như tên·email·thông tin Kakao <b>bị xóa hoàn toàn ngay khi hủy tài khoản.</b>
-- Tuy nhiên <b>sự kiện đã hủy tài khoản và lịch sử mua hàng·tích lũy trước đó vẫn được giữ lại.</b> Chỉ thông tin cá nhân bị xóa, còn lại là một "thành viên đã hủy tài khoản không thể nhận diện danh tính" — nhằm tránh việc mất kết nối với vé·lịch sử thanh toán mà người đó từng có, gây sai lệch dữ liệu hiện có.
-- Lịch sử mua hàng·thanh toán có <b>nghĩa vụ lưu giữ 5 năm theo Luật Thương mại điện tử</b> nên vẫn được lưu giữ tách biệt với thông tin cá nhân.
-- Thông tin đăng nhập còn lưu trên thiết bị đó cũng được dọn sạch, nên dù mở lại ứng dụng cũng không khôi phục về tài khoản cũ.
+Dữ liệu lưu trên thiết bị đó sẽ <b>bị xóa hết.</b> Thông tin liên kết Kakao và các thông tin cá nhân khác cũng <b>bị xóa hoàn toàn ngay lập tức</b> khỏi hồ sơ.
 
-Trong ảnh chụp màn hình, câu 1 bị cắt mất phần sau nên tôi chưa xác nhận được chính xác bạn hỏi chi tiết gì. Nếu câu trả lời trên còn thiếu phần bạn cần, hãy cho tôi biết để tôi trả lời bổ sung.</span></span></div></div></div>
+Tuy nhiên <b>bản thân bản ghi đã hủy tài khoản vẫn được giữ lại trong DB ở trạng thái đã xóa thông tin cá nhân.</b> Đây là vì lý do đảm bảo tính nhất quán dữ liệu, và vì lịch sử mua hàng·thanh toán phải được lưu giữ theo quy định pháp luật.</span></span></div></div></div>
 
 <div class="qa"><div class="qrow"><span class="qno">2.1</span><div class="qtxt"><span class="i18n"><span class="ko">탈퇴 정책 설정(CMS) — PII 영구삭제 항목이 무엇을 의미하는가</span><span class="vi">Cài đặt chính sách hủy tài khoản (CMS) — Mục xóa vĩnh viễn PII nghĩa là gì</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">'PII 영구삭제'는 이름·이메일·카카오 계정 정보처럼 <b>개인을 특정할 수 있는 정보를 탈퇴 시점에 완전히 지우는 것</b>을 뜻합니다. 한 번 지운 뒤에는 되돌릴 수 없습니다.
-
-지우는 대상은 개인을 식별하는 정보로 한정됩니다. 탈퇴했다는 사실이나 그동안의 이용 이력까지 지우는 것은 아니며, <b>개인정보만 제거된 채로 회원 기록은 남습니다.</b></span><span class="vi">'Xóa vĩnh viễn PII' nghĩa là <b>xóa hoàn toàn ngay khi hủy tài khoản các thông tin có thể xác định danh tính cá nhân</b> như tên·email·thông tin tài khoản Kakao. Sau khi xóa thì không thể khôi phục.
-
-Phạm vi xóa chỉ giới hạn ở thông tin định danh cá nhân. Không xóa sự kiện đã hủy tài khoản hay lịch sử sử dụng trước đó — <b>hồ sơ thành viên vẫn được giữ lại, chỉ thông tin cá nhân bị xóa.</b></span></span></div></div></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>PII 영구삭제는 이름·이메일·카카오ID 같은 개인정보를 탈퇴 즉시 지운다는 뜻입니다.</b></span><span class="vi"><b>Xóa vĩnh viễn PII nghĩa là các thông tin cá nhân như tên·email·Kakao ID sẽ bị xóa ngay khi hủy tài khoản.</b></span></span></div></div></div>
 
 <div class="qa"><div class="qrow"><span class="qno">2.2</span><div class="qtxt"><span class="i18n"><span class="ko">탈퇴 정책 설정(CMS) — 통계용 익명 보존 항목이 무엇을 의미하는가</span><span class="vi">Cài đặt chính sách hủy tài khoản (CMS) — Mục lưu giữ cho thống kê (Ẩn danh) nghĩa là gì</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">탈퇴한 회원의 기록은 <b>개인정보만 지운 채 남겨두며, 이 기록으로 "몇 명이 언제 탈퇴했는지" 같은 운영 통계를 파악</b>합니다.
-
-이 기록에는 그 사람이 누구인지 알아볼 수 있는 정보가 없습니다. 그래서 통계를 위해 개인정보와 별도로 무언가를 남기거나 관리할 필요가 없으며, 탈퇴 사유는 현재 정책상 별도로 수집하지 않습니다.</span><span class="vi">Hồ sơ của thành viên đã hủy tài khoản <b>chỉ xóa thông tin cá nhân, vẫn được giữ lại, và dùng hồ sơ này để nắm số liệu vận hành như "bao nhiêu người đã hủy vào lúc nào".</b>
-
-Hồ sơ này không còn thông tin nào để nhận diện đó là ai. Vì vậy không cần lưu giữ hay quản lý riêng thứ gì khác cho mục đích thống kê ngoài thông tin cá nhân đã xóa, và lý do hủy tài khoản hiện không được thu thập riêng theo chính sách.</span></span></div></div></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>개인을 알아볼 수 없는 탈퇴 기록만 남겨서, 이걸로 탈퇴 통계(몇 명 탈퇴했는지 등)를 집계합니다.</b></span><span class="vi"><b>Chỉ giữ lại bản ghi hủy tài khoản không thể nhận diện cá nhân, và dùng bản ghi này để thống kê tình hình hủy tài khoản (bao nhiêu người đã hủy...).</b></span></span></div></div></div>
 
 <div class="foot"><span class="i18n"><span class="ko">PricePick · 백엔드 질문 답변 #5 (계정 탈퇴 처리) · 2026-07-10</span><span class="vi">PricePick · Giải đáp Backend #5 (Xử lý hủy tài khoản) · 2026-07-10</span></span></div></div>
 <div class="modal" id="originModal" role="dialog" aria-modal="true" aria-label="원문 질문">
