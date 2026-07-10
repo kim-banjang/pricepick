@@ -54,6 +54,17 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 .bubble{position:relative;background:#fff;border:1px solid var(--line);border-radius:3px 16px 16px 16px;padding:15px 17px 16px;font-size:13.4px;color:var(--ink2);line-height:1.62;white-space:pre-wrap;box-shadow:0 1px 4px rgba(31,35,48,.05)}
 .bubble::before{content:"";position:absolute;top:12px;left:-6px;width:12px;height:12px;background:#fff;border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
 .bubble::after{content:"\201C";position:absolute;top:4px;right:14px;font-size:34px;line-height:1;color:var(--pp-l);font-family:Georgia,'Times New Roman',serif;pointer-events:none}
+/* ── 첨부 이미지 ── */
+.q-thumb{display:block;margin:0 0 14px;padding:8px;background:#fff;border:1px solid var(--line);border-radius:12px;cursor:zoom-in;max-width:420px}
+.q-thumb img{width:100%;border-radius:8px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{display:block;margin-top:6px;font-size:11px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
 </style></head><body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
@@ -63,6 +74,8 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 5건</span><span class="vi">5 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 5</span><span class="vi">Đã chốt 5</span></span></span></div>
 <h2 class="grp"><span class="i18n"><span class="ko">계정 탈퇴(회원 탈퇴) 처리</span><span class="vi">Xử lý hủy tài khoản (회원 탈퇴)</span></span></h2>
 <div style="background:var(--pp-l);border-left:3px solid var(--pp);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:var(--ink2);font-weight:600"><span class="i18n"><span class="ko">기존에 확인하신 정책은 변경되었습니다.</span><span class="vi">Chính sách bạn đã xem trước đây đã được thay đổi.</span></span></div>
+
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry-q-app-cms.png','해리 첨부 — 앱 탈퇴 화면 + CMS 탈퇴 관리 화면')"><img src="/devqa/img/harry-q-app-cms.png" alt="해리 첨부 — 앱 탈퇴 화면 + CMS 탈퇴 관리 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">해리 첨부 — 앱 탈퇴 화면 + CMS 탈퇴 관리 화면 (클릭하면 크게)</span><span class="vi">Ảnh Harry đính kèm — Màn hủy tài khoản app + Màn quản lý hủy tài khoản CMS (nhấn để xem lớn)</span></span></span></button>
 
 <div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">탈퇴 클릭 후 시스템이 취소(철회) 전 30일 유예 기간을 두는지, CMS의 'retractable(철회 가능)' 상태는 어떻게 작동하는지 — 앱 화면엔 철회 버튼이 보이지 않는다</span><span class="vi">Sau khi click hủy tài khoản, hệ thống có đặt thời gian gia hạn 30 ngày trước khi hủy hẳn không, trạng thái 'retractable (có thể thu hồi)' trên CMS hoạt động như thế nào — trên app không thấy nút thu hồi</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">30일 유예·철회 기능은 없앴습니다. 탈퇴는 클릭 즉시 완료됩니다. 그래서 앱에 철회 버튼이 없는 게 맞습니다.</span><span class="vi">Chức năng gia hạn 30 ngày·thu hồi đã bị bỏ. Hủy tài khoản hoàn tất ngay khi click. Vì vậy trên app không có nút thu hồi là đúng.</span></span></div></div></div>
@@ -75,6 +88,8 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 
 <div class="qa"><div class="qrow"><span class="qno">4</span><div class="qtxt"><span class="i18n"><span class="ko">'계정 해지 사유 분포' 섹션이 무엇을 보여주는 건지</span><span class="vi">Mục 'Phân bố lý do hủy tài khoản' hiển thị nội dung gì</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">회원들이 어떤 이유로 탈퇴했는지 모아서 보여주는 집계입니다.</span><span class="vi">Đây là số liệu tổng hợp cho biết thành viên đã hủy tài khoản vì những lý do gì.</span></span></div></div></div>
+
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry-q-cms-modal.png','CMS 탈퇴 정책 설정 모달 (PII·통계 항목)')"><img src="/devqa/img/harry-q-cms-modal.png" alt="CMS 탈퇴 정책 설정 모달 (PII·통계 항목)" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">CMS 탈퇴 정책 설정 모달 — PII·통계 항목 (클릭하면 크게)</span><span class="vi">Modal cài đặt chính sách hủy tài khoản CMS — mục PII·thống kê (nhấn để xem lớn)</span></span></span></button>
 
 <div class="qa"><div class="qrow"><span class="qno">5.1</span><div class="qtxt"><span class="i18n"><span class="ko">탈퇴 정책 설정(CMS) — PII 영구삭제 항목이 무엇을 의미하는가</span><span class="vi">Cài đặt chính sách hủy tài khoản (CMS) — Mục xóa vĩnh viễn PII nghĩa là gì</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">PII 영구삭제는 이름·이메일·카카오ID 같은 개인정보를 탈퇴 즉시 지운다는 뜻입니다.</span><span class="vi">Xóa vĩnh viễn PII nghĩa là các thông tin cá nhân như tên·email·Kakao ID sẽ bị xóa ngay khi hủy tài khoản.</span></span></div></div></div>
@@ -100,11 +115,16 @@ Và mục: Cài đặt chính sách Hủy Tài khoản (Trong CMS): Vui lòng gi
 1. Mục xóa vĩnh viễn PII
 2. Mục lưu giữ cho thống kê (Ẩn Danh)</span></span></div></div></div></div>
 </div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
 <script>
 const _m=document.getElementById('originModal');
 function openOrigin(e){if(e)e.preventDefault();_m.classList.add('open');document.body.style.overflow='hidden';}
 function closeOrigin(){_m.classList.remove('open');document.body.style.overflow='';}
 _m.addEventListener('click',e=>{if(e.target.hasAttribute('data-close'))closeOrigin();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&_m.classList.contains('open'))closeOrigin();});
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
 </script>
 </body></html>
