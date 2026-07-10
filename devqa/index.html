@@ -63,6 +63,8 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 <header><div class="wrap" style="padding-bottom:0"><div class="htitle">PricePick · 개발 QA</div>
 <div class="hsub">Dev Q&amp;A · 개발팀 질문·답변 모음 (Tổng hợp hỏi đáp đội phát triển)</div></div></header>
 <div class="wrap"><div class="sec">Q&amp;A 문서 / Tài liệu</div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260710.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #5 <span class="rvi">/ Giải đáp câu hỏi Backend #5</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-07-10</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion btn" role="button" tabindex="0" onclick="openOrigin(event,'harry0710Modal')" onkeydown="if(event.key==='Enter'||event.key===' '){openOrigin(event,'harry0710Modal')}">원문 질문 보기 / Xem câu hỏi gốc</a></div>
 <div class="rowwrap"><a class="row" href="/devqa/app-john-20260706.html"><div class="rmain"><div class="rt">앱 질문 답변 #8 · John <span class="rvi">/ Giải đáp câu hỏi App #8 · John</span></div><div class="rwho">John (Nhon Truong) · App</div></div><div class="rdate">2026-07-06</div><div class="rarrow">&rsaquo;</div></a>
 <a class="srcnotion" href="https://app.notion.com/p/QnA-PricePick-3953ac69e71180018552eb8735d84818" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
 <div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260706.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #4 <span class="rvi">/ Giải đáp câu hỏi Backend #4</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-07-06</div><div class="rarrow">&rsaquo;</div></a>
@@ -169,6 +171,23 @@ Mã này sẽ được gửi kèm cùng với url cài đặt app. Ví dụ: url
 User muốn mời B cài đặt app thì chỉ cần gửi url trên. Nếu user B cài đặt App và đăng ký thì mặc định app sẽ ghi nhận B là do A mời. Và nếu B đặt đơn hàng đầu tiên (Coupang) thành công thì cả 2 sẽ nhận được 500 Point
 
 Tôi đọc tài liệu không thấy mô tả luồng chi tiết của chức năng mời bạn bè nên vui lòng giải thích chi tiết giúp tôi.</span></span></div></div></div></div>
+</div></div>
+<div class="modal" id="harry0710Modal" role="dialog" aria-modal="true" aria-label="원문 질문">
+<div class="modal-bg" data-close></div>
+<div class="modal-card">
+<div class="modal-top"><div class="mt-title"><span class="i18n"><span class="ko">원문 질문</span><span class="vi">Câu hỏi gốc</span></span></div>
+<div class="mt-ctrl"><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><button class="modal-x" data-close aria-label="Close">&times;</button></div></div>
+<div class="modal-body"><div class="chat"><div class="ava">H</div><div class="bubblewrap"><div class="who"><span class="badge">Harry</span><span class="i18n"><span class="ko">Backend · 메신저로 보낸 질문</span><span class="vi">Backend · Câu hỏi đã gửi qua tin nhắn</span></span></div><div class="bubble"><span class="i18n"><span class="ko">Mr Mark SUNG GWON KIM님 안녕하세요! 계정 탈퇴(회원 탈퇴) 처리 기능을 구현하고 있습니다. 이 기능에 대해 몇 가지 질문이 있습니다. 앱과 CMS 화면만 봐서는 아직 잘 이해가 안 되는 부분이 있어서요:
+1. 사용자가 탈퇴 요청을 클릭하면 h...(이하 문장 캡처 잘림)
+
+그리고 항목: 탈퇴 정책 설정(CMS 내): 다음 2개 항목을 설명해 주시면 감사하겠습니다:
+1. PII 영구 삭제 항목
+2. 통계용 보존 항목(익명)</span><span class="vi">Hi Mr Mark SUNG GWON KIM! Tôi đang thực hiện chức năng xử lý hủy tài khoản. Tôi có vài câu hỏi về chức năng này. Vì xem trên app và cms tôi chưa hiểu lắm:
+1. Khi user click yêu cầu hủy tài khoản thì h...
+
+Và mục: Cài đặt chính sách Hủy Tài khoản (Trong CMS): Vui lòng giải thích 2 mục:
+1. Mục xóa vĩnh viễn PII
+2. Mục lưu giữ cho thống kê (Ẩn Danh)</span></span></div></div></div></div>
 </div></div>
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
 <script>
