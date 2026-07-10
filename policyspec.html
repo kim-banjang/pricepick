@@ -207,7 +207,7 @@
       <div class="qcell"><div class="k">등급 간 교환</div><div class="v">브 10 ⇄ 실 1 · 실 2 ⇄ 골 1</div></div>
       <div class="qcell"><div class="k">제휴몰(1단계)</div><div class="v">쿠팡 직접 + 링크프라이스</div></div>
       <div class="qcell"><div class="k">로그인</div><div class="v">닉네임 시작 → 카카오 연동 유도</div></div>
-      <div class="qcell"><div class="k">탈퇴 / 정산 보관</div><div class="v">PII D+30 삭제 · 정산 <b>5년</b></div></div>
+      <div class="qcell"><div class="k">탈퇴 / 정산 보관</div><div class="v">즉시 탈퇴 · PII 즉시 스크럽(레코드 유지) · 정산 <b>5년</b></div></div>
     </div>
   </div>
 
@@ -383,7 +383,7 @@
     <div class="card">
       <h4><span class="n">1</span>계정의 일생 (단계 흐름)</h4>
       <div class="rule">계정은 두 가지로 구분됩니다. <b>연동 여부</b> = 미연동(닉네임만) / 연동(카카오), <b>계정 상태</b> = 정상 / 정지 / 탈퇴 요청.</div>
-      <div class="rule"><span class="lead">흐름</span><b>설치 → 닉네임 가입(미연동) → (카카오 연동) → 정상 운영.</b> 여기서 <b>정지</b> 또는 <b>탈퇴</b>로 갈라지고, 탈퇴는 D+30 후 개인정보 삭제로 종료됩니다.</div>
+      <div class="rule"><span class="lead">흐름</span><b>설치 → 닉네임 가입(미연동) → (카카오 연동) → 정상 운영.</b> 여기서 <b>정지</b> 또는 <b>탈퇴</b>로 갈라지고, 탈퇴는 <b>즉시 처리</b>(유예·철회 없음)되며 개인정보(PII) 스크럽으로 종료됩니다.</div>
       <span class="src">출처 FunctionalSpec / DataModel(상태 정책)</span>
     </div>
     <div class="card">
@@ -397,16 +397,17 @@
     </div>
     <div class="card">
       <h4><span class="n">3</span>탈퇴</h4>
-      <div class="rule"><span class="lead">처리</span>설정에서 탈퇴를 요청하면 탈퇴 요청 상태로 전환되고 최종 확인 후 처리됩니다.</div>
+      <div class="rule"><span class="lead">처리</span>설정에서 탈퇴 최종 확인을 마치면 <b>그 자리에서 즉시 처리</b>됩니다. 유예기간·철회 절차는 없습니다.</div>
       <ul class="r">
-        <li><b>D+30 유예</b> — 요청 후 30일 안에 재로그인하면 복구 가능.</li>
-        <li><b>개인정보(PII) 삭제</b> — D+30 경과 시 개인식별정보(닉네임·카카오 식별값·기기 식별값 등) 삭제·마스킹.</li>
-        <li><b>정산 데이터 5년 마스킹 보관</b> — 구매·적립·포인트 등 금전 정산 기록은 <b>법적 의무로 5년 마스킹 보관</b>.</li>
-        <li><b>잔여 자산 소멸</b> — 보유 티켓·미사용 기프티콘은 즉시 소멸하며 복구되지 않습니다(약관).</li>
+        <li><b>즉시 탈퇴</b> — <code>user.status = 'withdrawn'</code>로 전환. 재로그인·계정 복구 불가.</li>
+        <li><b>기기 로컬 데이터 삭제</b> — 탈퇴 처리와 함께 해당 기기의 로컬 저장 데이터(localStorage·캐시 등)를 삭제.</li>
+        <li><b>개인정보(PII) 즉시 스크럽</b> — 닉네임·카카오 식별값(닉네임·로그인ID) 등 개인 식별 가능 항목을 <b>즉시 제거</b>. 단 <b>회원 문서(레코드) 자체는 물리 삭제하지 않고 유지</b> — 티켓·결제 등 거래 기록이 회원 문서를 참조하므로 물리 삭제 시 참조 무결성이 깨짐(DB 꼬임 방지).</li>
+        <li><b>거래·정산 기록 존치</b> — 티켓·결제·거래(정산) 기록은 PII가 제거된 상태 그대로 DB에 남김. 전자상거래법상 5년 보존 의무는 이 존치 기록으로 충족(별도 마스킹 배치 불필요 — 애초에 거래 기록엔 PII가 없고 user_id로만 연결).</li>
+        <li><b>잔여 자산 소멸</b> — 보유 티켓·미사용 기프티콘은 탈퇴와 동시에 소멸하며 복구되지 않습니다(약관).</li>
       </ul>
       <div class="pending"><span class="pl">미결</span><b>재가입 쿨타임</b> — 출처 충돌: CMS 약관은 "동일 카카오 30일 이내 재가입 제한", 화면 안내는 "즉시 재가입 가능(쿨타임 없음)".
         <span class="rec">추천: 어뷰징 방지 위해 동일 카카오 30일 쿨타임(약관과 일치). 단 탈퇴 시 데이터가 복구되지 않아 파밍 이득이 작으므로 즉시 허용도 가능 — 대표 확정 필요.</span></div>
-      <span class="src">출처 FunctionalSpec(탈퇴 흐름) / DataModel(탈퇴 처리 정책) / CMS 약관·탈퇴 관리</span>
+      <span class="src">출처 형님 확정(2026-07-10, 즉시탈퇴·PII스크럽 정책) / FunctionalSpec(탈퇴 흐름) / CMS 탈퇴 관리</span>
     </div>
     <div class="card">
       <h4><span class="n">4</span>운영자 차단(정지)</h4>
@@ -491,8 +492,8 @@
       <h4><span class="n">2</span>데이터 보존 · 정산 기록 보관 (정책)</h4>
       <div class="rule"><span class="lead">미연동 데이터</span>미연동 계정의 티켓·포인트는 <b>기기에만 저장</b>, 재설치 시 초기화. <b>연동 계정만 서버 보존.</b></div>
       <div class="rule"><span class="lead">동의 이력</span>약관·개인정보·마케팅 동의는 <b>변경분을 새로 기록</b>해 이력을 남깁니다(과거 동의 내역 보존).</div>
-      <div class="rule"><span class="lead">탈퇴 시 개인정보</span>탈퇴 요청 후 <b>D+30 경과 시 개인식별정보 삭제·마스킹.</b></div>
-      <div class="rule"><span class="lead">정산 기록 5년</span>구매·적립·포인트 등 <b>금전 정산 데이터는 5년 마스킹 보관</b>(법적 의무). 환금=금전이라 거래 추적·분쟁 대응을 위해 필요.</div>
+      <div class="rule"><span class="lead">탈퇴 시 개인정보</span>탈퇴 확정 <b>즉시 개인식별정보(PII)를 스크럽</b>(닉네임·카카오 식별값 제거). 회원 문서(레코드) 자체는 물리 삭제하지 않고 유지(거래 기록의 참조 무결성 보호).</div>
+      <div class="rule"><span class="lead">정산 기록 5년</span>구매·적립·포인트 등 <b>금전 정산 데이터는 5년간 그대로 보관</b>(법적 의무). 정산 기록에는 애초에 PII가 없고 user_id로만 연결되므로 탈퇴로 PII가 스크럽돼도 거래 추적·분쟁 대응엔 지장이 없습니다.</div>
       <div class="note">보존 기간·처리 원칙(무엇을·얼마나·왜)만 정책으로 정합니다. 어떤 형태로 저장·마스킹할지의 구현은 개발(DataModel) 영역.</div>
       <span class="src">출처 DataModel(보존기간·탈퇴 처리 정책) / FunctionalSpec(활동 내역)</span>
     </div>
@@ -527,8 +528,8 @@
           <tr><td class="key">환불 어뷰징 플래그</td><td>30일 내 5건 초과 → 운영자 검토</td><td>어뷰징 플래그 임계치</td></tr>
           <tr><td class="key">부스터성 보상 사용가능</td><td>구매 확정 + 7일 경과 후</td><td>환불·보상 정책</td></tr>
           <tr><td class="key">FCM 기타 알림 상한</td><td>일 2건 · 야간 22~08시 미발송 (거래 무제한)</td><td>FCM 발송 상한</td></tr>
-          <tr><td class="key">탈퇴 유예</td><td>D+30 후 개인정보 삭제</td><td>탈퇴 관리</td></tr>
-          <tr><td class="key">정산 데이터 보관</td><td>5년 마스킹 (법적 의무)</td><td>탈퇴 관리 / 정산</td></tr>
+          <tr><td class="key">탈퇴 처리</td><td>즉시 처리 + PII 즉시 스크럽 (레코드 유지, 유예 없음)</td><td>탈퇴 관리</td></tr>
+          <tr><td class="key">정산 데이터 보관</td><td>5년 그대로 보관 (법적 의무, PII 없이 user_id로만 연결)</td><td>탈퇴 관리 / 정산</td></tr>
           <tr><td class="key">경품 추첨 주기</td><td class="pendval">미결 (월1/격주)</td><td>추첨 회차 설정</td></tr>
           <tr><td class="key">경품 예산 비율</td><td class="pendval">미결 (매출 대비 %)</td><td>추첨 회차 설정</td></tr>
           <tr><td class="key">재가입 쿨타임</td><td class="pendval">미결 (약관 30일 vs 화면 즉시)</td><td>탈퇴 관리 / 약관</td></tr>
