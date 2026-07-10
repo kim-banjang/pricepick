@@ -64,51 +64,51 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <h2 class="grp"><span class="i18n"><span class="ko">계정 탈퇴(회원 탈퇴) 처리</span><span class="vi">Xử lý hủy tài khoản (회원 탈퇴)</span></span></h2>
 
 <div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">사용자가 탈퇴 요청을 클릭하면 이후 처리 흐름이 어떻게 되는가</span><span class="vi">Khi user click yêu cầu hủy tài khoản thì luồng xử lý tiếp theo như thế nào</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">[화면 흐름] 마이 → 설정 → 계정 탈퇴 진입 → <b>카카오 연동 계정만</b> 재인증 카드(pw-33, "카카오 계정 재인증") 노출 → 삭제 항목 안내 + 동의 체크박스가 있는 최종 확인 화면(pw-02-withdraw) → '탈퇴하기' 클릭. <b>미연동(게스트) 계정은 재인증 단계 없이 동의 체크만으로 진행</b>합니다.
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">탈퇴 버튼을 누르면 <b>그 자리에서 바로 탈퇴 처리가 끝납니다.</b> 기다리는 기간이나 취소(되돌리기) 절차는 없고, 이후엔 그 계정으로 다시 로그인할 수 없습니다.
 
-['탈퇴하기' 클릭 이후 처리 흐름] ① <b>그 자리에서 즉시 처리</b>됩니다. 유예기간·철회 절차 없음. ② user.status='withdrawn'으로 전환되어 <b>"회원 탈퇴" 익명 레코드로 DB에 남습니다</b>(문서 물리 삭제 안 함). 이후 재로그인·계정 복구 불가. ③ 해당 기기의 로컬 데이터(localStorage 등)를 전부 삭제합니다. ④ 개인정보·카카오 연동정보(닉네임·카카오 닉네임·카카오 로그인ID 등 PII)를 <b>즉시 완전 스크럽</b>합니다(복구 불가). ⑤ 티켓·결제·거래 기록은 회원 문서를 참조하므로 <b>참조 무결성 보호를 위해 그대로 존치</b>합니다 — 결제·거래 기록은 어차피 전자상거래법상 5년 보존 의무 대상입니다.
+동시에 이런 일이 일어납니다.
+- 그 사람이 쓰던 폰에 저장돼 있던 데이터(로그인 정보, 임시 저장값 등)를 전부 지웁니다.
+- 이름·닉네임·카카오 계정 정보 같은 <b>개인정보는 그 자리에서 완전히 지워집니다.</b> 누가 봐도 알아볼 수 없는 상태가 됩니다.
+- 다만 회원 정보를 통째로 지워버리면, 그 사람이 받았던 티켓이나 구매 기록이 "누구 것인지" 연결이 끊겨 데이터가 꼬이게 됩니다. 그래서 <b>개인정보만 지운 채 "탈퇴한 회원"이라는 빈 껍데기 기록은 그대로 남겨둡니다.</b> 구매·결제 기록은 법(전자상거래법)에 따라 5년은 보관해야 하는 항목이라 그대로 둡니다.
 
-[구현 상태] app/index.html의 performWithdraw()(window.ppPerformWithdraw)가 위 흐름을 그대로 구현합니다(커밋 <b>f9fda92</b>): status 전환과 같은 요청에서 nickname·kakao_nickname·kakao_login_id 필드를 FieldValue.delete()로 즉시 제거하고, localStorage의 'pp_' 접두 키를 전부 삭제한 뒤 로그인 세션을 종료합니다(익명 인증이면 계정 삭제, 아니면 signOut). CMS '계정 탈퇴 처리' 화면도 이 users.status='withdrawn' 레코드를 실제로 조회하도록 연결했습니다(커밋 <b>6eb8ed1</b>). pw-33의 '카카오 계정 재인증' 버튼은 현재 클릭 핸들러가 연결돼 있지 않은 화면 요소입니다(카카오가 순수 시뮬 연동이라 실제 재인증 로직은 없음).
+▶ 구현 참고: 탈퇴 버튼 클릭 시 회원 상태를 '탈퇴'로 기록하고, 개인정보를 즉시 지우고, 기기에 남은 로그인 데이터도 정리한 뒤 로그아웃까지 한 번에 처리하도록 이미 적용해뒀습니다.
 
-캡처에서 1번 질문 문장 뒷부분이 잘려 있어 정확히 어떤 세부(예: 실시간 처리 vs 배치 처리, 클라이언트 응답 시점 등)를 물으신 건지 다 확인하지 못했습니다. 위 답변이 놓친 부분이 있으면 말씀해 주시면 추가로 답해드리겠습니다.</span><span class="vi">[Luồng màn hình] Tôi → Cài đặt → vào mục hủy tài khoản → <b>chỉ tài khoản đã liên kết Kakao</b> mới hiện thẻ xác thực lại (pw-33, "Xác thực lại tài khoản Kakao") → màn xác nhận cuối cùng có thông báo các mục sẽ bị xóa + checkbox đồng ý (pw-02-withdraw) → nhấn 'Hủy tài khoản'. <b>Tài khoản chưa liên kết (Guest) không có bước xác thực lại, chỉ cần tick đồng ý là đủ.</b>
+캡처에서 1번 질문 문장 뒷부분이 잘려 있어 정확히 어떤 세부를 물으신 건지 다 확인하지 못했습니다. 위 답변이 놓친 부분이 있으면 말씀해 주시면 추가로 답해드리겠습니다.</span><span class="vi">Khi nhấn nút hủy tài khoản thì <b>việc hủy hoàn tất ngay tại chỗ.</b> Không có thời gian chờ hay bước hủy bỏ(khôi phục) nào, và sau đó không thể đăng nhập lại bằng tài khoản đó nữa.
 
-[Luồng xử lý sau khi nhấn 'Hủy tài khoản'] ① <b>Xử lý ngay tại chỗ.</b> Không có thời gian gia hạn, không có bước thu hồi. ② user.status chuyển thành 'withdrawn', trở thành <b>bản ghi "đã hủy tài khoản" ẩn danh vẫn còn lưu trong DB</b> (không xóa vật lý document). Sau đó không thể đăng nhập lại hay khôi phục tài khoản. ③ Xóa toàn bộ dữ liệu local trên thiết bị đó (localStorage v.v). ④ Thông tin cá nhân·thông tin liên kết Kakao (nickname·kakao nickname·kakao login ID... — PII) bị <b>xóa (scrub) hoàn toàn ngay lập tức</b>, không thể khôi phục. ⑤ Bản ghi vé·thanh toán·giao dịch <b>vẫn được giữ nguyên để bảo vệ tính toàn vẹn tham chiếu</b> tới document thành viên — hơn nữa bản ghi thanh toán·giao dịch vốn phải lưu giữ 5 năm theo luật thương mại điện tử nên đằng nào cũng phải giữ lại.
+Cùng lúc đó những việc sau sẽ xảy ra:
+- Dữ liệu lưu trên điện thoại của người đó (thông tin đăng nhập, dữ liệu tạm...) sẽ bị xóa hết.
+- Thông tin cá nhân như tên·nickname·thông tin tài khoản Kakao sẽ <b>bị xóa hoàn toàn ngay lúc đó.</b> Không ai có thể nhận ra đó là ai nữa.
+- Nhưng nếu xóa luôn toàn bộ hồ sơ thành viên thì vé hoặc lịch sử mua hàng mà người đó từng nhận sẽ mất kết nối "của ai", làm rối dữ liệu. Vì vậy <b>chỉ xóa thông tin cá nhân, còn giữ lại một hồ sơ rỗng ghi là "thành viên đã hủy tài khoản".</b> Lịch sử mua hàng·thanh toán phải lưu giữ 5 năm theo luật (luật thương mại điện tử) nên vẫn giữ nguyên.
 
-[Tình trạng triển khai] Hàm performWithdraw() (window.ppPerformWithdraw) trong app/index.html đã triển khai đúng luồng trên (commit <b>f9fda92</b>): trong cùng một request, vừa chuyển status vừa xóa ngay các trường nickname·kakao_nickname·kakao_login_id bằng FieldValue.delete(), xóa toàn bộ key có tiền tố 'pp_' trong localStorage, rồi kết thúc phiên đăng nhập (nếu là tài khoản ẩn danh thì xóa tài khoản, ngược lại thì signOut). Màn 'Xử lý hủy tài khoản' trên CMS cũng đã được kết nối để đọc thực tế theo bản ghi users.status='withdrawn' này (commit <b>6eb8ed1</b>). Nút 'Xác thực lại tài khoản Kakao' ở pw-33 hiện chưa được gắn handler click nào (bản thân Kakao chỉ là mô phỏng thuần túy nên logic xác thực lại thật không tồn tại).
+▶ Tham khảo triển khai: Khi nhấn nút hủy, hệ thống ghi trạng thái thành viên là 'đã hủy', xóa ngay thông tin cá nhân, xóa dữ liệu đăng nhập còn sót trên thiết bị, rồi đăng xuất — tất cả đã được áp dụng.
 
-Trong ảnh chụp màn hình, câu 1 bị cắt mất phần sau nên tôi chưa xác nhận được chính xác bạn hỏi chi tiết gì (ví dụ: xử lý real-time hay batch, thời điểm client nhận phản hồi...). Nếu câu trả lời trên còn thiếu phần bạn cần, hãy cho tôi biết để tôi trả lời bổ sung.</span></span></div></div></div>
+Trong ảnh chụp màn hình, câu 1 bị cắt mất phần sau nên tôi chưa xác nhận được chính xác bạn hỏi chi tiết gì. Nếu câu trả lời trên còn thiếu phần bạn cần, hãy cho tôi biết để tôi trả lời bổ sung.</span></span></div></div></div>
 
 <div class="qa"><div class="qrow"><span class="qno">2.1</span><div class="qtxt"><span class="i18n"><span class="ko">탈퇴 정책 설정(CMS) — PII 영구삭제 항목이 무엇을 의미하는가</span><span class="vi">Cài đặt chính sách hủy tài khoản (CMS) — Mục xóa vĩnh viễn PII nghĩa là gì</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">CMS '탈퇴 정책 설정' 모달(필드 ID: wp-pii-items)에서 운영자가 지정하는 값이며, 현재 기본값은 <b>닉네임, 카카오 닉네임, 카카오 로그인ID</b>입니다.
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">"PII 영구삭제"란 이름·이메일·카카오 계정ID처럼 <b>"이게 누구인지" 알 수 있게 해주는 개인정보를, 탈퇴하는 순간 완전히 지우는 것</b>을 말합니다. 지운 뒤에는 되돌릴 수 없습니다.
 
-[처리 시점] 탈퇴 확정 <b>즉시</b> 이 항목들을 완전 제거합니다. app/index.html의 performWithdraw()가 status 전환과 같은 요청에서 FieldValue.delete()로 처리합니다(커밋 <b>f9fda92</b>). 이후 복구 불가능합니다 — 개인을 특정할 수 있는 값이라 개인정보보호법 준수가 목적입니다.
+지우는 건 딱 이 개인정보 값들뿐입니다. 그 사람의 회원 기록 자체(탈퇴했다는 사실, 구매·티켓 이력 등)는 안 지웁니다 — 위 1번 답변에서 설명드린 것처럼 다른 기록들과의 연결이 끊기면 데이터가 꼬이기 때문입니다. 그래서 <b>"이름 없는 탈퇴 회원"이라는 형태로 기록만 남습니다.</b>
 
-[레코드는 유지] PII 값만 제거하고 <b>회원 문서(레코드) 자체는 물리 삭제하지 않습니다.</b> 티켓·결제·거래 기록이 user_id로 이 문서를 참조하므로, 문서를 통째로 지우면 참조 무결성이 깨지기 때문입니다. status='withdrawn' 상태의 익명 껍데기로 남아 회원 탈퇴 사실 자체는 계속 조회 가능합니다.
+▶ 구현 참고: CMS 화면에서 어떤 항목을 지울지 정할 수 있게 해뒀습니다(현재는 닉네임·카카오 닉네임·카카오 로그인ID).</span><span class="vi">"Xóa vĩnh viễn PII" nghĩa là <b>xóa hoàn toàn ngay khi hủy tài khoản các thông tin cá nhân giúp biết "đây là ai"</b>, như tên·email·ID tài khoản Kakao. Sau khi xóa thì không thể khôi phục lại.
 
-[정산 데이터와의 구분] 구매·적립·포인트 등 금전 거래 기록(ticket_transactions·postbacks·point_transactions)은 애초에 닉네임·카카오ID 같은 PII를 담지 않고 user_id로만 연결됩니다. 그래서 회원 문서의 PII가 스크럽돼도 거래 기록 자체는 그대로 5년 보관하면 전자상거래법 의무를 충족합니다.
+Chỉ những giá trị thông tin cá nhân này bị xóa thôi. Bản thân hồ sơ thành viên (việc đã hủy tài khoản, lịch sử mua hàng·vé...) thì không bị xóa — vì như đã nói ở câu trả lời số 1, nếu mất kết nối với các dữ liệu khác thì sẽ làm rối dữ liệu. Vì vậy chỉ còn lại <b>một hồ sơ dạng "thành viên đã hủy, không còn tên".</b>
 
-[구현 상태] 이 필드(wp-pii-items)는 CMS 표시용 설정값이고, 실제 스크럽 대상 필드(nickname/kakao_nickname/kakao_login_id)는 app 코드에 하드코딩돼 있습니다. CMS 설정값을 바꿔도 실제 스크럽 로직이 자동으로 따라가진 않으니 운영값과 코드 값을 일치시켜 주세요(원하시면 이 필드값을 읽어 스크럽 대상을 동적으로 결정하도록 바꿀 수도 있습니다 — 필요하시면 말씀 주세요).</span><span class="vi">Đây là giá trị admin cài đặt trong modal 'Cài đặt chính sách hủy tài khoản' của CMS (field ID: wp-pii-items), giá trị mặc định hiện tại là <b>Nickname, Kakao Nickname, Kakao Login ID</b>.
-
-[Thời điểm xử lý] Các mục này bị xóa hoàn toàn <b>ngay</b> khi xác nhận hủy tài khoản. Hàm performWithdraw() trong app/index.html xử lý bằng FieldValue.delete() trong cùng một request chuyển status (commit <b>f9fda92</b>). Sau đó không thể khôi phục — vì đây là giá trị có thể xác định danh tính cá nhân nên mục đích là tuân thủ luật bảo vệ thông tin cá nhân.
-
-[Record vẫn được giữ] Chỉ xóa giá trị PII, còn <b>document (record) của thành viên không bị xóa vật lý.</b> Vì các bản ghi giao dịch như vé·thanh toán tham chiếu document này qua user_id, nếu xóa nguyên document sẽ phá vỡ tính toàn vẹn tham chiếu. Document còn lại ở trạng thái ẩn danh với status='withdrawn' nên vẫn tra cứu được sự kiện thành viên đã hủy tài khoản.
-
-[Phân biệt với dữ liệu quyết toán] Các bản ghi giao dịch tiền (ticket_transactions·postbacks·point_transactions) vốn dĩ không chứa PII như nickname·Kakao ID, chỉ liên kết qua user_id. Vì vậy dù PII trên document thành viên bị scrub thì bản ghi giao dịch vẫn giữ nguyên, lưu đủ 5 năm là đáp ứng nghĩa vụ luật thương mại điện tử.
-
-[Tình trạng triển khai] Field này (wp-pii-items) là giá trị cài đặt hiển thị trên CMS, còn các field thực sự bị scrub (nickname/kakao_nickname/kakao_login_id) đang được hardcode trong code app. Đổi giá trị cài đặt trên CMS không tự động ảnh hưởng logic scrub thực tế, nên xin lưu ý đồng bộ giá trị vận hành với giá trị trong code (nếu muốn, tôi có thể sửa để code đọc field này rồi quyết định động các trường cần scrub — nếu cần xin báo riêng tôi sẽ triển khai).</span></span></div></div></div>
+▶ Tham khảo triển khai: Trên màn CMS có thể chọn những mục nào sẽ bị xóa (hiện tại là nickname·nickname Kakao·ID đăng nhập Kakao).</span></span></div></div></div>
 
 <div class="qa"><div class="qrow"><span class="qno">2.2</span><div class="qtxt"><span class="i18n"><span class="ko">탈퇴 정책 설정(CMS) — 통계용 익명 보존 항목이 무엇을 의미하는가</span><span class="vi">Cài đặt chính sách hủy tài khoản (CMS) — Mục lưu giữ cho thống kê (Ẩn danh) nghĩa là gì</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">"통계용 보존 항목"이라는 별도 필드는 CMS '탈퇴 정책 설정' 모달에서 제거했습니다(커밋 <b>6eb8ed1</b>). 지금은 이 개념이 따로 없습니다.
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">개인정보가 지워진 뒤에도 "탈퇴한 회원" 기록 자체는 남아있다고 위에서 설명드렸는데, <b>이 남은 기록을 통계에 씁니다.</b> 예를 들어 "이번 달에 몇 명이 탈퇴했는지" 같은 숫자를 셀 때 이 기록을 씁니다.
 
-[대신 이렇게 처리합니다] 탈퇴 회원 문서는 PII만 스크럽된 채 <b>status='withdrawn'인 익명 껍데기로 그대로 남습니다.</b> 이탈률 분석·재가입 후 재탈퇴 같은 어뷰징 패턴 탐지는 이 익명 레코드 자체(가입일·상태·연동여부 등 원래 있던 필드)를 집계해서 처리합니다 — 별도로 "통계용 항목"을 추려 다른 곳에 익명 보존할 필요가 없습니다.
-탈퇴 사유는 현재 앱에 사유를 입력받는 화면이 없어 값 자체가 없습니다(설문 UI 미구현). 필요하시면 탈퇴 확인 화면에 사유 선택 UI를 추가해서 회원 문서에 anonymized 필드로 남기는 방식으로 구현할 수 있습니다 — 원하시면 말씀 주세요.
+중요한 건, 이 기록엔 <b>그 사람이 누구인지 알 수 있는 정보가 하나도 없다는 것</b>입니다. 이름도 없고 연락처도 없이 그냥 "탈퇴한 날짜" 정도만 남아있는 빈 기록이라, 통계를 내도 특정 개인을 알아볼 수 없습니다. 그래서 "통계용으로 따로 어떤 항목을 남길지"는 별도로 정할 게 없습니다 — 이미 알아볼 수 없는 상태로 자동으로 남기 때문입니다.
 
-[CMS 탈퇴 정책 설정 — 현재 필드] 지금 이 모달엔 <b>PII 스크럽 항목(wp-pii-items) 하나만</b> 있습니다. 유예 기간·재가입 쿨타임·보유 티켓 처리 필드는 즉시탈퇴 정책과 맞지 않아 함께 제거했습니다 — 유예가 없고, 재가입은 즉시 가능하며, 보유 티켓은 탈퇴 즉시 소멸이라 회수 시점을 고를 옵션이 없습니다.</span><span class="vi">Field "Mục lưu giữ cho thống kê" đã bị xóa khỏi modal 'Cài đặt chính sách hủy tài khoản' trên CMS (commit <b>6eb8ed1</b>). Hiện tại khái niệm này không còn tồn tại riêng nữa.
+참고로 탈퇴 사유(왜 그만뒀는지)는 지금 앱에서 물어보는 화면이 없어서 값이 없습니다. 필요하시면 탈퇴할 때 사유를 물어보는 화면을 추가해서 통계에 넣을 수도 있습니다.
 
-[Thay vào đó xử lý như sau] Document thành viên đã hủy chỉ bị scrub PII, còn lại vẫn tồn tại như <b>một "vỏ ẩn danh" với status='withdrawn'.</b> Việc phân tích tỷ lệ rời bỏ, phát hiện pattern gian lận đăng ký lại rồi hủy lặp lại được thực hiện bằng cách tổng hợp trực tiếp trên các bản ghi ẩn danh này (các trường vốn có sẵn như ngày đăng ký, trạng thái, tình trạng liên kết...) — không cần tách riêng "mục thống kê" ra lưu ẩn danh ở nơi khác.
-Lý do hủy tài khoản hiện chưa có giá trị vì app chưa có màn nhập lý do (chưa triển khai UI khảo sát). Nếu cần, tôi có thể thêm UI chọn lý do ở màn xác nhận hủy và lưu vào document dưới dạng trường ẩn danh — nếu Sếp muốn triển khai xin báo tôi.
+▶ 구현 참고: CMS 탈퇴 정책 설정 화면은 지금 "개인정보 삭제 항목" 하나만 관리하도록 정리했습니다.</span><span class="vi">Sau khi thông tin cá nhân bị xóa, hồ sơ "thành viên đã hủy tài khoản" vẫn còn được giữ lại như đã nói ở trên — <b>hồ sơ này được dùng cho thống kê.</b> Ví dụ khi đếm "tháng này có bao nhiêu người hủy tài khoản" thì dùng hồ sơ này.
 
-[Cài đặt chính sách hủy tài khoản trên CMS — field hiện tại] Modal này hiện chỉ còn <b>1 field là Mục scrub PII (wp-pii-items)</b>. Thời gian gia hạn·thời gian chờ đăng ký lại·xử lý vé đang giữ đã bị xóa cùng đợt vì không còn phù hợp với chính sách hủy ngay lập tức — không có gia hạn, đăng ký lại được ngay, và vé đang giữ bị tiêu hủy ngay khi hủy tài khoản nên không còn lựa chọn thời điểm thu hồi.</span></span></div></div></div>
+Điều quan trọng là <b>hồ sơ này không còn chứa bất kỳ thông tin nào để biết đó là ai.</b> Không có tên, không có liên hệ, chỉ còn lại đại khái "ngày hủy tài khoản" — một hồ sơ trống nên dù có thống kê cũng không thể nhận ra là cá nhân nào. Vì vậy không cần chọn riêng "mục nào giữ lại cho thống kê" — vì nó tự động trở thành dạng không thể nhận diện rồi.
+
+Còn lý do hủy tài khoản (tại sao rời đi) thì hiện app chưa có màn hỏi nên chưa có giá trị này. Nếu cần, có thể thêm màn hỏi lý do khi hủy tài khoản để đưa vào thống kê.
+
+▶ Tham khảo triển khai: Màn Cài đặt chính sách hủy tài khoản trên CMS hiện chỉ còn quản lý đúng 1 mục là "Mục xóa thông tin cá nhân".</span></span></div></div></div>
 
 <div class="foot"><span class="i18n"><span class="ko">PricePick · 백엔드 질문 답변 #5 (계정 탈퇴 처리) · 2026-07-10</span><span class="vi">PricePick · Giải đáp Backend #5 (Xử lý hủy tài khoản) · 2026-07-10</span></span></div></div>
 <div class="modal" id="originModal" role="dialog" aria-modal="true" aria-label="원문 질문">
