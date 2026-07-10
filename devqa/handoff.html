@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 개발자 온보딩</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.ctitle{font-weight:500;font-size:14px;color:var(--ink1);margin-bottom:8px}
+.ctxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.ctxt a{color:var(--pp-d);word-break:break-all}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:820px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 개발자 온보딩</span><span class="vi">Onboarding cho Developer PricePick</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">레포 공유 시 먼저 읽는 문서 · 소스·데모·정책·주의사항</span><span class="vi">Tài liệu đọc trước khi chia sẻ repo · Source·Demo·Chính sách·Lưu ý</span></span></div></div></header>
+<div class="wrap">
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 소스</span><span class="vi">1. Source</span></span></h2>
+<div class="card"><div class="ctxt"><span class="i18n"><span class="ko">GitHub <b>pricepick-demo</b> repo 하나에 데모 CMS와 PWA(웹앱)이 함께 들어있습니다. 웹 앱은 <b>/app</b>, CMS는 <b>/cms</b> 경로입니다. (퍼블릭 전환 후 초대 예정)</span><span class="vi">Repo GitHub <b>pricepick-demo</b> chứa cả CMS demo và PWA (web app) trong cùng một chỗ. Web app ở đường dẫn <b>/app</b>, CMS ở <b>/cms</b>. (Sẽ mời sau khi chuyển sang public)</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 라이브 데모</span><span class="vi">2. Demo trực tiếp</span></span></h2>
+<div class="card"><div class="ctxt"><span class="i18n"><span class="ko">앱(게스트로 바로 체험) — <a href="https://pricepick-demo.vercel.app/app" target="_blank" rel="noopener">pricepick-demo.vercel.app/app</a>
+CMS(로그인 firstadmin / 1111) — <a href="https://pricepick-demo.vercel.app/cms" target="_blank" rel="noopener">pricepick-demo.vercel.app/cms</a></span><span class="vi">App (trải nghiệm ngay với tài khoản khách) — <a href="https://pricepick-demo.vercel.app/app" target="_blank" rel="noopener">pricepick-demo.vercel.app/app</a>
+CMS (đăng nhập firstadmin / 1111) — <a href="https://pricepick-demo.vercel.app/cms" target="_blank" rel="noopener">pricepick-demo.vercel.app/cms</a></span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. 백엔드</span><span class="vi">3. Backend</span></span></h2>
+<div class="card"><div class="ctxt"><span class="i18n"><span class="ko">Firebase(Firestore)를 씁니다. 클라이언트 config(apiKey 등)는 repo에 포함돼 있는데, 이건 Firebase 설계상 공개돼도 되는 값입니다. 실제 접근 제어는 <b>firestore.rules</b>로 합니다.</span><span class="vi">Dùng Firebase (Firestore). Client config (apiKey v.v.) có sẵn trong repo — đây là giá trị được thiết kế để công khai theo Firebase. Kiểm soát truy cập thực tế nằm ở <b>firestore.rules</b>.</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">4. 정책 정본(SoT)</span><span class="vi">4. Tài liệu chính sách gốc (SoT)</span></span></h2>
+<div class="card"><div class="ctxt"><span class="i18n"><span class="ko">정책 관련 질문은 무조건 여기부터 확인하세요 — <a href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener">pricepick.vercel.app/policyspec.html</a>
+다른 문서나 코드 주석의 정책 서술과 다르면 이 문서가 우선합니다.</span><span class="vi">Mọi câu hỏi về chính sách hãy kiểm tra ở đây trước — <a href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener">pricepick.vercel.app/policyspec.html</a>
+Nếu khác với mô tả chính sách ở tài liệu khác hoặc comment trong code, tài liệu này được ưu tiên.</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">5. 데모 전용 화면 주의</span><span class="vi">5. Lưu ý màn hình chỉ dành cho demo</span></span></h2>
+<div class="card"><div class="ctxt"><span class="i18n"><span class="ko">데모에는 실서비스에 없는 장치가 일부 있습니다(예: 금액 입력창으로 즉시 티켓 발급, 카카오 연동 시뮬레이션 등). 이런 화면에는 "데모 전용" 표기가 붙어 있습니다. <b>그대로 구현하지 마세요</b> — 실제 플로우는 별도로 확인해 주세요.</span><span class="vi">Bản demo có một số phần chỉ tồn tại để test, không có ở bản thực tế (ví dụ: ô nhập số tiền để cấp vé ngay, mô phỏng liên kết Kakao v.v.). Những màn này có gắn nhãn "Demo 전용". <b>Đừng triển khai y hệt như vậy</b> — luồng thực tế cần xác nhận riêng.</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">6. 계정·인프라</span><span class="vi">6. Tài khoản·Hạ tầng</span></span></h2>
+<div class="card"><div class="ctxt"><span class="i18n"><span class="ko">firstadmin / 1111은 데모 전용 계정입니다. 이 repo는 self-hosted 러너로 배포 워크플로가 돌아가고 있어서, write 권한은 신중하게 부여해 주세요.</span><span class="vi">firstadmin / 1111 là tài khoản chỉ dùng cho demo. Repo này chạy workflow deploy bằng self-hosted runner, nên cần cân nhắc kỹ khi cấp quyền write.</span></span></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 개발자 온보딩 · 2026-07-10</span><span class="vi">PricePick · Onboarding cho Developer · 2026-07-10</span></span></div>
+</div>
+</body></html>
