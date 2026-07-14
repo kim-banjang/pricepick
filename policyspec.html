@@ -72,6 +72,9 @@
   .ptitle{font-size:19px;font-weight:800;color:var(--ink);margin:6px 0 4px;display:flex;align-items:center;gap:9px}
   .ptitle svg{width:20px;height:20px;stroke:var(--pp);fill:none;stroke-width:2}
   .ptitle .badge-new{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:var(--new);padding:3px 9px;border-radius:20px}
+  .badge-replan{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#c0342a;padding:3px 9px;border-radius:20px;margin-left:6px}
+  .card.replan{border:1.5px solid #f3b7ab;background:#fff8f7}
+  .card.replan .note.warn{border-left-color:#e5484d;background:#fff4f2;color:#8f2420}
   .pdesc{font-size:13px;color:var(--ink3);margin-bottom:16px}
 
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 20px;margin-bottom:13px;box-shadow:0 2px 8px rgba(80,60,140,.04)}
@@ -447,6 +450,7 @@
     <div class="card">
       <h4><span class="n">3</span>기록 누락 · 중복 예외</h4>
       <div class="rule"><span class="lead">구매기록 미수신</span>구매 기록(쇼핑몰이 보내는 구매 완료 통보)이 <b>24시간 안에 안 들어오면</b> "주문 확인 중" 표시 → 유저가 <b>영수증 인증</b> 요청 → 한국 CS가 주문번호 확인 후 승인하면 수동 지급.</div>
+      <div class="note">영수증 인증의 <b>상세 처리 흐름(자동 매칭·D+7 등)은 재기획 예정</b>입니다 — 하단 "DEVQA 확정 반영" 패널의 5번 항목 참조. 여기 기재된 "CS 수동 확인" 자체는 기존 확정 정책이며 재기획 대상이 아닙니다.</div>
       <div class="rule"><span class="lead">중복 기록</span>같은 주문번호로 기록이 두 번 들어오면 <b>1건만 인정</b>(주문번호 중복 자동 차단).</div>
       <span class="src">출처 PolicySpec 11 / FunctionalSpec(구매)</span>
     </div>
@@ -623,12 +627,14 @@
       <span class="src">출처 DEVQA 켈빈 #5 (출석 표시)</span>
     </div>
 
-    <div class="card">
-      <h4><span class="n">5</span>영수증 인증 적립 확정 흐름 <span class="badge-new">보강</span></h4>
-      <div class="rule"><span class="lead">표시 조건</span>경유(구매) 자동 추적이 아직 확인되지 않은 주문 확인 중 주문에만 영수증 인증 버튼이 노출됩니다(자동 추적된 주문엔 없음).</div>
-      <div class="rule"><span class="lead">처리</span>주문번호 입력 + 영수증 첨부 → 자동 매칭(주문번호·금액·일시) → 성공 시 적립 가지급(구매확정 D+7 후 확정), 실패 시 운영 수동검수 큐로 이관.</div>
-      <div class="rule"><span class="lead">남용 방지</span>1주문 1회로 제한합니다.</div>
-      <span class="src">출처 DEVQA 존 #3 (구매 내역 영수증 인증)</span>
+    <div class="card replan">
+      <h4><span class="n">5</span>영수증 인증 적립 확정 흐름 <span class="badge-replan">재기획 예정</span></h4>
+      <div class="note warn"><b>재기획 예정 — 지금 확정하지 않습니다.</b> 먼저 타사(경쟁 서비스)의 영수증 인증 처리 방식을 조사한 후 재기획합니다. 아래는 DEVQA 답변에서 나온 이전 초안이며 <b>SoT 확정 사항이 아닙니다. 이대로 구현하지 마십시오.</b></div>
+      <div class="rule"><span class="lead">표시 조건(초안)</span>경유(구매) 자동 추적이 아직 확인되지 않은 주문 확인 중 주문에만 영수증 인증 버튼이 노출됩니다(자동 추적된 주문엔 없음).</div>
+      <div class="rule"><span class="lead">처리(초안)</span>주문번호 입력 + 영수증 첨부 → 자동 매칭(주문번호·금액·일시) → 성공 시 적립 가지급(구매확정 D+7 후 확정), 실패 시 운영 수동검수 큐로 이관.</div>
+      <div class="rule"><span class="lead">남용 방지(초안)</span>1주문 1회로 제한합니다.</div>
+      <div class="note"><b>재기획 시 확정 필요 · 미결 항목</b> ① 위 표시조건·처리단계 자체의 최종 확정 여부 ② 접속 후 제한 기간의 구체적 일수 ③ 자동매칭 실패 판정 기준(금액·일시 오차 허용범위) ④ 수동검수 처리 프로세스(담당·SLA) ⑤ 영수증 이미지 요건(형식·용량·필수항목) ⑥ 가지급 후 최종 반려 시 회수 처리</div>
+      <span class="src">출처 DEVQA 존 #3·#6 (구매 내역·영수증 인증) — 재기획 전 참고용 초안, 김반장 확정(2026-07-14)</span>
     </div>
 
     <div class="card">
