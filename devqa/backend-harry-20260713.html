@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 백엔드 질문 답변 #7</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.need-box{background:#fdf1e3;border-left:3px solid var(--ck);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12.5px;color:#7a5a1f;font-weight:600}
+.need-box .rec-line{margin-top:6px;font-weight:400;color:#8a6a2f;font-size:12px}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 백엔드 질문 답변 #7</span><span class="vi">Giải đáp câu hỏi Backend PricePick #7</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry · Backend · CMS 화면 질문 11건 (회수이력·티켓이력·출석·포인트·푸시) · 답변 KO/VI</span><span class="vi">Harry · Backend · 11 câu hỏi màn CMS (lịch sử thu hồi·lịch sử vé·điểm danh·điểm·push) · Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/PricePick-Danh-s-ch-c-u-h-i-2026-10-07-39986f66c2248010a12de2b491807640" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 11건</span><span class="vi">11 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 10</span><span class="vi">Đã chốt 10</span></span></span><span class="chip"><span class="i18n"><span class="ko">확인 필요 1 (김반장님 확정 대기)</span><span class="vi">Cần xác nhận 1 (chờ Mr Mark chốt)</span></span></span></div>
+
+<!-- ==================== GROUP 1 : 회수 이력 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 티켓·보상 — 회수 이력 (Lịch sử thu hồi)</span><span class="vi">1. Vé·Phần thưởng — Lịch sử thu hồi</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">회수 이력의 '사유'에 반품/취소, 만료 2가지만 있는데, 관리자가 수동으로 회수(수동 지급/회수)한 티켓도 이 회수 이력에 포함되나요?</span><span class="vi">Ở phần "lý do" của Lịch sử thu hồi chỉ có 2 option: Trả hàng/Hủy đơn, Hết hạn. Vậy những ticket do admin thu hồi thủ công (cấp/thu hồi thủ công) có được liệt kê vào Lịch sử thu hồi này không?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry3-q-thuhoi-history.png','회수 이력 화면')"><img src="/devqa/img/harry3-q-thuhoi-history.png" alt="회수 이력 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">회수 이력 · 사유 필터</span><span class="vi">Lịch sử thu hồi · lọc lý do</span></span></span></button><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry3-q-manual-modal.png','수동 지급/회수 모달')"><img src="/devqa/img/harry3-q-manual-modal.png" alt="수동 지급/회수 모달" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">수동 지급/회수 모달</span><span class="vi">Modal cấp/thu hồi thủ công</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">네. 관리자 수동 회수분도 회수 이력(Lịch sử thu hồi)에 <b>반드시 표시돼야 합니다</b> — 이 방향으로 확정됐습니다.
+
+회수 이력은 '이 티켓이 왜 회수됐는지'를 빠짐없이 담는 감사(audit)용 화면입니다. 감사 관점에서는 관리자가 수동으로 처리한 회수야말로 반드시 이력이 남아야 하는 항목입니다. 그래서 지금 회수 사유가 '반품/취소'·'만료' 2가지뿐인 것은 불완전합니다.
+
+확정 방향:
+- 회수 사유에 <b>'관리자 회수(Admin thu hồi)'</b> 항목을 추가해, 자동 회수(반품/취소·만료)와 관리자 수동 회수를 사유로 구분해 표기합니다.
+- 사유 문구는 새로 정의할 필요가 없습니다. 수동 지급/회수 모달에 이미 '사유(LÝ DO)' 입력이 <b>필수 필드</b>이므로(첨부 캡처 참조), 관리자가 그때 입력한 사유를 그대로 회수 이력에 표시하면 됩니다.
+
+현재 상태(솔직히 인정): 설계상 관리자 회수도 회수 기록으로 원장에 남으므로 회수 이력 조회 범위에는 들어옵니다. 다만 표시 사유가 2값뿐이라 관리자 회수가 자동 회수와 구분되지 않습니다(반품/취소로 뭉뚱그려 보이거나 사유가 비어 보임). 만약 현재 빌드에서 관리자 회수분이 회수 이력에 아예 안 뜨고 있다면, 반드시 뜨도록 보완이 필요합니다. 요지: 회수 이력은 자동·수동 모든 회수를 '왜 회수됐는지' 사유와 함께 전부 담아야 합니다.
+
+[참조] 관리자 회수는 원장에 'CLAWBACK' 타입 레코드로 저장됨.</span><span class="vi">Vâng. Phần thu hồi thủ công của admin cũng <b>bắt buộc phải hiển thị</b> trong Lịch sử thu hồi — đây là hướng đã chốt.
+
+Lịch sử thu hồi là màn phục vụ kiểm toán (audit), ghi đầy đủ 'vì sao vé này bị thu hồi'. Xét về kiểm toán, chính các ca admin xử lý thủ công mới là thứ nhất định phải lưu lại lịch sử. Vì vậy việc lý do thu hồi hiện chỉ có 2 loại 'Trả hàng/Hủy đơn'·'Hết hạn' là chưa đầy đủ.
+
+Hướng đã chốt:
+- Thêm mục lý do <b>'Admin thu hồi (관리자 회수)'</b> để phân biệt rõ giữa thu hồi tự động (trả hàng/hủy·hết hạn) và thu hồi thủ công của admin.
+- Không cần định nghĩa mới câu chữ lý do. Vì modal cấp/thu hồi thủ công đã có ô 'LÝ DO' là <b>trường bắt buộc</b> (xem ảnh đính kèm), chỉ cần lấy đúng lý do admin đã nhập lúc đó và hiển thị vào Lịch sử thu hồi.
+
+Hiện trạng (xin thừa nhận thẳng thắn): theo thiết kế, thu hồi của admin cũng được ghi vào sổ cái dưới dạng bản ghi thu hồi nên thuộc phạm vi truy vấn của Lịch sử thu hồi. Nhưng vì lý do hiển thị chỉ có 2 giá trị, thu hồi của admin không được tách khỏi thu hồi tự động (bị gộp thành trả hàng/hủy hoặc trống lý do). Nếu ở bản build hiện tại phần thu hồi của admin hoàn toàn không hiển thị trong Lịch sử thu hồi thì cần bổ sung để chắc chắn nó hiển thị. Tóm lại: Lịch sử thu hồi phải chứa mọi thu hồi tự động lẫn thủ công kèm theo lý do 'vì sao bị thu hồi'.
+
+[Tham khảo] Thu hồi của admin được lưu vào sổ cái dưới dạng bản ghi loại 'CLAWBACK'.</span></span></div></div></div>
+
+<!-- ==================== GROUP 2 : 티켓 이력 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 티켓·보상 — 티켓 이력 (Lịch sử vé)</span><span class="vi">2. Vé·Phần thưởng — Lịch sử vé</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">빨간 상자 안 숫자(전체 원장 레코드 2,183 · append-only)의 의미가 무엇인가요?</span><span class="vi">Ý nghĩa con số trong ô màu đỏ (Tổng bản ghi sổ cái 2,183 · append-only) là gì?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry3-q-ticket-ledger.png','티켓 원장 레코드')"><img src="/devqa/img/harry3-q-ticket-ledger.png" alt="티켓 원장 레코드" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">전체 원장 레코드 2,183</span><span class="vi">Tổng bản ghi sổ cái 2,183</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">'전체 원장 레코드'는 티켓 거래를 기록하는 원장(디비 테이블)에 쌓인 모든 거래 기록의 총 개수입니다. 발행(적립)·사용·회수·만료 등 티켓에 일어난 모든 사건이 한 줄씩 쌓입니다.
+
+append-only = 이 원장은 기존 행을 절대 수정·삭제하지 않고 새 행만 추가한다는 뜻입니다. 회계·세무·어뷰징 추적을 위해 원본을 그대로 보존해야 하기 때문입니다(회수해도 티켓 행을 지우지 않고 '음수 기록'을 새로 추가).
+
+그래서 '누적 발행 2,136'(발행 이벤트만) 보다 '원장 레코드 2,183'(발행+사용+회수+만료 모든 이벤트)이 더 큽니다. 빨간 상자는 이 append-only 원장의 총 레코드 수를 강조한 것입니다.
+
+[화면 대조 확인] 해리가 빨간 상자를 친 숫자는 상단 3번째 카드 '전체 원장 레코드 2,183'입니다(캡처 직접 대조 완료). 이건 티켓 장수도, 원(₩) 환산 금액도, 상태 카운트도 아니고 — 원장 테이블의 전체 행(레코드) 개수입니다. 같은 화면의 다른 카드로 산술 교차검증됩니다: 누적발행 2,136 + 교환(사용) 33 + 사기회수 14 + 만료 0 = 2,183. 모든 이벤트가 한 행씩 쌓이므로 합이 정확히 원장 레코드 수와 일치합니다.
+
+[참조] 해당 테이블명: TicketTransaction.</span><span class="vi">"Tổng bản ghi sổ cái" là tổng số tất cả bản ghi giao dịch tích lũy trong bảng sổ cái ghi giao dịch vé. Mọi sự kiện xảy ra với vé — phát hành (tích lũy)·sử dụng·thu hồi·hết hạn — đều được thêm thành từng dòng.
+
+append-only = sổ cái này tuyệt đối không sửa·xóa dòng cũ, chỉ thêm dòng mới. Vì để phục vụ kế toán·thuế·truy vết gian lận, bản gốc phải được bảo tồn nguyên vẹn (khi thu hồi cũng không xóa dòng vé mà thêm một "bản ghi âm" mới).
+
+Do đó "Tích lũy phát hành 2,136" (chỉ sự kiện phát hành) nhỏ hơn "Bản ghi sổ cái 2,183" (phát hành+sử dụng+thu hồi+hết hạn, tất cả sự kiện). Ô màu đỏ nhấn mạnh tổng số bản ghi của sổ cái append-only này.
+
+[Đối chiếu màn hình] Con số Harry khoanh đỏ là thẻ thứ 3 phía trên 'Tổng bản ghi sổ cái 2,183' (đã đối chiếu trực tiếp ảnh chụp). Đây không phải số lượng vé, không phải số tiền quy đổi (₩), cũng không phải đếm trạng thái — mà là tổng số dòng (bản ghi) của bảng sổ cái. Kiểm chứng chéo bằng các thẻ khác cùng màn: tích lũy phát hành 2,136 + đổi (sử dụng) 33 + thu hồi gian lận 14 + hết hạn 0 = 2,183. Vì mỗi sự kiện là một dòng nên tổng khớp chính xác với số bản ghi sổ cái.
+
+[Tham khảo] Tên bảng: TicketTransaction.</span></span></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">상태의 '보유 중(Đang giữ)'은 적립돼 있는 것, '사용됨(Đã dùng)'은 GiftIcon에서 구매에 사용한 것 맞나요?</span><span class="vi">Trạng thái: "Đang giữ" là đang tích lũy. Còn "Đã dùng" nghĩa là đã sử dụng mua hàng bên GiftIcon đúng không?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry3-q-ticket-status.png','티켓 상태 필터')"><img src="/devqa/img/harry3-q-ticket-status.png" alt="티켓 상태 필터" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">상태: 보유 중 / 사용됨</span><span class="vi">Trạng thái: Đang giữ / Đã dùng</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">맞습니다. 보완해서 정리하면:
+
+- 보유 중(Đang giữ): 적립돼 있고 아직 쓰지 않은, 사용 가능한 티켓.
+- 사용됨(Đã dùng): 티켓을 소모한 상태.
+
+단 '사용됨'은 기프티콘 교환만이 아닙니다. 티켓 종류별로 소비처가 다릅니다.
+- 등급 티켓(브론즈/실버/골드) → 기프티콘 교환에 사용.
+- 이벤트 티켓 → 주간 경품 추첨 응모에 소모.
+둘 다 소모되면 '사용됨'으로 잡힙니다. 그래서 'GiftIcon 구매'는 등급 티켓 케이스가 맞고, 이벤트 티켓은 추첨 응모로 사용됩니다.</span><span class="vi">Đúng vậy. Bổ sung cho rõ:
+
+- Đang giữ: vé đã tích lũy, chưa dùng, còn có thể sử dụng.
+- Đã dùng: vé đã bị tiêu.
+
+Nhưng "Đã dùng" không chỉ là đổi Gifticon. Mỗi loại vé có nơi tiêu khác nhau.
+- Vé hạng (Đồng/Bạc/Vàng) → dùng để đổi Gifticon.
+- Vé sự kiện → tiêu để tham gia rút thăm quà tặng hàng tuần.
+Cả hai khi bị tiêu đều tính là "Đã dùng". Nên "mua bên Gifticon" đúng là ca vé hạng, còn vé sự kiện thì dùng để tham gia rút thăm.</span></span></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">4</span><div class="qtxt"><span class="i18n"><span class="ko">빨간 상자의 '사기 회수(Thu hồi do gian lận)'가 관리자 수동 회수 항목 맞나요?</span><span class="vi">Ô màu đỏ: "Thu hồi do gian lận" có phải là mục Admin thu hồi thủ công đúng không?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry3-q-ticket-fraud.png','사기 회수 카드')"><img src="/devqa/img/harry3-q-ticket-fraud.png" alt="사기 회수 카드" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">사기 회수 14 카드</span><span class="vi">Thẻ Thu hồi do gian lận 14</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">네, 맞습니다. '사기 회수'는 관리자가 어뷰징·부정 판정으로 티켓을 회수한 건들의 집계입니다. 수동 지급/회수 모달에서 처리유형을 '회수'로 처리하면 이 카테고리(부정 회수)로 원장에 기록되고, 이 카드 숫자(14)에 잡힙니다.
+
+정리하면 회수는 크게 두 종류입니다.
+- 자동 회수: 반품/취소(구매 철회), 유효기간 만료 — 시스템이 자동 처리.
+- 수동 회수: 관리자가 어뷰징 계정에 직접 회수 → '사기 회수'로 집계.
+이 화면의 '사기 회수 14'와 회수 이력 화면의 '환수·소멸 14건'은 같은 데이터입니다.</span><span class="vi">Đúng vậy. "Thu hồi do gian lận" là số liệu tổng hợp các ca admin thu hồi vé do phán định gian lận·lạm dụng. Khi ở modal cấp/thu hồi thủ công chọn loại xử lý là "Thu hồi", nó được ghi vào sổ cái theo category này (thu hồi do gian lận) và tính vào con số của thẻ này (14).
+
+Tóm lại thu hồi có 2 loại lớn:
+- Thu hồi tự động: Trả hàng/Hủy đơn (rút mua), hết hạn hiệu lực — hệ thống tự xử lý.
+- Thu hồi thủ công: admin trực tiếp thu hồi tài khoản lạm dụng → tính vào "Thu hồi do gian lận".
+"Thu hồi do gian lận 14" ở màn này và "14 ca thu hồi·tiêu hủy" ở màn Lịch sử thu hồi là cùng một dữ liệu.</span></span></div></div></div>
+
+<!-- ==================== GROUP 3 : 출석 설정 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">3. 출석 설정 (Cài đặt điểm danh)</span><span class="vi">3. Cài đặt điểm danh</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">5</span><div class="qtxt"><span class="i18n"><span class="ko">제휴몰 방문 전환율 4%는 무슨 전환율이며, 어떻게 계산된 숫자인가요?</span><span class="vi">Tỉ lệ chuyển đổi truy cập cửa hàng Liên kết 4% là tỉ lệ gì? 4% được tính toán như thế nào?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry3-q-attendance.png','출석 설정 · 전환율 4%')"><img src="/devqa/img/harry3-q-attendance.png" alt="출석 설정 전환율" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">출석 설정 · 전환율 4.0%</span><span class="vi">Cài đặt điểm danh · 4.0%</span></span></span></button></div></div><span class="bd ck"><span class="i18n"><span class="ko">확인중</span><span class="vi">Đang xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">이 4.0%는 출석(쿠팡 구경하기) 참여 전환율을 보여주려는 상단 지표 카드입니다. 부제에 '오늘 방문 / 전체 회원'으로 적혀 있는데, 현재 화면의 4.0%는 데모용 더미값이며 실제 계산으로 나온 숫자가 아닙니다.
+
+이 지표의 정확한 분자·분모 정의가 아직 확정 안 됐습니다. 아래 추천안으로 김반장님 확정을 받겠습니다.</span><span class="vi">4.0% này là thẻ chỉ số phía trên nhằm thể hiện tỉ lệ chuyển đổi tham gia điểm danh (Xem Coupang). Phụ đề ghi "truy cập hôm nay / toàn bộ thành viên", nhưng 4.0% hiện tại là giá trị demo giả, không phải con số tính ra từ dữ liệu thực.
+
+Định nghĩa tử số·mẫu số chính xác của chỉ số này vẫn chưa được chốt. Sẽ xin Mr Mark chốt theo đề xuất bên dưới.</span></span>
+<div class="need-box"><span class="i18n"><span class="ko">[추천안 · 김반장님 확정 필요] 출석 전환율 = (오늘 앱을 거쳐 쿠팡을 방문하고 30초 이상 체류해 출석이 인정된 회원 수) ÷ (전체 활성 회원 수) × 100.</span><span class="vi">[Đề xuất · chờ Mr Mark chốt] Tỉ lệ chuyển đổi điểm danh = (số thành viên hôm nay đi qua app vào Coupang và ở lại ≥30 giây được công nhận điểm danh) ÷ (tổng thành viên hoạt động) × 100.</span></span>
+<div class="rec-line"><span class="i18n"><span class="ko">확정 포인트 2가지: ① 분모를 '전체 회원'으로 할지 '최근 N일 활성 회원'으로 할지. ② 분자를 단순 '방문'으로 할지 '출석 완료(30초 체류)'로 할지. 출석 정책이 30초 체류 기준이므로 분자는 '출석 완료' 권장.</span><span class="vi">2 điểm cần chốt: ① mẫu số là "toàn bộ thành viên" hay "thành viên hoạt động N ngày gần nhất". ② tử số là "truy cập" đơn thuần hay "điểm danh hoàn tất (ở lại 30 giây)". Vì chính sách điểm danh dựa trên mốc 30 giây, đề xuất tử số dùng "điểm danh hoàn tất".</span></span></div></div></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">6</span><div class="qtxt"><span class="i18n"><span class="ko">5일 연속 보상 드롭다운에 '이벤트 티켓 1장 / 2장 / 포인트 보상'이 있는데, '포인트 보상'은 무엇이고 수량은 얼마인가요?</span><span class="vi">Dropdown thưởng 5 ngày liên tiếp có "1 vé sự kiện / 2 vé sự kiện / Điểm thưởng". "Điểm thưởng" hiểu thế nào? Số lượng bao nhiêu?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry3-q-attendance.png','5일 연속 보상 드롭다운')"><img src="/devqa/img/harry3-q-attendance.png" alt="5일 연속 보상" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">5일 연속 보상 옵션</span><span class="vi">Option thưởng 5 ngày</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정된 출석 보상 정책은 이렇습니다(2026-07-10 확정, 정책서 기준):
+
+- 매일: 100P 지급(같은 화면의 '일일 지급 = 100P'가 이것).
+- 5일 연속 달성 시: 이벤트 티켓 1장을 추가 지급. 5일차에도 그날의 100P는 그대로 지급됩니다.
+- 별도의 포인트 보너스(예: 500P)는 없습니다. 과거 '500P + 이벤트 티켓'으로 적힌 건 오기재였고 정정 완료했습니다.
+
+따라서 드롭다운의 '포인트 보상(Điểm thưởng)' 옵션과 '이벤트 티켓 2장' 옵션은 확정 정책에 없습니다. 5일 연속 보상 값은 '이벤트 티켓 1장'으로 고정하는 게 맞습니다. 매일 지급 100P는 5일 보상과 별개로, 같은 화면의 '일일 지급' 항목에서 관리됩니다.</span><span class="vi">Chính sách thưởng điểm danh đã chốt như sau (chốt 2026-07-10, theo tài liệu chính sách):
+
+- Mỗi ngày: cấp 100P (chính là "cấp hàng ngày = 100P" ở cùng màn).
+- Khi đạt 5 ngày liên tiếp: cấp thêm 1 vé sự kiện. Ngày thứ 5 vẫn cấp 100P của ngày đó như bình thường.
+- Không có khoản thưởng điểm riêng nào (ví dụ 500P). Phần từng ghi "500P + vé sự kiện" là ghi nhầm và đã đính chính.
+
+Do đó option "Điểm thưởng" và option "2 vé sự kiện" trong dropdown không có trong chính sách đã chốt. Giá trị thưởng 5 ngày liên tiếp nên cố định là "1 vé sự kiện". Còn 100P cấp mỗi ngày là tách biệt với thưởng 5 ngày, quản lý ở mục "cấp hàng ngày" cùng màn.</span></span></div></div></div>
+
+<!-- ==================== GROUP 4 : 포인트 정책 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">4. 포인트 정책 (Chính sách điểm)</span><span class="vi">4. Chính sách điểm</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">7</span><div class="qtxt"><span class="i18n"><span class="ko">포인트 정책 수정 화면의 '적용 시점'에 있는 '예약 적용(Áp dụng theo hẹn)'은 무슨 뜻인가요?</span><span class="vi">Trong màn Sửa chính sách điểm, mục "Thời điểm áp dụng" có option "Áp dụng theo hẹn" nghĩa là gì?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry3-q-point-policy.png','포인트 정책 · 적용 시점')"><img src="/devqa/img/harry3-q-point-policy.png" alt="포인트 정책 적용 시점" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">적용 시점: 즉시 / 예약</span><span class="vi">Thời điểm áp dụng: ngay / theo hẹn</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">'적용 시점'은 정책 변경(예: 포인트 환율, 만료 규칙)을 언제부터 반영할지 고르는 옵션입니다.
+
+- 즉시 적용(Áp dụng ngay): 저장하는 순간 바로 새 정책이 적용됩니다.
+- 예약 적용(Áp dụng theo hẹn): 지금 저장해두되, 지정한 날짜·시각이 되면 그때 자동으로 새 정책이 적용됩니다. 예) '환율 변경을 유저에게 공지한 뒤 다음 달 1일 0시부터 적용' 같은 케이스.
+
+정리하면 예약 적용 = 미래 지정 시점 발효입니다. 1단계에서 꼭 필요한 기능은 아니니, 지금은 '즉시 적용'만 쓰고 예약 옵션은 나중에 붙여도 됩니다(운영 편의 기능이라 김반장님 판단으로 켜고 끄면 됩니다).</span><span class="vi">"Thời điểm áp dụng" là option chọn từ khi nào áp dụng thay đổi chính sách (ví dụ: tỉ giá điểm, quy tắc hết hạn).
+
+- Áp dụng ngay: ngay khi lưu là chính sách mới có hiệu lực lập tức.
+- Áp dụng theo hẹn: lưu bây giờ nhưng đến ngày·giờ đã hẹn thì chính sách mới tự động có hiệu lực. VD: "thông báo cho user về việc đổi tỉ giá rồi áp dụng từ 0h ngày 1 tháng sau".
+
+Tóm lại áp dụng theo hẹn = có hiệu lực tại thời điểm hẹn trong tương lai. Đây không phải tính năng bắt buộc ở giai đoạn 1, nên hiện chỉ cần dùng "áp dụng ngay", option theo hẹn có thể thêm sau (là tính năng tiện lợi vận hành, Mr Mark bật/tắt tùy ý).</span></span></div></div></div>
+
+<!-- ==================== GROUP 5 : 푸시 알림 관리 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">5. 푸시 알림 관리 (Quản lý thông báo đẩy)</span><span class="vi">5. Quản lý thông báo đẩy</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">8</span><div class="qtxt"><span class="i18n"><span class="ko">'발송 채널(Kênh gửi)'의 의미를 설명해 주세요. 현재 3개 옵션: Push app / Kakao AlimTalk(연동회원) / Push + AlimTalk 동시.</span><span class="vi">Giải thích ý nghĩa mục "Kênh gửi". Hiện có 3 option: Push app / Kakao AlimTalk (thành viên LK) / Push + AlimTalk đồng thời?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry3-q-push-channel.png','발송 채널 드롭다운')"><img src="/devqa/img/harry3-q-push-channel.png" alt="발송 채널" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">발송 채널 옵션</span><span class="vi">Option kênh gửi</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">'발송 채널'은 이 알림을 어떤 경로로 보낼지 고르는 값입니다.
+
+- Push app: 앱 푸시로만 발송. 앱을 설치한 회원이 대상.
+- Kakao AlimTalk(연동회원): 카카오 알림톡으로 발송. 카카오 연동 회원만 대상(연동 = 전화번호·카카오 채널이 있어야 발송 가능).
+- Push + AlimTalk 동시: 두 채널 모두 발송.
+
+참고로 알림톡은 실제 운영 시 카카오 비즈니스 채널 개설·템플릿 사전 승인·발송 비용이 필요합니다(1단계에서는 앱 푸시만으로도 충분). 그리고 화면 안내대로 지금 데모는 실제 발송 연동이 없고 발송 내역만 기록에 남습니다.
+
+[참조] 앱 푸시는 FCM(Firebase Cloud Messaging) 기반. 데모는 FCM/알림톡 실발송 미연동, 발송 내역은 Firestore에 기록.</span><span class="vi">"Kênh gửi" là giá trị chọn gửi thông báo này qua đường nào.
+
+- Push app: chỉ gửi bằng push app. Đối tượng là thành viên đã cài app.
+- Kakao AlimTalk (thành viên LK): gửi bằng Kakao AlimTalk. Chỉ nhắm thành viên đã liên kết Kakao (liên kết = phải có số điện thoại·kênh Kakao mới gửi được).
+- Push + AlimTalk đồng thời: gửi cả hai kênh.
+
+Lưu ý AlimTalk khi vận hành thực tế cần mở kênh Kakao Business·duyệt template trước·có phí gửi (giai đoạn 1 chỉ dùng push app cũng đủ). Và như ghi chú trên màn, demo hiện chưa tích hợp gửi thật, chỉ ghi lịch sử gửi vào bản ghi hệ thống.
+
+[Tham khảo] Push app dựa trên FCM (Firebase Cloud Messaging). Demo chưa tích hợp gửi thật FCM/AlimTalk, lịch sử gửi được ghi vào Firestore.</span></span></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">9</span><div class="qtxt"><span class="i18n"><span class="ko">'발송 대상(Đối tượng gửi)'의 의미를 설명해 주세요. 옵션에 전체/브론즈/실버/골드/30일 미접속/커스텀 세그먼트가 있는데, 우리에게 회원 등급이 없지 않나요?</span><span class="vi">Giải thích mục "Đối tượng gửi". Có các option: Toàn bộ, hạng Đồng/Bạc/Vàng, chưa truy cập 30 ngày, phân khúc tùy chỉnh. Ý nghĩa? Chúng ta đâu có hạng thành viên?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry3-q-push-target.png','발송 대상 드롭다운')"><img src="/devqa/img/harry3-q-push-target.png" alt="발송 대상" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">발송 대상 옵션</span><span class="vi">Option đối tượng gửi</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">해리 지적이 정확합니다. PricePick에는 회원 등급이 없습니다. 있는 건 '티켓 등급(브론즈/실버/골드)'뿐이고, 이건 회원의 등급이 아니라 티켓 한 장 한 장의 종류입니다(구매 금액에 따라 발행). 한 회원이 브론즈·실버·골드 티켓을 동시에 가질 수 있어서, 회원 등급으로는 사람을 가를 수 없습니다.
+
+그래서 발송 대상 드롭다운의 '브론즈 회원 / 실버 회원 / 골드 회원' 옵션은 애초에 잘못 만들어진 화면이었습니다. 확정된 방향은 이 옵션들을 우리가 실제로 가진 데이터로 사람을 가를 수 있는 7가지 조건으로 전부 교체하는 것입니다.
+
+- 전체 회원
+- 카카오 연동 회원
+- 미연동(게스트) 회원
+- 30일 미접속
+- 신규 가입(N일 이내)
+- 구매 이력 있는 회원
+- 커스텀 세그먼트
+
+기존 옵션 중 '30일 미접속'과 '커스텀 세그먼트'는 그대로 유지하고, 나머지는 위 5개로 바꿉니다. 이 조건들은 모두 우리가 실제로 가진 정보(카카오 연동 여부·마지막 접속일·가입일·구매 이력)로 바로 사람을 가를 수 있어서 골랐습니다.
+
+CMS 발송 대상 화면도 이 7개로 교체하는 작업이 별도 세션에서 진행 중입니다.</span><span class="vi">Góp ý của Harry chính xác. PricePick không có hạng thành viên. Cái chúng ta có chỉ là "hạng vé (Đồng/Bạc/Vàng)", và đó không phải hạng của thành viên mà là loại của từng chiếc vé (phát hành theo số tiền mua). Một thành viên có thể đồng thời sở hữu vé Đồng·Bạc·Vàng, nên không thể chia người theo hạng vé.
+
+Vì vậy option "hạng Đồng/Bạc/Vàng thành viên" trong dropdown đối tượng gửi ngay từ đầu là màn làm sai. Hướng đã chốt là thay toàn bộ các option đó bằng 7 điều kiện có thể chia người dựa trên dữ liệu thực chúng ta đang có.
+
+- Toàn bộ thành viên
+- Thành viên đã liên kết Kakao
+- Thành viên chưa liên kết (khách)
+- Chưa truy cập 30 ngày
+- Mới đăng ký (trong N ngày)
+- Có lịch sử mua
+- Phân khúc tùy chỉnh
+
+Trong các option cũ, "chưa truy cập 30 ngày" và "phân khúc tùy chỉnh" giữ nguyên, các option còn lại đổi thành 5 mục trên. Các điều kiện này đều dựa trên dữ liệu thực chúng ta có (trạng thái liên kết Kakao·ngày truy cập cuối·ngày đăng ký·lịch sử mua) nên chọn được ngay.
+
+Màn CMS đối tượng gửi cũng đang được thay bằng 7 mục này ở một phiên làm việc khác.</span></span></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">10</span><div class="qtxt"><span class="i18n"><span class="ko">푸시 알림 관리 화면은 관리자가 어떤 알림을 관리하려는 것인가요? 푸시가 필요한 항목들을 나열해 주시면 이 기능을 이해하는 데 도움이 되겠습니다.</span><span class="vi">Phần quản lý thông báo đẩy này mục đích để admin quản lý những thông báo gì? Liệt kê giúp các phần cần thông báo đẩy để tôi hình dung chức năng.</span></span>
+</div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">이 화면은 관리자가 마케팅성·안내성 알림을 직접 작성해서 수동 발송하는 도구입니다. 거래 알림(구매·확정·환불처럼 시스템이 자동으로 쏘는 것)과는 별개입니다. 즉 여기서 관리자가 손으로 쓰는 건 주로 '이벤트·티켓 알림'과 '마케팅 알림'입니다.
+
+우리 알림은 정책상 3종으로 나뉩니다.
+1) 거래성(시스템 자동, 상한 없음): 구매 추적/가지급/구매확정/환수, 티켓·포인트 적립. → 자동 발송이라 이 수동 화면에서 안 씀.
+2) 이벤트·티켓(마케팅성, 1일 2건 상한): 행운룰렛 안내, 경품 응모·당첨, 티켓 만료 임박(D-30/D-7), 주간 추첨 마감 D-1. → 이 화면에서 발송.
+3) 마케팅(기본 꺼짐, 수신 동의자만): 프로모션·이벤트 안내. → 이 화면에서 발송.
+
+발송 규칙: 야간 22:00~08:00 미발송(거래 알림만 예외), 마케팅성은 1인 하루 2건까지. 우선순위는 거래 > 만료 임박 > 미션 > 추첨.</span><span class="vi">Màn này là công cụ để admin tự viết và gửi thủ công các thông báo mang tính marketing·hướng dẫn. Nó tách biệt với thông báo giao dịch (mua·xác nhận·hoàn tiền do hệ thống tự bắn). Nghĩa là cái admin gõ tay ở đây chủ yếu là "thông báo sự kiện·vé" và "thông báo marketing".
+
+Theo chính sách, thông báo chia làm 3 loại.
+1) Giao dịch (hệ thống tự động, không giới hạn): theo dõi mua/tạm cấp/xác nhận mua/thu hồi, tích lũy vé·điểm. → tự gửi nên không dùng ở màn thủ công này.
+2) Sự kiện·vé (marketing, tối đa 2 lần/ngày): thông báo vòng quay, ứng tuyển·trúng quà, vé sắp hết hạn (D-30/D-7), rút thăm tuần đóng D-1. → gửi ở màn này.
+3) Marketing (mặc định tắt, chỉ người đồng ý nhận): khuyến mãi·giới thiệu sự kiện. → gửi ở màn này.
+
+Quy tắc gửi: không gửi ban đêm 22:00~08:00 (chỉ thông báo giao dịch ngoại lệ), loại marketing tối đa 2 lần/ngày/người. Ưu tiên: giao dịch > sắp hết hạn > nhiệm vụ > rút thăm.</span></span></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">11</span><div class="qtxt"><span class="i18n"><span class="ko">발송(전송)하면 앱에서는 어떻게 표시되나요? 이 알림들을 보여줄 UI가 앱에 아직 없는 것 같습니다.</span><span class="vi">Và khi nhấn gửi thì bên app hiển thị thế nào? Dường như chưa có UI để hiển thị các thông báo này?</span></span>
+</div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">알림은 앱에서 두 경로로 표시됩니다.
+1) OS 푸시: 발송 즉시 단말 잠금화면·알림센터에 뜹니다.
+2) 인앱 알림함: 앱 안의 '알림함(전역 알림 목록)' 화면에 항목으로 쌓입니다. 홈 상단 종 아이콘으로 진입합니다.
+
+즉 표시 UI가 없는 게 아니라, 앱 프로토타입과 기능명세에 '알림함' 화면이 이미 정의돼 있습니다. 해리가 아직 못 봤거나 현재 빌드에 안 붙어 있을 수 있으니, 프로토타입의 알림함 화면을 참고해 주세요.
+
+참고: 알림 수신 여부는 알림 설정의 3종 스위치(구매 / 이벤트·티켓 / 마케팅)로 제어되고, 이 스위치는 푸시와 인앱 알림함에 공통 적용됩니다(1단계 단순화 — 푸시/인앱 분리 안 함).
+
+[참조] OS 푸시는 FCM 기반. 프로토타입 화면 ID: 알림함(전역) / functionalspec 문서 '알림함·알림 목록' 항목.</span><span class="vi">Thông báo hiển thị trên app qua 2 đường.
+1) Push OS: hiện ngay lập tức trên màn khóa·trung tâm thông báo của máy.
+2) Hộp thông báo trong app: xếp thành từng mục trong màn "Hộp thông báo (danh sách thông báo toàn cục)" của app. Vào bằng icon chuông ở đầu màn Home.
+
+Nghĩa là không phải không có UI hiển thị — màn "Hộp thông báo" đã được định nghĩa sẵn trong prototype và tài liệu chức năng. Có thể Harry chưa thấy hoặc bản build hiện chưa gắn, nên hãy tham khảo màn Hộp thông báo trong prototype.
+
+Lưu ý: việc nhận thông báo được điều khiển bằng 3 công tắc trong Cài đặt thông báo (mua / sự kiện·vé / marketing), và các công tắc này áp dụng chung cho cả push lẫn hộp thông báo trong app (đơn giản hóa giai đoạn 1 — không tách push/in-app).
+
+[Tham khảo] Push OS dựa trên FCM. ID màn prototype: Hộp thông báo (toàn cục) / mục "Hộp thông báo·danh sách thông báo" trong tài liệu functionalspec.</span></span></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 백엔드 질문 답변 #7 · Harry · 2026-07-13 · 확정 10 / 확인 필요 1(김반장님 확정 대기)</span><span class="vi">PricePick · Giải đáp Backend #7 · Harry · 2026-07-13 · Đã chốt 10 / Cần xác nhận 1 (chờ Mr Mark)</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
