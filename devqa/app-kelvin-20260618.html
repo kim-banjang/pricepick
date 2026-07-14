@@ -18,6 +18,8 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 .alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
 .atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap} .atxt b{color:var(--ink1);font-weight:700}
 .atxt .need{color:var(--ck);font-weight:800}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
 .foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
 .vi{display:none}
 #langsw{position:absolute;opacity:0;pointer-events:none}
@@ -65,71 +67,55 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 
 <h2 class="grp"><span class="i18n"><span class="ko">내 티켓 · 만료 표시</span><span class="vi">Vé của tôi · Hiển thị hết hạn</span></span></h2>
 <div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">내 티켓·혜택(티켓) 화면 [그림1: 혜택 / 그림2: 내 티켓]: 현재는 곧 만료될 티켓만 표시하고 각 티켓의 상세 사용 기한은 나타내지 않습니다. 질문: 각 티켓별 상세 사용 기한을 표시하는 게 좋을까요?</span><span class="vi">Trang Vé của tôi, Ưu đãi(Ticket) [Hình 1: Ưu đãi / Hình 2: Vé của tôi]: Hiện chỉ hiển thị vé sắp hết hạn, chưa thể hiện chi tiết thời hạn sử dụng của từng vé. Câu hỏi: Có nên hiển thị chi tiết thời hạn sử dụng cho từng vé?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>현재 표시 상태(프로토타입):</b>
-· 혜택 메인(내 티켓)에서는 임박분만 요약으로 보여줍니다(예: '브론즈 3장 D-7 만료').
-· 더 들어간 '적립 티켓 통합 상세(내 적립 티켓)'에서는 등급별 만료를 보여줍니다(브론즈 ⚠3장 D-7, 실버 만료 2027.03.15, 골드 만료 2027.05.20). 다만 <b>등급 단위 요약/대표 만료일</b>이며, 한 등급 안의 개별 티켓 한 장 한 장의 만료일까지는 표시하지 않습니다.
-
-티켓 만료는 '적립일+1년'으로 티켓마다 개별이므로 장별 상세를 보여줄 근거 자체는 있습니다.
-
-메인은 현행 유지(등급별 요약 + 임박 경고)하되, <b>각 등급 카드를 탭하면 '장별 만료 리스트'(만료일 오름차순·D-day 표기)를 펼치는 상세</b>를 추가합니다. (이유: 메인은 간결해야 하고 만료 관리가 필요한 유저만 깊이 보게 하는 점진적 노출이 적합 — 전 장 평면 노출은 정보 과부하.)</span><span class="vi"><b>Hiện trạng hiển thị (prototype):</b>
-· Màn Ưu đãi chính (Vé của tôi) chỉ hiển thị tóm tắt phần sắp hết hạn (VD: '3 vé Bronze hết hạn D-7').
-· Màn chi tiết 'Vé tích lũy của tôi' hiển thị hết hạn theo hạng (Bronze ⚠3 vé D-7, Silver hết hạn 2027.03.15, Gold hết hạn 2027.05.20). Nhưng đây là <b>tóm tắt/ngày đại diện theo hạng</b>, chưa hiển thị hết hạn của từng vé riêng trong một hạng.
-
-Vì hết hạn vé là 'ngày tích lũy + 1 năm' theo từng vé, nên có cơ sở để hiển thị chi tiết theo từng vé.
-
-Giữ màn chính như hiện tại (tóm tắt theo hạng + cảnh báo sắp hết hạn), nhưng thêm chi tiết <b>'danh sách hết hạn theo từng vé' (sắp theo ngày hết hạn tăng dần·ghi D-day) khi chạm thẻ từng hạng</b>. (Lý do: màn chính cần gọn, chỉ ai cần quản lý hết hạn mới xem sâu — progressive disclosure; phơi bày toàn bộ gây quá tải.)</span></span></div></div></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>결론:</b> 메인 화면(등급별 요약 + 임박 경고)은 현행 유지하고, <b>등급 카드를 탭하면 '장별 만료 리스트'(만료일 오름차순·D-day 표기)</b>를 펼치는 상세를 추가합니다. 티켓은 '적립일+1년'으로 장마다 만료일이 다르므로 상세 표시 근거는 있으나, 메인에 전 장을 나열하면 정보 과부하이므로 탭 시 노출로 처리합니다.</span><span class="vi"><b>Kết luận:</b> Giữ màn chính (tóm tắt theo hạng + cảnh báo sắp hết hạn) như hiện tại, thêm <b>'danh sách hết hạn theo từng vé' (sắp theo ngày hết hạn tăng dần·ghi D-day)</b> khi chạm thẻ từng hạng. Vé hết hạn theo 'ngày tích lũy + 1 năm' nên có cơ sở hiển thị chi tiết từng vé, nhưng phơi bày toàn bộ ở màn chính gây quá tải nên chuyển sang hiển thị khi chạm.</span></span>
+<div class="ref-box"><span class="ref-label i18n"><span class="ko">[참조] 현재 프로토타입 표시</span><span class="vi">[Tham khảo] Hiển thị hiện tại (prototype)</span></span><span class="i18n"><span class="ko">혜택 메인(내 티켓)은 임박분만 요약 표시(예: '브론즈 3장 D-7 만료'). '적립 티켓 통합 상세'는 등급별 만료를 표시(브론즈 ⚠3장 D-7, 실버 2027.03.15, 골드 2027.05.20) — 단 등급 단위 대표 만료일이며 한 등급 안 개별 티켓별 표시는 아님.</span><span class="vi">Màn Ưu đãi chính (Vé của tôi) chỉ hiển thị tóm tắt phần sắp hết hạn (VD: '3 vé Bronze hết hạn D-7'). Màn 'Vé tích lũy của tôi' hiển thị hết hạn theo hạng (Bronze ⚠3 vé D-7, Silver 2027.03.15, Gold 2027.05.20) — nhưng là ngày đại diện theo hạng, chưa hiển thị hết hạn từng vé riêng.</span></span></div>
+</div></div></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">티켓 병합 · 분할 선택 규칙</span><span class="vi">Quy tắc chọn vé khi gộp · tách</span></span></h2>
 <div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">티켓 교환 화면(Ticket): 현재는 합칠 총 티켓 수만 입력하고, 합칠 티켓을 선택하는 부분이나 그 티켓들의 사용 기한 정보가 없습니다. 질문: 티켓마다 사용 기한이 다른데 브론즈→실버, 실버→골드로 합칠 때 합칠 티켓을 고르는 규칙은 어떻게 되나요? 시스템이 자동 선택하나요, 사용자가 결정하나요? 골드→실버, 실버→브론즈로 나누는 경우도 동일한 질문입니다.</span><span class="vi">Trang đổi vé(Ticket): Hiện tại chỉ nhập tổng vé cần gộp, không có phần lựa chọn vé và thông tin về thời hạn sử dụng của những vé cần gộp. Câu hỏi: Quy tắc lựa chọn vé để gộp ticket bronze → ticket silver và ticket silver → ticket gold như thế nào khi mỗi vé có một thời hạn sử dụng riêng? Hệ thống tự động lựa chọn hay người dùng quyết định? Câu hỏi tương tự cho trường hợp tách ticket gold → ticket silver và ticket silver → ticket bronze?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>선택 방식(프로토타입):</b> 티켓 등급 교환은 '합칠 총 수량'만 입력받고 어떤 티켓을 고를지 사용자가 개별 선택하지 않습니다 — 즉 <b>시스템 자동 선택</b>입니다.
-
-<b>만료일 규칙(확정):</b> 전환으로 새로 생기는 상위 티켓의 적립일 = 소모된 원본 티켓들의 '가장 이른 적립일'(MIN)을 승계하고, 만료일 = 그 적립일 + 1년입니다. (예: 브론즈 10장 → 실버 1장 전환 시 가장 이른 적립일을 따름 → 만료 임박 티켓을 끼워 무한 연장하는 어뷰징 방지.) 분할(골드→실버, 실버→브론즈)도 동일 원칙(원 적립일 승계)을 적용합니다.
-
-병합 시 <b>만료 임박(적립일 오래된) 티켓부터 자동 소모(FIFO by 적립일)</b>로 처리합니다 — 새 상위 티켓은 확정 규칙대로 MIN 적립일을 승계하고 만료 임박분이 먼저 정리돼 사용자 손해가 적음. 분할 시 새 하위 티켓들의 적립일은 <b>원본(상위) 티켓의 적립일을 그대로 승계(전부 동일)</b>. (이유: FIFO는 유저 유리 + '만료 임박분 남기기' 어뷰징 방지와 일관, 분할 후에도 원적립일 유지가 만료 정책의 핵심.)</span><span class="vi"><b>Cách chọn (prototype):</b> Đổi hạng vé chỉ nhập 'tổng số lượng cần gộp', người dùng không chọn từng vé — tức <b>hệ thống tự động chọn</b>.
-
-<b>Quy tắc hết hạn (đã chốt):</b> Ngày tích lũy của vé bậc cao mới tạo = kế thừa 'ngày tích lũy sớm nhất' (MIN) trong các vé gốc bị tiêu, hết hạn = ngày đó + 1 năm. (VD: 10 Bronze → 1 Silver thì lấy theo ngày sớm nhất → chống lạm dụng gia hạn vô hạn bằng cách ghép vé sắp hết hạn.) Tách (Gold→Silver, Silver→Bronze) cũng áp dụng cùng nguyên tắc (kế thừa ngày tích lũy gốc).
-
-Khi gộp: <b>tự tiêu vé sắp hết hạn (ngày tích lũy cũ nhất) trước (FIFO theo ngày tích lũy)</b> — vé bậc cao mới kế thừa MIN ngày tích lũy theo quy tắc đã chốt, dọn phần sắp hết hạn trước nên người dùng ít thiệt. Khi tách, ngày tích lũy các vé bậc thấp mới <b>kế thừa nguyên ngày của vé gốc (tất cả cùng ngày)</b>. (Lý do: FIFO có lợi cho user + nhất quán chống lạm dụng; giữ ngày gốc là cốt lõi chính sách hết hạn.)</span></span></div></div></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>결론:</b> 티켓 등급 교환은 '합칠 총 수량'만 입력받고 <b>시스템이 자동 선택</b>합니다(사용자 개별 선택 없음).
+· <b>병합:</b> 만료 임박(적립일 오래된) 티켓부터 <b>FIFO로 자동 소모</b>. 새 상위 티켓의 적립일 = 소모된 원본들의 <b>가장 이른 적립일(MIN)</b> 승계, 만료일 = 그 적립일+1년.
+· <b>분할(골드→실버, 실버→브론즈):</b> 새 하위 티켓들의 적립일은 <b>원본 적립일을 그대로 승계(전부 동일)</b>.
+(이유: 만료 임박 티켓을 끼워 무한 연장하는 어뷰징 방지, FIFO는 유저에게 유리.)</span><span class="vi"><b>Kết luận:</b> Đổi hạng vé chỉ nhập 'tổng số lượng cần gộp', <b>hệ thống tự động chọn</b> (người dùng không chọn từng vé).
+· <b>Gộp:</b> tự tiêu vé sắp hết hạn (ngày tích lũy cũ nhất) trước theo <b>FIFO</b>. Ngày tích lũy của vé bậc cao mới = kế thừa <b>ngày tích lũy sớm nhất (MIN)</b> trong các vé gốc bị tiêu, hết hạn = ngày đó + 1 năm.
+· <b>Tách (Gold→Silver, Silver→Bronze):</b> ngày tích lũy các vé bậc thấp mới <b>kế thừa nguyên ngày vé gốc (tất cả cùng ngày)</b>.
+(Lý do: chống lạm dụng gia hạn vô hạn bằng cách ghép vé sắp hết hạn, FIFO có lợi cho người dùng.)</span></span>
+<div class="ref-box"><span class="ref-label i18n"><span class="ko">[참조] 화면 구조(프로토타입)</span><span class="vi">[Tham khảo] Cấu trúc màn hình (prototype)</span></span><span class="i18n"><span class="ko">티켓 교환 화면은 '합칠 총 티켓 수'만 입력받는 구조 — 개별 티켓 선택 UI는 없음(예: 브론즈 10장 → 실버 1장).</span><span class="vi">Màn đổi vé chỉ nhập 'tổng số vé cần gộp' — không có UI chọn từng vé (VD: 10 Bronze → 1 Silver).</span></span></div>
+</div></div></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">포인트</span><span class="vi">Điểm</span></span></h2>
 <div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">포인트 교환 화면(P): 포인트는 티켓과 상호 전환 가능하지만 포인트 사용 기한에 대한 상세 정보가 없습니다. 질문: '포인트 유효기간 1년 · 일일 한도 없음' 설명 문구의 의미는 무엇인가요? 포인트 사용 기한 상세는 어디서 볼 수 있나요? 포인트와 티켓을 상호 전환할 때 사용 기한 계산 규칙은 어떻게 되나요?</span><span class="vi">Trang đổi vé(P): Điểm có thể quy đổi qua lại sang vé, nhưng chưa có thông tin chi tiết về thời hạn sử dụng cho điểm. Câu hỏi: Dòng mô tả: "Điểm hạn dùng 1 năm - Không giới hạn ngày(포인트 유효기간 1년 · 일일 한도 없음)" ý nghĩa là gì? Chi tiết về thời hạn sử dụng điểm có thể xem ở đâu? Quy tắc tính thời hạn sử dụng khi quy đổi qua lại giữa điểm và ticket?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>문구 의미 '10P = 1원 · 포인트 유효기간 1년 · 일일 한도 없음':</b>
-· <b>10P = 1원</b>: 포인트 환산가치(10포인트 = 1원).
-· <b>포인트 유효기간 1년</b>: 포인트는 적립일 기준 1년 후 만료(티켓의 '적립일+1년'과 동일한 원칙).
-· <b>일일 한도 없음</b>: 랜덤티켓 발행(1일 5건 캡)과 달리 포인트 적립/교환에는 일일 횟수·수량 제한이 없음.
-
-포인트↔티켓은 교환 화면에서 줄별 '교환' 버튼으로 전환합니다(예: 브론즈 1장 → 1,000P).
-
-① 포인트 만료 상세는 <b>혜택&gt;포인트 탭 안에 '만료 예정 포인트' 섹션(배치별 만료일·금액·임박순)</b>으로 확장(별도 화면보다 가벼움). ② 교차 전환은 티켓과 동일하게 <b>원 적립일 승계</b> — 포인트→티켓 시 새 티켓 적립일 = 소모 포인트의 원 적립일(여러 배치면 MIN), 티켓→포인트 시 포인트 적립일 = 원 티켓 적립일 승계. (이유: 자산 종류만 바뀌고 만료 시계는 원적립일 기준 유지해야 포인트 경유 무한연장 어뷰징을 차단 — 티켓 MIN 승계와 정합.)</span><span class="vi"><b>Ý nghĩa dòng '10P = 1₩ · điểm hạn dùng 1 năm · không giới hạn ngày':</b>
-· <b>10P = 1₩</b>: giá trị quy đổi điểm (10 điểm = 1 won).
-· <b>Điểm hạn dùng 1 năm</b>: điểm hết hạn sau 1 năm kể từ ngày tích lũy (cùng nguyên tắc 'ngày tích lũy + 1 năm' của vé).
-· <b>Không giới hạn ngày</b>: khác với phát hành vé ngẫu nhiên (cap 5/ngày), tích lũy/đổi điểm không giới hạn số lần·số lượng theo ngày.
-
-Điểm↔vé đổi bằng nút 'Đổi' từng dòng ở màn đổi (VD: 1 Bronze → 1.000P).
-
-① Mở rộng chi tiết hết hạn điểm thành <b>mục 'Điểm sắp hết hạn' (ngày·số tiền theo lô, gần nhất trước) trong tab Điểm</b> (nhẹ hơn lập màn riêng). ② Quy đổi chéo giống vé — <b>kế thừa ngày tích lũy gốc</b>: điểm→vé thì ngày vé mới = ngày gốc của điểm bị tiêu (nhiều lô thì MIN); vé→điểm thì ngày điểm = kế thừa ngày vé gốc. (Lý do: chỉ đổi loại tài sản, đồng hồ hết hạn vẫn theo ngày gốc để chặn lách gia hạn qua điểm — nhất quán quy tắc MIN của vé.)</span></span></div></div></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>결론:</b>
+· <b>10P=1원</b>(환산가치), <b>포인트 유효기간 1년</b>(적립일+1년, 티켓과 동일 원칙), <b>일일 한도 없음</b>(랜덤티켓 1일 5건 캡과 달리 포인트는 횟수·수량 제한 없음).
+· 포인트 만료 상세는 <b>혜택&gt;포인트 탭에 '만료 예정 포인트' 섹션</b>(배치별 만료일·금액·임박순)을 신설해 표시합니다.
+· 포인트↔티켓 교차 전환 시 <b>원 적립일을 그대로 승계</b>합니다 — 포인트→티켓은 소모 포인트의 원 적립일(여러 배치면 MIN), 티켓→포인트는 원 티켓 적립일 승계.
+(이유: 자산 종류만 바뀌어도 만료 시계는 원적립일 기준을 유지해야 포인트 경유 무한연장 어뷰징을 차단할 수 있음 — 티켓 MIN 승계 규칙과 정합.)</span><span class="vi"><b>Kết luận:</b>
+· <b>10P=1₩</b> (giá trị quy đổi), <b>Điểm hạn dùng 1 năm</b> (ngày tích lũy+1 năm, cùng nguyên tắc với vé), <b>Không giới hạn ngày</b> (khác phát hành vé ngẫu nhiên cap 5/ngày, điểm không giới hạn số lần·số lượng theo ngày).
+· Mở rộng chi tiết hết hạn điểm thành <b>mục 'Điểm sắp hết hạn' trong tab Điểm</b> (ngày·số tiền theo lô, gần nhất trước).
+· Quy đổi chéo điểm↔vé <b>kế thừa nguyên ngày tích lũy gốc</b> — điểm→vé thì ngày vé mới = ngày gốc của điểm bị tiêu (nhiều lô thì MIN); vé→điểm thì ngày điểm kế thừa ngày vé gốc.
+(Lý do: chỉ đổi loại tài sản, đồng hồ hết hạn vẫn theo ngày gốc để chặn lách gia hạn qua điểm — nhất quán với quy tắc MIN của vé.)</span></span>
+<div class="ref-box"><span class="ref-label i18n"><span class="ko">[참조] 교환 방법</span><span class="vi">[Tham khảo] Cách đổi</span></span><span class="i18n"><span class="ko">포인트↔티켓은 교환 화면 줄별 '교환' 버튼으로 전환(예: 브론즈 1장 → 1,000P).</span><span class="vi">Điểm↔vé đổi bằng nút 'Đổi' từng dòng ở màn đổi (VD: 1 Bronze → 1.000P).</span></span></div>
+</div></div></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">기프티콘 교환소</span><span class="vi">Quầy đổi Gifticon</span></span></h2>
 <div class="qa"><div class="qrow"><span class="qno">4</span><div class="qtxt"><span class="i18n"><span class="ko">기프티콘 교환소(Gifticon): 현재는 카테고리별 필터·분류 기능만 있습니다. 질문: 쇼핑 시 편의와 시간 절약을 위해 검색·정렬 기능을 추가하는 게 좋을까요? 기프티콘 교환 내역 화면이 아직 없나요?</span><span class="vi">Quầy đổi vé(Gifticon): Hiện tại chỉ có tính năng lọc và phân loại theo danh mục. Câu hỏi: Có nên thêm tính năng tìm kiếm và sắp xếp để thuận tiện và tiết kiệm thời gian khi mua sắm? Chưa có trang lịch sử đổi Gifticon?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>현재 상태(프로토타입):</b> 교환소에는 카테고리 필터(전체/카페/패스트푸드/베이커리/편의점/금액권)와 '내 티켓으로 지금 교환 가능한 상품만' 토글만 있고, 상품은 구매가능/티켓 부족 상태로 표시됩니다. <b>검색창·정렬 기능은 없습니다.</b> 또한 기프티콘 <b>'교환 내역(이력)' 화면도 현재 프로토타입에 없습니다.</b> (다만 활동 내역(06d)의 '사용/교환' 탭에 '스타벅스 아메리카노 교환' 같은 항목이 기록되긴 합니다 — 자산 원장 차원.)
-
-<b>검색(상품명·브랜드) + 정렬(추천순 기본·가격↑↓·교환가능순) 추가, 그리고 기프티콘 전용 '교환 내역' 화면 신설(발급 상태·바코드/사용처·유효기간)</b>을 추가합니다. (이유: 상품이 늘면 카테고리 필터만으론 탐색 비용이 큼 = 검색·정렬은 커머스 기본기, 발급된 기프티콘 관리(바코드 재확인)에 전용 내역이 필수 — 활동내역 한 줄로는 부족.)</span><span class="vi"><b>Hiện trạng (prototype):</b> Quầy đổi chỉ có lọc theo danh mục (Tất cả/Cà phê/Đồ ăn nhanh/Bánh/Tiện lợi/Phiếu tiền) và toggle 'Chỉ sản phẩm đổi được ngay bằng vé của tôi'; sản phẩm hiển thị trạng thái Mua được/Thiếu vé. <b>Không có ô tìm kiếm·sắp xếp.</b> Ngoài ra <b>màn 'Lịch sử đổi Gifticon' cũng chưa có trong prototype.</b> (Tuy nhiên tab 'Dùng/Đổi' của Lịch sử hoạt động (06d) có ghi mục như 'Đổi Starbucks Americano' — ở mức sổ cái tài sản.)
-
-<b>Thêm tìm kiếm (tên·thương hiệu) + sắp xếp (Đề xuất mặc định·Giá↑↓·Đổi được trước), và lập màn 'Lịch sử đổi Gifticon' riêng (trạng thái phát hành·mã vạch/nơi dùng·hạn dùng)</b>. (Lý do: nhiều sản phẩm thì chỉ lọc danh mục sẽ khó tìm; cần lịch sử riêng để quản lý gifticon đã phát hành, một dòng ở Lịch sử hoạt động là chưa đủ.)</span></span></div></div></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>결론:</b> <b>검색(상품명·브랜드) + 정렬(추천순 기본·가격↑↓·교환가능순)</b>을 추가하고, 기프티콘 전용 <b>'교환 내역' 화면을 신설</b>합니다(발급 상태·바코드/사용처·유효기간).
+(이유: 상품이 늘면 카테고리 필터만으론 탐색 비용이 큼 — 검색·정렬은 커머스 기본기. 발급된 기프티콘 관리(바코드 재확인)엔 전용 내역이 필요하며, 활동내역 한 줄 기록으론 부족.)</span><span class="vi"><b>Kết luận:</b> Thêm <b>tìm kiếm (tên·thương hiệu) + sắp xếp (Đề xuất mặc định·Giá↑↓·Đổi được trước)</b>, và lập màn <b>'Lịch sử đổi Gifticon' riêng</b> (trạng thái phát hành·mã vạch/nơi dùng·hạn dùng).
+(Lý do: nhiều sản phẩm thì chỉ lọc danh mục sẽ khó tìm — tìm kiếm·sắp xếp là chức năng cơ bản của thương mại. Cần lịch sử riêng để quản lý gifticon đã phát hành, một dòng ở Lịch sử hoạt động là chưa đủ.)</span></span>
+<div class="ref-box"><span class="ref-label i18n"><span class="ko">[참조] 현재 프로토타입</span><span class="vi">[Tham khảo] Prototype hiện tại</span></span><span class="i18n"><span class="ko">교환소는 카테고리 필터(전체/카페/패스트푸드/베이커리/편의점/금액권) + '내 티켓으로 교환 가능한 상품만' 토글만 있음(상품은 구매가능/티켓 부족 상태 표시). 검색·정렬·전용 교환내역 화면 없음(단, 활동내역(06d)의 '사용/교환' 탭에 '스타벅스 아메리카노 교환' 같은 항목이 자산 원장 차원으로는 기록됨).</span><span class="vi">Quầy đổi chỉ có lọc theo danh mục (Tất cả/Cà phê/Đồ ăn nhanh/Bánh/Tiện lợi/Phiếu tiền) + toggle 'Chỉ sản phẩm đổi được ngay bằng vé của tôi' (sản phẩm hiển thị trạng thái Mua được/Thiếu vé). Không có tìm kiếm·sắp xếp·màn lịch sử riêng (nhưng tab 'Dùng/Đổi' của Lịch sử hoạt động (06d) có ghi mục như 'Đổi Starbucks Americano' ở mức sổ cái tài sản).</span></span></div>
+</div></div></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">출석(쿠팡 구경) 표시</span><span class="vi">Hiển thị điểm danh (Dạo Coupang)</span></span></h2>
 <div class="qa"><div class="qrow"><span class="qno">5</span><div class="qtxt"><span class="i18n"><span class="ko">쿠팡 구경: 현재 월요일부터 일요일까지 연속 출석 이력 표를 보여줍니다. 질문: 중간에 끊긴 날이 있거나 5일 연속이 끝나 새 주기로 넘어가면 출석 이력은 어떻게 표시되나요? 반드시 항상 월요일에 시작해 일요일에 끝나는 출석 이력 표로 보여줘야 하나요?</span><span class="vi">Dạo Coupang: Hiện tại thể hiện bảng lịch sử điểm danh liên tục từ ngày thứ hai đến ngày chủ nhật. Câu hỏi: Nếu có ngày ngắt quãng hoặc kết thúc 5 ngày liên tiếp và chuyển qua chu kì mới thì lịch sử điểm danh thể hiện thế nào? Có nhất thiết luôn thể hiện bảng lịch sử điểm danh bắt đầu vào ngày thứ hai và kết thúc vào ngày chủ nhật?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>현재 동작(프로토타입):</b> '쿠팡 구경하기(출석)'는 '이번 주 구경 현황 / 5일 연속 달성까지 N/5일' 형태로 <b>5일 연속을 추적</b>합니다. 상태별 변형 화면이 있습니다:
-· 14-fail(누락 리셋): "목요일 구경이 누락됐어요. 오늘부터 다시 시작하면 5일 후 500P + 이벤트 티켓을 받을 수 있어요."
-· 14-new(신규/0일), 14-win(5일 달성), 14-done(당일 완료·미달).
-즉 <b>중간에 빠지면 연속이 리셋되고 새로 시작</b>, 5일 달성 시 보상 후 새 주기로 넘어가는 모델입니다.
-
-<b>'오늘 기준 직전 7일 롤링' 방식</b>으로 표시합니다 — 미션이 '연속 5일'이라 요일과 무관하므로 월~일 고정 달력은 주 경계(일→월)에서 연속이 끊겨 보이는 착시를 만든다. 끊김 시 그날 칸을 '미참여'로 표시하고 카운트 리셋, 새 주기는 다음 참여일부터 1일차로 카운트. 대안: 굳이 달력형을 원하면 '이번 주기(연속 시작일~+6일)' 기준 표기. (이유: 롤링이 미션 규칙과 직관적으로 일치.)</span><span class="vi"><b>Hoạt động hiện tại (prototype):</b> 'Dạo Coupang (điểm danh)' theo dõi <b>5 ngày liên tục</b> dạng 'Tình hình dạo tuần này / Đến khi đủ 5 ngày liên tục N/5'. Có các màn biến thể theo trạng thái:
-· 14-fail (bỏ lỡ·reset): "Bỏ lỡ dạo Thứ Năm. Bắt đầu lại từ hôm nay thì sau 5 ngày nhận 500P + vé sự kiện."
-· 14-new (mới/0 ngày), 14-win (đủ 5 ngày), 14-done (hoàn tất trong ngày·chưa đủ).
-Tức là <b>nếu bỏ lỡ thì chuỗi liên tục reset và bắt đầu lại</b>, đủ 5 ngày thì thưởng rồi chuyển sang chu kỳ mới.
-
-<b>Kiểu 'cuộn 7 ngày gần nhất tính từ hôm nay'</b> — nhiệm vụ là '5 ngày liên tục' không phụ thuộc thứ, nên lịch cố định T2~CN gây ảo giác đứt chuỗi ở ranh giới tuần (CN→T2). Khi đứt, ô ngày đó hiển thị 'không tham gia' và reset đếm, chu kỳ mới đếm từ ngày 1 ở lần tham gia kế. Phương án khác: nếu muốn dạng lịch thì hiển thị theo 'chu kỳ hiện tại (ngày bắt đầu chuỗi ~ +6 ngày)'. (Lý do: cuộn khớp trực giác với quy tắc nhiệm vụ.)</span></span></div></div></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>결론:</b> <b>'오늘 기준 직전 7일 롤링'</b> 방식으로 표시합니다(월~일 고정 달력 아님). 미션이 '연속 5일'로 요일과 무관하기 때문에, 고정 달력은 주 경계(일→월)에서 연속이 끊겨 보이는 착시를 만듭니다.
+· 중간에 빠지면 그날 칸을 '미참여'로 표시하고 카운트 리셋, 새 주기는 다음 참여일부터 1일차로 카운트.
+· 대안: 달력형을 원할 경우 '이번 주기(연속 시작일~+6일)' 기준으로 표기.
+(이유: 롤링 방식이 미션 규칙과 직관적으로 일치.)</span><span class="vi"><b>Kết luận:</b> Hiển thị theo kiểu <b>'cuộn 7 ngày gần nhất tính từ hôm nay'</b> (không phải lịch cố định T2~CN). Vì nhiệm vụ là '5 ngày liên tục' không phụ thuộc thứ, nên lịch cố định sẽ gây ảo giác đứt chuỗi ở ranh giới tuần (CN→T2).
+· Khi bỏ lỡ, ô ngày đó hiển thị 'không tham gia' và reset đếm, chu kỳ mới đếm từ ngày 1 ở lần tham gia kế tiếp.
+· Phương án khác: nếu muốn dạng lịch thì hiển thị theo 'chu kỳ hiện tại (ngày bắt đầu chuỗi ~ +6 ngày)'.
+(Lý do: kiểu cuộn khớp trực giác với quy tắc nhiệm vụ.)</span></span>
+<div class="ref-box"><span class="ref-label i18n"><span class="ko">[참조] 현재 동작(프로토타입)</span><span class="vi">[Tham khảo] Hoạt động hiện tại (prototype)</span></span><span class="i18n"><span class="ko">'쿠팡 구경하기(출석)'는 '이번 주 구경 현황 / 5일 연속 달성까지 N/5일' 형태로 5일 연속 추적. 상태별 변형 화면: 14-fail(누락 리셋 — "목요일 구경이 누락됐어요. 오늘부터 다시 시작하면 5일 후 500P + 이벤트 티켓을 받을 수 있어요."), 14-new(신규/0일), 14-win(5일 달성), 14-done(당일 완료·미달). 중간에 빠지면 연속이 리셋되고 새로 시작, 5일 달성 시 보상 후 새 주기로 전환.</span><span class="vi">'Dạo Coupang (điểm danh)' theo dõi 5 ngày liên tục dạng 'Tình hình dạo tuần này / Đến khi đủ 5 ngày liên tục N/5'. Các màn biến thể: 14-fail (bỏ lỡ·reset — "Bỏ lỡ dạo Thứ Năm. Bắt đầu lại từ hôm nay thì sau 5 ngày nhận 500P + vé sự kiện."), 14-new (mới/0 ngày), 14-win (đủ 5 ngày), 14-done (hoàn tất trong ngày·chưa đủ). Nếu bỏ lỡ thì chuỗi liên tục reset và bắt đầu lại, đủ 5 ngày thì thưởng rồi chuyển sang chu kỳ mới.</span></span></div>
+</div></div></div>
 
 <div class="foot"><span class="i18n"><span class="ko">PricePick · 앱(프론트) 질문 답변 · Kelvin · 2026-06-18</span><span class="vi">PricePick · Giải đáp App (Frontend) · Kelvin · 2026-06-18</span></span></div></div>
 </body></html>

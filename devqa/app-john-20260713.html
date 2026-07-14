@@ -48,6 +48,8 @@ h2.grp .vn{color:var(--ink3);font-weight:600}
 .lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
 .lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .lb-x:hover{background:rgba(255,255,255,.35)}
+.ref-box{background:#f4f5f8;border-left:3px solid var(--ink3);border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:var(--ink2)}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:var(--ink3);letter-spacing:.06em;margin-bottom:4px;display:block}
 </style></head><body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
@@ -59,39 +61,16 @@ h2.grp .vn{color:var(--ink3);font-weight:600}
 <h2 class="grp"><span class="i18n"><span class="ko">1. 내 적립 티켓 — 기획(정본) vs 데모, 디자인 누락 <span class="vn">(Bản thiết kế vs Demo)</span></span><span class="vi">1. Vé tôi tích lũy — Bản thiết kế (gốc) vs Demo, thiếu thiết kế</span></span></h2>
 <div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">이 변경(구 화면 → 신 화면)이 확실한지 재확인이 필요합니다. 구 UI는 이미 구현 완료했는데, 데모의 신 UI는 정보가 많이 빠져 보입니다 — 티켓 상세 목록, 랜덤 티켓의 정보 및 프로그레스 바 등.</span><span class="vi">Cần confirm lại thay đổi này (màn cũ → màn mới) đã chắc chắn chưa, vì giao diện cũ em đã hoàn thành xong rồi, còn giao diện mới theo demo em thấy hiển thị thiếu nhiều thông tin như danh sách chi tiết vé, các thông tin và progress bar của vé ngẫu nhiên.</span></span>
 <div class="q-thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/john-q-ticket-ko.png','기획 화면(원본 · 정본) — 파란 박스: 장별 만료일 자세히 보기 아코디언')"><img src="/devqa/img/john-q-ticket-ko.png" alt="기획 화면 원본 정본" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">기획 화면 (원본 · 정본)</span><span class="vi">Bản thiết kế (gốc · chuẩn)</span></span></span></button><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/john-q-ticket-vi.png','데모 화면 — 기획 대비 디자인 대폭 누락')"><img src="/devqa/img/john-q-ticket-vi.png" alt="데모 화면 디자인 누락" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">데모 화면 (비정본)</span><span class="vi">Màn Demo (không chuẩn)</span></span></span></button></div></div><span class="bd ck"><span class="i18n"><span class="ko">확인중</span><span class="vi">Đang xác nhận</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>존의 지적이 맞습니다.</b> 두 화면은 언어 차이(구/신)가 아니라 <b>기획 화면(원본 · 정본) vs 데모 화면</b>의 차이입니다. 왼쪽이 기획 화면(원본 interactive — 존이 구현한 정본 디자인), 오른쪽이 데모 화면(pricepick-demo)입니다. <b>데모가 기획 대비 디자인이 대폭 누락된 상태</b>이고, 존이 본 것은 이 누락된 데모입니다.
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>존의 지적이 맞습니다.</b> 두 화면은 구/신 버전 차이가 아니라 <b>기획 화면(원본·정본) vs 데모 화면</b>의 차이입니다. 왼쪽이 기획 정본(존이 구현한 디자인), 오른쪽이 데모(pricepick-demo)이며, 데모가 기획 대비 디자인을 대폭 누락하고 있습니다.
 
-코드로 확인한 데모 누락 요소(모두 "데이터 없어 안 보임"이 아니라 <b>렌더 코드 자체가 없음</b> — 데모의 renderTicketDetail 함수에 미구현):
-· 티켓 아이콘(랜덤·등급별 색상 아이콘) — 없음
-· 랜덤 티켓 건별 구매일·구매금액(예: "2025.05.11 · 31,500원 구매") — 없음
-· D-day 프로그레스 바(D-4·D-25 진행바) — 없음
-· 등급 티켓 카드 만료일 표기(실버 만료 2027.03.15 등) — 없음
-· "3장 D-7 만료" 임박 경고 뱃지 — 없음
-· 존이 파란 박스로 표시한 <b>"장별 만료일 자세히 보기" 아코디언 통째</b>(펼치면 장별 만료 임박순 표) — 없음(데모 파일 전체 0건)
-· 등급 카드 색상(브론즈·실버·골드 구분) — 없음(데모는 밋밋한 회색 박스)
-· 전환 완료(완료 뱃지) 항목 — 없음
+정본은 <b>기획 화면(원본 interactive)</b>이고 존이 구현한 디자인이 맞습니다 — 재작업 대상 아닙니다. 등급 티켓 유효기간은 등급 확정일 + 1년(약관 6조③)이라 티켓마다 만료일이 달라, "장별 만료일 자세히 보기"와 "D-7 만료" 경고로 임박분을 노출하는 것도 정본 정책에 포함된 요소입니다. 데모는 이런 요소를 구현하지 않은 단순화 버전이며, 데모를 정본으로 보면 안 됩니다.
 
-즉 데모는 등급 보유(등급+장수)와 랜덤 묶음(장수+D-day+대기중 뱃지)만 그리는 단순화 버전입니다.
+원인은 데모(/app)가 기획 프로토타입의 1:1 복제가 아니라 라이브 데이터로 재구현한 버전이라, 그 과정에서 위 요소들이 이식되지 않았기 때문입니다. 데모 전반의 누락 패턴은 전 화면 전수 조사 중입니다.</span><span class="vi"><b>John chỉ ra đúng.</b> Hai màn không phải khác biệt cũ/mới mà là khác biệt giữa <b>Bản thiết kế (gốc·chuẩn) và màn Demo</b>. Bên trái là Bản thiết kế chuẩn (thiết kế John đã implement), bên phải là Demo (pricepick-demo), và Demo đang thiếu thiết kế rất nhiều so với bản thiết kế.
 
-정본은 <b>기획 화면(원본 interactive)</b>이며, 존이 이미 구현한 그 디자인이 맞습니다. 등급 티켓 유효기간이 등급 확정일 + 1년(약관 6조③)이라 티켓마다 만료일이 달라 "장별 만료일 자세히 보기"와 "D-7 만료" 경고로 임박분을 노출하는 것도 기획 정본에 포함된 정책 반영 요소입니다. 데모를 정본으로 보면 안 됩니다.
+Bản chuẩn là <b>Bản thiết kế (interactive gốc)</b>, đúng là thiết kế John đã implement — không phải làm lại. Vì hạn vé theo hạng = ngày chốt hạng + 1 năm (Điều khoản 6.③) nên mỗi vé có hạn khác nhau; việc hiện "Xem chi tiết hạn dùng theo vé" và cảnh báo "D-7 hết hạn" cũng là yếu tố chính sách nằm trong bản thiết kế chuẩn. Demo chưa implement các yếu tố này (bản đã đơn giản hóa), không được coi Demo là bản chuẩn.
 
-원인: 데모(/app)는 기획 정적 프로토타입의 1:1 복제가 아니라, 라이브 데이터로 새로 짠 재구현본이라 재구현 과정에서 위 요소들이 이식되지 않았습니다. 데모 전반의 누락 패턴 여부는 전 화면 전수 조사 진행 중입니다.</span><span class="vi"><b>John chỉ ra đúng.</b> Hai màn không phải khác biệt ngôn ngữ (cũ/mới) mà là khác biệt giữa <b>Bản thiết kế (gốc · chuẩn) và màn Demo</b>. Bên trái là Bản thiết kế (interactive gốc — thiết kế chuẩn mà John đã implement), bên phải là màn Demo (pricepick-demo). <b>Demo bị thiếu thiết kế rất nhiều so với bản thiết kế</b>, và cái John xem chính là bản Demo bị thiếu này.
-
-Các yếu tố Demo bị thiếu (đã kiểm tra code — đều là <b>không có code render</b>, không phải "thiếu dữ liệu nên không hiện" — hàm renderTicketDetail của Demo chưa implement):
-· Icon vé (icon vé màu theo ngẫu nhiên·theo hạng) — không có
-· Ngày mua·số tiền mua từng vé ngẫu nhiên (vd "25.06.2025 · mua 31.500đ") — không có
-· Progress bar D-day (thanh D-4·D-25) — không có
-· Ngày hết hạn trên thẻ vé theo hạng (Bạc hết hạn 15.03.2027…) — không có
-· Badge cảnh báo "3 vé D-7 hết hạn" — không có
-· <b>Toàn bộ accordion "Xem chi tiết hạn dùng theo vé"</b> mà John khoanh ô xanh (mở ra là bảng hạn theo vé sắp hết trước) — không có (cả file Demo 0 lần)
-· Màu thẻ theo hạng (phân biệt Đồng·Bạc·Vàng) — không có (Demo là ô xám trơn)
-· Mục đã chuyển đổi (badge Hoàn tất) — không có
-
-Tức Demo chỉ vẽ tồn theo hạng (hạng+số vé) và cụm ngẫu nhiên (số vé+D-day+badge Đang chờ), là bản đã đơn giản hóa.
-
-Bản chuẩn là <b>Bản thiết kế (interactive gốc)</b>, đúng là thiết kế John đã implement. Vì hạn vé theo hạng = ngày chốt hạng + 1 năm (Điều khoản 6.③) nên mỗi vé có hạn khác nhau; việc hiện "Xem chi tiết hạn dùng theo vé" và cảnh báo "D-7 hết hạn" cũng là yếu tố chính sách nằm trong bản thiết kế chuẩn. Không được coi Demo là bản chuẩn.
-
-Nguyên nhân: Demo (/app) không phải bản sao 1:1 của prototype tĩnh, mà được viết lại bằng dữ liệu live, nên trong quá trình viết lại các yếu tố trên không được đưa vào. Việc thiếu này có phải là mẫu chung của cả Demo hay không thì đang được rà soát toàn bộ màn hình.</span></span></div></div>
+Nguyên nhân: Demo (/app) không phải bản sao 1:1 của prototype, mà được viết lại bằng dữ liệu live nên các yếu tố trên không được đưa vào trong quá trình viết lại. Việc thiếu này có phải là mẫu chung của cả Demo hay không thì đang được rà soát toàn bộ màn hình.</span></span></div>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">코드 확인 결과, 아래는 모두 데모의 renderTicketDetail 함수에 렌더 코드 자체가 없어 나타나지 않는 요소입니다(데이터가 없어서가 아님): 티켓 아이콘(랜덤·등급별 색상) · 랜덤 티켓 건별 구매일·구매금액(예: "2025.05.11 · 31,500원 구매") · D-day 프로그레스 바 · 등급 티켓 카드 만료일 표기(실버 만료 2027.03.15 등) · "3장 D-7 만료" 임박 경고 뱃지 · "장별 만료일 자세히 보기" 아코디언 전체(펼치면 장별 만료 임박순 표, 데모 파일 전체 0건) · 등급 카드 색상 구분(브론즈·실버·골드, 데모는 밋밋한 회색 박스) · 전환 완료(완료 뱃지) 항목. 데모는 등급 보유(등급+장수)와 랜덤 묶음(장수+D-day+대기중 뱃지)만 그리는 단순화 버전입니다.</span><span class="vi">Theo kiểm tra code, các mục dưới đây đều không có code render trong hàm renderTicketDetail của Demo (không phải do thiếu dữ liệu): Icon vé (màu theo ngẫu nhiên·theo hạng) · Ngày mua·số tiền mua từng vé ngẫu nhiên (vd "25.06.2025 · mua 31.500đ") · Progress bar D-day · Ngày hết hạn trên thẻ vé theo hạng (Bạc hết hạn 15.03.2027…) · Badge cảnh báo "3 vé D-7 hết hạn" · Toàn bộ accordion "Xem chi tiết hạn dùng theo vé" (mở ra là bảng hạn theo vé sắp hết trước, cả file Demo 0 lần) · Màu thẻ theo hạng (phân biệt Đồng·Bạc·Vàng, Demo là ô xám trơn) · Mục đã chuyển đổi (badge Hoàn tất). Demo chỉ vẽ tồn theo hạng (hạng+số vé) và cụm ngẫu nhiên (số vé+D-day+badge Đang chờ), là bản đã đơn giản hóa.</span></span></div></div>
 <div class="need-box"><span class="i18n"><span class="ko">[김반장님 확인] 정본은 기획 화면(원본 interactive)입니다. 존은 정본대로 구현했으니 재작업 대상이 아니고, 오히려 데모를 기획 수준으로 복원해야 합니다.<span class="rec-line">추천안 ① 개발자 온보딩·공유에서 "데모(/app) 참조" → "기획(interactive) 참조"로 정정 — 데모가 기획 대비 누락 상태라, 개발자가 데모를 정본으로 보고 구현하면 디자인이 유실됩니다. ② 데모(/app) "내 적립 티켓"에 누락 요소(티켓 아이콘·구매정보·프로그레스바·만료일·D-7 경고·장별 만료 아코디언·등급 색상·전환완료)를 기획대로 재구현. ③ 데모 전반 누락 패턴은 전 화면 전수 조사로 확인됨(8화면 손실 + 로그아웃 진입점 결함). 개발자 온보딩에 디자인 정본=기획 명시 완료. 화면별 누락 목록: /devqa/demo-design-gap.html. 최종 복원 우선순위 확정은 김반장님.</span></span><span class="vi">[Mr Mark xác nhận] Bản chuẩn là Bản thiết kế (interactive gốc). John đã làm đúng bản chuẩn nên không phải làm lại; ngược lại cần khôi phục Demo lên mức bản thiết kế.<span class="rec-line">Đề xuất ① Sửa hướng dẫn onboarding·chia sẻ cho dev từ "tham chiếu Demo (/app)" → "tham chiếu Bản thiết kế (interactive)" — vì Demo đang thiếu so với bản thiết kế, nếu dev coi Demo là chuẩn thì thiết kế bị mất. ② Khôi phục màn "Vé tôi tích lũy" của Demo theo bản thiết kế (icon vé·thông tin mua·progress bar·ngày hết hạn·cảnh báo D-7·accordion hạn theo vé·màu theo hạng·mục đã chuyển đổi). ③ Mẫu thiếu chung của Demo đã được rà soát toàn màn (8 màn bị mất + lỗi lối vào đăng xuất). Đã ghi rõ trong onboarding: chuẩn thiết kế = Bản thiết kế. Danh sách thiếu theo màn: /devqa/demo-design-gap.html. Ưu tiên khôi phục cuối do Mr Mark chốt.</span></span></span></div></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">2. 티켓 상태별 디자인 <span class="vn">(Thiết kế theo từng trạng thái vé)</span></span><span class="vi">2. Thiết kế theo từng trạng thái vé</span></span></h2>
