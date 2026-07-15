@@ -46,9 +46,9 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
 <div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 질문 답변 #3 · Vin</span><span class="vi">Giải đáp câu hỏi CMS PricePick #3 · Vin</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">Vin · CMS · 티켓 상태 필터·출석체크 문구 충돌·포인트 비율 입력·예약 적용 시간칸·적용 시점 표시·관리자 계정 액션 버튼·관리자 역할 설명 질문 7건 · 답변 KO/VI</span><span class="vi">Vin · CMS · 7 câu hỏi về lọc trạng thái vé·xung đột chữ điểm danh·nhập tỷ lệ điểm·ô giờ hẹn·hiển thị thời điểm áp dụng·nút hành động tài khoản quản trị·giải thích vai trò quản trị viên · Trả lời KO/VI</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Vin · CMS · 티켓 상태 필터·출석체크 문구 충돌·포인트 비율 입력·예약 적용 시간칸·적용 시점 표시·관리자 계정 액션 버튼·관리자 역할 설명·포인트 정책 화면 질문 8건 · 답변 KO/VI</span><span class="vi">Vin · CMS · 8 câu hỏi về lọc trạng thái vé·xung đột chữ điểm danh·nhập tỷ lệ điểm·ô giờ hẹn·hiển thị thời điểm áp dụng·nút hành động tài khoản quản trị·giải thích vai trò quản trị viên·màn chính sách điểm · Trả lời KO/VI</span></span></div>
 <a class="srclink" href="https://app.notion.com/p/QA-2026-07-15-39eb92a1096480ef80e7c78e194a22e6" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
-<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 7건</span><span class="vi">7 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 7</span><span class="vi">Đã chốt 7</span></span></span></div>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 8건</span><span class="vi">8 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 8</span><span class="vi">Đã chốt 8</span></span></span></div>
 
 <!-- ==================== GROUP 1 : 티켓 상태 필터 ==================== -->
 <h2 class="grp"><span class="i18n"><span class="ko">1. 티켓 내역 — 상태·사유 필터</span><span class="vi">1. Lịch sử vé — Lọc trạng thái·lý do</span></span></h2>
@@ -194,7 +194,43 @@ Màn Vin đưa (vin-applytime-scheduled.png) đúng là định dạng cần the
 <b>Bãi bỏ vai trò CS.</b> Trả lời hỏi đáp do Vận hành đảm nhận. Nếu sau này cần nhân sự chỉ xem thì thêm vai trò riêng lúc đó.</span></span>
 <div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">역할 권한 매핑은 cms.html(권한별 가능 작업 박스·관리자 계정 역할 선택지)과 policyspec.html(신규 "관리자 역할·권한" 항목, CMS 운영값 마스터표 섹션)에 함께 반영했습니다. 슈퍼어드민 계정(김반장 본인) 자체는 삭제·역할변경 불가 제약을 그대로 유지합니다. 근거: 김반장 확정(2026-07-15).</span><span class="vi">Đã phản ánh đồng thời việc gán quyền theo vai trò ở cms.html (hộp "Công việc có thể làm theo quyền"·lựa chọn vai trò tài khoản quản trị) và policyspec.html (mục mới "Vai trò·quyền quản trị viên" trong phần Bảng tổng hợp giá trị vận hành CMS). Tài khoản Siêu quản trị (chính Kim Trưởng phòng) vẫn giữ nguyên ràng buộc không thể xóa·đổi vai trò. Căn cứ: anh xác nhận (2026-07-15).</span></span></div></div></div></div>
 
-<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 질문 답변 #3 · Vin · 2026-07-15 · 확정 7 / 확인 필요 0</span><span class="vi">PricePick · Giải đáp CMS #3 · Vin · 2026-07-15 · Đã chốt 7 / Cần xác nhận 0</span></span></div></div>
+<!-- ==================== GROUP 8 : 포인트 정책 화면 — 교환비율 하드코드·수정버튼 위치 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">8. 포인트 정책 화면 — 교환 비율 하드코드·수정 버튼 위치</span><span class="vi">8. Màn chính sách điểm — Bảng tỷ lệ hardcode·vị trí nút Sửa</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">8</span><div class="qtxt"><span class="i18n"><span class="ko">포인트 정책 화면 질문 2가지입니다.
+(1) 상단 "포인트↔티켓 교환 비율" 표(브론즈/실버/골드)가 하드코드라 안 바뀌는 거 맞나요?
+(2) "수정" 버튼이 [포인트↔티켓 교환 비율] 표 옆에 있는데, 실제로는 [적립·만료 정책]을 수정하는 것 같습니다. 관리자가 헷갈리지 않을까요? 버튼을 [적립·만료 정책] 아래로 옮기는 게 낫지 않나요?</span><span class="vi">2 câu hỏi về màn chính sách điểm.
+(1) Bảng "Tỷ lệ đổi Điểm↔Vé" (Đồng/Bạc/Vàng) ở trên có phải hardcode nên không đổi được không ạ?
+(2) Nút "Sửa" đang nằm cạnh bảng [Tỷ lệ đổi Điểm↔Vé], nhưng thực ra bấm vào lại sửa [Chính sách tích lũy·hết hạn]. Admin không bị nhầm sao? Chuyển nút xuống dưới [Chính sách tích lũy·hết hạn] không hợp lý hơn sao?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260715/vin-point-policy-screen.png','포인트 정책 화면 · 교환비율 표①·수정 버튼②')"><img src="/devqa/assets/20260715/vin-point-policy-screen.png" alt="포인트 정책 화면 교환비율 표와 수정 버튼" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">포인트 정책 화면 · 교환비율 표①·수정 버튼②</span><span class="vi">Màn chính sách điểm · Bảng tỷ lệ①·nút Sửa②</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>(1) 교환 비율 표가 하드코드냐 — cms.html 코드를 실제로 확인했습니다. 맞습니다, 지금은 하드코드입니다.</b>
+
+브론즈·실버·골드 3줄(1,000P→1장 등)이 어떤 설정값이나 데이터도 참조하지 않고 화면에 숫자 그대로 박혀 있습니다. 그리고 이 값을 바꾸는 용도로 이미 확정돼 있는 <b>"정책 변경 마법사"</b>(등급가치·적립단위·보상률·교환비를 한 세트로 묶어 시뮬레이션 후 저장하는 안전장치)는 <b>cms.html에 아직 구현되어 있지 않습니다.</b>
+
+정책상 이 교환 비율(=등급 티켓 가치)은 단순 입력칸으로 바꾸면 안 되고, 차익거래·역마진을 막기 위해 반드시 정책 변경 마법사를 통해서만 바뀌어야 합니다. 그래서 지금 이 표는 <b>표시 전용이 맞고, 하드코드인 것도 지금 시점에선 맞습니다</b> — 다만 이건 "마법사가 아직 없어서"이지 "원래 못 바꾸게 설계된 것"은 아닙니다. 마법사를 구현하면 그때 이 표도 마법사가 계산한 값을 읽어오도록 연결해야 합니다. <b>이 마법사 구현은 이번 답변 범위 밖의 별도 작업이며, 김반장님께 별도로 필요 여부를 보고드립니다.</b>
+
+<b>(2) 수정 버튼 위치 — 빈 지적이 맞습니다. 확정.</b>
+
+지금 "수정" 버튼이 [포인트↔티켓 교환 비율] 표 우측 상단에 있는데, 클릭하면 [적립·만료 정책] 수정 팝업(기준환율·만료기간·한도·교환방향·적용시점)이 뜹니다. 버튼 위치와 실제 수정 대상이 어긋나 있어 관리자가 헷갈릴 수 있습니다.
+
+<b>수정 버튼을 [적립·만료 정책] 섹션(그 카드 헤더 옆)으로 옮깁니다.</b> 그래야 "이 버튼 = 적립·만료 정책 수정"이 명확해집니다.
+
+교환 비율 표는 (1)번 답변대로 표시 전용이므로, 그 옆엔 수정 버튼을 두지 않습니다. 값 변경이 필요해지면 그때는 "정책 변경 마법사" 진입점을 따로 두는 게 맞지만, <b>마법사 진입점 신설은 이번 범위가 아니며 이 답변에서는 "표시 전용"이라는 것만 확정합니다.</b></span><span class="vi"><b>(1) Bảng tỷ lệ có hardcode không — em đã kiểm tra thực tế code cms.html. Đúng, hiện tại là hardcode.</b>
+
+3 dòng Đồng·Bạc·Vàng (1.000P→1 vé v.v.) không tham chiếu bất kỳ giá trị cài đặt hay dữ liệu nào, số được ghi cứng thẳng trên màn. Và tính năng đã chốt để đổi giá trị này — <b>"Trình hướng dẫn thay đổi chính sách"</b> (đóng gói giá trị hạng·đơn vị tích·tỷ lệ thưởng·tỷ lệ đổi thành 1 bộ, mô phỏng rồi mới lưu) — <b>vẫn chưa được xây dựng trong cms.html.</b>
+
+Theo chính sách, tỷ lệ đổi này (= giá trị vé hạng) không được sửa bằng ô nhập đơn giản, bắt buộc phải qua Trình hướng dẫn thay đổi chính sách để tránh arbitrage·lỗ ngược. Nên hiện tại bảng này <b>đúng là chỉ để xem, và việc nó hardcode ở thời điểm này cũng đúng</b> — nhưng đó là do "trình hướng dẫn chưa có" chứ không phải "vốn thiết kế không cho đổi". Khi xây trình hướng dẫn thì phải nối bảng này để đọc giá trị trình hướng dẫn tính ra. <b>Việc xây trình hướng dẫn nằm ngoài phạm vi câu trả lời này, là việc riêng, em sẽ báo cáo riêng cho anh về việc có cần làm không.</b>
+
+<b>(2) Vị trí nút Sửa — góp ý của Vin đúng. Đã chốt.</b>
+
+Hiện nút "Sửa" đang ở góc trên phải bảng [Tỷ lệ đổi Điểm↔Vé], bấm vào lại hiện popup sửa [Chính sách tích lũy·hết hạn] (tỷ giá chuẩn·thời hạn hết hạn·hạn mức·hướng đổi·thời điểm áp dụng). Vị trí nút và đối tượng sửa thực tế không khớp, dễ làm admin nhầm.
+
+<b>Chuyển nút Sửa sang khu vực [Chính sách tích lũy·hết hạn]</b> (cạnh header của thẻ đó). Như vậy "nút này = sửa Chính sách tích lũy·hết hạn" sẽ rõ ràng.
+
+Bảng tỷ lệ đổi theo câu (1) chỉ để xem nên không đặt nút sửa cạnh nó. Nếu sau này cần đổi giá trị thì nên có điểm vào riêng cho "Trình hướng dẫn thay đổi chính sách", nhưng <b>việc lập điểm vào trình hướng dẫn nằm ngoài phạm vi lần này — câu trả lời này chỉ chốt việc bảng "chỉ để xem".</b></span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">코드 실측: cms.html #sec-point-policy — "포인트 ↔ 티켓 교환 비율" 카드(line ~2984)의 &lt;tbody&gt; 3행은 전부 정적 텍스트(1,000P → 1장 / 10,000P → 1장 / 20,000P → 1장), 데이터 바인딩 없음. "수정" 버튼은 onclick="openModal('m-point-policy-edit')"이며, 이 모달은 "적립·만료 정책" 카드의 필드(교환 비율 P=원 · 만료 기간 · 일일 적립 한도 · 교환 방향 · 적용 시점)를 수정 — 교환 비율표(등급별)와 무관. cms.html 전체에 "마법사"/"wizard" 문자열 검색 결과 0건(미구현 확인). 근거: PolicySpec "CMS 운영값 마스터표 — 등급 티켓 가치 변경(정책 변경 마법사·안전장치 5)". 이번 답변은 devqa 문서만 다루며, 수정 버튼 이동·마법사 구현 등 cms.html 코드 반영은 별도 진행.</span><span class="vi">Kiểm tra thực tế code: cms.html #sec-point-policy — 3 dòng &lt;tbody&gt; của thẻ "Tỷ lệ đổi Điểm↔Vé" (dòng ~2984) toàn bộ là text tĩnh (1.000P → 1 vé / 10.000P → 1 vé / 20.000P → 1 vé), không có data binding. Nút "Sửa" có onclick="openModal('m-point-policy-edit')", modal này sửa các trường của thẻ "Chính sách tích lũy·hết hạn" (tỷ lệ đổi P=won · thời hạn hết hạn · hạn mức tích/ngày · hướng đổi · thời điểm áp dụng) — không liên quan đến bảng tỷ lệ theo hạng. Tìm chuỗi "마법사"/"wizard" trong toàn bộ cms.html ra 0 kết quả (xác nhận chưa xây dựng). Căn cứ: PolicySpec "Bảng tổng hợp giá trị vận hành CMS — Thay đổi giá trị vé hạng (Trình hướng dẫn thay đổi chính sách·an toàn 5)". Lần trả lời này chỉ xử lý tài liệu devqa, việc chuyển nút Sửa·xây trình hướng dẫn ở code cms.html sẽ làm riêng.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 질문 답변 #3 · Vin · 2026-07-15 · 확정 8 / 확인 필요 0</span><span class="vi">PricePick · Giải đáp CMS #3 · Vin · 2026-07-15 · Đã chốt 8 / Cần xác nhận 0</span></span></div></div>
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
 <script>
 function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
