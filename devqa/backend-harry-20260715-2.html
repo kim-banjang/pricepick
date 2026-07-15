@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 백엔드 질문 답변 #11</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 백엔드 질문 답변 #11</span><span class="vi">Giải đáp câu hỏi Backend PricePick #11</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry · Backend · 온보딩 보상 후속 질문(첫구경·D+7/D+30·보상 공개) 3건 · 답변 KO/VI</span><span class="vi">Harry · Backend · 3 câu hỏi tiếp theo về thưởng Onboarding (lần đầu ghé·D+7/D+30·công khai thưởng) · Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-07-15-2-39e86f66c22480b38211c10db20879e1" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 3건</span><span class="vi">3 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 3</span><span class="vi">Đã chốt 3</span></span></span></div>
+
+<!-- ==================== GROUP 1 : 첫 쿠팡 구경 vs 출석 보상 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 온보딩 — 첫 쿠팡 구경 100P vs 출석 보상</span><span class="vi">1. Onboarding — 100P lần đầu ghé Coupang vs thưởng điểm danh</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">"첫 쿠팡 구경 100P"는 출석 보상과 다른 건가요? 1회성인가요? 만료는 있나요?</span><span class="vi">"100P lần đầu ghé Coupang" khác với thưởng điểm danh phải không? Chỉ 1 lần thôi ạ? Có hết hạn không?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260715-harry2/harry-onboarding-table.png','온보딩 보상 표 · 해리 정리본')"><img src="/devqa/assets/20260715-harry2/harry-onboarding-table.png" alt="온보딩 보상 표 해리 정리본" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">온보딩 보상 4항목 · 해리 정리본</span><span class="vi">4 mục thưởng Onboarding · Harry tổng hợp</span></span></span></button><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260715-harry2/harry-onboarding-table2.png','온보딩 보상 표 · 추가 확인')"><img src="/devqa/assets/20260715-harry2/harry-onboarding-table2.png" alt="온보딩 보상 표 추가 확인" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">온보딩 보상 표 · 추가 확인</span><span class="vi">Bảng thưởng Onboarding · Xác nhận thêm</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>출석 보상과 별개입니다.</b>
+
+- <b>온보딩 "첫 쿠팡 구경 100P"</b> = 가입 후 처음 쿠팡을 구경할 때 딱 1회 주는 온보딩 보상.
+- <b>출석(쿠팡 구경) 100P</b> = 그 이후 매일 쿠팡 구경하면 주는 데일리 보상(하루 1회).
+
+즉 둘은 다른 보상이고, <b>첫날은 온보딩 100P + 출석 100P가 함께 지급될 수 있습니다</b>(가입 유도용으로 의도된 것입니다). 어뷰징은 30초 체류 검증으로 방어합니다.
+
+지급 조건은 동일합니다 — 쿠팡 클릭 후 앱 복귀 + 30초 이상 체류 확인 시 100P. "구경하기" 버튼을 먼저 눌러야 인정됩니다(그냥 쿠팡 앱만 열면 미인정).
+
+만료는 <b>포인트라 적립일 + 1년</b>입니다.</span><span class="vi">Đã chốt. <b>Tách biệt với thưởng điểm danh.</b>
+
+- <b>"100P lần đầu ghé Coupang" (Onboarding)</b> = thưởng Onboarding cấp đúng 1 lần khi lần đầu ghé Coupang sau khi đăng ký.
+- <b>100P điểm danh (ghé Coupang)</b> = thưởng hàng ngày cấp cho các lần ghé Coupang sau đó (1 lần/ngày).
+
+Tức 2 thưởng khác nhau, và <b>ngày đầu có thể nhận cả 100P Onboarding + 100P điểm danh cùng lúc</b> (thiết kế có chủ đích để khuyến khích đăng ký). Chống lạm dụng bằng xác thực thời gian ở lại từ 30 giây.
+
+Điều kiện cấp giống nhau — bấm Coupang rồi quay lại app + xác nhận ở lại từ 30 giây thì được 100P. Phải bấm nút "xem thử" trước mới được công nhận (chỉ mở app Coupang thì không được công nhận).
+
+Hết hạn thì <b>vì là điểm nên áp dụng ngày tích lũy + 1 năm</b>.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">온보딩 첫구경(1회성)과 출석 데일리는 별도 이벤트로 카운트됩니다. 정책서(policyspec.html §9 참여 카드4 온보딩 보상)에 이 구분을 명확히 반영했습니다.</span><span class="vi">Lần đầu ghé Coupang khi Onboarding (1 lần) và điểm danh hàng ngày được đếm là 2 event riêng biệt. Đã phản ánh rõ sự phân biệt này vào tài liệu chính sách (policyspec.html §9 tab Tham gia, thẻ 4 Thưởng Onboarding).</span></span></div></div></div></div>
+
+<!-- ==================== GROUP 2 : D+7/D+30 확정 대기 vs 만료 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 온보딩 — 브론즈 D+7/D+30은 만료가 아니다</span><span class="vi">2. Onboarding — Đồng D+7/D+30 không phải hết hạn</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">"미연동으로 구매하면 브론즈 1장(30일 후 만료), 연동하고 구매하면 브론즈 1장(7일 후 만료)"으로 이해했는데 맞나요?</span><span class="vi">Em hiểu là "chưa liên kết mà mua thì 1 vé Đồng (hết hạn sau 30 ngày), liên kết rồi mua thì 1 vé Đồng (hết hạn sau 7 ngày)" — hiểu vậy đúng không ạ?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>그 이해는 틀렸습니다.</b> 정정합니다.
+
+<b>D+7/D+30은 "만료"가 아니라 "확정(사용가능) 대기 기간"입니다.</b> 구매 확정 후, 그 대기 기간이 지나면 브론즈가 공개·사용 가능해집니다. 미연동이면 D+30 대기, 카카오 연동하면 <b>D+7로 단축</b>됩니다.
+
+브론즈(등급 티켓)의 <b>실제 만료는 받은 날 + 1년(365일)</b>이며, D-30·D-7 알림이 나갑니다.
+
+추가로: 온보딩 브론즈는 핵심 보상이라 <b>미연동(닉네임만) 상태에선 보류</b>됐다가 카카오 연동 시 지급됩니다(재설치 파밍 차단).
+
+상태 흐름: <b>적립 예정 → (대기 기간 경과) → 사용 가능</b> 순서입니다.</span><span class="vi"><b>Hiểu như vậy là sai.</b> Em đính chính lại.
+
+<b>D+7/D+30 không phải "hết hạn" mà là "thời gian chờ xác nhận (chờ để dùng được)".</b> Sau khi xác nhận mua, qua thời gian chờ đó thì vé Đồng được công khai·dùng được. Chưa liên kết thì chờ D+30, liên kết Kakao thì <b>rút ngắn còn D+7</b>.
+
+<b>Hết hạn thực tế của Đồng (vé hạng) là ngày nhận + 1 năm (365 ngày)</b>, có thông báo D-30·D-7.
+
+Thêm nữa: Đồng của Onboarding là thưởng cốt lõi nên <b>bị giữ lại khi chưa liên kết (chỉ có biệt danh)</b>, cấp khi liên kết Kakao (chặn farm bằng cài lại app).
+
+Luồng trạng thái: <b>Dự kiến tích lũy → (qua thời gian chờ) → Dùng được</b>.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">근거: 정책서 §4 티켓 확정 처리 · 적립 확정 대기(연동 D+7 / 미연동 D+30), CMS 운영값 마스터표의 "등급 티켓 만료 = 적립일 + 365일"과 별개 항목. 온보딩 브론즈도 이 공통 규칙을 그대로 따르며 예외를 두지 않습니다.</span><span class="vi">Căn cứ: PolicySpec §4 xử lý xác nhận vé · thời gian chờ xác nhận tích lũy (LK D+7 / chưa LK D+30) — mục riêng biệt với "Hết hạn vé hạng = ngày tích lũy + 365 ngày" ở Bảng tổng hợp giá trị vận hành CMS. Đồng của Onboarding cũng theo đúng quy tắc chung này, không có ngoại lệ.</span></span></div></div></div></div>
+
+<!-- ==================== GROUP 3 : 온보딩 보상 공개 여부 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">3. 온보딩 보상 — 앱 공개 여부·위치</span><span class="vi">3. Thưởng Onboarding — Có công khai trên app không·ở đâu</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">온보딩 보상을 앱에 공개하나요, 아니면 조용히 주나요?</span><span class="vi">Thưởng Onboarding có công khai trên app không, hay cấp âm thầm?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>공개합니다.</b> 온보딩 보상은 사용자의 행동(카카오 연동·첫 구매)을 유도하는 장치라 알려야 효과가 있습니다.
+
+<b>공개 위치: 처음 설치한 신규 사용자가 보는 "온보딩 인트로"에서 안내합니다.</b> 새 페이지를 만드는 게 아니라 기존 온보딩 인트로 흐름에서 보여줍니다.
+
+조건과 함께 표시합니다(예: "가입 200P / 카카오 연동 시 이벤트 티켓 / 첫 구매 시 브론즈"). 즉시 지급분과 조건부 지급분이 헷갈리지 않게 하려는 목적입니다.
+
+진행 상황 표시(혜택 탭 등에서 "받은 것/남은 것")는 <b>다음 단계 기획</b>으로 남겨둡니다 — 이번 범위가 아닙니다.
+
+⚠️ <b>표시 화면(온보딩 미션 UI)의 구체 설계는 별도 기획 예정</b>입니다. 이 답변은 "공개 방향 확정 + 위치=온보딩 인트로"까지만입니다. 개발자가 지금 새 화면을 구현할 필요는 없습니다(영수증 인증과 같은 재기획/후속 기획 취급입니다).</span><span class="vi">Đã chốt. <b>Có công khai.</b> Thưởng Onboarding là công cụ khuyến khích hành động của người dùng (liên kết Kakao·mua lần đầu) nên phải cho biết mới có hiệu quả.
+
+<b>Vị trí công khai: thông báo ở "Intro Onboarding" mà người mới cài đặt lần đầu xem.</b> Không tạo trang mới mà hiển thị trong luồng Intro Onboarding hiện có.
+
+Hiển thị kèm điều kiện (vd: "200P khi đăng ký / vé sự kiện khi liên kết Kakao / vé Đồng khi mua lần đầu"). Mục đích là để không nhầm lẫn giữa phần cấp ngay và phần cấp có điều kiện.
+
+Hiển thị tiến độ (ở tab Ưu đãi v.v. "đã nhận/còn lại") <b>để lại cho giai đoạn thiết kế sau</b> — không thuộc phạm vi lần này.
+
+⚠️ <b>Thiết kế chi tiết màn hiển thị (UI nhiệm vụ Onboarding) sẽ làm ở giai đoạn thiết kế riêng.</b> Câu trả lời này chỉ chốt "hướng công khai + vị trí = Intro Onboarding". Dev không cần dựng màn mới ngay bây giờ (xử lý như xác thực hóa đơn — thiết kế lại/thiết kế tiếp theo).</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">정책서(policyspec.html §9 참여 카드4)에 공개 위치·방식을 한 줄로 보강했습니다. 온보딩 인트로 화면 자체의 UI/와이어프레임은 이번 답변 범위 밖이며 별도 기획 산출물로 진행됩니다.</span><span class="vi">Đã bổ sung 1 dòng về vị trí·cách công khai vào tài liệu chính sách (policyspec.html §9 tab Tham gia, thẻ 4). UI/wireframe của chính màn Intro Onboarding nằm ngoài phạm vi câu trả lời này, sẽ triển khai ở sản phẩm thiết kế riêng.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 백엔드 질문 답변 #11 · Harry · 2026-07-15 · 확정 3 / 확인 필요 0</span><span class="vi">PricePick · Giải đáp Backend #11 · Harry · 2026-07-15 · Đã chốt 3 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
