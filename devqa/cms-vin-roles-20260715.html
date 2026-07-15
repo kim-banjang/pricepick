@@ -59,36 +59,20 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 
 Cái em cần là danh sách cụ thể trang/chức năng mà mỗi vai trò được truy cập·sử dụng. Đề xuất: giống CMS PointsHub, khi thêm quản trị viên thì chỉ định quyền bằng checkbox theo từng trang — cách này dễ hiểu hơn cách hiện tại.</span></span>
 <div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260715-vin-roles/vin-msg1.png','빈 반론 메시지 1')"><img src="/devqa/assets/20260715-vin-roles/vin-msg1.png" alt="빈 반론 메시지 1" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">빈 반론 · 1</span><span class="vi">Phản biện của Vin · 1</span></span></span></button><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260715-vin-roles/vin-msg2.png','빈 반론 메시지 2')"><img src="/devqa/assets/20260715-vin-roles/vin-msg2.png" alt="빈 반론 메시지 2" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">빈 반론 · 2</span><span class="vi">Phản biện của Vin · 2</span></span></span></button><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260715-vin-roles/pointshub-admin.png','포인츠허브 관리자 추가 화면(제안 모델)')"><img src="/devqa/assets/20260715-vin-roles/pointshub-admin.png" alt="포인츠허브 관리자 추가 화면 제안 모델" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">포인츠허브 · 관리자 추가(제안 모델)</span><span class="vi">PointsHub · Thêm quản trị viên (mô hình đề xuất)</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>빈 제안을 수용합니다.</b> 포인츠허브 관리자관리의 "페이지별 권한 체크박스" 모델을 프라이스픽 CMS에도 도입합니다.
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>지금은 슈퍼어드민 한 종류만 씁니다.</b> 현재 운영은 슈퍼어드민(김반장님 측)이 전부 하므로, 당장은 역할을 나누거나 메뉴 접근을 제한할 필요가 없습니다. <b>런칭 전까지는 등급(역할)에 맞춰 관리자 계정을 별도로 생성할 일이 없습니다</b> — 그래서 지금은 슈퍼어드민 하나로 충분합니다.
 
-<b>1. 관리자 추가/수정 화면에 메뉴 섹션별 권한 체크박스</b>
-CMS 사이드바 메뉴 전체를 섹션(회원/통계/포인트/기프티콘/콘텐츠/운영/시스템 등)으로 묶고, 각 섹션·세부 페이지에 체크박스를 둡니다. 섹션 전체 켜기 + 개별 페이지 켜기 둘 다 가능합니다(포인츠허브와 동일한 UX).
+빈이 지적한 "역할 간 차이가 실제로 안 걸린다"는 부분도 지금은 정상입니다. 슈퍼어드민만 있어 모든 메뉴가 열려 있는 게 맞는 상태이고, 권한 분리는 추후 메뉴 제한 기능과 함께 들어갑니다.
 
-<b>2. 역할(레벨)은 프리셋 단축키로 유지</b>
-슈퍼어드민 선택 시 전체 체크(관리자 계정 관리·API 키 관리는 잠금 상태로 켜짐, 해제 불가). 운영자 선택 시 계정관리·API 뺀 기본 세트가 자동 체크됩니다. 이후 개별 체크박스로 미세 조정할 수 있습니다.
+<b>빈이 제안한 방식(포인츠허브식)은 좋은 방향이라 채택합니다.</b> CMS 메뉴를 전부 나열하고, 관리자 계정마다 보여줄 메뉴만 체크박스로 지정합니다 — 체크 안 된 메뉴는 그 관리자 사이드바에 안 나타납니다. <b>다만 지금 만들 필요는 없고, 운영자 등 추가 관리자를 둘 시점(런칭 이후)에 적용합니다.</b> 그때 쓸 "제한할 메뉴 목록·동작 방식" 기획은 김반장님 측에서 정리해서 전달하겠습니다. 그 기획서를 받고 구현하면 됩니다.
 
-<b>3. 실제로 걸리게 합니다(이번 변경의 진짜 목적)</b>
-체크 안 된 페이지는 그 관리자에게 사이드바에서 숨겨지고, 직접 URL로 접근해도 차단됩니다. 빈이 "역할 차이가 실제로 안 걸린다"고 지적한 부분을 이번에 실제 enforcement로 해결합니다.
+기존 [권한별 가능 작업] 박스는 그 시점에 이 메뉴 제한 방식으로 대체될 예정입니다.</span><span class="vi">Đã chốt. <b>Hiện tại chỉ dùng 1 loại Siêu quản trị.</b> Vận hành hiện nay đều do Siêu quản trị (phía anh) đảm nhiệm hết, nên trước mắt chưa cần chia vai trò hay giới hạn menu. <b>Trước khi ra mắt thì không có chuyện phải tạo riêng tài khoản quản trị theo từng cấp (vai trò)</b> — nên hiện tại chỉ 1 Siêu quản trị là đủ.
 
-<b>4. 기존 [권한별 가능 작업] 박스는 이 체크박스 모델로 대체됩니다</b>
-슈퍼어드민/운영자 설명 + ❌ 표시로 된 모호한 텍스트 박스 대신, 실제 체크박스 화면 자체가 곧 권한 명세가 됩니다. <b>CS 역할은 폐지를 그대로 유지</b>합니다 — 조회 전용이 필요해지면 체크박스에서 수정 권한 페이지만 빼면 되므로 별도 CS 역할이 필요 없습니다.
+Điều Vin chỉ ra "khác biệt giữa các vai trò không thực sự bị chặn" hiện tại cũng là bình thường. Chỉ có Siêu quản trị nên tất cả menu đang mở là đúng trạng thái, việc phân quyền sẽ vào cùng lúc với tính năng giới hạn menu sau này.
 
-<b>구현 안내:</b> 이 권한 체크박스 시스템은 CMS를 실제로 손보는 작업이라 순차 반영합니다. 현재 답변으로 방향·설계는 확정입니다.</span><span class="vi">Đã chốt. <b>Chấp nhận đề xuất của Vin.</b> Đưa mô hình "checkbox phân quyền theo trang" của Quản lý quản trị viên PointsHub vào CMS PricePick.
+<b>Cách Vin đề xuất (kiểu PointsHub) là hướng tốt nên được chọn.</b> Liệt kê hết menu CMS, rồi chỉ định bằng checkbox menu nào hiển thị cho từng tài khoản quản trị — menu chưa được tick sẽ không hiện trên sidebar của quản trị viên đó. <b>Nhưng chưa cần làm ngay, sẽ áp dụng vào thời điểm cần thêm quản trị viên khác như Vận hành (sau khi ra mắt).</b> Lúc đó, thiết kế "danh sách menu cần giới hạn·cách hoạt động" sẽ do phía anh chuẩn bị và gửi. Nhận thiết kế đó rồi triển khai là được.
 
-<b>1. Checkbox phân quyền theo nhóm menu ở màn thêm/sửa quản trị viên</b>
-Gộp toàn bộ menu sidebar CMS thành các nhóm (Hội viên/Thống kê/Điểm/Gifticon/Nội dung/Vận hành/Hệ thống v.v.), mỗi nhóm·trang con có checkbox riêng. Có thể bật cả nhóm hoặc bật từng trang riêng lẻ (UX giống PointsHub).
-
-<b>2. Vai trò (cấp độ) vẫn giữ làm phím tắt preset</b>
-Chọn Siêu quản trị thì tick hết (quản lý tài khoản quản trị·quản lý khóa API bật ở trạng thái khóa, không thể bỏ tick). Chọn Vận hành thì bộ mặc định (trừ quản lý tài khoản·API) tự động được tick. Sau đó có thể tinh chỉnh bằng từng checkbox.
-
-<b>3. Thực sự chặn được (mục đích thật của lần thay đổi này)</b>
-Trang chưa được tick sẽ bị ẩn khỏi sidebar của quản trị viên đó, và nếu vào thẳng bằng URL cũng bị chặn. Điều Vin chỉ ra "khác biệt vai trò không thực sự bị chặn" lần này được giải quyết bằng enforcement thực sự.
-
-<b>4. Hộp [Công việc có thể làm theo quyền] hiện tại sẽ được thay bằng mô hình checkbox này</b>
-Thay vì hộp chữ mơ hồ mô tả Siêu quản trị/Vận hành + dấu ❌, chính màn checkbox thực tế sẽ là bản đặc tả quyền. <b>Vẫn giữ nguyên việc bãi bỏ vai trò CS</b> — nếu sau này cần người chỉ xem thì chỉ cần bỏ tick các trang có quyền sửa trên checkbox, không cần vai trò CS riêng.
-
-<b>Hướng dẫn triển khai:</b> Hệ thống checkbox phân quyền này là việc động vào CMS thực sự nên sẽ triển khai tuần tự. Câu trả lời lần này chỉ chốt hướng·thiết kế.</span></span>
-<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">권한 데이터는 계정별 permission 맵(페이지 키 → 허용여부)으로 저장합니다. 사이드바 렌더·라우트 가드가 이 맵을 읽어 미허용 페이지를 숨기고 차단합니다. 슈퍼어드민 전용(계정관리·API키)은 하드 잠금(체크 해제 불가)입니다. 이번 답변은 devqa 문서만 다루며, cms.html 실제 구현(체크박스 UI·enforcement)은 별도 진행합니다.</span><span class="vi">Dữ liệu quyền được lưu dưới dạng permission map theo từng tài khoản (mã trang → có được phép hay không). Việc render sidebar·route guard đọc map này để ẩn·chặn trang chưa được phép. Phần dành riêng cho Siêu quản trị (quản lý tài khoản·khóa API) bị khóa cứng (không thể bỏ tick). Lần trả lời này chỉ xử lý tài liệu devqa, việc triển khai thực tế ở cms.html (UI checkbox·enforcement) sẽ làm riêng.</span></span></div></div></div></div>
+Hộp [Công việc có thể làm theo quyền] hiện tại sẽ được thay bằng cách giới hạn menu này vào thời điểm đó.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">지금 CMS 계정은 슈퍼어드민(김반장님) 1개만 운영 중입니다. 메뉴 제한 기능은 운영자 등 추가 계정이 필요해지는 런칭 이후 시점에, 김반장님 측이 전달하는 기획서를 기준으로 구현합니다. 이번 답변은 devqa 문서만 다루며 cms.html 코드 반영은 하지 않습니다.</span><span class="vi">Hiện tại tài khoản CMS chỉ có 1 Siêu quản trị (anh) đang vận hành. Tính năng giới hạn menu sẽ được triển khai vào thời điểm cần thêm tài khoản như Vận hành sau khi ra mắt, dựa trên thiết kế do phía anh gửi. Lần trả lời này chỉ xử lý tài liệu devqa, không sửa code cms.html.</span></span></div></div></div></div>
 
 <div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 관리자 권한 모델 재설계 · Vin · 2026-07-15 · 확정 1 / 확인 필요 0</span><span class="vi">PricePick · Thiết kế lại mô hình phân quyền CMS · Vin · 2026-07-15 · Đã chốt 1 / Cần xác nhận 0</span></span></div></div>
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
