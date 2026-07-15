@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 스테이징 앱 준비 현황 · 켈빈</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.notice{background:#fdf1e3;border-left:3px solid var(--ck);border-radius:8px;padding:11px 15px;margin:18px 0;font-size:13px;color:#6b4a15;font-weight:600}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 스테이징 앱 준비 현황 · 켈빈</span><span class="vi">Tình hình chuẩn bị app staging PricePick · Kelvin</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Kelvin · App · 스테이징 앱 등록 준비 현황 공유 + 김반장 검토 피드백 · KO/VI</span><span class="vi">Kelvin · App · Chia sẻ tình hình chuẩn bị đăng ký app staging + Phản hồi rà soát của anh · KO/VI</span></span></div>
+<a class="srclink" href="https://quixotic-vase-a61.notion.site/Chu-n-b-ng-k-Price-Pick-app-phi-n-b-n-staging-39e7c275399180e99266d11eeb068376" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 보고 보기 (Notion) ↗</span><span class="vi">Xem báo cáo gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">보고 항목 4건</span><span class="vi">4 mục báo cáo</span></span></span><span class="chip"><span class="i18n"><span class="ko">검토 완료 4</span><span class="vi">Đã rà soát 4</span></span></span></div>
+
+<div class="notice"><span class="i18n"><span class="ko">이 문서는 질문·답변이 아니라 켈빈의 스테이징 앱 출시 준비 현황 공유에 대한 김반장님 검토 피드백입니다.</span><span class="vi">Tài liệu này không phải hỏi·đáp, mà là phản hồi rà soát của anh về báo cáo tình hình chuẩn bị ra mắt app staging của Kelvin.</span></span></div>
+
+<!-- ==================== GROUP 1 : 완료된 기능 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 완료된 기능</span><span class="vi">1. Chức năng đã hoàn thành</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">닉네임 입력 · 홈 화면 · 카카오 연동 · 쿠팡 구경 이벤트(출석) · 행운 룰렛 · 티켓 적립 안내 · 내 티켓 · 티켓 등급 교환 · 혜택 탭 · 활동 내역 · 고객센터 · 닉네임 변경 · 시스템 알림 · 앱 버전 · 로그아웃 · 프로필 메뉴</span><span class="vi">Nhập biệt danh · Màn hình chính · Liên kết Kakao · Sự kiện dạo Coupang (điểm danh) · Vòng quay may mắn · Hướng dẫn tích vé · Vé của tôi · Đổi hạng vé · Tab Ưu đãi · Lịch sử hoạt động · CSKH · Đổi biệt danh · Thông báo hệ thống · Phiên bản app · Đăng xuất · Menu hồ sơ</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260715-kelvin/kelvin-message.png','켈빈 · 스테이징 앱 준비 현황 보고 원문')"><img src="/devqa/assets/20260715-kelvin/kelvin-message.png" alt="켈빈 스테이징 앱 준비 현황 메시지" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">켈빈 · 현황 보고 원문(메신저)</span><span class="vi">Kelvin · Báo cáo gốc (tin nhắn)</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">현황 공유 고맙습니다. 완료 목록 확인했습니다. 분류가 명확해서 좋습니다.</span><span class="vi">Cảm ơn Kelvin đã chia sẻ tình hình. Anh đã xem danh sách hoàn thành. Phân loại rõ ràng, tốt.</span></span></div></div></div>
+
+<!-- ==================== GROUP 2 : 이번 주 완료 예정 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 이번 주 완료 예정</span><span class="vi">2. Dự kiến hoàn thành trong tuần này</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">친구초대 · 연속구매 · 활동 알림 · 설정 기능 · 계정 탈퇴</span><span class="vi">Mời bạn bè · Mua liên tục · Thông báo hoạt động · Chức năng cài đặt · Hủy tài khoản</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">이번 주 목표대로 진행해 주세요. 이 다섯 개는 앱 코어 흐름이라 스테이징에 꼭 들어가야 합니다.</span><span class="vi">Hãy tiến hành theo đúng mục tiêu tuần này. 5 mục này thuộc luồng lõi của app nên bắt buộc phải có trong bản staging.</span></span></div></div></div>
+
+<!-- ==================== GROUP 3 : 미착수 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">3. 미착수(서드파티·API 대기)</span><span class="vi">3. Chưa bắt đầu (chờ bên thứ ba·API)</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">이벤트 티켓 추첨 응모(API 대기) · 쿠팡 연동/구매 · 기프티콘 목록 · 기프티콘 상세 · 기프티콘 교환 · 쿠팡 구매 내역</span><span class="vi">Dự thưởng bằng vé sự kiện (chờ API) · Liên kết/mua Coupang · Danh sách Gifticon · Chi tiết Gifticon · Đổi Gifticon · Lịch sử mua Coupang</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">이 항목들은 쿠팡·기프티콘 파트너 연동과 API에 달린 부분이라 우리가 서두른다고 되는 게 아닙니다. 연동 준비가 되면 진행하고, 그 전까지는 나머지 기능 완성도를 높이는 데 집중합시다.</span><span class="vi">Các mục này phụ thuộc vào liên kết với đối tác Coupang·Gifticon và API, nên không phải cứ gấp là làm được. Khi nào liên kết sẵn sàng thì triển khai, còn trước đó thì tập trung nâng cao độ hoàn thiện của các chức năng còn lại.</span></span></div></div></div>
+
+<!-- ==================== GROUP 4 : 데모 플래그 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">4. 데모 플래그(중요)</span><span class="vi">4. Cờ Demo (quan trọng)</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">4</span><div class="qtxt"><span class="i18n"><span class="ko">구글 플레이 정책상 데모·베타 기능이 든 앱은 출시가 불가능합니다. 그래서 쿠팡 구매 같은 데모 기능을 켜고 끌 실시간 플래그를 추가했습니다. 심사 제출 시엔 데모 플래그를 끄고, 승인 후 켜서 테스트하거나 쿠팡·기프티콘 파트너에게 데모를 전달하겠습니다.</span><span class="vi">Theo chính sách Google Play, app có chức năng demo·beta thì không thể ra mắt. Nên em đã thêm cờ (flag) thời gian thực để bật/tắt các chức năng demo như mua Coupang. Khi nộp duyệt sẽ tắt cờ demo, sau khi được duyệt thì bật lên để test hoặc gửi demo cho đối tác Coupang·Gifticon.</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">방식 이해했고, 심사 통과를 위한 접근으로 합리적입니다. 다만 한 가지 주의합시다 — 구글이 <b>승인 후 앱 동작을 바꾸는 것(원격으로 기능 활성화)을 정책 위반으로 문제 삼는 경우</b>가 있습니다. 그러니 데모 플래그로 켜는 기능은 <b>일반 사용자에게 노출하지 말고, 내부 테스트·파트너 데모 용도로만</b> 제한해 주세요. 실사용자 대상 정식 기능은 반드시 정식 심사를 거쳐 배포합니다. 이 선만 지키면 됩니다.</span><span class="vi">Anh hiểu cách làm này, và đây là hướng tiếp cận hợp lý để qua vòng duyệt. Nhưng lưu ý một điều — Google đôi khi <b>coi việc thay đổi hành vi app sau khi được duyệt (bật chức năng từ xa) là vi phạm chính sách</b>. Nên chức năng bật bằng cờ demo <b>không được hiển thị cho người dùng thường, chỉ giới hạn dùng cho test nội bộ·demo cho đối tác</b>. Chức năng chính thức cho người dùng thật thì bắt buộc phải qua duyệt chính thức rồi mới phát hành. Chỉ cần giữ đúng ranh giới này là được.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">데모 플래그로 켜는 기능이 일반 배포 빌드의 실사용자에게 노출되면 Google Play 정책 위반 소지. 데모 플래그 대상 = 내부 QA·파트너 시연 한정으로 gating 권장.</span><span class="vi">Nếu chức năng bật bằng cờ demo lộ ra cho người dùng thật trong bản phát hành thường thì có nguy cơ vi phạm chính sách Google Play. Khuyến nghị giới hạn (gating) đối tượng cờ demo = chỉ nội bộ QA·demo cho đối tác.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 스테이징 앱 준비 현황 · Kelvin · 2026-07-15 · 검토 완료 4</span><span class="vi">PricePick · Tình hình chuẩn bị app staging · Kelvin · 2026-07-15 · Đã rà soát 4</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
