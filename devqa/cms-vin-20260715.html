@@ -46,9 +46,9 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
 <div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 질문 답변 #3 · Vin</span><span class="vi">Giải đáp câu hỏi CMS PricePick #3 · Vin</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">Vin · CMS · 티켓 상태 필터·출석체크 문구 충돌·포인트 비율 입력·예약 적용 시간칸·적용 시점 표시·관리자 계정 액션 버튼 질문 6건 · 답변 KO/VI</span><span class="vi">Vin · CMS · 6 câu hỏi về lọc trạng thái vé·xung đột chữ điểm danh·nhập tỷ lệ điểm·ô giờ hẹn·hiển thị thời điểm áp dụng·nút hành động tài khoản quản trị · Trả lời KO/VI</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Vin · CMS · 티켓 상태 필터·출석체크 문구 충돌·포인트 비율 입력·예약 적용 시간칸·적용 시점 표시·관리자 계정 액션 버튼·관리자 역할 설명 질문 7건 · 답변 KO/VI</span><span class="vi">Vin · CMS · 7 câu hỏi về lọc trạng thái vé·xung đột chữ điểm danh·nhập tỷ lệ điểm·ô giờ hẹn·hiển thị thời điểm áp dụng·nút hành động tài khoản quản trị·giải thích vai trò quản trị viên · Trả lời KO/VI</span></span></div>
 <a class="srclink" href="https://app.notion.com/p/QA-2026-07-15-39eb92a1096480ef80e7c78e194a22e6" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
-<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 6건</span><span class="vi">6 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 6</span><span class="vi">Đã chốt 6</span></span></span></div>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 7건</span><span class="vi">7 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 7</span><span class="vi">Đã chốt 7</span></span></span></div>
 
 <!-- ==================== GROUP 1 : 티켓 상태 필터 ==================== -->
 <h2 class="grp"><span class="i18n"><span class="ko">1. 티켓 내역 — 상태·사유 필터</span><span class="vi">1. Lịch sử vé — Lọc trạng thái·lý do</span></span></h2>
@@ -166,7 +166,35 @@ Màn Vin đưa (vin-applytime-scheduled.png) đúng là định dạng cần the
 <b>Về ô "Login ID" em cũng đã rà lại.</b> Màn Vin đưa (vin-admin-edit.png) có "ID đăng nhập" tách riêng với "Email", nhưng CMS hiện tại từ màn đăng nhập đến danh sách tài khoản đều <b>dùng chung 1 "Email" làm ID đăng nhập</b> (không có hệ ID riêng). Nên popup sửa sẽ gọn còn <b>3 ô: Tên · Email (=ID đăng nhập) · Vai trò</b>. Email cũng cho sửa được để chỉnh lỗi gõ sai — nhưng phần này em suy ra từ màn hình hiện có, nếu nội bộ đã có quy định "không được đổi ID đăng nhập" thì báo lại, em sẽ khóa ô đó thành chỉ đọc.</span></span>
 <div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">cms.html #sec-accounts 현재 구조 확인 — 표 컬럼(이름/이메일/역할/최종 로그인/상태/액션), 슈퍼어드민 행(김반장)은 액션 칸에 버튼 없이 "삭제 불가" 텍스트만(운영자·CS 행에만 "역할 변경"·"삭제" 버튼 존재). 로그인 화면(#login-page)도 "이메일" 필드 하나로 로그인 — 별도 "로그인 아이디" 필드·정책이 화면·정책서 어디에도 없음. "관리자 계정 추가" 모달(#m-account)은 이름/이메일/역할/임시 비밀번호 4필드지만, 수정 팝업은 신규 생성이 아니므로 임시 비밀번호 필드는 제외. 권한 규칙(#sec-accounts 하단 카드): 슈퍼어드민=전체+계정관리, 운영자=계정관리 불가, CS=조회 전용 — 이 규칙 자체는 이번 답변으로 바뀌지 않음. 이번 답변은 devqa 문서만 다루며 cms.html 코드 반영(버튼명·팝업 추가)은 별도 진행.</span><span class="vi">Đã kiểm tra cấu trúc hiện tại ở cms.html #sec-accounts — cột bảng (Tên/Email/Vai trò/Đăng nhập cuối/Trạng thái/Hành động), dòng Siêu quản trị (Kim Trưởng phòng) ở cột Hành động không có nút nào, chỉ có chữ "Không thể xóa" (chỉ dòng Vận hành·CSKH mới có nút "Đổi vai trò"·"Xóa"). Màn đăng nhập (#login-page) cũng chỉ dùng 1 ô "Email" để đăng nhập — không có ô/chính sách "ID đăng nhập" riêng ở bất kỳ đâu trên màn hay tài liệu chính sách. Modal "Thêm tài khoản quản trị" (#m-account) có 4 ô Tên/Email/Vai trò/Mật khẩu tạm, nhưng popup sửa không phải tạo mới nên bỏ ô mật khẩu tạm. Quy tắc phân quyền (thẻ dưới #sec-accounts): Siêu quản trị=toàn quyền+quản lý tài khoản, Vận hành=không quản lý tài khoản, CSKH=chỉ xem — quy tắc này không đổi qua câu trả lời này. Lần trả lời này chỉ xử lý tài liệu devqa, việc sửa code cms.html (đổi tên nút·thêm popup) sẽ làm riêng.</span></span></div></div></div></div>
 
-<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 질문 답변 #3 · Vin · 2026-07-15 · 확정 6 / 확인 필요 0</span><span class="vi">PricePick · Giải đáp CMS #3 · Vin · 2026-07-15 · Đã chốt 6 / Cần xác nhận 0</span></span></div></div>
+<!-- ==================== GROUP 7 : 관리자 역할 설명 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">7. 관리자 계정 — 역할(Role) 설명</span><span class="vi">7. Tài khoản quản trị — Giải thích vai trò (Role)</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">7</span><div class="qtxt"><span class="i18n"><span class="ko">관리자 계정 — 각 역할(Role)이 뭘 할 수 있는지 명확히 설명해주세요. 아래 role들이 아직 이해가 안 됩니다.</span><span class="vi">Tài khoản quản trị — giải thích rõ giúp em mỗi Role làm được gì. Em vẫn chưa hiểu rõ các role bên dưới.</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260715/vin-role-box.png','관리자 계정 · 역할(Role) 목록')"><img src="/devqa/assets/20260715/vin-role-box.png" alt="관리자 계정 역할 목록" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">관리자 계정 · 역할(Role) 목록</span><span class="vi">Tài khoản quản trị · Danh sách vai trò (Role)</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>역할을 2개로 단순화했습니다.</b> 기존 3개(슈퍼어드민/운영자/CS)에서 CS를 없애고, 아래 2개만 남습니다.
+
+<b>슈퍼어드민(Super Admin)</b>
+- 전체 권한. <b>관리자 계정 관리(추가·삭제·수정·역할 변경) + API 키 관리</b> 포함.
+- 설정·정책·콘텐츠·회원·티켓·포인트·문의 등 전 기능.
+
+<b>운영자(Operator)</b>
+- 일상 운영 전반: 설정·정책·콘텐츠 변경, 회원 관리, 티켓·포인트 관리, 1:1 문의 답변, 배너·이벤트·공지 등.
+- <b>제외(슈퍼어드민 전용): 관리자 계정 관리, API 키 관리.</b>
+
+<b>CS 역할은 폐지합니다.</b> 문의 답변은 운영자가 담당합니다. 나중에 조회 전용 인력이 필요해지면 그때 별도 역할로 추가합니다.</span><span class="vi">Đã chốt. <b>Đơn giản hóa vai trò còn 2 loại.</b> Từ 3 loại hiện tại (Siêu quản trị/Vận hành/CS), bỏ CS, chỉ còn lại 2 loại dưới đây.
+
+<b>Siêu quản trị (Super Admin)</b>
+- Toàn quyền. Bao gồm <b>quản lý tài khoản quản trị (thêm·xóa·sửa·đổi vai trò) + quản lý khóa API</b>.
+- Toàn bộ chức năng: cài đặt·chính sách·nội dung·hội viên·vé·điểm·hỏi đáp v.v.
+
+<b>Vận hành (Operator)</b>
+- Toàn bộ vận hành hàng ngày: thay đổi cài đặt·chính sách·nội dung, quản lý hội viên, quản lý vé·điểm, trả lời hỏi đáp 1:1, banner·sự kiện·thông báo v.v.
+- <b>Loại trừ (chỉ dành cho Siêu quản trị): quản lý tài khoản quản trị, quản lý khóa API.</b>
+
+<b>Bãi bỏ vai trò CS.</b> Trả lời hỏi đáp do Vận hành đảm nhận. Nếu sau này cần nhân sự chỉ xem thì thêm vai trò riêng lúc đó.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">역할 권한 매핑은 cms.html(권한별 가능 작업 박스·관리자 계정 역할 선택지)과 policyspec.html(신규 "관리자 역할·권한" 항목, CMS 운영값 마스터표 섹션)에 함께 반영했습니다. 슈퍼어드민 계정(김반장 본인) 자체는 삭제·역할변경 불가 제약을 그대로 유지합니다. 근거: 김반장 확정(2026-07-15).</span><span class="vi">Đã phản ánh đồng thời việc gán quyền theo vai trò ở cms.html (hộp "Công việc có thể làm theo quyền"·lựa chọn vai trò tài khoản quản trị) và policyspec.html (mục mới "Vai trò·quyền quản trị viên" trong phần Bảng tổng hợp giá trị vận hành CMS). Tài khoản Siêu quản trị (chính Kim Trưởng phòng) vẫn giữ nguyên ràng buộc không thể xóa·đổi vai trò. Căn cứ: anh xác nhận (2026-07-15).</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 질문 답변 #3 · Vin · 2026-07-15 · 확정 7 / 확인 필요 0</span><span class="vi">PricePick · Giải đáp CMS #3 · Vin · 2026-07-15 · Đã chốt 7 / Cần xác nhận 0</span></span></div></div>
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
 <script>
 function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}

@@ -734,7 +734,6 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
     <div class="role-btns">
       <button class="role-btn active" onclick="selectRole('superadmin',this)">슈퍼어드민<span>전체 + 계정관리</span></button>
       <button class="role-btn" onclick="selectRole('operator',this)">운영자<span>전체 관리</span></button>
-      <button class="role-btn" onclick="selectRole('cs',this)">CS<span>조회 전용</span></button>
     </div>
     <input id="login-email-el" class="login-input" type="email" value="admin@pricepick.co.kr" placeholder="이메일">
     <input id="login-pw-el" class="login-input" type="password" value="••••••••" placeholder="비밀번호">
@@ -2792,7 +2791,6 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           <tbody>
             <tr><td><strong>김반장</strong> <span style="font-size:10px;color:var(--text-3)">(본인)</span></td><td>admin@pricepick.co.kr</td><td><span class="role-tag superadmin">슈퍼어드민</span></td><td>방금</td><td><span class="badge badge-green">활성</span></td><td><span style="font-size:11px;color:var(--text-3)">삭제 불가</span></td></tr>
             <tr><td><strong>이운영</strong></td><td>ops@pricepick.co.kr</td><td><span class="role-tag operator">운영자</span></td><td>2026-05-10</td><td><span class="badge badge-green">활성</span></td><td id="account-action-1"><div style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" onclick="toast('역할이 변경되었습니다.')">역할 변경</button><button class="btn btn-danger btn-sm" onclick="toast('계정이 삭제되었습니다.')">삭제</button></div></td></tr>
-            <tr><td><strong>박CS</strong></td><td>cs@pricepick.co.kr</td><td><span class="role-tag cs">CS</span></td><td>2026-05-09</td><td><span class="badge badge-green">활성</span></td><td id="account-action-2"><div style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" onclick="toast('역할이 변경되었습니다.')">역할 변경</button><button class="btn btn-danger btn-sm" onclick="toast('계정이 삭제되었습니다.')">삭제</button></div></td></tr>
           </tbody>
         </table>
       </div>
@@ -2800,9 +2798,8 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
         <div class="card">
           <div class="card-header"><div class="card-title">권한별 가능 작업</div></div>
           <div>
-            <div class="policy-item"><div class="policy-label" style="color:var(--main)">슈퍼어드민</div><div class="policy-value">전체 권한 + 계정 관리 + API 키 관리</div></div>
-            <div class="policy-item"><div class="policy-label" style="color:var(--success)">운영자</div><div class="policy-value">설정/정책/콘텐츠 변경 가능 · 계정 관리 ❌</div></div>
-            <div class="policy-item"><div class="policy-label" style="color:var(--info)">CS</div><div class="policy-value">조회 전용 · 1:1 문의 답변 · 수정 ❌</div></div>
+            <div class="policy-item"><div class="policy-label" style="color:var(--main)">슈퍼어드민</div><div class="policy-value">전체 권한 + 관리자 계정 관리 + API 키 관리</div></div>
+            <div class="policy-item"><div class="policy-label" style="color:var(--success)">운영자</div><div class="policy-value">설정/정책/콘텐츠·회원·티켓·포인트 관리, 1:1 문의 답변 등 일상 운영 전반 · 계정 관리·API 키 관리 ❌</div></div>
           </div>
         </div>
         <div class="card">
@@ -3470,7 +3467,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
     <div class="modal-body">
       <div class="form-group"><label class="form-label">이름</label><input class="form-input" placeholder="예: 홍길동"></div>
       <div class="form-group"><label class="form-label">이메일</label><input class="form-input" type="email" placeholder="hong@pricepick.co.kr"></div>
-      <div class="form-group"><label class="form-label">역할</label><select class="form-select"><option>운영자</option><option>CS</option></select><div class="form-hint">슈퍼어드민 계정은 추가 불가.</div></div>
+      <div class="form-group"><label class="form-label">역할</label><select class="form-select"><option>운영자</option></select><div class="form-hint">슈퍼어드민 계정은 추가 불가.</div></div>
       <div class="form-group"><label class="form-label">임시 비밀번호</label><input class="form-input" type="password" placeholder="최초 로그인 후 변경 필요"></div>
     </div>
     <div class="modal-footer">
