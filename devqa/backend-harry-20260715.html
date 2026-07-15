@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 백엔드 질문 답변 #10</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.sttable{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.sttable th{background:#f6f3fd;color:var(--pp-d);font-weight:700;text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);font-size:11px}
+.sttable td{padding:7px 9px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top;word-break:keep-all}
+.sttable tr:last-child td{border-bottom:none}
+.sttable th:first-child,.sttable td:first-child{white-space:nowrap}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 백엔드 질문 답변 #10</span><span class="vi">Giải đáp câu hỏi Backend PricePick #10</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry · Backend · 연결 제휴몰 옵션 정리·온보딩 보상 확정 질문 2건 · 답변 KO/VI</span><span class="vi">Harry · Backend · 2 câu hỏi về dọn option cửa hàng LK·chốt thưởng Onboarding · Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/PricePick-C-u-h-i-2027-07-15-39e86f66c22480608878dde0d0a7ca85" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 2건</span><span class="vi">2 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 2</span><span class="vi">Đã chốt 2</span></span></span></div>
+
+<!-- ==================== GROUP 1 : 연결 제휴몰 옵션 정리 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 출석체크 설정 — 연결 제휴몰 옵션 정리</span><span class="vi">1. Cài đặt điểm danh — Dọn option cửa hàng LK</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">지금 '연결 제휴몰' 드롭다운에 3개(쿠팡 독점 / 쿠팡+11번가 / 전체 제휴몰)가 있습니다. 앱은 쿠팡 하나만 코딩돼 있으니 나머지 2개는 지우는 게 맞지 않나요? "쿠팡+11번가"를 고르면 개발자가 어떻게 처리해야 하나요. 나중에 제휴몰이 늘면 그때 옵션을 추가하면 될 것 같습니다.</span><span class="vi">Hiện dropdown 'Cửa hàng LK liên kết' có 3 option (Chỉ Coupang / Coupang+11번가 / Tất cả cửa hàng LK). App chỉ code mỗi Coupang thôi, nên xóa 2 option còn lại không đúng sao? Nếu chọn "Coupang+11번가" thì dev phải xử lý kiểu gì. Sau này thêm cửa hàng LK thì lúc đó thêm option cũng được.</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260715-harry/harry-q1-dropdown.png','출석체크 설정 · 연결 제휴몰 드롭다운(3옵션)')"><img src="/devqa/assets/20260715-harry/harry-q1-dropdown.png" alt="출석체크 설정 연결 제휴몰 드롭다운 3옵션" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">출석체크 설정 · 연결 제휴몰(쿠팡/쿠팡+11번가/전체)</span><span class="vi">Cài đặt điểm danh · Cửa hàng LK (Coupang/Coupang+11번가/Tất cả)</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>해리 지적이 맞습니다. 쿠팡만 남기고 나머지 2개는 제거합니다.</b>
+
+정책서 기준으로 <b>제휴몰 범위는 1단계(STEP1) = 쿠팡 단독</b>입니다(쿠팡 직접 연동 + 링크프라이스 제휴). 11번가·G마켓·알리 같은 확장은 <b>다음 단계(STEP2)</b>로 이미 분리 확정돼 있습니다(2026-06-08 이부장 변경안).
+
+그러니 "쿠팡+11번가"·"전체 제휴몰" 옵션은 <b>지금 정책 범위 밖</b>입니다. 개발자가 고를 수 있는 값으로 남겨두면 오히려 혼란만 생기니, 지우는 게 맞습니다.
+
+드롭다운 자체를 없애고 "쿠팡"으로 고정하거나, 옵션을 쿠팡 하나만 남기는 두 방식 다 가능합니다 — 어느 쪽이든 지금은 선택의 여지가 없다는 뜻이라 실무적으로 동일합니다. 제휴몰이 늘어나는 STEP2 시점에 그때 옵션을 다시 추가합니다.</span><span class="vi">Đã chốt. <b>Góp ý của Harry đúng. Chỉ giữ Coupang, xóa 2 option còn lại.</b>
+
+Theo tài liệu chính sách, <b>phạm vi cửa hàng LK ở Bước 1 (STEP1) = chỉ Coupang</b> (liên kết trực tiếp Coupang + liên kết LinkPrice). Mở rộng sang 11번가·G마켓·알리 đã chốt tách riêng sang <b>bước sau (STEP2)</b> (phương án thay đổi của Trưởng phòng Lee ngày 2026-06-08).
+
+Vậy option "Coupang+11번가"·"Tất cả cửa hàng LK" đang <b>ngoài phạm vi chính sách hiện tại</b>. Để dev có thể chọn được giá trị đó chỉ gây rối thêm, nên xóa là đúng.
+
+Có thể bỏ hẳn dropdown và cố định "Coupang", hoặc chỉ giữ lại 1 option Coupang trong dropdown — cả 2 cách đều nghĩa là hiện không có lựa chọn khác nên về thực tế là như nhau. Đến khi STEP2 mở rộng cửa hàng LK thì lúc đó thêm lại option.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">근거: PolicySpec "제휴몰(1단계) — 쿠팡 직접 + 링크프라이스" / "1단계(STEP1) 쿠팡 단독으로 착수. 쿠팡 직접 연동 + 링크프라이스 머천트 제휴를 함께 씀" / 정책 변경 로그 2026-06-08 "제휴몰 범위(STEP1): 다수 제휴몰 → 쿠팡 단독(직접+링크프라이스). 1단계 집중, 관심상품·가격추적은 STEP2로 분리". CMS cms.html #sec-point-attendance '연결 제휴몰' 드롭다운 옵션 제거는 별건 — 이번 답변은 devqa 문서만 다루며 코드 반영은 하지 않음.</span><span class="vi">Căn cứ: PolicySpec "Cửa hàng LK (Bước 1) — Coupang trực tiếp + LinkPrice" / "Bước 1 (STEP1) bắt đầu chỉ với Coupang. Dùng liên kết trực tiếp Coupang + liên kết merchant LinkPrice". Nhật ký thay đổi chính sách 2026-06-08 "Phạm vi cửa hàng LK (STEP1): nhiều cửa hàng LK → chỉ Coupang (trực tiếp+LinkPrice). Tập trung Bước 1, sản phẩm quan tâm·theo dõi giá tách sang STEP2". Việc xóa option dropdown 'Cửa hàng LK liên kết' ở cms.html #sec-point-attendance là việc riêng — lần trả lời này chỉ xử lý tài liệu devqa, chưa sửa code.</span></span></div></div></div></div>
+
+<!-- ==================== GROUP 2 : 온보딩 보상 확정 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 포인트 정책 — 온보딩 보상 확정</span><span class="vi">2. Chính sách điểm — Chốt thưởng Onboarding</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">기능명세서 온보딩 보상 항목이 헷갈립니다. 어떤 곳은 "카카오 연동 후 이벤트 티켓 1장", 어떤 곳은 "가입 후 이벤트 티켓 1장 + 200P", 또 어떤 곳은 "카카오 연동 후 이벤트 티켓·브론즈"라고 돼 있습니다. 결국 온보딩 보상이 정확히 뭐고, 가입 즉시 지급인가요 카카오 연동 성공 후 지급인가요?</span><span class="vi">Mục thưởng Onboarding ở functionalspec làm em rối. Chỗ thì ghi "1 vé sự kiện sau khi liên kết Kakao", chỗ thì "1 vé sự kiện + 200P sau khi đăng ký", chỗ khác lại "vé sự kiện·Đồng sau khi liên kết Kakao". Rốt cuộc thưởng Onboarding chính xác là gì, cấp ngay khi đăng ký hay cấp sau khi liên kết Kakao thành công?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260715-harry/harry-q2-functionalspec.png','기능명세서 · 온보딩 보상 행')"><img src="/devqa/assets/20260715-harry/harry-q2-functionalspec.png" alt="기능명세서 온보딩 보상 행" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">기능명세서 · 온보딩 보상 행</span><span class="vi">FunctionalSpec · Dòng thưởng Onboarding</span></span></span></button><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260715-harry/harry-q2-policyspec.png','정책서 · 참여 탭 온보딩 보상')"><img src="/devqa/assets/20260715-harry/harry-q2-policyspec.png" alt="정책서 참여 탭 온보딩 보상" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">정책서 · 참여 탭 온보딩 보상</span><span class="vi">PolicySpec · Thưởng Onboarding tab Tham gia</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>정책서(SoT §9 참여 탭 온보딩 보상)에는 모순 없이 다 정해져 있습니다.</b> 정책서 기준으로 통일합니다.
+
+<b>"가입 즉시냐 연동 후냐"의 명확한 답</b>
+- <b>200P만 가입 즉시</b> 지급됩니다.
+- <b>이벤트 티켓·브론즈 등 핵심 보상은 카카오 연동 후에만</b> 지급됩니다 — 닉네임 가입만으로 반복 어뷰징(재설치 파밍)하는 걸 막기 위한 조치입니다(2026-06-08 확정).
+- 브론즈는 추가로 <b>"첫 경유구매 확정"</b> 조건까지 채워야 지급됩니다(카카오 연동 시 D+7 / 미연동 시 D+30).
+
+친구초대 양쪽 각 500P는 같은 참여 탭에 있어 헷갈릴 수 있지만 <b>온보딩과는 별개 항목</b>입니다.
+
+<b>기능명세서가 헷갈리게 보이는 이유</b>는 여러 지급 조건을 한 줄에 뭉쳐서 요약해놨기 때문입니다. 정책서 쪽 내용이 정확하며, <b>이걸 정본으로 합니다.</b></span><span class="vi">Đã chốt. <b>Tài liệu chính sách (SoT §9 tab Tham gia, thưởng Onboarding) đã định nghĩa rõ, không có gì mâu thuẫn.</b> Thống nhất theo tài liệu chính sách.
+
+<b>Câu trả lời rõ cho "đăng ký ngay hay sau khi liên kết"</b>
+- Chỉ <b>200P được cấp ngay khi đăng ký</b>.
+- <b>Vé sự kiện·Đồng — các thưởng cốt lõi — chỉ cấp sau khi liên kết Kakao</b> — để chặn việc lạm dụng lặp lại (cài lại app để farm) chỉ bằng đăng ký biệt danh (đã chốt 2026-06-08).
+- Đồng còn cần thêm điều kiện <b>"xác nhận đơn mua đầu tiên qua link"</b> mới cấp (liên kết D+7 / chưa liên kết D+30).
+
+Thưởng mời bạn mỗi bên 500P nằm cùng tab Tham gia nên dễ nhầm, nhưng đó là <b>mục riêng, không phải Onboarding</b>.
+
+<b>Lý do FunctionalSpec gây rối</b> là vì gộp nhiều điều kiện cấp vào 1 dòng tóm tắt. Nội dung ở PolicySpec mới chính xác, và <b>lấy đó làm bản gốc.</b></span></span>
+<table class="sttable"><thead><tr><th><span class="i18n"><span class="ko">조건</span><span class="vi">Điều kiện</span></span></th><th><span class="i18n"><span class="ko">보상</span><span class="vi">Thưởng</span></span></th><th><span class="i18n"><span class="ko">지급 시점</span><span class="vi">Thời điểm cấp</span></span></th></tr></thead><tbody>
+<tr><td><span class="i18n"><span class="ko">가입 즉시</span><span class="vi">Ngay khi đăng ký</span></span></td><td><span class="i18n"><span class="ko">200P</span><span class="vi">200P</span></span></td><td><span class="i18n"><span class="ko">가입 즉시</span><span class="vi">Ngay khi đăng ký</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">가입 시 발생</span><span class="vi">Phát sinh khi đăng ký</span></span></td><td><span class="i18n"><span class="ko">이벤트 티켓 1장</span><span class="vi">1 vé sự kiện</span></span></td><td><span class="i18n"><span class="ko">카카오 연동 후</span><span class="vi">Sau khi liên kết Kakao</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">첫 쿠팡 구경하기</span><span class="vi">Lần đầu xem thử Coupang</span></span></td><td><span class="i18n"><span class="ko">100P</span><span class="vi">100P</span></span></td><td><span class="i18n"><span class="ko">구경 완료 즉시</span><span class="vi">Ngay khi xem thử xong</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">첫 경유구매(7일 내)</span><span class="vi">Mua qua link lần đầu (trong 7 ngày)</span></span></td><td><span class="i18n"><span class="ko">브론즈 1장</span><span class="vi">1 vé Đồng</span></span></td><td><span class="i18n"><span class="ko">구매 확정 후(연동 D+7 / 미연동 D+30)</span><span class="vi">Sau khi xác nhận mua (LK D+7 / chưa LK D+30)</span></span></td></tr>
+</tbody></table>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">근거: PolicySpec §9(참여) 카드4 "온보딩 보상" — "가입 즉시 — 200P 즉시 + 이벤트 티켓 1장(카카오 연동 후 지급)" / "첫 쿠팡 구경하기 — 100P" / "첫 경유 구매(7일 내) — 브론즈 1장(구매 확정 후 지급, 연동 D+7 / 미연동 D+30)" / "친구초대 — 양쪽 각 500P(첫 구매 성사 시 · 위 3번 참조)". "어뷰징 방지: 핵심 보상(이벤트 티켓·브론즈)은 카카오 연동 후에만 지급. 닉네임만 있는 상태에선 보류됐다가 연동 시 지급 → 재설치 반복 파밍 차단." 정책 변경 로그 2026-06-08 "온보딩 핵심 보상 지급: 가입 즉시 지급 → 이벤트티켓·골드는 카카오 연동 후, 골드는 구매 확정 후 지급"(닉네임 가입 어뷰징 방지 보완책) / 2026-06-18 "온보딩 보상 하향(이부장 협의): 첫 경유구매 골드 1장·첫 쿠팡구경 300P → 브론즈 1장·100P"(보상 비용 최적화) 두 건이 반영된 최종 상태. 이번 답변은 devqa 문서만 다루며 functionalspec·cms.html 수정은 별도 진행.</span><span class="vi">Căn cứ: PolicySpec §9 (Tham gia) thẻ 4 "Thưởng Onboarding" — "Ngay khi đăng ký — 200P ngay + 1 vé sự kiện (cấp sau khi liên kết Kakao)" / "Lần đầu xem thử Coupang — 100P" / "Mua qua link lần đầu (trong 7 ngày) — 1 vé Đồng (cấp sau khi xác nhận mua, LK D+7 / chưa LK D+30)" / "Mời bạn — mỗi bên 500P (khi mua lần đầu thành công · xem mục 3 ở trên)". "Chặn lạm dụng: thưởng cốt lõi (vé sự kiện·Đồng) chỉ cấp sau khi liên kết Kakao. Khi mới chỉ có biệt danh thì bị giữ lại, cấp khi liên kết → chặn farm bằng cài lại app." Nhật ký thay đổi chính sách 2026-06-08 "Cấp thưởng cốt lõi Onboarding: cấp ngay khi đăng ký → vé sự kiện·Vàng cấp sau khi liên kết Kakao, Vàng cấp sau khi xác nhận mua" (biện pháp chặn lạm dụng đăng ký biệt danh) / 2026-06-18 "Hạ thưởng Onboarding (thống nhất với Trưởng phòng Lee): mua qua link lần đầu 1 vé Vàng·xem thử Coupang lần đầu 300P → 1 vé Đồng·100P" (tối ưu chi phí thưởng) — đây là trạng thái cuối cùng sau khi áp dụng cả 2 thay đổi trên. Lần trả lời này chỉ xử lý tài liệu devqa, việc sửa functionalspec·cms.html sẽ làm riêng.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 백엔드 질문 답변 #10 · Harry · 2026-07-15 · 확정 2 / 확인 필요 0</span><span class="vi">PricePick · Giải đáp Backend #10 · Harry · 2026-07-15 · Đã chốt 2 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
