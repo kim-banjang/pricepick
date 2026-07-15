@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 질문 답변 #3 · Vin</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 질문 답변 #3 · Vin</span><span class="vi">Giải đáp câu hỏi CMS PricePick #3 · Vin</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Vin · CMS · 티켓 상태 필터·출석체크 문구 충돌·포인트 비율 입력 질문 3건 · 답변 KO/VI</span><span class="vi">Vin · CMS · 3 câu hỏi về lọc trạng thái vé·xung đột chữ điểm danh·nhập tỷ lệ điểm · Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/QA-2026-07-15-39eb92a1096480ef80e7c78e194a22e6" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 3건</span><span class="vi">3 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 3</span><span class="vi">Đã chốt 3</span></span></span></div>
+
+<!-- ==================== GROUP 1 : 티켓 상태 필터 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 티켓 내역 — 상태·사유 필터</span><span class="vi">1. Lịch sử vé — Lọc trạng thái·lý do</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">지금 상태 필터가 [보유 중]·[사용 완료]만 있습니다. 그런데 Admin Add Ticket(관리자 지급)·Admin Sub Ticket(관리자 회수) 같은 경우는 필터에 안 잡힙니다. 빠진 상태 항목을 추가해주세요.</span><span class="vi">Hiện bộ lọc trạng thái chỉ có [Đang giữ]·[Đã dùng]. Nhưng các trường hợp như Admin Add Ticket (admin cấp)·Admin Sub Ticket (admin thu hồi) lại không lọc được. Thêm giúp mục trạng thái đang thiếu.</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/vin5-q-ticket-filter.png','티켓 내역 · 상태 필터')"><img src="/devqa/img/vin5-q-ticket-filter.png" alt="티켓 내역 상태 필터" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">티켓 내역 · 상태 필터(보유 중/사용 완료만)</span><span class="vi">Lịch sử vé · lọc trạng thái (chỉ Đang giữ/Đã dùng)</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">빈 지적이 맞습니다. 다만 <b>"상태"와 "사유"를 나눠서</b> 답변드립니다.
+
+원장에는 서로 다른 두 정보가 같이 있습니다.
+- <b>상태</b> — 그 티켓이 지금 어떻게 됐는지: 보유 중 / 사용 완료 / 가지급(대기) / 회수
+- <b>사유</b> — 왜 그 기록이 생겼는지: 구매확정 전환, 관리자 지급, 관리자 회수, 기프티콘 교환, 등급 전환 등
+
+빈이 말한 "Admin Add / Admin Sub"는 상태가 아니라 사유입니다. 그래서 두 가지를 각각 고칩니다.
+- <b>상태 필터</b>: "가지급(대기)"와 "회수"가 이미 실제 데이터에 쓰이고 있는데 필터에서만 빠져 있었습니다. 이 둘을 추가합니다.
+- <b>사유 필터</b>: 지금 필터("전체 발행유형")는 지급 계열만 다뤄서 회수·소모 계열(기프티콘 교환, 경품 응모 소모, 부정행위 회수, 등급 전환)은 걸러볼 수 없었습니다. "전체 사유"로 넓혀서 실제 원장에 쓰이는 사유를 전부 넣고, <b>"관리자 회수"</b>도 새로 추가합니다 — 지금까지 "관리자 지급"만 있었는데, 관리자가 회수 처리를 하면 그 짝인 "관리자 회수"가 사유로 남아야 맞습니다(회수도 원장에 별도 줄로 음수 기록되는 건 이미 확정된 구조입니다).
+
+새 유형을 지어내지 않았고, 지금 화면에 이미 나오고 있는 값만 필터로 옮긴 것입니다.</span><span class="vi">Góp ý của Vin đúng. Nhưng em trả lời tách riêng <b>"trạng thái" và "lý do"</b>.
+
+Trong sổ cái có 2 loại thông tin khác nhau cùng tồn tại.
+- <b>Trạng thái</b> — vé đó bây giờ đang ở đâu: Đang giữ / Đã dùng / Tạm cấp (chờ) / Đã thu hồi
+- <b>Lý do</b> — vì sao dòng đó được tạo ra: Chuyển đổi xác nhận mua, Admin cấp, Admin thu hồi, Đổi Gifticon, Chuyển hạng, v.v.
+
+"Admin Add / Admin Sub" mà Vin nói là lý do chứ không phải trạng thái. Nên sửa riêng 2 chỗ.
+- <b>Lọc trạng thái</b>: "Tạm cấp (chờ)" và "Đã thu hồi" đã có trong dữ liệu thực nhưng chỉ thiếu ở bộ lọc. Thêm 2 mục này.
+- <b>Lọc lý do</b>: Bộ lọc hiện tại ("Tất cả loại phát hành") chỉ xử lý nhóm cấp, nên nhóm thu hồi·tiêu (Đổi Gifticon, Tiêu dự thưởng, Thu hồi gian lận, Chuyển hạng) không lọc được. Đổi thành "Tất cả lý do", đưa đủ các lý do thực tế đang có trong sổ cái, và thêm mới <b>"Admin thu hồi"</b> — trước giờ chỉ có "Admin cấp", giờ thêm lý do song song "Admin thu hồi" khi admin xử lý thu hồi (thu hồi cũng đã chốt là ghi thêm dòng âm riêng vào sổ cái).
+
+Không bịa loại mới, chỉ chuyển đúng các giá trị đang hiện sẵn trên màn vào bộ lọc.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">cms.html #sec-tickets 실제 원장 값 전수 확인 결과 — 상태 4종(보유 중/사용 완료/가지급(대기)/회수), 사유 11종(구매확정 전환/구매 대기(가지급)/관리자 지급/등급 전환/주간 미션 완료/출석 체크/광고 시청/친구초대 보상/기프티콘 교환 소모/경품 응모 소모/부정행위 회수). "만료" 상태는 현재 원장 예시 데이터에 없어 필터에 추가하지 않음(정책상 1년 후 만료는 있으나 데모 데이터 미반영). "관리자 회수"는 harry 답변 #9에서 확정한 ADMIN_SUB 구조(신규 행 1건, 원본 미수정, append-only)와 짝을 맞춘 사유값. 이번 답변은 devqa 문서만 다루며 cms.html 코드 반영은 별도 진행.</span><span class="vi">Kiểm tra toàn bộ giá trị thực trong sổ cái tại cms.html #sec-tickets — 4 trạng thái (Đang giữ/Đã dùng/Tạm cấp (chờ)/Đã thu hồi), 11 lý do (Chuyển đổi xác nhận mua/Chờ mua (tạm cấp)/Admin cấp/Chuyển hạng/Hoàn thành nhiệm vụ tuần/Điểm danh/Xem quảng cáo/Thưởng mời bạn/Tiêu đổi Gifticon/Tiêu dự thưởng/Thu hồi gian lận). Trạng thái "Hết hạn" hiện không có trong dữ liệu mẫu của sổ cái nên chưa thêm vào bộ lọc (theo chính sách có hết hạn sau 1 năm nhưng dữ liệu demo chưa phản ánh). "Admin thu hồi" là lý do đối xứng với cấu trúc ADMIN_SUB đã chốt ở câu trả lời Harry #9 (thêm 1 dòng mới, không sửa dòng gốc, append-only). Lần trả lời này chỉ xử lý tài liệu devqa, việc áp vào code cms.html sẽ làm riêng.</span></span></div></div></div></div>
+
+<!-- ==================== GROUP 2 : 출석체크 문구 충돌 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 출석체크 설정 — 화면 문구 충돌</span><span class="vi">2. Cài đặt điểm danh — Xung đột chữ trên màn</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">화면 상단 배너·"현재 적용 정책"은 "제휴몰 방문 후 복귀 시 적립"이라고 돼 있는데, '출석 인정 조건' 드롭다운 기본 선택값은 "앱 진입만으로 인정"입니다. 서로 모순인데 어느 쪽이 맞나요?</span><span class="vi">Banner đầu màn·"Chính sách đang áp dụng" ghi "Tích lũy khi quay lại sau khi thăm cửa hàng LK", nhưng giá trị mặc định của dropdown 'Điều kiện công nhận điểm danh' lại là "Chỉ công nhận khi vào app". Hai cái mâu thuẫn nhau, cái nào đúng?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/vin5-q-attendance.png','출석체크 설정 · 문구 3곳 불일치')"><img src="/devqa/img/vin5-q-attendance.png" alt="출석체크 설정 문구 불일치" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">출석체크 설정 · 배너 vs 드롭다운 불일치</span><span class="vi">Cài đặt điểm danh · banner vs dropdown không khớp</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">정책서에서 확인했습니다. <b>정답은 "제휴몰 방문 후 앱 복귀"입니다.</b>
+
+정책서엔 "'구경하기' 버튼을 먼저 눌러야 인정됩니다(그냥 쿠팡 앱만 열면 미인정)"이라고 명확히 적혀 있습니다. 앱만 켜는 건 인정되지 않는다는 뜻이라, "앱 진입만으로 인정"은 틀린 값입니다.
+
+그러니 배너와 "현재 적용 정책" 문구는 맞고, <b>'출석 인정 조건' 드롭다운의 기본 선택값만 틀렸습니다.</b> 화면 안에 서로 다른 문구 3곳(배너/현재 적용 정책/드롭다운)이 있었던 것 자체가 버그이고, 정책서 기준인 "제휴몰 방문 후 앱 복귀"로 전부 통일합니다.</span><span class="vi">Đã kiểm tra trong tài liệu chính sách. <b>Đáp án đúng là "Ghé cửa hàng LK rồi quay lại app".</b>
+
+Tài liệu chính sách ghi rõ "phải bấm nút 'xem thử' trước mới được công nhận (chỉ mở app Coupang thôi thì không được công nhận)". Nghĩa là chỉ mở app không được tính, nên "Chỉ công nhận khi vào app" là giá trị sai.
+
+Vậy banner và chữ "Chính sách đang áp dụng" đúng, <b>chỉ có giá trị mặc định của dropdown 'Điều kiện công nhận điểm danh' là sai.</b> Việc có 3 chỗ ghi chữ khác nhau trên cùng 1 màn (banner/chính sách đang áp dụng/dropdown) tự nó đã là lỗi, và tất cả sẽ thống nhất theo chuẩn chính sách là "Ghé cửa hàng LK rồi quay lại app".</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">근거: PolicySpec §5(참여) 카드1 "출석 — '쿠팡 구경하기'" — "기존 출석체크를 '쿠팡 구경하기'로 대체. 매일 앱을 거쳐 쿠팡에 방문하고 30초 이상 머문 게 확인되면 100P 지급." / "'구경하기' 버튼을 먼저 눌러야 인정됩니다(그냥 쿠팡 앱만 열면 미인정)." "앱 진입만으로 인정"이라는 조건은 정책서 전체에 존재하지 않음. 드롭다운의 옵션 두 개(제휴몰 방문 후 앱 복귀/앱 진입만으로 인정) 자체는 유지하되 기본 선택값만 전자로 수정.</span><span class="vi">Căn cứ: PolicySpec §5 (Tham gia) thẻ 1 "Điểm danh — 'Xem thử Coupang'" — "Thay điểm danh cũ bằng 'xem thử Coupang'. Mỗi ngày qua app ghé Coupang và ở lại từ 30 giây trở lên thì được xác nhận, cấp 100P." / "Phải bấm nút 'xem thử' trước mới được công nhận (chỉ mở app Coupang thì không được công nhận)." Điều kiện "chỉ công nhận khi vào app" không tồn tại ở bất kỳ đâu trong tài liệu chính sách. Vẫn giữ 2 option trong dropdown (ghé cửa hàng LK rồi quay lại/chỉ vào app), chỉ sửa giá trị mặc định sang cái đầu.</span></span></div></div></div></div>
+
+<!-- ==================== GROUP 3 : 포인트 비율 입력 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">3. 포인트 정책 수정 — 교환 비율 입력 방식</span><span class="vi">3. Sửa chính sách điểm — Cách nhập tỷ lệ đổi</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">지금은 교환 비율을 "10P = 1원"처럼 한 칸에 텍스트로 입력합니다. 이걸 P 입력칸/원 입력칸 2개로 분리해서 숫자만 넣게 바꿔주세요.</span><span class="vi">Hiện tỷ lệ đổi đang nhập kiểu chữ tự do trong 1 ô như "10P = 1원". Đổi giúp thành 2 ô nhập riêng P/won, chỉ nhập số thôi.</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/vin5-q-point-before.png','포인트 정책 수정 · 현재(텍스트 한 칸)')"><img src="/devqa/img/vin5-q-point-before.png" alt="포인트 정책 수정 현재 텍스트 한칸" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">현재 · 텍스트 한 칸("10P = 1원")</span><span class="vi">Hiện tại · 1 ô chữ ("10P = 1원")</span></span></span></button><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/vin5-q-point-after.png','포인트 정책 수정 · 빈이 원하는 형태(숫자 2칸)')"><img src="/devqa/img/vin5-q-point-after.png" alt="포인트 정책 수정 숫자 2칸 예시" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">요청안 · 숫자 2칸(P / 원)</span><span class="vi">Đề xuất · 2 ô số (P / won)</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">빈 지적이 맞습니다. <b>숫자 2칸 입력으로 바꿉니다.</b>
+
+<b>[P 숫자칸] P = [원 숫자칸] 원</b> 형태로, 각 칸엔 숫자만 넣습니다. 지금처럼 통짜 텍스트로 입력하면 오타나 형식이 깨질 위험이 있는데, 숫자 두 칸으로 나누면 그럴 일이 없습니다.
+
+저장되는 값(10P = 1원)은 그대로 유지되고, 입력 방식만 바뀝니다. 빈이 준 화면(vin-point-after.png)이 정확히 원하는 형태이니 그대로 만들면 됩니다.</span><span class="vi">Góp ý của Vin đúng. <b>Đổi sang nhập 2 ô số.</b>
+
+Dạng <b>[Ô số P] P = [Ô số won] won</b>, mỗi ô chỉ nhập số. Hiện tại nhập chữ tự do cả cụm nên dễ gõ sai hoặc sai định dạng, tách 2 ô số thì không còn rủi ro đó.
+
+Giá trị lưu (10P = 1원) vẫn giữ nguyên, chỉ đổi cách nhập. Màn Vin đưa (vin-point-after.png) đúng là hình dạng cần làm, cứ theo đó mà làm.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">현재 cms.html #m-point-policy(포인트 정책 수정 모달)의 "교환 비율 (P = 원)"이 &lt;input class="form-input" value="10P = 1원"&gt; 단일 텍스트 필드. 숫자 필드 2개(P, 원)로 분리하고 저장 시 두 값으로 비율 계산·저장. 기존 값 10P=1원 유지, 이번 답변은 devqa 문서만 다루며 코드 반영은 별도 진행.</span><span class="vi">Hiện tại mục "Tỷ lệ đổi (P = won)" ở modal sửa chính sách điểm (cms.html #m-point-policy) là 1 ô chữ đơn &lt;input class="form-input" value="10P = 1원"&gt;. Sẽ tách thành 2 ô số (P, won), khi lưu tính tỷ lệ từ 2 giá trị đó. Giữ nguyên giá trị hiện tại 10P=1won, lần trả lời này chỉ xử lý tài liệu devqa, việc áp vào code sẽ làm riêng.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 질문 답변 #3 · Vin · 2026-07-15 · 확정 3 / 확인 필요 0</span><span class="vi">PricePick · Giải đáp CMS #3 · Vin · 2026-07-15 · Đã chốt 3 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
