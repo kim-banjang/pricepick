@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱 질문 답변 #12</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.sttable{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.sttable th{background:#f6f3fd;color:var(--pp-d);font-weight:700;text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);font-size:11px}
+.sttable td{padding:7px 9px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top;word-break:keep-all}
+.sttable tr:last-child td{border-bottom:none}
+.sttable th:first-child,.sttable td:first-child{white-space:nowrap}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱 질문 답변 #12</span><span class="vi">Giải đáp câu hỏi App PricePick #12</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">John (Nhon Truong) · App · 알림 스위치·알림함·모두읽음·다크모드 질문 5건 · 답변 KO/VI</span><span class="vi">John (Nhon Truong) · App · 5 câu hỏi về switch thông báo·hộp thông báo·đánh dấu đã đọc tất cả·chế độ tối · Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/QnA-PricePick-39e3ac69e71180aab0bbe930bd0fc6f1" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 5건</span><span class="vi">5 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 5</span><span class="vi">Đã chốt 5</span></span></span></div>
+
+<!-- ==================== GROUP 1 : 마케팅 알림 저장 위치·이벤트 티켓 스위치 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 알림 설정 — 마케팅 알림 저장 위치·이벤트·티켓 스위치 범위</span><span class="vi">1. Cài đặt thông báo — Vị trí lưu thông báo marketing·phạm vi switch Sự kiện·Vé</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">(a) 마케팅 알림은 알림함 어느 탭에 저장되나요? (b) 이벤트·티켓 알림 스위치를 끄면 이벤트 알림과 티켓 알림 둘 다 안 오나요?</span><span class="vi">(a) Thông báo marketing được lưu ở tab nào trong hộp thông báo? (b) Nếu tắt switch Thông báo Sự kiện·Vé thì cả thông báo Sự kiện lẫn thông báo Vé đều không đến phải không?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260716-john/john-settings.png','설정 · 알림 스위치 3개')"><img src="/devqa/assets/20260716-john/john-settings.png" alt="설정 알림 스위치 3개" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">설정 · 알림 스위치 3개</span><span class="vi">Cài đặt · 3 switch thông báo</span></span></span></button><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260716-john/john-notifications.png','알림함 · 탭 4개')"><img src="/devqa/assets/20260716-john/john-notifications.png" alt="알림함 탭 4개" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">알림함 · 탭 4개(전체/구매/티켓/이벤트)</span><span class="vi">Hộp thông báo · 4 tab (Tất cả/Mua/Vé/Sự kiện)</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>(a) 확정.</b> 마케팅 알림(프로모션·광고성)은 알림함에 저장하지 않고 <b>푸시 전용</b>입니다. 알림함 탭(구매·티켓·이벤트)에 마케팅 자리가 없고, 프로모션은 일회성·시의성이라 이력으로 쌓을 필요가 낮습니다. 마케팅은 푸시로만 오고(기본 꺼짐, 켠 사람만), 알림함엔 안 남깁니다 — 심플하게 갑니다.
+
+<b>(b) 확정. 맞습니다.</b> "이벤트·티켓 알림" 스위치 하나가 <b>이벤트 알림 + 티켓 알림 둘 다</b> 제어합니다. 끄면 룰렛·경품·당첨(이벤트)과 티켓 만료 임박(티켓) 알림이 <b>모두</b> 안 옵니다.</span><span class="vi"><b>(a) Đã chốt.</b> Thông báo marketing (khuyến mãi·quảng cáo) <b>không lưu vào hộp thông báo, chỉ gửi qua push</b>. Các tab hộp thông báo (Mua·Vé·Sự kiện) không có chỗ cho marketing, và khuyến mãi mang tính một lần·theo thời điểm nên ít cần lưu thành lịch sử. Marketing chỉ đến qua push (mặc định tắt, chỉ ai bật mới nhận), không lưu vào hộp thông báo — giữ đơn giản.
+
+<b>(b) Đã chốt. Đúng vậy.</b> Switch "Thông báo Sự kiện·Vé" điều khiển <b>cả thông báo Sự kiện lẫn thông báo Vé</b>. Tắt đi thì vòng quay·dự thưởng·trúng thưởng (Sự kiện) và vé sắp hết hạn (Vé) đều <b>không đến</b>.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">근거: PolicySpec 알림 정책 — 3종 스위치(구매 알림/이벤트·티켓 알림/마케팅 정보 수신), 알림함 탭(전체/구매/티켓/이벤트). 마케팅은 알림함 탭 목록에 대응 탭이 없어 저장 대상에서 제외됨.</span><span class="vi">Căn cứ: Chính sách thông báo PolicySpec — 3 switch (Thông báo mua/Thông báo Sự kiện·Vé/Nhận tin marketing), tab hộp thông báo (Tất cả/Mua/Vé/Sự kiện). Marketing không có tab tương ứng trong hộp thông báo nên không thuộc diện lưu trữ.</span></span></div></div></div></div>
+
+<!-- ==================== GROUP 2 : 스위치 = 푸시만 제어 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 알림 설정 — 스위치는 푸시만 제어(알림함은 항상 저장)</span><span class="vi">2. Cài đặt thông báo — Switch chỉ điều khiển push (hộp thông báo luôn lưu)</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">스위치를 끄면 실시간 알림(푸시)만 안 뜨는 건가요, 아니면 알림함 목록에도 저장이 안 되는 건가요?</span><span class="vi">Nếu tắt switch thì chỉ thông báo thời gian thực (push) không hiện, hay cả danh sách trong hộp thông báo cũng không lưu?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>스위치는 "푸시(실시간 알림)"만 제어합니다. 알림함(인앱 목록)에는 항상 저장됩니다</b>(마케팅 제외 — 위 1번(a) 참조).
+
+즉 스위치를 끄면 → 실시간 푸시는 안 오지만, 알림함에 들어가 보면 그 알림은 기록으로 남아 있습니다. 사용자가 나중에 "티켓 만료됐었나?" 확인할 수 있어야 하므로 이력은 보존합니다.
+
+⚠️ 단, 설정 화면 현재 안내문 "각 스위치는 <b>푸시·인앱 공통 적용</b>"은 이 방향(푸시만 제어)과 어긋납니다. <b>"푸시(실시간 알림)만 제어됩니다. 지난 알림은 알림함에서 다시 볼 수 있어요"로 문구 수정을 권장</b>합니다(예외: 마케팅은 1번(a)대로 알림함 미저장이라 껐다 켰다만 하면 됩니다).</span><span class="vi">Đã chốt. <b>Switch chỉ điều khiển "push (thông báo thời gian thực)". Hộp thông báo (danh sách trong app) luôn được lưu</b> (trừ marketing — xem câu 1(a) ở trên).
+
+Nghĩa là tắt switch → push thời gian thực không đến, nhưng vào hộp thông báo vẫn thấy thông báo đó được lưu lại. Phải giữ lịch sử để người dùng sau này kiểm tra được "vé đã hết hạn chưa?".
+
+⚠️ Tuy nhiên, dòng hướng dẫn hiện tại ở màn cài đặt "Mỗi switch <b>áp dụng chung cho cả push·in-app</b>" đang mâu thuẫn với hướng này (chỉ điều khiển push). <b>Khuyến nghị sửa thành "Chỉ điều khiển push (thông báo thời gian thực). Thông báo cũ vẫn xem lại được ở hộp thông báo"</b> (ngoại lệ: marketing theo câu 1(a) không lưu vào hộp thông báo nên chỉ cần bật/tắt).</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">현재 policyspec §9 알림 정책 카드의 "적용 범위 — 각 스위치는 푸시·인앱에 공통 적용되는 1토글입니다(푸시/인앱 분리 안 함, 1단계 단순화)"는 이번 답변으로 방향이 바뀌는 문구입니다. 정책서·설정 화면 문구 갱신은 이번 devqa 답변 범위 밖이며 별도 반영이 필요합니다(김반장님 보고).</span><span class="vi">Dòng "Phạm vi áp dụng — Mỗi switch là 1 toggle áp dụng chung cho cả push lẫn in-app (không tách push/in-app, đơn giản hóa giai đoạn 1)" ở thẻ Chính sách thông báo §9 của policyspec hiện tại là câu chữ sẽ đổi hướng theo câu trả lời lần này. Việc cập nhật câu chữ ở tài liệu chính sách·màn cài đặt nằm ngoài phạm vi câu trả lời devqa lần này, cần phản ánh riêng (báo cáo lại cho anh).</span></span></div></div></div></div>
+
+<!-- ==================== GROUP 3 : 활동-스위치-탭 매핑 표 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">3. 알림 — 활동별 설정 스위치·알림함 탭 매핑표</span><span class="vi">3. Thông báo — Bảng ánh xạ switch·tab theo hoạt động</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">앱에서 푸시 알림이 필요한 활동을 전체 표로 정리해주세요(어떤 활동이 어느 설정 스위치·어느 알림함 탭에 해당하는지).</span><span class="vi">Xin tổng hợp thành bảng đầy đủ các hoạt động cần push trong app (hoạt động nào ứng với switch cài đặt·tab hộp thông báo nào).</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. 정책서 기준으로 전체 매핑표를 정리했습니다.</span><span class="vi">Đã chốt. Đã tổng hợp bảng ánh xạ đầy đủ theo tài liệu chính sách.</span></span>
+<table class="sttable"><thead><tr><th><span class="i18n"><span class="ko">활동(알림 사유)</span><span class="vi">Hoạt động (lý do thông báo)</span></span></th><th><span class="i18n"><span class="ko">설정 스위치</span><span class="vi">Switch cài đặt</span></span></th><th><span class="i18n"><span class="ko">알림함 탭</span><span class="vi">Tab hộp thông báo</span></span></th><th><span class="i18n"><span class="ko">발송 규칙</span><span class="vi">Quy tắc gửi</span></span></th></tr></thead><tbody>
+<tr><td><span class="i18n"><span class="ko">구매 추적·적립/가지급·구매확정·환수</span><span class="vi">Theo dõi mua·tích/tạm cấp·xác nhận mua·thu hồi</span></span></td><td><span class="i18n"><span class="ko">구매 알림</span><span class="vi">Thông báo mua</span></span></td><td><span class="i18n"><span class="ko">구매</span><span class="vi">Mua</span></span></td><td><span class="i18n"><span class="ko">상한 없음·즉시·야간에도(거래·서비스 필수)</span><span class="vi">Không giới hạn·ngay lập tức·cả ban đêm (giao dịch·bắt buộc dịch vụ)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">티켓 만료 임박(D-30/D-7)</span><span class="vi">Vé sắp hết hạn (D-30/D-7)</span></span></td><td><span class="i18n"><span class="ko">이벤트·티켓 알림</span><span class="vi">Thông báo Sự kiện·Vé</span></span></td><td><span class="i18n"><span class="ko">티켓</span><span class="vi">Vé</span></span></td><td><span class="i18n"><span class="ko">하루 2건·야간 미발송(우선순위: 만료임박)</span><span class="vi">2 lượt/ngày·không gửi ban đêm (ưu tiên: sắp hết hạn)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">행운룰렛·경품 응모/마감·당첨</span><span class="vi">Vòng quay may mắn·dự thưởng/đóng đợt·trúng thưởng</span></span></td><td><span class="i18n"><span class="ko">이벤트·티켓 알림</span><span class="vi">Thông báo Sự kiện·Vé</span></span></td><td><span class="i18n"><span class="ko">이벤트</span><span class="vi">Sự kiện</span></span></td><td><span class="i18n"><span class="ko">하루 2건·야간 미발송</span><span class="vi">2 lượt/ngày·không gửi ban đêm</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">프로모션·광고성</span><span class="vi">Khuyến mãi·quảng cáo</span></span></td><td><span class="i18n"><span class="ko">마케팅 정보 수신</span><span class="vi">Nhận tin marketing</span></span></td><td><span class="i18n"><span class="ko">(알림함 미저장·푸시 전용)</span><span class="vi">(Không lưu hộp thông báo·chỉ push)</span></span></td><td><span class="i18n"><span class="ko">하루 2건·야간 미발송·기본 꺼짐</span><span class="vi">2 lượt/ngày·không gửi ban đêm·mặc định tắt</span></span></td></tr>
+</tbody></table>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">거래 알림은 FCM 상한 없음·야간에도 즉시. 기타(이벤트·티켓·마케팅)는 하루 2건·야간(22~08) 미발송·아침 묶음. 우선순위 거래&gt;만료임박&gt;미션&gt;추첨, 같은 사유 묶어 중복 억제.</span><span class="vi">Thông báo giao dịch không giới hạn FCM·gửi ngay cả ban đêm. Còn lại (Sự kiện·Vé·marketing) 2 lượt/ngày·không gửi ban đêm (22~08)·gộp gửi buổi sáng. Ưu tiên: giao dịch&gt;sắp hết hạn&gt;nhiệm vụ&gt;rút thăm, gộp cùng lý do để chống trùng lặp.</span></span></div></div></div></div>
+
+<!-- ==================== GROUP 4 : 모두 읽음 범위 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">4. 알림함 — "모두 읽음" 버튼 범위</span><span class="vi">4. Hộp thông báo — Phạm vi nút "Đọc tất cả"</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">4</span><div class="qtxt"><span class="i18n"><span class="ko">"모두 읽음" 버튼은 전체 탭 기준인가요, 지금 보고 있는 탭 기준인가요?</span><span class="vi">Nút "Đọc tất cả" tính theo tab Tất cả, hay theo tab đang xem?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>전체 탭의 모든 알림을 읽음 처리합니다</b>(지금 보고 있는 탭만이 아니라 전부). 일반적인 "모두 읽음" 기대와 일치하고, 안 읽음 배지도 한 번에 정리됩니다.</span><span class="vi">Đã chốt. <b>Đánh dấu đã đọc toàn bộ thông báo ở tất cả các tab</b> (không chỉ tab đang xem). Khớp với kỳ vọng thông thường về "đọc tất cả", và huy hiệu chưa đọc cũng được dọn sạch một lần.</span></span></div></div></div>
+
+<!-- ==================== GROUP 5 : 다크모드 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">5. 설정 — 다크모드</span><span class="vi">5. Cài đặt — Chế độ tối</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">5</span><div class="qtxt"><span class="i18n"><span class="ko">설정의 다크모드, 지금 만들어야 하나요? 만든다면 어떻게 동작해야 하나요?</span><span class="vi">Chế độ tối trong cài đặt, giờ có cần làm không? Nếu làm thì hoạt động thế nào?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>지금 만들지 않습니다. 다크모드는 제공하지 않습니다.</b> 프라이스픽은 밝은 톤으로 확정돼 있고, 다크모드 옵션은 이전에 설정에서 제거했습니다(정책 범위 밖). 설정 화면에 다크모드 항목이 보이면 그건 <b>제거 대상</b>입니다. → 개발자는 다크모드 구현할 필요 없습니다.</span><span class="vi">Đã chốt. <b>Không làm bây giờ. Không cung cấp chế độ tối.</b> PricePick đã chốt theo tông sáng, và tùy chọn chế độ tối đã bị loại khỏi cài đặt từ trước (ngoài phạm vi chính sách). Nếu màn cài đặt vẫn còn mục chế độ tối thì đó là <b>đối tượng cần xóa</b>. → Dev không cần triển khai chế độ tối.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">근거: 김반장님 확정(2026-07-16) — 프라이스픽 디자인 톤은 라이트 모드로 고정, 다크모드는 정책 범위 밖. 정책서에도 다크모드 관련 운영 규칙이 없습니다(제공하지 않는 기능이라 규칙 자체가 없는 게 맞음). 설정 화면에 다크모드 UI가 남아 있다면 devqa 문서만으로는 제거되지 않으니, 실제 화면 정리는 별도 진행이 필요합니다.</span><span class="vi">Căn cứ: anh xác nhận (2026-07-16) — Tông thiết kế PricePick cố định theo chế độ sáng, chế độ tối nằm ngoài phạm vi chính sách. Tài liệu chính sách cũng không có quy tắc vận hành nào về chế độ tối (đúng vì đây là tính năng không cung cấp nên không có quy tắc). Nếu UI chế độ tối vẫn còn trên màn cài đặt thì tài liệu devqa này không tự xóa được, việc dọn màn thực tế cần làm riêng.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱 질문 답변 #12 · John · 2026-07-16 · 확정 5 / 확인 필요 0</span><span class="vi">PricePick · Giải đáp App #12 · John · 2026-07-16 · Đã chốt 5 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
