@@ -24,6 +24,11 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:26px 0 12px;padding-bottom:6px;bo
 .gcard-spec{font-size:11px;font-weight:700;color:#fff;background:var(--pp);padding:3px 10px;border-radius:20px;white-space:nowrap}
 .icon-row{display:flex;align-items:center;gap:16px}
 .icon-row img{width:96px;height:96px;border-radius:22px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(31,35,48,.1)}
+.icon-variants{display:flex;gap:24px;flex-wrap:wrap}
+.icon-variant{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;min-width:150px;text-align:center}
+.icon-variant img{width:96px;height:96px;border-radius:22px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(31,35,48,.1)}
+.iv-label{font-size:13px;font-weight:700;color:var(--ink1)}
+.iv-spec{font-size:11px;font-weight:700;color:#fff;background:var(--pp);padding:3px 10px;border-radius:20px}
 .icon-note{font-size:12.5px;color:var(--ink2);line-height:1.55}
 .dlbtn{display:inline-flex;align-items:center;gap:4px;background:var(--pp);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;cursor:pointer;flex-shrink:0}
 .dlbtn:hover{background:var(--pp-d)}
@@ -106,10 +111,22 @@ Vẫn là mua sắm Coupang như thường ngày, chỉ cần vào qua PricePick
 <h2 class="grp"><span class="i18n"><span class="ko">그래픽 자료</span><span class="vi">Tài liệu đồ họa</span></span></h2>
 
 <div class="gcard">
-<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">앱 아이콘</span><span class="vi">Icon ứng dụng</span></span></span><span class="gcard-spec">1024×1024</span></div>
-<div class="icon-row"><img src="/devqa/assets/gplay-final/app-icon-1024.png" alt="PricePick 앱 아이콘" onerror="this.style.display='none'">
-<div class="icon-note" style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px"><span class="i18n"><span class="ko">최종본. 1024×1024 정방형, 배경 투명 없음(스토어 규격).</span><span class="vi">Bản cuối. Vuông 1024×1024, không nền trong suốt (theo quy cách store).</span></span>
-<a class="dlbtn" href="/devqa/assets/gplay-final/app-icon-1024.png" download="pricepick-app-icon-1024.png"><span class="i18n"><span class="ko">다운로드 ↓</span><span class="vi">Tải xuống ↓</span></span></a></div></div>
+<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">앱 아이콘</span><span class="vi">Icon ứng dụng</span></span></span></div>
+<div class="icon-variants">
+<div class="icon-variant">
+<img src="/devqa/assets/gplay-final/app-icon-1024.png" alt="PricePick 앱 아이콘 (3D 버전)" onerror="this.style.display='none'">
+<div class="iv-label"><span class="i18n"><span class="ko">앱 아이콘 (3D 버전)</span><span class="vi">Icon (bản 3D)</span></span></div>
+<div class="iv-spec">1024×1024</div>
+<a class="dlbtn" href="/devqa/assets/gplay-final/app-icon-1024.png" download="pricepick-app-icon-1024.png"><span class="i18n"><span class="ko">다운로드 ↓</span><span class="vi">Tải xuống ↓</span></span></a>
+</div>
+<div class="icon-variant">
+<img src="/devqa/assets/gplay-final/app-icon-flat-1024.png" alt="PricePick 앱 아이콘 (일반 버전)" onerror="this.style.display='none'">
+<div class="iv-label"><span class="i18n"><span class="ko">앱 아이콘 (일반 버전)</span><span class="vi">Icon (bản thường)</span></span></div>
+<div class="iv-spec">1024×1024</div>
+<a class="dlbtn" href="/devqa/assets/gplay-final/app-icon-flat-1024.png" download="pricepick-app-icon-flat-1024.png"><span class="i18n"><span class="ko">다운로드 ↓</span><span class="vi">Tải xuống ↓</span></span></a>
+</div>
+</div>
+<div class="icon-note" style="margin-top:12px"><span class="i18n"><span class="ko">정방형 1024×1024, 배경 투명 없음(스토어 규격). 등록 시 둘 중 하나 선택.</span><span class="vi">Vuông 1024×1024, không nền trong suốt (theo quy cách store). Chọn 1 trong 2 khi đăng ký.</span></span></div>
 </div>
 
 <div class="gcard">
