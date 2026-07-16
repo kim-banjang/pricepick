@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>구글 플레이 스토어 등록 자료 · PricePick</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:26px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.card-t{font-size:12.5px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;display:flex;align-items:center;gap:8px;justify-content:space-between}
+.card-t .lim{font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink3)}
+.txt-ko{font-size:15px;font-weight:700;color:var(--ink1);line-height:1.55;white-space:pre-wrap}
+.txt-vi-sub{font-size:12px;color:var(--ink3);margin-top:6px;line-height:1.55;white-space:pre-wrap}
+.copybox{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:2px}
+.copybox pre{font-family:inherit;font-size:13.3px;color:var(--ink2);white-space:pre-wrap;line-height:1.7}
+.copybtn{position:absolute;top:10px;right:10px;background:var(--pp);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.copybtn:hover{background:var(--pp-d)}
+.copybtn.done{background:var(--ok)}
+.vi-full-t{font-size:11px;font-weight:800;color:var(--pp-d);letter-spacing:.04em;margin:12px 0 6px}
+.charcount{font-size:11px;color:var(--ink3);font-weight:600}
+.gcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.gcard-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.gcard-t{font-size:14px;font-weight:800;color:var(--ink1)}
+.gcard-spec{font-size:11px;font-weight:700;color:#fff;background:var(--pp);padding:3px 10px;border-radius:20px;white-space:nowrap}
+.icon-row{display:flex;align-items:center;gap:16px}
+.icon-row img{width:96px;height:96px;border-radius:22px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(31,35,48,.1)}
+.icon-note{font-size:12.5px;color:var(--ink2);line-height:1.55}
+.shot-row{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 8px}
+.shot{flex:0 0 auto;display:flex;flex-direction:column;gap:6px;cursor:zoom-in}
+.shot img{width:120px;border-radius:12px;border:1px solid var(--line);display:block;box-shadow:0 2px 10px rgba(31,35,48,.08)}
+.shot-cap{font-size:11px;color:var(--ink3);font-weight:700;text-align:center}
+.feature-ph{background:var(--bg);border:2px dashed var(--line);border-radius:12px;height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--ink3)}
+.feature-ph .fp-t{font-size:13px;font-weight:800;color:var(--ink2)}
+.feature-ph .fp-s{font-size:11.5px}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">구글 플레이 스토어 등록 자료</span><span class="vi">Tài liệu đăng ký Google Play Store</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">텍스트 3종 · 그래픽 3종 · 스토어 등록 시 그대로 사용</span><span class="vi">3 mục văn bản · 3 mục đồ họa · Dùng trực tiếp khi đăng ký store</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">텍스트 자료 3종</span><span class="vi">3 mục văn bản</span></span></span><span class="chip"><span class="i18n"><span class="ko">그래픽 자료 3종</span><span class="vi">3 mục đồ họa</span></span></span><span class="chip"><span class="i18n"><span class="ko">쿠팡 단독 STEP1 기준</span><span class="vi">Theo STEP1 chỉ Coupang</span></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">텍스트 자료</span><span class="vi">Tài liệu văn bản</span></span></h2>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">앱 이름</span><span class="vi">Tên ứng dụng</span></span><span class="charcount">30자 이내 / trong 30 ký tự</span></div>
+<div class="txt-ko">프라이스픽 - 쿠팡 경유 쇼핑 앱테크 리워드</div>
+<div class="txt-vi-sub">PricePick - Ứng dụng thưởng mua sắm qua link Coupang <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+</div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">간단한 설명</span><span class="vi">Mô tả ngắn</span></span><span class="charcount">80자 이내 / trong 80 ký tự</span></div>
+<div class="txt-ko">쿠팡 경유 쇼핑만 해도 티켓·포인트 적립! 출석·룰렛으로 더 모아 기프티콘으로 교환하세요.</div>
+<div class="txt-vi-sub">Chỉ cần mua sắm qua link Coupang là tích vé·điểm! Tích thêm bằng điểm danh·vòng quay rồi đổi gifticon. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+</div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">전체 설명</span><span class="vi">Mô tả đầy đủ</span></span><span class="i18n"><span class="ko" style="font-size:11px;font-weight:600;color:var(--ink3);text-transform:none">복사용 텍스트 박스</span><span class="vi" style="font-size:11px;font-weight:600;color:var(--ink3);text-transform:none">Hộp văn bản để copy</span></span></div>
+<div class="copybox">
+<button class="copybtn" type="button" onclick="copyFullDesc(this)"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<pre id="full-desc-ko">🛍️ 프라이스픽 – 쿠팡 쇼핑이 곧 리워드가 되는 경유 쇼핑 앱테크
+늘 하던 쿠팡 쇼핑, 프라이스픽을 한 번 거쳐 들어가기만 하면 티켓과 포인트가 쌓입니다. 추가 비용도, 번거로운 미션도 없어요.
+💸 경유 쇼핑 – 사면 살수록 쌓이는 티켓 · 프라이스픽에서 쿠팡으로 이동해 구매하면 티켓 자동 적립 · 구매 금액에 따라 브론즈·실버·골드 등급 티켓
+🎟️ 매일 쌓는 재미 – 출석·룰렛·이벤트 티켓 · 매일 쿠팡 구경만 해도 포인트(출석체크) · 행운 룰렛으로 포인트·이벤트 티켓 · 이벤트 티켓으로 경품 응모
+🎁 기프티콘 교환 – 쌓인 티켓·포인트를 인기 브랜드 기프티콘으로
+🤝 친구 초대 – 초대하면 나도 친구도 포인트
+🔑 카카오로 간편 시작
+👉 지금 프라이스픽 설치하고 쿠팡 쇼핑부터 리워드를 시작하세요!
+(쿠팡 단독 STEP1 기준. 제휴몰 확장 시 추가.)</pre>
+</div>
+<div class="vi-full-t">번역 참고용 · Bản dịch tham khảo (không phải bản đăng ký)</div>
+<div class="copybox" style="margin-top:8px">
+<pre style="color:var(--ink3);font-size:12.3px">🛍️ PricePick – Ứng dụng mua sắm qua link biến việc mua sắm trên Coupang thành phần thưởng
+Vẫn là mua sắm Coupang như thường ngày, chỉ cần vào qua PricePick một lần là vé và điểm được tích lũy. Không phát sinh chi phí, không cần nhiệm vụ rắc rối.
+💸 Mua sắm qua link – Mua càng nhiều, vé càng tích · Chuyển từ PricePick sang Coupang để mua thì tự động tích vé · Vé hạng Đồng·Bạc·Vàng theo số tiền mua
+🎟️ Niềm vui tích lũy mỗi ngày – Điểm danh·Vòng quay·Vé sự kiện · Chỉ cần ghé xem Coupang mỗi ngày là có điểm (điểm danh) · Vòng quay may mắn nhận điểm·vé sự kiện · Dùng vé sự kiện dự thưởng
+🎁 Đổi Gifticon – Đổi vé·điểm đã tích thành gifticon các thương hiệu nổi tiếng
+🤝 Mời bạn bè – Mời bạn là cả hai đều nhận điểm
+🔑 Bắt đầu dễ dàng bằng Kakao
+👉 Cài đặt PricePick ngay và bắt đầu nhận thưởng từ việc mua sắm Coupang!
+(Theo STEP1 chỉ với Coupang. Sẽ bổ sung khi mở rộng sàn liên kết.)</pre>
+</div>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">그래픽 자료</span><span class="vi">Tài liệu đồ họa</span></span></h2>
+
+<div class="gcard">
+<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">앱 아이콘</span><span class="vi">Icon ứng dụng</span></span></span><span class="gcard-spec">1024×1024</span></div>
+<div class="icon-row"><img src="/devqa/assets/gplay/icon-1024.png" alt="PricePick 앱 아이콘" onerror="this.style.display='none'">
+<div class="icon-note"><span class="i18n"><span class="ko">그라데이션 버전. 1024×1024 정방형, 배경 투명 없음(스토어 규격).</span><span class="vi">Phiên bản gradient. Vuông 1024×1024, không nền trong suốt (theo quy cách store).</span></span></div></div>
+</div>
+
+<div class="gcard">
+<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">스크린샷 5장</span><span class="vi">5 ảnh chụp màn hình</span></span></span><span class="gcard-spec">1170×2532 · 세로형</span></div>
+<div class="shot-row">
+<div class="shot" onclick="lbOpen('/devqa/assets/gplay/screenshot-01-home.png','홈')"><img src="/devqa/assets/gplay/screenshot-01-home.png" alt="홈 화면" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">1. 홈</span><span class="vi">1. Trang chủ</span></span></span></div>
+<div class="shot" onclick="lbOpen('/devqa/assets/gplay/screenshot-02-roulette.png','룰렛')"><img src="/devqa/assets/gplay/screenshot-02-roulette.png" alt="룰렛 화면" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">2. 룰렛</span><span class="vi">2. Vòng quay</span></span></span></div>
+<div class="shot" onclick="lbOpen('/devqa/assets/gplay/screenshot-03-attendance.png','출석')"><img src="/devqa/assets/gplay/screenshot-03-attendance.png" alt="출석 화면" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">3. 출석</span><span class="vi">3. Điểm danh</span></span></span></div>
+<div class="shot" onclick="lbOpen('/devqa/assets/gplay/screenshot-04-benefits.png','혜택')"><img src="/devqa/assets/gplay/screenshot-04-benefits.png" alt="혜택 화면" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">4. 혜택</span><span class="vi">4. Ưu đãi</span></span></span></div>
+<div class="shot" onclick="lbOpen('/devqa/assets/gplay/screenshot-05-gifticon.png','기프티콘')"><img src="/devqa/assets/gplay/screenshot-05-gifticon.png" alt="기프티콘 화면" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">5. 기프티콘</span><span class="vi">5. Gifticon</span></span></span></div>
+</div>
+<div class="icon-note" style="margin-top:8px"><span class="i18n"><span class="ko">클릭하면 크게 보기. 실기기 캡처(1170×2532), 구글 플레이 세로 스크린샷 규격 충족.</span><span class="vi">Nhấn để xem lớn. Chụp từ máy thật (1170×2532), đạt quy cách ảnh dọc của Google Play.</span></span></div>
+</div>
+
+<div class="gcard">
+<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">특징 그래픽</span><span class="vi">Đồ họa tính năng</span></span></span><span class="gcard-spec">1024×500</span></div>
+<div class="feature-ph"><span class="fp-t"><span class="i18n"><span class="ko">클로드 디자인 제작 예정</span><span class="vi">Sẽ do Claude thiết kế</span></span></span><span class="fp-s"><span class="i18n"><span class="ko">아직 미제작 — 자리만 확보</span><span class="vi">Chưa làm — chỉ giữ chỗ</span></span></span></div>
+</div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 구글 플레이 스토어 등록 자료 · 2026-07-16</span><span class="vi">PricePick · Tài liệu đăng ký Google Play Store · 2026-07-16</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="스크린샷"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+function copyFullDesc(btn){
+  var txt=document.getElementById('full-desc-ko').textContent;
+  navigator.clipboard.writeText(txt).then(function(){
+    var orig=btn.innerHTML;
+    btn.classList.add('done');
+    btn.innerHTML='<span class="i18n"><span class="ko">복사됨 ✓</span><span class="vi">Đã copy ✓</span></span>';
+    setTimeout(function(){btn.classList.remove('done');btn.innerHTML=orig;},1600);
+  });
+}
+</script>
+</body></html>
