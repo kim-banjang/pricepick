@@ -25,13 +25,16 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:26px 0 12px;padding-bottom:6px;bo
 .icon-row{display:flex;align-items:center;gap:16px}
 .icon-row img{width:96px;height:96px;border-radius:22px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(31,35,48,.1)}
 .icon-note{font-size:12.5px;color:var(--ink2);line-height:1.55}
+.dlbtn{display:inline-flex;align-items:center;gap:4px;background:var(--pp);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;cursor:pointer;flex-shrink:0}
+.dlbtn:hover{background:var(--pp-d)}
+.shot-dl{display:inline-block;font-size:10.5px;font-weight:700;color:var(--pp-d);text-decoration:none;padding:3px 0;border:1px solid var(--pp-l);border-radius:20px;text-align:center;cursor:pointer}
+.shot-dl:hover{background:var(--pp-l)}
+.feature-final{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;justify-content:center}
+.feature-final img{width:100%;max-width:520px;border-radius:8px;display:block;box-shadow:0 2px 10px rgba(31,35,48,.08)}
 .shot-row{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 8px}
-.shot{flex:0 0 auto;display:flex;flex-direction:column;gap:6px;cursor:zoom-in}
-.shot img{width:120px;border-radius:12px;border:1px solid var(--line);display:block;box-shadow:0 2px 10px rgba(31,35,48,.08)}
+.shot{flex:0 0 auto;display:flex;flex-direction:column;gap:6px}
+.shot img{width:120px;border-radius:12px;border:1px solid var(--line);display:block;box-shadow:0 2px 10px rgba(31,35,48,.08);cursor:zoom-in}
 .shot-cap{font-size:11px;color:var(--ink3);font-weight:700;text-align:center}
-.feature-ph{background:var(--bg);border:2px dashed var(--line);border-radius:12px;height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--ink3)}
-.feature-ph .fp-t{font-size:13px;font-weight:800;color:var(--ink2)}
-.feature-ph .fp-s{font-size:11.5px}
 .foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
 .vi{display:none}
 #langsw{position:absolute;opacity:0;pointer-events:none}
@@ -102,25 +105,28 @@ Vẫn là mua sắm Coupang như thường ngày, chỉ cần vào qua PricePick
 
 <div class="gcard">
 <div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">앱 아이콘</span><span class="vi">Icon ứng dụng</span></span></span><span class="gcard-spec">1024×1024</span></div>
-<div class="icon-row"><img src="/devqa/assets/gplay/icon-1024.png" alt="PricePick 앱 아이콘" onerror="this.style.display='none'">
-<div class="icon-note"><span class="i18n"><span class="ko">그라데이션 버전. 1024×1024 정방형, 배경 투명 없음(스토어 규격).</span><span class="vi">Phiên bản gradient. Vuông 1024×1024, không nền trong suốt (theo quy cách store).</span></span></div></div>
+<div class="icon-row"><img src="/devqa/assets/gplay-final/app-icon-1024.png" alt="PricePick 앱 아이콘" onerror="this.style.display='none'">
+<div class="icon-note" style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px"><span class="i18n"><span class="ko">최종본. 1024×1024 정방형, 배경 투명 없음(스토어 규격).</span><span class="vi">Bản cuối. Vuông 1024×1024, không nền trong suốt (theo quy cách store).</span></span>
+<a class="dlbtn" href="/devqa/assets/gplay-final/app-icon-1024.png" download="pricepick-app-icon-1024.png"><span class="i18n"><span class="ko">다운로드 ↓</span><span class="vi">Tải xuống ↓</span></span></a></div></div>
 </div>
 
 <div class="gcard">
-<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">스크린샷 5장</span><span class="vi">5 ảnh chụp màn hình</span></span></span><span class="gcard-spec">1170×2532 · 세로형</span></div>
+<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">스크린샷 5장</span><span class="vi">5 ảnh chụp màn hình</span></span></span><span class="gcard-spec"><span class="i18n"><span class="ko">세로 9:16</span><span class="vi">Dọc 9:16</span></span></span></div>
 <div class="shot-row">
-<div class="shot" onclick="lbOpen('/devqa/assets/gplay/screenshot-01-home.png','홈')"><img src="/devqa/assets/gplay/screenshot-01-home.png" alt="홈 화면" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">1. 홈</span><span class="vi">1. Trang chủ</span></span></span></div>
-<div class="shot" onclick="lbOpen('/devqa/assets/gplay/screenshot-02-roulette.png','룰렛')"><img src="/devqa/assets/gplay/screenshot-02-roulette.png" alt="룰렛 화면" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">2. 룰렛</span><span class="vi">2. Vòng quay</span></span></span></div>
-<div class="shot" onclick="lbOpen('/devqa/assets/gplay/screenshot-03-attendance.png','출석')"><img src="/devqa/assets/gplay/screenshot-03-attendance.png" alt="출석 화면" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">3. 출석</span><span class="vi">3. Điểm danh</span></span></span></div>
-<div class="shot" onclick="lbOpen('/devqa/assets/gplay/screenshot-04-benefits.png','혜택')"><img src="/devqa/assets/gplay/screenshot-04-benefits.png" alt="혜택 화면" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">4. 혜택</span><span class="vi">4. Ưu đãi</span></span></span></div>
-<div class="shot" onclick="lbOpen('/devqa/assets/gplay/screenshot-05-gifticon.png','기프티콘')"><img src="/devqa/assets/gplay/screenshot-05-gifticon.png" alt="기프티콘 화면" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">5. 기프티콘</span><span class="vi">5. Gifticon</span></span></span></div>
+<div class="shot"><img src="/devqa/assets/gplay-final/screenshot-01.png" alt="홈 화면" onclick="lbOpen('/devqa/assets/gplay-final/screenshot-01.png','홈')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">1. 홈</span><span class="vi">1. Trang chủ</span></span></span><a class="shot-dl" href="/devqa/assets/gplay-final/screenshot-01.png" download="pricepick-screenshot-01.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="shot"><img src="/devqa/assets/gplay-final/screenshot-02.png" alt="룰렛 화면" onclick="lbOpen('/devqa/assets/gplay-final/screenshot-02.png','룰렛')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">2. 룰렛</span><span class="vi">2. Vòng quay</span></span></span><a class="shot-dl" href="/devqa/assets/gplay-final/screenshot-02.png" download="pricepick-screenshot-02.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="shot"><img src="/devqa/assets/gplay-final/screenshot-03.png" alt="출석 화면" onclick="lbOpen('/devqa/assets/gplay-final/screenshot-03.png','출석')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">3. 출석</span><span class="vi">3. Điểm danh</span></span></span><a class="shot-dl" href="/devqa/assets/gplay-final/screenshot-03.png" download="pricepick-screenshot-03.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="shot"><img src="/devqa/assets/gplay-final/screenshot-04.png" alt="혜택 화면" onclick="lbOpen('/devqa/assets/gplay-final/screenshot-04.png','혜택')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">4. 혜택</span><span class="vi">4. Ưu đãi</span></span></span><a class="shot-dl" href="/devqa/assets/gplay-final/screenshot-04.png" download="pricepick-screenshot-04.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="shot"><img src="/devqa/assets/gplay-final/screenshot-05.png" alt="기프티콘 화면" onclick="lbOpen('/devqa/assets/gplay-final/screenshot-05.png','기프티콘')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">5. 기프티콘</span><span class="vi">5. Gifticon</span></span></span><a class="shot-dl" href="/devqa/assets/gplay-final/screenshot-05.png" download="pricepick-screenshot-05.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
 </div>
-<div class="icon-note" style="margin-top:8px"><span class="i18n"><span class="ko">클릭하면 크게 보기. 실기기 캡처(1170×2532), 구글 플레이 세로 스크린샷 규격 충족.</span><span class="vi">Nhấn để xem lớn. Chụp từ máy thật (1170×2532), đạt quy cách ảnh dọc của Google Play.</span></span></div>
+<div class="icon-note" style="margin-top:8px"><span class="i18n"><span class="ko">클릭하면 크게 보기. 최종본 941×1672(세로 9:16), 구글 플레이 세로 스크린샷 규격 충족.</span><span class="vi">Nhấn để xem lớn. Bản cuối 941×1672 (dọc 9:16), đạt quy cách ảnh dọc của Google Play.</span></span></div>
 </div>
 
 <div class="gcard">
 <div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">특징 그래픽</span><span class="vi">Đồ họa tính năng</span></span></span><span class="gcard-spec">1024×500</span></div>
-<div class="feature-ph"><span class="fp-t"><span class="i18n"><span class="ko">클로드 디자인 제작 예정</span><span class="vi">Sẽ do Claude thiết kế</span></span></span><span class="fp-s"><span class="i18n"><span class="ko">아직 미제작 — 자리만 확보</span><span class="vi">Chưa làm — chỉ giữ chỗ</span></span></span></div>
+<div class="feature-final"><img src="/devqa/assets/gplay-final/feature-graphic-final-1024x500.png" alt="PricePick 특징 그래픽" onerror="this.style.display='none'"></div>
+<div class="icon-note" style="margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:12px"><span class="i18n"><span class="ko">최종본. 1024×500, 구글 플레이 특징 그래픽 규격.</span><span class="vi">Bản cuối. 1024×500, đúng quy cách đồ họa tính năng của Google Play.</span></span>
+<a class="dlbtn" href="/devqa/assets/gplay-final/feature-graphic-final-1024x500.png" download="pricepick-feature-graphic-1024x500.png"><span class="i18n"><span class="ko">다운로드 ↓</span><span class="vi">Tải xuống ↓</span></span></a></div>
 </div>
 
 <div class="foot"><span class="i18n"><span class="ko">PricePick · 구글 플레이 스토어 등록 자료 · 2026-07-16</span><span class="vi">PricePick · Tài liệu đăng ký Google Play Store · 2026-07-16</span></span></div></div>
