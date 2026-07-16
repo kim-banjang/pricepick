@@ -12,6 +12,7 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:26px 0 12px;padding-bottom:6px;bo
 .txt-ko{font-size:15px;font-weight:700;color:var(--ink1);line-height:1.55;white-space:pre-wrap}
 .txt-vi-sub{font-size:12px;color:var(--ink3);margin-top:6px;line-height:1.55;white-space:pre-wrap}
 .copybox{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:2px}
+.copybox.inline{padding:14px 84px 14px 16px}
 .copybox pre{font-family:inherit;font-size:13.3px;color:var(--ink2);white-space:pre-wrap;line-height:1.7}
 .copybtn{position:absolute;top:10px;right:10px;background:var(--pp);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer}
 .copybtn:hover{background:var(--pp-d)}
@@ -70,20 +71,26 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:26px 0 12px;padding-bottom:6px;bo
 
 <div class="card">
 <div class="card-t"><span class="i18n"><span class="ko">앱 이름</span><span class="vi">Tên ứng dụng</span></span><span class="charcount i18n"><span class="ko">30자 이내</span><span class="vi">Trong 30 ký tự</span></span></div>
-<div class="txt-ko">프라이스픽 - 쿠팡 경유 쇼핑 앱테크 리워드</div>
+<div class="copybox inline">
+<button class="copybtn" type="button" onclick="copyText(this,'appname-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="appname-ko">프라이스픽 - 쿠팡 경유 쇼핑 앱테크 리워드</div>
+</div>
 <div class="txt-vi-sub vi-only">PricePick - Ứng dụng thưởng mua sắm qua link Coupang <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
 </div>
 
 <div class="card">
 <div class="card-t"><span class="i18n"><span class="ko">간단한 설명</span><span class="vi">Mô tả ngắn</span></span><span class="charcount i18n"><span class="ko">80자 이내</span><span class="vi">Trong 80 ký tự</span></span></div>
-<div class="txt-ko">쿠팡 경유 쇼핑만 해도 티켓·포인트 적립! 출석·룰렛으로 더 모아 기프티콘으로 교환하세요.</div>
+<div class="copybox inline">
+<button class="copybtn" type="button" onclick="copyText(this,'shortdesc-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="shortdesc-ko">쿠팡 경유 쇼핑만 해도 티켓·포인트 적립! 출석·룰렛으로 더 모아 기프티콘으로 교환하세요.</div>
+</div>
 <div class="txt-vi-sub vi-only">Chỉ cần mua sắm qua link Coupang là tích vé·điểm! Tích thêm bằng điểm danh·vòng quay rồi đổi gifticon. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
 </div>
 
 <div class="card">
 <div class="card-t"><span class="i18n"><span class="ko">전체 설명</span><span class="vi">Mô tả đầy đủ</span></span><span class="i18n"><span class="ko" style="font-size:11px;font-weight:600;color:var(--ink3);text-transform:none">복사용 텍스트 박스</span><span class="vi" style="font-size:11px;font-weight:600;color:var(--ink3);text-transform:none">Hộp văn bản để copy</span></span></div>
 <div class="copybox">
-<button class="copybtn" type="button" onclick="copyFullDesc(this)"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<button class="copybtn" type="button" onclick="copyText(this,'full-desc-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
 <pre id="full-desc-ko">🛍️ 프라이스픽 – 쿠팡 쇼핑이 곧 리워드가 되는 경유 쇼핑 앱테크
 늘 하던 쿠팡 쇼핑, 프라이스픽을 한 번 거쳐 들어가기만 하면 티켓과 포인트가 쌓입니다. 추가 비용도, 번거로운 미션도 없어요.
 💸 경유 쇼핑 – 사면 살수록 쌓이는 티켓 · 프라이스픽에서 쿠팡으로 이동해 구매하면 티켓 자동 적립 · 구매 금액에 따라 브론즈·실버·골드 등급 티켓
@@ -155,8 +162,8 @@ function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=docum
 function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
 document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
-function copyFullDesc(btn){
-  var txt=document.getElementById('full-desc-ko').textContent;
+function copyText(btn,elId){
+  var txt=document.getElementById(elId).textContent;
   navigator.clipboard.writeText(txt).then(function(){
     var orig=btn.innerHTML;
     btn.classList.add('done');
