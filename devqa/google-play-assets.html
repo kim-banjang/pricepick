@@ -37,9 +37,11 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:26px 0 12px;padding-bottom:6px;bo
 .shot-cap{font-size:11px;color:var(--ink3);font-weight:700;text-align:center}
 .foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
 .vi{display:none}
+.vi-only{display:none}
 #langsw{position:absolute;opacity:0;pointer-events:none}
 #langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
 #langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+#langsw:checked ~ .wrap .vi-only{display:block}
 .langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
 .langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
 .langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
@@ -62,15 +64,15 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:26px 0 12px;padding-bottom:6px;bo
 <h2 class="grp"><span class="i18n"><span class="ko">텍스트 자료</span><span class="vi">Tài liệu văn bản</span></span></h2>
 
 <div class="card">
-<div class="card-t"><span class="i18n"><span class="ko">앱 이름</span><span class="vi">Tên ứng dụng</span></span><span class="charcount">30자 이내 / trong 30 ký tự</span></div>
+<div class="card-t"><span class="i18n"><span class="ko">앱 이름</span><span class="vi">Tên ứng dụng</span></span><span class="charcount i18n"><span class="ko">30자 이내</span><span class="vi">Trong 30 ký tự</span></span></div>
 <div class="txt-ko">프라이스픽 - 쿠팡 경유 쇼핑 앱테크 리워드</div>
-<div class="txt-vi-sub">PricePick - Ứng dụng thưởng mua sắm qua link Coupang <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="txt-vi-sub vi-only">PricePick - Ứng dụng thưởng mua sắm qua link Coupang <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
 </div>
 
 <div class="card">
-<div class="card-t"><span class="i18n"><span class="ko">간단한 설명</span><span class="vi">Mô tả ngắn</span></span><span class="charcount">80자 이내 / trong 80 ký tự</span></div>
+<div class="card-t"><span class="i18n"><span class="ko">간단한 설명</span><span class="vi">Mô tả ngắn</span></span><span class="charcount i18n"><span class="ko">80자 이내</span><span class="vi">Trong 80 ký tự</span></span></div>
 <div class="txt-ko">쿠팡 경유 쇼핑만 해도 티켓·포인트 적립! 출석·룰렛으로 더 모아 기프티콘으로 교환하세요.</div>
-<div class="txt-vi-sub">Chỉ cần mua sắm qua link Coupang là tích vé·điểm! Tích thêm bằng điểm danh·vòng quay rồi đổi gifticon. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="txt-vi-sub vi-only">Chỉ cần mua sắm qua link Coupang là tích vé·điểm! Tích thêm bằng điểm danh·vòng quay rồi đổi gifticon. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
 </div>
 
 <div class="card">
@@ -87,8 +89,8 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:26px 0 12px;padding-bottom:6px;bo
 👉 지금 프라이스픽 설치하고 쿠팡 쇼핑부터 리워드를 시작하세요!
 (쿠팡 단독 STEP1 기준. 제휴몰 확장 시 추가.)</pre>
 </div>
-<div class="vi-full-t">번역 참고용 · Bản dịch tham khảo (không phải bản đăng ký)</div>
-<div class="copybox" style="margin-top:8px">
+<div class="vi-full-t vi-only">번역 참고용 · Bản dịch tham khảo (không phải bản đăng ký)</div>
+<div class="copybox vi-only" style="margin-top:8px">
 <pre style="color:var(--ink3);font-size:12.3px">🛍️ PricePick – Ứng dụng mua sắm qua link biến việc mua sắm trên Coupang thành phần thưởng
 Vẫn là mua sắm Coupang như thường ngày, chỉ cần vào qua PricePick một lần là vé và điểm được tích lũy. Không phát sinh chi phí, không cần nhiệm vụ rắc rối.
 💸 Mua sắm qua link – Mua càng nhiều, vé càng tích · Chuyển từ PricePick sang Coupang để mua thì tự động tích vé · Vé hạng Đồng·Bạc·Vàng theo số tiền mua
