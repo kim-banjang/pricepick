@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱 질문 답변 #14</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.sttable{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.sttable th{background:#f6f3fd;color:var(--pp-d);font-weight:700;text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);font-size:11px}
+.sttable td{padding:7px 9px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top;word-break:keep-all}
+.sttable tr:last-child td{border-bottom:none}
+.sttable th:first-child,.sttable td:first-child{white-space:nowrap}
+.tag{display:inline-block;font-size:9.5px;font-weight:800;padding:1px 5px;border-radius:4px;margin-left:4px;vertical-align:1px;white-space:nowrap}
+.tag.spec{background:#e6f5f5;color:var(--ok)}
+.tag.new{background:#fdf1e3;color:var(--ck)}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱 질문 답변 #14</span><span class="vi">Giải đáp câu hỏi App PricePick #14</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">John (Nhon Truong) · App · 포인트 알림·탈퇴 완료 화면·홈 화면 추가 3건 · 답변 KO/VI</span><span class="vi">John (Nhon Truong) · App · 3 câu hỏi về thông báo điểm·màn hoàn tất hủy tài khoản·thêm vào màn hình chính · Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/QnA-app-PricePick-38a3ac69e711807b845cee96586dec12" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 3건</span><span class="vi">3 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 3</span><span class="vi">Đã chốt 3</span></span></span><span class="chip"><span class="i18n"><span class="ko">화면 수정 완료 2건</span><span class="vi">Đã sửa màn hình 2 mục</span></span></span></div>
+
+<!-- ==================== GROUP 1 : 포인트 알림 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 포인트 알림 — 종류·시점·내용·빈도 + 알림함 탭</span><span class="vi">1. Thông báo điểm — Loại·thời điểm·nội dung·tần suất + tab hộp thông báo</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">앱 질문답변 #13에서 "티켓 만료 임박" 알림은 답변을 받았는데, 포인트는 어떤가요? 포인트 관련 알림이 무엇이 있는지 4개 열(알림 / 언제 뜨나 / 무슨 내용 / 빈도)로 전부 채워 나열해 주세요. 그리고 포인트 알림은 알림함의 어느 탭에 들어가나요?</span><span class="vi">Ở QnA app #13 đã có câu trả lời cho thông báo "vé sắp hết hạn", vậy còn điểm thì sao? Xin liệt kê đầy đủ các thông báo liên quan đến điểm theo 4 cột (Thông báo / Khi nào hiện / Nội dung hiện / Tần suất). Và thông báo điểm sẽ nằm ở tab nào trong hộp thông báo?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260720-john/john-q1-noti-table.png','#13 티켓 알림 표')"><img src="/devqa/assets/20260720-john/john-q1-noti-table.png" alt="#13 티켓 알림 표" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">존이 첨부한 #13 알림 표</span><span class="vi">Bảng thông báo #13 John đính kèm</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. 포인트 알림은 아래 8종입니다. #13 표와 같은 형식으로 정리했습니다.
+
+이름 옆의 <b>정책서</b> 표시는 이미 확정된 정책이고, <b>신규</b> 표시는 이번에 새로 정하는 것입니다. 없는 걸 있는 것처럼 쓰지 않으려고 구분해 뒀습니다.</span><span class="vi">Đã chốt. Có 8 loại thông báo về điểm như dưới. Đã tổng hợp theo cùng định dạng với bảng ở #13.
+
+Nhãn <b>PolicySpec</b> bên cạnh tên nghĩa là chính sách đã chốt sẵn, nhãn <b>Mới</b> nghĩa là quy định được lập lần này. Em phân biệt rõ để không viết cái chưa có thành như đã có.</span></span>
+<table class="sttable"><thead><tr><th><span class="i18n"><span class="ko">알림</span><span class="vi">Thông báo</span></span></th><th><span class="i18n"><span class="ko">언제 뜨나</span><span class="vi">Khi nào hiện</span></span></th><th><span class="i18n"><span class="ko">보이는 내용</span><span class="vi">Nội dung hiện</span></span></th><th><span class="i18n"><span class="ko">얼마나 자주</span><span class="vi">Tần suất</span></span></th></tr></thead><tbody>
+<tr><td><span class="i18n"><span class="ko">포인트 만료 임박<span class="tag spec">정책서</span></span><span class="vi">Điểm sắp hết hạn<span class="tag spec">PolicySpec</span></span></span></td><td><span class="i18n"><span class="ko">만료 30일 전, 7일 전 (적립일 + 1년이 만료일)</span><span class="vi">30 ngày trước, 7 ngày trước khi hết hạn (ngày tích lũy + 1 năm)</span></span></td><td><span class="i18n"><span class="ko">"N P가 곧 만료돼요 (D-30 / D-7)"</span><span class="vi">"N P sắp hết hạn (D-30 / D-7)"</span></span></td><td><span class="i18n"><span class="ko">그 두 날에 각 1번, 총 2번. 30일 내내 매일 보내지 않습니다.</span><span class="vi">1 lần vào mỗi ngày đó, tổng 2 lần. Không gửi mỗi ngày suốt 30 ngày.</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">출석 포인트 적립<span class="tag new">신규</span></span><span class="vi">Điểm điểm danh<span class="tag new">Mới</span></span></span></td><td><span class="i18n"><span class="ko">쿠팡 구경하기 30초를 채워 100P가 들어갈 때</span><span class="vi">Khi đủ 30 giây "xem Coupang" và được cộng 100P</span></span></td><td><span class="i18n"><span class="ko">"오늘 출석 완료. 100P 받았어요"</span><span class="vi">"Đã điểm danh hôm nay. Nhận 100P"</span></span></td><td><span class="i18n"><span class="ko">하루 1번 (출석 자체가 하루 1회)</span><span class="vi">1 lần/ngày (điểm danh vốn 1 lần/ngày)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">출석 2배 부스터 추가분<span class="tag new">신규</span></span><span class="vi">Phần thưởng booster x2<span class="tag new">Mới</span></span></span></td><td><span class="i18n"><span class="ko">출석 후 30분 안에 경유구매가 확정돼 100P가 더 들어갈 때</span><span class="vi">Khi đơn mua qua link được xác nhận trong 30 phút sau điểm danh và cộng thêm 100P</span></span></td><td><span class="i18n"><span class="ko">별도 알림을 만들지 않고, 구매 확정 알림 문구에 "+100P"를 같이 적습니다</span><span class="vi">Không tạo thông báo riêng — ghi kèm "+100P" ngay trong thông báo xác nhận mua</span></span></td><td><span class="i18n"><span class="ko">별도 발송 없음 (구매 확정 알림에 합침)</span><span class="vi">Không gửi riêng (gộp vào thông báo xác nhận mua)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">5일 연속 출석 보너스<span class="tag new">신규</span></span><span class="vi">Thưởng 5 ngày liên tiếp<span class="tag new">Mới</span></span></span></td><td><span class="i18n"><span class="ko">5일 연속 출석을 채운 날</span><span class="vi">Ngày đạt đủ 5 ngày điểm danh liên tiếp</span></span></td><td><span class="i18n"><span class="ko">"5일 연속 달성. 오늘 100P + 이벤트 티켓 1장을 받았어요"</span><span class="vi">"Đạt 5 ngày liên tiếp. Hôm nay nhận 100P + 1 vé sự kiện"</span></span></td><td><span class="i18n"><span class="ko">달성한 날 1번. 그날 출석 알림과 겹치므로 1건으로 묶어 보냅니다.</span><span class="vi">1 lần vào ngày đạt. Trùng với thông báo điểm danh hôm đó nên gộp thành 1.</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">친구초대 포인트<span class="tag new">신규</span></span><span class="vi">Điểm mời bạn bè<span class="tag new">Mới</span></span></span></td><td><span class="i18n"><span class="ko">초대받은 친구의 첫 경유구매가 성사돼 양쪽에 각 500P가 들어갈 때 (가입만으로는 안 나갑니다)</span><span class="vi">Khi bạn được mời hoàn tất đơn mua qua link đầu tiên và cả hai bên được cộng 500P (chỉ đăng ký thì không gửi)</span></span></td><td><span class="i18n"><span class="ko">"친구의 첫 구매가 확인돼 500P를 받았어요"</span><span class="vi">"Đã xác nhận đơn mua đầu tiên của bạn bè, bạn nhận 500P"</span></span></td><td><span class="i18n"><span class="ko">지급 건마다 1번. 같은 날 여러 명이면 묶어서 1건.</span><span class="vi">1 lần mỗi lần cấp. Nhiều người trong cùng ngày thì gộp thành 1.</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">온보딩 가입 보상 200P<span class="tag new">신규</span></span><span class="vi">Thưởng đăng ký onboarding 200P<span class="tag new">Mới</span></span></span></td><td><span class="i18n"><span class="ko">카카오 연동이 끝나 200P가 실제로 들어갈 때</span><span class="vi">Khi liên kết Kakao xong và 200P thực sự được cộng</span></span></td><td><span class="i18n"><span class="ko">"가입을 축하해요. 200P를 드렸어요"</span><span class="vi">"Chúc mừng bạn đăng ký. Tặng bạn 200P"</span></span></td><td><span class="i18n"><span class="ko">계정당 1번. 푸시 없이 알림함에만 남깁니다 (화면에서 바로 보임).</span><span class="vi">1 lần/tài khoản. Không push, chỉ lưu hộp thông báo (thấy ngay trên màn).</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">행운룰렛 포인트 당첨<span class="tag new">신규</span></span><span class="vi">Trúng điểm vòng quay<span class="tag new">Mới</span></span></span></td><td><span class="i18n"><span class="ko">룰렛 결과가 100P 또는 200P일 때</span><span class="vi">Khi kết quả vòng quay là 100P hoặc 200P</span></span></td><td><span class="i18n"><span class="ko">"룰렛에서 N P에 당첨됐어요"</span><span class="vi">"Bạn trúng N P ở vòng quay"</span></span></td><td><span class="i18n"><span class="ko">푸시 없음. 돌리는 즉시 화면에 결과가 나오므로 알림함에만 남깁니다 (#13 3번과 동일).</span><span class="vi">Không push. Kết quả hiện ngay khi quay nên chỉ lưu hộp thông báo (giống mục 3 ở #13).</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">포인트 ↔ 티켓 교환 완료<span class="tag new">신규</span></span><span class="vi">Đổi điểm ↔ vé xong<span class="tag new">Mới</span></span></span></td><td><span class="i18n"><span class="ko">교환이 처리된 순간</span><span class="vi">Ngay khi việc đổi được xử lý</span></span></td><td><span class="i18n"><span class="ko">"1,000P → 브론즈 티켓 1장으로 바꿨어요"</span><span class="vi">"Đã đổi 1.000P thành 1 vé Bronze"</span></span></td><td><span class="i18n"><span class="ko">푸시 없음. 사용자가 직접 누른 행동이라 알림함 기록만 남깁니다.</span><span class="vi">Không push. Là hành động người dùng tự bấm nên chỉ lưu hộp thông báo.</span></span></td></tr>
+</tbody></table>
+<div class="atxt" style="margin-top:12px"><span class="i18n"><span class="ko"><b>얼마나 자주 오나 — 기존 규칙 그대로</b>
+포인트 알림은 전부 <b>'기타 알림'</b>입니다. 그래서 하루 최대 2건, 밤 22시~아침 8시에는 보내지 않고 아침에 묶어 보냅니다. '거래 알림'(구매·확정·회수)만 상한 없이 밤에도 바로 나갑니다. 위에서 '푸시 없음'이라고 적은 것들은 하루 2건 한도를 쓰지 않습니다.
+
+<b>알림함 어느 탭에 들어가나</b>
+탭은 <b>#12에서 확정한 4개(전체 / 구매 / 티켓 / 이벤트) 그대로</b>입니다. 탭을 새로 만들지 않습니다.
+• 포인트 <b>만료 임박</b> → <b>티켓 탭</b> (티켓 만료 임박과 같은 '만료' 계열이라 한자리에 모읍니다)
+• 출석·연속출석·친구초대·온보딩·룰렛 <b>포인트 적립</b> → <b>이벤트 탭</b> (참여로 받는 보상 계열)
+• 출석 2배 부스터 추가 100P → <b>구매 탭</b> (구매 확정 알림에 합쳐지므로 그 알림을 따라갑니다)
+설정 스위치는 만료·적립 모두 <b>'이벤트·티켓 알림'</b> 스위치에 묶이고, 부스터분만 '구매 알림' 스위치입니다.</span><span class="vi"><b>Tần suất gửi — giữ nguyên quy tắc hiện có</b>
+Toàn bộ thông báo điểm thuộc nhóm <b>'thông báo khác'</b>. Vì vậy tối đa 2 lượt/ngày, không gửi từ 22:00 đến 08:00 mà gom lại gửi vào buổi sáng. Chỉ 'thông báo giao dịch' (mua·xác nhận·thu hồi) là không giới hạn và gửi ngay cả ban đêm. Những mục ghi 'Không push' ở trên không tiêu tốn hạn mức 2 lượt/ngày.
+
+<b>Nằm ở tab nào trong hộp thông báo</b>
+Tab vẫn là <b>4 tab đã chốt ở #12 (Tất cả / Mua / Vé / Sự kiện)</b>. Không tạo tab mới.
+• Điểm <b>sắp hết hạn</b> → <b>tab Vé</b> (cùng nhóm 'hết hạn' với vé sắp hết hạn nên gom chung một chỗ)
+• <b>Tích điểm</b> từ điểm danh·liên tiếp·mời bạn·onboarding·vòng quay → <b>tab Sự kiện</b> (nhóm phần thưởng do tham gia)
+• 100P thêm từ booster x2 → <b>tab Mua</b> (được gộp vào thông báo xác nhận mua nên đi theo thông báo đó)
+Về switch cài đặt: cả hết hạn lẫn tích điểm đều thuộc switch <b>'Thông báo Sự kiện·Vé'</b>, riêng phần booster thuộc switch 'Thông báo mua'.</span></span></div>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">근거 — policyspec 5(유효기간·만료: 포인트 적립일+1년, D-30·D-7 알림) / 6(포인트: 10P=1원, 교환비 브 1,000P·실 10,000P·골 20,000P) / 7(출석 100P·5일차 이벤트티켓 1장 추가로 별도 500P 보너스 없음·2배 부스터 30분 내 확정 시 +100P / 룰렛 6칸 균등 100P·200P·이벤트티켓1·2·꽝·꽝) / 8(온보딩 가입 즉시 200P, 카카오 연동 후 지급) / 9(친구초대 양쪽 각 500P, 피초대자 첫 경유구매 성사 시 지급, 초대자 월 50명 한도) / 12(푸시 상한: 거래 무제한·기타 일 2건·야간 22~08 미발송) / DEVQA 존 #12(스위치 3종·알림함 탭 4개 매핑), #13(만료 알림 2회·룰렛 푸시 없음).
+
+부스터 100P의 환불 처리는 미결이 아닙니다 — policyspec 11에 "부스터성 보상(이벤트 티켓·출석 2배 포인트)은 구매 확정 후에도 환불 가능 기간(7일)이 지나야 사용 가능하고, 그 전에 환불되면 자연 취소"로 이미 확정돼 있습니다. 기본 출석 100P는 환불과 무관(회수 없음).
+
+포인트 만료는 선입선출(FIFO)로 소멸하고, 포인트↔티켓 교차 전환 시 원 적립일을 그대로 승계합니다(포인트 경유 무한연장 차단). 미연동(게스트)도 적립·만료는 진행되므로 만료 임박 알림 대상이며, 사용·교환만 카카오 연동 후 가능합니다. 탈퇴 시 보유 포인트는 즉시 소멸합니다(이용약관 13조).</span><span class="vi">Căn cứ — policyspec 5 (Thời hạn·hết hạn: điểm = ngày tích lũy + 1 năm, thông báo D-30·D-7) / 6 (Điểm: 10P = 1 won, tỷ lệ đổi Bronze 1.000P·Silver 10.000P·Gold 20.000P) / 7 (điểm danh 100P · ngày thứ 5 được thêm 1 vé sự kiện, KHÔNG có thưởng 500P riêng · booster x2 cộng +100P nếu xác nhận mua trong 30 phút / vòng quay 6 ô đều xác suất: 100P·200P·1 vé sự kiện·2 vé sự kiện·trượt·trượt) / 8 (onboarding 200P ngay khi đăng ký, cấp sau khi liên kết Kakao) / 9 (mời bạn: mỗi bên 500P, cấp khi bạn được mời hoàn tất đơn mua qua link đầu tiên, người mời tối đa 50 người/tháng) / 12 (mức gửi push: giao dịch không giới hạn · khác 2 lượt/ngày · không gửi 22~08) / DEVQA John #12 (3 switch · ánh xạ 4 tab hộp thông báo), #13 (thông báo hết hạn 2 lần · vòng quay không push).
+
+Việc xử lý hoàn tiền với 100P booster không phải mục chưa chốt — policyspec 11 đã quy định: "phần thưởng dạng booster (vé sự kiện·điểm điểm danh x2) chỉ dùng được sau khi qua thời hạn hoàn tiền (7 ngày) kể cả khi đã xác nhận mua; nếu bị hoàn tiền trước đó thì tự động hủy". Còn 100P điểm danh cơ bản thì không liên quan hoàn tiền (không thu hồi).
+
+Điểm hết hạn theo nguyên tắc nhập trước xuất trước (FIFO), và khi đổi chéo điểm↔vé thì kế thừa nguyên ngày tích lũy gốc (chặn việc gia hạn vô hạn qua điểm). Tài khoản chưa liên kết (guest) vẫn tích lũy và vẫn hết hạn nên vẫn nhận thông báo sắp hết hạn, chỉ việc dùng·đổi mới cần liên kết Kakao. Khi hủy tài khoản thì điểm đang có sẽ mất ngay (Điều 13 Điều khoản sử dụng).</span></span></div>
+</div></div></div>
+
+<!-- ==================== GROUP 2 : 탈퇴 완료 화면 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 탈퇴 완료 화면 — 1:1 고객센터 링크</span><span class="vi">2. Màn hoàn tất hủy tài khoản — link CSKH 1:1</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">탈퇴 완료 화면 하단에 1:1 고객센터로 가는 링크가 있습니다. 이 시점에는 계정이 이미 삭제돼 access token이 없어서 고객센터 화면에서 서버 요청이 성공할 수 없습니다. 이 링크를 지워야 하나요, 아니면 표시는 하되 이동을 막아야 하나요?</span><span class="vi">Ở cuối màn hoàn tất hủy tài khoản có link đi tới CSKH 1:1. Tại thời điểm này tài khoản đã bị xóa nên không còn access token, request lên server ở màn CSKH không thể thành công. Vậy nên xóa link này, hay vẫn hiển thị nhưng chặn không cho điều hướng?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260720-john/john-q2-withdraw-done.png','탈퇴 완료 화면')"><img src="/devqa/assets/20260720-john/john-q2-withdraw-done.png" alt="탈퇴 완료 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">탈퇴 완료 화면</span><span class="vi">Màn hoàn tất hủy tài khoản</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>링크를 없앱니다.</b> 존 지적이 맞습니다.
+
+탈퇴한 뒤에는 로그인 정보가 없어서 1:1 문의 자체가 불가능합니다. 눌러도 안 되는 링크를 남겨두면 사용자만 헛걸음합니다. 표시만 하고 이동을 막는 방식도 쓰지 않습니다 — 눌리는 것처럼 보이는데 아무 반응이 없으면 그게 더 나쁩니다.
+
+대신 문의가 필요한 사람을 위해 <b>고객센터 이메일 주소를 그냥 텍스트로 적어둡니다.</b> 링크도 버튼도 아니고 읽고 옮겨 적을 수 있는 글자입니다.
+
+<b>문구</b>
+기존: "의견이 있다면 <b>1:1 고객센터</b>로 들려주세요" (밑줄 링크)
+변경: "문의는 <b>support@pricepick.co.kr</b> 로 메일 주세요" (링크 아님)
+
+<b>화면은 이미 수정해 뒀습니다.</b> APP 데모와 인터렉티브, 스토리보드·스크린플로우에 모두 반영했습니다.</span><span class="vi">Đã chốt. <b>Xóa link đó đi.</b> John chỉ ra đúng.
+
+Sau khi hủy tài khoản thì không còn thông tin đăng nhập nên bản thân việc gửi yêu cầu 1:1 là không thể. Để lại một link bấm vào không dùng được chỉ khiến người dùng đi lòng vòng vô ích. Cũng không dùng cách "vẫn hiển thị nhưng chặn điều hướng" — trông như bấm được mà không phản hồi gì thì còn tệ hơn.
+
+Thay vào đó, cho những ai cần liên hệ, <b>chỉ ghi địa chỉ email CSKH dưới dạng chữ thường.</b> Không phải link, không phải nút — chỉ là chữ để đọc và chép lại.
+
+<b>Câu chữ</b>
+Cũ: "Nếu có ý kiến, hãy gửi tới <b>CSKH 1:1</b>" (link gạch chân)
+Mới: "Liên hệ qua <b>support@pricepick.co.kr</b> xin gửi email" (không phải link)
+
+<b>Màn hình đã được sửa rồi.</b> Đã áp dụng cho APP demo, Interactive, Storyboard và Screenflow.</span></span>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">탈퇴 완료 화면은 로그인·토큰이 필요한 화면으로 넘어가는 진입점을 하나도 두지 않습니다. 이 화면에서 나가는 경로는 "로그인 화면으로 돌아가기" 버튼 하나뿐입니다. 이메일은 텍스트로만 두고 mailto: 링크도 걸지 않습니다(메일 앱이 없는 기기에서 실패할 수 있음).
+
+정책 근거: policyspec 7(계정 탈퇴) — 즉시 탈퇴 + PII 스크럽, 보유 티켓·포인트 즉시 소멸. 탈퇴 후에는 계정 기준으로 조회·문의할 수 있는 게 남지 않습니다.</span><span class="vi">Màn hoàn tất hủy tài khoản không đặt bất kỳ điểm vào nào dẫn tới màn cần đăng nhập·token. Lối ra duy nhất từ màn này là nút "Về màn đăng nhập". Email chỉ để dạng chữ, không gắn link mailto: (có thể lỗi trên thiết bị không có app mail).
+
+Căn cứ chính sách: policyspec 7 (Hủy tài khoản) — hủy ngay + xóa PII, vé·điểm đang có mất ngay. Sau khi hủy thì không còn gì để tra cứu·hỏi đáp theo tài khoản nữa.</span></span></div>
+</div></div></div>
+
+<!-- ==================== GROUP 3 : 홈 화면에 추가 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">3. "홈 화면에 추가" 버튼 — iOS 동작</span><span class="vi">3. Nút "Thêm vào màn hình chính" — hành vi trên iOS</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">안드로이드는 홈 화면에 자동 추가가 가능하지만 iOS는 권한이 없습니다. "홈 화면에 추가" 버튼을 누르면 안드로이드는 자동 추가, iOS는 브라우저로 쿠팡 페이지를 열게 해도 될까요?</span><span class="vi">Android có thể tự động thêm vào màn hình chính nhưng iOS không có quyền. Vậy khi bấm nút "Thêm vào màn hình chính", Android thì tự thêm, còn iOS thì mở trang Coupang bằng trình duyệt, có được không?</span></span>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260720-john/john-q3-addhome-modal.png','홈 화면 추가 모달')"><img src="/devqa/assets/20260720-john/john-q3-addhome-modal.png" alt="홈 화면 추가 모달" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">홈 화면 추가 모달</span><span class="vi">Modal thêm vào màn hình chính</span></span></span></button></div></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">확정입니다. <b>iOS에서 쿠팡을 여는 건 안 됩니다.</b>
+
+버튼 이름이 "홈 화면에 추가"인데 눌렀더니 쿠팡이 열리면 이름과 동작이 어긋나서 사용자가 혼란스럽습니다. "추가가 된 건가? 왜 쇼핑몰이 열리지?" 하고 판단을 못 합니다. 버튼은 이름대로만 동작해야 합니다.
+
+<b>확정 동작</b>
+• <b>안드로이드</b> — 버튼을 누르면 홈 화면에 바로 추가됩니다.
+• <b>iOS</b> — OS 제약으로 자동 추가가 안 됩니다. 지금 모달에 있는 <b>"공유 → 홈 화면에 추가"</b> 안내를 그대로 보여줍니다. 쿠팡으로 이동시키지 않습니다.
+
+기기에 따라 결과가 다른 건 OS 제약이니, 사용자가 헷갈리지 않게 안내 문구로 명확히 알립니다.
+
+<b>안내 문구</b>
+기존: "Android — '홈 화면에 추가' 안내가 자동으로 떠요 / iPhone(사파리) — 공유 → '홈 화면에 추가'"
+변경: "Android — 버튼을 누르면 홈 화면에 바로 추가돼요 / iPhone(사파리) — OS 제약으로 자동 추가가 안 돼요. 공유 → '홈 화면에 추가'를 직접 눌러주세요"
+
+<b>화면은 이미 수정해 뒀습니다.</b> 버튼이 쿠팡·바로가기 페이지를 여는 동작도 제거했습니다.</span><span class="vi">Đã chốt. <b>Không được mở Coupang trên iOS.</b>
+
+Nút tên là "Thêm vào màn hình chính" mà bấm vào lại mở Coupang thì tên và hành vi lệch nhau, người dùng sẽ bối rối. Họ không biết "đã thêm chưa? sao lại mở trang mua sắm?". Nút phải hoạt động đúng như tên của nó.
+
+<b>Hành vi đã chốt</b>
+• <b>Android</b> — bấm nút là thêm ngay vào màn hình chính.
+• <b>iOS</b> — do giới hạn OS nên không thể tự thêm. Hiển thị đúng hướng dẫn <b>"Chia sẻ → Thêm vào màn hình chính"</b> đang có trong modal. Không điều hướng sang Coupang.
+
+Kết quả khác nhau theo thiết bị là do giới hạn OS, nên phải nói rõ bằng câu hướng dẫn để người dùng không nhầm.
+
+<b>Câu hướng dẫn</b>
+Cũ: "Android — hướng dẫn 'Thêm vào màn hình chính' tự hiện ra / iPhone (Safari) — Chia sẻ → 'Thêm vào màn hình chính'"
+Mới: "Android — bấm nút là thêm ngay vào màn hình chính / iPhone (Safari) — do giới hạn OS không thể tự thêm. Xin bấm Chia sẻ → 'Thêm vào màn hình chính'"
+
+<b>Màn hình đã được sửa rồi.</b> Hành vi mở Coupang·trang shortcut của nút cũng đã gỡ.</span></span>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">이 바로가기의 목적은 "앱을 안 거쳐도 제휴 추적 코드가 유지된 링크로 쇼핑몰에 들어가게 하는 것"입니다. 쇼핑몰을 여는 것 자체가 목적이 아니라 <b>홈 화면 아이콘이 생기는 것</b>이 목적이라, 아이콘이 안 생기는 iOS에서 쇼핑몰만 열어주면 이 기능의 목적이 달성되지 않습니다.
+
+쿠팡 링크에 붙는 제휴 추적 파라미터는 아직 미주입 상태입니다(현재 코드에 TODO로 표기). 실제 배포 전 확정 필요.</span><span class="vi">Mục đích của shortcut này là "vào thẳng sàn mua sắm bằng link vẫn giữ mã tracking liên kết mà không cần qua app". Mục đích không phải là mở sàn mua sắm, mà là <b>tạo được icon trên màn hình chính</b>. Vì vậy nếu trên iOS chỉ mở sàn mua sắm mà không tạo icon thì mục đích của tính năng không đạt được.
+
+Tham số tracking liên kết gắn vào link Coupang hiện chưa được inject (đang đánh dấu TODO trong code). Cần chốt trước khi phát hành thật.</span></span></div>
+</div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱 질문 답변 #14 · John · 2026-07-20 · 확정 3 / 확인 필요 0</span><span class="vi">PricePick · Giải đáp App #14 · John · 2026-07-20 · Đã chốt 3 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
