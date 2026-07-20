@@ -841,11 +841,6 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             <span class="sb-item-lbl" id="nav-label-attendance">주간 이벤트 추첨</span>
             
           </button>
-          <button class="sb-item" id="nav-clawback" data-label="환수 이력" onclick="go('clawback',this)">
-            <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
-            <span class="sb-item-lbl" id="nav-label-clawback">환수 이력</span>
-
-          </button>
         </div>
       </div>
 
@@ -2818,90 +2813,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 
 
 
-    <!-- ── 환수 이력 (신규 v4.12) ── -->
-    <div class="section" id="sec-clawback">
-      <div class="info-box"><strong>티켓 회수·소멸 이력</strong>은 구매 취소·반품에 의한 회수 및 등급 티켓 유효기간 만료 소멸 내역입니다. TicketTransaction 테이블의 type='CLAWBACK'·'EXPIRE' 레코드를 조회합니다.</div>
-      <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
-        <div class="stat-card red"><div class="stat-label">이번달 환수 건수</div><div class="stat-value">47</div><div class="stat-change down">↑ 전월 +8건</div></div>
-        <div class="stat-card amber"><div class="stat-label">환수 티켓 (브론즈)</div><div class="stat-value">312장</div><div class="stat-change down">이번달 누적</div></div>
-        <div class="stat-card amber"><div class="stat-label">환수 티켓 (실버)</div><div class="stat-value">28장</div><div class="stat-change neutral">이번달 누적</div></div>
-        <div class="stat-card"><div class="stat-label">환수 티켓 (골드)</div><div class="stat-value">4장</div><div class="stat-change neutral">이번달 누적</div></div>
-      </div>
-      <div class="toolbar">
-        <input class="search-box" placeholder="닉네임 또는 주문 ID 검색...">
-        <select class="filter-sel"><option>전체 등급</option><option>브론즈</option><option>실버</option><option>골드</option></select>
-        <select class="filter-sel"><option>전체 사유</option><option>취소</option><option>반품</option><option>만료</option></select>
-        <select class="filter-sel"><option>최근 30일</option><option>최근 7일</option><option>최근 90일</option><option>기간 직접 입력</option></select>
-        <div style="margin-left:auto;"><button class="btn btn-ghost btn-sm" onclick="toast('CSV 내보내기')">내보내기</button></div>
-      </div>
-      <div class="card">
-        <div class="card-header"><div class="card-title">티켓 회수·소멸 이력</div><div style="font-size:12px;color:var(--text-2)">취소·반품 회수 및 유효기간 만료 소멸 자동 처리</div></div>
-        <table>
-          <thead><tr><th>처리일시</th><th>닉네임(카카오톡 ID)</th><th>주문 ID</th><th>환수 티켓</th><th>원인</th><th>원 적립일</th><th>상세</th></tr></thead>
-          <tbody>
-            <tr>
-              <td style="text-align:center"><div style="font-weight:700;color:#333333">2026/05/30</div><div style="color:var(--text-3)">04:00:00</div></td>
-              <td><div style="font-weight:500">절약마스터</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(saving_master)</div></td>
-              <td style="font-family:monospace;font-size:11px;color:var(--text-2)">—</td>
-              <td><span class="tk-chip bronze bare">브론즈 2장</span></td>
-              <td><span class="badge" style="background:var(--surface-2);color:var(--text-2)">만료</span></td>
-              <td style="font-size:12px;color:var(--text-3);text-align:center"><div style="font-weight:700;color:#333333">2025/05/29</div><div>03:58:00</div></td>
-              <td><button class="btn btn-ghost btn-sm" onclick="openModal('m-clawback-detail')">상세</button></td>
-            </tr>
-            <tr>
-              <td style="text-align:center"><div style="font-weight:700;color:#333333">2026/05/11</div><div style="color:var(--text-3)">14:32:00</div></td>
-              <td><div style="font-weight:500">쇼핑왕민준</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(minjun_kko)</div></td>
-              <td style="font-family:monospace;font-size:11px;color:var(--text-2)">CP-20260510-8821</td>
-              <td><span class="tk-chip silver bare">실버 1장</span> <span class="tk-chip bronze bare">브론즈 5장</span></td>
-              <td><span class="badge badge-red">반품</span></td>
-              <td style="font-size:12px;color:var(--text-3);text-align:center"><div style="font-weight:700;color:#333333">2026/05/10</div><div>09:14:00</div></td>
-              <td><button class="btn btn-ghost btn-sm" onclick="toast('포스트백 로그 이동')">로그</button></td>
-            </tr>
-            <tr>
-              <td style="text-align:center"><div style="font-weight:700;color:#333333">2026/05/10</div><div style="color:var(--text-3)">22:17:00</div></td>
-              <td><div style="font-weight:500">절약러지호</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(jiho_kko)</div></td>
-              <td style="font-family:monospace;font-size:11px;color:var(--text-2)">CP-20260509-4421</td>
-              <td><span class="tk-chip bronze bare">브론즈 8장</span></td>
-              <td><span class="badge badge-amber">취소</span></td>
-              <td style="font-size:12px;color:var(--text-3);text-align:center"><div style="font-weight:700;color:#333333">2026/05/09</div><div>18:44:00</div></td>
-              <td><button class="btn btn-ghost btn-sm" onclick="toast('포스트백 로그 이동')">로그</button></td>
-            </tr>
-            <tr>
-              <td style="text-align:center"><div style="font-weight:700;color:#333333">2026/05/10</div><div style="color:var(--text-3)">11:03:00</div></td>
-              <td><div style="font-weight:500">가격헌터서연</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(seoyeon_kko)</div></td>
-              <td style="font-family:monospace;font-size:11px;color:var(--text-2)">CP-20260508-1104</td>
-              <td><span class="tk-chip gold bare">골드 1장</span> <span class="tk-chip silver bare">실버 2장</span></td>
-              <td><span class="badge badge-red">반품</span></td>
-              <td style="font-size:12px;color:var(--text-3);text-align:center"><div style="font-weight:700;color:#333333">2026/05/08</div><div>13:21:00</div></td>
-              <td><button class="btn btn-ghost btn-sm" onclick="toast('포스트백 로그 이동')">로그</button></td>
-            </tr>
-            <tr>
-              <td style="text-align:center"><div style="font-weight:700;color:#333333">2026/05/09</div><div style="color:var(--text-3)">08:55:00</div></td>
-              <td><div style="font-weight:500">핫딜탐정</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(hotdeal_kko)</div></td>
-              <td style="font-family:monospace;font-size:11px;color:var(--text-2)">CP-20260507-9982</td>
-              <td><span class="tk-chip bronze bare">브론즈 3장</span></td>
-              <td><span class="badge badge-amber">취소</span></td>
-              <td style="font-size:12px;color:var(--text-3);text-align:center"><div style="font-weight:700;color:#333333">2026/05/07</div><div>20:10:00</div></td>
-              <td><button class="btn btn-ghost btn-sm" onclick="toast('포스트백 로그 이동')">로그</button></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="pagination"><button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button><button class="page-btn">›</button></div>
-      </div>
-      <div class="card" style="margin-top:16px">
-        <div class="card-header"><div class="card-title">환수 부채 추적</div><div class="card-sub">활성 후 환불 → 부채 적재, 이후 적립에서 우선 상계</div></div>
-        <div style="padding:16px">
-          <div class="info-box" style="margin-bottom:12px">활성화된 티켓이 사용된 후 취소·반품 발생 시 즉시 회수 불가. 부채(음수 잔액)로 기록 후 다음 적립 시 자동 상계.</div>
-          <table>
-            <thead><tr><th>닉네임(카카오톡 ID)</th><th>부채 티켓</th><th>발생일</th><th>예상 상계일</th><th>상태</th></tr></thead>
-            <tbody>
-              <tr><td><div style="font-weight:500">쇼핑고수준혁</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(shop_junhyuk)</div></td><td><span class="tk-chip silver bare" style="color:var(--danger)">실버 -2장</span></td><td style="font-size:12px;color:var(--text-3);text-align:center"><div style="font-weight:700;color:#333333">2026/05/08</div><div style="color:var(--text-3)">13:21:00</div></td><td style="font-size:12px;color:var(--text-2)">다음 적립 시</td><td><span class="badge badge-amber">상계 대기</span></td></tr>
-              <tr><td><div style="font-weight:500">알뜰소비민지</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(minji_save)</div></td><td><span class="tk-chip bronze bare" style="color:var(--danger)">브론즈 -12장</span></td><td style="font-size:12px;color:var(--text-3);text-align:center"><div style="font-weight:700;color:#333333">2026/05/01</div><div style="color:var(--text-3)">09:05:33</div></td><td style="font-size:12px;color:var(--text-2)">다음 적립 시</td><td><span class="badge badge-amber">상계 대기</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    
 
     <!-- ── 포인트 내역 ── -->
     <div class="section" id="sec-points">
