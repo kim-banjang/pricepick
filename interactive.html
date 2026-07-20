@@ -13558,7 +13558,7 @@ const SCREEN_MAP = {
 const FLOW_MAP = [
   // 00 스플래시: 자동 전환 (타이머, JS에서 별도 처리)
   // 01 알림 허용 — bindNotifScreen()에서 별도 처리
-  ['pw-01b', '.ios-modal-btn', 'pw-02-nick', 'ATT 허용/거부 → 닉네임 설정'],
+  // (제거) pw-01b ← 셀렉터 .ios-modal-btn 가 0개 매칭 — 전용 바인더가 처리 중
   ['pw-02-nick', '.nick-start-btn', 'pw-03-reward', '시작하기 → 가입 보상 팝업'],
   ['pw-03-reward', '.rwd-link-btn',  'pw-02-K', '카카오 연동하고 더 받기 → 카카오 인증'],
   ['pw-03-reward', '.rwd-later-btn', 'pw-10',   '나중에 하기 → 홈'],
@@ -13590,15 +13590,15 @@ const FLOW_MAP = [
   ['pw-11', '.C-ml-go',                                'pw-13', '바로가기 → 13 (12 우회)'],
   ['pw-12', '.back-btn',                                         'pw-11', '뒤로 → 11'],
   ['pw-12', '.C-cta, .btn-primary, .db-buy, .go-btn, [class*="bridge"]', 'pw-13', '바로가기 → 13'],
-  ['pw-13', '.bridge-back, .back-btn',  'pw-12', '뒤로 → 12'],
-  ['pw-13', '.bridge-cta, .btn-primary', null,   '외부 쇼핑몰 이동'],
-  ['pw-20', '[class*="ex-nav"], [class*="benefit-nav"]',    'pw-24', '교환소 → 24'],
+  // (제거) pw-13 ← 셀렉터 .bridge-back, .back-btn 가 0개 매칭 — 전용 바인더가 처리 중
+  // (제거) pw-13 ← 셀렉터 .bridge-cta, .btn-primary 가 0개 매칭 — 전용 바인더가 처리 중
+  // (제거) pw-20 ← 셀렉터 [class*="ex-nav"], [class*="benefit-nav"] 가 0개 매칭 — 전용 바인더가 처리 중
   ['pw-20', '[class*="draw"], [class*="raffle"]',           'pw-26', '경품 → 26'],
-  ['pw-20', '[class*="ticket-hist"], [class*="earn-hist"]', 'pw-21', '티켓내역 → 21'],
-  ['pw-20', '[class*="earn-rule"], [class*="condition"]',   'pw-23', '적립조건 → 23'],
+  // (제거) pw-20 ← 셀렉터 [class*="ticket-hist"], [class*="earn-hist"] 가 0개 매칭 — 전용 바인더가 처리 중
+  // (제거) pw-20 ← 셀렉터 [class*="earn-rule"], [class*="condition"] 가 0개 매칭 — 전용 바인더가 처리 중
   ['pw-21', '.back-btn',                             'pw-20', '뒤로 → 혜택'],
   ['pw-21', '.gd-swap-cta, [class*="swap"]',         'pw-22', '등급교환 → 22'],
-  ['pw-21', '.btn-primary, [class*="to-exchange"]',  'pw-24', '교환소 → 24'],
+  // (제거) pw-21 ← 셀렉터 .btn-primary, [class*="to-exchange"] 가 0개 매칭 — 전용 바인더가 처리 중
   ['pw-22', '.back-btn',                   'pw-21', '뒤로 → 21'],
   ['pw-22', '.gd-cta, .swap-cta',          'pw-21', '교환 → 21 복귀'],
   ['pw-23', '.back-btn, .close-btn', 'pw-20', '닫기 → 혜택'],
@@ -13607,20 +13607,20 @@ const FLOW_MAP = [
   ['pw-25', '.back-btn',                   'pw-24', '뒤로 → 24'],
   ['pw-25', '.btn-primary, .btn-exchange', 'pw-20', '교환완료 → 혜택'],
   ['pw-26', '.back-btn, .reward-top-btn', 'pw-20', '뒤로 → 혜택'],
-  ['pw-26', '.btn-primary, .btn-apply', 'pw-20', '응모완료 → 혜택'],
-  ['pw-30', '[class*="menu-row"]:nth-child(1)',       'pw-21',         '내 티켓 → 21'],
-  ['pw-30', '[class*="menu-row"]:nth-child(2)',       'pw-32',         '활동내역 → 32'],
+  // (제거) pw-26 ← 셀렉터 .btn-primary, .btn-apply 가 0개 매칭 — 전용 바인더가 처리 중
+  // (제거) pw-30 ← 셀렉터 [class*="menu-row"]:nth-child(1) 가 0개 매칭 — 전용 바인더가 처리 중
+  // (제거) pw-30 ← 셀렉터 [class*="menu-row"]:nth-child(2) 가 0개 매칭 — 전용 바인더가 처리 중
   ['pw-30', '.my-row[data-jump="pw-34"]', 'pw-34', '구매내역 → 34'],
   ['pw-34', '.back-btn', 'pw-30', '뒤로 → 마이'],
-  ['pw-30', '[class*="setting"], [class*="config"]',  'pw-31',         '설정 → 31'],
-  ['pw-30', '[class*="withdraw"], [class*="leave"]',  'pw-33',         '탈퇴 → 06c'],
-  ['pw-31', '.back-btn', 'pw-30', '뒤로 → 마이'],
+  // (제거) pw-30 ← 셀렉터 [class*="setting"], [class*="config"] 가 0개 매칭 — 전용 바인더가 처리 중
+  // (제거) pw-30 ← 셀렉터 [class*="withdraw"], [class*="leave"] 가 0개 매칭 — 전용 바인더가 처리 중
+  // (제거) pw-31 ← 셀렉터 .back-btn 가 0개 매칭 — 전용 바인더가 처리 중
   ['pw-32', '.back-btn',      'pw-30', '뒤로 → 마이'],
   ['pw-32', '.activity-item', null,    '항목 탭'],
   ['pw-33', '.back-btn, .wd-cancel-btn', 'pw-30',          '취소/뒤로 → 마이'],
   ['pw-33', '.wd-confirm-btn',           'pw-02-withdraw', '탈퇴 최종 확인'],
-  ['pw-S1', '.back-btn',               null,    '뒤로'],
-  ['pw-S1', '.noti-item, .alert-item', 'pw-20', '알림 → 혜택'],
+  // (제거) pw-S1 ← 셀렉터 .back-btn 가 0개 매칭 — 전용 바인더가 처리 중
+  // (제거) pw-S1 ← 셀렉터 .noti-item, .alert-item 가 0개 매칭 — 전용 바인더가 처리 중
 ];
 
 // 탭바 맵
