@@ -8521,6 +8521,72 @@
   </div>
 </article>
 
+<article class="sb-card" id="s03_reward" data-num="03-reward" data-name="가입 보상 안내 팝업" tabindex="0" role="button" aria-label="03-reward 가입 보상 안내 팝업 상세 보기">
+  <div class="sb-card-thumb">
+<div class="wireframe">
+      <div class="wf-statusbar">
+        <span>9:41</span>
+        <div class="sb-icons"><span></span><span></span><span class="battery"></span></div>
+      </div>
+      <div class="wf-body" style="background:rgba(0,0,0,0.35);align-items:center;justify-content:center;display:flex;">
+        <div class="wf-card" style="width:80%;background:#fff;border-radius:16px;padding:18px 14px 14px;text-align:center;">
+          <div class="wf-logo-circle" style="width:52px;height:52px;background:linear-gradient(135deg,#9B78FF,#6B3FD4);margin:0 auto 10px;"></div>
+          <div style="font-size:13px;font-weight:800;color:var(--text1);line-height:1.35;margin-bottom:4px;">가입 축하 200P를<br>드렸어요</div>
+          <div style="font-size:9.5px;color:var(--text3);line-height:1.5;margin-bottom:10px;">포인트는 바로 적립됐어요.<br>쓰려면 카카오 연동이 필요해요.</div>
+          <div style="background:#F6F3FD;border-radius:10px;padding:9px 10px;margin-bottom:11px;text-align:left;">
+            <div style="display:flex;justify-content:space-between;font-size:9.5px;color:var(--text2);line-height:1.7;"><span>지금 받은 것</span><span style="font-weight:800;color:var(--main);">200P</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:9.5px;color:var(--text3);line-height:1.7;"><span>카카오 연동하면</span><span>이벤트 티켓 1장</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:9.5px;color:var(--text3);line-height:1.7;"><span>첫 경유구매하면</span><span>브론즈 1장</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <button class="wf-btn wf-btn-sm wf-btn-primary">카카오 연동하고 더 받기</button>
+            <button class="wf-btn wf-btn-sm wf-btn-ghost">나중에 하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sb-card-foot"><div class="sb-card-meta"><span class="sb-card-num">03-reward</span><span class="pill pill-cat-온보딩">온보딩</span></div><span class="sb-card-name">가입 보상 안내 팝업</span></div>
+  <div class="sb-card-spec" hidden>
+<div class="spec">
+      <div class="spec-block">
+        <h4>핵심 컨텐츠</h4>
+        <ul>
+          <li>가입 축하 문구 + <b>200P 지급 완료</b> 안내 (닉네임 가입 즉시 지급)</li>
+          <li>"포인트는 바로 적립됐어요. 쓰려면 카카오 연동이 필요해요" — 지급과 사용 시점을 분리해 안내</li>
+          <li>남은 온보딩 보상 미리보기 — 카카오 연동 시 이벤트 티켓 1장 / 첫 경유구매 시 브론즈 1장</li>
+          <li>CTA 2개: "카카오 연동하고 더 받기" / "나중에 하기"</li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <h4>데이터 입출력</h4>
+        <ul>
+          <li>IN — 온보딩 보상 지급 결과 (200P 적립 완료 여부)</li>
+          <li>IN — 남은 보상 조건 (카카오 연동 / 첫 경유구매)</li>
+          <li>OUT — 팝업 노출 완료 플래그 (계정당 1회)</li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <h4>인터랙션</h4>
+        <ul>
+          <li>진입: <code>03</code> 닉네임 설정 "시작하기" 직후 자동 노출</li>
+          <li>"카카오 연동하고 더 받기" → <code>02-K</code> 카카오 인증</li>
+          <li>"나중에 하기" / 배경 탭 → 닫고 <code>04</code> 홈</li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <h4>상태 변화 / 분기</h4>
+        <ul>
+          <li><b>계정당 1회만</b> 노출. 닫으면 다시 뜨지 않음</li>
+          <li>200P는 <b>가입 즉시 지급</b>, 사용·교환은 카카오 연동 후 (정책서 §8 온보딩 보상 · 카카오 연동 사용 제한)</li>
+          <li>이 팝업이 200P 지급을 알리는 유일한 수단 — <b>푸시는 보내지 않음</b> (사용자가 화면에 있으므로)</li>
+          <li>알림함에는 기록으로 남김 (이벤트 탭)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</article>
+
 <article class="sb-card dead-card" style="display:none;opacity:.5;filter:grayscale(.45);" id="s02" data-num="02" data-name="소셜 로그인 온보딩 (v8 폐지)" tabindex="0" role="button" aria-label="02 소셜 로그인 온보딩 (v8 폐지) 상세 보기">
   <div class="sb-card-thumb">
 <div class="sf-screen"><div class="phone">
