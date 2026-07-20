@@ -464,6 +464,18 @@
         <p id="card-storyboard-desc">화면별 기획 스펙과 의사결정을 정리한 문서.</p>
         <div class="arrow" id="card-storyboard-arrow">열기 →</div>
       </a>
+
+      <a class="card" href="https://pricepick-demo.vercel.app/app/" target="_blank" rel="noopener">
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/>
+            <line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/>
+          </svg>
+        </div>
+        <h2 id="card-demoapp-title">데모 앱</h2>
+        <p id="card-demoapp-desc">실데이터로 동작하는 앱 데모. 디자인 정본은 인터랙티브입니다.</p>
+        <div class="arrow" id="card-demoapp-arrow">열기 →</div>
+      </a>
     </main>
 
     <!-- ── 운영 · 개발 협업 ── -->
@@ -610,6 +622,8 @@ const I18N = {
     'card.screenflow.desc': '전체 화면 흐름을 트리로 시각화한 흐름도.',
     'card.storyboard.title': '스토리보드',
     'card.storyboard.desc': '화면별 기획 스펙과 의사결정을 정리한 문서.',
+    'card.demoapp.title': '데모 앱',
+    'card.demoapp.desc': '실데이터로 동작하는 앱 데모. 디자인 정본은 인터랙티브입니다.',
     'card.cms.title': 'CMS',
     'card.cms.desc': '어드민 운영 화면 설계.',
     'card.cmssb.title': 'CMS 스토리보드',
@@ -652,6 +666,8 @@ const I18N = {
     'card.screenflow.desc': 'Sơ đồ luồng toàn bộ màn hình được trực quan hóa dạng cây.',
     'card.storyboard.title': 'Storyboard',
     'card.storyboard.desc': 'Tài liệu đặc tả kế hoạch và quyết định theo từng màn hình.',
+    'card.demoapp.title': 'App Demo',
+    'card.demoapp.desc': 'Bản demo app chạy dữ liệu thật. Bản chuẩn về thiết kế là Interactive.',
     'card.cms.title': 'CMS',
     'card.cms.desc': 'Thiết kế màn hình quản trị vận hành.',
     'card.cmssb.title': 'CMS Storyboard',
@@ -718,6 +734,9 @@ function applyLang() {
   setTxt('card-storyboard-title',     t('card.storyboard.title'));
   setTxt('card-storyboard-desc',      t('card.storyboard.desc'));
   setTxt('card-storyboard-arrow',     t('card.arrow'));
+  setTxt('card-demoapp-title',        t('card.demoapp.title'));
+  setTxt('card-demoapp-desc',         t('card.demoapp.desc'));
+  setTxt('card-demoapp-arrow',        t('card.arrow'));
   setTxt('card-cms-title',            t('card.cms.title'));
   setTxt('card-cms-desc',             t('card.cms.desc'));
   setTxt('card-cms-arrow',            t('card.arrow'));
