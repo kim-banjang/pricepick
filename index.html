@@ -469,6 +469,19 @@
     <!-- ── 실제 동작 데모 ── -->
     <div class="seclabel" id="seclabel-demo">실제 동작 데모</div>
     <div class="grid">
+      <a class="card" href="/homepage.html" target="_blank" rel="noopener">
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18"/>
+            <path d="M12 3c2.5 2.5 4 5.7 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.7-4-9s1.5-6.5 4-9z"/>
+          </svg>
+        </div>
+        <h2 id="card-homepage-title">홈페이지 시안</h2>
+        <p id="card-homepage-desc">쿠팡 경유 쇼핑 리워드 앱 소개 랜딩 페이지. 스토어 다운로드 유도용 공개 페이지.</p>
+        <div class="arrow" id="card-homepage-arrow">열기 →</div>
+      </a>
+
       <a class="card" href="https://pricepick-demo.vercel.app/app/" target="_blank" rel="noopener">
         <div class="cicon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -641,6 +654,8 @@ const I18N = {
     'card.screenflow.desc': '전체 화면 흐름을 트리로 시각화한 흐름도.',
     'card.storyboard.title': '스토리보드',
     'card.storyboard.desc': '화면별 기획 스펙과 의사결정을 정리한 문서.',
+    'card.homepage.title': '홈페이지 시안',
+    'card.homepage.desc': '쿠팡 경유 쇼핑 리워드 앱 소개 랜딩 페이지. 스토어 다운로드 유도용 공개 페이지.',
     'card.demoapp.title': '데모 앱',
     'card.demoapp.desc': '실데이터로 동작하는 앱 데모. 디자인 정본은 인터랙티브입니다.',
     'card.democms.title': 'CMS 데모',
@@ -688,6 +703,8 @@ const I18N = {
     'card.screenflow.desc': 'Sơ đồ luồng toàn bộ màn hình được trực quan hóa dạng cây.',
     'card.storyboard.title': 'Storyboard',
     'card.storyboard.desc': 'Tài liệu đặc tả kế hoạch và quyết định theo từng màn hình.',
+    'card.homepage.title': 'Trang chủ (thiết kế)',
+    'card.homepage.desc': 'Trang landing giới thiệu app thưởng mua sắm qua Coupang. Trang công khai để dẫn tải app từ store.',
     'card.demoapp.title': 'App Demo',
     'card.demoapp.desc': 'Bản demo app chạy dữ liệu thật. Bản chuẩn về thiết kế là Interactive.',
     'card.democms.title': 'CMS Demo',
@@ -745,6 +762,9 @@ function applyLang() {
   setTxt('seclabel-demo',             t('seclabel.demo'));
   setTxt('seclabel-ops',              t('seclabel.ops'));
   setTxt('seclabel-devref',           t('seclabel.devref'));
+  setTxt('card-homepage-title',       t('card.homepage.title'));
+  setTxt('card-homepage-desc',        t('card.homepage.desc'));
+  setTxt('card-homepage-arrow',       t('card.arrow'));
   setTxt('card-interactive-title',    t('card.interactive.title'));
   setTxt('card-interactive-desc',     t('card.interactive.desc'));
   setTxt('card-interactive-arrow',    t('card.arrow'));
