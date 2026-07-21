@@ -1964,7 +1964,6 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           </div>
           <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
             <label style="font-size:12px;color:var(--text-2);display:flex;align-items:center;gap:6px"><input type="checkbox" checked> 등록 즉시 앱에 노출</label>
-            <label style="font-size:12px;color:var(--text-2);display:flex;align-items:center;gap:6px"><input type="checkbox"> 상단 고정</label>
             <div style="margin-left:auto;display:flex;gap:8px">
               <button class="btn btn-ghost btn-sm" onclick="toast('임시저장되었습니다.')">임시저장</button>
               <button class="btn btn-primary" onclick="toast('공지가 게시되었습니다.')">게시</button>
@@ -1975,13 +1974,13 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       <div class="card">
         <div class="card-header"><div class="card-title">공지 목록</div><div style="font-size:12px;color:var(--text-2)">총 8건</div></div>
         <table>
-          <thead><tr><th>제목</th><th style="text-align:center">분류</th><th style="text-align:center">게시일</th><th style="text-align:center">조회수</th><th style="text-align:center">노출</th><th style="text-align:center">관리</th></tr></thead>
+          <thead><tr><th>제목</th><th style="text-align:center">분류</th><th style="text-align:center">게시일</th><th style="text-align:center">조회수</th><th style="text-align:center">상태</th><th style="text-align:center">관리</th></tr></thead>
           <tbody>
-            <tr><td style="font-weight:500">[점검] 5/15 새벽 서버 정기 점검 안내</td><td style="text-align:center"><span class="badge badge-amber">서비스 점검</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/12</div></td><td style="text-align:center">1,204</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 숨김 처리했습니다(소프트삭제·보존).')">숨김</button></td></tr>
-            <tr><td style="font-weight:500">v1.4.3 업데이트 안내 (ATT·포스트백 개선)</td><td style="text-align:center"><span class="badge badge-purple">업데이트</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/08</div></td><td style="text-align:center">3,821</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 숨김 처리했습니다(소프트삭제·보존).')">숨김</button></td></tr>
-            <tr><td style="font-weight:500">개인정보처리방침 개정 안내 (시행 6/1)</td><td style="text-align:center"><span class="badge badge-red">정책 변경</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/05</div></td><td style="text-align:center">2,015</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 숨김 처리했습니다(소프트삭제·보존).')">숨김</button></td></tr>
-            <tr><td style="font-weight:500">제휴몰 추가 안내 (11번가·G마켓 오픈)</td><td style="text-align:center"><span class="badge badge-gray">일반</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/04/28</div></td><td style="text-align:center">5,640</td><td style="text-align:center"><span class="badge badge-green">노출</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 숨김 처리했습니다(소프트삭제·보존).')">숨김</button></td></tr>
-            <tr><td style="font-weight:500">[임시저장] 여름 시즌 이벤트 사전 공지</td><td style="text-align:center"><span class="badge badge-green">이벤트</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/13</div></td><td style="text-align:center">—</td><td style="text-align:center"><span class="badge badge-gray">숨김</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 숨김 처리했습니다(소프트삭제·보존).')">숨김</button></td></tr>
+            <tr><td style="font-weight:500">[점검] 5/15 새벽 서버 정기 점검 안내</td><td style="text-align:center"><span class="badge badge-amber">서비스 점검</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/12</div></td><td style="text-align:center">1,204</td><td style="text-align:center"><span class="badge badge-green">게시</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm" onclick="openModal('m-notice-edit')">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 삭제했습니다.')">삭제</button></td></tr>
+            <tr><td style="font-weight:500">v1.4.3 업데이트 안내 (ATT·포스트백 개선)</td><td style="text-align:center"><span class="badge badge-purple">업데이트</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/08</div></td><td style="text-align:center">3,821</td><td style="text-align:center"><span class="badge badge-green">게시</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm" onclick="openModal('m-notice-edit')">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 삭제했습니다.')">삭제</button></td></tr>
+            <tr><td style="font-weight:500">개인정보처리방침 개정 안내 (시행 6/1)</td><td style="text-align:center"><span class="badge badge-red">정책 변경</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/05</div></td><td style="text-align:center">2,015</td><td style="text-align:center"><span class="badge badge-green">게시</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm" onclick="openModal('m-notice-edit')">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 삭제했습니다.')">삭제</button></td></tr>
+            <tr><td style="font-weight:500">제휴몰 추가 안내 (11번가·G마켓 오픈)</td><td style="text-align:center"><span class="badge badge-gray">일반</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/04/28</div></td><td style="text-align:center">5,640</td><td style="text-align:center"><span class="badge badge-green">게시</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm" onclick="openModal('m-notice-edit')">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 삭제했습니다.')">삭제</button></td></tr>
+            <tr><td style="font-weight:500">[임시저장] 여름 시즌 이벤트 사전 공지</td><td style="text-align:center"><span class="badge badge-green">이벤트</span></td><td style="text-align:center;white-space:nowrap"><div style="font-weight:700;color:#333333">2026/05/13</div></td><td style="text-align:center">—</td><td style="text-align:center"><span class="badge badge-amber">임시저장</span></td><td style="text-align:center"><button class="btn btn-ghost btn-sm" onclick="openModal('m-notice-edit')">수정</button> <button class="btn btn-ghost btn-sm" onclick="toast('공지를 삭제했습니다.')">삭제</button></td></tr>
           </tbody>
         </table>
         <div class="pagination"><button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">›</button></div>
@@ -3505,11 +3504,24 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
         <div class="form-group"><label class="form-label">재가입 쿨타임</label><select class="form-select"><option>없음 (즉시 재가입)</option><option>7일</option><option>30일</option></select></div>
       </div>
       <div class="form-group"><label class="form-label">보유 티켓 처리</label><select class="form-select"><option>탈퇴 즉시 회수</option><option>유예 만료 시 회수</option></select></div>
-      <div class="form-group"><label class="form-label">PII 영구 삭제 항목</label><input class="form-input" value="이메일, 닉네임, 카카오ID"></div>
+      <div class="form-group"><label class="form-label">PII 영구 삭제 항목</label><div class="policy-value" style="padding:8px 0">이메일, 닉네임, 카카오ID</div><div class="policy-desc">고정 정책 — 운영자가 수정할 수 없습니다.</div></div>
       <div class="form-group"><label class="form-label">통계용 보존 항목 (익명화)</label><input class="form-input" value="탈퇴 사유, 가입일, 티켓 패턴"></div>
       <div class="info-box">설정값이 바뀌면 탈퇴 처리 절차·D-day 계산이 이 값을 따라 동적으로 반영됩니다.</div>
     </div>
     <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('m-withdrawal-policy')">취소</button><button class="btn btn-primary" onclick="toast('탈퇴 정책이 저장되었습니다.');closeModal('m-withdrawal-policy')">저장</button></div>
+  </div>
+</div>
+
+<!-- ── 모달: 공지 수정 ── -->
+<div class="modal-overlay" id="m-notice-edit">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">공지 수정</div><button class="modal-close" onclick="closeModal('m-notice-edit')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">제목</label><input class="form-input" value="[점검] 5/15 새벽 서버 정기 점검 안내"></div>
+      <div class="form-group"><label class="form-label">분류</label><select class="form-select"><option>일반</option><option selected>서비스 점검</option><option>업데이트</option><option>정책 변경</option><option>이벤트</option></select></div>
+      <div class="form-group"><label class="form-label">내용</label><textarea class="terms-editor" style="min-height:110px">5/15(금) 새벽 2시~4시 서버 정기 점검이 진행됩니다. 점검 시간 중에는 앱 이용이 제한됩니다.</textarea></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('m-notice-edit')">취소</button><button class="btn btn-ghost" onclick="toast('임시저장되었습니다.');closeModal('m-notice-edit')">임시저장</button><button class="btn btn-primary" onclick="toast('공지가 수정되었습니다.');closeModal('m-notice-edit')">게시</button></div>
   </div>
 </div>
 
@@ -5619,6 +5631,8 @@ Object.assign(KO2VI, {"카카오 연동 회원과 미연동(게스트) 회원이
 Object.assign(KO2VI, {"등급 전환":"Chuyển hạng","골드 +1":"Vàng +1","골드 +2":"Vàng +2","브론즈 +1":"Đồng +1","브론즈 +2":"Đồng +2","브론즈 +3":"Đồng +3","브론즈 −10":"Đồng −10","실버 +1":"Bạc +1","랜덤 +1":"Ngẫu nhiên +1","이벤트 +1":"Sự kiện +1","이벤트 +2":"Sự kiện +2","이벤트 +5":"Sự kiện +5","골드 −1":"Vàng −1","이벤트 −3":"Sự kiện −3","전체 −5":"Toàn bộ −5"});
 /* ── i18n 보강 (2026-07-21) — VI 전환 시 한국어로 남던 문구 ── */
 Object.assign(KO2VI,{"거르는 기준은 “거래유형” 하나":"Tiêu chí lọc chỉ có một là “loại giao dịch”","— 티켓 이력은 티켓이 어떻게 생기고 없어졌는지를 남기는 장부라, 필터도 거래유형 한 축입니다. “보유중/사용완료” 같은 상태는 잔량을 보여주는 것이라 필터에서 빼고":"— Lịch sử vé là sổ ghi lại vé sinh ra và mất đi thế nào, nên bộ lọc cũng chỉ xoay quanh một trục là loại giao dịch. Các trạng thái như “đang giữ/đã dùng” là thứ cho thấy số dư nên bỏ khỏi bộ lọc,","상태 컬럼으로만":"chỉ bằng cột trạng thái","표시합니다.":"để hiển thị.","회수 전용 페이지는 만들지 않습니다":"Không tạo trang riêng cho việc thu hồi","— 거래유형에서 “관리자 회수”를 골라 보면 됩니다. (해리 답변 #12 · 2026-07-16 확정)":"— Chỉ cần chọn “Admin thu hồi” ở loại giao dịch là xem được. (Câu trả lời của Harry #12 · chốt 2026-07-16)","브론즈 −1":"Đồng −1","브론즈 −5":"Đồng −5","브론즈 −2":"Đồng −2","VIN 화면 구성예정":"VIN sẽ dựng màn hình"});
+/* ── i18n 보강 (2026-07-21 재질문 답변 반영) — 공지사항 관리·탈퇴 정책 UI 변경 ── */
+Object.assign(KO2VI,{"공지 수정":"Sửa thông báo","고정 정책 — 운영자가 수정할 수 없습니다.":"Chính sách cố định — quản trị viên không thể sửa.","공지를 삭제했습니다.":"Đã xóa thông báo.","공지가 수정되었습니다.":"Thông báo đã được sửa.","5/15(금) 새벽 2시~4시 서버 정기 점검이 진행됩니다. 점검 시간 중에는 앱 이용이 제한됩니다.":"Bảo trì định kỳ máy chủ diễn ra từ 2 giờ đến 4 giờ sáng thứ Sáu 5/15. Trong thời gian bảo trì, việc sử dụng ứng dụng sẽ bị hạn chế."});
 
 
   var _orig=new Map(), _tracked=new Set(), _applying=false;
