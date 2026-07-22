@@ -154,4 +154,13 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 
 <div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 설명서</span><span class="vi">PricePick · Tài liệu CMS</span></span> · <span class="i18n"><span class="ko">개발자용 문서 · 김반장님 확정 기준 업데이트</span><span class="vi">Tài liệu dành cho dev · cập nhật theo xác nhận của Mr Mark</span></span></div>
 </div>
+<script>
+(function(){
+  var cb = document.getElementById('langsw');
+  if (!cb) return;
+  var KEY = 'pp_cms_lang';
+  if (localStorage.getItem(KEY) === 'vi') cb.checked = true;
+  cb.addEventListener('change', function(){ localStorage.setItem(KEY, cb.checked ? 'vi' : 'ko'); });
+})();
+</script>
 </body></html>
