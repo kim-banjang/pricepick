@@ -34,31 +34,9 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 .pbadge.on{background:#e6f5f5;color:var(--ok);border:1px solid #bfe6e6}
 .pbadge.off{background:var(--bg);color:var(--ink3);border:1px solid var(--line)}
 .pbadge.block{background:#fdeceb;color:#c0392b;border:1px solid #f5c6c1}
-.wire-cms{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;max-width:780px;margin:14px 0}
-.wire-cms .banner{background:var(--pp-l);border:1px solid #ddd0fb;border-radius:7px;font-size:10.5px;padding:6px 10px;color:var(--pp-d);margin-bottom:6px}
-.wire-cms .banner.warn{background:#fdeceb;border-color:#f5c6c1;color:#c0392b}
-.wire-cms .cards{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
-.wire-cms .card{flex:1;min-width:230px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px}
-.wire-cms .card .hd{display:flex;justify-content:space-between;font-weight:700;font-size:12px;margin-bottom:6px}
-.wire-cms .card .hd .btn{font-size:10px;border:1px solid var(--line);border-radius:6px;padding:1px 8px;color:var(--ink2);font-weight:500}
-.wire-cms .fld{border-top:1px solid var(--line);padding:6px 0;font-size:11px;color:var(--ink2)}
-.wire-cms .fld b{display:block;font-size:12.5px;color:var(--ink1)}
-.wire-cms .fld small{color:var(--ink3);font-size:9.5px}
-.wire-cms .hist{background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-top:4px}
-.wire-cms .hist .hd{font-weight:700;font-size:12px;margin-bottom:6px}
-.wire-cms .hist table{font-size:10.5px;margin:0}
-.wire-cms .hist th,.wire-cms .hist td{padding:4px 8px}
-.phones{display:flex;gap:22px;flex-wrap:wrap;margin:14px 0}
-.phone{width:220px;border:7px solid var(--ink1);border-radius:30px;background:#fff;overflow:hidden}
-.phone .cap{background:var(--bg);border-bottom:1px solid var(--line);font-size:9.5px;font-weight:700;color:var(--ink2);padding:5px 10px;letter-spacing:.4px}
-.phone .body{padding:14px 12px;min-height:230px;display:flex;flex-direction:column;justify-content:center;text-align:center}
-.phone .ic{width:44px;height:44px;border-radius:14px;background:var(--pp-l);color:var(--pp-d);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;margin:0 auto 12px}
-.phone .t1{font-size:13px;font-weight:700;margin-bottom:6px}
-.phone .t2{font-size:10.5px;color:var(--ink2);margin-bottom:14px;line-height:1.5}
-.phone .cta{background:var(--pp);color:#fff;border-radius:10px;font-size:11.5px;font-weight:700;padding:10px;margin:0 6px}
-.phone .no-x{font-size:9px;color:var(--ink3);margin-top:10px}
-.pseudo{background:#1E1930;color:#E8E3F5;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Menlo,monospace;font-size:11.5px;line-height:1.7;max-width:840px;margin:12px 0;overflow-x:auto}
-.pseudo .c{color:#8F87A8}
+.pbadge.hold{background:#eef0f4;color:var(--hold);border:1px solid #dde0e6}
+.shot{max-width:100%;width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 12px rgba(31,35,48,.07);margin:12px 0 4px;display:block}
+.shotcap{font-size:11px;color:var(--ink3);margin:0 0 16px}
 .placeholder-box{background:#fff;border:1.5px dashed var(--line);border-radius:14px;padding:40px 24px;text-align:center;margin-top:20px}
 .placeholder-box .pi{font-size:30px;margin-bottom:10px}
 .placeholder-box .pt{font-size:15px;font-weight:700;color:var(--ink1);margin-bottom:6px}
@@ -81,18 +59,67 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
 <div class="wraphdr"><div class="crumb"><a href="/cms-storyboard/index.html"><span class="i18n"><span class="ko">&larr; CMS 설명서 전체 목록</span><span class="vi">&larr; Danh sách toàn bộ tài liệu CMS</span></span></a></div>
 <div class="htitle"><span class="i18n"><span class="ko">포스트백 로그</span><span class="vi">Log Postback</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">CMS 설명서 · 작성 예정</span><span class="vi">Tài liệu CMS · Sẽ viết sau</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">제휴몰이 "이 사람이 방금 결제했다"고 알려주는 신호를 모아보는 화면 — 지금은 신호 자체가 없다</span><span class="vi">Màn tổng hợp tín hiệu cửa hàng liên kết báo "người này vừa thanh toán" — hiện tại chưa có tín hiệu nào cả</span></span></div>
 </div></header>
 <div class="wrap">
 <div class="meta">
 <span class="chip"><span class="i18n"><span class="ko">그룹</span><span class="vi">Nhóm</span></span>: <span class="i18n"><span class="ko">시스템</span><span class="vi">Hệ thống</span></span></span>
-<span class="bd ck"><span class="i18n"><span class="ko">작성 예정</span><span class="vi">Sẽ viết sau</span></span></span>
+<span class="bd hold"><span class="i18n"><span class="ko">미확인 (서드파티 연동 전)</span><span class="vi">Chưa xác nhận (trước khi kết nối bên thứ ba)</span></span></span>
 </div>
-<div class="placeholder-box">
-<div class="pi">&#128221;</div>
-<div class="pt"><span class="i18n"><span class="ko">설명서 작성 예정</span><span class="vi">Tài liệu sẽ được viết sau</span></span></div>
-<div class="ps"><span class="i18n"><span class="ko">'포스트백 로그' 화면의 상세 설명서는 아직 작성되지 않았습니다. 작성되면 이 페이지가 갱신됩니다.</span><span class="vi">Tài liệu chi tiết cho màn 'Log Postback' chưa được viết. Trang này sẽ được cập nhật khi có nội dung.</span></span></div>
+<div class="meta" style="margin-top:0">
+<span class="chip"><span class="i18n"><span class="ko">작성</span><span class="vi">Viết bởi</span></span>: 2026.07.22 (Dispatch D조)</span>
+<span class="chip"><span class="i18n"><span class="ko">근거</span><span class="vi">Căn cứ</span></span>: <span class="i18n"><span class="ko">CMS 데모 실화면 · devqa Harry 07-21 · devqa 쿠팡 API 07-22</span><span class="vi">Màn CMS demo thực tế · devqa Harry 07-21 · devqa API Coupang 07-22</span></span></span>
 </div>
+
+<h2 class="sec"><span class="i18n"><span class="ko">1. 한 줄 정의</span><span class="vi">1. Định nghĩa một dòng</span></span></h2>
+<p><span class="i18n"><span class="ko"><strong>포스트백 로그 = 제휴몰(쿠팡·11번가·G마켓·알리익스프레스·아이허브)이 "우리 회원이 방금 그쪽에서 결제를 끝냈다"고 우리 서버에 알려준 통보(콜백) 기록.</strong> 회원이 PricePick 화면에서 제휴몰로 넘어가 물건을 사면, 그 제휴몰이 우리 서버로 "누가 얼마에 샀다"는 신호를 보내주는데 그게 포스트백이다. 이 신호가 들어와야 비로소 <strong>가지급(적립예정) 티켓 처리</strong>와 <strong>제휴 수수료(매출) 집계</strong>가 시작된다 — 이 화면은 그 신호들이 실제로 들어오고 있는지, 얼마가 잡히고 있는지를 확인하는 로그다.</span><span class="vi"><strong>Log Postback = bản ghi thông báo (callback) mà cửa hàng liên kết (Coupang·11번가·G마켓·AliExpress·iHerb) gửi cho server của mình để báo "hội viên của mình vừa thanh toán xong bên đó".</strong> Khi hội viên từ màn PricePick chuyển sang cửa hàng liên kết và mua hàng, cửa hàng đó sẽ gửi tín hiệu về server mình báo "ai đã mua với giá bao nhiêu" — đó chính là postback. Phải có tín hiệu này thì <strong>xử lý vé tạm cấp (chờ tích lũy)</strong> và <strong>tổng hợp hoa hồng liên kết (doanh thu)</strong> mới bắt đầu được — màn này là log để xác nhận tín hiệu đó có thực sự vào không, và số tiền ghi nhận là bao nhiêu.</span></span></p>
+<div class="callout warn"><div class="tt"><span class="i18n"><span class="ko">지금 상태 — 미확인(서드파티 연동 전)</span><span class="vi">Trạng thái hiện tại — Chưa xác nhận (trước khi kết nối bên thứ ba)</span></span></div><span class="i18n"><span class="ko">2026-07-21 해리 답변으로 확정: 아직 제휴몰(링크프라이스 등 제휴 대행사) 연동 전이라 <strong>실제로 들어오는 포스트백 자체가 없다.</strong> 화면 아래 보이는 데이터는 전부 데모용 가상 손님 시나리오로 채운 것이며, 실제 결제·실제 수수료가 아니다. 연동 완료 후 진짜 신호가 들어오기 시작하면 그때 다시 검증해서 '확정'으로 바뀐다.</span><span class="vi">Đã chốt theo trả lời của Harry ngày 2026-07-21: vì chưa kết nối cửa hàng liên kết (công ty đại lý như LinkPrice v.v.) nên <strong>hiện chưa có postback thực tế nào vào cả.</strong> Dữ liệu hiển thị bên dưới đều là dữ liệu demo dựng theo kịch bản khách ảo, không phải thanh toán·hoa hồng thực. Sau khi kết nối xong và tín hiệu thật bắt đầu vào, sẽ xác nhận lại và chuyển sang 'Đã chốt'.</span></span></div>
+
+<h2 class="sec"><span class="i18n"><span class="ko">2. CMS 화면 구성</span><span class="vi">2. Cấu trúc màn hình CMS</span></span></h2>
+<img class="shot" src="/cms-storyboard/img/postback-01-list.png" alt="포스트백 로그 화면 실캡처">
+<div class="shotcap"><span class="i18n"><span class="ko">실제 CMS 데모(pricepick-demo.vercel.app) · 시스템 &gt; 포스트백 로그 · 2026-07-22 캡처</span><span class="vi">CMS demo thực tế (pricepick-demo.vercel.app) · Hệ thống &gt; Log Postback · Chụp 2026-07-22</span></span></div>
+<table>
+  <tr><th style="width:150px"><span class="i18n"><span class="ko">요소</span><span class="vi">Thành phần</span></span></th><th><span class="i18n"><span class="ko">의미</span><span class="vi">Ý nghĩa</span></span></th><th><span class="i18n"><span class="ko">지금 데모에서 보이는 값</span><span class="vi">Giá trị hiện thấy ở demo</span></span></th></tr>
+  <tr><td><b><span class="i18n"><span class="ko">수신 시각</span><span class="vi">Thời điểm nhận</span></span></b></td><td><span class="i18n"><span class="ko">제휴몰 콜백이 우리 서버에 도착한 시각</span><span class="vi">Thời điểm callback của cửa hàng liên kết đến server mình</span></span></td><td><span class="i18n"><span class="ko">가장 최근이 2026/07/10 — 즉 그 이후로 실제든 데모든 새 신호가 없다는 뜻</span><span class="vi">Gần nhất là 2026/07/10 — nghĩa là sau đó không có tín hiệu mới nào, kể cả thực lẫn demo</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">제휴몰</span><span class="vi">Cửa hàng liên kết</span></span></b></td><td><span class="i18n"><span class="ko">어느 제휴몰에서 결제됐는지</span><span class="vi">Thanh toán ở cửa hàng liên kết nào</span></span></td><td><span class="i18n"><span class="ko">쇼핑몰(더미 명칭)·쿠팡 등이 섞여 있음 — 데모 시나리오용 가상 제휴몰명 포함</span><span class="vi">Có lẫn 쇼핑몰(tên dummy)·Coupang v.v. — gồm cả tên cửa hàng liên kết ảo cho kịch bản demo</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">회원(UID)</span><span class="vi">Hội viên (UID)</span></span></b></td><td><span class="i18n"><span class="ko">결제한 회원의 닉네임과 내부 식별 ID</span><span class="vi">Nickname và ID định danh nội bộ của hội viên đã thanh toán</span></span></td><td><span class="i18n"><span class="ko">대부분 게스트(비연동) — 닉네임 없는 회원도 다수 포함</span><span class="vi">Phần lớn là khách (chưa liên kết) — nhiều hội viên chưa có nickname</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">주문번호</span><span class="vi">Mã đơn hàng</span></span></b></td><td><span class="i18n"><span class="ko">제휴몰이 발급한 주문 고유값. 중복 포스트백 차단 기준</span><span class="vi">Mã đơn hàng do cửa hàng liên kết cấp, duy nhất. Là chuẩn để chặn postback trùng</span></span></td><td><span class="i18n"><span class="ko">이 값으로 UNIQUE 제약을 걸어, 같은 주문이 두 번 들어와도 티켓이 두 번 안 쌓임</span><span class="vi">Dùng giá trị này làm ràng buộc UNIQUE, cùng một đơn hàng vào 2 lần cũng không cộng vé 2 lần</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">제휴 수수료(매출)</span><span class="vi">Hoa hồng liên kết (doanh thu)</span></span></b></td><td><span class="i18n"><span class="ko">구매금액 × 수수료율(제휴몰·카테고리별 상이). 우리 매출로 잡히는 항목</span><span class="vi">Số tiền mua × tỷ lệ hoa hồng (khác nhau theo cửa hàng·danh mục). Đây là khoản ghi nhận doanh thu của mình</span></span></td><td><span class="i18n"><span class="ko">화면에는 3% 수수료율 예시가 다수 — 실제 계약 수수료율이 아니라 데모 예시값</span><span class="vi">Trên màn có nhiều ví dụ tỷ lệ 3% — không phải tỷ lệ hoa hồng hợp đồng thực, chỉ là giá trị ví dụ demo</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">상태</span><span class="vi">Trạng thái</span></span></b></td><td><span class="i18n"><span class="ko">정상(확정) / 대기 / 환불 3종. 필터로도 제공</span><span class="vi">3 loại: Bình thường(đã chốt) / Chờ / Hoàn tiền. Cũng có ở bộ lọc</span></span></td><td><span class="i18n"><span class="ko">캡처 시점 전부 '대기' — 구매확정 배치(연동 D+7/미연동 D+30)가 아직 안 돈 상태</span><span class="vi">Tại thời điểm chụp toàn bộ đều 'Chờ' — batch xác nhận mua (liên kết D+7/chưa liên kết D+30) chưa chạy</span></span></td></tr>
+</table>
+<div class="callout"><div class="tt"><span class="i18n"><span class="ko">필터 3종</span><span class="vi">3 bộ lọc</span></span></div><span class="i18n"><span class="ko">닉네임·주문번호 검색창, 전체 제휴몰(쿠팡/11번가/G마켓/알리익스프레스/아이허브 개별 선택), 전체 상태(정상확정/대기/환불). 화면 상단 안내문에 데이터 출처(제휴몰 포스트백 콜백)와 저장처(우리 DB postback_logs 테이블, append-only)가 항상 표시된다.</span><span class="vi">Ô tìm nickname·mã đơn, bộ lọc toàn bộ cửa hàng liên kết (chọn riêng Coupang/11번가/G마켓/AliExpress/iHerb), bộ lọc toàn bộ trạng thái (đã chốt/chờ/hoàn tiền). Phần đầu màn luôn hiển thị nguồn dữ liệu (callback postback cửa hàng liên kết) và nơi lưu (bảng postback_logs của DB mình, chỉ thêm không sửa/xóa).</span></span></div>
+
+<h2 class="sec"><span class="i18n"><span class="ko">3. 동작 로직 — 포스트백이 들어오면 생기는 일</span><span class="vi">3. Logic hoạt động — Điều xảy ra khi postback vào</span></span></h2>
+<div class="flow">
+  <div class="fstep"><b>1</b><span class="i18n"><span class="ko">회원이 픽구매 링크로<br>제휴몰 이동·결제</span><span class="vi">Hội viên đi qua link<br>PricePick·thanh toán ở đối tác</span></span></div><div class="farr">&rarr;</div>
+  <div class="fstep"><b>2</b><span class="i18n"><span class="ko">제휴몰이 우리 서버로<br>콜백(포스트백) 전송</span><span class="vi">Cửa hàng gửi callback<br>(postback) về server mình</span></span></div><div class="farr">&rarr;</div>
+  <div class="fstep"><b>3</b><span class="i18n"><span class="ko">주문번호 UNIQUE 검사<br>(중복이면 차단)</span><span class="vi">Kiểm tra UNIQUE mã đơn<br>(trùng thì chặn)</span></span></div><div class="farr">&rarr;</div>
+  <div class="fstep"><b>4</b><span class="i18n"><span class="ko">가지급(대기) 티켓 적립<br>+ 로그에 '대기'로 기록</span><span class="vi">Cộng vé tạm cấp (chờ)<br>+ ghi log trạng thái 'Chờ'</span></span></div><div class="farr">&rarr;</div>
+  <div class="fstep"><b>5</b><span class="i18n"><span class="ko">구매확정 배치<br>(연동 D+7 / 미연동 D+30)</span><span class="vi">Batch xác nhận mua<br>(liên kết D+7 / chưa D+30)</span></span></div><div class="farr">&rarr;</div>
+  <div class="fstep"><b>6</b><span class="i18n"><span class="ko">'정상(확정)'으로 전환<br>+ 매출로 수수료 집계</span><span class="vi">Chuyển 'Bình thường(chốt)'<br>+ tính hoa hồng vào doanh thu</span></span></div>
+</div>
+<table>
+  <tr><th style="width:220px"><span class="i18n"><span class="ko">예외 상황</span><span class="vi">Tình huống ngoại lệ</span></span></th><th><span class="i18n"><span class="ko">처리 방식</span><span class="vi">Cách xử lý</span></span></th></tr>
+  <tr><td><b><span class="i18n"><span class="ko">확정 후 환불</span><span class="vi">Hoàn tiền sau khi đã chốt</span></span></b></td><td><span class="i18n"><span class="ko">이미 지급된 티켓 전체가 아니라 <strong>미사용분만</strong> 회수. 이미 쓴 티켓은 건드리지 않음</span><span class="vi">Không thu hồi toàn bộ vé đã cấp mà <strong>chỉ thu phần chưa dùng</strong>. Vé đã dùng thì giữ nguyên</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">포스트백 미수신 24시간</span><span class="vi">Không nhận postback sau 24h</span></span></b></td><td><span class="i18n"><span class="ko">회원이 영수증을 인증하면 <strong>수동으로 지급</strong> 처리하는 별도 흐름으로 연결(제휴몰 신호 누락 대비)</span><span class="vi">Nếu hội viên xác thực hóa đơn thì nối sang luồng <strong>cấp thủ công</strong> riêng (phòng khi tín hiệu cửa hàng bị mất)</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">중복 포스트백</span><span class="vi">Postback trùng lặp</span></span></b></td><td><span class="i18n"><span class="ko">같은 주문번호가 두 번 오면 <strong>주문번호 UNIQUE 제약</strong>으로 두 번째부터는 차단(중복 적립 방지)</span><span class="vi">Cùng mã đơn hàng vào 2 lần thì từ lần thứ 2 bị chặn bởi <strong>ràng buộc UNIQUE mã đơn</strong> (tránh cộng vé trùng)</span></span></td></tr>
+</table>
+
+<h2 class="sec"><span class="i18n"><span class="ko">4. 왜 지금은 검증이 안 되는가</span><span class="vi">4. Vì sao hiện chưa xác nhận được</span></span></h2>
+<p><span class="i18n"><span class="ko">쿠팡을 예로 들면, 지금 개발에서 쓰는 API는 한국 운영 담당자가 공유한 <strong>제휴 대행사(ddaynet)의 링크 생성 API</strong>다. 이 API로 '쿠팡 바로가기' 이동과 클릭 추적(click_id)까지는 확인됐지만, <strong>구매 확정 통보(포스트백) 수신은 아직 안 된다</strong> — 포스트백을 받으려면 우리 쪽에 수신 서버가 필요하고, 이건 <strong>정식 쿠팡 파트너스 API 연동</strong> 단계의 몫이다. 정식 API는 앱 패키지네임이 확정된 후 신청·발급받을 예정이다. (devqa 쿠팡 API 답변, 2026-07-22)</span><span class="vi">Lấy Coupang làm ví dụ, API đang dùng để phát triển hiện tại là <strong>API tạo link của công ty đại lý liên kết (ddaynet)</strong> do người phụ trách vận hành Hàn Quốc chia sẻ. Với API này đã xác nhận được việc chuyển hướng 'Coupang bắt đầu' và theo dõi click (click_id), nhưng <strong>chưa nhận được thông báo xác nhận mua hàng (postback)</strong> — để nhận postback cần có server nhận riêng phía mình, đây là phần thuộc giai đoạn <strong>kết nối API Coupang Partners chính thức</strong>. API chính thức sẽ đăng ký·cấp phát sau khi package name của app được chốt. (Trả lời devqa API Coupang, 2026-07-22)</span></span></p>
+<div class="callout"><div class="tt"><span class="i18n"><span class="ko">함께 '미확인'으로 전환된 화면</span><span class="vi">Các màn cũng chuyển sang 'Chưa xác nhận'</span></span></div><span class="i18n"><span class="ko">같은 이유(포스트백 실데이터 없음)로 <strong>수익 분석·매출 내역·정산 내역</strong> 세 화면도 함께 '미확인' 상태다. 세 화면 다 포스트백 데이터가 있어야 숫자가 의미를 갖기 때문 — 화면 자체(데모 연출 데이터)는 그대로 두고 상태만 바꾼 것이다.</span><span class="vi">Vì cùng lý do (chưa có dữ liệu postback thật), 3 màn <strong>Phân tích doanh thu·Lịch sử doanh thu·Lịch sử quyết toán</strong> cũng đang ở trạng thái 'Chưa xác nhận'. Vì cả 3 màn đều cần dữ liệu postback thì số liệu mới có ý nghĩa — chỉ đổi trạng thái, còn màn hình (dữ liệu demo dàn dựng) vẫn giữ nguyên.</span></span></div>
+
+<h2 class="sec"><span class="i18n"><span class="ko">5. 운영 시나리오 (연동 이후)</span><span class="vi">5. Kịch bản vận hành (sau khi kết nối)</span></span></h2>
+<table>
+  <tr><th style="width:190px"><span class="i18n"><span class="ko">상황</span><span class="vi">Tình huống</span></span></th><th><span class="i18n"><span class="ko">운영자가 하는 일</span><span class="vi">Việc Vận hành viên làm</span></span></th><th><span class="i18n"><span class="ko">확인 포인트</span><span class="vi">Điểm cần kiểm tra</span></span></th></tr>
+  <tr><td><b><span class="i18n"><span class="ko">정상 수신</span><span class="vi">Nhận bình thường</span></span></b></td><td><span class="i18n"><span class="ko">특별한 조치 없음 — 로그만 주기적으로 확인</span><span class="vi">Không cần xử lý gì đặc biệt — chỉ định kỳ kiểm tra log</span></span></td><td><span class="pbadge on"><span class="i18n"><span class="ko">대기 → 정상(확정) 자동 전환</span><span class="vi">Chờ → tự động chuyển Bình thường(chốt)</span></span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">특정 회원 24h 이상 미수신</span><span class="vi">Một hội viên không nhận được sau 24h+</span></span></b></td><td><span class="i18n"><span class="ko">회원 영수증 인증 접수 시 수동 지급 플로우로 처리</span><span class="vi">Khi hội viên xác thực hóa đơn thì xử lý theo luồng cấp thủ công</span></span></td><td><span class="pbadge hold"><span class="i18n"><span class="ko">제휴몰 신호 누락 가능성 우선 확인</span><span class="vi">Ưu tiên kiểm tra khả năng mất tín hiệu từ cửa hàng</span></span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">동일 주문 중복 신호</span><span class="vi">Tín hiệu trùng cùng 1 đơn</span></span></b></td><td><span class="i18n"><span class="ko">시스템이 자동 차단 — 운영자 조치 불필요</span><span class="vi">Hệ thống tự động chặn — không cần Vận hành viên xử lý</span></span></td><td><span class="pbadge on"><span class="i18n"><span class="ko">로그에 1건만 남는지 확인</span><span class="vi">Kiểm tra log chỉ còn lại 1 dòng</span></span></span></td></tr>
+</table>
+
+<h2 class="sec"><span class="i18n"><span class="ko">6. 데모의 범위</span><span class="vi">6. Phạm vi demo</span></span></h2>
+<p><span class="i18n"><span class="ko">지금 화면에 보이는 80건은 전부 <strong>demo_scenarios(scripts/seed-demo.js)</strong>로 채운 가상 손님 데이터다. 실제 제휴몰이 보낸 콜백이 아니라, 개발·데모 그룹의 「데이터 관리(데모)」 화면에서 운영자가 직접 입력해 만든 값이다. 실제 연동이 시작되면 이 화면의 역할은 그대로지만, 데이터 출처가 데모 입력에서 실제 제휴몰 콜백으로 바뀐다.</span><span class="vi"><strong>80 dòng đang hiển thị trên màn đều là dữ liệu khách ảo được đổ vào bằng demo_scenarios(scripts/seed-demo.js).</strong> Không phải callback thật từ cửa hàng liên kết, mà là giá trị Vận hành viên tự nhập ở màn 「Quản lý dữ liệu (Demo)」 của nhóm Phát triển·Demo. Khi kết nối thật bắt đầu, vai trò của màn này vẫn giữ nguyên, chỉ nguồn dữ liệu đổi từ nhập demo sang callback thật của cửa hàng liên kết.</span></span></p>
+
 <div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 설명서</span><span class="vi">PricePick · Tài liệu CMS</span></span> · <span class="i18n"><span class="ko">개발자용 문서 · 김반장님 확정 기준 업데이트</span><span class="vi">Tài liệu dành cho dev · cập nhật theo xác nhận của Mr Mark</span></span></div>
 </div>
 </body></html>
