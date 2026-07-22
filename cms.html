@@ -390,6 +390,13 @@ tr:hover td{background:var(--surface-2);}
 .modal-close:hover{color:var(--text);background:var(--surface-2);}
 .modal-body{padding:20px 22px;}
 .modal-footer{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;}
+.push-preview{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px 16px;box-shadow:var(--shadow-md);max-width:360px;margin:0 auto;}
+.push-preview-app{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.push-preview-icon{width:20px;height:20px;border-radius:6px;background:var(--main);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.push-preview-appname{font-size:12px;font-weight:700;color:var(--text-2);text-transform:uppercase;letter-spacing:.3px;}
+.push-preview-time{font-size:11px;color:var(--text-3);margin-left:auto;}
+.push-preview-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.push-preview-body{font-size:13px;color:var(--text-2);line-height:1.5;white-space:pre-wrap;}
 .form-group{margin-bottom:14px;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .form-label{font-size:11px;font-weight:700;color:var(--text-2);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.4px;}
@@ -1992,9 +1999,8 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
     </div>
 
     <div class="section" id="sec-notifications">
-      <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="stats-grid" style="grid-template-columns:repeat(2,1fr)">
         <div class="stat-card purple"><div class="stat-label">이번달 발송</div><div class="stat-value">42건</div><div class="stat-change">푸시 31 · 알림톡 11</div></div>
-        <div class="stat-card green"><div class="stat-label">평균 열람율</div><div class="stat-value">31.4%</div><div class="stat-change">↑ 전월 +2.1%p</div></div>
         <div class="stat-card amber"><div class="stat-label">예약 대기</div><div class="stat-value">2건</div><div class="stat-change neutral">발송 예정</div></div>
       </div>
       <div class="card">
@@ -2022,11 +2028,11 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           </div>
           <div style="margin-bottom:14px">
             <label style="font-size:11px;color:var(--text-2);font-weight:600;display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px">제목</label>
-            <input class="search-box" style="width:100%" placeholder="예: 이번 주 추첨 마감 D-1">
+            <input class="search-box" id="noti-title-input" style="width:100%" placeholder="예: 이번 주 추첨 마감 D-1">
           </div>
           <div style="margin-bottom:14px">
             <label style="font-size:11px;color:var(--text-2);font-weight:600;display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px">내용</label>
-            <textarea class="terms-editor" style="min-height:90px" placeholder="알림 본문을 입력하세요. 변수: {닉네임}, {보유티켓}"></textarea>
+            <textarea class="terms-editor" id="noti-body-input" style="min-height:90px" placeholder="알림 본문을 입력하세요. 변수: {닉네임}, {보유티켓}"></textarea>
           </div>
           <div style="display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap">
             <div>
@@ -2035,7 +2041,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             </div>
             <input type="datetime-local" class="search-box" style="width:auto">
             <div style="margin-left:auto;display:flex;gap:8px">
-              <button class="btn btn-ghost btn-sm" onclick="toast('테스트 발송 (본인)')">테스트 발송</button>
+              <button class="btn btn-ghost btn-sm" onclick="notiPreviewTest()">테스트 발송</button>
               <button class="btn btn-primary" onclick="toast('알림이 발송 큐에 등록되었습니다.')">발송</button>
             </div>
           </div>
@@ -3065,6 +3071,31 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('m-ticket-manual')">취소</button>
       <button class="btn btn-primary" onclick="toast('처리되었습니다.');closeModal('m-ticket-manual')">처리하기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 모달: 알림 테스트 발송 미리보기 ── -->
+<div class="modal-overlay" id="m-noti-preview">
+  <div class="modal" style="width:420px">
+    <div class="modal-header">
+      <div class="modal-title">테스트 발송 미리보기</div>
+      <button class="modal-close" onclick="closeModal('m-noti-preview')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="info-box">실제 수신 시 보이는 모습과 동일한 형태입니다. 본인 계정으로만 발송됩니다.</div>
+      <div class="push-preview">
+        <div class="push-preview-app">
+          <div class="push-preview-icon">P</div>
+          <div class="push-preview-appname">PricePick</div>
+          <div class="push-preview-time">지금</div>
+        </div>
+        <div class="push-preview-title" id="noti-preview-title">이번 주 추첨 마감 D-1</div>
+        <div class="push-preview-body" id="noti-preview-body">지금 참여하면 브론즈 등급 이상 회원 전원 응모 가능해요.</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="closeModal('m-noti-preview')">확인</button>
     </div>
   </div>
 </div>
@@ -4140,6 +4171,16 @@ function toggleGroup(id) {
 
 function openModal(id) { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function notiPreviewTest() {
+  var titleEl = document.getElementById('noti-title-input');
+  var bodyEl = document.getElementById('noti-body-input');
+  var title = (titleEl && titleEl.value.trim()) || '(제목 없음)';
+  var body = (bodyEl && bodyEl.value.trim()) || '(내용 없음)';
+  document.getElementById('noti-preview-title').textContent = title;
+  document.getElementById('noti-preview-body').textContent = body;
+  openModal('m-noti-preview');
+  toast('테스트 발송 (본인)');
+}
 
 function openAccountEdit(name, email, role) {
   document.getElementById('ae-name').value = name;
@@ -5617,6 +5658,7 @@ Object.assign(KO2VI,{"거르는 기준은 “거래유형” 하나":"Tiêu chí
 /* ── i18n 보강 (2026-07-21 재질문 답변 반영) — 공지사항 관리·탈퇴 정책 UI 변경 ── */
 Object.assign(KO2VI,{"공지 수정":"Sửa thông báo","고정 정책 — 운영자가 수정할 수 없습니다.":"Chính sách cố định — quản trị viên không thể sửa.","공지를 삭제했습니다.":"Đã xóa thông báo.","공지가 수정되었습니다.":"Thông báo đã được sửa.","5/15(금) 새벽 2시~4시 서버 정기 점검이 진행됩니다. 점검 시간 중에는 앱 이용이 제한됩니다.":"Bảo trì định kỳ máy chủ diễn ra từ 2 giờ đến 4 giờ sáng thứ Sáu 5/15. Trong thời gian bảo trì, việc sử dụng ứng dụng sẽ bị hạn chế."});
 Object.assign(KO2VI,{"답변하기":"Trả lời","답변 수정":"Sửa câu trả lời","문의를 삭제했습니다.":"Đã xóa hỏi đáp.","작성자":"Người viết","작성일":"Ngày viết","미확인":"Chưa xác nhận"});
+Object.assign(KO2VI,{"테스트 발송 미리보기":"Xem trước gửi thử","실제 수신 시 보이는 모습과 동일한 형태입니다. 본인 계정으로만 발송됩니다.":"Đây là hình thức giống hệt lúc nhận thực tế. Chỉ được gửi đến tài khoản của chính bạn.","지금":"Bây giờ","지금 참여하면 브론즈 등급 이상 회원 전원 응모 가능해요.":"Tham gia ngay bây giờ thì tất cả hội viên hạng Đồng trở lên đều có thể ứng tuyển."});
 
 
   var _orig=new Map(), _tracked=new Set(), _applying=false;
