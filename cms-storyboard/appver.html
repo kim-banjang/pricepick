@@ -59,6 +59,13 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 .phone .no-x{font-size:9px;color:var(--ink3);margin-top:10px}
 .pseudo{background:#1E1930;color:#E8E3F5;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Menlo,monospace;font-size:11.5px;line-height:1.7;max-width:840px;margin:12px 0;overflow-x:auto}
 .pseudo .c{color:#8F87A8}
+.shots{display:flex;gap:22px;flex-wrap:wrap;margin:14px 0}
+.shot{width:230px}
+.shot .cap{background:var(--bg);border:1px solid var(--line);border-radius:9px 9px 0 0;font-size:9.5px;font-weight:800;color:var(--ink2);padding:6px 11px;letter-spacing:.4px;text-align:center}
+.shot img{width:100%;border-radius:0 0 20px 20px;border:1px solid var(--line);border-top:none;display:block}
+.shot .note{font-size:10.5px;color:var(--ink3);margin-top:8px;line-height:1.5;text-align:center}
+.wire-shot{width:100%;border-radius:9px;border:1px solid var(--line);display:block;margin-top:8px}
+.shot-src{font-size:10px;color:var(--ink3);margin-top:6px}
 .placeholder-box{background:#fff;border:1.5px dashed var(--line);border-radius:14px;padding:40px 24px;text-align:center;margin-top:20px}
 .placeholder-box .pi{font-size:30px;margin-bottom:10px}
 .placeholder-box .pt{font-size:15px;font-weight:800;color:var(--ink1);margin-bottom:6px}
@@ -100,31 +107,8 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 <div class="wire-cms">
   <div class="banner"><span class="i18n"><span class="ko">강제 업데이트 게이트 — '최소 지원 버전' 미만 사용자는 앱 진입 시 강제 업데이트로 차단합니다</span><span class="vi">Cổng cập nhật bắt buộc — người dùng dưới 'phiên bản hỗ trợ tối thiểu' sẽ bị chặn cập nhật bắt buộc khi vào app</span></span></div>
   <div class="banner warn"><span class="i18n"><span class="ko">주의 — 강제 업데이트 활성화 시 최소버전 미만 사용자는 즉시 앱 진입이 차단됩니다</span><span class="vi">Chú ý — khi bật cập nhật bắt buộc, người dùng dưới phiên bản tối thiểu sẽ bị chặn vào app ngay lập tức</span></span></div>
-  <div class="cards">
-    <div class="card">
-      <div class="hd">iOS <span class="btn"><span class="i18n"><span class="ko">수정</span><span class="vi">Sửa</span></span></span></div>
-      <div class="fld"><small><span class="i18n"><span class="ko">최신 버전</span><span class="vi">Phiên bản mới nhất</span></span></small><b>1.0.0</b><small><span class="i18n"><span class="ko">2026-07-22 배포</span><span class="vi">Phát hành 2026-07-22</span></span></small></div>
-      <div class="fld"><small><span class="i18n"><span class="ko">최소 지원 버전</span><span class="vi">Phiên bản hỗ trợ tối thiểu</span></span></small><b>1.0.0</b><small><span class="i18n"><span class="ko">강제 업데이트 기준</span><span class="vi">Chuẩn cập nhật bắt buộc</span></span></small></div>
-      <div class="fld"><small><span class="i18n"><span class="ko">강제 업데이트</span><span class="vi">Cập nhật bắt buộc</span></span></small><span class="pbadge on"><span class="i18n"><span class="ko">활성</span><span class="vi">Bật</span></span></span></div>
-      <div class="fld"><small><span class="i18n"><span class="ko">앱스토어 링크</span><span class="vi">Link App Store</span></span></small><b>&mdash;</b></div>
-    </div>
-    <div class="card">
-      <div class="hd">Android <span class="btn"><span class="i18n"><span class="ko">수정</span><span class="vi">Sửa</span></span></span></div>
-      <div class="fld"><small><span class="i18n"><span class="ko">최신 버전</span><span class="vi">Phiên bản mới nhất</span></span></small><b>1.0.1</b><small><span class="i18n"><span class="ko">2026-07-22 배포</span><span class="vi">Phát hành 2026-07-22</span></span></small></div>
-      <div class="fld"><small><span class="i18n"><span class="ko">최소 지원 버전</span><span class="vi">Phiên bản hỗ trợ tối thiểu</span></span></small><b>1.0.0</b><small><span class="i18n"><span class="ko">강제 업데이트 기준</span><span class="vi">Chuẩn cập nhật bắt buộc</span></span></small></div>
-      <div class="fld"><small><span class="i18n"><span class="ko">강제 업데이트</span><span class="vi">Cập nhật bắt buộc</span></span></small><span class="pbadge on"><span class="i18n"><span class="ko">활성</span><span class="vi">Bật</span></span></span></div>
-      <div class="fld"><small><span class="i18n"><span class="ko">플레이스토어 링크</span><span class="vi">Link Play Store</span></span></small><b>&mdash;</b></div>
-    </div>
-  </div>
-  <div class="hist">
-    <div class="hd"><span class="i18n"><span class="ko">버전 히스토리</span><span class="vi">Lịch sử phiên bản</span></span></div>
-    <table>
-      <tr><th><span class="i18n"><span class="ko">버전</span><span class="vi">Phiên bản</span></span></th><th><span class="i18n"><span class="ko">플랫폼</span><span class="vi">Nền tảng</span></span></th><th><span class="i18n"><span class="ko">배포일</span><span class="vi">Ngày phát hành</span></span></th><th><span class="i18n"><span class="ko">주요 변경사항</span><span class="vi">Thay đổi chính</span></span></th><th><span class="i18n"><span class="ko">강제 업데이트</span><span class="vi">Cập nhật bắt buộc</span></span></th></tr>
-      <tr><td>1.0.1</td><td>Android</td><td>2026-07-22</td><td><span class="i18n"><span class="ko">버그 수정·안정화</span><span class="vi">Sửa lỗi·ổn định</span></span></td><td><span class="pbadge on"><span class="i18n"><span class="ko">활성</span><span class="vi">Bật</span></span></span></td></tr>
-      <tr><td>1.0.0</td><td>iOS</td><td>2026-07-22</td><td><span class="i18n"><span class="ko">최초 출시</span><span class="vi">Ra mắt lần đầu</span></span></td><td><span class="pbadge on"><span class="i18n"><span class="ko">활성</span><span class="vi">Bật</span></span></span></td></tr>
-      <tr><td>1.0.0</td><td>Android</td><td>2026-07-22</td><td><span class="i18n"><span class="ko">최초 출시</span><span class="vi">Ra mắt lần đầu</span></span></td><td><span class="pbadge on"><span class="i18n"><span class="ko">활성</span><span class="vi">Bật</span></span></span></td></tr>
-    </table>
-  </div>
+  <img class="wire-shot" src="/cms-storyboard/img/appver-cms.png" alt="CMS 데모 · 시스템 → 앱 버전 관리 실제 화면">
+  <div class="shot-src"><span class="i18n"><span class="ko">실제 캡처 · pricepick-demo.vercel.app/cms → 시스템 → 앱 버전 관리</span><span class="vi">Ảnh chụp thực tế · pricepick-demo.vercel.app/cms → Hệ thống → Quản lý phiên bản app</span></span></div>
 </div>
 <table>
   <tr><th style="width:150px"><span class="i18n"><span class="ko">요소</span><span class="vi">Thành phần</span></span></th><th><span class="i18n"><span class="ko">의미</span><span class="vi">Ý nghĩa</span></span></th><th><span class="i18n"><span class="ko">바꾸면 생기는 일</span><span class="vi">Điều gì xảy ra khi thay đổi</span></span></th></tr>
@@ -153,26 +137,19 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
   <div class="fstep"><b>4</b><span class="i18n"><span class="ko">내 버전 vs 최소 지원 버전<br>비교</span><span class="vi">So sánh phiên bản của tôi<br>với phiên bản tối thiểu</span></span></div><div class="farr">&rarr;</div>
   <div class="fstep"><b>5</b><span class="i18n"><span class="ko">미만이면 차단 화면<br>이상이면 정상 진입</span><span class="vi">Nếu thấp hơn thì màn chặn<br>nếu không thì vào bình thường</span></span></div>
 </div>
-<div class="phones">
-  <div class="phone">
+<div class="shots">
+  <div class="shot">
     <div class="cap"><span class="i18n"><span class="ko">차단 시 — 강제 업데이트 풀스크린</span><span class="vi">Khi bị chặn — full screen cập nhật bắt buộc</span></span></div>
-    <div class="body">
-      <div class="ic">&uarr;</div>
-      <div class="t1"><span class="i18n"><span class="ko">새로운 버전이 필요합니다</span><span class="vi">Cần phiên bản mới</span></span></div>
-      <div class="t2"><span class="i18n"><span class="ko">안정적인 이용을 위해<br>최신 버전으로 업데이트해 주세요</span><span class="vi">Để sử dụng ổn định<br>vui lòng cập nhật lên phiên bản mới nhất</span></span></div>
-      <div class="cta"><span class="i18n"><span class="ko">업데이트 하러 가기</span><span class="vi">Đi cập nhật</span></span></div>
-      <div class="no-x"><span class="i18n"><span class="ko">닫기·건너뛰기 버튼 없음 (강제)</span><span class="vi">Không có nút đóng·bỏ qua (bắt buộc)</span></span></div>
-    </div>
+    <img src="/cms-storyboard/img/appver-blocked.png" alt="강제 업데이트 게이트 차단 화면 실제 캡처">
+    <div class="note"><span class="i18n"><span class="ko">닫기·건너뛰기 버튼 없음 (강제)</span><span class="vi">Không có nút đóng·bỏ qua (bắt buộc)</span></span></div>
   </div>
-  <div class="phone">
-    <div class="cap"><span class="i18n"><span class="ko">통과 시</span><span class="vi">Khi được qua</span></span></div>
-    <div class="body">
-      <div class="ic">P</div>
-      <div class="t1"><span class="i18n"><span class="ko">홈 화면 정상 진입</span><span class="vi">Vào màn Home bình thường</span></span></div>
-      <div class="t2"><span class="i18n"><span class="ko">버전이 기준 이상이거나<br>토글이 비활성인 경우</span><span class="vi">Khi phiên bản đạt chuẩn trở lên<br>hoặc toggle đang tắt</span></span></div>
-    </div>
+  <div class="shot">
+    <div class="cap"><span class="i18n"><span class="ko">통과 시 — 홈 화면</span><span class="vi">Khi được qua — Màn Home</span></span></div>
+    <img src="/cms-storyboard/img/appver-home.png" alt="게이트 통과 시 홈 화면 실제 캡처">
+    <div class="note"><span class="i18n"><span class="ko">버전이 기준 이상이거나 토글이 비활성인 경우</span><span class="vi">Khi phiên bản đạt chuẩn trở lên hoặc toggle đang tắt</span></span></div>
   </div>
 </div>
+<div class="shot-src"><span class="i18n"><span class="ko">실제 캡처 · pricepick-demo.vercel.app/app</span><span class="vi">Ảnh chụp thực tế · pricepick-demo.vercel.app/app</span></span></div>
 <p><span class="i18n"><span class="ko">차단 화면은 풀스크린이며 스토어 이동 버튼 하나, 닫기는 없다. 소프트 업데이트 배너(선택적 업데이트 권유)는 1단계에서 만들지 않는다.</span><span class="vi">Màn chặn là full screen, có một nút chuyển đến store, không có nút đóng. Banner cập nhật mềm (khuyến khích cập nhật tùy chọn) không làm ở giai đoạn 1.</span></span></p>
 <div class="pseudo">
 <span class="c"><span class="i18n"><span class="ko">// 판정 로직 (의사코드) — 앱 실행 시마다</span><span class="vi">// Logic phán định (giả mã) — mỗi lần chạy app</span></span></span><br>
