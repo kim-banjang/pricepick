@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 설명서 · 구매/사용 내역</title><style>
+:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px 90px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:26px 0 22px;position:relative}
+.wraphdr{max-width:960px;margin:0 auto;padding:0 22px}
+.crumb{font-size:12px;opacity:.85;margin-bottom:8px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{opacity:1;text-decoration:underline}
+.htitle{font-size:22px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+h2.sec{font-size:16px;font-weight:800;color:var(--ink1);margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--pp-l)}
+h3.sub{font-size:13.5px;font-weight:800;margin:18px 0 8px;color:var(--ink1)}
+p{color:var(--ink2);margin:8px 0;max-width:840px}
+strong,b{color:var(--ink1)}
+.callout{background:var(--pp-l);border:1px solid #ddd0fb;border-left:3px solid var(--pp);border-radius:8px;padding:12px 16px;margin:14px 0;max-width:840px}
+.callout.warn{background:#fdf1e3;border-color:#fbd9a8;border-left-color:var(--ck)}
+.callout .tt{font-weight:800;font-size:12px;margin-bottom:4px;color:var(--ink1)}
+table{border-collapse:collapse;width:100%;max-width:900px;margin:12px 0;font-size:12.5px}
+th{background:var(--bg);border:1px solid var(--line);padding:8px 10px;text-align:left;font-weight:700;color:var(--ink1)}
+td{border:1px solid var(--line);padding:8px 10px;color:var(--ink2);vertical-align:top}
+td b{color:var(--ink1)}
+code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--pp-d)}
+.flow{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap;margin:12px 0;max-width:900px}
+.fstep{border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 13px;font-size:11.5px;min-width:118px}
+.fstep b{display:block;font-size:10px;color:var(--pp-d);letter-spacing:.5px;margin-bottom:2px;text-transform:uppercase}
+.farr{align-self:center;color:var(--ink3);font-weight:800}
+.pbadge{display:inline-block;font-size:10.5px;font-weight:700;border-radius:99px;padding:2px 9px}
+.pbadge.on{background:#e6f5f5;color:var(--ok);border:1px solid #bfe6e6}
+.pbadge.off{background:var(--bg);color:var(--ink3);border:1px solid var(--line)}
+.pbadge.block{background:#fdeceb;color:#c0392b;border:1px solid #f5c6c1}
+.wire-cms{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;max-width:780px;margin:14px 0}
+.wire-cms .banner{background:var(--pp-l);border:1px solid #ddd0fb;border-radius:7px;font-size:10.5px;padding:6px 10px;color:var(--pp-d);margin-bottom:6px}
+.wire-cms .banner.warn{background:#fdeceb;border-color:#f5c6c1;color:#c0392b}
+.wire-cms .cards{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.wire-cms .card{flex:1;min-width:230px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px}
+.wire-cms .card .hd{display:flex;justify-content:space-between;font-weight:800;font-size:12px;margin-bottom:6px}
+.wire-cms .card .hd .btn{font-size:10px;border:1px solid var(--line);border-radius:6px;padding:1px 8px;color:var(--ink2);font-weight:500}
+.wire-cms .fld{border-top:1px solid var(--line);padding:6px 0;font-size:11px;color:var(--ink2)}
+.wire-cms .fld b{display:block;font-size:12.5px;color:var(--ink1)}
+.wire-cms .fld small{color:var(--ink3);font-size:9.5px}
+.wire-cms .hist{background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-top:4px}
+.wire-cms .hist .hd{font-weight:800;font-size:12px;margin-bottom:6px}
+.wire-cms .hist table{font-size:10.5px;margin:0}
+.wire-cms .hist th,.wire-cms .hist td{padding:4px 8px}
+.phones{display:flex;gap:22px;flex-wrap:wrap;margin:14px 0}
+.phone{width:220px;border:7px solid var(--ink1);border-radius:30px;background:#fff;overflow:hidden}
+.phone .cap{background:var(--bg);border-bottom:1px solid var(--line);font-size:9.5px;font-weight:800;color:var(--ink2);padding:5px 10px;letter-spacing:.4px}
+.phone .body{padding:14px 12px;min-height:230px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.phone .ic{width:44px;height:44px;border-radius:14px;background:var(--pp-l);color:var(--pp-d);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;margin:0 auto 12px}
+.phone .t1{font-size:13px;font-weight:800;margin-bottom:6px}
+.phone .t2{font-size:10.5px;color:var(--ink2);margin-bottom:14px;line-height:1.5}
+.phone .cta{background:var(--pp);color:#fff;border-radius:10px;font-size:11.5px;font-weight:800;padding:10px;margin:0 6px}
+.phone .no-x{font-size:9px;color:var(--ink3);margin-top:10px}
+.pseudo{background:#1E1930;color:#E8E3F5;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Menlo,monospace;font-size:11.5px;line-height:1.7;max-width:840px;margin:12px 0;overflow-x:auto}
+.pseudo .c{color:#8F87A8}
+.placeholder-box{background:#fff;border:1.5px dashed var(--line);border-radius:14px;padding:40px 24px;text-align:center;margin-top:20px}
+.placeholder-box .pi{font-size:30px;margin-bottom:10px}
+.placeholder-box .pt{font-size:15px;font-weight:800;color:var(--ink1);margin-bottom:6px}
+.placeholder-box .ps{font-size:13px;color:var(--ink3);max-width:440px;margin:0 auto}
+.foot{margin-top:34px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+#langsw:checked ~ header .vib, #langsw:checked ~ .wrap .vib{display:block}
+.vib{display:none}
+#langsw:checked ~ .wrap .kob{display:none}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr"><div class="crumb"><a href="/cms-storyboard/index.html"><span class="i18n"><span class="ko">&larr; CMS 설명서 전체 목록</span><span class="vi">&larr; Danh sách toàn bộ tài liệu CMS</span></span></a></div>
+<div class="htitle"><span class="i18n"><span class="ko">구매/사용 내역</span><span class="vi">Lịch sử mua/dùng</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">CMS 설명서 · 작성 예정</span><span class="vi">Tài liệu CMS · Sẽ viết sau</span></span></div>
+</div></header>
+<div class="wrap">
+<div class="meta">
+<span class="chip"><span class="i18n"><span class="ko">그룹</span><span class="vi">Nhóm</span></span>: <span class="i18n"><span class="ko">기프티콘 관리</span><span class="vi">Quản lý Gifticon</span></span></span>
+<span class="bd ck"><span class="i18n"><span class="ko">작성 예정</span><span class="vi">Sẽ viết sau</span></span></span>
+</div>
+<div class="placeholder-box">
+<div class="pi">&#128221;</div>
+<div class="pt"><span class="i18n"><span class="ko">설명서 작성 예정</span><span class="vi">Tài liệu sẽ được viết sau</span></span></div>
+<div class="ps"><span class="i18n"><span class="ko">'구매/사용 내역' 화면의 상세 설명서는 아직 작성되지 않았습니다. 작성되면 이 페이지가 갱신됩니다.</span><span class="vi">Tài liệu chi tiết cho màn 'Lịch sử mua/dùng' chưa được viết. Trang này sẽ được cập nhật khi có nội dung.</span></span></div>
+</div>
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 설명서</span><span class="vi">PricePick · Tài liệu CMS</span></span> · <span class="i18n"><span class="ko">개발자용 문서 · 김반장님 확정 기준 업데이트</span><span class="vi">Tài liệu dành cho dev · cập nhật theo xác nhận của Mr Mark</span></span></div>
+</div>
+</body></html>
