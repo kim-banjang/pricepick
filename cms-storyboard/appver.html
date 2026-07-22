@@ -92,7 +92,6 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 <div class="meta" style="margin-top:0">
 <span class="chip"><span class="i18n"><span class="ko">작성</span><span class="vi">Viết bởi</span></span>: 2026.07.22 (Dispatch)</span>
 <span class="chip"><span class="i18n"><span class="ko">근거</span><span class="vi">Căn cứ</span></span>: <span class="i18n"><span class="ko">마스터 정책서(강제 업데이트 게이트)</span><span class="vi">Tài liệu chính sách gốc (cổng cập nhật bắt buộc)</span></span></span>
-<span class="chip"><span class="i18n"><span class="ko">관련</span><span class="vi">Liên quan</span></span>: DevQA Vin 07-22 · Kelvin K5</span>
 </div>
 <h2 class="sec"><span class="i18n"><span class="ko">1. 한 줄 정의</span><span class="vi">1. Định nghĩa một dòng</span></span></h2>
 <p><span class="i18n"><span class="ko"><strong>앱 버전 관리 = "지금 배포된 앱 버전이 무엇이고, 최소한 어느 버전까지 허용할지"를 정하는 화면.</strong> 핵심 목적은 하나 — 결함·보안 패치를 배포했을 때 <strong>구버전 사용자를 강제로 업데이트시키는 게이트</strong>를 운영하는 것이다. 게이트가 없으면 치명 버그를 고쳐 배포해도 구버전 사용자를 막을 수단이 없다(정책서 확정 근거).</span><span class="vi"><strong>Quản lý phiên bản app = màn hình xác định "phiên bản app đang phát hành là gì, và cho phép tối thiểu đến phiên bản nào".</strong> Mục đích cốt lõi chỉ một — vận hành <strong>gate buộc người dùng phiên bản cũ phải cập nhật</strong> khi phát hành bản vá lỗi·bảo mật. Nếu không có gate, dù đã sửa và phát hành bản vá lỗi nghiêm trọng cũng không có cách nào chặn người dùng phiên bản cũ (căn cứ đã chốt trong tài liệu chính sách).</span></span></p>
@@ -144,7 +143,7 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
   <div class="fstep"><b>3</b><span class="i18n"><span class="ko">히스토리에 새 행 추가<br>(릴리스 1건 = 1행)</span><span class="vi">Thêm dòng mới vào lịch sử<br>(1 release = 1 dòng)</span></span></div><div class="farr">&rarr;</div>
   <div class="fstep"><b>4</b><span class="i18n"><span class="ko">필요 시 최소 지원 버전<br>·토글 조정 (행 추가 없음)</span><span class="vi">Điều chỉnh phiên bản hỗ trợ tối thiểu<br>·toggle nếu cần (không thêm dòng)</span></span></div>
 </div>
-<p><span class="i18n"><span class="ko">정리하면 — <strong>행이 늘어나는 건 "새 버전 등록" 때뿐이다.</strong> 최소 지원 버전을 올리거나 토글을 끄고 켜는 것은 기존 설정값 변경이라 히스토리에 쌓이지 않는다. 누가 바꿨는지 관리자 이름도 기록하지 않는다(관리자 행위 로그는 1단계 필수 아님 — DevQA Vin 07-22 확정).</span><span class="vi">Tóm lại — <strong>dòng chỉ tăng khi "đăng ký phiên bản mới".</strong> Việc nâng phiên bản hỗ trợ tối thiểu hoặc bật/tắt toggle là thay đổi giá trị cài đặt hiện có nên không tích vào lịch sử. Cũng không ghi tên admin đã thay đổi (log hành vi admin không phải chức năng bắt buộc ở giai đoạn 1 — đã chốt ở DevQA Vin 07-22).</span></span></p>
+<p><span class="i18n"><span class="ko">정리하면 — <strong>행이 늘어나는 건 "새 버전 등록" 때뿐이다.</strong> 최소 지원 버전을 올리거나 토글을 끄고 켜는 것은 기존 설정값 변경이라 히스토리에 쌓이지 않는다. 누가 바꿨는지 관리자 이름은 기록하지 않는다.</span><span class="vi">Tóm lại — <strong>dòng chỉ tăng khi "đăng ký phiên bản mới".</strong> Việc nâng phiên bản hỗ trợ tối thiểu hoặc bật/tắt toggle là thay đổi giá trị cài đặt hiện có nên không tích vào lịch sử. Không ghi tên admin đã thay đổi.</span></span></p>
 
 <h2 class="sec"><span class="i18n"><span class="ko">4. 앱 쪽 동작 — 진입 시 판정</span><span class="vi">4. Hoạt động phía app — Phán định khi vào app</span></span></h2>
 <div class="flow">
@@ -174,7 +173,7 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
     </div>
   </div>
 </div>
-<p><span class="i18n"><span class="ko">차단 화면은 켈빈 K5 답변으로 확정된 그 화면이다 — 풀스크린, 스토어 이동 버튼 하나, 닫기 없음. 소프트 업데이트 배너(선택적 업데이트 권유)는 1단계에서 만들지 않는다.</span><span class="vi">Màn chặn chính là màn đã chốt theo câu trả lời Kelvin K5 — full screen, một nút chuyển đến store, không có nút đóng. Banner cập nhật mềm (khuyến khích cập nhật tùy chọn) không làm ở giai đoạn 1.</span></span></p>
+<p><span class="i18n"><span class="ko">차단 화면은 풀스크린이며 스토어 이동 버튼 하나, 닫기는 없다. 소프트 업데이트 배너(선택적 업데이트 권유)는 1단계에서 만들지 않는다.</span><span class="vi">Màn chặn là full screen, có một nút chuyển đến store, không có nút đóng. Banner cập nhật mềm (khuyến khích cập nhật tùy chọn) không làm ở giai đoạn 1.</span></span></p>
 <div class="pseudo">
 <span class="c"><span class="i18n"><span class="ko">// 판정 로직 (의사코드) — 앱 실행 시마다</span><span class="vi">// Logic phán định (giả mã) — mỗi lần chạy app</span></span></span><br>
 config = fetch(<span class="i18n"><span class="ko">버전설정[내 플랫폼]</span><span class="vi">cauHinhPhienBan[nenTangCuaToi]</span></span>)   <span class="c"><span class="i18n"><span class="ko">// 최소지원버전, 강제토글, 스토어링크</span><span class="vi">// phiên bản tối thiểu, toggle bắt buộc, link store</span></span></span><br>
