@@ -34,20 +34,12 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 .pbadge.on{background:#e6f5f5;color:var(--ok);border:1px solid #bfe6e6}
 .pbadge.off{background:var(--bg);color:var(--ink3);border:1px solid var(--line)}
 .pbadge.block{background:#fdeceb;color:#c0392b;border:1px solid #f5c6c1}
-.wire-cms{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;max-width:780px;margin:14px 0}
-.wire-cms .banner{background:var(--pp-l);border:1px solid #ddd0fb;border-radius:7px;font-size:10.5px;padding:6px 10px;color:var(--pp-d);margin-bottom:6px}
-.wire-cms .banner.warn{background:#fdeceb;border-color:#f5c6c1;color:#c0392b}
-.wire-cms .cards{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
-.wire-cms .card{flex:1;min-width:230px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px}
-.wire-cms .card .hd{display:flex;justify-content:space-between;font-weight:700;font-size:12px;margin-bottom:6px}
-.wire-cms .card .hd .btn{font-size:10px;border:1px solid var(--line);border-radius:6px;padding:1px 8px;color:var(--ink2);font-weight:500}
-.wire-cms .fld{border-top:1px solid var(--line);padding:6px 0;font-size:11px;color:var(--ink2)}
-.wire-cms .fld b{display:block;font-size:12.5px;color:var(--ink1)}
-.wire-cms .fld small{color:var(--ink3);font-size:9.5px}
-.wire-cms .hist{background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-top:4px}
-.wire-cms .hist .hd{font-weight:700;font-size:12px;margin-bottom:6px}
-.wire-cms .hist table{font-size:10.5px;margin:0}
-.wire-cms .hist th,.wire-cms .hist td{padding:4px 8px}
+.shot{border:1px solid var(--line);border-radius:12px;background:#fff;max-width:900px;margin:14px 0;overflow:hidden;box-shadow:0 1px 3px rgba(31,35,48,.06)}
+.shot img{display:block;width:100%;height:auto}
+.shot .cap{font-size:11.5px;color:var(--ink3);padding:9px 14px;border-top:1px solid var(--line);background:var(--bg)}
+.shot.narrow{max-width:560px}
+.shotrow{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0}
+.shotrow .shot{margin:0;flex:1;min-width:260px}
 .phones{display:flex;gap:22px;flex-wrap:wrap;margin:14px 0}
 .phone{width:220px;border:7px solid var(--ink1);border-radius:30px;background:#fff;overflow:hidden}
 .phone .cap{background:var(--bg);border-bottom:1px solid var(--line);font-size:9.5px;font-weight:700;color:var(--ink2);padding:5px 10px;letter-spacing:.4px}
@@ -60,9 +52,6 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 .pseudo{background:#1E1930;color:#E8E3F5;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Menlo,monospace;font-size:11.5px;line-height:1.7;max-width:840px;margin:12px 0;overflow-x:auto}
 .pseudo .c{color:#8F87A8}
 .placeholder-box{background:#fff;border:1.5px dashed var(--line);border-radius:14px;padding:40px 24px;text-align:center;margin-top:20px}
-.placeholder-box .pi{font-size:30px;margin-bottom:10px}
-.placeholder-box .pt{font-size:15px;font-weight:700;color:var(--ink1);margin-bottom:6px}
-.placeholder-box .ps{font-size:13px;color:var(--ink3);max-width:440px;margin:0 auto}
 .foot{margin-top:34px;font-size:11.5px;color:var(--ink3)}
 .vi{display:none}
 #langsw{position:absolute;opacity:0;pointer-events:none}
@@ -81,18 +70,71 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
 <div class="wraphdr"><div class="crumb"><a href="/cms-storyboard/index.html"><span class="i18n"><span class="ko">&larr; CMS 설명서 전체 목록</span><span class="vi">&larr; Danh sách toàn bộ tài liệu CMS</span></span></a></div>
 <div class="htitle"><span class="i18n"><span class="ko">운영 정책</span><span class="vi">Chính sách vận hành</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">CMS 설명서 · 작성 예정</span><span class="vi">Tài liệu CMS · Sẽ viết sau</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">적립·이벤트·제외 정책 조회 전용 화면</span><span class="vi">Màn chỉ xem chính sách tích lũy·sự kiện·loại trừ</span></span></div>
 </div></header>
 <div class="wrap">
 <div class="meta">
 <span class="chip"><span class="i18n"><span class="ko">그룹</span><span class="vi">Nhóm</span></span>: <span class="i18n"><span class="ko">운영</span><span class="vi">Vận hành</span></span></span>
-<span class="bd ck"><span class="i18n"><span class="ko">작성 예정</span><span class="vi">Sẽ viết sau</span></span></span>
+<span class="bd ok"><span class="i18n"><span class="ko">작성됨</span><span class="vi">Đã viết</span></span></span>
 </div>
-<div class="placeholder-box">
-<div class="pi">&#128221;</div>
-<div class="pt"><span class="i18n"><span class="ko">설명서 작성 예정</span><span class="vi">Tài liệu sẽ được viết sau</span></span></div>
-<div class="ps"><span class="i18n"><span class="ko">'운영 정책' 화면의 상세 설명서는 아직 작성되지 않았습니다. 작성되면 이 페이지가 갱신됩니다.</span><span class="vi">Tài liệu chi tiết cho màn 'Chính sách vận hành' chưa được viết. Trang này sẽ được cập nhật khi có nội dung.</span></span></div>
+<div class="meta" style="margin-top:0">
+<span class="chip"><span class="i18n"><span class="ko">작성</span><span class="vi">Viết bởi</span></span>: 2026.07.22 (Dispatch C조)</span>
+<span class="chip"><span class="i18n"><span class="ko">근거</span><span class="vi">Căn cứ</span></span>: <span class="i18n"><span class="ko">실제 CMS 데모 운영 정책 화면(조회 전용) + 마스터 정책서</span><span class="vi">Demo CMS thực tế màn Chính sách vận hành (chỉ xem) + Tài liệu chính sách gốc</span></span></span>
 </div>
+
+<h2 class="sec"><span class="i18n"><span class="ko">1. 한 줄 정의</span><span class="vi">1. Định nghĩa một dòng</span></span></h2>
+<p><span class="i18n"><span class="ko"><strong>운영 정책 = 서비스의 핵심 숫자 기준(적립률·한도·만료일 등)을 한곳에 모아 "조회만" 하는 화면.</strong> 다른 관리 화면(배너·이벤트 등)과 달리 이 화면에는 저장·삭제 버튼이 없습니다 — 화면 상단 안내 그대로 <b>"정책 수치·기준 변경은 별도 승인 절차로 반영되며 이 화면에서 직접 수정하지 않습니다."</b> 즉 정책을 바꾸는 화면이 아니라, 지금 적용 중인 정책을 헷갈리지 않게 확인하는 참고 화면입니다.</span><span class="vi"><strong>Chính sách vận hành = màn TỔNG HỢP các con số cốt lõi của dịch vụ (tỷ lệ tích lũy·hạn mức·ngày hết hạn...) chỉ để "xem".</strong> Khác với các màn quản lý khác (banner·sự kiện...), màn này không có nút lưu·xóa — như hướng dẫn phía trên màn hình: <b>"Thay đổi số liệu·chuẩn chính sách được áp dụng qua quy trình phê duyệt riêng, không sửa trực tiếp tại màn này."</b> Nói cách khác đây không phải màn đổi chính sách mà là màn tham khảo để không nhầm lẫn chính sách đang áp dụng hiện tại.</span></span></p>
+<p><span class="i18n"><span class="ko">이용약관·개인정보처리방침처럼 회원에게 노출되는 법적 문서는 이 화면이 아니라 <a href="terms.html">약관 관리</a>에서 따로 관리합니다. 이 화면은 <b>내부 운영 기준(숫자·규칙)</b>만 다룹니다.</span><span class="vi">Các văn bản pháp lý hiển thị cho hội viên như điều khoản·chính sách bảo mật được quản lý riêng ở <a href="terms.html">Quản lý điều khoản</a>, không phải màn này. Màn này chỉ xử lý <b>chuẩn vận hành nội bộ (số liệu·quy tắc)</b>.</span></span></p>
+
+<h2 class="sec"><span class="i18n"><span class="ko">2. CMS 화면 구성 — 탭 3개</span><span class="vi">2. Cấu trúc màn hình CMS — 3 tab</span></span></h2>
+<p><span class="i18n"><span class="ko">화면 위쪽 탭 3개로 구분되며, 탭을 눌러도 페이지 이동 없이 그 자리에서 내용만 바뀝니다.</span><span class="vi">Chia bằng 3 tab phía trên, bấm tab chỉ đổi nội dung tại chỗ, không chuyển trang.</span></span></p>
+
+<h3 class="sub"><span class="i18n"><span class="ko">탭 1 — 적립·보상 정책</span><span class="vi">Tab 1 — Chính sách tích lũy·thưởng</span></span></h3>
+<div class="shot"><img src="img/op-policy-reward.png" alt="적립·보상 정책 탭 — 실제 CMS 데모 캡처 (등급별 적립 기준 · Greedy 산정 · 티켓 지급 정책 · 등급 간 교환 · 기프티콘 카탈로그 · 시뮬레이터 전체)" loading="lazy"><div class="cap"><span class="i18n"><span class="ko">적립·보상 정책 탭 — 실제 CMS 데모 캡처 (등급별 적립 기준 · Greedy 산정 · 티켓 지급 정책 · 등급 간 교환 · 기프티콘 카탈로그 · 시뮬레이터 전체)</span><span class="vi">Tab Chính sách tích lũy·thưởng — chụp thực tế từ CMS demo (chuẩn tích lũy theo hạng · tính Greedy · chính sách cấp vé · đổi giữa các hạng · catalogue Gifticon · simulator)</span></span></div></div>
+<table>
+  <tr><th style="width:190px"><span class="i18n"><span class="ko">구성 블록</span><span class="vi">Khối nội dung</span></span></th><th><span class="i18n"><span class="ko">핵심 내용</span><span class="vi">Nội dung chính</span></span></th></tr>
+  <tr><td><b><span class="i18n"><span class="ko">등급별 적립 기준</span><span class="vi">Chuẩn tích lũy theo hạng</span></span></b></td><td><span class="i18n"><span class="ko">브론즈 5,000원당 1장(100원) · 실버 50,000원당 1장(1,000원) · 골드 100,000원당 1장(2,000원) — 셋 다 보상률 2.0%</span><span class="vi">Đồng 5.000won/1 vé(100won) · Bạc 50.000won/1 vé(1.000won) · Vàng 100.000won/1 vé(2.000won) — cả 3 đều tỷ lệ thưởng 2.0%</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">적립 산정 알고리즘</span><span class="vi">Thuật toán tính tích lũy</span></span></b></td><td><span class="i18n"><span class="ko">Greedy(큰 단위 우선) — 구매 확정 금액에서 골드→실버→브론즈 순으로 나눠 떨어뜨리고, 5,000원 미만 잔돈은 지급하지 않음. 그래서 실제 보상률은 2%보다 최대 0.18%p 낮을 수 있음</span><span class="vi">Greedy (ưu tiên đơn vị lớn) — chia số tiền mua theo thứ tự Vàng→Bạc→Đồng, phần dư dưới 5.000won không cấp. Nên tỷ lệ thưởng thật có thể thấp hơn 2% tối đa 0.18%p</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">티켓 지급 정책</span><span class="vi">Chính sách cấp vé</span></span></b></td><td><span class="i18n"><span class="ko">포스트백 수신 즉시 등급 미정 랜덤 티켓 "적립예정" → 연동 회원 D+7 / 미연동 회원 D+30 경과 시 구매 금액 기준 등급 확정 → 대기 중 취소·반품되면 즉시 회수·미지급. 1일 5장 / 월 50장 한도. 등급 티켓은 적립일로부터 1년 후 만료</span><span class="vi">Ngay khi nhận postback cấp vé random "chờ tích lũy" (chưa xác định hạng) → qua D+7 (liên kết) / D+30 (chưa liên kết) thì xác định hạng theo số tiền mua → nếu hủy·trả hàng trong lúc chờ thì thu hồi ngay·không cấp hạng. Hạn mức 5 vé/ngày · 50 vé/tháng. Vé hạng hết hạn sau 1 năm kể từ ngày tích lũy</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">등급 간 교환</span><span class="vi">Đổi giữa các hạng</span></span></b></td><td><span class="i18n"><span class="ko">브론즈 10장 ⇄ 실버 1장, 실버 2장 ⇄ 골드 1장 — 환산가치(100/1,000/2,000원) 기준 1:1 등가라 양방향 교환해도 보유 가치는 동일</span><span class="vi">Đồng 10 vé ⇄ Bạc 1 vé, Bạc 2 vé ⇄ Vàng 1 vé — tương đương 1:1 theo giá trị quy đổi (100/1.000/2.000won) nên đổi chiều nào giá trị vẫn như nhau</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">기프티콘 교환 카탈로그</span><span class="vi">Catalogue đổi Gifticon</span></span></b></td><td><span class="i18n"><span class="ko">티켓 환산가치에 약 +10% 마진을 얹어 상품가 책정. 단일 등급 티켓으로만 교환 가능(등급을 섞어 결제 불가) — 부족분은 위 등급 간 교환으로 먼저 맞춰야 함</span><span class="vi">Định giá sản phẩm bằng giá trị quy đổi vé cộng thêm khoảng +10% margin. Chỉ đổi được bằng vé của một hạng duy nhất (không trộn hạng để thanh toán) — thiếu thì phải đổi giữa các hạng trước</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">티켓 시뮬레이터</span><span class="vi">Simulator vé</span></span></b></td><td><span class="i18n"><span class="ko">구매 확정가를 입력하면 Greedy 알고리즘으로 골드/실버/브론즈 지급 수량을 실시간 계산해 보여주는 검산 도구</span><span class="vi">Nhập giá mua đã xác nhận thì tính ngay số vé Vàng/Bạc/Đồng theo thuật toán Greedy để đối chiếu</span></span></td></tr>
+</table>
+
+<h3 class="sub"><span class="i18n"><span class="ko">탭 2 — 참여·이벤트 정책</span><span class="vi">Tab 2 — Chính sách tham gia·sự kiện</span></span></h3>
+<div class="shot"><img src="img/op-policy-event.png" alt="참여·이벤트 정책 탭 — 실제 CMS 데모 캡처 (이벤트 티켓 획득 경로 · 친구초대 보상 · 온보딩 보상 · 경품 응모 규칙)" loading="lazy"><div class="cap"><span class="i18n"><span class="ko">참여·이벤트 정책 탭 — 실제 CMS 데모 캡처 (이벤트 티켓 획득 경로 · 친구초대 보상 · 온보딩 보상 · 경품 응모 규칙)</span><span class="vi">Tab Chính sách tham gia·sự kiện — chụp thực tế từ CMS demo (đường lấy vé sự kiện · thưởng mời bạn · thưởng đăng ký · quy tắc tham dự giải thưởng)</span></span></div></div>
+<table>
+  <tr><th style="width:190px"><span class="i18n"><span class="ko">구성 블록</span><span class="vi">Khối nội dung</span></span></th><th><span class="i18n"><span class="ko">핵심 내용</span><span class="vi">Nội dung chính</span></span></th></tr>
+  <tr><td><b><span class="i18n"><span class="ko">이벤트 티켓 획득 경로</span><span class="vi">Đường lấy vé sự kiện</span></span></b></td><td><span class="i18n"><span class="ko">출석 체크(5일 연속 시 500P+1장) · 행운룰렛(하루 1회, 확률 지급) · 온보딩 가입(+1장, 카카오 연동 후). 경품 응모 전용이며 발급일+30일 고정 소멸, 1일 5장/월 30장 한도</span><span class="vi">Điểm danh (5 ngày liên tiếp: 500P+1 vé) · Vòng quay may mắn (1 lần/ngày, cấp theo xác suất) · Đăng ký mới (+1 vé, sau khi liên kết Kakao). Chỉ dùng tham dự giải thưởng, tự hết hạn sau 30 ngày kể từ ngày cấp, hạn mức 5 vé/ngày · 30 vé/tháng</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">친구초대 보상</span><span class="vi">Thưởng mời bạn</span></span></b></td><td><span class="i18n"><span class="ko">피초대자 첫 구매 완료가 성사 기준(가입만으로는 미성사) · 초대자 월 최대 50명 · 성사 시 양쪽 각 500P 지급</span><span class="vi">Chuẩn thành công là người được mời mua hàng lần đầu (chỉ đăng ký thì chưa tính) · người mời tối đa 50 người/tháng · thành công thì cấp 500P cho cả hai bên</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">온보딩 보상</span><span class="vi">Thưởng đăng ký (onboarding)</span></span></b></td><td><span class="i18n"><span class="ko">가입 즉시 이벤트 티켓 1장+200P(카카오 연동 후 지급) · 첫 쿠팡 구경 100P · 첫 경유 구매(가입 7일 내) 브론즈 1장(구매 확정 후, D+7/D+30) · 친구초대 성사 시 양쪽 500P</span><span class="vi">Ngay khi đăng ký: 1 vé sự kiện+200P (cấp sau khi liên kết Kakao) · lần đầu ghé Coupang 100P · mua hàng lần đầu qua LK (trong 7 ngày sau đăng ký) 1 vé Đồng (sau khi xác nhận mua, D+7/D+30) · mời bạn thành công 500P cho cả hai bên</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">경품 응모 규칙</span><span class="vi">Quy tắc tham dự giải thưởng</span></span></b></td><td><span class="i18n"><span class="ko">이벤트 티켓 1장당 1회 응모, 1회 추첨 최대 10장까지. 당첨 확률 1등 5%·2등 15%·3등(꽝) 80%. 추첨 주기(월1/격주)는 아직 미정</span><span class="vi">Mỗi vé sự kiện = 1 lượt tham dự, tối đa 10 vé/1 đợt rút thăm. Tỷ lệ trúng: giải 1 5%·giải 2 15%·giải 3(trượt) 80%. Chu kỳ rút thăm (tháng 1 lần/2 tuần 1 lần) vẫn chưa chốt</span></span></td></tr>
+</table>
+
+<h3 class="sub"><span class="i18n"><span class="ko">탭 3 — 적립 제외 정책</span><span class="vi">Tab 3 — Chính sách loại trừ tích lũy</span></span></h3>
+<div class="shot narrow"><img src="img/op-policy-exclusion.png" alt="적립 제외 정책 탭 — 실제 CMS 데모 캡처 (제외 카테고리 · 개별 상품 제외 · 배송비 처리)" loading="lazy"><div class="cap"><span class="i18n"><span class="ko">적립 제외 정책 탭 — 실제 CMS 데모 캡처 (제외 카테고리 · 개별 상품 제외 · 배송비 처리)</span><span class="vi">Tab Chính sách loại trừ tích lũy — chụp thực tế từ CMS demo (danh mục loại trừ · loại trừ sản phẩm riêng · xử lý phí ship)</span></span></div></div>
+<table>
+  <tr><th style="width:190px"><span class="i18n"><span class="ko">구성 블록</span><span class="vi">Khối nội dung</span></span></th><th><span class="i18n"><span class="ko">핵심 내용</span><span class="vi">Nội dung chính</span></span></th></tr>
+  <tr><td><b><span class="i18n"><span class="ko">제외 카테고리</span><span class="vi">Danh mục loại trừ</span></span></b></td><td><span class="i18n"><span class="ko">상품권·기프트카드(현금성), 게임 아이템·게임머니(현금성·환금성), 디지털 콘텐츠·소프트웨어(파트너스 적립 제외 대상) 3종은 애초에 적립 계산에서 빠짐</span><span class="vi">3 loại vốn không tính vào tích lũy: phiếu quà·thẻ quà (mang tính tiền mặt), vật phẩm·tiền game (tính tiền mặt·đổi được), nội dung số·phần mềm (đối tượng loại trừ của Partners)</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">개별 상품 제외</span><span class="vi">Loại trừ sản phẩm riêng</span></span></b></td><td><span class="i18n"><span class="ko">고가 가전 등 마진 이슈가 있는 상품은 운영자가 개별 지정 — 회원 화면에는 "일부 고가 가전(운영자 지정)"으로 뭉뚱그려 안내</span><span class="vi">Sản phẩm có vấn đề margin như đồ điện gia dụng giá cao do vận hành viên chỉ định riêng — hiển thị gộp cho hội viên là "một số đồ điện giá cao (do vận hành chỉ định)"</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">배송비 · 쿠폰 · 캐시</span><span class="vi">Phí ship · phiếu giảm giá · cash</span></span></b></td><td><span class="i18n"><span class="ko">적립 계산 대상 금액에서 처음부터 제외한 뒤 Greedy 알고리즘 적용</span><span class="vi">Loại khỏi số tiền tính tích lũy ngay từ đầu, sau đó mới áp dụng thuật toán Greedy</span></span></td></tr>
+</table>
+
+<h2 class="sec"><span class="i18n"><span class="ko">3. 왜 조회 전용인가</span><span class="vi">3. Vì sao chỉ để xem</span></span></h2>
+<p><span class="i18n"><span class="ko">적립률·한도·만료일 같은 숫자는 회원 전체의 보상·비용에 직결되는 값이라, 운영자가 화면에서 즉흥적으로 바꾸면 사고로 이어지기 쉽습니다(예: 브론즈 적립 단가를 잘못 눌러 저장하면 전 회원 보상 구조가 순식간에 바뀜). 그래서 이 화면은 값을 <b>보여주기만</b> 하고, 실제 변경은 별도 승인 절차(기획·개발 협의 후 배포)를 거치도록 설계돼 있습니다.</span><span class="vi">Các con số như tỷ lệ tích lũy·hạn mức·ngày hết hạn ảnh hưởng trực tiếp đến thưởng·chi phí của toàn bộ hội viên, nếu vận hành viên tự ý đổi ngay trên màn hình rất dễ gây sự cố (vd: bấm nhầm đổi đơn giá tích lũy Đồng thì cấu trúc thưởng toàn bộ hội viên đổi ngay lập tức). Vì vậy màn này chỉ <b>hiển thị</b>, việc đổi thật phải qua quy trình phê duyệt riêng (bàn bạc kế hoạch·dev rồi mới triển khai).</span></span></p>
+
+<h2 class="sec"><span class="i18n"><span class="ko">4. 운영 시나리오</span><span class="vi">4. Kịch bản vận hành</span></span></h2>
+<table>
+  <tr><th style="width:190px"><span class="i18n"><span class="ko">상황</span><span class="vi">Tình huống</span></span></th><th><span class="i18n"><span class="ko">운영자가 하는 일</span><span class="vi">Việc vận hành viên làm</span></span></th><th><span class="i18n"><span class="ko">주의</span><span class="vi">Lưu ý</span></span></th></tr>
+  <tr><td><b><span class="i18n"><span class="ko">회원 문의 — "왜 골드 1장이 아니라 실버+브론즈로 나왔나요?"</span><span class="vi">Hội viên hỏi — "Sao không ra 1 vé Vàng mà lại ra Bạc+Đồng?"</span></span></b></td><td><span class="i18n"><span class="ko">탭1 "검증 예시" 표와 티켓 시뮬레이터에 실제 구매 금액을 넣어 재현</span><span class="vi">Nhập đúng số tiền đã mua vào bảng "Ví dụ kiểm chứng" và simulator ở tab 1 để tái hiện</span></span></td><td><span class="i18n"><span class="ko">Greedy 알고리즘이라 금액에 따라 여러 등급이 섞여 나오는 게 정상 동작임을 1:1 문의 답변 시 참고</span><span class="vi">Do là thuật toán Greedy nên tùy số tiền có thể ra nhiều hạng trộn lẫn — đây là hoạt động bình thường, tham khảo khi trả lời ở 1:1 Hỏi đáp</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">신규 제휴몰 상품군 적립 제외 여부 확인</span><span class="vi">Kiểm tra loại trừ tích lũy cho nhóm sản phẩm đối tác mới</span></span></b></td><td><span class="i18n"><span class="ko">탭3에서 기존 제외 카테고리와 겹치는지 확인 후, 필요하면 기획팀에 개별 상품 제외 등록 요청</span><span class="vi">Kiểm tra ở tab 3 xem có trùng danh mục loại trừ hiện có không, cần thì yêu cầu team kế hoạch đăng ký loại trừ sản phẩm riêng</span></span></td><td><span class="i18n"><span class="ko">이 화면에서 직접 추가할 수 없음 — 승인 절차 필요</span><span class="vi">Không thể tự thêm trực tiếp ở màn này — cần qua quy trình phê duyệt</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">경품 추첨 주기 확정 요청</span><span class="vi">Yêu cầu chốt chu kỳ rút thăm</span></span></b></td><td><span class="i18n"><span class="ko">탭2에서 "월1/격주 미정" 상태 확인 후 운영 회의 안건으로 상정</span><span class="vi">Xác nhận trạng thái "chưa chốt tháng 1 lần/2 tuần 1 lần" ở tab 2 rồi đưa vào họp vận hành</span></span></td><td><span class="i18n"><span class="ko">확정 전까지는 추첨 관리·경품 응모 화면의 실제 운영 주기와 이 표가 다를 수 있음</span><span class="vi">Trước khi chốt, chu kỳ vận hành thật ở màn Quản lý bốc thăm·Tham dự giải thưởng có thể khác bảng này</span></span></td></tr>
+</table>
+
+<h2 class="sec"><span class="i18n"><span class="ko">5. 주의사항</span><span class="vi">5. Lưu ý</span></span></h2>
+<div class="callout warn"><div class="tt"><span class="i18n"><span class="ko">이 화면 숫자를 그대로 믿고 코드/문서에 인용하지 말 것</span><span class="vi">Đừng lấy nguyên số liệu màn này để trích dẫn vào code/tài liệu khác</span></span></div><span class="i18n"><span class="ko">조회 전용이라 최신값이 반영돼 있을 가능성이 높지만, 이 화면과 <a href="../policyspec.html">마스터 정책서</a> 사이에 시차가 생길 수 있습니다. 정책 숫자를 다른 문서·코드에 인용할 때는 마스터 정책서를 1차 근거로 삼고, 이 화면은 "지금 CMS가 보여주는 값"으로 교차 확인하는 용도로만 쓰세요.</span><span class="vi">Vì chỉ để xem nên khả năng cao đã cập nhật giá trị mới nhất, nhưng vẫn có thể có độ trễ giữa màn này và <a href="../policyspec.html">Tài liệu chính sách gốc</a>. Khi trích dẫn số liệu chính sách vào tài liệu·code khác, hãy lấy Tài liệu chính sách gốc làm căn cứ chính, còn màn này chỉ dùng để đối chiếu chéo "giá trị CMS đang hiển thị lúc này".</span></span></div>
+<div class="callout"><div class="tt"><span class="i18n"><span class="ko">경품 추첨 주기·예산 비율은 아직 미결</span><span class="vi">Chu kỳ rút thăm·tỷ lệ ngân sách giải thưởng vẫn chưa chốt</span></span></div><span class="i18n"><span class="ko">탭2 화면에 노란 글씨로 표시된 대로, 추첨 주기(월1/격주)와 경품 예산 비율(매출 대비 %)은 아직 확정되지 않았습니다. 관련 운영 문서를 작성할 때는 "확정 대기"로 표기해야 합니다.</span><span class="vi">Như chữ màu vàng hiện ở tab 2, chu kỳ rút thăm (tháng 1 lần/2 tuần 1 lần) và tỷ lệ ngân sách giải thưởng (% so với doanh thu) vẫn chưa được chốt. Khi viết tài liệu vận hành liên quan phải ghi là "Đang chờ chốt".</span></span></div>
+
 <div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 설명서</span><span class="vi">PricePick · Tài liệu CMS</span></span> · <span class="i18n"><span class="ko">개발자용 문서 · 김반장님 확정 기준 업데이트</span><span class="vi">Tài liệu dành cho dev · cập nhật theo xác nhận của Mr Mark</span></span></div>
 </div>
 </body></html>
