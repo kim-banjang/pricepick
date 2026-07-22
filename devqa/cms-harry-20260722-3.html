@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 답변 · Harry · 2026-07-22 (3차)</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 답변 · Harry · 2026-07-22 (3차)</span><span class="vi">Trả lời CMS PricePick · Harry · 2026-07-22 (đợt 3)</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry · CMS · 확정 대기 D+7/D+30 전환 규칙 · 발송 채널 Push 단일화 — 답변 KO/VI</span><span class="vi">Harry · CMS · Quy tắc chuyển đổi D+7/D+30 khi chờ xác nhận · Đơn kênh gửi Push — Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-07-22-3-3a586f66c224806d9c42fb8554cdca0e" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 2건</span><span class="vi">2 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 2</span><span class="vi">Đã chốt 2</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장님 확정</span><span class="vi">Căn cứ: Mr Mark đã chốt</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+
+<!-- ==================== Q1 : 확정 대기 D+7/D+30 전환 규칙 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 확정 대기 D+7/D+30 — 연동 시 전환 규칙</span><span class="vi">1. Chờ xác nhận D+7/D+30 — Quy tắc chuyển đổi khi liên kết</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">미연동 상태로 쌓인 확정 대기 티켓이 나중에 카카오 연동을 하면 어떻게 처리되나요? 아예 D+7로 통일하는 게 낫지 않을까요?</span><span class="vi">Vé đang chờ xác nhận tích lũy khi chưa liên kết, nếu sau đó liên kết Kakao thì xử lý thế nào? Có nên gộp thành D+7 duy nhất luôn không?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260722-harry-3/harry-q1-ticket-pending.png','티켓 설명서 · 확정 대기 안내 강조')"><img src="/devqa/assets/20260722-harry-3/harry-q1-ticket-pending.png" alt="티켓 설명서 확정 대기 안내 강조" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">티켓 설명서 · 확정 대기 안내 강조</span><span class="vi">Tài liệu vé · Nhấn mạnh hướng dẫn chờ xác nhận</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">D+7/D+30 이원 체계는 그대로 유지합니다 — 7일 통일안은 채택하지 않습니다. 대신 전환 규칙을 한 줄로 정리합니다: <b>카카오 연동 시점부터 그 회원의 대기 중인 티켓 전부에 D+7 기준을 소급 적용</b>합니다. 적립일로부터 이미 7일이 지난 티켓은 연동 즉시 확정·공개되고, 7일 미만인 티켓은 적립일+7일이 되는 날 확정됩니다. 예를 들어 미연동 상태로 8일째인 티켓은 연동 즉시 오픈되고, 3일째인 티켓은 4일 뒤 오픈됩니다.</span><span class="vi">Hệ thống D+7/D+30 vẫn giữ nguyên — không áp dụng phương án gộp thành 7 ngày duy nhất. Thay vào đó, quy tắc chuyển đổi được chốt trong một dòng: <b>từ thời điểm liên kết Kakao, D+7 sẽ được áp dụng hồi tố cho toàn bộ vé đang chờ</b> của hội viên đó. Vé đã qua 7 ngày kể từ ngày tích lũy sẽ được xác nhận·công khai ngay khi liên kết, còn vé chưa đủ 7 ngày sẽ được xác nhận vào đúng ngày tích lũy+7. Ví dụ: vé ở ngày thứ 8 khi chưa liên kết sẽ mở ngay khi liên kết, vé ở ngày thứ 3 sẽ mở sau 4 ngày nữa.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">문서·화면 반영: ① 정책서(policyspec.html) 계정 생애주기 "연동" 항목에 전환 규칙 한 줄 추가. ② cms-storyboard 티켓 내역 설명서(tickets.html)에 전환 규칙 단락 추가. ③ 앱(pricepick-demo/app) "구매확정 대기 기간" 안내 패널(2곳, 동일 컴포넌트) — "카카오 연동하면 D+7로 단축됩니다" 문구 아래에 소급 적용 규칙 한 줄 추가(KO/VI).</span><span class="vi">Đã phản ánh lên tài liệu·màn hình: ① Thêm một dòng quy tắc chuyển đổi vào mục "Liên kết" trong vòng đời tài khoản của tài liệu chính sách gốc (policyspec.html). ② Thêm đoạn quy tắc chuyển đổi vào tài liệu Lịch sử vé của cms-storyboard (tickets.html). ③ Bảng hướng dẫn "Thời gian chờ xác nhận mua" trong app (pricepick-demo/app, 2 vị trí, cùng component) — thêm một dòng quy tắc áp dụng hồi tố ngay dưới câu "Liên kết Kakao thì rút ngắn xuống D+7" (KO/VI).</span></span></div></div></div></div>
+
+<!-- ==================== Q2 : 발송 채널 Push 단일화 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 발송 채널 — Push 단일 확정, 알림톡 제거</span><span class="vi">2. Kênh gửi — Chốt chỉ Push, bỏ AlimTalk</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">카카오 알림톡은 서드파티·비용 이슈니 1단계는 Push만 쓰는 게 맞지 않을까요?</span><span class="vi">Kakao AlimTalk là bên thứ ba·có chi phí, nên giai đoạn 1 có nên chỉ dùng Push không?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260722-harry-3/harry-q2-noti-channel.png','알림 작성·발송 화면 · 발송 채널 드롭다운 강조')"><img src="/devqa/assets/20260722-harry-3/harry-q2-noti-channel.png" alt="알림 작성 발송 화면 발송 채널 드롭다운 강조" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">알림 작성·발송 화면 · 발송 채널 드롭다운 강조</span><span class="vi">Màn soạn·gửi push · Nhấn mạnh dropdown kênh gửi</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">맞습니다. <b>1단계 발송 채널은 앱 푸시 단일</b>입니다. 카카오 알림톡·동시 발송 옵션은 정책 근거 없이 화면에만 있던 과잉 기능이라 제거합니다 — 알림톡은 서드파티 비용이 발생해 1단계에서 채택하지 않습니다.</span><span class="vi">Đúng vậy. <b>Kênh gửi ở giai đoạn 1 chỉ có push app</b>. Tùy chọn Kakao AlimTalk·gửi đồng thời là phần thừa trên màn hình không có căn cứ chính sách nên đã bỏ — AlimTalk phát sinh chi phí bên thứ ba nên không dùng ở giai đoạn 1.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">화면 반영: CMS 원본(cms.html)·데모(pricepick-demo/cms) 양쪽 '알림 관리' 화면의 발송 채널 셀렉트에서 카카오 알림톡·푸시+알림톡 동시 옵션을 삭제하고, 앱 푸시 고정 표기(선택 불가)로 단순화(KO/VI). 데모 쪽 발송 로직(notiSend)이 읽던 채널 값은 hidden input으로 그대로 유지해 발송 기록은 문제없이 동작. 하단 안내 문구·예시 발송 내역에서도 알림톡 언급 정리. cms-storyboard 알림 관리 설명서(notifications.html)도 동일하게 정합.</span><span class="vi">Đã phản ánh lên màn hình: bỏ tùy chọn Kakao AlimTalk·gửi đồng thời trong ô chọn kênh gửi của màn Quản lý push, cả CMS gốc (cms.html) lẫn demo (pricepick-demo/cms), đơn giản hóa thành hiển thị cố định "Push app" (không chọn được, KO/VI). Giá trị kênh mà logic gửi (notiSend) của demo đọc vẫn giữ nguyên qua input ẩn nên việc ghi lịch sử gửi vẫn hoạt động bình thường. Cũng dọn lại các chỗ nhắc đến AlimTalk ở dòng chú thích·ví dụ lịch sử gửi bên dưới. Tài liệu Quản lý push của cms-storyboard (notifications.html) cũng đã đồng bộ.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Harry · 2026-07-22 (3차) · 확정 2 / 확인 필요 0</span><span class="vi">PricePick · Trả lời CMS · Harry · 2026-07-22 (đợt 3) · Đã chốt 2 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
