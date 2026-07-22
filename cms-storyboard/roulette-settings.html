@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 설명서 · 행운룰렛 설정</title><style>
+:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px 90px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:26px 0 22px;position:relative}
+.wraphdr{max-width:960px;margin:0 auto;padding:0 22px}
+.crumb{font-size:12px;opacity:.85;margin-bottom:8px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{opacity:1;text-decoration:underline}
+.htitle{font-size:22px;font-weight:700} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+.bd{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+h2.sec{font-size:16px;font-weight:700;color:var(--ink1);margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--pp-l)}
+h3.sub{font-size:13.5px;font-weight:700;margin:18px 0 8px;color:var(--ink1)}
+p{color:var(--ink2);margin:8px 0;max-width:840px}
+strong,b{color:var(--ink1)}
+.callout{background:var(--pp-l);border:1px solid #ddd0fb;border-left:3px solid var(--pp);border-radius:8px;padding:12px 16px;margin:14px 0;max-width:840px}
+.callout.warn{background:#fdf1e3;border-color:#fbd9a8;border-left-color:var(--ck)}
+.callout .tt{font-weight:700;font-size:12px;margin-bottom:4px;color:var(--ink1)}
+table{border-collapse:collapse;width:100%;max-width:900px;margin:12px 0;font-size:12.5px}
+th{background:var(--bg);border:1px solid var(--line);padding:8px 10px;text-align:left;font-weight:700;color:var(--ink1)}
+td{border:1px solid var(--line);padding:8px 10px;color:var(--ink2);vertical-align:top}
+td b{color:var(--ink1)}
+code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--pp-d)}
+.foot{margin-top:34px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr"><div class="crumb"><a href="/cms-storyboard/index.html"><span class="i18n"><span class="ko">&larr; CMS 설명서 전체 목록</span><span class="vi">&larr; Danh sách toàn bộ tài liệu CMS</span></span></a></div>
+<div class="htitle"><span class="i18n"><span class="ko">행운룰렛 설정</span><span class="vi">Cài đặt vòng quay may mắn</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">룰렛 6칸의 유형·값을 운영자가 정하는 화면 — '추첨 관리'와는 별개 기능</span><span class="vi">Màn hình Vận hành viên đặt loại·giá trị cho 6 ô vòng quay — tính năng khác với 'Quản lý bốc thăm'</span></span></div>
+</div></header>
+<div class="wrap">
+<div class="meta">
+<span class="chip"><span class="i18n"><span class="ko">그룹</span><span class="vi">Nhóm</span></span>: <span class="i18n"><span class="ko">티켓 · 보상</span><span class="vi">Vé · Thưởng</span></span></span>
+<span class="bd ok"><span class="i18n"><span class="ko">작성됨</span><span class="vi">Đã viết</span></span></span>
+</div>
+<div class="meta" style="margin-top:0">
+<span class="chip"><span class="i18n"><span class="ko">근거</span><span class="vi">Căn cứ</span></span>: <span class="i18n"><span class="ko">정책서(행운룰렛 규칙) · 실제 CMS 캡처</span><span class="vi">Tài liệu chính sách (quy tắc vòng quay may mắn) · Ảnh chụp CMS thực tế</span></span></span>
+</div>
+
+<h2 class="sec"><span class="i18n"><span class="ko">1. 한 줄 정의</span><span class="vi">1. Định nghĩa một dòng</span></span></h2>
+<div class="callout"><div class="tt"><span class="i18n"><span class="ko">행운룰렛이란</span><span class="vi">Vòng quay may mắn là gì</span></span></div><span class="i18n"><span class="ko">행운룰렛 = 포인트·이벤트티켓을 확률로 지급하는 기능. 확률·배분은 정책상 미결이라 운영자가 직접 정한다. 룰렛은 6칸이며 각 칸을 균등 확률(1/6)로 추첨한다. 여기서 저장한 설정을 앱이 그대로 읽어 룰렛을 렌더링하고 당첨 보상을 지급한다.</span><span class="vi">Vòng quay may mắn = tính năng phát điểm·vé sự kiện theo xác suất. Xác suất·phân bổ chưa chốt về chính sách nên Vận hành viên tự quyết định. Vòng quay có 6 ô, mỗi ô được bốc theo xác suất đều nhau (1/6). App sẽ đọc nguyên cấu hình lưu ở đây để hiển thị vòng quay và trao thưởng.</span></span></div>
+<p><span class="i18n"><span class="ko">'추첨 관리'(경품 응모형 추첨)와는 완전히 다른 기능이다 — 이쪽은 룰렛 한 판의 확률·보상 구성을 정하는 화면이고, 추첨 관리는 이벤트 티켓을 소모하는 별도의 경품 추첨이다.</span><span class="vi">Đây là tính năng hoàn toàn khác với 'Quản lý bốc thăm' (bốc thăm kiểu tham gia bằng quà) — màn này quyết định xác suất·cơ cấu thưởng của một lượt quay, còn Quản lý bốc thăm là bốc thăm quà tặng riêng biệt tiêu vé sự kiện.</span></span></p>
+
+<h2 class="sec"><span class="i18n"><span class="ko">2. 화면 구성 — "룰렛 6칸 설정"</span><span class="vi">2. Cấu trúc màn hình — "Cài đặt 6 ô vòng quay"</span></span></h2>
+<div style="margin:14px 0 18px"><img src="img/roulette-settings-01-overview.png" alt="행운룰렛 설정 실제 화면" style="max-width:100%;border:1px solid var(--line);border-radius:10px;display:block"></div>
+<p><span class="i18n"><span class="ko">카드 제목은 "룰렛 6칸 설정", "저장" 버튼이 있다. 표는 칸/유형(드롭다운)/값 3열이며, 현재 저장된 값은 다음과 같다.</span><span class="vi">Tiêu đề thẻ là "Cài đặt 6 ô vòng quay", có nút "Lưu". Bảng gồm 3 cột Ô/Loại (dropdown)/Giá trị, giá trị hiện đang lưu như sau.</span></span></p>
+<table>
+  <tr><th style="width:80px"><span class="i18n"><span class="ko">칸</span><span class="vi">Ô</span></span></th><th><span class="i18n"><span class="ko">유형</span><span class="vi">Loại</span></span></th><th><span class="i18n"><span class="ko">값</span><span class="vi">Giá trị</span></span></th></tr>
+  <tr><td>1</td><td><span class="i18n"><span class="ko">이벤트티켓</span><span class="vi">Vé sự kiện</span></span></td><td>1</td></tr>
+  <tr><td>2</td><td><span class="i18n"><span class="ko">꽝</span><span class="vi">Trượt</span></span></td><td>&mdash;</td></tr>
+  <tr><td>3</td><td><span class="i18n"><span class="ko">포인트</span><span class="vi">Điểm</span></span></td><td>100</td></tr>
+  <tr><td>4</td><td><span class="i18n"><span class="ko">이벤트티켓</span><span class="vi">Vé sự kiện</span></span></td><td>2</td></tr>
+  <tr><td>5</td><td><span class="i18n"><span class="ko">꽝</span><span class="vi">Trượt</span></span></td><td>&mdash;</td></tr>
+  <tr><td>6</td><td><span class="i18n"><span class="ko">포인트</span><span class="vi">Điểm</span></span></td><td>200</td></tr>
+</table>
+<p><span class="i18n"><span class="ko">화면 하단에는 "저장된 설정을 불러왔습니다."라는 안내 문구가 표시된다 — 즉 지금 표에 보이는 값은 데모용 더미가 아니라 실제로 저장돼 있던 설정을 읽어온 것이다.</span><span class="vi">Cuối màn hình có dòng thông báo "Đã tải cấu hình đã lưu." — nghĩa là giá trị đang hiển thị trong bảng không phải dummy demo mà là cấu hình thực sự đã được lưu trước đó.</span></span></p>
+
+<h2 class="sec"><span class="i18n"><span class="ko">3. 정책 근거 — 6칸 설정값 일치</span><span class="vi">3. Căn cứ chính sách — Giá trị 6 ô khớp nhau</span></span></h2>
+<div class="callout"><span class="i18n"><span class="ko">정책서 확정 내용: "행운룰렛은 상시(출석 무관) / 하루 1회 / 6칸 균등 확률(기본값: 100P·200P·티켓1장·티켓2장·꽝·꽝, CMS 편집 가능)." 즉 출석체크와 무관하게 하루 1번 아무 때나 돌릴 수 있다. "위 6칸은 기본값이며, CMS '행운룰렛 설정'에서 운영자가 각 칸의 유형·값을 언제든 변경할 수 있다." 여기서 받은 이벤트 티켓은 경품 응모(추첨 관리)에만 쓰며, 받은 날부터 100일 만료 규칙을 따르고, 이벤트 티켓 발급과 무관하다.<br><br>정책서의 기본값 세트(100P, 200P, 이벤트티켓×1, 이벤트티켓×2, 꽝, 꽝)와 실제 화면에 저장된 값(칸 순서만 다름, 구성은 동일)이 <strong>정확히 일치한다</strong>. 좌측 사이드바에서 이 메뉴의 정책 확정 배지는 확정으로 표시된다.</span><span class="vi">Nội dung đã chốt trong tài liệu chính sách: "Vòng quay may mắn hoạt động thường trực (không phụ thuộc điểm danh) / 1 lần/ngày / 6 ô xác suất đều nhau (mặc định: 100P·200P·1 vé·2 vé·trượt·trượt, có thể chỉnh qua CMS)." Tức là không liên quan đến điểm danh, có thể quay 1 lần/ngày vào bất kỳ lúc nào. "6 ô trên là giá trị mặc định, Vận hành viên có thể thay đổi loại·giá trị của từng ô bất cứ lúc nào tại 'Cài đặt vòng quay may mắn' trên CMS." Vé sự kiện nhận được ở đây chỉ dùng để tham gia bốc thăm quà (Quản lý bốc thăm), tuân theo quy tắc hết hạn 100 ngày kể từ ngày nhận, và không liên quan đến việc phát hành vé sự kiện.<br><br>Bộ giá trị mặc định trong tài liệu chính sách (100P, 200P, vé sự kiện×1, vé sự kiện×2, trượt, trượt) và giá trị đang được lưu trên màn hình thực tế (chỉ khác thứ tự ô, cơ cấu giống hệt) <strong>khớp chính xác với nhau</strong>. Ở sidebar bên trái, badge xác nhận chính sách của menu này hiển thị Đã chốt.</span></span></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 설명서</span><span class="vi">PricePick · Tài liệu CMS</span></span> · <span class="i18n"><span class="ko">개발자용 문서 · 김반장님 확정 기준 업데이트</span><span class="vi">Tài liệu dành cho dev · cập nhật theo xác nhận của Mr Mark</span></span></div>
+</div>
+</body></html>
