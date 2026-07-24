@@ -15449,6 +15449,15 @@ function selectMall(name, domain, dest) {
   showScreen(dest);
 }
 
+function updateNotifMarkAllBtn() {
+  var scroll = document.querySelector('#pw-S1 .notif-scroll');
+  var btn = document.querySelector('#pw-S1 .notif-mark-all');
+  if (!scroll || !btn) return;
+  var hasUnread = !!scroll.querySelector('.notif-item.unread');
+  btn.style.opacity = hasUnread ? '' : '0.4';
+  btn.style.pointerEvents = hasUnread ? '' : 'none';
+}
+
 function bindNotifItems() {
   var scroll = document.querySelector('#pw-S1 .notif-scroll');
   if (!scroll || scroll.dataset.ipBound) return;
@@ -15458,14 +15467,15 @@ function bindNotifItems() {
     if (!item) return;
     e.stopPropagation();
     item.classList.remove('unread');
+    updateNotifMarkAllBtn();
   }, true); // 캡처 단계 — catchAll보다 먼저 실행
+  updateNotifMarkAllBtn();
 }
 
 function markAllRead(btn) {
   var scroll = document.querySelector('#pw-S1 .notif-scroll');
   if (scroll) scroll.querySelectorAll('.notif-item.unread').forEach(function(el){ el.classList.remove('unread'); });
-  btn.style.opacity = '0.4';
-  btn.style.pointerEvents = 'none';
+  updateNotifMarkAllBtn();
   ipToast('모두 읽음 처리됐어요');
 }
 

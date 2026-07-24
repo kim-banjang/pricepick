@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱 답변 · Kelvin · 2026-07-23</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱 답변 · Kelvin · 2026-07-23</span><span class="vi">Trả lời App PricePick · Kelvin · 2026-07-23</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Kelvin · App · 연속구매 미션 — 반복 수령·달성 순서·10회 이후 표시·CMS 설정 여부 — 답변 KO/VI</span><span class="vi">Kelvin · App · Nhiệm vụ mua liên tục — Nhận lặp lại·thứ tự đạt mốc·hiển thị sau 10 lần·có cài đặt CMS không — Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://quixotic-vase-a61.notion.site/PricePick-Q-A-Mobile-23-07-3a67c2753991809ca1b5f84263395e69" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 4건</span><span class="vi">4 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 2 · 확정 대기 2</span><span class="vi">Đã chốt 2 · Chờ xác nhận 2</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 마스터 정책서·CMS 실측</span><span class="vi">Căn cứ: tài liệu chính sách gốc·khảo sát thực tế CMS</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+
+<!-- ==================== K1 : 반복 수령 여부 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 단계별 보상 — 반복 수령 가능 여부</span><span class="vi">1. Thưởng theo mốc — Có nhận lặp lại được không</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">각 단계(3·5·10회) 보상은 한 번만 받을 수 있나요, 여러 번 반복해서 받을 수 있나요? 반복이라면 주기는 어떻게 계산되나요?</span><span class="vi">Thưởng mỗi mốc (3·5·10 lần) chỉ nhận được một lần hay có thể nhận lặp lại nhiều lần? Nếu lặp lại thì chu kỳ tính thế nào?</span></span></div><span class="bd hold"><span class="i18n"><span class="ko">확정 대기</span><span class="vi">Chờ xác nhận</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260723-kelvin/kelvin-q1-continuous-purchase-mission.png','연속구매 미션 화면 · 3·5·10회 단계')"><img src="/devqa/assets/20260723-kelvin/kelvin-q1-continuous-purchase-mission.png" alt="연속구매 미션 화면 3·5·10회 단계" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">연속구매 미션 화면 · 3·5·10회 단계</span><span class="vi">Màn Nhiệm vụ mua liên tục · Các mốc 3·5·10 lần</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">지금 정책에는 10회 단계까지 다 채운 뒤의 흐름이 정의돼 있지 않습니다 — 미션이 처음부터 다시 시작돼서 반복 지급되는 구조인지, 10회에서 그대로 멈추는 구조인지가 확정되지 않았습니다. 지어내지 않고 <b>확정 대기</b>로 남겨두겠습니다. 김반장님 결정이 나는 대로 정책서·화면에 반영하겠습니다.</span><span class="vi">Hiện tại chính sách chưa định nghĩa luồng xử lý sau khi hoàn thành cả mốc 10 lần — chưa chốt là nhiệm vụ sẽ khởi động lại từ đầu để nhận thưởng lặp lại, hay dừng cố định ở mốc 10 lần. Không tự suy diễn mà để ở trạng thái <b>chờ xác nhận</b>. Sẽ phản ánh vào tài liệu chính sách·màn hình ngay khi Mr Mark quyết định.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">PolicySpec "이벤트 티켓 획득 경로 3 · 연속구매 미션"에는 7일 내 3회·14일 내 5회·30일 내 10회 지급량만 명시돼 있고, 10회 달성 이후의 사이클 처리 규칙은 없음.</span><span class="vi">PolicySpec mục "Đường dẫn 3 nhận vé sự kiện · Nhiệm vụ mua liên tục" chỉ ghi số lượng cấp cho 3 lần/7 ngày·5 lần/14 ngày·10 lần/30 ngày, chưa có quy tắc xử lý chu kỳ sau khi đạt 10 lần.</span></span></div></div></div></div>
+
+<!-- ==================== K2 : 지급 순서 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 단계별 보상 — 지급 순서·기간 미달 케이스</span><span class="vi">2. Thưởng theo mốc — Thứ tự cấp·trường hợp không đạt trong thời hạn</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">보상은 작은 단계부터 순서대로 지급되나요, 조건 충족 즉시 지급되나요? 예를 들어 30일 기준 10회는 달성했는데 14일 기준 5회는 미달인 경우는 어떻게 처리되나요?</span><span class="vi">Thưởng được cấp theo thứ tự từ mốc nhỏ đến lớn, hay cấp ngay khi đạt điều kiện? Ví dụ trường hợp đạt 10 lần trong 30 ngày nhưng không đạt 5 lần trong 14 ngày thì xử lý thế nào?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">지급은 순서를 기다리지 않고 <b>조건을 채우는 그 순간 즉시 자동 지급</b>됩니다 — 3회를 채우면 그 자리에서 1장, 이어서 5회를 채우면 그 자리에서 3장이 나가는 식입니다.
+
+말씀하신 "30일 안에 10회는 채웠는데 14일 안에는 5회를 못 채운" 경우는 이 구조에서는 일어나지 않습니다. 각 단계는 자기 기한을 넘기면 그 시점에 미션 흐름이 끊겨서 리셋되기 때문에, 14일 안에 5회를 못 채우면 그 순간 이미 리셋된 상태라 애초에 30일까지 이어질 수가 없습니다.</span><span class="vi">Thưởng không chờ theo thứ tự mà <b>cấp tự động ngay khi đạt điều kiện</b> — đạt 3 lần thì cấp ngay 1 vé tại chỗ, rồi đạt 5 lần thì cấp ngay 3 vé tại chỗ.
+
+Trường hợp bạn nêu — "đạt 10 lần trong 30 ngày nhưng không đạt 5 lần trong 14 ngày" — không xảy ra trong cấu trúc này. Mỗi mốc nếu vượt quá thời hạn riêng thì mạch nhiệm vụ đứt và reset ngay tại thời điểm đó, nên nếu không đạt 5 lần trong 14 ngày thì lúc đó đã reset rồi, không thể nào kéo dài tới 30 ngày được nữa.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">연속구매 미션 카운트 리셋 규칙: 각 단계 기한(7일/14일/30일) 초과 시에만 리셋. 보상은 단계 도달 즉시 자동 지급, 별도 수령 버튼 없음.</span><span class="vi">Quy tắc reset số đếm nhiệm vụ mua liên tục: chỉ reset khi vượt thời hạn từng mốc (7/14/30 ngày). Thưởng cấp tự động ngay khi đạt mốc, không có nút nhận riêng.</span></span></div></div></div></div>
+
+<!-- ==================== K3 : 10회 이후 표시 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">3. 10회 이후 카운트 — 화면 표시</span><span class="vi">3. Số đếm sau 10 lần — Hiển thị trên màn</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">연속구매 카운트가 10 이상 쌓이면 화면에 어떻게 표시되나요?</span><span class="vi">Nếu số đếm mua liên tục tích lũy từ 10 trở lên thì hiển thị trên màn thế nào?</span></span></div><span class="bd hold"><span class="i18n"><span class="ko">확정 대기</span><span class="vi">Chờ xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">10회를 넘어선 뒤의 화면 표시(숫자를 계속 올릴지, 10에서 멈춰 보여줄지, 새로운 단계 카드가 생기는지)는 1번 질문과 마찬가지로 정책에 정의돼 있지 않습니다. <b>확정 대기</b>로 남겨두고, 결정되는 대로 화면에 반영하겠습니다.</span><span class="vi">Cách hiển thị màn sau khi vượt 10 lần (tiếp tục tăng số, giữ cố định ở 10, hay xuất hiện thẻ mốc mới) — giống câu 1, chưa được định nghĩa trong chính sách. Để ở trạng thái <b>chờ xác nhận</b>, sẽ phản ánh lên màn hình ngay khi có quyết định.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">1번 질문(반복 수령 여부)과 연동된 사안 — 10회 이후 사이클 처리 규칙이 정해지면 화면 표시 방식도 함께 확정.</span><span class="vi">Liên quan đến câu 1 (có nhận lặp lại được không) — khi quy tắc xử lý chu kỳ sau 10 lần được chốt thì cách hiển thị màn cũng sẽ chốt cùng lúc.</span></span></div></div></div></div>
+
+<!-- ==================== K4 : CMS 설정 가능 여부 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">4. 연속구매 미션 — CMS 설정 가능 여부</span><span class="vi">4. Nhiệm vụ mua liên tục — Có cài đặt được qua CMS không</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">4</span><div class="qtxt"><span class="i18n"><span class="ko">연속구매 미션도 CMS에서 다른 이벤트(출석·룰렛·친구초대)처럼 조건·보상을 설정할 수 있나요, 아니면 고정값인가요?</span><span class="vi">Nhiệm vụ mua liên tục có thể cài đặt điều kiện·thưởng qua CMS giống các sự kiện khác (điểm danh·vòng quay·mời bạn) không, hay là giá trị cố định?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">CMS 메뉴를 직접 확인한 결과, 지금은 출석체크·이벤트 관리·친구초대 관리처럼 <b>연속구매 미션만 따로 설정하는 화면이 없습니다</b>. 3·5·10회 조건과 1·3·5장 보상은 현재 고정값이고, 운영자가 CMS에서 바꿀 수 있는 대상이 아닙니다.</span><span class="vi">Đã kiểm tra trực tiếp menu CMS, hiện tại <b>không có màn cài đặt riêng cho nhiệm vụ mua liên tục</b> như Cài đặt điểm danh·Quản lý sự kiện·Quản lý mời bạn. Điều kiện 3·5·10 lần và thưởng 1·3·5 vé hiện là giá trị cố định, không phải đối tượng admin có thể thay đổi qua CMS.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">CMS 좌측 메뉴 실측: "출석체크 설정"(포인트 관리)·"이벤트 관리"·"친구초대 관리"(콘텐츠)는 존재. 연속구매 미션 전용 설정 메뉴는 없음(cms.html 사이드바 기준).</span><span class="vi">Khảo sát thực tế menu bên trái CMS: có "Cài đặt điểm danh" (Quản lý điểm)·"Quản lý sự kiện"·"Quản lý mời bạn" (Nội dung). Không có menu cài đặt riêng cho nhiệm vụ mua liên tục (theo sidebar cms.html).</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · App 답변 · Kelvin · 2026-07-23 · 확정 2 / 확정 대기 2</span><span class="vi">PricePick · Trả lời App · Kelvin · 2026-07-23 · Đã chốt 2 / Chờ xác nhận 2</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>

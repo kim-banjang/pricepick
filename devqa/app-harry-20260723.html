@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱 답변 · Harry · 2026-07-23</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.reftable{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
+.reftable th,.reftable td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+.reftable th{background:#f4f5f8;color:var(--ink2);font-weight:700}
+.reftable td{color:var(--ink2)}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱 답변 · Harry · 2026-07-23</span><span class="vi">Trả lời App PricePick · Harry · 2026-07-23</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry · App · 연속구매 미션 — 단계별 누적 지급·이벤트 티켓 공통 한도 — 답변 KO/VI</span><span class="vi">Harry · App · Nhiệm vụ mua liên tục — Cấp cộng dồn theo mốc·Hạn mức chung vé sự kiện — Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-07-23-3a686f66c224804fb34ff20570ddeeab" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 2건</span><span class="vi">2 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 2</span><span class="vi">Đã chốt 2</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 마스터 정책서</span><span class="vi">Căn cứ: tài liệu chính sách gốc</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+
+<!-- ==================== H1 : 연속구매 미션 누적 지급 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 연속구매 미션 — 단계별 누적 지급</span><span class="vi">1. Nhiệm vụ mua liên tục — Cấp cộng dồn theo mốc</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">7일 내 3회 연속구매로 이벤트티켓 1장을 받고, 이어서 14일 내 5회를 달성하면 3장이 추가로 나오나요(합계 4장)? 30일 내 3단계(3·5·10회)를 전부 달성하면 1+3+5 = 총 9장이 맞나요? 합산 로직이 궁금합니다.</span><span class="vi">Nếu mua liên tục 3 lần trong 7 ngày nhận 1 vé sự kiện, rồi tiếp tục đạt 5 lần trong 14 ngày thì có được cộng thêm 3 vé không (tổng 4 vé)? Nếu đạt cả 3 mốc (3·5·10 lần) trong 30 ngày thì có phải tổng nhận 1+3+5 = 9 vé không? Muốn hỏi rõ logic cộng dồn.</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260723-harry/harry-q1-continuous-purchase-mission.png','연속구매 미션 화면(VI) · 3·5·10회 단계')"><img src="/devqa/assets/20260723-harry/harry-q1-continuous-purchase-mission.png" alt="연속구매 미션 화면 3·5·10회 단계" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">연속구매 미션 화면(VI) · 3·5·10회 단계</span><span class="vi">Màn Nhiệm vụ mua liên tục (VI) · Các mốc 3·5·10 lần</span></span></span></button><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260723-harry/harry-q2-ticket-limit-note.png','같은 화면 · 하단 한도 문구')"><img src="/devqa/assets/20260723-harry/harry-q2-ticket-limit-note.png" alt="연속구매 미션 화면 하단 한도 문구 강조" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">같은 화면 · 하단 한도 문구</span><span class="vi">Cùng màn · Dòng hạn mức phía dưới</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">연속구매 미션은 3회→5회→10회가 하나로 이어지는 흐름입니다. 각 단계는 조건을 채우는 즉시 자동으로 지급되고, 지급된 뒤에도 카운트는 리셋되지 않고 그대로 이어져서 다음 단계로 넘어갑니다. 그래서 30일 안에 3단계를 전부 채우면 <b>1장 + 3장 + 5장 = 총 9장</b>을 받는 게 맞습니다.
+
+카운트가 리셋되는 경우는 딱 하나, 각 단계의 기한(3회는 7일, 5회는 14일, 10회는 30일)을 넘겨서 미션 흐름이 끊길 때뿐입니다.</span><span class="vi">Nhiệm vụ mua liên tục là một mạch liền từ 3 lần→5 lần→10 lần. Mỗi mốc được <b>cấp tự động ngay khi đạt điều kiện</b>, và sau khi cấp thì số đếm không reset mà tiếp tục sang mốc kế tiếp. Vì vậy nếu đạt cả 3 mốc trong 30 ngày thì tổng nhận đúng là <b>1 vé + 3 vé + 5 vé = 9 vé</b>.
+
+Số đếm chỉ reset trong đúng một trường hợp: khi vượt quá thời hạn của từng mốc (3 lần là 7 ngày, 5 lần là 14 ngày, 10 lần là 30 ngày) làm đứt mạch nhiệm vụ.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">이벤트 티켓 획득 경로 3 · 연속구매 미션: 7일 내 3회 1장 · 14일 내 5회 3장(누적) · 30일 내 10회 5장(누적). 카운트 리셋 조건은 각 단계 기한 초과 시에만 적용.</span><span class="vi">Đường dẫn 3 nhận vé sự kiện · Nhiệm vụ mua liên tục: 3 lần trong 7 ngày 1 vé · 5 lần trong 14 ngày 3 vé (cộng dồn) · 10 lần trong 30 ngày 5 vé (cộng dồn). Điều kiện reset số đếm chỉ áp dụng khi vượt thời hạn từng mốc.</span></span></div></div></div></div>
+
+<!-- ==================== H2 : 이벤트 티켓 공통 한도 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 이벤트 티켓 공통 한도 — 적용 범위·지급처 전체 목록</span><span class="vi">2. Hạn mức chung vé sự kiện — Phạm vi áp dụng·Toàn bộ nơi cấp</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">"이벤트 티켓 최대 5장/일, 30장/월" 한도가 연속구매 미션 전용인가요, 앱 전체(룰렛 당첨 1·2장, 카카오 연동 보상 1장 등)에 적용되나요? 전체라면 이벤트 티켓 지급처 전체 목록을 부탁드립니다(로직 체크·제한 구현용).</span><span class="vi">Hạn mức "vé sự kiện tối đa 5 vé/ngày, 30 vé/tháng" chỉ dành riêng cho nhiệm vụ mua liên tục hay áp dụng cho toàn bộ app (trúng vòng quay 1·2 vé, thưởng liên kết Kakao 1 vé v.v.)? Nếu là toàn bộ thì xin cho danh sách đầy đủ các nơi cấp vé sự kiện (để kiểm tra logic·triển khai giới hạn).</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">네, 연속구매 미션 전용이 아니라 <b>이벤트 티켓 전체에 걸리는 공통 한도</b>입니다 — 하루 5장, 한 달 30장을 넘기면 그 이후 지급분은 0장 처리됩니다. 모든 지급 경로를 합산한 기준이라, 룰렛 당첨이나 카카오 연동 보상도 같은 한도 안에 들어갑니다.
+
+지금 정책서 기준으로 이벤트 티켓이 나가는 곳은 아래 7곳입니다.</span><span class="vi">Đúng vậy, đây không phải hạn mức riêng cho nhiệm vụ mua liên tục mà là <b>hạn mức chung cho toàn bộ vé sự kiện</b> — vượt quá 5 vé/ngày, 30 vé/tháng thì phần cấp thêm sẽ bị tính 0 vé. Đây là mức tính cộng gộp toàn bộ các đường dẫn cấp, nên trúng vòng quay hay thưởng liên kết Kakao cũng nằm trong cùng hạn mức này.
+
+Theo tài liệu chính sách gốc hiện tại, vé sự kiện được cấp từ 7 nơi sau.</span></span>
+<table class="reftable"><thead><tr><th><span class="i18n"><span class="ko">지급처</span><span class="vi">Nơi cấp</span></span></th><th><span class="i18n"><span class="ko">지급량</span><span class="vi">Số lượng</span></span></th><th><span class="i18n"><span class="ko">조건</span><span class="vi">Điều kiện</span></span></th></tr></thead><tbody>
+<tr><td><span class="i18n"><span class="ko">5천원 미만 경유구매</span><span class="vi">Mua qua link dưới 5.000 won</span></span></td><td><span class="i18n"><span class="ko">1장</span><span class="vi">1 vé</span></span></td><td><span class="i18n"><span class="ko">건당, 등급 티켓 대신 지급</span><span class="vi">Mỗi đơn, cấp thay cho vé hạng</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">구매확정 부스터</span><span class="vi">Bộ tăng tốc xác nhận mua</span></span></td><td><span class="i18n"><span class="ko">1장</span><span class="vi">1 vé</span></span></td><td><span class="i18n"><span class="ko">주문 후 5일 내 구매확정</span><span class="vi">Xác nhận mua trong 5 ngày sau đặt hàng</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">연속구매 미션</span><span class="vi">Nhiệm vụ mua liên tục</span></span></td><td><span class="i18n"><span class="ko">1·3·5장</span><span class="vi">1·3·5 vé</span></span></td><td><span class="i18n"><span class="ko">7일 내 3회·14일 내 5회·30일 내 10회</span><span class="vi">3 lần/7 ngày·5 lần/14 ngày·10 lần/30 ngày</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">온보딩 가입(카카오 연동)</span><span class="vi">Đăng ký Onboarding (liên kết Kakao)</span></span></td><td><span class="i18n"><span class="ko">1장</span><span class="vi">1 vé</span></span></td><td><span class="i18n"><span class="ko">가입 시 1회</span><span class="vi">1 lần khi đăng ký</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">출석 5일 연속</span><span class="vi">Điểm danh 5 ngày liên tục</span></span></td><td><span class="i18n"><span class="ko">1장</span><span class="vi">1 vé</span></span></td><td><span class="i18n"><span class="ko">참여 탭, 5일차 보너스</span><span class="vi">Tab Tham gia, thưởng ngày thứ 5</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">행운룰렛 당첨</span><span class="vi">Trúng Vòng quay may mắn</span></span></td><td><span class="i18n"><span class="ko">1장 또는 2장</span><span class="vi">1 hoặc 2 vé</span></span></td><td><span class="i18n"><span class="ko">6칸 중 2칸(기본값), 하루 1회 상시</span><span class="vi">2 trong 6 ô (mặc định), thường xuyên 1 lần/ngày</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">CS 수동 보완 지급</span><span class="vi">CS cấp bù thủ công</span></span></td><td><span class="i18n"><span class="ko">사안별</span><span class="vi">Theo từng vụ việc</span></span></td><td><span class="i18n"><span class="ko">포스트백 미수신·영수증 인증 등 운영 보완</span><span class="vi">Bù vận hành: không nhận postback·xác thực hóa đơn v.v.</span></span></td></tr>
+</tbody></table>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">공통 한도: 이벤트 티켓 일 5장 / 월 30장(전 경로 합산, 초과 시 0장). 사용처는 경품 추첨 응모 전용. 출처: PolicySpec "이벤트 티켓 획득 경로(이부장 패키지)" + 참여 탭(출석·행운룰렛) 섹션.</span><span class="vi">Hạn mức chung: vé sự kiện 5 vé/ngày / 30 vé/tháng (cộng gộp toàn bộ đường dẫn, vượt thì 0 vé). Nơi sử dụng chỉ dành cho dự thưởng rút thăm. Nguồn: mục "Đường dẫn nhận vé sự kiện (Gói Trưởng phòng Lee)" + mục tab Tham gia (Điểm danh·Vòng quay may mắn) trong PolicySpec.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · App 답변 · Harry · 2026-07-23 · 확정 2 / 확인 필요 0</span><span class="vi">PricePick · Trả lời App · Harry · 2026-07-23 · Đã chốt 2 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
