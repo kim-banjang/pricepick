@@ -3883,8 +3883,6 @@ function toggleTheme() {
 function applyRole(role) {
   const r = ROLES[role];
   const label = getRoleLabel(role);
-  document.getElementById('sb-role-name').textContent = label;
-  document.getElementById('sb-role-id').textContent = r.email;
   document.getElementById('footer-avatar').textContent = r.initial;
   document.getElementById('footer-name').textContent = label;
   document.getElementById('footer-role').textContent = r.email;
