@@ -1,85 +1,20 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 설명서 · 주간 이벤트 추첨 (폐기됨)</title><style>
-:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a}
-*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6;min-height:100vh}
-.wrap{max-width:720px;margin:0 auto;padding:0 22px 90px}
-header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:26px 0 22px;position:relative}
-.wraphdr{max-width:720px;margin:0 auto;padding:0 22px}
-.crumb{font-size:12px;opacity:.85;margin-bottom:8px}
-.crumb a{color:#fff;text-decoration:none;opacity:.9}
-.crumb a:hover{opacity:1;text-decoration:underline}
-.htitle{font-size:22px;font-weight:700} .hsub{font-size:13px;opacity:.85;margin-top:6px}
-.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
-.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
-.bd{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
-.bd.gone{background:#eef0f4;color:#6b7280}
-h2.sec{font-size:16px;font-weight:700;color:var(--ink1);margin:30px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--pp-l)}
-p{color:var(--ink2);margin:8px 0;max-width:660px}
-strong,b{color:var(--ink1)}
-.callout{background:var(--pp-l);border:1px solid #ddd0fb;border-left:3px solid var(--pp);border-radius:8px;padding:12px 16px;margin:14px 0;max-width:660px}
-.callout .tt{font-weight:700;font-size:12px;margin-bottom:4px;color:var(--ink1)}
-table{border-collapse:collapse;width:100%;max-width:660px;margin:12px 0;font-size:12.5px}
-th{background:var(--bg);border:1px solid var(--line);padding:8px 10px;text-align:left;font-weight:700;color:var(--ink1)}
-td{border:1px solid var(--line);padding:8px 10px;color:var(--ink2);vertical-align:top}
-td b{color:var(--ink1)}
-a.btn{display:inline-block;background:var(--pp);color:#fff;text-decoration:none;font-size:13.5px;font-weight:700;padding:10px 22px;border-radius:10px;margin-top:8px}
-a.btn:hover{background:var(--pp-d)}
-.foot{margin-top:34px;font-size:11.5px;color:var(--ink3)}
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="1; url=/cms-storyboard/weekly-draws.html"><title>PricePick CMS 설명서 · 주간 이벤트 추첨 (이동됨)</title><style>
+:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);min-height:100vh;display:flex;align-items:center;justify-content:center}
+.box{max-width:460px;margin:0 22px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px 28px;text-align:center}
+.tt{font-size:16px;font-weight:700;margin-bottom:10px}
+.ds{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:20px}
+a.btn{display:inline-block;background:var(--pp);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:10px 20px;border-radius:20px}
+.back{margin-top:14px;font-size:12px}
+.back a{color:var(--ink3);text-decoration:none}
+.back a:hover{text-decoration:underline}
 .vi{display:none}
-#langsw{position:absolute;opacity:0;pointer-events:none}
-#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
-#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
-#langsw:checked ~ header .vib, #langsw:checked ~ .wrap .vib{display:block}
-.vib{display:none}
-#langsw:checked ~ .wrap .kob{display:none}
-.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
-.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
-.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
-#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
-#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
 </style></head><body>
-<input type="checkbox" id="langsw">
-<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
-<div class="wraphdr"><div class="crumb"><a href="/cms-storyboard/index.html"><span class="i18n"><span class="ko">&larr; CMS 설명서 전체 목록</span><span class="vi">&larr; Danh sách toàn bộ tài liệu CMS</span></span></a></div>
-<div class="htitle"><span class="i18n"><span class="ko">주간 이벤트 추첨 (폐기됨)</span><span class="vi">Bốc thăm sự kiện hàng tuần (Đã loại bỏ)</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">이 CMS 화면은 삭제되었습니다 — "추첨 관리"로 통합</span><span class="vi">Màn CMS này đã bị xóa — hợp nhất vào "Quản lý bốc thăm"</span></span></div>
-</div></header>
-<div class="wrap">
-<div class="meta">
-<span class="chip"><span class="i18n"><span class="ko">그룹</span><span class="vi">Nhóm</span></span>: <span class="i18n"><span class="ko">티켓 · 보상</span><span class="vi">Vé · Thưởng</span></span></span>
-<span class="bd gone"><span class="i18n"><span class="ko">폐기됨 · 2026.07.28</span><span class="vi">Đã loại bỏ · 28.07.2026</span></span></span>
+<div class="box">
+<div class="tt"><span class="i18n"><span class="ko">"주간 이벤트 추첨"은 "주간 이벤트 추첨 관리"(으)로 이동했습니다</span><span class="vi">"Bốc thăm sự kiện hàng tuần" đã chuyển đến "Quản lý rút thăm sự kiện tuần"</span></span></div>
+<div class="ds"><span class="i18n"><span class="ko">추첨 관리·경품/응모 관리·주간 이벤트 추첨 세 화면이 "주간 이벤트 추첨 관리" 하나로 합쳐졌습니다.</span><span class="vi">Ba màn Quản lý bốc thăm · Quản lý quà tặng/ứng tuyển · Bốc thăm sự kiện hàng tuần đã gộp thành một màn "Quản lý rút thăm sự kiện tuần".</span></span></div>
+<a class="btn" href="/cms-storyboard/weekly-draws.html"><span class="i18n"><span class="ko">주간 이벤트 추첨 관리(으)로 이동 &rarr;</span><span class="vi">Đi đến Quản lý rút thăm sự kiện tuần &rarr;</span></span></a>
+<div class="back"><a href="/cms-storyboard/index.html"><span class="i18n"><span class="ko">&larr; CMS 설명서 전체 목록</span><span class="vi">&larr; Danh sách toàn bộ tài liệu CMS</span></span></a></div>
 </div>
-
-<h2 class="sec"><span class="i18n"><span class="ko">이 화면은 더 이상 존재하지 않습니다</span><span class="vi">Màn hình này không còn tồn tại</span></span></h2>
-<p><span class="i18n"><span class="ko">CMS 좌측 메뉴의 "주간 이벤트 추첨"과 "주간 이벤트 추첨 설정 수정" 모달은 삭제되었습니다. 관련 기능은 <b>"추첨 관리"</b> 화면 하나로 통합됐습니다.</span><span class="vi">Mục "Bốc thăm sự kiện hàng tuần" và modal "Sửa cài đặt bốc thăm sự kiện hàng tuần" ở menu bên trái CMS đã bị xóa. Chức năng liên quan được hợp nhất vào một màn duy nhất là <b>"Quản lý bốc thăm"</b>.</span></span></p>
-<a class="btn" href="/cms-storyboard/draws.html"><span class="i18n"><span class="ko">추첨 관리 설명서로 이동 →</span><span class="vi">Đi đến tài liệu Quản lý bốc thăm →</span></span></a>
-
-<h2 class="sec"><span class="i18n"><span class="ko">왜 삭제했나 — 정책서 대조 결과</span><span class="vi">Vì sao loại bỏ — Kết quả đối chiếu tài liệu chính sách</span></span></h2>
-<p><span class="i18n"><span class="ko">과거 이 화면은 "추첨 관리"(회차별 티켓 수 비례 추첨)와 별개로 존재했고, 다음 필드를 관리자가 직접 입력했습니다: 당첨 확률(%) · 추첨 방식(자동/수동) · 추첨 요일·시각 · 당첨 보상 구성 · 이벤트 티켓 만료 표시. 문제는 <b>당첨 확률(%)을 고정값으로 입력하는 방식</b>이 "추첨 관리"의 티켓 수 비례 추첨 모델과 서로 모순됐다는 점입니다.</span><span class="vi">Trước đây màn này tồn tại tách biệt với "Quản lý bốc thăm" (bốc thăm theo tỷ lệ số vé từng đợt), và Vận hành viên tự nhập các trường sau: xác suất trúng thưởng (%) · phương thức bốc thăm (tự động/thủ công) · thứ·giờ bốc thăm · cơ cấu quà trúng thưởng · hiển thị hạn dùng vé sự kiện. Vấn đề là <b>cách nhập xác suất trúng thưởng (%) dưới dạng giá trị cố định</b> mâu thuẫn với mô hình bốc thăm theo tỷ lệ số vé của "Quản lý bốc thăm".</span></span></p>
-<div class="callout"><div class="tt"><span class="i18n"><span class="ko">정책서 원문 인용</span><span class="vi">Trích nguyên văn tài liệu chính sách</span></span></div><span class="i18n"><span class="ko">"주간 이벤트 추첨은 응모한 티켓 수에 비례하는 추첨으로 확정합니다(비복원 추첨). 관리자 확률(%) 설정 표현은 비례로 정정하며, 프로토타입의 50%는 화면 더미값입니다."</span><span class="vi">"Bốc thăm sự kiện hàng tuần được xác định là bốc thăm theo tỷ lệ số vé đã dùng để tham gia (không hoàn lại). Cách diễn đạt cài đặt xác suất (%) của Vận hành viên được sửa thành theo tỷ lệ, và 50% trong bản demo chỉ là giá trị giả trên màn hình."</span></span></div>
-<p><span class="i18n"><span class="ko">즉 확률(%) 입력칸은 애초에 확정된 운영 규칙이 아니라 프로토타입 더미였습니다 — 정책서상 근거가 없었습니다. 이에 따라 이 화면 전체를 폐기했습니다.</span><span class="vi">Nói cách khác, ô nhập xác suất (%) vốn không phải quy tắc vận hành đã chốt mà chỉ là giá trị giả của prototype — không có căn cứ trong tài liệu chính sách. Do đó toàn bộ màn này đã bị loại bỏ.</span></span></p>
-
-<h2 class="sec"><span class="i18n"><span class="ko">어느 요소가 어디로 갔나</span><span class="vi">Từng thành phần đã đi đâu</span></span></h2>
-<table>
-  <tr><th style="width:220px"><span class="i18n"><span class="ko">이 화면의 요소</span><span class="vi">Thành phần của màn này</span></span></th><th><span class="i18n"><span class="ko">처리</span><span class="vi">Xử lý</span></span></th></tr>
-  <tr><td><b><span class="i18n"><span class="ko">당첨 확률 (%)</span><span class="vi">Xác suất trúng (%)</span></span></b></td><td><span class="i18n"><span class="ko">폐기. "추첨 관리"는 처음부터 티켓 수 비례 확률 모델이라 별도 확률 입력이 필요 없음</span><span class="vi">Loại bỏ. "Quản lý bốc thăm" vốn dùng mô hình xác suất theo tỷ lệ số vé nên không cần ô nhập xác suất riêng</span></span></td></tr>
-  <tr><td><b><span class="i18n"><span class="ko">추첨 방식(자동/수동) · 추첨 요일·시각</span><span class="vi">Phương thức bốc thăm (tự động/thủ công) · Thứ·giờ bốc thăm</span></span></b></td><td><span class="i18n"><span class="ko">흡수 → "추첨 관리"의 <b>자동 회차 등록 체크박스</b> + <b>마감 시각(매주 일요일)</b> 설정으로 대체. 요일은 정책상 매주 월요일 시작~일요일 마감으로 고정 확정돼 별도 선택이 불필요해짐</span><span class="vi">Hợp nhất → thay bằng <b>checkbox đăng ký đợt tự động</b> + cài đặt <b>giờ đóng (Chủ Nhật hàng tuần)</b> của "Quản lý bốc thăm". Thứ đã được chốt cố định là bắt đầu Thứ Hai ~ đóng Chủ Nhật hàng tuần nên không cần chọn riêng</span></span></td></tr>
-  <tr><td><b><span class="i18n"><span class="ko">당첨 보상 구성</span><span class="vi">Cơ cấu quà trúng thưởng</span></span></b></td><td><span class="i18n"><span class="ko">흡수 → "추첨 관리"의 <b>기본 경품 구성 템플릿</b>으로 대체(등수별 경품·당첨자 수를 회차 등록 폼과 동일한 방식으로 관리)</span><span class="vi">Hợp nhất → thay bằng <b>mẫu cấu hình quà mặc định</b> của "Quản lý bốc thăm" (quản lý quà·số người trúng theo hạng bằng cùng cách với form đăng ký đợt)</span></span></td></tr>
-  <tr><td><b><span class="i18n"><span class="ko">이벤트 티켓 만료 표시</span><span class="vi">Hiển thị hạn dùng vé sự kiện</span></span></b></td><td><span class="i18n"><span class="ko">흡수 불필요 — 이벤트 티켓 만료 정책은 "경품/응모 관리" 화면에 이미 별도로 표시돼 있음(이 화면은 그 값을 그대로 복제 표시했을 뿐)</span><span class="vi">Không cần hợp nhất — chính sách hạn dùng vé sự kiện đã được hiển thị riêng ở màn "Quản lý quà tặng/ứng tuyển" (màn này chỉ hiển thị lặp lại giá trị đó)</span></span></td></tr>
-  <tr><td><b><span class="i18n"><span class="ko">변경 이력 기록 문구</span><span class="vi">Dòng chữ ghi nhật ký thay đổi</span></span></b></td><td><span class="i18n"><span class="ko">흡수하지 않음 — 김반장님 확정: 로그·이력은 필수 아님</span><span class="vi">Không hợp nhất — Xác nhận của Mr Mark: log·nhật ký không bắt buộc</span></span></td></tr>
-  <tr><td><b><span class="i18n"><span class="ko">이번주 추첨 현황 표(순위·닉네임·당첨 여부)</span><span class="vi">Bảng tình hình bốc thăm tuần này (hạng·biệt danh·trúng thưởng)</span></span></b></td><td><span class="i18n"><span class="ko">폐기 — 고정 확률 모델 전용 집계였으며, 회차 단위인 "추첨 관리"의 참여 티켓·당첨자 컬럼이 같은 역할을 함</span><span class="vi">Loại bỏ — chỉ là thống kê dành riêng cho mô hình xác suất cố định; cột vé tham gia·người trúng theo đợt của "Quản lý bốc thăm" đảm nhiệm vai trò tương tự</span></span></td></tr>
-</table>
-
-<a class="btn" href="/cms-storyboard/draws.html"><span class="i18n"><span class="ko">추첨 관리 설명서로 이동 →</span><span class="vi">Đi đến tài liệu Quản lý bốc thăm →</span></span></a>
-
-<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 설명서</span><span class="vi">PricePick · Tài liệu CMS</span></span> · <span class="i18n"><span class="ko">개발자용 문서 · 김반장님 확정 기준 업데이트</span><span class="vi">Tài liệu dành cho dev · cập nhật theo xác nhận của Mr Mark</span></span></div>
-</div>
-<script>
-(function(){
-  var cb = document.getElementById('langsw');
-  if (!cb) return;
-  var KEY = 'pp_cms_lang';
-  if (localStorage.getItem(KEY) === 'vi') cb.checked = true;
-  cb.addEventListener('change', function(){ localStorage.setItem(KEY, cb.checked ? 'vi' : 'ko'); });
-})();
-</script>
+<script>setTimeout(function(){ location.href = "/cms-storyboard/weekly-draws.html"; }, 1000);</script>
 </body></html>
