@@ -837,15 +837,9 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             <span class="sb-item-lbl" id="nav-label-tickets">티켓 내역</span>
             
           </button>
-          <button class="sb-item" id="nav-draws" data-label="추첨 관리" onclick="go('draws',this)">
+          <button class="sb-item" id="nav-weekly-draws" data-label="주간 이벤트 추첨 관리" onclick="go('weekly-draws',this)">
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg></span>
-            <span class="sb-item-lbl" id="nav-label-draws">추첨 관리</span>
-            <span class="sb-item-badge" id="badge-draws">1</span>
-          </button>
-          <button class="sb-item" id="nav-prizes" data-label="경품/응모 관리" onclick="go('prizes',this)">
-            <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span>
-            <span class="sb-item-lbl" id="nav-label-prizes">경품/응모 관리</span>
-
+            <span class="sb-item-lbl" id="nav-label-weekly-draws">주간 이벤트 추첨 관리</span>
           </button>
         </div>
       </div>
@@ -907,11 +901,6 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           <button class="sb-item" id="nav-banners" data-label="배너 관리" onclick="go('banners',this)">
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></span>
             <span class="sb-item-lbl" id="nav-label-banners">배너 관리</span>
-            
-          </button>
-          <button class="sb-item" id="nav-events" data-label="이벤트 관리" onclick="go('events',this)">
-            <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
-            <span class="sb-item-lbl" id="nav-label-events">이벤트 관리</span>
             
           </button>
           <button class="sb-item" id="nav-invite" data-label="친구초대 관리" onclick="go('invite',this)">
@@ -1258,43 +1247,44 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 
     <!-- ── 티켓 등급 설정 (신규) ── -->
     <!-- ── 추첨 관리 ── -->
-    <div class="section" id="sec-draws">
-      <div class="info-box"><strong>좌측 메뉴 (1) 배지 = 관리자 처리 대기 추첨 건수</strong> — 마감됐으나 아직 '당첨 처리(추첨 실행)'를 안 한 회차 수입니다. 해당 회차의 당첨 처리를 완료하면 카운트가 줄고, 0이 되면 배지가 사라집니다.</div>
-      <div class="info-box">🎟 <strong>이벤트 티켓 자동 응모</strong> — 출석 5연속·행운룰렛·이부장 패키지 등으로 획득한 이벤트 티켓은 현재 진행 중인 추첨 회차에 자동 응모됩니다. 응모한 티켓 수에 비례해 당첨 확률이 높아지며, 당첨자 수만큼 비복원 추첨됩니다.</div>
+    <!-- ── 주간 이벤트 추첨 관리 ── -->
+    <div class="section" id="sec-weekly-draws">
       <div class="card">
-        <div class="card-header"><div class="card-title">자동 회차 등록</div></div>
+        <div class="card-header"><div class="card-title">회차 등록 안내</div></div>
         <div style="padding:16px 18px">
-          <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer">
-            <input type="checkbox" id="draw-auto-toggle" checked onchange="ppOnAutoToggle(this.checked)">
-            자동 회차 등록 사용
-          </label>
-          <div style="font-size:12px;color:var(--text-sub);margin:6px 0 14px 24px;max-width:640px">켜두면 매주 월요일 0시 시작 ~ 일요일 마감 주기로, 마감된 회차 다음의 신규 회차가 아래 기본 경품 구성 템플릿을 복사해 자동 생성됩니다. 회차명은 자동 넘버링되며, 생성 후에도 개별 수정할 수 있습니다. 수동 등록·수정은 이 설정과 무관하게 항상 가능합니다.</div>
-          <div style="display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap">
-            <div class="form-group" style="margin:0"><label class="form-label">마감 시각 (매주 일요일)</label><input class="form-input" type="time" id="draw-deadline-time" value="21:00" style="width:120px" onchange="ppOnDeadlineTimeChange(this.value)"></div>
+          <div style="font-size:13px;color:var(--text);line-height:1.7;word-break:keep-all">회차는 현재 시점 기준 4주치가 자동 등록됩니다 (매주 월요일~일요일 23:59:59 마감 · 회차명은 마감일 기준 자동 부여)</div>
+          <div style="margin-top:14px">
             <button class="btn btn-ghost btn-sm" onclick="ppOpenTemplateModal()">기본 경품 구성 템플릿 편집</button>
           </div>
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><div><div class="card-title">추첨 회차 목록</div><div class="card-sub" id="draw-card-sub">추첨 방식: 매주 월요일 0시 시작 ~ 일요일 21:00 마감 (자동/수동 전환 가능)</div></div><div id="draw-hdr-actions"><button class="btn btn-primary btn-sm" onclick="ppOpenDrawModal()">+ 회차 등록</button></div></div>
+        <div class="card-header"><div><div class="card-title">진행중인 주간 이벤트</div><div class="card-sub" id="draw-card-sub">추첨 방식: 매주 월요일 0시 시작 ~ 일요일 23:59:59 마감 (자동 생성)</div></div><div id="draw-hdr-actions"></div></div>
         <table>
-          <thead><tr><th>회차</th><th>경품 구성</th><th>추첨 기간</th><th>마감일</th><th>참여 티켓</th><th>당첨자</th><th>상태</th><th>액션</th></tr></thead>
-          <tbody id="draws-tbody"></tbody>
+          <thead><tr><th>회차</th><th>기간</th><th>응모건 수</th><th>당첨자</th><th>액션</th></tr></thead>
+          <tbody id="draws-tbody-active"></tbody>
         </table>
       </div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-header"><div class="card-title">진행예정 주간 이벤트</div></div>
+        <table>
+          <thead><tr><th>회차</th><th>기간</th><th>응모건 수</th><th>당첨자</th><th>액션</th></tr></thead>
+          <tbody id="draws-tbody-upcoming"></tbody>
+        </table>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-header"><div class="card-title">종료된 주간 이벤트</div></div>
+        <table>
+          <thead><tr><th>회차</th><th>기간</th><th>응모건 수</th><th>당첨자</th><th>액션</th></tr></thead>
+          <tbody id="draws-tbody-past"></tbody>
+        </table>
+      </div>
+
       <div id="draw-create-ov" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.45)" onclick="if(event.target===this)ppCloseDrawModal()">
       <div class="card" id="draw-create-card" style="max-width:580px;margin:5vh auto;max-height:86vh;overflow:auto">
-        <div class="card-header"><div class="card-title" id="draw-modal-title">새 추첨 회차 등록</div><button class="btn btn-ghost btn-sm" onclick="ppCloseDrawModal()">✕ 닫기</button></div>
+        <div class="card-header"><div class="card-title" id="draw-modal-title">경품 수정</div><button class="btn btn-ghost btn-sm" onclick="ppCloseDrawModal()">✕ 닫기</button></div>
         <div style="padding:18px">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div class="form-group"><label class="form-label">회차명</label><input class="form-input" id="draw-name" placeholder="예: 13회차 경품 추첨"></div>
-            <div class="form-group"><label class="form-label">총 참여 티켓 소모</label><input class="form-input" id="draw-tickets-disp" placeholder="자동 계산" readonly style="background:var(--bg-sub);color:var(--text-sub)"></div>
-            <div class="form-group"><label class="form-label">시작일</label><input class="form-input" type="date" id="draw-start" value="2026-05-19"></div>
-            <div class="form-group"><label class="form-label">마감일</label><input class="form-input" type="date" id="draw-end" value="2026-05-26"></div>
-          </div>
-
-          <!-- 등수별 경품 구성 -->
-          <div style="margin-top:20px">
+          <div>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
               <label class="form-label" style="margin:0">등수별 경품 구성 <span style="font-weight:500;color:var(--text-sub);font-size:11px">· 등수당 1행(중복 등수 금지), 한 등수에 경품 여러 개 가능</span></label>
               <button class="btn btn-ghost btn-sm" onclick="addPrizeRow()">+ 등수 추가</button>
@@ -1307,11 +1297,11 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             </div>
             <div id="prize-rows"></div>
           </div>
-
-          <button class="btn btn-primary" style="margin-top:16px" id="draw-submit-btn" onclick="ppSubmitDraw()">회차 등록</button>
+          <button class="btn btn-primary" style="margin-top:16px" id="draw-create-btn" onclick="ppSubmitDraw()">저장</button>
         </div>
       </div>
       </div>
+
       <div id="draw-template-ov" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.45)" onclick="if(event.target===this)ppCloseTemplateModal()">
       <div class="card" style="max-width:520px;margin:8vh auto;max-height:80vh;overflow:auto">
         <div class="card-header"><div class="card-title">기본 경품 구성 템플릿</div><button class="btn btn-ghost btn-sm" onclick="ppCloseTemplateModal()">✕ 닫기</button></div>
@@ -1325,64 +1315,30 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           </div>
           <div id="template-rows"></div>
           <button class="btn btn-ghost btn-sm" onclick="ppAddTemplateRow()">+ 등수 추가</button>
-          <button class="btn btn-primary" style="margin-top:16px;display:block" onclick="ppSaveTemplate()">템플릿 저장</button>
+          <button class="btn btn-primary" style="margin-top:16px;display:block" id="draw-template-save-btn" onclick="ppSaveTemplate()">템플릿 저장</button>
         </div>
       </div>
       </div>
-    </div>
 
-    <!-- ── 경품/응모 관리 ── -->
-    <div class="section" id="sec-prizes">
-      <div class="info-box"><strong>정책 확정 반영</strong> — 이벤트 티켓 획득 경로·만료·한도 확정 적용. 경품 추첨 주기는 매주(월요일 시작~일요일 마감)로 확정.</div>
-      <div class="info-box">🎟 <strong>이벤트 티켓 전용</strong> — 이벤트 티켓 1장 소모 · 1회 추첨 최대 10장 · 추첨 회차 기준 응모</div>
-      <div class="stats-grid">
-        <div class="stat-card purple"><div class="stat-label">오늘 응모 수</div><div class="stat-value">3,421</div><div class="stat-change neutral">1회 추첨 최대 10장</div></div>
-        <div class="stat-card green"><div class="stat-label">오늘 당첨자</div><div class="stat-value">127</div><div class="stat-change">1등17 · 2등51 · 3등59</div></div>
-        <div class="stat-card amber"><div class="stat-label">소모 이벤트 티켓</div><div class="stat-value">3,421</div><div class="stat-change neutral">응모당 1장</div></div>
-        <div class="stat-card red"><div class="stat-label">미발송 경품</div><div class="stat-value">3</div><div class="stat-change down">빠른 발송 필요</div></div>
-      </div>
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-header"><div class="card-title">현재 경품 설정</div><button class="btn btn-ghost btn-sm" onclick="openModal('m-edit-prizes')">수정</button></div>
-          <div style="padding:16px">
-            <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);padding:14px;margin-bottom:10px;">
-              <div style="font-size:11px;font-weight:700;color:var(--text-2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px;">🥇 1등</div>
-              <div style="font-size:14px;font-weight:700;margin-bottom:3px;">스타벅스 아메리카노 (Tall)</div>
-              <div style="font-size:12px;color:var(--amber);">당첨 확률 5% · 하루 최대 10명</div>
+      <div id="pd-entrants-ov" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.45)" onclick="if(event.target===this)pdCloseEntrantsModal()">
+        <div class="card" style="max-width:760px;margin:4vh auto;max-height:92vh;overflow:auto">
+          <div class="card-header"><div class="card-title" id="pd-ent-title">응모자 리스트</div><button class="btn btn-ghost btn-sm" onclick="pdCloseEntrantsModal()">✕ 닫기</button></div>
+          <div style="padding:18px">
+            <div class="info-box" id="pd-ent-summary"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin:10px 0;flex-wrap:wrap;gap:8px">
+              <span class="badge" id="pd-ent-status-badge">미선정</span>
+              <div style="display:flex;gap:8px">
+                <button class="btn btn-ghost btn-sm" onclick="pdAutoSelectWinners()">자동 당첨자 선택</button>
+                <button class="btn btn-ghost btn-sm" onclick="pdCloseEntrantsModal()">취소</button>
+                <button class="btn btn-primary btn-sm" onclick="pdApplyWinners()">적용</button>
+              </div>
             </div>
-            <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);padding:14px;margin-bottom:10px;">
-              <div style="font-size:11px;font-weight:700;color:var(--text-2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px;">🥈 2등</div>
-              <div style="font-size:14px;font-weight:700;margin-bottom:3px;">편의점 아이스크림 교환권</div>
-              <div style="font-size:12px;color:var(--amber);">당첨 확률 15% · 하루 최대 30명</div>
-            </div>
-            <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);padding:14px;">
-              <div style="font-size:11px;font-weight:700;color:var(--text-2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px;">🥉 3등</div>
-              <div style="font-size:14px;font-weight:700;margin-bottom:3px;">꽝 (재도전 기회)</div>
-              <div style="font-size:12px;color:var(--amber);">당첨 확률 80%</div>
-            </div>
+            <table style="table-layout:fixed;width:100%">
+              <thead><tr><th style="width:20%">닉네임(카카오ID)</th><th style="width:18%">응모일시</th><th style="width:24%">당첨 경품 지급</th><th style="width:38%">당첨 등수</th></tr></thead>
+              <tbody id="pd-ent-tbody"></tbody>
+            </table>
           </div>
         </div>
-        <div class="card">
-          <div class="card-header"><div class="card-title">미발송 경품</div></div>
-          <table>
-            <thead><tr><th>닉네임</th><th>경품</th><th>당첨일</th><th>처리</th></tr></thead>
-            <tbody>
-              <tr><td><div style="font-weight:500">쇼핑왕민준</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">(minjun_kko)</div></td><td>스타벅스 아메리카노</td><td style="color:var(--text-3)";text-align:center"><div style="font-weight:700;color:#333333">2026/05/29</div><div>09:12:00</div></td><td><button class="btn btn-primary btn-sm" onclick="openModal('m-send-prize')">발송</button></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="card" style="margin-top:14px">
-        <div class="card-header"><div><div class="card-title">경품 변경 이력</div><div class="card-sub">현재 버전 v4 · 변경·공표 추적(누가·언제·전후·공표 여부)</div></div></div>
-        <table>
-          <thead><tr><th>버전</th><th>변경 내용 (전 → 후)</th><th>변경자</th><th>변경일시</th><th>공표</th></tr></thead>
-          <tbody>
-            <tr><td><strong>v4</strong></td><td>2등 경품 '편의점 상품권 1만' → '편의점 아이스크림 교환권'</td><td>이운영</td><td style="color:var(--text-3);font-size:12px">2026/05/20 10:32</td><td><span class="badge badge-green">공표됨 · 13회차~</span></td></tr>
-            <tr><td>v3</td><td>1등 당첨 확률 3% → 5%</td><td>이운영</td><td style="color:var(--text-3);font-size:12px">2026/05/06 14:10</td><td><span class="badge badge-green">공표됨 · 11회차~</span></td></tr>
-            <tr><td>v2</td><td>3등 '꽝(재도전)' 신설</td><td>김반장</td><td style="color:var(--text-3);font-size:12px">2026/04/22 09:05</td><td><span class="badge badge-green">공표됨 · 9회차~</span></td></tr>
-            <tr><td>v1</td><td>최초 경품 구성 등록</td><td>김반장</td><td style="color:var(--text-3);font-size:12px">2026/04/01 11:00</td><td><span class="badge badge-green">공표됨</span></td></tr>
-          </tbody>
-        </table>
       </div>
     </div>
 
@@ -1650,31 +1606,6 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
               <div class="banner-meta" style="margin-top:4px"><span class="badge badge-gray">비노출</span></div>
               <div class="banner-actions" id="banner-action-3"><button class="btn btn-ghost btn-sm" onclick="openModal('m-banner')">수정</button><button class="btn btn-ghost btn-sm" onclick="toast('노출/비노출 전환')">노출 전환</button><button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="if(confirm('이 배너를 삭제할까요?'))toast('배너가 삭제되었습니다.')">삭제</button></div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── 이벤트 관리 ── -->
-    <div class="section" id="sec-events">
-      <div class="info-box"><strong>정책 확정 반영</strong> — 온보딩·이벤트 보상 확정 적용. 이벤트 생성·수정 시 <strong>운영정책과의 보상 정합 검증</strong>(중복 보상·만료 충돌 차단) 후 저장.</div>
-      <div class="card">
-        <div class="card-header"><div><div class="card-title">이벤트 관리</div></div><div id="event-hdr-actions"><button class="btn btn-primary btn-sm" onclick="openModal('m-event')">+ 이벤트 생성</button></div></div>
-        <div style="padding:16px">
-          <div class="event-card">
-            <div class="event-header"><div><div class="event-title">5월 출석 체크</div><div class="event-period">05/01 ~ 05/31 &nbsp;·&nbsp; 전체 회원</div></div><span class="badge badge-green">진행 중</span></div>
-            <div class="event-desc">5일 연속 출석 달성 시 500P + 이벤트 티켓 1장 지급.</div>
-            <div class="event-actions" id="event-action-1"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button><button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="if(confirm('이 이벤트를 삭제할까요?'))toast('이벤트가 삭제되었습니다.')">삭제</button></div>
-          </div>
-          <div class="event-card">
-            <div class="event-header"><div><div class="event-title">신규 가입 웰컴 보너스</div><div class="event-period">상시 &nbsp;·&nbsp; 신규 가입자</div></div><span class="badge badge-green">진행 중</span></div>
-            <div class="event-desc">가입 즉시 이벤트 티켓 1장 + 200P 지급. (어뷰징 방지: 카카오 연동 후 지급)</div>
-            <div class="event-actions" id="event-action-2"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button><button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="if(confirm('이 이벤트를 삭제할까요?'))toast('이벤트가 삭제되었습니다.')">삭제</button></div>
-          </div>
-          <div class="event-card">
-            <div class="event-header"><div><div class="event-title">첫 경유 구매 보너스</div><div class="event-period">상시 &nbsp;·&nbsp; 신규 가입 7일 내</div></div><span class="badge badge-green">진행 중</span></div>
-            <div class="event-desc">첫 경유 구매(가입 7일 내) 시 브론즈 티켓 1장 지급. 구매 확정 후 지급(연동 D+7 / 미연동 D+30).</div>
-            <div class="event-actions" id="event-action-3"><button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button><button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="if(confirm('이 이벤트를 삭제할까요?'))toast('이벤트가 삭제되었습니다.')">삭제</button></div>
           </div>
         </div>
       </div>
@@ -2924,32 +2855,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
   </div>
 </div>
 
-<!-- ── 모달: 이벤트 ── -->
-<div class="modal-overlay" id="m-event">
-  <div class="modal">
-    <div class="modal-header"><div class="modal-title">이벤트 수정</div><button class="modal-close" onclick="closeModal('m-event')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
-    <div class="modal-body">
-      <div class="form-group"><label class="form-label">이벤트명</label><input class="form-input" placeholder="이벤트명"></div>
-      <div class="form-group"><label class="form-label">유형</label><select class="form-select"><option>출석 이벤트</option><option>가입 보너스</option><option>등급 달성</option><option>직접 지급</option></select></div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">지급 티켓 수</label><input class="form-input" type="number" placeholder="3"></div>
-        <div class="form-group"><label class="form-label">대상</label><select class="form-select"><option>전체 회원</option><option>신규 가입자</option><option>브론즈</option><option>실버</option><option>골드</option></select></div>
-        <div class="form-group"><label class="form-label">시작일</label><input class="form-input" type="date"></div>
-        <div class="form-group"><label class="form-label">종료일</label><input class="form-input" type="date"></div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">활성화</label>
-        <div class="toggle-row" style="margin-top:6px"><div class="toggle on" onclick="this.classList.toggle('on')"></div><span class="toggle-label">활성</span></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('m-event')">취소</button>
-      <button class="btn btn-primary" onclick="toast('이벤트가 저장되었습니다.');closeModal('m-event')">저장</button>
-    </div>
-  </div>
-</div>
 
-<!-- ── 모달: 추첨 당첨 처리 ── -->
 <!-- ── 모달: 수동 티켓 지급/회수 ── -->
 <div class="modal-overlay" id="m-ticket-manual">
   <div class="modal">
@@ -3167,43 +3073,6 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
   </div>
 </div>
 
-<div class="modal-overlay" id="m-draw">
-  <div class="modal">
-    <div class="modal-header"><div class="modal-title" id="draw-result-title">당첨 처리</div><button class="modal-close" onclick="closeModal('m-draw')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
-    <div class="modal-body">
-      <div class="info-box" id="draw-result-info"></div>
-
-      <!-- 등수별 당첨 처리 -->
-      <div style="margin-bottom:16px">
-        <label class="form-label">추첨 방식</label>
-        <select class="form-select"><option>시스템 랜덤 추첨</option><option>수동 지정</option></select>
-      </div>
-      <div style="margin-bottom:16px">
-        <label class="form-label" style="margin-bottom:8px">등수별 당첨자 확정</label>
-        <div style="display:grid;grid-template-columns:70px 1fr 90px;gap:8px;margin-bottom:6px;padding:0 2px">
-          <span style="font-size:11px;color:var(--text-sub)">등수</span>
-          <span style="font-size:11px;color:var(--text-sub)">경품</span>
-          <span style="font-size:11px;color:var(--text-sub)">당첨자 수</span>
-        </div>
-        <div id="draw-result-rows"></div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">발표 일시</label>
-        <input class="form-input" type="datetime-local" id="draw-result-datetime">
-      </div>
-      <div class="form-group">
-        <label class="form-label">당첨 알림 발송</label>
-        <div class="toggle-row" style="margin-top:6px"><div class="toggle on" onclick="this.classList.toggle('on')"></div><span class="toggle-label">당첨자에게 푸시 발송</span></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('m-draw')">취소</button>
-      <button class="btn btn-primary" onclick="ppExecuteDraw()">추첨 실행</button>
-    </div>
-  </div>
-</div>
-
 <!-- ── 모달: 상품 등록 ── -->
 <div class="modal-overlay" id="m-add-product">
   <div class="modal">
@@ -3327,41 +3196,6 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
   </div>
 </div>
 
-<!-- ── 모달: 경품 설정 수정 ── -->
-<div class="modal-overlay" id="m-edit-prizes">
-  <div class="modal">
-    <div class="modal-header"><div class="modal-title">경품 설정 수정</div><button class="modal-close" onclick="closeModal('m-edit-prizes')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
-    <div class="modal-body">
-      <div class="info-box">1등 + 2등 + 3등 확률 합계 = <strong>100%</strong></div>
-      <div class="form-group"><label class="form-label">1등 경품</label><input class="form-input" type="text" value="스타벅스 아메리카노 (Tall)"></div>
-      <div class="form-row"><div class="form-group"><label class="form-label">1등 확률 (%)</label><input class="form-input" type="number" value="5"></div><div class="form-group"><label class="form-label">1일 최대</label><input class="form-input" type="number" value="10"></div></div>
-      <div class="form-group"><label class="form-label">2등 경품</label><input class="form-input" type="text" value="편의점 아이스크림 교환권"></div>
-      <div class="form-row"><div class="form-group"><label class="form-label">2등 확률 (%)</label><input class="form-input" type="number" value="15"></div><div class="form-group"><label class="form-label">1일 최대</label><input class="form-input" type="number" value="30"></div></div>
-      <div class="form-group"><label class="form-label">3등 경품</label><input class="form-input" type="text" value="꽝 (재도전 기회)"></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('m-edit-prizes')">취소</button>
-      <button class="btn btn-primary" onclick="toast('저장되었습니다.');closeModal('m-edit-prizes')">저장</button>
-    </div>
-  </div>
-</div>
-
-<!-- ── 모달: 경품 발송 ── -->
-<div class="modal-overlay" id="m-send-prize">
-  <div class="modal">
-    <div class="modal-header"><div class="modal-title">경품 발송</div><button class="modal-close" onclick="closeModal('m-send-prize')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
-    <div class="modal-body">
-      <div class="form-group"><label class="form-label">수신자</label><input class="form-input" value="쇼핑왕민준" readonly></div>
-      <div class="form-group"><label class="form-label">경품</label><input class="form-input" value="스타벅스 아메리카노 (Tall)" readonly></div>
-      <div class="form-group"><label class="form-label">발송 방법</label><select class="form-select"><option>카카오 알림톡</option><option>앱 푸시</option><option>수동 처리</option></select></div>
-      <div class="form-group"><label class="form-label">기프티콘 코드 (수동 시)</label><input class="form-input" type="text" placeholder="코드 입력"></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('m-send-prize')">취소</button>
-      <button class="btn btn-primary" onclick="toast('발송되었습니다.');closeModal('m-send-prize')">발송하기</button>
-    </div>
-  </div>
-</div>
 
 <!-- ── 모달: 포인트 정책 수정 ── -->
 <div class="modal-overlay" id="m-point-policy-edit">
@@ -3671,12 +3505,10 @@ const I18N = {
     'nav.members': '회원 목록',
     'nav.group.ticket': '티켓 · 보상',
     'nav.tickets': '티켓 내역',
-    'nav.draws': '추첨 관리',
-    'nav.prizes': '경품/응모 관리',
+    'nav.weekly-draws': '주간 이벤트 추첨 관리',
     'nav.gifticons': '구매/사용 내역',
     'nav.group.content': '콘텐츠',
     'nav.banners': '배너 관리',
-    'nav.events': '이벤트 관리',
     'nav.invite': '친구초대 관리',
     'nav.terms': '약관 관리',
     'nav.notice': '공지사항 관리',
@@ -3705,11 +3537,9 @@ const I18N = {
     'page.dashboard.title': '대시보드', 'page.dashboard.bc': '개요',
     'page.members.title': '회원 목록', 'page.members.bc': '회원 관리',
     'page.tickets.title': '티켓 내역', 'page.tickets.bc': '티켓 · 보상',
-    'page.draws.title': '추첨 관리', 'page.draws.bc': '티켓 · 보상',
-    'page.prizes.title': '경품/응모 관리', 'page.prizes.bc': '티켓 · 보상',
+    'page.weekly-draws.title': '주간 이벤트 추첨 관리', 'page.weekly-draws.bc': '티켓 · 보상',
     'page.gifticons.title': '구매/사용 내역', 'page.gifticons.bc': '기프티콘 관리', 'page.gifticon-cancel.title': '취소 내역', 'page.gifticon-cancel.bc': '기프티콘 관리', 'page.gifticon-products.title': '상품 목록', 'page.gifticon-products.bc': '기프티콘 관리', 'page.gifticon-bulk.title': '상품설명 일괄등록', 'page.gifticon-bulk.bc': '기프티콘 관리',
     'page.banners.title': '배너 관리', 'page.banners.bc': '콘텐츠',
-    'page.events.title': '이벤트 관리', 'page.events.bc': '콘텐츠',
     'page.invite.title': '친구초대 관리', 'page.invite.bc': '콘텐츠',
     'page.terms.title': '약관 관리', 'page.terms.bc': '운영',
     'page.notice.title': '공지사항 관리', 'page.notice.bc': '콘텐츠',
@@ -3778,8 +3608,7 @@ function applyLang() {
     'nav-label-members': 'nav.members',
     'nav-group-label-ticket': 'nav.group.ticket',
     'nav-label-tickets': 'nav.tickets',
-    'nav-label-draws': 'nav.draws',
-    'nav-label-prizes': 'nav.prizes',
+    'nav-label-weekly-draws': 'nav.weekly-draws',
     'nav-group-label-points': 'nav.group.points',
     'nav-label-points': 'nav.points',
     'nav-label-point-attendance': 'nav.point-attendance',
@@ -3787,7 +3616,6 @@ function applyLang() {
     'nav-label-gifticons': 'nav.gifticons',
     'nav-group-label-content': 'nav.group.content',
     'nav-label-banners': 'nav.banners',
-    'nav-label-events': 'nav.events',
     'nav-label-invite': 'nav.invite',
     'nav-label-terms': 'nav.terms',
     'nav-label-notice': 'nav.notice',
@@ -3924,16 +3752,6 @@ function applyRole(role) {
   const tmBtn = document.getElementById('ticket-manual-btn');
   if (tmBtn) tmBtn.classList.toggle('btn-disabled', !canWrite);
 
-  // 추첨
-  const dHdr = document.getElementById('draw-hdr-actions');
-  const dCreate = document.getElementById('draw-create-card');
-  const dActionCol = document.getElementById('draw-action-col');
-  dHdr.innerHTML = canWrite ? `<button class="btn btn-primary btn-sm" onclick="toast('회차 등록')">+ 회차 등록</button>` : '';
-  if (dCreate) dCreate.style.display = canWrite ? 'block' : 'none';
-  if (dActionCol) dActionCol.innerHTML = canWrite
-    ? `<button class="btn btn-primary btn-sm" onclick="openModal('m-draw')">당첨 처리</button>`
-    : `<button class="btn btn-ghost btn-sm">결과 보기</button>`;
-
   // 배너
   document.getElementById('banner-hdr-actions').innerHTML = canWrite
     ? `<button class="btn btn-primary btn-sm" onclick="openModal('m-banner')">+ 배너 추가</button>` : '';
@@ -3942,17 +3760,6 @@ function applyRole(role) {
     if (!el) return;
     el.innerHTML = canWrite
       ? `<button class="btn btn-ghost btn-sm" onclick="openModal('m-banner')">수정</button><button class="btn btn-danger btn-sm" onclick="toast('삭제')">삭제</button>`
-      : '';
-  });
-
-  // 이벤트
-  document.getElementById('event-hdr-actions').innerHTML = canWrite
-    ? `<button class="btn btn-primary btn-sm" onclick="openModal('m-event')">+ 이벤트 추가</button>` : '';
-  ['event-action-1','event-action-2','event-action-3'].forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.innerHTML = canWrite
-      ? `<button class="btn btn-ghost btn-sm" onclick="openModal('m-event')">수정</button><button class="btn btn-danger btn-sm" onclick="toast('삭제')">삭제</button>`
       : '';
   });
 
@@ -4176,12 +3983,35 @@ function startClock() {
       rows.appendChild(row);
     }
 
-// === 추첨 회차 관리 (자동 회차 등록) ===
-var ppDraws, ppDrawSettings, ppDrawTemplate, ppEditingDrawNo = null;
+// === 주간 이벤트 추첨 관리 (현재 시점 기준 4주 롤링 자동 생성, 정적 데이터) ===
+var MOCK_USERS = {
+  'u1':  {nickname:'쇼핑왕민준',   kakao_login_id:'minjun_kko',   linked_kakao:true},
+  'u2':  {nickname:'가격헌터서연', kakao_login_id:'seoyeon_kko',  linked_kakao:true},
+  'u3':  {nickname:'딜헌터지민',   kakao_login_id:'jiho_deal',    linked_kakao:true},
+  'u4':  {nickname:'쇼핑고수한나', kakao_login_id:'hanna_kko',    linked_kakao:true},
+  'u5':  {nickname:'알뜰살뜰지호', kakao_login_id:'jiho_kko',     linked_kakao:true},
+  'u6':  {nickname:'가격마스터',   kakao_login_id:'master_kko',   linked_kakao:true},
+  'u7':  {nickname:'가격사냥꾼',   kakao_login_id:'hunter_kko',   linked_kakao:true},
+  'u8':  {nickname:'절약마스터',   kakao_login_id:'save_kko',     linked_kakao:true},
+  'u9':  {nickname:'절약생활러',   kakao_login_id:'savelife_kko', linked_kakao:true},
+  'u10': {nickname:'핫딜탐정',     kakao_login_id:'hotdeal_kko',  linked_kakao:true},
+  'u11': {nickname:'알뜰이',       kakao_login_id:'alddeuli_kko', linked_kakao:true},
+  'u12': {nickname:'친구초대왕',   kakao_login_id:'invite_kko',   linked_kakao:true},
+  'u13': {nickname:'노윤희',       kakao_login_id:'yh_kko',       linked_kakao:true},
+  'u14': {nickname:'문금주',       kakao_login_id:'gj_kko',       linked_kakao:true},
+  'u15': {nickname:'최수아',       kakao_login_id:'sooa_kko',     linked_kakao:true},
+  'u16': {nickname:'강신성',       kakao_login_id:'ss_kko',       linked_kakao:true},
+};
+
+var ppDrawTemplate = null, ppEditingDrawId = null;
+var DEFAULT_DRAW_TEMPLATE = [{rank:'1등',name:'에어팟 프로 2세대',count:1},{rank:'2등',name:'스타벅스 5만원권',count:3},{rank:'3등',name:'편의점 상품권 1만원',count:5}];
+var ppRaffles = [];
+var ppRaffleEntries = [];
 
 function ppEsc(s) {
   return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+function ppRankNum(r) { return parseInt(r, 10) || 0; }
 function ppFmtYMD(d) {
   return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
 }
@@ -4190,143 +4020,235 @@ function ppAddDaysStr(dateStr, n) {
   d.setDate(d.getDate() + n);
   return ppFmtYMD(d);
 }
-function ppNextMondayStr(base) {
-  var d = new Date(base);
+function ppN(n) { return (n||0).toLocaleString('ko-KR'); }
+function ppEmpty(cols, msg) {
+  return '<tr><td colspan="' + cols + '" style="text-align:center;padding:32px;color:var(--text-3);font-size:13px">' + (msg || '데이터가 없습니다.') + '</td></tr>';
+}
+/* 회차명 = 마감일(추첨일) 기준 "N월 M주차" — M = 그 달의 몇 번째 일요일인지(day/7 올림) */
+function pdWeekLabel(endDateStr) {
+  var d = new Date(endDateStr + 'T00:00:00');
+  var year = d.getFullYear();
+  var month = d.getMonth() + 1;
+  var week = Math.ceil(d.getDate() / 7);
+  var isVi = (typeof window.ipGetLang === 'function') && window.ipGetLang() === 'vi';
+  return isVi ? ('Tuần ' + week + ' tháng ' + month + ' năm ' + year) : (year + '년 ' + month + '월 ' + week + '주차');
+}
+function renderMemberIdentityListOnly(u, docId) {
+  u = u || {};
+  var idLine = (u.linked_kakao && u.kakao_login_id) ? u.kakao_login_id : '미연동';
+  return '<div style="font-weight:500;">' + ppEsc(u.nickname || '닉네임없음') + '</div>'
+    + '<div style="font-size:11px;color:var(--text-2);font-family:monospace;">' + ppEsc(idLine) + '</div>';
+}
+
+function pdRoundPhase(d, now) {
+  if (!d.start_date || !d.end_date) return 'past';
+  var start = new Date(d.start_date + 'T00:00:00');
+  var end = new Date(d.end_date + 'T23:59:59');
+  if (now < start) return 'upcoming';
+  if (now > end) return 'past';
+  return 'active';
+}
+
+/* 이번 주 월요일(진행 중인 주 포함) */
+function ppCurrentMondayStr(now) {
+  var d = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   var day = d.getDay();
-  var add = (8 - day) % 7; if (add === 0) add = 7;
-  d.setDate(d.getDate() + add);
+  var diffToMonday = (day === 0) ? -6 : (1 - day);
+  d.setDate(d.getDate() + diffToMonday);
   return ppFmtYMD(d);
 }
-
-function ppLoadDrawState() {
-  var raw = null, rawS = null, rawT = null;
-  try { raw = JSON.parse(localStorage.getItem('pp_draws')); } catch(e) {}
-  try { rawS = JSON.parse(localStorage.getItem('pp_draw_settings')); } catch(e) {}
-  try { rawT = JSON.parse(localStorage.getItem('pp_draw_template')); } catch(e) {}
-  ppDraws = raw || [
-    {no:11, name:'11회차 경품 추첨', start:'2026-07-13', end:'2026-07-19', deadlineTime:'21:00', prizes:[{rank:1,name:'스타벅스 5만원권',count:1},{rank:2,name:'배스킨라빈스 아이스크림 교환권',count:3}], tickets:14820, status:'done', auto:false},
-    {no:12, name:'12회차 경품 추첨', start:'2026-07-20', end:'2026-07-26', deadlineTime:'21:00', prizes:[{rank:1,name:'에어팟 프로 2세대',count:1},{rank:2,name:'스타벅스 5만원권',count:3},{rank:3,name:'편의점 상품권 1만원',count:5}], tickets:18240, status:'active', auto:false}
-  ];
-  ppDrawSettings = rawS || {auto:true, deadlineTime:'21:00'};
-  ppDrawTemplate = rawT || [{rank:1,name:'에어팟 프로 2세대',count:1},{rank:2,name:'스타벅스 5만원권',count:3},{rank:3,name:'편의점 상품권 1만원',count:5}];
-}
-function ppSaveDrawState() {
-  try {
-    localStorage.setItem('pp_draws', JSON.stringify(ppDraws));
-    localStorage.setItem('pp_draw_settings', JSON.stringify(ppDrawSettings));
-    localStorage.setItem('pp_draw_template', JSON.stringify(ppDrawTemplate));
-  } catch(e) {}
-}
-
-function ppNextRoundNo() {
-  var max = 0;
-  ppDraws.forEach(function(d){ if (d.no > max) max = d.no; });
-  return max + 1;
-}
-function ppNextRoundDates() {
-  var latest = null;
-  ppDraws.forEach(function(d){ if (!latest || d.end > latest.end) latest = d; });
-  var start = latest ? ppAddDaysStr(latest.end, 1) : ppNextMondayStr(new Date());
-  var end = ppAddDaysStr(start, 6);
-  return {start:start, end:end};
-}
-
-// CMS 접속 시 마감 지난 회차를 감지해 다음 회차를 자동 생성한다 (실제 cron 없이 접속 시점에 캐치업)
+/* CMS 접속 시 "현재 시점 기준 앞으로 4주치"(진행 중인 주 포함)가 항상 존재하도록 부족분을 롤링 생성.
+   월 경계 기준 없음 — 언제 접속해도 진행 중인 주 + 이후 3주가 채워져 있게 된다. */
 function ppCheckAutoGenerate() {
-  if (!ppDrawSettings.auto) return;
   var now = new Date();
+  var currentMonday = ppCurrentMondayStr(now);
+  var targetEnd = ppAddDaysStr(currentMonday, 4 * 7 - 1);
   var changed = false;
-  for (var guard = 0; guard < 12; guard++) {
+  for (var guard = 0; guard < 60; guard++) {
     var latest = null;
-    ppDraws.forEach(function(d){ if (!latest || d.end > latest.end) latest = d; });
-    if (latest) {
-      var deadline = new Date(latest.end + 'T' + (latest.deadlineTime || '21:00') + ':00');
-      if (now <= deadline) break;
-    }
-    var nd = ppNextRoundDates();
-    var no = ppNextRoundNo();
-    ppDraws.push({no:no, name:no+'회차 경품 추첨', start:nd.start, end:nd.end, deadlineTime:ppDrawSettings.deadlineTime, prizes:JSON.parse(JSON.stringify(ppDrawTemplate)), tickets:0, status:'active', auto:true});
+    ppRaffles.forEach(function(r){ if (!latest || r.end_date > latest.end_date) latest = r; });
+    if (latest && latest.end_date >= targetEnd) break;
+    var start = latest ? ppAddDaysStr(latest.end_date, 1) : currentMonday;
+    var end = ppAddDaysStr(start, 6);
+    ppRaffles.push({
+      id: 'r-' + start,
+      start_date: start,
+      end_date: end,
+      deadline_time: '23:59:59',
+      prizes: JSON.parse(JSON.stringify(ppDrawTemplate || DEFAULT_DRAW_TEMPLATE)),
+      auto: true,
+    });
     changed = true;
-    if (!latest) break;
   }
   if (changed) ppSaveDrawState();
 }
-
-function ppComputeStatus(d, now) {
-  if (d.status === 'done') return 'done';
-  var deadline = new Date(d.end + 'T' + (d.deadlineTime || '21:00') + ':00');
-  return now > deadline ? 'pending' : 'active';
-}
-function ppMedal(rank) {
-  return rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : (rank + '등');
-}
-function ppPrizeLines(prizes) {
-  return prizes.slice().sort(function(a,b){return a.rank-b.rank;}).map(function(p){
-    var cnt = p.count > 1 ? ' ×' + p.count : '';
-    return '<div>' + ppMedal(p.rank) + ' ' + ppEsc(p.name) + cnt + '</div>';
-  }).join('');
-}
-function ppWinnerLines(prizes) {
-  return prizes.slice().sort(function(a,b){return a.rank-b.rank;}).map(function(p){
-    return '<div>' + p.rank + '등 ' + p.count + '명</div>';
-  }).join('');
-}
-function ppStatusBadge(st) {
-  if (st === 'done') return '<span class="badge badge-green">완료</span>';
-  if (st === 'pending') return '<span class="badge badge-amber">마감 · 처리 대기</span>';
-  return '<span class="badge badge-blue">진행 중</span>';
-}
-function ppFmtRange(s, e) {
-  function short(d){ var p = d.split('-'); return p[1] + '/' + p[2]; }
-  return short(s) + ' ~ ' + short(e);
-}
-function ppFmtDeadlineCell(d, now, st) {
-  var short = d.end.split('-').slice(1).join('/');
-  if (st !== 'active') return short;
-  var deadline = new Date(d.end + 'T' + (d.deadlineTime || '21:00') + ':00');
-  var diffDays = Math.ceil((deadline - now) / 86400000);
-  if (diffDays <= 1) return '<strong style="color:var(--danger)">' + short + ' (D-' + Math.max(diffDays,0) + ')</strong>';
-  return short;
-}
-
-function renderDraws() {
-  var tbody = document.getElementById('draws-tbody');
-  if (!tbody) return;
+/* 진행 중인 회차가 새로 생성된 직후라 응모 내역이 비어 있으면, 데모용 응모 행을 한 번 채워 넣는다
+   (실사용자 응모가 쌓이면 이 조건은 다시 만족되지 않으므로 이후로는 건드리지 않음). */
+function ppSeedActiveEntrantsIfNeeded() {
   var now = new Date();
-  var rows = ppDraws.slice().sort(function(a,b){ return b.no - a.no; });
-  var pendingCount = 0;
-  var html = rows.map(function(d) {
-    var st = ppComputeStatus(d, now);
-    if (st === 'pending') pendingCount++;
-    var autoTag = d.auto ? '<span class="badge" style="background:var(--bg-sub);color:var(--text-sub);margin-right:6px">자동 생성</span>' : '';
-    var actionCell;
-    if (st === 'pending') {
-      actionCell = '<button class="btn btn-primary btn-sm" onclick="ppOpenDrawResultModal(' + d.no + ')">당첨 처리(추첨 실행)</button> <button class="btn btn-ghost btn-sm" onclick="ppOpenDrawModal(' + d.no + ')">수정</button>';
-    } else if (st === 'done') {
-      actionCell = '<button class="btn btn-ghost btn-sm" onclick="toast(\'결과를 확인합니다.\')">결과 보기</button> <button class="btn btn-ghost btn-sm" onclick="ppOpenDrawModal(' + d.no + ')">수정</button>';
-    } else {
-      actionCell = autoTag + '<button class="btn btn-ghost btn-sm" onclick="ppOpenDrawModal(' + d.no + ')">수정</button>';
-    }
+  var active = ppRaffles.find(function(r){ return pdRoundPhase(r, now) === 'active'; });
+  if (!active) return;
+  var has = ppRaffleEntries.some(function(e){ return e.raffle_id === active.id; });
+  if (has) return;
+  var uids = Object.keys(MOCK_USERS);
+  var pattern = [0,1,2,3,4,5,6,7,2,8,0];
+  var startMs = new Date(active.start_date + 'T00:00:00').getTime();
+  var spanMs = Math.max(now.getTime() - startMs, 3600000);
+  var changed = false;
+  pattern.forEach(function(idx, i) {
+    var uid = uids[idx % uids.length];
+    var t = new Date(startMs + (spanMs * (i + 1)) / (pattern.length + 1));
+    ppRaffleEntries.push({ id: active.id + '-e' + (i+1), raffle_id: active.id, user_id: uid, created_at: t.toISOString() });
+    changed = true;
+  });
+  if (changed) ppSaveDrawState();
+}
+
+function ppBuildSeedData() {
+  var raffles = [
+    {
+      id: 'r-2026-06-29', start_date:'2026-06-29', end_date:'2026-07-05', deadline_time:'23:59:59', auto:true,
+      prizes: [{rank:'1등',name:'스타벅스 5만원권',count:1},{rank:'2등',name:'배스킨라빈스 아이스크림 교환권',count:3}],
+      winners_confirmed: [
+        {rank:'1',user_id:'u1',nickname:'쇼핑왕민준',paid:true,memo:'기프티콘 발송 완료 (07/06)'},
+        {rank:'2',user_id:'u4',nickname:'쇼핑고수한나',paid:true,memo:''},
+        {rank:'2',user_id:'u7',nickname:'가격사냥꾼',paid:true,memo:''},
+        {rank:'2',user_id:'u9',nickname:'절약생활러',paid:true,memo:''},
+      ],
+    },
+    {
+      id: 'r-2026-07-06', start_date:'2026-07-06', end_date:'2026-07-12', deadline_time:'23:59:59', auto:true,
+      prizes: [{rank:'1등',name:'에어팟 프로 2세대',count:1},{rank:'2등',name:'스타벅스 5만원권',count:3},{rank:'3등',name:'편의점 상품권 1만원',count:5}],
+      winners_confirmed: [
+        {rank:'1',user_id:'u2',nickname:'가격헌터서연',paid:false,memo:''},
+        {rank:'2',user_id:'u3',nickname:'딜헌터지민',paid:true,memo:''},
+        {rank:'2',user_id:'u5',nickname:'알뜰살뜰지호',paid:true,memo:''},
+        {rank:'2',user_id:'u10',nickname:'핫딜탐정',paid:false,memo:''},
+        {rank:'3',user_id:'u6',nickname:'가격마스터',paid:true,memo:''},
+        {rank:'3',user_id:'u8',nickname:'절약마스터',paid:true,memo:''},
+        {rank:'3',user_id:'u11',nickname:'알뜰이',paid:true,memo:''},
+        {rank:'3',user_id:'u13',nickname:'노윤희',paid:true,memo:''},
+        {rank:'3',user_id:'u14',nickname:'문금주',paid:true,memo:''},
+      ],
+    },
+  ];
+  var entries = [];
+  var uids = Object.keys(MOCK_USERS);
+  function seedEntriesFor(raffle, extraCount) {
+    var winnerUids = (raffle.winners_confirmed || []).map(function(w){ return w.user_id; });
+    var pool = winnerUids.concat(uids.filter(function(u){ return winnerUids.indexOf(u) === -1; }).slice(0, extraCount));
+    var startMs = new Date(raffle.start_date + 'T00:00:00').getTime();
+    var endMs = new Date(raffle.end_date + 'T23:59:59').getTime();
+    pool.forEach(function(uid, i) {
+      var t = new Date(startMs + ((endMs - startMs) * (i + 1)) / (pool.length + 1));
+      entries.push({ id: raffle.id + '-e' + (i+1), raffle_id: raffle.id, user_id: uid, created_at: t.toISOString() });
+    });
+    // 티켓 여러 장 쓴 사람(1인 다건) 예시로 1명 추가 응모
+    entries.push({ id: raffle.id + '-extra1', raffle_id: raffle.id, user_id: pool[0], created_at: new Date(endMs - 3600000).toISOString() });
+  }
+  seedEntriesFor(raffles[0], 3);
+  seedEntriesFor(raffles[1], 4);
+  return { raffles: raffles, entries: entries };
+}
+
+function ppLoadDrawState() {
+  var raw = null, rawE = null, rawT = null;
+  try { raw = JSON.parse(localStorage.getItem('pp_wd_raffles')); } catch(e) {}
+  try { rawE = JSON.parse(localStorage.getItem('pp_wd_entries')); } catch(e) {}
+  try { rawT = JSON.parse(localStorage.getItem('pp_wd_template')); } catch(e) {}
+  if (Array.isArray(raw) && Array.isArray(rawE)) {
+    ppRaffles = raw;
+    ppRaffleEntries = rawE;
+  } else {
+    var seed = ppBuildSeedData();
+    ppRaffles = seed.raffles;
+    ppRaffleEntries = seed.entries;
+  }
+  ppDrawTemplate = (Array.isArray(rawT) && rawT.length) ? rawT : DEFAULT_DRAW_TEMPLATE.slice();
+}
+function ppSaveDrawState() {
+  try {
+    localStorage.setItem('pp_wd_raffles', JSON.stringify(ppRaffles));
+    localStorage.setItem('pp_wd_entries', JSON.stringify(ppRaffleEntries));
+    localStorage.setItem('pp_wd_template', JSON.stringify(ppDrawTemplate));
+  } catch(e) {}
+}
+
+function loadDraws() {
+  var tbodyActive = document.getElementById('draws-tbody-active');
+  var tbodyUpcoming = document.getElementById('draws-tbody-upcoming');
+  var tbodyPast = document.getElementById('draws-tbody-past');
+  if (!tbodyActive || !tbodyUpcoming || !tbodyPast) return;
+  ppCheckAutoGenerate();
+  ppSeedActiveEntrantsIfNeeded();
+  var now = new Date();
+  var items = ppRaffles.map(function(d) {
+    var phase = pdRoundPhase(d, now);
+    var hasWinners = Array.isArray(d.winners_confirmed) && d.winners_confirmed.length > 0;
+    var count = ppRaffleEntries.filter(function(e){ return e.raffle_id === d.id; }).length;
+    return { d: d, phase: phase, hasWinners: hasWinners, count: count };
+  });
+  function rowHtml(it) {
+    var d = it.d;
+    var period = (d.start_date||'—') + ' ~ ' + (d.end_date||'—');
+    var winnerCell = it.hasWinners ? pdWinnerSummary(d.winners_confirmed) : '<span style="color:var(--text-sub)">미선정</span>';
+    var actionCell = '<button class="btn btn-primary btn-sm" onclick="pdOpenEntrantsModal(\'' + d.id + '\')">응모 상세 보기</button> '
+      + '<button class="btn btn-ghost btn-sm" onclick="ppOpenDrawModal(\'' + d.id + '\')">경품 수정</button>';
     return '<tr>'
-      + '<td><strong>' + d.no + '회</strong></td>'
-      + '<td><div style="font-size:12px;line-height:1.8">' + ppPrizeLines(d.prizes) + '</div></td>'
-      + '<td>' + ppFmtRange(d.start, d.end) + '</td>'
-      + '<td>' + ppFmtDeadlineCell(d, now, st) + '</td>'
-      + '<td>' + (d.tickets || 0).toLocaleString() + '장</td>'
-      + '<td><div style="font-size:12px;line-height:1.8">' + ppWinnerLines(d.prizes) + '</div></td>'
-      + '<td>' + ppStatusBadge(st) + '</td>'
-      + '<td>' + actionCell + '</td>'
-      + '</tr>';
-  }).join('');
-  tbody.innerHTML = html;
-  var badge = document.getElementById('badge-draws');
-  if (badge) { badge.textContent = String(pendingCount); badge.style.display = pendingCount > 0 ? '' : 'none'; }
+      + '<td style="font-weight:600">' + pdWeekLabel(d.end_date) + '</td>'
+      + '<td style="font-size:12px">' + period + '</td>'
+      + '<td style="text-align:center">' + ppN(it.count) + '<span>건</span></td>'
+      + '<td><div style="font-size:12px;line-height:1.6">' + winnerCell + '</div></td>'
+      + '<td>' + actionCell + '</td></tr>';
+  }
+  var active = items.filter(function(it){ return it.phase === 'active'; });
+  var upcoming = items.filter(function(it){ return it.phase === 'upcoming'; })
+    .sort(function(a,b){ return (a.d.start_date||'').localeCompare(b.d.start_date||''); });
+  var past = items.filter(function(it){ return it.phase === 'past'; })
+    .sort(function(a,b){ return (b.d.end_date||'').localeCompare(a.d.end_date||''); });
+
+  tbodyActive.innerHTML = active.length ? active.map(rowHtml).join('') : ppEmpty(5,'진행 중인 회차가 없습니다.');
+  tbodyUpcoming.innerHTML = upcoming.length ? upcoming.map(rowHtml).join('') : ppEmpty(5,'예정된 회차가 없습니다.');
+  tbodyPast.innerHTML = past.length ? past.map(rowHtml).join('') : ppEmpty(5,'종료된 회차가 없습니다.');
+}
+
+/* "N등"을 별도 텍스트 노드로 감싸 KO2VI 사전("1등"/"2등"/"3등" 항목, 드롭다운과 동일)이 그대로 매칭되게 한다 */
+function pdRankBadgeHtml(r) {
+  return '<span class="badge badge-purple" style="margin-right:6px">' + r + '등</span>';
+}
+function pdConfirmedWinnerFor(uid) {
+  return pdConfirmedWinners.find(function(w){ return w.user_id === uid; });
+}
+/* 당첨 뱃지 — 확정된(적용됨) 당첨자면 지급 상태 뱃지를 나란히 붙인다. 임시 선택 상태는 지급 상태가 아직 없으므로 당첨 뱃지만.
+   "N등"은 별도 노드로 분리해 KO2VI 사전 매칭, "당첨 ·"·지급 상태 라벨도 사전 항목으로 매칭(언어 토글 시 자동 재번역). */
+function pdWinnerTagHtml(uid, r) {
+  var html = '<span class="badge badge-purple">당첨 · <span>' + r + '등</span></span>';
+  var w = pdConfirmedWinnerFor(uid);
+  if (w) {
+    var paid = !!w.paid;
+    var payoutLabel = paid ? '지급 완료' : '지급 대기';
+    html += ' <span class="badge ' + (paid ? 'badge-green' : 'badge-amber') + '" style="cursor:pointer" onclick="pdTogglePaid(\'' + uid + '\')">' + payoutLabel + '</span>';
+  }
+  return '<div style="margin-bottom:4px">' + html + '</div>';
+}
+/* 당첨자 메모(기프티콘 발송일·실물 송장번호 등) — 확정된 당첨자에 한해 노출 */
+function pdMemoInputHtml(uid) {
+  var w = pdConfirmedWinnerFor(uid);
+  if (!w) return '';
+  return '<input class="form-input" style="margin-top:4px;font-size:12px;padding:5px 8px" placeholder="메모(기프티콘 발송일·송장번호 등)" value="' + ppEsc(w.memo||'') + '" onchange="pdSaveMemo(\'' + uid + '\', this.value)">';
+}
+function pdWinnerSummary(winners) {
+  var byRank = {};
+  winners.forEach(function(w){ var r = ppRankNum(w.rank); (byRank[r] = byRank[r] || []).push(ppEsc(w.nickname||'—')); });
+  var ranks = Object.keys(byRank).map(Number).sort(function(a,b){return a-b;});
+  return ranks.map(function(r){ return pdRankBadgeHtml(r) + byRank[r].join(', '); }).join('<br>');
 }
 
 function ppAppendPrizeRow(containerId, rank, name, count) {
   var rows = document.getElementById(containerId);
   var labels = ['1등','2등','3등','4등','5등'];
-  var opts = labels.map(function(l,i){ return '<option' + (i+1===rank?' selected':'') + '>' + l + '</option>'; }).join('');
+  var rn = ppRankNum(rank);
+  var opts = labels.map(function(l,i){ return '<option' + (i+1===rn?' selected':'') + '>' + l + '</option>'; }).join('');
   var row = document.createElement('div');
   row.className = 'prize-row';
   row.style.cssText = 'display:grid;grid-template-columns:80px 1fr 100px 36px;gap:8px;margin-bottom:8px';
@@ -4342,142 +4264,303 @@ function ppCollectPrizeRows(containerId) {
   var prizes = [], seen = {};
   for (var i = 0; i < rowEls.length; i++) {
     var row = rowEls[i];
-    var rank = row.querySelector('select').selectedIndex + 1;
+    var rank = row.querySelector('select').value;
     var inputs = row.querySelectorAll('input');
     var pname = inputs[0].value.trim();
     var count = parseInt(inputs[1].value, 10) || 0;
     if (!pname) { toast('경품명을 입력해 주세요.'); return null; }
     if (count < 1) { toast('당첨자 수는 1 이상이어야 합니다.'); return null; }
-    if (seen[rank]) { toast('등수가 중복되었습니다. 등수당 1행만 가능합니다.'); return null; }
-    seen[rank] = true;
+    var rn = ppRankNum(rank);
+    if (seen[rn]) { toast('등수가 중복되었습니다. 등수당 1행만 가능합니다.'); return null; }
+    seen[rn] = true;
     prizes.push({rank:rank, name:pname, count:count});
   }
   return prizes;
 }
+/* addPrizeRow()는 기존 정의(위쪽, prize-rows 전용) 재사용 — 여기서 다시 선언하지 않음 */
 
-function ppOpenDrawModal(editNo) {
-  ppEditingDrawNo = editNo || null;
+/* ── 경품 수정 전용(회차는 4주 롤링 자동 생성만 — 수동 등록 없음. 회차명·기간은 자동 생성 규칙으로 고정이라 편집 불가) */
+window.ppOpenDrawModal = function(id) {
+  if (!id) return;
+  ppEditingDrawId = id;
   var titleEl = document.getElementById('draw-modal-title');
-  var submitBtn = document.getElementById('draw-submit-btn');
   document.getElementById('prize-rows').innerHTML = '';
-  if (ppEditingDrawNo) {
-    var d = ppDraws.find(function(x){ return x.no === ppEditingDrawNo; });
-    if (!d) return;
-    titleEl.textContent = '회차 수정 — ' + d.no + '회차';
-    submitBtn.textContent = '저장';
-    document.getElementById('draw-name').value = d.name || (d.no + '회차 경품 추첨');
-    document.getElementById('draw-start').value = d.start;
-    document.getElementById('draw-end').value = d.end;
-    document.getElementById('draw-tickets-disp').value = (d.tickets || 0).toLocaleString() + '장';
-    d.prizes.forEach(function(p){ ppAppendPrizeRow('prize-rows', p.rank, p.name, p.count); });
-  } else {
-    titleEl.textContent = '새 추첨 회차 등록';
-    submitBtn.textContent = '회차 등록';
-    var nextNo = ppNextRoundNo();
-    document.getElementById('draw-name').value = nextNo + '회차 경품 추첨';
-    var nd = ppNextRoundDates();
-    document.getElementById('draw-start').value = nd.start;
-    document.getElementById('draw-end').value = nd.end;
-    document.getElementById('draw-tickets-disp').value = '';
-    ppDrawTemplate.forEach(function(p){ ppAppendPrizeRow('prize-rows', p.rank, p.name, p.count); });
-  }
+  var d = ppRaffles.find(function(r){ return r.id === id; });
+  if (!d) return;
+  titleEl.textContent = '경품 수정 — ' + pdWeekLabel(d.end_date);
+  (Array.isArray(d.prizes) ? d.prizes : []).forEach(function(p){ ppAppendPrizeRow('prize-rows', p.rank, p.name, p.count); });
   document.getElementById('draw-create-ov').style.display = 'block';
-}
-function ppCloseDrawModal() { document.getElementById('draw-create-ov').style.display = 'none'; }
-
-function ppSubmitDraw() {
-  var name = document.getElementById('draw-name').value.trim();
-  var start = document.getElementById('draw-start').value;
-  var end = document.getElementById('draw-end').value;
-  if (!name) { toast('회차명을 입력해 주세요.'); return; }
-  if (!start || !end) { toast('시작일·마감일을 입력해 주세요.'); return; }
-  if (end < start) { toast('마감일이 시작일보다 앞설 수 없습니다.'); return; }
+};
+window.ppCloseDrawModal = function() { document.getElementById('draw-create-ov').style.display = 'none'; };
+window.ppSubmitDraw = function() {
+  if (!ppEditingDrawId) return;
   var prizes = ppCollectPrizeRows('prize-rows');
   if (!prizes) return;
-  if (ppEditingDrawNo) {
-    var d = ppDraws.find(function(x){ return x.no === ppEditingDrawNo; });
-    d.name = name; d.start = start; d.end = end; d.prizes = prizes;
-    toast('회차 정보가 수정되었습니다.');
-  } else {
-    ppDraws.push({no: ppNextRoundNo(), name:name, start:start, end:end, deadlineTime:ppDrawSettings.deadlineTime, prizes:prizes, tickets:0, status:'active', auto:false});
-    toast('새 추첨 회차가 등록되었습니다.');
-  }
+  var d = ppRaffles.find(function(r){ return r.id === ppEditingDrawId; });
+  if (!d) return;
+  d.prizes = prizes;
   ppSaveDrawState();
-  renderDraws();
+  toast('경품 구성이 수정되었습니다.');
   ppCloseDrawModal();
-}
+  loadDraws();
+};
 
-function ppOpenTemplateModal() {
+/* ── 기본 경품 구성 템플릿 편집 ── */
+window.ppOpenTemplateModal = function() {
   document.getElementById('template-rows').innerHTML = '';
-  ppDrawTemplate.forEach(function(p){ ppAppendPrizeRow('template-rows', p.rank, p.name, p.count); });
+  (ppDrawTemplate || DEFAULT_DRAW_TEMPLATE).forEach(function(p){ ppAppendPrizeRow('template-rows', p.rank, p.name, p.count); });
   document.getElementById('draw-template-ov').style.display = 'block';
-}
-function ppCloseTemplateModal() { document.getElementById('draw-template-ov').style.display = 'none'; }
-function ppAddTemplateRow() { ppAppendPrizeRow('template-rows', null, '', 1); }
-function ppSaveTemplate() {
+};
+window.ppCloseTemplateModal = function() { document.getElementById('draw-template-ov').style.display = 'none'; };
+window.ppAddTemplateRow = function() { ppAppendPrizeRow('template-rows', null, '', 1); };
+window.ppSaveTemplate = function() {
   var tpl = ppCollectPrizeRows('template-rows');
   if (!tpl) return;
   ppDrawTemplate = tpl;
   ppSaveDrawState();
   toast('기본 경품 구성 템플릿이 저장되었습니다.');
   ppCloseTemplateModal();
+};
+
+/* ── 응모 상세 보기: 응모자 리스트 + 당첨자 수동/자동 선택 + 적용 ── */
+var pdCurrentRoundId = null;
+var pdCurrentRoundPrizes = [];
+var pdCurrentEntrants = [];
+var pdStagedWinners = {}; /* entryId -> {rank, uid} — 응모 행(티켓 1장) 단위 스테이징 */
+var pdConfirmedWinnersSnapshot = {}; /* uid -> rank — winners_confirmed는 사람 기준 저장 */
+var pdConfirmedWinners = []; /* winners_confirmed 원본(paid·memo 포함) — 화면에 표시되는 현재(임시 편집 포함) 상태 */
+var pdConfirmedWinnersBaseline = []; /* 마지막 저장 시점 스냅샷 — 지급 상태·메모의 미저장 변경 여부 판정용 */
+var pdCurrentRoundEndDate = null; /* 모달 제목을 언어 토글 시에도 재계산하기 위한 캐시(재조회 없이) */
+/* 모달 제목 = "응모자 리스트"(사전 매칭) + " — " + 마감일 기준 회차명(pdWeekLabel, 호출 시점 언어 그대로 반영) */
+function pdRefreshEntrantsTitle() {
+  var el = document.getElementById('pd-ent-title');
+  if (!el) return;
+  el.innerHTML = pdCurrentRoundEndDate
+    ? '<span>응모자 리스트</span> — ' + pdWeekLabel(pdCurrentRoundEndDate)
+    : '<span>응모자 리스트</span>';
 }
 
-function ppOnAutoToggle(checked) {
-  ppDrawSettings.auto = checked;
-  ppSaveDrawState();
-  toast(checked ? '자동 회차 등록을 켰습니다.' : '자동 회차 등록을 껐습니다.');
-  if (checked) { ppCheckAutoGenerate(); renderDraws(); }
-}
-function ppOnDeadlineTimeChange(val) {
-  ppDrawSettings.deadlineTime = val || '21:00';
-  ppSaveDrawState();
-  var sub = document.getElementById('draw-card-sub');
-  if (sub) sub.textContent = '추첨 방식: 매주 월요일 0시 시작 ~ 일요일 ' + ppDrawSettings.deadlineTime + ' 마감 (자동/수동 전환 가능)';
-  toast('마감 시각이 저장되었습니다.');
+/* 응모일시 — 두 줄(위: 날짜 YYYY/MM/DD 진하게, 아래: 시각 HH:MM:SS 연한 회색), 가운데 정렬 */
+function pdDtTimeHtml(ts) {
+  var d = ts ? new Date(ts) : new Date();
+  var dateStr = d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0');
+  var timeStr = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0') + ':' + String(d.getSeconds()).padStart(2,'0');
+  return '<div style="text-align:center">'
+    + '<div style="font-weight:700">' + dateStr + '</div>'
+    + '<div style="color:var(--text-sub);font-size:11px">' + timeStr + '</div>'
+    + '</div>';
 }
 
-function ppOpenDrawResultModal(no) {
-  var d = ppDraws.find(function(x){ return x.no === no; });
-  if (!d) return;
-  window.ppDrawResultCurrentNo = no;
-  document.getElementById('draw-result-title').textContent = '당첨 처리 — ' + d.no + '회차';
-  var prizes = d.prizes.slice().sort(function(a,b){return a.rank-b.rank;});
-  var mainName = prizes.length ? prizes[0].name : '';
-  var etc = prizes.length > 1 ? (' 외 ' + (prizes.length-1) + '종') : '';
-  document.getElementById('draw-result-info').innerHTML = '<strong>' + ppEsc(mainName) + '</strong>' + etc + ' &nbsp;·&nbsp; 참여 티켓 ' + (d.tickets||0).toLocaleString() + '장 &nbsp;·&nbsp; 마감 ' + d.end.split('-').slice(1).join('/');
-  var rowsHtml = prizes.map(function(p, i) {
-    var cls = i === 0 ? 'badge-amber' : (i === 1 ? 'badge-blue' : '');
-    var style = cls ? '' : 'background:var(--bg-sub);color:var(--text-sub)';
-    return '<div style="display:grid;grid-template-columns:70px 1fr 90px;gap:8px;margin-bottom:8px;align-items:center">'
-      + '<span class="badge ' + cls + '" style="justify-self:start;' + style + '">' + p.rank + '등</span>'
-      + '<span style="font-size:13px">' + ppEsc(p.name) + '</span>'
-      + '<input class="form-input" type="number" value="' + p.count + '" min="1" style="font-size:13px;text-align:center">'
-      + '</div>';
+function pdRankOptionsHtml(selectedRank) {
+  var opts = '<option value="">미선택</option>';
+  pdCurrentRoundPrizes.slice().sort(function(a,b){return ppRankNum(a.rank)-ppRankNum(b.rank);}).forEach(function(p){
+    var r = ppRankNum(p.rank);
+    opts += '<option value="' + r + '"' + (String(selectedRank)===String(r)?' selected':'') + '>' + r + '등</option>';
+  });
+  return opts;
+}
+
+/* 응모 행(사용 티켓 1장 = 1행) 단위로 렌더 — 같은 사람이 티켓을 여러 장 썼으면 그만큼 행이 나열됨 */
+/* 당첨(적용됨·임시 선택 공통) 응모 행을 1등부터 등수 순으로 최상단에, 그 아래 나머지는 기존 순서 */
+function pdOrderedEntrants() {
+  var winners = [], rest = [];
+  pdCurrentEntrants.forEach(function(e) {
+    if (pdStagedWinners[e._id]) winners.push(e); else rest.push(e);
+  });
+  winners.sort(function(a, b) {
+    return ppRankNum(pdStagedWinners[a._id].rank) - ppRankNum(pdStagedWinners[b._id].rank);
+  });
+  return winners.concat(rest);
+}
+function pdRenderEntrantRows() {
+  var tbody = document.getElementById('pd-ent-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = pdOrderedEntrants().map(function(e) {
+    var staged = pdStagedWinners[e._id];
+    var rank = staged ? staged.rank : '';
+    var winnerCell = staged
+      ? (pdWinnerTagHtml(e.user_id, ppRankNum(rank)) + pdMemoInputHtml(e.user_id))
+      : '<span style="color:var(--text-sub)">—</span>';
+    return '<tr data-entry-id="' + e._id + '">'
+      + '<td>' + renderMemberIdentityListOnly(e._userObj, e.user_id) + '</td>'
+      + '<td>' + pdDtTimeHtml(e.created_at) + '</td>'
+      + '<td>' + winnerCell + '</td>'
+      + '<td><select class="form-select" style="font-size:13px;width:100%" onchange="pdAssignRank(this,\'' + e._id + '\',\'' + e.user_id + '\')">' + pdRankOptionsHtml(rank) + '</select></td>'
+      + '</tr>';
   }).join('');
-  document.getElementById('draw-result-rows').innerHTML = rowsHtml;
-  var dt = document.getElementById('draw-result-datetime');
-  if (dt) dt.value = d.end + 'T10:00';
-  openModal('m-draw');
+  pdUpdateEntStatusBadge();
 }
-function ppExecuteDraw() {
-  var no = window.ppDrawResultCurrentNo;
-  var d = ppDraws.find(function(x){ return x.no === no; });
-  if (d) { d.status = 'done'; ppSaveDrawState(); renderDraws(); }
-  toast('당첨 처리 완료.');
-  closeModal('m-draw');
+
+/* 지급 상태·메모가 마지막 저장 스냅샷과 달라졌는지(=적용 전 임시 편집 존재) */
+function pdHasUnsavedPayoutChanges() {
+  return pdConfirmedWinners.some(function(w) {
+    var base = pdConfirmedWinnersBaseline.find(function(b){ return b.user_id === w.user_id; });
+    if (!base) return true;
+    return !!w.paid !== !!base.paid || (w.memo || '') !== (base.memo || '');
+  });
 }
+function pdUpdateEntStatusBadge() {
+  var badge = document.getElementById('pd-ent-status-badge');
+  if (!badge) return;
+  var stagedByUid = {};
+  Object.keys(pdStagedWinners).forEach(function(id){ stagedByUid[pdStagedWinners[id].uid] = pdStagedWinners[id].rank; });
+  var stagedKeys = Object.keys(stagedByUid).sort();
+  var confirmedKeys = Object.keys(pdConfirmedWinnersSnapshot).sort();
+  var rankSame = stagedKeys.length === confirmedKeys.length && stagedKeys.every(function(k, i){ return k === confirmedKeys[i] && String(stagedByUid[k]) === String(pdConfirmedWinnersSnapshot[k]); });
+  var same = rankSame && !pdHasUnsavedPayoutChanges();
+  if (!stagedKeys.length) { badge.textContent = '미선정'; badge.className = 'badge'; }
+  else if (same) { badge.textContent = '적용됨'; badge.className = 'badge badge-green'; }
+  else { badge.textContent = '적용 전 (임시 선택)'; badge.className = 'badge badge-amber'; }
+}
+
+window.pdOpenEntrantsModal = function(raffleId) {
+  pdCurrentRoundId = raffleId;
+  pdStagedWinners = {};
+  pdConfirmedWinnersSnapshot = {};
+  pdConfirmedWinners = [];
+  pdConfirmedWinnersBaseline = [];
+  pdCurrentEntrants = [];
+  pdCurrentRoundEndDate = null;
+  pdRefreshEntrantsTitle();
+  var d = ppRaffles.find(function(r){ return r.id === raffleId; });
+  document.getElementById('pd-entrants-ov').style.display = 'block';
+  if (!d) { toast('회차를 찾을 수 없습니다.'); pdCloseEntrantsModal(); return; }
+  pdCurrentRoundPrizes = Array.isArray(d.prizes) ? d.prizes : [];
+  pdCurrentRoundEndDate = d.end_date;
+  pdRefreshEntrantsTitle();
+  document.getElementById('pd-ent-summary').innerHTML = '<span>등수별 구성:</span> ' + pdCurrentRoundPrizes.slice().sort(function(a,b){return ppRankNum(a.rank)-ppRankNum(b.rank);}).map(function(p){ return '<span>' + ppRankNum(p.rank) + '등</span> ' + p.count + '<span>명</span>(' + ppEsc(p.name) + ')'; }).join(' · ');
+  pdConfirmedWinners = (Array.isArray(d.winners_confirmed) ? d.winners_confirmed : []).map(function(w){ return Object.assign({paid:false, memo:''}, w); });
+  pdConfirmedWinnersBaseline = JSON.parse(JSON.stringify(pdConfirmedWinners));
+  pdConfirmedWinners.forEach(function(w){ pdConfirmedWinnersSnapshot[w.user_id] = String(ppRankNum(w.rank)); });
+  pdCurrentEntrants = ppRaffleEntries.filter(function(e){ return e.raffle_id === raffleId; }).map(function(e){ return Object.assign({_id: e.id}, e); });
+  Object.keys(pdConfirmedWinnersSnapshot).forEach(function(uid) {
+    var row = pdCurrentEntrants.find(function(e){ return e.user_id === uid; });
+    if (row) pdStagedWinners[row._id] = { rank: pdConfirmedWinnersSnapshot[uid], uid: uid };
+  });
+  if (!pdCurrentEntrants.length) {
+    document.getElementById('pd-ent-tbody').innerHTML = ppEmpty(4, '응모 내역이 없습니다.');
+    pdUpdateEntStatusBadge();
+    return;
+  }
+  pdCurrentEntrants.forEach(function(e){ e._userObj = MOCK_USERS[e.user_id]; });
+  pdRenderEntrantRows();
+};
+
+window.pdCloseEntrantsModal = function() {
+  document.getElementById('pd-entrants-ov').style.display = 'none';
+};
+
+/* 등수 배정: 응모 행(entryId) 단위로 스테이징하되, 등수 내 슬롯 한도·1인 1등수(사람 기준 중복 방지)는 기존 규칙 유지 */
+window.pdAssignRank = function(selectEl, entryId, uid) {
+  var newRank = selectEl.value;
+  if (newRank) {
+    var limit = 0;
+    pdCurrentRoundPrizes.forEach(function(p){ if (String(ppRankNum(p.rank)) === String(newRank)) limit = p.count; });
+    var used = 0;
+    Object.keys(pdStagedWinners).forEach(function(id){ if (id !== entryId && String(pdStagedWinners[id].rank) === String(newRank)) used++; });
+    if (used >= limit) {
+      toast(newRank + '등 인원이 이미 다 찼습니다 (최대 ' + limit + '명).');
+      selectEl.value = (pdStagedWinners[entryId] && pdStagedWinners[entryId].rank) || '';
+      return;
+    }
+    var dupId = Object.keys(pdStagedWinners).find(function(id){ return id !== entryId && pdStagedWinners[id].uid === uid; });
+    if (dupId) {
+      toast('이미 다른 응모 건으로 당첨 처리된 응모자입니다 (1인 1등수만 가능).');
+      selectEl.value = (pdStagedWinners[entryId] && pdStagedWinners[entryId].rank) || '';
+      return;
+    }
+    pdStagedWinners[entryId] = { rank: newRank, uid: uid };
+  } else {
+    delete pdStagedWinners[entryId];
+  }
+  pdRenderEntrantRows();
+};
+
+/* 자동 선택도 사람 단위로 뽑은 뒤, 그 사람의 응모 행 중 하나를 당첨 행으로 표시(1인 1등수 유지) */
+window.pdAutoSelectWinners = function() {
+  if (!pdCurrentEntrants.length) { toast('응모자가 없습니다.'); return; }
+  var byUid = {};
+  pdCurrentEntrants.forEach(function(e){ (byUid[e.user_id] = byUid[e.user_id] || []).push(e); });
+  var uids = Object.keys(byUid);
+  for (var i = uids.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = uids[i]; uids[i] = uids[j]; uids[j] = tmp;
+  }
+  var newStaged = {};
+  var idx = 0;
+  pdCurrentRoundPrizes.slice().sort(function(a,b){return ppRankNum(a.rank)-ppRankNum(b.rank);}).forEach(function(p) {
+    var r = ppRankNum(p.rank);
+    for (var k = 0; k < p.count && idx < uids.length; k++, idx++) {
+      var uid = uids[idx];
+      var rows = byUid[uid];
+      var row = rows[Math.floor(Math.random() * rows.length)];
+      newStaged[row._id] = { rank: String(r), uid: uid };
+    }
+  });
+  pdStagedWinners = newStaged;
+  pdRenderEntrantRows();
+  toast('자동으로 당첨자를 선택했습니다. 적용을 눌러야 확정됩니다.');
+};
+
+/* 적용 = 당첨 선택(등수)·지급 상태·메모를 한 번에 저장하는 유일한 저장 경로 */
+window.pdApplyWinners = function() {
+  var entryIds = Object.keys(pdStagedWinners);
+  if (!entryIds.length) { toast('선택된 당첨자가 없습니다.'); return; }
+  var winners = entryIds.map(function(id) {
+    var uid = pdStagedWinners[id].uid;
+    var prev = pdConfirmedWinnerFor(uid);
+    var u = MOCK_USERS[uid];
+    return {
+      rank: pdStagedWinners[id].rank, user_id: uid,
+      nickname: (u && u.nickname) || '닉네임없음',
+      paid: prev ? !!prev.paid : false, memo: prev ? (prev.memo || '') : '',
+    };
+  });
+  var d = ppRaffles.find(function(r){ return r.id === pdCurrentRoundId; });
+  if (d) d.winners_confirmed = winners;
+  ppSaveDrawState();
+  toast('당첨자가 적용되었습니다.');
+  pdConfirmedWinners = winners;
+  pdConfirmedWinnersBaseline = JSON.parse(JSON.stringify(winners));
+  pdConfirmedWinnersSnapshot = {};
+  entryIds.forEach(function(id){ pdConfirmedWinnersSnapshot[pdStagedWinners[id].uid] = pdStagedWinners[id].rank; });
+  pdRenderEntrantRows();
+  loadDraws();
+};
+
+/* 지급 상태·메모는 여기서 로컬 상태만 바꾸고, 실제 저장은 상단 "적용" 클릭 시 한 번에 처리 */
+window.pdTogglePaid = function(uid) {
+  var w = pdConfirmedWinnerFor(uid);
+  if (!w) return;
+  w.paid = !w.paid;
+  pdRenderEntrantRows();
+};
+
+window.pdSaveMemo = function(uid, value) {
+  var w = pdConfirmedWinnerFor(uid);
+  if (!w) return;
+  w.memo = value;
+  pdUpdateEntStatusBadge();
+};
+
+/* KO/VI 토글 시 회차명(pdWeekLabel)·모달 제목처럼 사전 매칭이 안 되는 동적 텍스트를 현재 언어로 재계산.
+   진행 중인 응모자 선택(pdStagedWinners)·경품 수정 폼은 건드리지 않아 데이터 유실 없음. */
+(function() {
+  var _origIpSetLang = window.ipSetLang;
+  if (typeof _origIpSetLang !== 'function') return;
+  window.ipSetLang = function(lang) {
+    _origIpSetLang(lang);
+    var sec = document.getElementById('sec-weekly-draws');
+    if (sec && sec.classList.contains('active') && typeof loadDraws === 'function') loadDraws();
+    if (typeof pdRefreshEntrantsTitle === 'function' && document.getElementById('pd-entrants-ov') && document.getElementById('pd-entrants-ov').style.display === 'block') {
+      pdRefreshEntrantsTitle();
+    }
+  };
+})();
 
 function ppInitDraws() {
   ppLoadDrawState();
-  ppCheckAutoGenerate();
-  var cb = document.getElementById('draw-auto-toggle');
-  if (cb) cb.checked = !!ppDrawSettings.auto;
-  var dt = document.getElementById('draw-deadline-time');
-  if (dt) dt.value = ppDrawSettings.deadlineTime || '21:00';
-  var sub = document.getElementById('draw-card-sub');
-  if (sub) sub.textContent = '추첨 방식: 매주 월요일 0시 시작 ~ 일요일 ' + (ppDrawSettings.deadlineTime || '21:00') + ' 마감 (자동/수동 전환 가능)';
-  renderDraws();
+  loadDraws();
 }
 
 // === 기프티콘 상품 목록 데이터 ===
@@ -5846,6 +5929,8 @@ Object.assign(KO2VI,{"자동 회차 등록":"Đăng ký đợt tự động","�
 Object.assign(KO2VI,{"이벤트 티켓 자동 응모":"Tự động ứng tuyển bằng vé sự kiện","— 출석 5연속·행운룰렛·이부장 패키지 등으로 획득한 이벤트 티켓은 현재 진행 중인 추첨 회차에 자동 응모됩니다. 응모한 티켓 수에 비례해 당첨 확률이 높아지며, 당첨자 수만큼 비복원 추첨됩니다.":"— Vé sự kiện nhận được qua điểm danh 5 ngày liên tiếp·vòng quay may mắn·gói Trưởng phòng Lee v.v. sẽ tự động ứng tuyển vào đợt rút thăm đang diễn ra. Xác suất trúng tăng theo số vé đã ứng tuyển, và rút thăm không hoàn lại theo đúng số người trúng.","— 이벤트 티켓 획득 경로·만료·한도 확정 적용. 경품 추첨 주기는 매주(월요일 시작~일요일 마감)로 확정.":"— Áp dụng xác nhận đường dẫn·hết hạn·hạn mức vé sự kiện. Chu kỳ rút thăm quà tặng đã xác định là hàng tuần (bắt đầu Thứ Hai ~ đóng Chủ Nhật).","추첨 회차 기준. 추첨 주기는 매주(월요일 시작~일요일 마감)로 확정.":"Theo vòng rút thăm. Chu kỳ rút thăm đã xác định là hàng tuần (bắt đầu Thứ Hai ~ đóng Chủ Nhật)."});
 Object.assign(KO2VI,{"— 이벤트 티켓 획득 경로·만료·한도 및 친구초대·온보딩 보상 확정 적용. 경품 추첨 주기는 매주(월요일 시작~일요일 마감)로 확정.":"— Áp dụng xác nhận đường dẫn·hết hạn·hạn mức vé sự kiện và thưởng mời bạn·onboarding. Chu kỳ rút thăm quà tặng đã xác định là hàng tuần (bắt đầu Thứ Hai ~ đóng Chủ Nhật)."});
 Object.assign(KO2VI,{"매주 월요일 자정":"Nửa đêm Thứ Hai hàng tuần","매주 월요일 자정 · 자동 당첨 처리":"Nửa đêm Thứ Hai hàng tuần · Xử lý trúng thưởng tự động"});
+Object.assign(KO2VI,{"주간 이벤트 추첨 관리":"Quản lý rút thăm sự kiện tuần","회차 등록 안내":"Hướng dẫn đăng ký đợt","회차는 현재 시점 기준 4주치가 자동 등록됩니다 (매주 월요일~일요일 23:59:59 마감 · 회차명은 마감일 기준 자동 부여)":"Đợt được đăng ký tự động luôn có sẵn 4 tuần tính từ thời điểm hiện tại (đóng Chủ Nhật 23:59:59 hàng tuần · tên đợt tự động đặt theo ngày đóng)","진행중인 주간 이벤트":"Sự kiện tuần đang diễn ra","추첨 방식: 매주 월요일 0시 시작 ~ 일요일 23:59:59 마감 (자동 생성)":"Phương thức rút thăm: bắt đầu 0h Thứ Hai ~ đóng 23:59:59 Chủ Nhật hàng tuần (tạo tự động)","기간":"Thời gian","응모건 수":"Số lượt dự thưởng","진행예정 주간 이벤트":"Sự kiện tuần sắp diễn ra","종료된 주간 이벤트":"Sự kiện tuần đã kết thúc","경품 수정":"Chỉnh sửa giải thưởng","응모자 리스트":"Danh sách người dự thưởng","미선정":"Chưa chọn","자동 당첨자 선택":"Chọn người trúng tự động","닉네임(카카오ID)":"Biệt danh (Kakao ID)","응모일시":"Thời điểm dự thưởng","당첨 경품 지급":"Trúng thưởng · Gửi quà","당첨 등수":"Hạng trúng thưởng","적용됨":"Đã áp dụng","적용 전 (임시 선택)":"Trước khi áp dụng (chọn tạm)","당첨 ·":"Trúng thưởng ·","지급 대기":"Chờ gửi quà","지급 완료":"Đã gửi quà","메모(기프티콘 발송일·송장번호 등)":"Ghi chú (ngày gửi Gifticon · mã vận đơn v.v.)","미선택":"Chưa chọn","응모 상세 보기":"Xem chi tiết dự thưởng","회차를 찾을 수 없습니다.":"Không tìm thấy đợt.","응모 내역이 없습니다.":"Chưa có lịch sử dự thưởng.","진행 중인 회차가 없습니다.":"Không có đợt nào đang diễn ra.","예정된 회차가 없습니다.":"Không có đợt nào sắp diễn ra.","종료된 회차가 없습니다.":"Không có đợt nào đã kết thúc.","선택된 당첨자가 없습니다.":"Chưa chọn người trúng thưởng nào.","당첨자가 적용되었습니다.":"Đã áp dụng người trúng thưởng.","경품 구성이 수정되었습니다.":"Đã sửa cấu hình quà.","자동으로 당첨자를 선택했습니다. 적용을 눌러야 확정됩니다.":"Đã tự động chọn người trúng thưởng. Phải bấm Áp dụng mới được xác nhận.","이미 다른 응모 건으로 당첨 처리된 응모자입니다 (1인 1등수만 가능).":"Người này đã được chọn trúng thưởng ở một lượt dự thưởng khác (mỗi người chỉ được 1 hạng).","등수별 구성:":"Cơ cấu theo hạng:"});
+
   var _orig=new Map(), _tracked=new Set(), _applying=false;
   function hasKo(s){ return /[가-힯ᄀ-ᇿ㄰-㆏]/.test(s); }
   function tcore(s){
