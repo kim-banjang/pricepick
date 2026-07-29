@@ -467,10 +467,12 @@ document.addEventListener('DOMContentLoaded', async function() {
   };
   var SKIP = new Set(["PRICEPICK v8.2 · PW-14 / PW-15","JACKPOT","POINT","RL-RESULT · DESIGN SYSTEM v8.2","POINT JACKPOT","TICKET ×1","TICKET ×2","MISS","AC-RESULT · DESIGN SYSTEM v8.2","DAILY 100P","GOAL 100P + TICKET","200P","100P","P","4","5","6","7","4 / 5","1","2"]);
 
+  // Runs the logo-swap + KO/VI wrap pass. Must stay idempotent — it is
+  // re-invoked by the MutationObserver below every time React re-renders
+  // this subtree (spin animation, a sub-component that finishes mounting
+  // after the first pass, etc.), because a raw DOM edit like img.replaceWith
+  // is invisible to React and can be reverted by its own next reconcile.
   function applyI18n(root) {
-    if (root.dataset.ppI18nDone) return;
-    root.dataset.ppI18nDone = '1';
-
     var img = root.querySelector('img[src*="Symbol_Color"]');
     if (img) {
       var svgNS = 'http://www.w3.org/2000/svg';
@@ -498,7 +500,13 @@ document.addEventListener('DOMContentLoaded', async function() {
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     var nodes = [];
     var n;
-    while (n = walker.nextNode()) nodes.push(n);
+    while (n = walker.nextNode()) {
+      // Text already wrapped by an earlier pass lives inside a .i18n span —
+      // skip it, otherwise a re-run (from the MutationObserver) would wrap
+      // the wrapper's own .ko text again and nest indefinitely.
+      if (n.parentNode && n.parentNode.closest && n.parentNode.closest('.i18n')) continue;
+      nodes.push(n);
+    }
 
     var ilCount = 0;
     nodes.forEach(function(node) {
@@ -533,29 +541,52 @@ document.addEventListener('DOMContentLoaded', async function() {
       node.parentNode.replaceChild(frag, node);
     });
 
-    var style = document.createElement('style');
-    style.textContent = [
-      '.i18n .vi{display:none}',
-      '#langsw{position:fixed;opacity:0;pointer-events:none;top:0;left:0}',
-      '#langsw:checked ~ #dc-root .i18n .ko{display:none}',
-      '#langsw:checked ~ #dc-root .i18n .vi{display:inline}',
-      '.pp-langtog{position:fixed;top:16px;right:16px;z-index:99999;display:inline-flex;background:#1f2330;border-radius:20px;padding:3px;gap:2px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);font-family:-apple-system,"Apple SD Gothic Neo",Pretendard,sans-serif}',
-      '.pp-langtog .pp-seg{font-size:12px;font-weight:700;color:#fff;padding:5px 14px;border-radius:16px;opacity:.6;transition:.12s}',
-      '.pp-langtog .pp-sk{background:#845EEE;opacity:1}',
-      '#langsw:checked ~ .pp-langtog .pp-sk{background:none;opacity:.6}',
-      '#langsw:checked ~ .pp-langtog .pp-sv{background:#845EEE;opacity:1}'
-    ].join('\n');
-    document.head.appendChild(style);
+    // The style tag + toggle switch only need to exist once — later passes
+    // just need the img/text-node work above, which is safe to repeat.
+    if (!document.getElementById('langsw')) {
+      var style = document.createElement('style');
+      style.textContent = [
+        '.i18n .vi{display:none}',
+        '#langsw{position:fixed;opacity:0;pointer-events:none;top:0;left:0}',
+        '#langsw:checked ~ #dc-root .i18n .ko{display:none}',
+        '#langsw:checked ~ #dc-root .i18n .vi{display:inline}',
+        '.pp-langtog{position:fixed;top:16px;right:16px;z-index:99999;display:inline-flex;background:#1f2330;border-radius:20px;padding:3px;gap:2px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);font-family:-apple-system,"Apple SD Gothic Neo",Pretendard,sans-serif}',
+        '.pp-langtog .pp-seg{font-size:12px;font-weight:700;color:#fff;padding:5px 14px;border-radius:16px;opacity:.6;transition:.12s}',
+        '.pp-langtog .pp-sk{background:#845EEE;opacity:1}',
+        '#langsw:checked ~ .pp-langtog .pp-sk{background:none;opacity:.6}',
+        '#langsw:checked ~ .pp-langtog .pp-sv{background:#845EEE;opacity:1}'
+      ].join('\n');
+      document.head.appendChild(style);
 
-    var cb = document.createElement('input');
-    cb.type = 'checkbox';
-    cb.id = 'langsw';
-    var label = document.createElement('label');
-    label.className = 'pp-langtog';
-    label.setAttribute('for', 'langsw');
-    label.innerHTML = '<span class="pp-seg pp-sk">KO</span><span class="pp-seg pp-sv">VI</span>';
-    document.body.insertBefore(cb, root);
-    document.body.insertBefore(label, root);
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.id = 'langsw';
+      var label = document.createElement('label');
+      label.className = 'pp-langtog';
+      label.setAttribute('for', 'langsw');
+      label.innerHTML = '<span class="pp-seg pp-sk">KO</span><span class="pp-seg pp-sv">VI</span>';
+      document.body.insertBefore(cb, root);
+      document.body.insertBefore(label, root);
+    }
+  }
+
+  // React re-renders this subtree independently of applyI18n's raw DOM
+  // edits (spin animation, a sibling DC component finishing its own async
+  // load after the first pass, etc). Any of those can hand back a fresh,
+  // untouched <img> or unwrapped KO text node. Re-running the (idempotent)
+  // pass on every subtree mutation keeps the logo swap and KO/VI wrap
+  // applied no matter when content actually finishes settling — instead of
+  // gambling on a single well-timed pass. Disconnecting while we make our
+  // own edits, then reconnecting after, keeps this from re-triggering itself.
+  var ppObserver = null;
+  function observeContent(root) {
+    if (ppObserver) return;
+    ppObserver = new MutationObserver(function() {
+      ppObserver.disconnect();
+      applyI18n(root);
+      ppObserver.observe(root, { childList: true, subtree: true });
+    });
+    ppObserver.observe(root, { childList: true, subtree: true });
   }
 
   function waitForContent() {
@@ -576,12 +607,16 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (stableTicks >= 5) {
           clearInterval(iv);
           applyI18n(root);
+          observeContent(root);
           return;
         }
       }
       if (tries > 600) {
         clearInterval(iv);
-        if (root) applyI18n(root);
+        if (root) {
+          applyI18n(root);
+          observeContent(root);
+        }
       }
     }, 100);
   }
