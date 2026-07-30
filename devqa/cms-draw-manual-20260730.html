@@ -87,13 +87,13 @@ Sau khi lưu, nếu vẫn chưa đóng đợt thì có thể đổi sang dòng d
 
 <b>앱 노출 시점</b> — 당첨 알림(PRIZE_WIN)과 "지난 회차 당첨자 명단"은 <b>마감 후에만</b> 나갑니다. 마감 전에 수동 지정을 저장해도 앱에는 아무 변화가 없습니다. 즉 <code>prize_winners</code> 기록은 마감 시점에 최종 당첨자(수동 지정분 포함) 전체를 한 번에 씁니다 — 수동 지정 저장 시에는 쓰지 않습니다. 여기가 구현에서 가장 틀리기 쉬운 지점입니다.
 
-<b>지급 관리</b> — 지급 상태 뱃지·메모, "저장" 눌러야 반영, 수령 정보는 1:1 문의로 받는 것 모두 그대로입니다.</span><span class="vi"><b>Quy tắc rút thăm tự động</b> — ngẫu nhiên theo đơn vị lượt dự thưởng (1 vé = 1 dòng), lấp theo thứ tự từ hạng 1 cho đến đủ số lượng từng hạng, mỗi người chỉ trúng 1 lần, không hoàn lại. Việc dùng càng nhiều vé thì xác suất càng cao cũng giữ nguyên.
+<b>지급 관리</b> — 지급 상태 뱃지·메모, "저장" 눌러야 반영, 수령 정보는 1:1 문의로 받는 것 모두 그대로입니다. 단, <b>진행 중인 회차에서는 지급 관리가 비활성</b>입니다(아래 5번 참고).</span><span class="vi"><b>Quy tắc rút thăm tự động</b> — ngẫu nhiên theo đơn vị lượt dự thưởng (1 vé = 1 dòng), lấp theo thứ tự từ hạng 1 cho đến đủ số lượng từng hạng, mỗi người chỉ trúng 1 lần, không hoàn lại. Việc dùng càng nhiều vé thì xác suất càng cao cũng giữ nguyên.
 
 <b>Đăng ký đợt tự động</b> — tạo rolling 4 tuần tính từ thời điểm truy cập, bắt đầu 0h Thứ Hai ~ đóng 23:59:59 Chủ Nhật, tên đợt tự động đặt theo ngày đóng. Không có đăng ký·xóa thủ công.
 
 <b>Thời điểm hiển thị trên app</b> — thông báo trúng thưởng (PRIZE_WIN) và "danh sách người trúng đợt trước" chỉ ra <b>sau khi đóng đợt</b>. Dù đã lưu chỉ định thủ công trước khi đóng đợt thì app vẫn không thay đổi gì. Tức là bản ghi <code>prize_winners</code> được viết một lần tại thời điểm đóng đợt cho toàn bộ người trúng cuối cùng (bao gồm phần chỉ định thủ công) — không viết lúc lưu chỉ định thủ công. Đây là điểm dễ làm sai nhất khi triển khai.
 
-<b>Quản lý gửi quà</b> — badge trạng thái gửi quà·ghi chú, phải bấm "Lưu" mới có hiệu lực, thông tin nhận quà nhận qua Hỏi đáp 1:1 — tất cả giữ nguyên.</span></span></div></div></div>
+<b>Quản lý gửi quà</b> — badge trạng thái gửi quà·ghi chú, phải bấm "Lưu" mới có hiệu lực, thông tin nhận quà nhận qua Hỏi đáp 1:1 — tất cả giữ nguyên. Tuy nhiên, <b>ở đợt đang diễn ra thì quản lý gửi quà bị vô hiệu</b> (xem mục 5 bên dưới).</span></span></div></div></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">3. 데이터 · 화면 처리</span><span class="vi">3. Xử lý dữ liệu · màn hình</span></span></h2>
 
@@ -133,19 +133,40 @@ VI: Người trúng thưởng được chọn theo một số tiêu chí vận h
 
 Đã đổi <b>"Tự động công bố người trúng" → "Công bố người trúng"</b> ở thẻ hero (chữ "tự động" gây hiểu nhầm rằng cả cách chọn cũng tự động). Bản thân việc chỉ định thủ công không hiển thị trên app.</span></span></div></div></div>
 
-<h2 class="grp"><span class="i18n"><span class="ko">5. 반영 위치</span><span class="vi">5. Nơi đã phản ánh</span></span></h2>
+<h2 class="grp"><span class="i18n"><span class="ko">5. 추가 확정 — 진행 중 회차는 지급 관리 비활성</span><span class="vi">5. Chốt bổ sung — Đợt đang diễn ra thì quản lý gửi quà bị vô hiệu</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">추가</span><div class="qtxt"><span class="i18n"><span class="ko">진행 중인 회차에서 지급 상태 뱃지와 메모칸을 비활성 처리 (김반장 추가 확정 2026-07-30)</span><span class="vi">Vô hiệu badge trạng thái gửi quà và ô ghi chú ở đợt đang diễn ra (anh chốt bổ sung 30/07/2026)</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">스펙</span><span class="vi">Spec</span></span></span><div class="atxt"><span class="i18n"><span class="ko">회차 상태에 따라 지급 관리가 갈립니다.
+
+<b>진행 중인 회차</b> — 지급 상태 뱃지("지급 대기"/"지급 완료")와 메모칸을 <b>비활성</b>으로 렌더합니다. 뱃지에는 클릭 핸들러를 아예 붙이지 않고, 메모 input에는 <code>disabled</code>를 걸었습니다. 회색 + 점선 테두리로 비활성임이 보이게 했고, 왜 못 쓰는지 알 수 있도록 <b>두 곳에서 안내</b>합니다 — 뱃지·메모칸 <code>title</code> 툴팁("회차 종료 후 지급 관리 가능")과 리스트 상단 안내 두 번째 줄("지급 상태·메모는 아직 지급이 성립하지 않는 구간이라 비활성 상태입니다 — 회차 종료 후 지급 관리 가능", 앰버색).
+
+<b>종료된 회차</b> — 지금까지와 동일하게 정상 동작합니다(뱃지 클릭 토글, 메모 입력, "저장"으로 커밋).
+
+<b>이유</b> — 마감 전에는 지급이라는 게 성립하지 않습니다. 진행 중 회차에서 운영자가 할 수 있는 일은 <b>당첨자 수동 지정까지</b>입니다.
+
+<b>구현 주의</b> — 화면에서 핸들러를 떼는 것만으로 끝내지 말고 <code>pdTogglePaid</code>·<code>pdSaveMemo</code> 진입부에도 같은 조건으로 가드를 두세요. 저희 구현은 <code>pdPayoutLocked()</code>(= 현재 회차 phase가 active인지) 한 함수로 렌더·가드를 같이 판정합니다. 토글을 우회 호출하면 토스트("회차 종료 후 지급 관리 가능")만 뜨고 상태는 바뀌지 않습니다.</span><span class="vi">Quản lý gửi quà khác nhau theo trạng thái của đợt.
+
+<b>Đợt đang diễn ra</b> — render badge trạng thái gửi quà ("Chờ gửi quà"/"Đã gửi quà") và ô ghi chú ở trạng thái <b>vô hiệu</b>. Badge không gắn handler click, ô ghi chú đặt <code>disabled</code>. Dùng màu xám + viền nét đứt để thấy rõ là vô hiệu, và <b>thông báo ở hai nơi</b> để biết lý do — tooltip <code>title</code> trên badge·ô ghi chú ("Có thể quản lý gửi quà sau khi đợt kết thúc") và dòng thứ hai của phần hướng dẫn phía trên danh sách ("Trạng thái gửi quà·ghi chú đang bị vô hiệu vì chưa tới lúc phát sinh việc gửi quà — có thể quản lý gửi quà sau khi đợt kết thúc", màu hổ phách).
+
+<b>Đợt đã kết thúc</b> — hoạt động bình thường như trước (bấm badge để đổi, nhập ghi chú, commit bằng "Lưu").
+
+<b>Lý do</b> — trước khi đóng đợt thì việc gửi quà chưa phát sinh. Ở đợt đang diễn ra, việc Vận hành viên làm được <b>chỉ đến mức chỉ định người trúng thủ công</b>.
+
+<b>Lưu ý khi triển khai</b> — đừng chỉ bỏ handler ở phía màn hình; hãy đặt guard cùng điều kiện ở đầu <code>pdTogglePaid</code>·<code>pdSaveMemo</code>. Bên mình dùng một hàm <code>pdPayoutLocked()</code> (= phase của đợt hiện tại có phải active) để quyết định cả render lẫn guard. Nếu gọi vòng qua hàm toggle thì chỉ hiện toast ("Có thể quản lý gửi quà sau khi đợt kết thúc") và trạng thái không đổi.</span></span></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">6. 반영 위치</span><span class="vi">6. Nơi đã phản ánh</span></span></h2>
 
 <div class="qa"><div class="arow" style="border-top:none;margin-top:0;padding-top:0"><span class="alabel"><span class="i18n"><span class="ko">확인</span><span class="vi">Kiểm tra</span></span></span><div class="atxt"><span class="i18n"><span class="ko">· <b>CMS 데모</b> pricepick-demo/cms — 응모자 리스트 드롭다운 부활, 마감 시 빈 슬롯만 추첨, prize_winners 마감 시 일괄 기록
 · <b>CMS 원본</b> cms.html — 동일 이식
 · <b>앱 데모</b> pricepick-demo/app · <b>인터랙티브 정본</b> interactive.html — "추첨 방식" 안내 신규 + 히어로 문구 정정 (KO/VI)
 · <b>마스터 정책서</b> policyspec.html — 10번 탭 "추첨·경품"의 당첨자 선정·당첨 확률·운영 항목 갱신 + 확정 재확인 탭에 정정 카드 신설
-· <b>CMS 설명서</b> cms-storyboard/weekly-draws.html — 1·3·5·7·8·9번 절 갱신, 캡처 재촬영(진행중 회차 드롭다운 · 종료 회차 결과 뱃지)
+· <b>CMS 설명서</b> cms-storyboard/weekly-draws.html — 1·3·5·6·7·8·9번 절 갱신(6번에 지급 관리 비활성 규칙 추가), 캡처 재촬영(진행중 회차 드롭다운·지급 비활성 / 종료 회차 결과 뱃지·지급 활성)
 
 <b>남은 확인 1건</b> — 약관 제10조(추첨 및 경품)는 "당첨자 발표 및 경품 지급 방법은 각 회차별로 고지합니다"로 되어 있어 새 스펙과 충돌하지 않습니다. 다만 앱에 "일부 운영 기준에 따라 선정"을 고지하는 만큼, 약관에도 선정 기준 관련 한 문장을 넣을지는 김반장 판단이 필요합니다.</span><span class="vi">· <b>CMS demo</b> pricepick-demo/cms — phục hồi dropdown ở danh sách người dự thưởng, khi đóng đợt chỉ rút thăm suất còn trống, ghi prize_winners một lần khi đóng đợt
 · <b>CMS gốc</b> cms.html — port y hệt
 · <b>App demo</b> pricepick-demo/app · <b>Interactive bản chính</b> interactive.html — thêm mới mục "Phương thức rút thăm" + đính chính nội dung thẻ hero (KO/VI)
 · <b>Tài liệu chính sách gốc</b> policyspec.html — cập nhật các mục chọn người trúng·xác suất trúng·vận hành ở tab 10 "Rút thăm·Quà tặng" + thêm thẻ đính chính ở tab xác nhận lại
-· <b>Tài liệu CMS</b> cms-storyboard/weekly-draws.html — cập nhật mục 1·3·5·7·8·9, chụp lại ảnh (dropdown ở đợt đang diễn ra · badge kết quả ở đợt đã kết thúc)
+· <b>Tài liệu CMS</b> cms-storyboard/weekly-draws.html — cập nhật mục 1·3·5·6·7·8·9 (mục 6 thêm quy tắc vô hiệu quản lý gửi quà), chụp lại ảnh (đợt đang diễn ra: dropdown·gửi quà vô hiệu / đợt đã kết thúc: badge kết quả·gửi quà hoạt động)
 
 <b>1 việc còn cần xác nhận</b> — Điều 10 của Điều khoản (Rút thăm và quà tặng) ghi "Phương pháp công bố người trúng và gửi quà sẽ được thông báo theo từng đợt" nên không xung đột với spec mới. Tuy nhiên vì app có thông báo "được chọn theo một số tiêu chí vận hành", việc có thêm một câu về tiêu chí chọn vào Điều khoản hay không cần anh quyết định.</span></span></div></div>
 
