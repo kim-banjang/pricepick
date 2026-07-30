@@ -16063,6 +16063,34 @@ Object.assign(KO2VI, {
   "추첨 방식": "Phương thức rút thăm",
   "당첨자는 일부 운영 기준에 따라 선정되며, 남은 자리는 응모 건 단위 무작위 추첨으로 결정됩니다. 티켓을 많이 응모할수록 당첨 확률이 올라가며, 1인 1회만 당첨됩니다.": "Người trúng thưởng được chọn theo một số tiêu chí vận hành, và các suất còn lại được quyết định bằng rút thăm ngẫu nhiên theo đơn vị lượt dự thưởng. Ứng tuyển càng nhiều vé thì xác suất trúng càng cao, và mỗi người chỉ trúng thưởng 1 lần."
 });
+/* VI 모드 전수 점검에서 나온 사전 누락분(2026-07-30) */
+Object.assign(KO2VI, {
+  /* 05b 경품 응모 — 당첨 인원(1명·3명은 이미 있었고 5명만 빠져 있었다)·티켓 모으기 부제 */
+  "5명": "5 người",
+  "5일 연속 +1장": "5 ngày liên tục +1 vé",
+  /* 04 홈 — 픽구매 안내 바텀시트(제목 + <b> 태그로 갈라진 본문 조각) */
+  "픽구매란?": "Pick-mua là gì?",
+  "으로 쇼핑몰에 접속해서 구매하는 방식이에요. 픽구매로 결제하면 구매 금액에 따라":
+    " để vào cửa hàng và mua sắm. Khi thanh toán bằng Pick-mua thì tùy theo số tiền mua,",
+  /* 프로토타입 문서 레이어 — 화면 캡션·메타 행(pm-val)·PWA 설치 안내 */
+  "닉네임 설정(": "Đặt biệt danh (",
+  ") \"시작하기\" 직후 자동 노출. 계정당 1회만": ") tự hiện ngay sau \"Bắt đầu\". Mỗi tài khoản chỉ 1 lần",
+  "\"카카오 연동하고 더 받기\" →": "\"Liên kết Kakao để nhận thêm\" →",
+  "카카오 인증 / \"나중에 하기\" →": "Xác thực Kakao / \"Để sau\" →",
+  "닉네임 계정에 적립이 있는 상태에서 카카오 연동 시, 그 카카오 계정에도 기존 데이터가 있어 양쪽 모두 적립을 보유한 경우 (양방향 통합)":
+    "Khi tài khoản biệt danh đang có tích lũy mà liên kết Kakao, nếu tài khoản Kakao đó cũng có dữ liệu cũ khiến cả hai bên đều có tích lũy (hợp nhất hai chiều)",
+  "홈 (사용자가 \"홈으로 가기\" 탭)": "Trang chủ (người dùng chạm \"Về trang chủ\")",
+  "① 앱 사용 중 다음 서버 통신에서 차단 응답 수신 시 전환 ② 로그인된 상태로 앱 재실행 시 진입 즉시 표시 (프픽은 로그아웃 개념이 없어 '재로그인' 케이스는 없음)":
+    "① Chuyển sang khi nhận phản hồi chặn ở lần gọi máy chủ kế tiếp trong lúc dùng app ② Hiện ngay khi mở lại app ở trạng thái đã đăng nhập (PricePick không có khái niệm đăng xuất nên không có ca 'đăng nhập lại')",
+  "강제 업데이트 게이트": "Cổng chặn cập nhật bắt buộc",
+  "앱 버전 < CMS '앱 버전 관리'의 최소 지원 버전 — 앱 진입 시 즉시 차단":
+    "Phiên bản app < phiên bản hỗ trợ tối thiểu ở 'Quản lý phiên bản app' của CMS — chặn ngay khi vào app",
+  "스토어 이동 (앱 외부) — 닫기·건너뛰기 없음(강제)": "Đi tới cửa hàng ứng dụng (ngoài app) — không có đóng·bỏ qua (bắt buộc)",
+  "02-err-forceupdate 강제 업데이트": "02-err-forceupdate Cập nhật bắt buộc",
+  "Android — 버튼을 누르면 홈 화면에 바로 추가돼요": "Android — bấm nút là thêm ngay vào màn hình chính",
+  "iPhone(사파리) — OS 제약으로 자동 추가가 안 돼요. 공유 → '홈 화면에 추가'를 직접 눌러주세요":
+    "iPhone(Safari) — do giới hạn OS nên không tự thêm được. Hãy tự chạm Chia sẻ → 'Thêm vào màn hình chính'"
+});
   var IPLANG='ko';
   var KO_RE=/[\uac00-\ud7a3]/;
   var _orig=new Map();      // textNode -> original KO
@@ -16078,12 +16106,44 @@ Object.assign(KO2VI, {
     var i=raw.indexOf(core);
     return raw.slice(0,i)+vi+raw.slice(i+core.length);
   }
+  /* ── 숫자-단위 붙음 방지(VI 공통) ──
+     한국어는 "12장"처럼 숫자와 단위를 붙여 쓰지만 베트남어는 "12 vé"처럼 띄어 써야 한다.
+     사전은 단위 텍스트 노드만 치환하므로("장"→"vé") 그대로 두면 "12vé"가 된다.
+     번역 결과가 문자로 시작하고 바로 앞 인라인 내용이 숫자로 끝나면 공백 한 칸을 끼워 넣는다.
+     엔진 공통 처리라 화면별 땜질 없이 전 화면에 적용된다. */
+  function ipIsInlineEl(el){
+    var d;
+    try{ d=getComputedStyle(el).display; }catch(e){ return false; }
+    return d.indexOf('inline')===0||d==='contents';
+  }
+  function ipPrevInlineChar(n){
+    var cur=n, guard=0;
+    while(cur&&guard++<64){
+      var p=cur.previousSibling;
+      while(p){
+        if(p.nodeType===3){ if(p.nodeValue) return p.nodeValue.slice(-1); }
+        else if(p.nodeType===1){
+          var t=p.textContent;
+          if(t) return ipIsInlineEl(p) ? t.slice(-1) : '';
+        }
+        p=p.previousSibling;
+      }
+      cur=cur.parentNode;
+      if(!cur||cur.nodeType!==1||cur===document.body||!ipIsInlineEl(cur)) break;
+    }
+    return '';
+  }
+  function ipViPad(n,out){
+    if(!/^[0-9A-Za-zÀ-ỹĐđ]/.test(out)) return out;
+    return /[0-9]$/.test(ipPrevInlineChar(n)) ? ' '+out : out;
+  }
   function trNode(n){
     if(!n||n.nodeType!==3) return;
     var p=n.parentNode; if(p){var t=p.nodeName; if(t==='SCRIPT'||t==='STYLE'||t==='NOSCRIPT') return;}
     if(!hasKo(n.nodeValue||'')) return;
     var out=tcore(n.nodeValue);
     if(out!=null&&out!==n.nodeValue){
+      out=ipViPad(n,out);
       if(!_orig.has(n)) _orig.set(n,n.nodeValue);
       _tracked.add(n);
       n.nodeValue=out;
