@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 답변 · Harry · 2026-07-30</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.keybox{background:#f6f2ff;border:1px solid #ddd0ff;border-left:3px solid var(--pp);border-radius:10px;padding:12px 15px;margin:14px 0 4px;font-size:13.3px;color:var(--ink2)}
+.keybox .kt{font-size:11px;font-weight:800;color:var(--pp-d);letter-spacing:.06em;margin-bottom:5px;display:block}
+.keybox b{color:var(--ink1)}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 답변 · Harry · 2026-07-30</span><span class="vi">Trả lời CMS PricePick · Harry · 2026-07-30</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry · CMS · 대시보드 데이터 확정 범위(옵션 2 채택) 6건 · 주간 이벤트 추첨 당첨 알림·수령 정보 처리 2건 — 답변 KO/VI</span><span class="vi">Harry · CMS · 6 câu về phạm vi chốt dữ liệu Bảng điều khiển (chọn Phương án 2) · 2 câu về thông báo trúng thưởng·xử lý thông tin nhận quà bốc thăm sự kiện tuần — Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-07-30-3ab86f66c22480ed81a9cb7cd81e9f8f" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 8건</span><span class="vi">8 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 8</span><span class="vi">Đã chốt 8</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 07-21·07-28 확정 스펙·마스터 정책서·데모 코드 실측</span><span class="vi">Căn cứ: spec đã chốt 21/07·28/07·tài liệu chính sách gốc·khảo sát code demo</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+
+<div class="keybox"><span class="kt"><span class="i18n"><span class="ko">먼저 결론</span><span class="vi">Kết luận trước</span></span></span><span class="i18n"><span class="ko"><b>대시보드는 옵션 2로 갑니다</b> — 전체를 '확인중'으로 돌리고, 파트너 API 연동과 실운영 데이터가 확보된 뒤에 구현합니다. 지금 단계에서 정적 데이터로 채워두는 작업은 하지 않습니다.
+<b>주간 이벤트 추첨</b>은 당첨 알림 발송이 전부입니다 — 앱에 배송 정보 입력 화면은 만들지 않고, 수령 정보는 1:1 문의로 받습니다.</span><span class="vi"><b>Bảng điều khiển đi theo Phương án 2</b> — chuyển toàn bộ sang 'Đang kiểm tra', và triển khai sau khi đã kết nối API đối tác và có dữ liệu vận hành thật. Ở giai đoạn này không làm phần lấp dữ liệu tĩnh.
+<b>Bốc thăm sự kiện tuần</b> chỉ có gửi thông báo trúng thưởng là hết — không làm màn nhập thông tin giao hàng trong app, thông tin nhận quà nhận qua Hỏi đáp 1:1.</span></span></div>
+
+<!-- ==================== H1 : 대시보드 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 대시보드 — 데이터 확정 범위</span><span class="vi">1. Bảng điều khiển — Phạm vi chốt dữ liệu</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">대시보드 항목 대부분이 미확정 상태입니다. 옵션1(확정된 데이터부터 부분 구현, 미확정은 정적 데이터로 두고 추후 처리)과 옵션2(대시보드 전체를 '확인중'으로 전환하고 데이터가 갖춰지면 구현) 중 어느 쪽으로 갈까요?</span><span class="vi">Phần lớn các mục Bảng điều khiển đang ở trạng thái chưa chốt. Chọn Phương án 1 (triển khai từng phần từ dữ liệu đã chốt, phần chưa chốt để dữ liệu tĩnh và xử lý sau) hay Phương án 2 (chuyển toàn bộ Bảng điều khiển sang 'Đang kiểm tra', khi đủ dữ liệu thì triển khai)?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260730-harry/harry-q-dashboard-boxes.png','대시보드 · 질문 대상 5개 영역')"><img src="/devqa/assets/20260730-harry/harry-q-dashboard-boxes.png" alt="대시보드 질문 대상 5개 영역" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">대시보드 · 질문 대상 5개 영역</span><span class="vi">Bảng điều khiển · 5 vùng được hỏi</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>옵션 2로 갑니다.</b> 대시보드 전체를 '확인중'으로 전환하고, 파트너 API 연동과 실운영 데이터가 확보된 다음에 구현합니다.
+
+07-21에 "파트너 API 연동 전까지 매출·수익 메뉴는 확인중으로 둔다"고 확정한 것과 같은 원칙입니다. 대시보드는 그 매출·수익 지표를 한 화면에 모아놓은 곳이라, 같은 기준을 적용하는 게 맞습니다.
+
+정적 데이터로 채워두는 방식을 택하지 않는 이유는, 나중에 실데이터가 붙었을 때 어느 숫자가 진짜인지 구분이 안 되기 때문입니다. QA에서도 가짜 숫자를 검증하는 데 시간이 들어갑니다. 화면 구조는 지금 상태로 두고, 상태 표시만 '확인중'으로 바꿨습니다.</span><span class="vi"><b>Đi theo Phương án 2.</b> Chuyển toàn bộ Bảng điều khiển sang 'Đang kiểm tra', và triển khai sau khi đã kết nối API đối tác và có dữ liệu vận hành thật.
+
+Đây là cùng nguyên tắc đã chốt ngày 21/07: "cho đến khi kết nối API đối tác thì các menu doanh thu·lợi nhuận để ở Đang kiểm tra". Bảng điều khiển chính là nơi gom các chỉ số doanh thu·lợi nhuận đó vào một màn, nên áp dụng cùng chuẩn là đúng.
+
+Lý do không chọn cách lấp dữ liệu tĩnh: khi dữ liệu thật được nối vào sau này sẽ không phân biệt được số nào là thật. Ở QA cũng mất thời gian để kiểm tra những con số giả. Cấu trúc màn giữ nguyên như hiện tại, chỉ đổi phần hiển thị trạng thái sang 'Đang kiểm tra'.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">화면 반영 완료 — 데모(pricepick-demo/cms): 사이드바 뱃지가 Firestore settings/menu_status 문서로 관리되고 있어서 statuses.dashboard를 confirmed → checking으로 변경. CMS 원본(cms.html): 대시보드 메뉴에는 뱃지가 아예 없었어서 '확인중' 뱃지를 새로 붙였습니다.</span><span class="vi">Đã phản ánh lên màn hình — Demo (pricepick-demo/cms): badge sidebar được quản lý qua document Firestore settings/menu_status, nên đã đổi statuses.dashboard từ confirmed → checking. CMS gốc (cms.html): menu Bảng điều khiển vốn không có badge nào, nên đã thêm mới badge 'Đang kiểm tra'.</span></span></div></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">①번 매출류 3개 카드(순이익·제휴 수수료 매출·기프티콘 매출)는 서드파티 연동 대기라서 아직 데이터가 없는 상태로 이해했습니다. 맞습니까?</span><span class="vi">Tôi hiểu rằng 3 thẻ doanh thu ở ① (lợi nhuận ròng·doanh thu hoa hồng LK·doanh thu Gifticon) đang chờ kết nối bên thứ ba nên chưa có dữ liệu. Có đúng không?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">맞습니다. 세 카드 모두 <b>확인중</b>입니다.
+
+지금 데모에 숫자가 떠 있지만 그건 데모 Firestore 데이터로 계산된 값이고 실제 매출이 아닙니다. 제휴 수수료 매출은 파트너(쿠팡 등)의 API·정산 리포트가 붙어야 확정되고, 기프티콘 매출은 실제 매입 단가가 정해져야 나옵니다. 순이익은 이 둘을 합쳐서 비용을 뺀 값이라 앞의 두 개가 확정되기 전에는 자동으로 미확정입니다.
+
+실운영 데이터가 들어오기 전까지 이 세 카드는 값을 채우지 않습니다.</span><span class="vi">Đúng. Cả 3 thẻ đều là <b>Đang kiểm tra</b>.
+
+Hiện demo có hiện số nhưng đó là giá trị tính từ dữ liệu Firestore của demo, không phải doanh thu thật. Doanh thu hoa hồng LK chỉ chốt được khi có API·báo cáo quyết toán của đối tác (Coupang v.v.), doanh thu Gifticon chỉ ra được khi đã định giá nhập thực tế. Lợi nhuận ròng là hai cái đó cộng lại rồi trừ chi phí, nên trước khi hai cái trước được chốt thì nó tự động là chưa chốt.
+
+Cho đến khi dữ liệu vận hành thật vào thì 3 thẻ này không lấp giá trị.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">데모 산출 로직 실측(pricepick-demo/cms/index.html) — 제휴 수수료 매출 = status='confirmed' 포스트백의 purchase_amount × 제휴몰별 요율(MALL_RATES, 미등록 몰은 3%) 합계. 기프티콘 매출 = 교환 기프티콘 환산가치(count_used × 2,000원) − 매입원가(환산가치의 80%) = 마진 20% 고정. 순이익(추정) = 제휴 수수료 매출 + 기프티콘 매출 − 티켓 적립 비용. 첨부 화면 수치로 검산하면 50,610 + 8,400 − 2,916,000 = −2,856,990원으로 표시값과 정확히 일치합니다. 요율·매입원가율 모두 데모용 하드코딩 값이고 실계약 조건이 아닙니다.</span><span class="vi">Khảo sát logic tính của demo (pricepick-demo/cms/index.html) — Doanh thu hoa hồng LK = tổng của purchase_amount của postback có status='confirmed' × tỷ lệ theo từng cửa hàng LK (MALL_RATES, cửa hàng chưa đăng ký thì 3%). Doanh thu Gifticon = giá trị quy đổi Gifticon đã đổi (count_used × 2.000원) − giá nhập (80% giá trị quy đổi) = margin cố định 20%. Lợi nhuận ròng (ước tính) = doanh thu hoa hồng LK + doanh thu Gifticon − chi phí tích lũy vé. Kiểm tra lại bằng số trên ảnh: 50.610 + 8.400 − 2.916.000 = −2.856.990원, khớp chính xác với giá trị đang hiện. Tỷ lệ hoa hồng·tỷ lệ giá nhập đều là giá trị hardcode cho demo, không phải điều kiện hợp đồng thật.</span></span></div></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">②번 "티켓 적립 비용" 2,916,000원은 어떤 방법으로 계산된 값입니까?</span><span class="vi">Giá trị 2.916.000원 ở ② "Chi phí tích lũy vé" được tính bằng cách nào?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">유저에게 발행한 티켓을 등급별 환산가로 바꿔서 전부 더한 값입니다. 티켓은 나중에 기프티콘 교환으로 빠져나갈 원가라서, 회사가 부담하는 비용으로 보고 순이익에서 차감합니다.
+
+다만 화면에 뜬 2,916,000원 자체는 <b>데모 데이터 기준 값이고, 등급별 환산 단가도 아직 확정 단가가 아닙니다.</b> 실제 기프티콘 매입 단가가 정해지면 환산가가 바뀌고 이 금액도 같이 바뀝니다. 이 카드도 <b>확인중</b>입니다.</span><span class="vi">Là giá trị đổi toàn bộ vé đã phát hành cho user thành giá quy đổi theo hạng rồi cộng lại. Vé sau này sẽ chảy ra ngoài qua việc đổi Gifticon nên là giá gốc, được xem là chi phí công ty chịu và trừ khỏi lợi nhuận ròng.
+
+Tuy nhiên bản thân số 2.916.000원 đang hiện <b>là giá trị theo dữ liệu demo, và đơn giá quy đổi theo hạng cũng chưa phải đơn giá đã chốt.</b> Khi giá nhập Gifticon thực tế được định thì giá quy đổi sẽ đổi và số tiền này cũng đổi theo. Thẻ này cũng là <b>Đang kiểm tra</b>.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">데모 코드 실측(pricepick-demo/cms/index.html · loadDashboardStats) — ticket_transactions 컬렉션에서 type='earn' 문서를 전부 읽고, 각 문서의 ticket_grade를 GRADE_VAL = {bronze:100, silver:1,000, gold:2,000}(원)으로 환산해 누적 합산합니다. 식으로 쓰면 티켓 적립 비용 = Σ(등급 환산가 × 해당 등급 발행 장수). 같은 화면의 '발행 티켓(누적) 2,167장'이 이 합산의 모집단이고, 등급값이 없는 문서는 합산에서 제외됩니다. 수익 분석 화면의 '티켓 적립 비용 — 등급별' 표도 같은 식을 등급별로 쪼개서 보여주는 것입니다.</span><span class="vi">Khảo sát code demo (pricepick-demo/cms/index.html · loadDashboardStats) — đọc toàn bộ document có type='earn' trong collection ticket_transactions, đổi ticket_grade của từng document theo GRADE_VAL = {bronze:100, silver:1.000, gold:2.000} (원) rồi cộng dồn. Viết thành công thức: Chi phí tích lũy vé = Σ(giá quy đổi của hạng × số vé phát hành của hạng đó). Con số 'Vé đã phát hành (tích lũy) 2.167장' trên cùng màn chính là tập hợp gốc của phép cộng này, document không có giá trị hạng thì bị loại khỏi phép cộng. Bảng 'Chi phí tích lũy vé — theo hạng' ở màn Phân tích doanh thu cũng chỉ là cùng công thức đó tách ra theo từng hạng.</span></span></div></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">4</span><div class="qtxt"><span class="i18n"><span class="ko">③번 DAU·진입→구매 전환율·이탈률(7일) 3개 항목에 대한 상세 설명을 부탁합니다.</span><span class="vi">Xin giải thích chi tiết 3 mục ở ③: DAU·tỷ lệ chuyển đổi nhấp→mua·tỷ lệ thoát (7 ngày).</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">정의는 이렇습니다.
+
+<b>DAU</b> — 하루 동안 앱을 실제로 사용한 순 사용자 수입니다(중복 제외).
+<b>진입→구매 전환율</b> — 제휴몰로 경유 클릭한 건수 대비 구매가 확정된 건수의 비율입니다. 클릭까지 왔는데 구매로 안 이어지는 이탈이 얼마나 되는지 보는 지표입니다.
+<b>이탈률(7일)</b> — 특정 시점에 앱을 쓴 사용자 중, 그 뒤 7일 동안 한 번도 다시 오지 않은 사용자의 비율입니다.
+
+셋 다 실사용 로그가 며칠 이상 쌓여야 나오는 지표입니다. 데모 데이터로는 만들 수 없고, 만들어도 의미가 없습니다. 세 카드 모두 <b>확인중</b>이고, 실운영 데이터가 들어온 뒤에 구현합니다.</span><span class="vi">Định nghĩa như sau.
+
+<b>DAU</b> — Số người dùng thuần đã thực sự sử dụng app trong một ngày (đã loại trùng).
+<b>Tỷ lệ chuyển đổi nhấp→mua</b> — Tỷ lệ số đơn được xác nhận mua so với số lượt nhấp đi qua link sang cửa hàng LK. Là chỉ số để xem có bao nhiêu người đã nhấp rồi nhưng không dẫn đến mua.
+<b>Tỷ lệ thoát (7 ngày)</b> — Tỷ lệ người dùng đã dùng app tại một thời điểm nhưng sau đó suốt 7 ngày không quay lại lần nào.
+
+Cả 3 đều là chỉ số chỉ ra được khi log sử dụng thật tích lũy từ vài ngày trở lên. Không thể tạo bằng dữ liệu demo, và có tạo cũng không có ý nghĩa. Cả 3 thẻ đều là <b>Đang kiểm tra</b>, triển khai sau khi dữ liệu vận hành thật vào.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">현재 데모에서 세 카드 모두 값 '—' + '운영 데이터 없음' 표기로 이미 비어 있고, 계산 코드도 없습니다(정적 마크업 상태). 집계 주기·기준 시각·순 사용자 중복 제거 기준 같은 세부 산식은 실운영 로그 스키마가 정해질 때 별도로 확정합니다.</span><span class="vi">Hiện trên demo cả 3 thẻ đều đang trống với giá trị '—' + ghi 'Không có dữ liệu vận hành', và cũng không có code tính (đang ở dạng markup tĩnh). Các công thức chi tiết như chu kỳ tổng hợp·mốc thời gian chuẩn·chuẩn loại trùng người dùng thuần sẽ được chốt riêng khi schema log vận hành thật được định.</span></span></div></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">5</span><div class="qtxt"><span class="i18n"><span class="ko">④번 스케줄 상태는 batch scheduler가 가동되지 않고 있습니다. 이 데이터는 어떻게 처리할까요?</span><span class="vi">Ở ④ Trạng thái lịch trình thì batch scheduler chưa hoạt động. Dữ liệu này xử lý thế nào?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">스케줄 상태도 <b>확인중</b>입니다. 지금은 돌릴 배치가 없으니 실행 이력이 비어 있는 게 정상 상태입니다.
+
+어떤 배치를 언제 돌릴지(구매 확정 D+7/D+30 전환, 티켓 만료, 포인트 소멸 등)는 실서비스 운영 일정과 같이 정해야 하는 부분입니다. 그 스케줄이 확정될 때 이 카드도 같이 붙입니다. 지금 단계에서 배치를 임의로 만들어 붙일 필요는 없습니다.</span><span class="vi">Trạng thái lịch trình cũng là <b>Đang kiểm tra</b>. Hiện chưa có batch nào để chạy nên lịch sử chạy trống là trạng thái bình thường.
+
+Việc chạy batch nào vào lúc nào (chuyển D+7/D+30 khi xác nhận mua, hết hạn vé, tiêu hủy điểm v.v.) là phần phải quyết cùng với lịch vận hành dịch vụ thật. Khi lịch đó được chốt thì gắn thẻ này vào luôn. Ở giai đoạn này không cần tự tạo batch để gắn vào.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">데모 대시보드 '스케줄러 현황' 카드는 현재 '실행 이력 없음 (배치 스케줄러 미가동)' 고정 문구로 표시 중이며, 연결된 데이터 소스가 없습니다 — 지금 상태가 의도된 표시입니다.</span><span class="vi">Thẻ 'Trạng thái lịch trình' trên Bảng điều khiển demo hiện đang hiển thị dòng cố định 'Không có lịch sử chạy (batch scheduler chưa hoạt động)' và không có nguồn dữ liệu nào được nối — trạng thái hiện tại chính là hiển thị đúng ý.</span></span></div></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">6</span><div class="qtxt"><span class="i18n"><span class="ko">⑤번 TOP 5 제휴 스토어는 현재 제휴사가 쿠팡 1개뿐이고 실데이터가 없습니다.</span><span class="vi">Ở ⑤ TOP 5 cửa hàng LK thì hiện chỉ có 1 đối tác là Coupang và không có dữ liệu thật.</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">맞습니다, 이것도 <b>확인중</b>입니다. 제휴사가 하나뿐이면 순위표 자체가 성립하지 않습니다.
+
+제휴몰이 2개 이상 붙고 경유 클릭·구매 데이터가 쌓인 다음에 구현합니다. 그때까지 이 카드는 채우지 않습니다.</span><span class="vi">Đúng, cái này cũng là <b>Đang kiểm tra</b>. Nếu chỉ có một đối tác thì bảng xếp hạng vốn không thành lập được.
+
+Triển khai sau khi có từ 2 cửa hàng LK trở lên và dữ liệu nhấp qua link·mua đã tích lũy. Đến lúc đó thì không lấp thẻ này.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">첨부 화면 TOP 5 목록의 'Cửa hàng'·'test'·'11st'는 데모 테스트 데이터에서 올라온 이름입니다. 클릭 수 컬럼이 전부 '—'인 것도 경유 클릭 집계가 실데이터로 연결되지 않았기 때문입니다.</span><span class="vi">Các tên 'Cửa hàng'·'test'·'11st' trong danh sách TOP 5 trên ảnh là tên lên từ dữ liệu test của demo. Việc cột lượt nhấp toàn bộ là '—' cũng vì phần tổng hợp lượt nhấp qua link chưa được nối với dữ liệu thật.</span></span></div></div></div></div>
+
+<!-- ==================== H2 : 주간 이벤트 추첨 당첨 알림 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 주간 이벤트 추첨 — 당첨 알림·수령 정보</span><span class="vi">2. Bốc thăm sự kiện tuần — Thông báo trúng thưởng·thông tin nhận quà</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">7</span><div class="qtxt"><span class="i18n"><span class="ko">당첨 알림은 유저가 어떻게 확인하고, 그 다음에 어떤 액션이 이어집니까?</span><span class="vi">Người dùng xem thông báo trúng thưởng bằng cách nào, và sau đó có hành động gì tiếp theo?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">알림함 이벤트 탭에 당첨 알림이 뜨는 것이 전부입니다. <b>별도 액션도, 당첨 상세 화면도 없습니다.</b>
+
+회차가 마감되면서 당첨자가 확정되는 순간 당첨된 회원에게 알림이 자동 발송되고(문구표 PRIZE_WIN), 유저는 그 알림을 읽는 것으로 끝납니다. 알림을 눌러서 들어가는 별도 화면을 만들 필요는 없습니다.
+
+당첨 결과는 앱 '경품 응모' 화면(혜택 탭) 아래쪽의 지난 회차 당첨자 명단에서도 볼 수 있습니다 — 회차명·등수·경품명·닉네임만 노출되고 카카오ID 같은 개인정보는 나오지 않습니다.
+
+<b>비당첨자에게는 별도 알림을 보내지 않습니다.</b> "회차가 마감됐다"는 알림은 없습니다. 이 부분이 문구표에 '확정 대기'로 남아 있었는데, 이번에 '알림 없음'으로 확정했습니다.</span><span class="vi">Chỉ có việc thông báo trúng thưởng hiện trong tab sự kiện của hộp thông báo là hết. <b>Không có hành động riêng, cũng không có màn chi tiết trúng thưởng.</b>
+
+Ngay khi đợt đóng và người trúng được chốt, thông báo tự động được gửi cho thành viên trúng thưởng (mục PRIZE_WIN trong bảng nội dung thông báo), và user chỉ cần đọc thông báo đó là xong. Không cần làm màn riêng để bấm vào thông báo rồi đi tới.
+
+Kết quả trúng thưởng cũng có thể xem ở danh sách người trúng đợt trước, phần dưới màn 'Ứng tuyển quà' của app (tab lợi ích) — chỉ hiện tên đợt·hạng·tên quà·biệt danh, không lộ thông tin cá nhân như Kakao ID.
+
+<b>Không gửi thông báo riêng cho người không trúng.</b> Không có thông báo kiểu "đợt đã đóng". Phần này vốn đang để 'Đang chờ chốt' trong bảng nội dung thông báo, lần này đã chốt thành 'không có thông báo'.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">문구표 반영 완료 — PRIZE_ROUND_CLOSED 행을 '확정 대기' → '확정'으로 바꾸고 "비당첨자 대상 알림 없음"을 명시했습니다(재질문 방지). 당첨 알림 발송은 당첨자 확정과 함께 항상 일어나며, CMS에 이 발송을 켜고 끄는 설정은 없습니다 — CMS 설명서 '주간 이벤트 추첨 관리' 7절과 동일합니다.</span><span class="vi">Đã phản ánh vào bảng nội dung thông báo — đổi hàng PRIZE_ROUND_CLOSED từ 'Đang chờ chốt' → 'Đã chốt' và ghi rõ "không có thông báo cho người không trúng" (để tránh hỏi lại). Việc gửi thông báo trúng thưởng luôn xảy ra cùng lúc với việc chốt người trúng, và trên CMS không có cài đặt bật/tắt việc gửi này — giống mục 7 trong tài liệu CMS 'Quản lý bốc thăm sự kiện tuần'.</span></span></div></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">8</span><div class="qtxt"><span class="i18n"><span class="ko">배송 정보는 어디에서 입력하고, admin은 그 정보를 어떻게 확인합니까? (알림 문구표 PRIZE_WIN 비고: "당첨 알림을 확인하고 배송 정보를 입력")</span><span class="vi">Thông tin giao hàng nhập ở đâu, và admin xem thông tin đó bằng cách nào? (Ghi chú PRIZE_WIN trong bảng nội dung thông báo: "Xem thông báo trúng thưởng và nhập thông tin giao hàng")</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260730-harry/harry-q-prize-win-copy.png','알림 문구표 · PRIZE_WIN 행')"><img src="/devqa/assets/20260730-harry/harry-q-prize-win-copy.png" alt="알림 문구표 PRIZE_WIN 행" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">알림 문구표 · PRIZE_WIN 행</span><span class="vi">Bảng nội dung thông báo · hàng PRIZE_WIN</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>앱에 배송 정보 입력 화면은 없습니다.</b> 수령 정보는 유저가 1:1 문의로 보냅니다 — 기프티콘 경품이면 전화번호, 실물 경품이면 배송지입니다.
+
+운영자는 1:1 문의에서 그 정보를 받아 확인하고, CMS '주간 이벤트 추첨 관리'의 지급 관리에서 지급 대기/완료 뱃지와 메모로 처리 상태를 남깁니다. 수령 정보를 담는 전용 입력 폼이나 DB 필드를 만들 계획은 없습니다.
+
+약관에는 이미 "수령 정보를 제공하지 않으면 당첨이 취소될 수 있다"는 조항이 들어가 있어서, 유저가 정보를 보내지 않는 경우의 처리 근거는 확보돼 있습니다.
+
+그리고 지적하신 부분이 맞습니다 — 문구표 PRIZE_WIN 문구가 "배송 정보를 입력해주세요"로 되어 있어서 앱에 입력 화면이 있는 것처럼 읽혔습니다. 정책과 불일치라서 문구를 정정했습니다.</span><span class="vi"><b>Trong app không có màn nhập thông tin giao hàng.</b> Thông tin nhận quà do user gửi qua Hỏi đáp 1:1 — quà Gifticon thì là số điện thoại, quà vật lý thì là địa chỉ giao hàng.
+
+Vận hành viên nhận và xác nhận thông tin đó ở Hỏi đáp 1:1, rồi ghi lại trạng thái xử lý bằng badge Chờ gửi quà/Đã gửi quà và ghi chú tại phần Quản lý gửi quà trong 'Quản lý bốc thăm sự kiện tuần' của CMS. Không có kế hoạch làm form nhập hay field DB riêng để chứa thông tin nhận quà.
+
+Trong điều khoản đã có sẵn quy định "nếu không cung cấp thông tin nhận quà thì có thể bị hủy trúng thưởng", nên căn cứ xử lý trường hợp user không gửi thông tin đã có.
+
+Và phần anh chỉ ra là đúng — nội dung PRIZE_WIN trong bảng đang ghi "vui lòng nhập thông tin giao hàng" nên đọc ra như thể trong app có màn nhập. Vì không khớp với chính sách nên đã sửa lại nội dung.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">정정 반영 3곳 — ①문구표 1차(devqa/app-john-20260722.html '경품 당첨' 행) ②문구표 완전판(devqa/app-john-20260722-2.html PRIZE_WIN 행, '정정' 표시 추가) ③데모 앱(pricepick-demo/app/index.html) 알림함에 실제로 렌더되는 문구 + VI 번역 맵. 새 문구는 KO "당첨을 축하해요! 경품 수령 정보를 1:1 문의로 보내주세요." / VI "Chúc mừng bạn đã trúng thưởng! Vui lòng gửi thông tin nhận quà qua Hỏi đáp 1:1." 지급 관리·수령 정보 처리 명세는 CMS 설명서 '주간 이벤트 추첨 관리' 6·7·9절에 이미 같은 내용으로 기재돼 있습니다.</span><span class="vi">Đã phản ánh sửa ở 3 nơi — ①bảng nội dung đợt 1 (devqa/app-john-20260722.html, hàng 'Trúng quà tặng') ②bảng nội dung bản đầy đủ (devqa/app-john-20260722-2.html, hàng PRIZE_WIN, thêm nhãn 'Đính chính') ③nội dung render thật trong hộp thông báo của app demo (pricepick-demo/app/index.html) + map dịch VI. Nội dung mới: KO "당첨을 축하해요! 경품 수령 정보를 1:1 문의로 보내주세요." / VI "Chúc mừng bạn đã trúng thưởng! Vui lòng gửi thông tin nhận quà qua Hỏi đáp 1:1." Spec xử lý Quản lý gửi quà·thông tin nhận quà đã được ghi cùng nội dung ở mục 6·7·9 trong tài liệu CMS 'Quản lý bốc thăm sự kiện tuần'.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Harry · 2026-07-30 · 확정 8 / 확인 필요 0</span><span class="vi">PricePick · Trả lời CMS · Harry · 2026-07-30 · Đã chốt 8 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
