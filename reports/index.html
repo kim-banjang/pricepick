@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>PricePick · 보고서</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --purple: #845EEE;
+    --purple-deep: #6D3BC9;
+    --purple-soft: #F3EFFD;
+    --ink: #1A1A2E;
+    --ink-soft: #5A5A6E;
+    --ink-faint: #8A8A9A;
+    --line: #E8E8EF;
+    --bg: #FAFAFB;
+    --card-bg: #FFFFFF;
+  }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    flex: 1;
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 56px 24px 28px;
+  }
+  header { margin-bottom: 26px; }
+  .back {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink-faint);
+    text-decoration: none;
+    letter-spacing: 0.2px;
+  }
+  .back:hover { color: var(--purple-deep); }
+  .logo {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    line-height: 1.1;
+  }
+  .logo .pick { color: var(--purple); }
+  .subtitle {
+    margin-top: 11px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    letter-spacing: -0.2px;
+  }
+  .subtitle .dot { color: var(--line); margin: 0 8px; }
+  .seclabel {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin: 0 4px 12px;
+  }
+  /* List rows */
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 11px;
+    padding: 18px 20px;
+    border-radius: 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 3px rgba(20, 20, 40, 0.04);
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(20, 20, 40, 0.09);
+    border-color: #D9CEF7;
+  }
+  .row:active { transform: translateY(0); }
+  .ricon {
+    flex: 0 0 auto;
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: var(--purple-soft);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--purple-deep);
+  }
+  .rmain { flex: 1; min-width: 0; }
+  .rtitle {
+    font-size: 15.5px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .rdesc {
+    margin-top: 4px;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .rmeta {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .rdate {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--purple-deep);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .rarrow { font-size: 20px; color: var(--ink-faint); line-height: 1; }
+  footer {
+    max-width: 880px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 28px 36px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.2px;
+  }
+  /* Lang toggle */
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: var(--purple-soft);
+    border: 1px solid #D9CEF7;
+    border-radius: 8px;
+    padding: 3px;
+    height: 34px;
+    position: fixed;
+    top: 16px;
+    right: 18px;
+    z-index: 100;
+  }
+  .lang-btn {
+    padding: 0 10px;
+    height: 26px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--ink-faint);
+    transition: all .15s;
+    letter-spacing: .3px;
+  }
+  .lang-btn.active { background: var(--purple); color: #fff; }
+  .lang-btn:hover:not(.active) { color: var(--ink); }
+  @media (max-width: 560px) {
+    .wrap { padding: 44px 18px 24px; }
+    .logo { font-size: 29px; }
+    .row { align-items: flex-start; gap: 13px; padding: 16px 16px; }
+    .rmeta { flex-direction: column; align-items: flex-end; gap: 6px; }
+    footer { justify-content: flex-start; padding: 24px 20px 32px; }
+  }
+</style>
+</head>
+<body>
+  <!-- Language toggle -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-ko" onclick="setLang('ko')">KO</button>
+    <button class="lang-btn" id="btn-vi" onclick="setLang('vi')">VI</button>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <a class="back" href="/" id="back-link">← Design Hub</a>
+      <div class="logo">Price<span class="pick">Pick</span></div>
+      <div class="subtitle"><span id="page-title-text">보고서</span> <span class="dot">·</span> <span id="page-subtitle-text">개발 진도 · 운영 현황 보고 모음</span></div>
+    </header>
+
+    <div class="seclabel" id="seclabel-progress">개발 진도 보고서</div>
+
+    <a class="row" href="/reports/20260730_DevProgress.html" target="_blank" rel="noopener">
+      <div class="ricon">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 20.5h18"/>
+          <rect x="5" y="12" width="3.6" height="8.5" rx="1"/>
+          <rect x="10.2" y="8" width="3.6" height="12.5" rx="1"/>
+          <rect x="15.4" y="4" width="3.6" height="16.5" rx="1"/>
+        </svg>
+      </div>
+      <div class="rmain">
+        <div class="rtitle" id="rep1-title">PricePick App 개발 진도 보고서 (2026.07.30)</div>
+        <div class="rdesc" id="rep1-desc">모바일 앱 기능별 개발 현황 및 Google Play 반영 상태. 전체 32개 기능 중 27개 완료, 미완료 5개는 전부 외부 파트너 연동 대기.</div>
+      </div>
+      <div class="rmeta">
+        <span class="rdate">2026-07-30</span>
+        <span class="rarrow">&rsaquo;</span>
+      </div>
+    </a>
+  </div>
+
+  <footer>
+    <span>Last Update 2026-07-30</span>
+  </footer>
+<script>
+// ── i18n 언어 시스템 (허브와 동일 방식) ──
+let currentLang = 'ko';
+
+const I18N = {
+  ko: {
+    'page.title': '보고서',
+    'page.subtitle': '개발 진도 · 운영 현황 보고 모음',
+    'back': '← Design Hub',
+    'seclabel.progress': '개발 진도 보고서',
+    'rep1.title': 'PricePick App 개발 진도 보고서 (2026.07.30)',
+    'rep1.desc': '모바일 앱 기능별 개발 현황 및 Google Play 반영 상태. 전체 32개 기능 중 27개 완료, 미완료 5개는 전부 외부 파트너 연동 대기.',
+  },
+  vi: {
+    'page.title': 'Báo cáo',
+    'page.subtitle': 'Tổng hợp báo cáo tiến độ phát triển · hiện trạng vận hành',
+    'back': '← Design Hub',
+    'seclabel.progress': 'Báo cáo tiến độ phát triển',
+    'rep1.title': 'Báo cáo tiến độ phát triển App PricePick (30/07/2026)',
+    'rep1.desc': 'Hiện trạng phát triển theo từng chức năng app và trạng thái áp dụng lên Google Play. 27/32 chức năng đã hoàn tất; 5 chức năng còn lại đều đang chờ kết nối đối tác bên ngoài.',
+  }
+};
+
+function t(key) {
+  return (I18N[currentLang] && I18N[currentLang][key]) || (I18N['ko'][key]) || key;
+}
+
+function setTxt(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+  document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+  applyLang();
+}
+
+function applyLang() {
+  setTxt('back-link',          t('back'));
+  setTxt('page-title-text',    t('page.title'));
+  setTxt('page-subtitle-text', t('page.subtitle'));
+  setTxt('seclabel-progress',  t('seclabel.progress'));
+  setTxt('rep1-title',         t('rep1.title'));
+  setTxt('rep1-desc',          t('rep1.desc'));
+}
+</script>
+</body>
+</html>
