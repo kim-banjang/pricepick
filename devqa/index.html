@@ -114,6 +114,8 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 <button class="devtab" type="button" data-dev="kelvin" role="tab" aria-selected="false">Kelvin</button>
 <button class="devtab" type="button" data-dev="john" role="tab" aria-selected="false">John</button>
 </div>
+<div class="rowwrap" data-dev="harry kelvin"><a class="row" href="/devqa/cms-draw-manual-20260730.html"><div class="rmain"><div class="rt"><span class="i18n"><span class="ko">정정 안내 · 주간 이벤트 추첨 당첨자 수동 지정 (Harry · Kelvin)</span><span class="vi">Đính chính · Chỉ định thủ công người trúng bốc thăm sự kiện tuần (Harry · Kelvin)</span></span></div><div class="rwho"><span class="i18n"><span class="ko">07-28 전달문의 "관리자 수동 선정 없음" 폐기 · 진행 중 회차에서 등수 슬롯 단위 수동 지정 가능, 마감 시 비어 있는 슬롯만 무작위 추첨 · 자동 추첨 규칙·앱 노출 시점은 그대로 · 앱 "추첨 방식" 문구 신규</span><span class="vi">Bãi bỏ mục "không có chọn thủ công của quản trị viên" trong bản gửi 28/07 · Với đợt đang diễn ra có thể chỉ định thủ công theo từng suất hạng, khi đóng đợt chỉ rút thăm các suất còn trống · Quy tắc rút thăm tự động·thời điểm hiển thị trên app giữ nguyên · Thêm mới nội dung "Phương thức rút thăm" trong app</span></span></div></div><div class="rdate">2026-07-30</div><div class="rarrow">&rsaquo;</div></a></div>
+
 <div class="rowwrap" data-dev="harry"><a class="row" href="/devqa/cms-harry-20260730.html"><div class="rmain"><div class="rt"><span class="i18n"><span class="ko">CMS 질문 답변 · Harry</span><span class="vi">Giải đáp câu hỏi CMS · Harry</span></span></div><div class="rwho"><span class="i18n"><span class="ko">Harry · CMS · 대시보드 전체 '확인중' 전환 확정(옵션 2)·티켓 적립 비용 산출식·DAU/전환율/이탈률 정의 · 당첨 알림=알림 확인이 전부, 배송 정보 입력 화면 없음(수령 정보는 1:1 문의)</span><span class="vi">Harry · CMS · Chốt chuyển toàn bộ Bảng điều khiển sang 'Đang kiểm tra' (Phương án 2)·công thức chi phí tích lũy vé·định nghĩa DAU/tỷ lệ chuyển đổi/tỷ lệ thoát · Thông báo trúng thưởng=chỉ xem thông báo là hết, không có màn nhập thông tin giao hàng (thông tin nhận quà qua Hỏi đáp 1:1)</span></span></div></div><div class="rdate">2026-07-30</div><div class="rarrow">&rsaquo;</div></a>
 <a class="srcnotion" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-07-30-3ab86f66c22480ed81a9cb7cd81e9f8f" target="_blank" rel="noopener"><span class="i18n"><span class="ko">&#128206; 원문 질문 (Notion) &#8599;</span><span class="vi">&#128206; Xem câu hỏi gốc (Notion) &#8599;</span></span></a></div>
 <div class="rowwrap" data-dev="kelvin"><a class="row" href="/devqa/app-kelvin-20260729.html"><div class="rmain"><div class="rt"><span class="i18n"><span class="ko">앱 질문 답변 · Kelvin</span><span class="vi">Giải đáp câu hỏi App · Kelvin</span></span></div><div class="rwho"><span class="i18n"><span class="ko">Kelvin · App · 경품 응모 완료 알림=토스트(팝업 아님)·알림함 미저장 확정(완전판 PRIZE_ENTRY 행 정정)</span><span class="vi">Kelvin · App · Thông báo hoàn tất ứng tuyển=toast (không phải popup)·chốt không lưu hộp thông báo (đính chính hàng PRIZE_ENTRY trong bảng đầy đủ)</span></span></div></div><div class="rdate">2026-07-29</div><div class="rarrow">&rsaquo;</div></a>
@@ -340,8 +342,9 @@ const DEV_TABS=['all','harry','vin','kelvin','john'];
 function applyDevFilter(dev,push){
   if(!DEV_TABS.includes(dev))dev='all';
   document.querySelectorAll('.rowwrap').forEach(r=>{
-    const d=r.getAttribute('data-dev');
-    r.classList.toggle('dev-hide',!(dev==='all'||d===dev));
+    /* data-dev는 공백 구분 다중 지정 허용 — 두 개발자에게 함께 나가는 전달문(정정 안내 등)이 양쪽 탭에 다 걸리게 한다 */
+    const d=(r.getAttribute('data-dev')||'').split(/\s+/).filter(Boolean);
+    r.classList.toggle('dev-hide',!(dev==='all'||d.includes(dev)));
   });
   document.querySelectorAll('.devtab').forEach(b=>{
     const active=b.getAttribute('data-dev')===dev;

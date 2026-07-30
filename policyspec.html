@@ -480,8 +480,9 @@
     <div class="card">
       <h4><span class="n">1</span>응모 · 당첨 · 운영</h4>
       <div class="rule"><span class="lead">응모</span>이벤트 티켓으로 응모합니다. 응모하면 티켓이 바로 소모되고 <b>취소 불가</b>(1단계 기준). 1회 추첨 누적 <b>최대 10장</b> 응모.</div>
-      <div class="rule"><span class="lead">당첨 확률</span>응모한 <b>티켓 수에 비례</b>해 확률이 높아집니다. 당첨자 수만큼 비복원 추첨(한 번 뽑힌 응모는 다시 안 뽑힘).</div>
-      <div class="rule"><span class="lead">운영</span>1단계는 <b>관리자가 직접 추첨을 실행</b>. 당첨자에게 카톡/이메일로 배송지 입력을 안내하고 수동 발송.</div>
+      <div class="rule"><span class="lead">당첨자 선정</span>등수 슬롯 단위로 결정됩니다. 진행 중인 회차에서는 관리자가 응모자 리스트에서 등수별 슬롯에 당첨자를 직접 지정할 수 있고(마감 전까지 변경·해제 가능), 마감 시점에 비어 있는 슬롯만 남은 응모 건 중 무작위 추첨으로 채워집니다. 이미 수동 지정된 사람은 자동 추첨 대상에서 제외됩니다.</div>
+      <div class="rule"><span class="lead">당첨 확률</span>자동 추첨분은 응모한 티켓 수에 비례해 확률이 높아집니다(응모 건 단위 무작위 · 한 번 뽑힌 응모는 다시 안 뽑히는 비복원 추첨). 1인 1회 당첨이라 같은 사람의 다른 응모 건은 건너뜁니다. 앱 고지 문구는 "당첨자는 일부 운영 기준에 따라 선정되며, 남은 자리는 응모 건 단위 무작위 추첨으로 결정됩니다."입니다.</div>
+      <div class="rule"><span class="lead">운영</span>진행 중 회차의 수동 지정과 마감 후 지급 관리는 관리자가 직접 수행합니다. 당첨자에게는 당첨 알림을 보내고, 경품 수령 정보는 1:1 문의로 받아 수동 발송합니다.</div>
       <div class="rule"><span class="lead">예산</span>경품 예산은 <b>매출의 일정 비율로 고정</b>(티켓이 아무리 많이 발행돼도 손실 상한 보장).</div>
       <div class="rule"><span class="lead">티켓 발급과 무관</span>추첨은 이벤트 티켓을 <b>소비</b>할 뿐, 새로 발급하지 않습니다(획득 경로는 출석 5연속·행운룰렛·이부장 패키지 5종 등 별도 경로).</div>
       <div class="rule"><span class="lead">회차 운영</span>추첨 회차는 <b>매주 월요일 0시 시작 ~ 일요일 23:59:59 마감</b>으로 운영됩니다. CMS는 접속 시점 기준 <b>앞으로 4주치 회차가 항상 자동 등록</b>되어 있도록 부족분을 롤링 생성하며(수동 등록 없음), 회차명은 마감일 기준으로 자동 부여됩니다. 관리자는 생성된 회차의 <b>경품 구성 수정</b>과 응모자 리스트에서의 당첨자 선정·지급 관리만 진행합니다.</div>
@@ -680,6 +681,15 @@
       <div class="rule"><span class="lead">주간 추첨 확률</span>주간 이벤트 추첨은 응모한 티켓 수에 비례하는 추첨으로 확정합니다(비복원 추첨). 관리자 확률(%) 설정 표현은 비례로 정정하며, 프로토타입의 50%는 화면 더미값입니다.</div>
       <span class="src">출처 김반장 결정 2026-06-18 (DEVQA 충돌 #2·#15 = A 정책서 유지)</span>
     </div>
+
+    <div class="card">
+      <h4><span class="n">10</span>당첨자 수동 지정 부활 (07-28 전달문 정정) <span class="badge-new">확정</span></h4>
+      <div class="rule"><span class="lead">변경</span>2026-07-28에 전달한 "관리자 수동 선정 없음 · 마감과 동시에 전건 자동 추첨"은 폐기합니다. 진행 중인 회차에서 등수 슬롯 단위 수동 지정이 가능하고, 마감 시점에는 비어 있는 슬롯만 자동 추첨으로 채웁니다.</div>
+      <div class="rule"><span class="lead">범위</span>수동 지정은 진행 중인 회차에서만 가능합니다(예정·종료 회차 불가). 지정한 당첨자는 마감 전까지 변경·해제할 수 있고, 마감 후에는 당첨자 구성이 확정돼 지급 상태·메모만 수정됩니다.</div>
+      <div class="rule"><span class="lead">자동 추첨 규칙</span>기존 규칙 그대로 유지합니다 — 응모 건 단위 무작위, 1등부터 등수별 정원까지, 1인 1회 당첨. 수동 지정된 사람은 자동 추첨 풀에서 제외됩니다.</div>
+      <div class="rule"><span class="lead">앱 고지</span>앱 경품 응모 화면에 "당첨자는 일부 운영 기준에 따라 선정되며, 남은 자리는 응모 건 단위 무작위 추첨으로 결정됩니다."를 노출합니다(KO/VI). 당첨 알림·지난 회차 당첨자 명단은 마감 후에만 노출되며, 마감 전 수동 지정 사실은 앱에 드러나지 않습니다.</div>
+      <span class="src">출처 김반장 확정 2026-07-30 (07-28 전달문 #1 정정)</span>
+    </div>
 </div>
 
 </div>
@@ -736,6 +746,23 @@ Object.assign(KO2VI, {"이후 매일 지급되는 출석 100P와는 별개인 1�
   var KO_RE=/[\uac00-\ud7a3]/;
   var _orig=new Map(); var _tracked=new Set(); var _applying=false;
   Object.assign(KO2VI,{"① 경품 예산 비율":"① Tỷ lệ ngân sách quà tặng","② 탈퇴 후 재가입 쿨타임":"② Thời gian chờ đăng ký lại sau khi hủy tài khoản","회차 운영":"Vận hành đợt","추첨 회차는":"Đợt rút thăm","매주 월요일 0시 시작 ~ 일요일 23:59:59 마감":"bắt đầu 0h Thứ Hai ~ đóng 23:59:59 Chủ Nhật hàng tuần","으로 운영됩니다. CMS는 접속 시점 기준":"được vận hành. CMS luôn đăng ký tự động sẵn, tính từ thời điểm truy cập,","앞으로 4주치 회차가 항상 자동 등록":"4 tuần đợt tiếp theo","되어 있도록 부족분을 롤링 생성하며(수동 등록 없음), 회차명은 마감일 기준으로 자동 부여됩니다. 관리자는 생성된 회차의":"(không có đăng ký thủ công). Tên đợt được tự động đặt theo ngày đóng. Quản trị viên chỉ thực hiện, đối với đợt đã tạo,","경품 구성 수정":"sửa cấu hình quà","과 응모자 리스트에서의 당첨자 선정·지급 관리만 진행합니다.":"và chọn người trúng thưởng·quản lý gửi quà trong danh sách người dự thưởng.","(매출 대비 %) 운영 확정 필요.":"(so với doanh thu %) cần xác định vận hành.","추천: 매출의 1~2%.":"Đề xuất: 1~2% doanh thu.","매주 (월요일 0시 시작 ~ 일요일 23:59:59 마감, 현재 시점 기준 4주치 자동 등록)":"Hàng tuần (bắt đầu 0h Thứ Hai ~ đóng 23:59:59 Chủ Nhật, tự động đăng ký sẵn 4 tuần tính từ thời điểm hiện tại)","충돌 시 이 문서 우선 · 미결 항목(경품 예산 비율 등)은 확정 전 임의 운영 금지":"Khi có xung đột, văn bản này ưu tiên · Các mục chưa quyết định (tỷ lệ ngân sách quà tặng v.v.) cấm vận hành tùy tiện trước khi xác định"});
+  /* 당첨자 수동 지정 부활(김반장 확정 2026-07-30) — 07-28 "수동 선정 없음" 전달문 정정 */
+  Object.assign(KO2VI,{
+    "당첨자 선정":"Chọn người trúng thưởng",
+    "등수 슬롯 단위로 결정됩니다. 진행 중인 회차에서는 관리자가 응모자 리스트에서 등수별 슬롯에 당첨자를 직접 지정할 수 있고(마감 전까지 변경·해제 가능), 마감 시점에 비어 있는 슬롯만 남은 응모 건 중 무작위 추첨으로 채워집니다. 이미 수동 지정된 사람은 자동 추첨 대상에서 제외됩니다.":"Được quyết định theo từng suất hạng. Với đợt đang diễn ra, quản trị viên có thể trực tiếp chỉ định người trúng vào từng suất hạng trong danh sách người dự thưởng (có thể thay đổi·huỷ trước khi đóng đợt), và tại thời điểm đóng đợt chỉ những suất còn trống mới được rút thăm ngẫu nhiên từ các lượt dự thưởng còn lại. Người đã được chỉ định thủ công bị loại khỏi diện rút thăm tự động.",
+    "자동 추첨분은 응모한 티켓 수에 비례해 확률이 높아집니다(응모 건 단위 무작위 · 한 번 뽑힌 응모는 다시 안 뽑히는 비복원 추첨). 1인 1회 당첨이라 같은 사람의 다른 응모 건은 건너뜁니다. 앱 고지 문구는 \"당첨자는 일부 운영 기준에 따라 선정되며, 남은 자리는 응모 건 단위 무작위 추첨으로 결정됩니다.\"입니다.":"Với phần rút thăm tự động, xác suất tăng theo số vé đã ứng tuyển (ngẫu nhiên theo đơn vị lượt dự thưởng · rút thăm không hoàn lại, lượt đã trúng không được rút lại). Vì mỗi người chỉ trúng 1 lần nên các lượt dự thưởng khác của cùng một người sẽ bị bỏ qua. Câu thông báo trong ứng dụng là \"Người trúng thưởng được chọn theo một số tiêu chí vận hành, và các suất còn lại được quyết định bằng rút thăm ngẫu nhiên theo đơn vị lượt dự thưởng.\"",
+    "진행 중 회차의 수동 지정과 마감 후 지급 관리는 관리자가 직접 수행합니다. 당첨자에게는 당첨 알림을 보내고, 경품 수령 정보는 1:1 문의로 받아 수동 발송합니다.":"Việc chỉ định thủ công ở đợt đang diễn ra và quản lý gửi quà sau khi đóng đợt do quản trị viên trực tiếp thực hiện. Người trúng sẽ nhận thông báo trúng thưởng, và thông tin nhận quà được thu qua hỏi đáp 1:1 rồi gửi thủ công.",
+    "당첨자 수동 지정 부활 (07-28 전달문 정정)":"Phục hồi chỉ định người trúng thủ công (đính chính bản gửi ngày 07-28)",
+    "변경":"Thay đổi",
+    "2026-07-28에 전달한 \"관리자 수동 선정 없음 · 마감과 동시에 전건 자동 추첨\"은 폐기합니다. 진행 중인 회차에서 등수 슬롯 단위 수동 지정이 가능하고, 마감 시점에는 비어 있는 슬롯만 자동 추첨으로 채웁니다.":"Nội dung đã gửi ngày 2026-07-28 — \"không có chọn thủ công của quản trị viên · rút thăm tự động toàn bộ ngay khi đóng đợt\" — được bãi bỏ. Với đợt đang diễn ra có thể chỉ định thủ công theo từng suất hạng, và tại thời điểm đóng đợt chỉ những suất còn trống mới được rút thăm tự động.",
+    "범위":"Phạm vi",
+    "수동 지정은 진행 중인 회차에서만 가능합니다(예정·종료 회차 불가). 지정한 당첨자는 마감 전까지 변경·해제할 수 있고, 마감 후에는 당첨자 구성이 확정돼 지급 상태·메모만 수정됩니다.":"Chỉ định thủ công chỉ khả dụng với đợt đang diễn ra (không áp dụng cho đợt sắp diễn ra·đã kết thúc). Người trúng đã chỉ định có thể thay đổi·huỷ trước khi đóng đợt; sau khi đóng đợt thì cơ cấu người trúng được chốt và chỉ sửa được trạng thái gửi quà·ghi chú.",
+    "자동 추첨 규칙":"Quy tắc rút thăm tự động",
+    "기존 규칙 그대로 유지합니다 — 응모 건 단위 무작위, 1등부터 등수별 정원까지, 1인 1회 당첨. 수동 지정된 사람은 자동 추첨 풀에서 제외됩니다.":"Giữ nguyên quy tắc hiện hành — ngẫu nhiên theo đơn vị lượt dự thưởng, lấp từ hạng 1 cho đến đủ số lượng của từng hạng, mỗi người chỉ trúng 1 lần. Người đã được chỉ định thủ công bị loại khỏi nhóm rút thăm tự động.",
+    "앱 고지":"Thông báo trong ứng dụng",
+    "앱 경품 응모 화면에 \"당첨자는 일부 운영 기준에 따라 선정되며, 남은 자리는 응모 건 단위 무작위 추첨으로 결정됩니다.\"를 노출합니다(KO/VI). 당첨 알림·지난 회차 당첨자 명단은 마감 후에만 노출되며, 마감 전 수동 지정 사실은 앱에 드러나지 않습니다.":"Màn hình dự thưởng quà của ứng dụng sẽ hiển thị \"Người trúng thưởng được chọn theo một số tiêu chí vận hành, và các suất còn lại được quyết định bằng rút thăm ngẫu nhiên theo đơn vị lượt dự thưởng.\" (KO/VI). Thông báo trúng thưởng·danh sách người trúng đợt trước chỉ hiển thị sau khi đóng đợt, và việc chỉ định thủ công trước khi đóng đợt không lộ ra trong ứng dụng.",
+    "출처 김반장 확정 2026-07-30 (07-28 전달문 #1 정정)":"Nguồn: anh xác nhận 2026-07-30 (đính chính mục #1 của bản gửi ngày 07-28)"
+  });
   function hasKo(s){return KO_RE.test(s);}
   function tcore(raw){
     if(raw==null) return null;
