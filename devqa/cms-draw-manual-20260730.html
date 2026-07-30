@@ -57,11 +57,11 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 
 이제 <b>진행 중인 회차에서는 운영자가 등수 슬롯 단위로 당첨자를 직접 지정</b>할 수 있고, <b>마감(일요일 23:59:59) 시점에 비어 있는 슬롯만</b> 남은 응모 건 중에서 자동 추첨으로 채웁니다. 자동 추첨 규칙 자체는 07-28에 전달한 그대로입니다 — 응모 건 단위 무작위, 1등부터 등수별 정원까지, 1인 1회 당첨.
 
-정책 변경은 위 1건과 아래 2번(정원·중복 처리 방식)까지 2건이고, 나머지는 화면 구조 변경입니다. <b>7번의 서버단 강제 항목은 백엔드 작업이 필요합니다</b> — 현재 저희 구현은 클라이언트 차단까지만 되어 있습니다.</span><span class="vi">Nội dung đã gửi ngày 28/07 — <b>"chọn người trúng hoàn toàn tự động, không có chọn thủ công của quản trị viên" — được bãi bỏ</b>.
+정책 변경은 위 1건과 아래 2번(정원·중복 처리 방식)까지 2건이고, 나머지는 화면 구조 변경입니다. <b>9번의 서버단 강제 항목은 백엔드 작업이 필요합니다</b> — 현재 저희 구현은 클라이언트 차단까지만 되어 있습니다.</span><span class="vi">Nội dung đã gửi ngày 28/07 — <b>"chọn người trúng hoàn toàn tự động, không có chọn thủ công của quản trị viên" — được bãi bỏ</b>.
 
 Từ nay <b>với đợt đang diễn ra, Vận hành viên có thể trực tiếp chỉ định người trúng theo từng suất hạng</b>, và <b>tại thời điểm đóng đợt (23:59:59 Chủ Nhật) chỉ những suất còn trống</b> mới được lấp bằng rút thăm tự động từ các lượt dự thưởng còn lại. Bản thân quy tắc rút thăm tự động vẫn đúng như đã gửi ngày 28/07 — ngẫu nhiên theo đơn vị lượt dự thưởng, lấp từ hạng 1 cho đến đủ số lượng từng hạng, mỗi người chỉ trúng 1 lần.
 
-Thay đổi chính sách gồm mục trên và mục 2 bên dưới (cách xử lý số lượng·trùng lặp), tổng 2 mục; phần còn lại là thay đổi cấu trúc màn hình. <b>Các mục cần cưỡng chế ở phía server tại mục 7 cần công việc backend</b> — hiện bên mình chỉ chặn được ở phía client.</span></span></div>
+Thay đổi chính sách gồm mục trên và mục 2 bên dưới (cách xử lý số lượng·trùng lặp), tổng 2 mục; phần còn lại là thay đổi cấu trúc màn hình. <b>Các mục cần cưỡng chế ở phía server tại mục 9 cần công việc backend</b> — hiện bên mình chỉ chặn được ở phía client.</span></span></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">1. 정책 변경 — 당첨자 수동 지정 부활</span><span class="vi">1. Thay đổi chính sách — Phục hồi chỉ định người trúng thủ công</span></span></h2>
 
@@ -171,7 +171,7 @@ VI: Người trúng thưởng được chọn theo một số tiêu chí vận h
 <b>Sự kiện tuần đã kết thúc</b> — <b>6 cột (Vòng · Thời gian · Số lượt dự thưởng · Người trúng · Tình trạng gửi quà · Hành động)</b>. Hành động <b>chỉ có "Xem người dự thưởng"</b> — <b>đợt đã kết thúc thì không sửa được cấu hình quà</b> (vì đã chốt cả người trúng). Cột "Tình trạng gửi quà" xem mục 6.
 
 <b>Đổi tên nút</b> — <b>"Xem chi tiết dự thưởng" → "Xem người dự thưởng"</b>. Thống nhất dùng tên này ở cả app·CMS.</span></span></div></div>
-<div class="ref-box"><span class="ref-label">[<span class="i18n"><span class="ko">참조</span><span class="vi">Tham khảo</span></span>] <span class="i18n"><span class="ko">종료 회차 경품 수정 차단은 현재 클라이언트 이중 차단까지만</span><span class="vi">Chặn sửa quà ở đợt đã kết thúc hiện chỉ tới mức chặn đôi ở client</span></span></span><span class="i18n"><span class="ko">버튼을 숨기는 것과 별개로 <b>열기 시점·저장 시점 두 곳에서</b> 차단합니다("종료된 회차는 경품을 수정할 수 없습니다."). 다만 이건 클라이언트 차단이므로 <b>서버단 차단이 별도로 필요합니다</b> — 7번 참고.</span><span class="vi">Ngoài việc ẩn nút, còn chặn ở <b>hai chỗ: lúc mở và lúc lưu</b> ("Đợt đã kết thúc thì không thể sửa giải thưởng."). Tuy nhiên đây là chặn ở client nên <b>cần chặn riêng ở phía server</b> — xem mục 7.</span></span></div>
+<div class="ref-box"><span class="ref-label">[<span class="i18n"><span class="ko">참조</span><span class="vi">Tham khảo</span></span>] <span class="i18n"><span class="ko">종료 회차 경품 수정 차단은 현재 클라이언트 이중 차단까지만</span><span class="vi">Chặn sửa quà ở đợt đã kết thúc hiện chỉ tới mức chặn đôi ở client</span></span></span><span class="i18n"><span class="ko">버튼을 숨기는 것과 별개로 <b>열기 시점·저장 시점 두 곳에서</b> 차단합니다("종료된 회차는 경품을 수정할 수 없습니다."). 다만 이건 클라이언트 차단이므로 <b>서버단 차단이 별도로 필요합니다</b> — 9번 참고.</span><span class="vi">Ngoài việc ẩn nút, còn chặn ở <b>hai chỗ: lúc mở và lúc lưu</b> ("Đợt đã kết thúc thì không thể sửa giải thưởng."). Tuy nhiên đây là chặn ở client nên <b>cần chặn riêng ở phía server</b> — xem mục 9.</span></span></div>
 </div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">6. 화면 신설 — 종료 회차 "지급 현황" 컬럼</span><span class="vi">6. Thêm mới màn hình — Cột "Tình trạng gửi quà" ở đợt đã kết thúc</span></span></h2>
