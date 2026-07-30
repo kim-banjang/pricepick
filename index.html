@@ -277,6 +277,34 @@
     transition: background .15s ease, border-color .15s ease;
   }
   .chg-badge:hover { background: #E9E0FB; border-color: #D6C6F6; }
+  /* 접속 정보 블록 (STG CMS) — 비밀번호는 마스킹 표기만 */
+  .acct {
+    margin-top: 11px;
+    padding: 9px 11px;
+    border-radius: 10px;
+    background: var(--purple-soft);
+    border: 1px solid #E4DAFB;
+  }
+  .acct .arow {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    font-size: 11.5px;
+    line-height: 1.4;
+  }
+  .acct .arow + .arow { margin-top: 3px; }
+  .acct .k {
+    flex: 0 0 auto;
+    font-weight: 700;
+    color: var(--ink-faint);
+    letter-spacing: 0.2px;
+  }
+  .acct .v {
+    font-weight: 700;
+    color: var(--purple-deep);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    word-break: break-all;
+  }
   /* Footer */
   footer {
     max-width: 1080px;
@@ -518,8 +546,18 @@
             <path d="M9.9 12.6L12 10.5l2.1 2.1"/>
           </svg>
         </div>
-        <h2 id="card-stagingcms-title">STAGING CMS</h2>
-        <p id="card-stagingcms-desc">실서버에 올라간 스테이징 어드민. 접속 계정은 김반장이 개별 전달합니다.</p>
+        <h2 id="card-stagingcms-title">STG CMS</h2>
+        <p id="card-stagingcms-desc">실서버에 올라간 스테이징 어드민 화면.</p>
+        <div class="acct">
+          <div class="arow">
+            <span class="k" id="card-stagingcms-userlabel">계정</span>
+            <span class="v">admin-cms</span>
+          </div>
+          <div class="arow">
+            <span class="k" id="card-stagingcms-pwlabel">비번</span>
+            <span class="v">inetkr@****</span>
+          </div>
+        </div>
         <div class="arrow" id="card-stagingcms-arrow">열기 →</div>
       </a>
     </div>
@@ -690,8 +728,10 @@ const I18N = {
     'card.demoapp.desc': '실데이터로 동작하는 앱 데모. 디자인 정본은 인터랙티브입니다.',
     'card.democms.title': 'DEMO CMS',
     'card.democms.desc': '운영진이 실제로 쓸 어드민 화면. 실데이터로 동작합니다.',
-    'card.stagingcms.title': 'STAGING CMS',
-    'card.stagingcms.desc': '실서버에 올라간 스테이징 어드민. 접속 계정은 김반장이 개별 전달합니다.',
+    'card.stagingcms.title': 'STG CMS',
+    'card.stagingcms.desc': '실서버에 올라간 스테이징 어드민 화면.',
+    'card.stagingcms.user': '계정',
+    'card.stagingcms.pw': '비번',
     'card.cms.title': 'CMS',
     'card.cms.desc': '어드민 운영 화면 기획안. 실제 동작은 CMS 데모에서 확인.',
     'card.cmssb.title': 'CMS 스토리보드',
@@ -743,8 +783,10 @@ const I18N = {
     'card.demoapp.desc': 'Bản demo app chạy dữ liệu thật. Bản chuẩn về thiết kế là Interactive.',
     'card.democms.title': 'DEMO CMS',
     'card.democms.desc': 'Màn quản trị mà bộ phận vận hành sẽ dùng thật. Chạy dữ liệu thật.',
-    'card.stagingcms.title': 'STAGING CMS',
-    'card.stagingcms.desc': 'Màn quản trị staging đã triển khai trên server thật. Tài khoản truy cập do Kim Ban-jang cấp riêng.',
+    'card.stagingcms.title': 'STG CMS',
+    'card.stagingcms.desc': 'Màn quản trị staging đã triển khai trên server thật.',
+    'card.stagingcms.user': 'Tài khoản',
+    'card.stagingcms.pw': 'Mật khẩu',
     'card.cms.title': 'CMS',
     'card.cms.desc': 'Bản kế hoạch màn hình quản trị. Hoạt động thật xem ở CMS Demo.',
     'card.cmssb.title': 'CMS Storyboard',
@@ -825,6 +867,8 @@ function applyLang() {
   setTxt('card-democms-arrow',        t('card.arrow'));
   setTxt('card-stagingcms-title',     t('card.stagingcms.title'));
   setTxt('card-stagingcms-desc',      t('card.stagingcms.desc'));
+  setTxt('card-stagingcms-userlabel', t('card.stagingcms.user'));
+  setTxt('card-stagingcms-pwlabel',   t('card.stagingcms.pw'));
   setTxt('card-stagingcms-arrow',     t('card.arrow'));
   setTxt('card-cms-title',            t('card.cms.title'));
   setTxt('card-cms-desc',             t('card.cms.desc'));
