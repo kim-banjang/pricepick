@@ -255,7 +255,7 @@
         <span class="tag red"><span class="i18n"><span class="ko">✗ 영상 없음</span><span class="vi">✗ Không phải Video</span></span></span>
         <span class="tag red"><span class="i18n"><span class="ko">✗ 스트리밍 없음</span><span class="vi">✗ Không phải Streaming</span></span></span>
       </div>
-      <div style="font-size:13px;color:var(--text-muted);"><span class="i18n"><span class="ko">쿠팡픽 구매·티켓 적립·기프티콘 교환·포인트·출석체크 등 일반적인 데이터 읽기/쓰기가 주 업무. CPU 병목 발생 가능성 낮음.</span><span class="vi">Hệ thống gồm các module: Người dùng → Đăng nhập → Mua hàng Coupang → Tính Ticket → Lưu lịch sử → Gifticon → Đổi Ticket → Point → Điểm danh → Thông báo. Phần lớn đều là: CRUD, Transaction Database, API =&gt; CPU không phải bottleneck.</span></span></div>
+      <div style="font-size:13px;color:var(--text-muted);"><span class="i18n"><span class="ko">쿠팡 경유 구매·티켓 적립·기프티콘 교환·포인트·출석체크 등 일반적인 데이터 읽기/쓰기가 주 업무. CPU 병목 발생 가능성 낮음.</span><span class="vi">Hệ thống gồm các module: Người dùng → Đăng nhập → Mua hàng Coupang → Tính Ticket → Lưu lịch sử → Gifticon → Đổi Ticket → Point → Điểm danh → Thông báo. Phần lớn đều là: CRUD, Transaction Database, API =&gt; CPU không phải bottleneck.</span></span></div>
     </div>
   </div>
 
@@ -304,7 +304,7 @@
     </div>
     <div class="section-body">
       <div style="font-size:13px;line-height:1.8;">
-        <span class="i18n"><span class="ko">쿠팡 API를 호출하는 순간 응답 지연은 <strong>서버가 아닌 쿠팡 쪽</strong>에서 옴.<br>외부 API 연동 작업(쿠팡 픽 구매 처리, 기프티콘 발급, 이메일/SMS 발송 등)은 반드시 <strong>백그라운드 워커(Worker Queue)</strong>로 분리해 처리할 것.</span><span class="vi">Đây mới là thứ đáng quan tâm. Hệ thống sẽ gọi: App → Backend → Coupang API → Backend → Database. Độ trễ chủ yếu đến từ <strong>Coupang. Không phải server.</strong></span></span>
+        <span class="i18n"><span class="ko">쿠팡 API를 호출하는 순간 응답 지연은 <strong>서버가 아닌 쿠팡 쪽</strong>에서 옴.<br>외부 API 연동 작업(쿠팡 경유 구매 처리, 기프티콘 발급, 이메일/SMS 발송 등)은 반드시 <strong>백그라운드 워커(Worker Queue)</strong>로 분리해 처리할 것.</span><span class="vi">Đây mới là thứ đáng quan tâm. Hệ thống sẽ gọi: App → Backend → Coupang API → Backend → Database. Độ trễ chủ yếu đến từ <strong>Coupang. Không phải server.</strong></span></span>
       </div>
       <div class="note-box" style="margin-top:14px;">
         <span class="i18n"><span class="ko">RabbitMQ 또는 Redis Streams 사용 권장 — 유저가 결과를 기다리지 않게 비동기 처리</span><span class="vi">Do đó nên: RabbitMQ / Redis / Background Worker — để tránh người dùng phải chờ.</span></span>

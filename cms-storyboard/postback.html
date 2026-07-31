@@ -95,7 +95,7 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 
 <h2 class="sec"><span class="i18n"><span class="ko">3. 동작 로직 — 포스트백이 들어오면 생기는 일</span><span class="vi">3. Logic hoạt động — Điều xảy ra khi postback vào</span></span></h2>
 <div class="flow">
-  <div class="fstep"><b>1</b><span class="i18n"><span class="ko">회원이 픽구매 링크로<br>제휴몰 이동·결제</span><span class="vi">Hội viên đi qua link<br>PricePick·thanh toán ở đối tác</span></span></div><div class="farr">&rarr;</div>
+  <div class="fstep"><b>1</b><span class="i18n"><span class="ko">회원이 구매 링크로<br>제휴몰 이동·결제</span><span class="vi">Hội viên đi qua link<br>PricePick·thanh toán ở đối tác</span></span></div><div class="farr">&rarr;</div>
   <div class="fstep"><b>2</b><span class="i18n"><span class="ko">제휴몰이 우리 서버로<br>콜백(포스트백) 전송</span><span class="vi">Cửa hàng gửi callback<br>(postback) về server mình</span></span></div><div class="farr">&rarr;</div>
   <div class="fstep"><b>3</b><span class="i18n"><span class="ko">주문번호 UNIQUE 검사<br>(중복이면 차단)</span><span class="vi">Kiểm tra UNIQUE mã đơn<br>(trùng thì chặn)</span></span></div><div class="farr">&rarr;</div>
   <div class="fstep"><b>4</b><span class="i18n"><span class="ko">가지급(대기) 티켓 적립<br>+ 로그에 '대기'로 기록</span><span class="vi">Cộng vé tạm cấp (chờ)<br>+ ghi log trạng thái 'Chờ'</span></span></div><div class="farr">&rarr;</div>
