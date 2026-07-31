@@ -1,6 +1,6 @@
 {
-  "name": "쿠팡 바로 가기",
-  "short_name": "쿠팡 바로 가기",
+  "name": "쿠팡 바로가기",
+  "short_name": "쿠팡 바로가기",
   "lang": "ko",
   "start_url": "/cpk",
   "scope": "/cpk",
