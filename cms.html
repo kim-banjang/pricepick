@@ -928,9 +928,13 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg></span>
             <span class="sb-item-lbl" id="nav-label-weekly-draws">주간 이벤트 추첨 관리</span>
           </button>
-          <button class="sb-item" id="nav-roulette-settings" data-label="매일 행운 룰렛 설정" onclick="go('roulette-settings',this)">
+          <button class="sb-item" id="nav-roulette-settings" data-label="매일 행운 룰렛" onclick="go('roulette-settings',this)">
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg></span>
-            <span class="sb-item-lbl" id="nav-label-roulette-settings">매일 행운 룰렛 설정</span>
+            <span class="sb-item-lbl" id="nav-label-roulette-settings">매일 행운 룰렛</span>
+          </button>
+          <button class="sb-item" id="nav-jackpot-roulette" data-label="잭팟 룰렛" onclick="go('jackpot-roulette',this)">
+            <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/><path d="M4.5 5.5 6 7"/><path d="M19.5 5.5 18 7"/></svg></span>
+            <span class="sb-item-lbl" id="nav-label-jackpot-roulette">잭팟 룰렛</span>
           </button>
         </div>
       </div>
@@ -1444,21 +1448,21 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       </div>
     </div>
 
-    <!-- ── 매일 행운 룰렛 설정 ── -->
+    <!-- ── 매일 행운 룰렛 (무료 · 출석 1일 1회) ── -->
     <div class="section" id="sec-roulette-settings">
-      <div class="info-box"><strong>매일 행운 룰렛 = 출석(쿠팡 구경하기) 시 1일 1회 무료 룰렛</strong> — 슬롯별 보상 내용과 당첨 확률을 운영자가 직접 수정합니다. 확률 합계가 100%가 아니면 저장되지 않습니다. 슬롯은 6개가 기본이며 추가·삭제로 개수를 조정할 수 있습니다. 유료 룰렛(잭팟 룰렛)은 별도 화면으로 신설 예정이며 이 화면에서 관리하지 않습니다.</div>
+      <div class="info-box"><strong>매일 행운 룰렛 = 출석(쿠팡 구경하기) 시 1일 1회 무료 룰렛</strong> — 슬롯별 보상 내용과 당첨 확률을 운영자가 직접 수정합니다. 확률 합계가 100%가 아니면 저장되지 않습니다. 슬롯은 6개가 기본이며 추가·삭제로 개수를 조정할 수 있습니다. 이벤트 티켓을 쓰는 유료 룰렛은 <strong>잭팟 룰렛</strong> 메뉴에서 따로 관리합니다.</div>
       <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
         <div class="stat-card purple"><div class="stat-label">이번 달 룰렛 실행</div><div class="stat-value" id="rlt-stat-spins">—</div><div class="stat-change neutral">2026년 7월 누적</div></div>
         <div class="stat-card green"><div class="stat-label">이번 달 지급 총액</div><div class="stat-value" id="rlt-stat-payout">—</div><div class="stat-change neutral">당첨 보상 원화 환산</div></div>
-        <div class="stat-card amber"><div class="stat-label">1회 기대값</div><div class="stat-value" id="rlt-stat-ev">—</div><div class="stat-change neutral">현재 설정 기준</div></div>
+        <div class="stat-card amber"><div class="stat-label">1회 기대값</div><div class="stat-value" id="rlt-stat-ev">—</div><div class="stat-change neutral">현재 구성 기준</div></div>
       </div>
       <div class="card">
         <div class="card-header">
           <div class="card-title">슬롯 구성 · 당첨 확률</div>
           <div style="display:flex;gap:6px">
-            <button class="btn btn-ghost btn-sm" onclick="rltAddSlot()">+ 슬롯 추가</button>
-            <button class="btn btn-ghost btn-sm" onclick="rltReset()">기본값 복원</button>
-            <button class="btn btn-primary btn-sm" id="rlt-save-btn" onclick="rltSave()">저장</button>
+            <button class="btn btn-ghost btn-sm" onclick="rltAddSlot('daily')">+ 슬롯 추가</button>
+            <button class="btn btn-ghost btn-sm" onclick="rltReset('daily')">기본값 복원</button>
+            <button class="btn btn-primary btn-sm" id="rlt-save-btn" onclick="rltSave('daily')">저장</button>
           </div>
         </div>
         <table id="rlt-table">
@@ -1509,6 +1513,91 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       </div>
     </div>
 
+    <!-- ── 잭팟 룰렛 (유료 · 이벤트 티켓 1장 = 1회) ── -->
+    <div class="section" id="sec-jackpot-roulette">
+      <div class="info-box"><strong>잭팟 룰렛 = 이벤트 티켓 1장으로 1회 돌리는 유료 룰렛</strong> — 매일 행운 룰렛과 구조는 같고 보상 구성·확률만 다릅니다. 슬롯별 보상 내용과 당첨 확률을 운영자가 직접 수정하며, 확률 합계가 100%가 아니면 저장되지 않습니다. 악용 방지 제한(하루 참여 상한 · 구매 확정 전 티켓 사용 · 이벤트 티켓 월 획득 상한)도 아래에서 조정합니다.</div>
+      <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-card purple"><div class="stat-label">이번 달 룰렛 실행</div><div class="stat-value" id="jkr-stat-spins">—</div><div class="stat-change neutral">2026년 7월 누적</div></div>
+        <div class="stat-card green"><div class="stat-label">이번 달 지급 총액</div><div class="stat-value" id="jkr-stat-payout">—</div><div class="stat-change neutral">당첨 보상 원화 환산</div></div>
+        <div class="stat-card amber"><div class="stat-label">1회 기대값</div><div class="stat-value" id="jkr-stat-ev">—</div><div class="stat-change neutral">현재 구성 기준</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">슬롯 구성 · 당첨 확률</div>
+          <div style="display:flex;gap:6px">
+            <button class="btn btn-ghost btn-sm" onclick="rltAddSlot('jackpot')">+ 슬롯 추가</button>
+            <button class="btn btn-ghost btn-sm" onclick="rltReset('jackpot')">기본값 복원</button>
+            <button class="btn btn-primary btn-sm" id="jkr-save-btn" onclick="rltSave('jackpot')">저장</button>
+          </div>
+        </div>
+        <table id="jkr-table">
+          <thead>
+            <tr>
+              <th style="width:64px">슬롯</th>
+              <th style="width:150px">보상 유형</th>
+              <th style="width:150px">수량</th>
+              <th style="width:110px;text-align:right">가치(원)</th>
+              <th style="width:130px">확률(%)</th>
+              <th style="width:120px;text-align:right">기대값 기여</th>
+              <th style="width:60px;text-align:center">삭제</th>
+            </tr>
+          </thead>
+          <tbody id="jkr-tbody"></tbody>
+          <tfoot>
+            <tr style="background:var(--bg)">
+              <td colspan="4" style="font-weight:700">합계</td>
+              <td style="font-weight:800" id="jkr-sum-prob">—</td>
+              <td style="text-align:right;font-weight:800" id="jkr-sum-ev">—</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+        <div style="padding:12px 16px;font-size:12px;color:var(--text-3);border-top:1px solid var(--border)" id="jkr-status">
+          가치 환산 기준 — 포인트 10P = 1원 · 이벤트 티켓 40원 · 브론즈 티켓 100원 · 실버 티켓 1,000원 · 골드 티켓 2,000원. 기대값 기여 = 가치 × 확률.
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-header">
+          <div class="card-title">참여 제한 정책</div>
+          <button class="btn btn-primary btn-sm" onclick="jkrSaveLimits()">저장</button>
+        </div>
+        <div style="padding:16px">
+          <div class="form-group"><label class="form-label">하루 최대 참여 횟수</label>
+            <div style="display:flex;align-items:center;gap:8px"><input class="form-input" type="number" min="1" step="1" id="jkr-daily-cap" value="10" style="max-width:120px"><span style="color:var(--text-2);font-size:13px">회 / 1일</span></div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:4px">매크로로 무제한 돌리는 것을 막는 상한입니다.</div>
+          </div>
+          <div class="form-group"><label class="form-label">구매 확정 전 이벤트 티켓 사용</label>
+            <select class="form-select" id="jkr-require-confirm" style="max-width:260px"><option value="1" selected>불가 (구매 확정 후에만 사용)</option><option value="0">가능</option></select>
+            <div style="font-size:12px;color:var(--text-3);margin-top:4px">돌린 뒤 주문을 취소·환불하는 악용을 막습니다.</div>
+          </div>
+          <div class="form-group" style="margin-bottom:0"><label class="form-label">이벤트 티켓 월 획득 상한</label>
+            <div style="display:flex;align-items:center;gap:8px"><input class="form-input" type="number" min="1" step="1" id="jkr-monthly-cap" value="30" style="max-width:120px"><span style="color:var(--text-2);font-size:13px">장 / 월</span></div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:4px">현행 정책 그대로 30장. 회원 1명이 한 달에 모을 수 있는 이벤트 티켓 총량입니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-header">
+          <div class="card-title">룰렛 실행 로그</div>
+          <span style="font-size:12px;color:var(--text-2)" id="jkr-log-count">—</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width:150px">일시</th>
+              <th>닉네임 / 카카오톡 ID</th>
+              <th style="width:150px">룰렛 종류</th>
+              <th style="width:170px">결과</th>
+              <th style="width:110px;text-align:center">지급 상태</th>
+            </tr>
+          </thead>
+          <tbody id="jkr-log-tbody"></tbody>
+        </table>
+        <div class="pagination" id="jkr-log-pager"></div>
+      </div>
+    </div>
     <!-- ── 기프티콘 발급 (신규) ── -->
     <div class="section" id="sec-gifticons">
       <div class="info-box">
@@ -3673,7 +3762,8 @@ const I18N = {
     'nav.group.ticket': '티켓 · 보상',
     'nav.tickets': '티켓 내역',
     'nav.weekly-draws': '주간 이벤트 추첨 관리',
-    'nav.roulette-settings': '매일 행운 룰렛 설정',
+    'nav.roulette-settings': '매일 행운 룰렛',
+    'nav.jackpot-roulette': '잭팟 룰렛',
     'nav.gifticons': '구매/사용 내역',
     'nav.group.content': '콘텐츠',
     'nav.banners': '배너 관리',
@@ -3706,7 +3796,8 @@ const I18N = {
     'page.members.title': '회원 목록', 'page.members.bc': '회원 관리',
     'page.tickets.title': '티켓 내역', 'page.tickets.bc': '티켓 · 보상',
     'page.weekly-draws.title': '주간 이벤트 추첨 관리', 'page.weekly-draws.bc': '티켓 · 보상',
-    'page.roulette-settings.title': '매일 행운 룰렛 설정', 'page.roulette-settings.bc': '티켓 · 보상',
+    'page.roulette-settings.title': '매일 행운 룰렛', 'page.roulette-settings.bc': '티켓 · 보상',
+    'page.jackpot-roulette.title': '잭팟 룰렛', 'page.jackpot-roulette.bc': '티켓 · 보상',
     'page.gifticons.title': '구매/사용 내역', 'page.gifticons.bc': '기프티콘 관리', 'page.gifticon-cancel.title': '취소 내역', 'page.gifticon-cancel.bc': '기프티콘 관리', 'page.gifticon-products.title': '상품 목록', 'page.gifticon-products.bc': '기프티콘 관리', 'page.gifticon-bulk.title': '상품설명 일괄등록', 'page.gifticon-bulk.bc': '기프티콘 관리',
     'page.banners.title': '배너 관리', 'page.banners.bc': '콘텐츠',
     'page.invite.title': '친구초대 관리', 'page.invite.bc': '콘텐츠',
@@ -3779,6 +3870,7 @@ function applyLang() {
     'nav-label-tickets': 'nav.tickets',
     'nav-label-weekly-draws': 'nav.weekly-draws',
     'nav-label-roulette-settings': 'nav.roulette-settings',
+    'nav-label-jackpot-roulette': 'nav.jackpot-roulette',
     'nav-group-label-points': 'nav.group.points',
     'nav-label-points': 'nav.points',
     'nav-label-point-attendance': 'nav.point-attendance',
@@ -5350,11 +5442,13 @@ function savePointPolicy() {
   closeModal('m-point-policy-edit');
 }
 
-/* ══ 매일 행운 룰렛 설정 (roulette-settings) ═══════════════════════════════
+/* ══ 룰렛 2종 (매일 행운 룰렛 · 잭팟 룰렛) ══════════════════════════════════
    2026-07-31 이동영 부장 협의 확정 구성.
-   보상 유형별 원화 환산가치와 기본 슬롯 구성은 아래 상수 두 개에서만 관리한다 —
-   정책이 바뀌면 이 두 곳만 고치면 표·기대값·통계가 전부 따라온다.
-   슬롯 개수는 고정이 아니다(추가·삭제 가능). 유료 룰렛(잭팟)은 이 화면 범위 밖. */
+   두 화면은 구조가 같고 보상 구성·확률·제한 정책만 다르다 — 렌더·검증·저장 로직은
+   한 벌만 두고 종류(kind)로 갈라 쓴다.
+   보상 유형별 원화 환산가치와 종류별 기본 슬롯은 아래 상수에서만 관리한다 —
+   정책이 바뀌면 여기만 고치면 표·기대값·통계가 전부 따라온다.
+   슬롯 개수는 고정이 아니다(추가·삭제 가능, 최소 2). */
 const RLT_REWARD_TYPES = {
   miss:          { label:'꽝',         unit:'',   unitValue:0    },
   point:         { label:'포인트',      unit:'P',  unitValue:0.1  },  /* 10P = 1원 */
@@ -5363,18 +5457,36 @@ const RLT_REWARD_TYPES = {
   silver_ticket: { label:'실버 티켓',    unit:'장', unitValue:1000 },
   gold_ticket:   { label:'골드 티켓',    unit:'장', unitValue:2000 },
 };
-const RLT_DEFAULT_SLOTS = [
-  { type:'silver_ticket', qty:1,   prob:0.2  },
-  { type:'event_ticket',  qty:1,   prob:5    },
-  { type:'bronze_ticket', qty:1,   prob:2    },
-  { type:'point',         qty:100, prob:35   },
-  { type:'point',         qty:10,  prob:40   },
-  { type:'miss',          qty:0,   prob:17.8 },
-];
-/* 이번 달 실행 수(데모 운영 수치) — 지급 총액은 이 값 × 현재 설정 기대값으로 환산한다 */
-const RLT_MONTH_SPINS = 28470;
-
-let rltSlots = RLT_DEFAULT_SLOTS.map(s => ({ ...s }));
+const RLT_KINDS = {
+  daily: {
+    p: 'rlt', name: '매일 행운 룰렛',
+    monthSpins: 28470,                       /* 이번 달 실행 수(데모 운영 수치) */
+    defaults: [                              /* 1회 기대값 9.9원 */
+      { type:'silver_ticket', qty:1,   prob:0.2  },
+      { type:'event_ticket',  qty:1,   prob:5    },
+      { type:'bronze_ticket', qty:1,   prob:2    },
+      { type:'point',         qty:100, prob:35   },
+      { type:'point',         qty:10,  prob:40   },
+      { type:'miss',          qty:0,   prob:17.8 },
+    ],
+  },
+  jackpot: {
+    p: 'jkr', name: '잭팟 룰렛',
+    monthSpins: 6120,
+    defaults: [                              /* 1회 기대값 40원 · 이벤트 티켓 1장 = 1회 */
+      { type:'gold_ticket',   qty:1,    prob:0.4  },
+      { type:'silver_ticket', qty:1,    prob:1    },
+      { type:'point',         qty:1000, prob:5    },
+      { type:'bronze_ticket', qty:1,    prob:12   },
+      { type:'point',         qty:100,  prob:50   },
+      { type:'miss',          qty:0,    prob:31.6 },
+    ],
+  },
+};
+const rltState = {
+  daily:   { slots: RLT_KINDS.daily.defaults.map(s => ({ ...s })),   logPage: 1 },
+  jackpot: { slots: RLT_KINDS.jackpot.defaults.map(s => ({ ...s })), logPage: 1 },
+};
 
 function rltFmt(n) {
   return Number(n).toLocaleString('ko-KR', { maximumFractionDigits: 2 });
@@ -5387,153 +5499,196 @@ function rltSlotEv(s) {
   return rltSlotValue(s) * (Number(s.prob) || 0) / 100;
 }
 /* 부동소수 오차 방지 — 확률은 소수점 1자리까지만 쓰므로 0.1 단위 정수로 환산해 합산한다 */
-function rltSumProb() {
-  return rltSlots.reduce((a, s) => a + Math.round((Number(s.prob) || 0) * 10), 0) / 10;
+function rltSumProb(k) {
+  return rltState[k].slots.reduce((a, s) => a + Math.round((Number(s.prob) || 0) * 10), 0) / 10;
 }
-function rltTotalEv() {
-  return rltSlots.reduce((a, s) => a + rltSlotEv(s), 0);
+function rltTotalEv(k) {
+  return rltState[k].slots.reduce((a, s) => a + rltSlotEv(s), 0);
 }
-function rltRenderSlots() {
-  const tbody = document.getElementById('rlt-tbody');
+function rltRenderSlots(k) {
+  const p = RLT_KINDS[k].p;
+  const tbody = document.getElementById(p + '-tbody');
   if (!tbody) return;
-  tbody.innerHTML = rltSlots.map((s, i) => {
+  tbody.innerHTML = rltState[k].slots.map((s, i) => {
     const meta = RLT_REWARD_TYPES[s.type] || RLT_REWARD_TYPES.miss;
     const isMiss = s.type === 'miss';
-    const opts = Object.keys(RLT_REWARD_TYPES).map(k =>
-      `<option value="${k}"${k === s.type ? ' selected' : ''}>${RLT_REWARD_TYPES[k].label}</option>`).join('');
+    const opts = Object.keys(RLT_REWARD_TYPES).map(t =>
+      `<option value="${t}"${t === s.type ? ' selected' : ''}>${RLT_REWARD_TYPES[t].label}</option>`).join('');
     return `<tr>
       <td style="font-weight:700;color:var(--text-2)">${i + 1}번</td>
-      <td><select class="form-select" onchange="rltSetType(${i}, this.value)">${opts}</select></td>
+      <td><select class="form-select" onchange="rltSetType('${k}', ${i}, this.value)">${opts}</select></td>
       <td>${isMiss
         ? '<span style="color:var(--text-3);font-size:12px">보상 없음</span>'
-        : `<div style="display:flex;align-items:center;gap:6px"><input class="form-input" type="number" min="1" step="1" value="${s.qty}" style="max-width:92px" oninput="rltSetQty(${i}, this.value)"><span style="font-size:12px;color:var(--text-2)">${meta.unit}</span></div>`}</td>
+        : `<div style="display:flex;align-items:center;gap:6px"><input class="form-input" type="number" min="1" step="1" value="${s.qty}" style="max-width:92px" oninput="rltSetQty('${k}', ${i}, this.value)"><span style="font-size:12px;color:var(--text-2)">${meta.unit}</span></div>`}</td>
       <td style="text-align:right;color:var(--text-2)">${isMiss ? '—' : rltFmt(rltSlotValue(s)) + '원'}</td>
-      <td><div style="display:flex;align-items:center;gap:6px"><input class="form-input" type="number" min="0" max="100" step="0.1" value="${s.prob}" style="max-width:88px" oninput="rltSetProb(${i}, this.value)"><span style="font-size:12px;color:var(--text-2)">%</span></div></td>
+      <td><div style="display:flex;align-items:center;gap:6px"><input class="form-input" type="number" min="0" max="100" step="0.1" value="${s.prob}" style="max-width:88px" oninput="rltSetProb('${k}', ${i}, this.value)"><span style="font-size:12px;color:var(--text-2)">%</span></div></td>
       <td style="text-align:right;font-weight:600">${rltFmt(rltSlotEv(s))}원</td>
-      <td style="text-align:center">${rltSlots.length > 2
-        ? `<button class="btn btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" onclick="rltRemoveSlot(${i})">삭제</button>`
+      <td style="text-align:center">${rltState[k].slots.length > 2
+        ? `<button class="btn btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" onclick="rltRemoveSlot('${k}', ${i})">삭제</button>`
         : '<span style="color:var(--text-3);font-size:11px">—</span>'}</td>
     </tr>`;
   }).join('');
-  rltRenderTotals();
+  rltRenderTotals(k);
 }
-function rltRenderTotals() {
-  const sum = rltSumProb();
+function rltRenderTotals(k) {
+  const p = RLT_KINDS[k].p;
+  const sum = rltSumProb(k);
   const ok = Math.abs(sum - 100) < 0.001;
-  const sumEl = document.getElementById('rlt-sum-prob');
+  const sumEl = document.getElementById(p + '-sum-prob');
   if (sumEl) {
     sumEl.innerHTML = `<span style="color:${ok ? 'var(--success)' : 'var(--danger)'}">${rltFmt(sum)}%</span>`
       + (ok ? '' : `<div style="font-size:11px;font-weight:600;color:var(--danger);margin-top:2px">100% ${sum > 100 ? '초과' : '미달'} ${rltFmt(Math.abs(sum - 100))}%p</div>`);
   }
-  const evEl = document.getElementById('rlt-sum-ev');
-  if (evEl) evEl.textContent = rltFmt(rltTotalEv()) + '원';
-  rltRenderStats();
+  const evEl = document.getElementById(p + '-sum-ev');
+  if (evEl) evEl.textContent = rltFmt(rltTotalEv(k)) + '원';
+  rltRenderStats(k);
 }
-function rltRenderStats() {
-  const ev = rltTotalEv();
-  const spins = document.getElementById('rlt-stat-spins');
-  const payout = document.getElementById('rlt-stat-payout');
-  const evEl = document.getElementById('rlt-stat-ev');
-  if (spins) spins.textContent = RLT_MONTH_SPINS.toLocaleString('ko-KR') + '회';
-  if (payout) payout.textContent = Math.round(RLT_MONTH_SPINS * ev).toLocaleString('ko-KR') + '원';
+function rltRenderStats(k) {
+  const p = RLT_KINDS[k].p;
+  const ev = rltTotalEv(k);
+  const spins = document.getElementById(p + '-stat-spins');
+  const payout = document.getElementById(p + '-stat-payout');
+  const evEl = document.getElementById(p + '-stat-ev');
+  if (spins) spins.textContent = RLT_KINDS[k].monthSpins.toLocaleString('ko-KR') + '회';
+  if (payout) payout.textContent = Math.round(RLT_KINDS[k].monthSpins * ev).toLocaleString('ko-KR') + '원';
   if (evEl) evEl.textContent = rltFmt(ev) + '원';
 }
-function rltSetType(i, v) {
-  rltSlots[i].type = v;
-  if (v === 'miss') rltSlots[i].qty = 0;
-  else if (!rltSlots[i].qty) rltSlots[i].qty = (v === 'point') ? 100 : 1;
-  rltRenderSlots();
+function rltSetType(k, i, v) {
+  const s = rltState[k].slots[i];
+  s.type = v;
+  if (v === 'miss') s.qty = 0;
+  else if (!s.qty) s.qty = (v === 'point') ? 100 : 1;
+  rltRenderSlots(k);
 }
-function rltSetQty(i, v) {
-  rltSlots[i].qty = Math.max(0, Number(v) || 0);
-  const row = document.getElementById('rlt-tbody').rows[i];
+function rltSetQty(k, i, v) {
+  const s = rltState[k].slots[i];
+  s.qty = Math.max(0, Number(v) || 0);
+  const row = document.getElementById(RLT_KINDS[k].p + '-tbody').rows[i];
   if (row) {
-    row.cells[3].textContent = rltFmt(rltSlotValue(rltSlots[i])) + '원';
-    row.cells[5].textContent = rltFmt(rltSlotEv(rltSlots[i])) + '원';
+    row.cells[3].textContent = rltFmt(rltSlotValue(s)) + '원';
+    row.cells[5].textContent = rltFmt(rltSlotEv(s)) + '원';
   }
-  rltRenderTotals();
+  rltRenderTotals(k);
 }
-function rltSetProb(i, v) {
-  rltSlots[i].prob = Math.min(100, Math.max(0, Number(v) || 0));
-  const row = document.getElementById('rlt-tbody').rows[i];
-  if (row) row.cells[5].textContent = rltFmt(rltSlotEv(rltSlots[i])) + '원';
-  rltRenderTotals();
+function rltSetProb(k, i, v) {
+  const s = rltState[k].slots[i];
+  s.prob = Math.min(100, Math.max(0, Number(v) || 0));
+  const row = document.getElementById(RLT_KINDS[k].p + '-tbody').rows[i];
+  if (row) row.cells[5].textContent = rltFmt(rltSlotEv(s)) + '원';
+  rltRenderTotals(k);
 }
-function rltAddSlot() {
-  rltSlots.push({ type: 'miss', qty: 0, prob: 0 });
-  rltRenderSlots();
+function rltAddSlot(k) {
+  rltState[k].slots.push({ type: 'miss', qty: 0, prob: 0 });
+  rltRenderSlots(k);
   toast('슬롯을 추가했습니다. 확률 합계를 100%로 다시 맞춰 주세요.');
 }
-function rltRemoveSlot(i) {
-  if (rltSlots.length <= 2) return;
-  rltSlots.splice(i, 1);
-  rltRenderSlots();
+function rltRemoveSlot(k, i) {
+  if (rltState[k].slots.length <= 2) return;
+  rltState[k].slots.splice(i, 1);
+  rltRenderSlots(k);
 }
-function rltReset() {
-  rltSlots = RLT_DEFAULT_SLOTS.map(s => ({ ...s }));
-  rltRenderSlots();
+function rltReset(k) {
+  rltState[k].slots = RLT_KINDS[k].defaults.map(s => ({ ...s }));
+  rltRenderSlots(k);
   toast('확정 기본값(6슬롯)으로 복원했습니다.');
 }
 /* 저장 — 확률 합계 100% 검증을 통과하지 못하면 저장하지 않는다 */
-function rltSave() {
-  const sum = rltSumProb();
-  const status = document.getElementById('rlt-status');
+function rltSave(k) {
+  const kind = RLT_KINDS[k];
+  const sum = rltSumProb(k);
+  const status = document.getElementById(kind.p + '-status');
   if (Math.abs(sum - 100) > 0.001) {
     if (status) status.innerHTML = `<span style="color:var(--danger);font-weight:600">저장 차단 — 확률 합계가 ${rltFmt(sum)}%입니다. 100%가 되어야 저장할 수 있습니다 (${sum > 100 ? '초과' : '부족'} ${rltFmt(Math.abs(sum - 100))}%p).</span>`;
     toast('확률 합계가 100%가 아니라 저장하지 않았습니다.');
     return;
   }
-  const badQty = rltSlots.findIndex(s => s.type !== 'miss' && (Number(s.qty) || 0) <= 0);
+  const badQty = rltState[k].slots.findIndex(s => s.type !== 'miss' && (Number(s.qty) || 0) <= 0);
   if (badQty >= 0) {
     if (status) status.innerHTML = `<span style="color:var(--danger);font-weight:600">저장 차단 — ${badQty + 1}번 슬롯의 수량이 0입니다. 꽝이 아닌 슬롯은 수량이 1 이상이어야 합니다.</span>`;
     toast('수량이 0인 슬롯이 있어 저장하지 않았습니다.');
     return;
   }
-  if (status) status.innerHTML = `저장 완료 — 슬롯 ${rltSlots.length}개 · 확률 합계 100% · 1회 기대값 ${rltFmt(rltTotalEv())}원. 앱은 다음 진입 시 이 설정을 읽어 룰렛을 렌더링합니다.`;
-  toast('매일 행운 룰렛 설정이 저장되었습니다.');
+  if (status) status.innerHTML = `저장 완료 — 슬롯 ${rltState[k].slots.length}개 · 확률 합계 100% · 1회 기대값 ${rltFmt(rltTotalEv(k))}원. 앱은 다음 진입 시 이 구성을 읽어 룰렛을 렌더링합니다.`;
+  toast(kind.name + ' 구성을 저장했습니다.');
+}
+/* 잭팟 룰렛 참여 제한 정책 — 악용 방지 3종 */
+function jkrSaveLimits() {
+  const cap = Number((document.getElementById('jkr-daily-cap') || {}).value) || 0;
+  const monthly = Number((document.getElementById('jkr-monthly-cap') || {}).value) || 0;
+  if (cap < 1 || monthly < 1) { toast('참여 상한은 1 이상이어야 합니다.'); return; }
+  toast('잭팟 룰렛 참여 제한 정책을 저장했습니다.');
 }
 
 /* ── 룰렛 실행 로그 (최신순 · 10건 단위) ──
    데모 데이터. [일시, 닉네임, 카카오ID(미연동은 빈 값), 결과 유형, 수량, 지급상태]
    지급상태: paid=지급완료 · none=해당없음(꽝) · capped=한도초과 미지급(이벤트 티켓 일 5장·월 30장 상한) */
-const RLT_LOG_ROWS = [
-  ['2026-07-31 13:04:22', '절약마스터',   'saving_master',  'point',         10,  'paid'],
-  ['2026-07-31 12:58:07', '알뜰한하루',   'thrifty_day',    'miss',          0,   'none'],
-  ['2026-07-31 12:41:55', '쿠폰헌터',     'coupon_hunter',  'point',         100, 'paid'],
-  ['2026-07-31 12:20:13', '최저가사냥꾼', '',               'point',         10,  'paid'],
-  ['2026-07-31 11:57:48', '무지출챌린지', 'nospend_ch',     'event_ticket',  1,   'paid'],
-  ['2026-07-31 11:33:02', '장바구니요정', 'cart_fairy',     'point',         10,  'paid'],
-  ['2026-07-31 11:12:36', '세일알람',     'sale_alarm',     'miss',          0,   'none'],
-  ['2026-07-31 10:49:19', '가성비대장',   'value_boss',     'point',         100, 'paid'],
-  ['2026-07-31 10:27:41', '반값사랑',     '',               'bronze_ticket', 1,   'paid'],
-  ['2026-07-31 10:05:58', '적립왕',       'point_king',     'point',         10,  'paid'],
-  ['2026-07-31 09:44:30', '지갑지킴이',   'wallet_guard',   'point',         10,  'paid'],
-  ['2026-07-31 09:21:07', '똑똑한소비',   'smart_spend',    'miss',          0,   'none'],
-  ['2026-07-31 09:02:52', '핫딜메이트',   'hotdeal_mate',   'point',         100, 'paid'],
-  ['2026-07-31 08:38:14', '새벽배송러',   '',               'point',         10,  'paid'],
-  ['2026-07-31 08:11:26', '생활비절약',   'save_living',    'event_ticket',  1,   'capped'],
-  ['2026-07-30 22:47:03', '체리피커',     'cherry_picker',  'point',         100, 'paid'],
-  ['2026-07-30 22:19:38', '월급방어전',   'salary_def',     'point',         10,  'paid'],
-  ['2026-07-30 21:55:12', '쟁여두기',     '',               'miss',          0,   'none'],
-  ['2026-07-30 21:30:44', '오늘도절약',   'today_save',     'point',         10,  'paid'],
-  ['2026-07-30 21:03:29', '포인트부자',   'point_rich',     'silver_ticket', 1,   'paid'],
-  ['2026-07-30 20:41:16', '알림설정중',   'noti_on',        'point',         100, 'paid'],
-  ['2026-07-30 20:18:53', '카트비우기',   'empty_cart',     'point',         10,  'paid'],
-  ['2026-07-30 19:52:31', '쿠팡순회중',   'cpang_round',    'miss',          0,   'none'],
-  ['2026-07-30 19:27:09', '주말장보기',   '',               'point',         10,  'paid'],
-  ['2026-07-30 19:04:47', '냉장고털이',   'fridge_clean',   'event_ticket',  1,   'paid'],
-  ['2026-07-30 18:39:22', '최저가비교',   'price_cmp',      'point',         100, 'paid'],
-  ['2026-07-30 18:15:58', '티켓모으기',   'ticket_collect', 'point',         10,  'paid'],
-  ['2026-07-30 17:48:33', '첫구매완료',   'first_buy',      'bronze_ticket', 1,   'paid'],
-  ['2026-07-30 17:22:05', '적립러버',     '',               'miss',          0,   'none'],
-  ['2026-07-30 16:57:41', '할인중독',     'sale_addict',    'point',         10,  'paid'],
-  ['2026-07-30 16:31:19', '깜짝세일',     'flash_sale',     'point',         100, 'paid'],
-  ['2026-07-30 16:08:54', '가계부쓰는중', 'ledger_on',      'point',         10,  'paid'],
-  ['2026-07-30 15:44:27', '소소한행복',   'small_joy',      'miss',          0,   'none'],
-  ['2026-07-30 15:19:02', '배송조회중',   'track_ship',     'point',         10,  'paid'],
-];
+const RLT_LOG_ROWS = {
+  daily: [
+    ['2026-07-31 13:04:22', '절약마스터',   'saving_master',  'point',         10,  'paid'],
+    ['2026-07-31 12:58:07', '알뜰한하루',   'thrifty_day',    'miss',          0,   'none'],
+    ['2026-07-31 12:41:55', '쿠폰헌터',     'coupon_hunter',  'point',         100, 'paid'],
+    ['2026-07-31 12:20:13', '최저가사냥꾼', '',               'point',         10,  'paid'],
+    ['2026-07-31 11:57:48', '무지출챌린지', 'nospend_ch',     'event_ticket',  1,   'paid'],
+    ['2026-07-31 11:33:02', '장바구니요정', 'cart_fairy',     'point',         10,  'paid'],
+    ['2026-07-31 11:12:36', '세일알람',     'sale_alarm',     'miss',          0,   'none'],
+    ['2026-07-31 10:49:19', '가성비대장',   'value_boss',     'point',         100, 'paid'],
+    ['2026-07-31 10:27:41', '반값사랑',     '',               'bronze_ticket', 1,   'paid'],
+    ['2026-07-31 10:05:58', '적립왕',       'point_king',     'point',         10,  'paid'],
+    ['2026-07-31 09:44:30', '지갑지킴이',   'wallet_guard',   'point',         10,  'paid'],
+    ['2026-07-31 09:21:07', '똑똑한소비',   'smart_spend',    'miss',          0,   'none'],
+    ['2026-07-31 09:02:52', '핫딜메이트',   'hotdeal_mate',   'point',         100, 'paid'],
+    ['2026-07-31 08:38:14', '새벽배송러',   '',               'point',         10,  'paid'],
+    ['2026-07-31 08:11:26', '생활비절약',   'save_living',    'event_ticket',  1,   'capped'],
+    ['2026-07-30 22:47:03', '체리피커',     'cherry_picker',  'point',         100, 'paid'],
+    ['2026-07-30 22:19:38', '월급방어전',   'salary_def',     'point',         10,  'paid'],
+    ['2026-07-30 21:55:12', '쟁여두기',     '',               'miss',          0,   'none'],
+    ['2026-07-30 21:30:44', '오늘도절약',   'today_save',     'point',         10,  'paid'],
+    ['2026-07-30 21:03:29', '포인트부자',   'point_rich',     'silver_ticket', 1,   'paid'],
+    ['2026-07-30 20:41:16', '알림설정중',   'noti_on',        'point',         100, 'paid'],
+    ['2026-07-30 20:18:53', '카트비우기',   'empty_cart',     'point',         10,  'paid'],
+    ['2026-07-30 19:52:31', '쿠팡순회중',   'cpang_round',    'miss',          0,   'none'],
+    ['2026-07-30 19:27:09', '주말장보기',   '',               'point',         10,  'paid'],
+    ['2026-07-30 19:04:47', '냉장고털이',   'fridge_clean',   'event_ticket',  1,   'paid'],
+    ['2026-07-30 18:39:22', '최저가비교',   'price_cmp',      'point',         100, 'paid'],
+    ['2026-07-30 18:15:58', '티켓모으기',   'ticket_collect', 'point',         10,  'paid'],
+    ['2026-07-30 17:48:33', '첫구매완료',   'first_buy',      'bronze_ticket', 1,   'paid'],
+    ['2026-07-30 17:22:05', '적립러버',     '',               'miss',          0,   'none'],
+    ['2026-07-30 16:57:41', '할인중독',     'sale_addict',    'point',         10,  'paid'],
+    ['2026-07-30 16:31:19', '깜짝세일',     'flash_sale',     'point',         100, 'paid'],
+    ['2026-07-30 16:08:54', '가계부쓰는중', 'ledger_on',      'point',         10,  'paid'],
+    ['2026-07-30 15:44:27', '소소한행복',   'small_joy',      'miss',          0,   'none'],
+    ['2026-07-30 15:19:02', '배송조회중',   'track_ship',     'point',         10,  'paid'],
+  ],
+  jackpot: [
+    ['2026-07-31 12:51:40', '티켓모으기',   'ticket_collect', 'point',         100,  'paid'],
+    ['2026-07-31 12:33:18', '체리피커',     'cherry_picker',  'miss',          0,    'none'],
+    ['2026-07-31 12:06:55', '가성비대장',   'value_boss',     'bronze_ticket', 1,    'paid'],
+    ['2026-07-31 11:48:02', '포인트부자',   'point_rich',     'point',         100,  'paid'],
+    ['2026-07-31 11:19:37', '무지출챌린지', 'nospend_ch',     'point',         1000, 'paid'],
+    ['2026-07-31 10:52:14', '최저가사냥꾼', '',               'miss',          0,    'none'],
+    ['2026-07-31 10:24:49', '핫딜메이트',   'hotdeal_mate',   'point',         100,  'paid'],
+    ['2026-07-31 09:58:26', '절약마스터',   'saving_master',  'silver_ticket', 1,    'paid'],
+    ['2026-07-31 09:31:03', '쿠폰헌터',     'coupon_hunter',  'bronze_ticket', 1,    'paid'],
+    ['2026-07-31 09:04:51', '알뜰한하루',   'thrifty_day',    'point',         100,  'paid'],
+    ['2026-07-31 08:36:12', '장바구니요정', 'cart_fairy',     'miss',          0,    'none'],
+    ['2026-07-30 22:11:44', '적립왕',       'point_king',     'point',         100,  'paid'],
+    ['2026-07-30 21:44:29', '반값사랑',     '',               'gold_ticket',   1,    'paid'],
+    ['2026-07-30 21:17:06', '지갑지킴이',   'wallet_guard',   'point',         100,  'paid'],
+    ['2026-07-30 20:49:33', '세일알람',     'sale_alarm',     'bronze_ticket', 1,    'paid'],
+    ['2026-07-30 20:22:58', '똑똑한소비',   'smart_spend',    'miss',          0,    'none'],
+    ['2026-07-30 19:55:21', '월급방어전',   'salary_def',     'point',         100,  'paid'],
+    ['2026-07-30 19:28:47', '오늘도절약',   'today_save',     'point',         1000, 'paid'],
+    ['2026-07-30 19:02:15', '새벽배송러',   '',               'point',         100,  'paid'],
+    ['2026-07-30 18:35:52', '냉장고털이',   'fridge_clean',   'miss',          0,    'none'],
+    ['2026-07-30 18:09:30', '깜짝세일',     'flash_sale',     'bronze_ticket', 1,    'paid'],
+    ['2026-07-30 17:41:08', '할인중독',     'sale_addict',    'point',         100,  'paid'],
+    ['2026-07-30 17:14:44', '주말장보기',   '',               'miss',          0,    'none'],
+    ['2026-07-30 16:47:19', '첫구매완료',   'first_buy',      'point',         100,  'paid'],
+    ['2026-07-30 16:20:05', '가계부쓰는중', 'ledger_on',      'point',         100,  'paid'],
+    ['2026-07-30 15:53:41', '쿠팡순회중',   'cpang_round',    'miss',          0,    'none'],
+  ],
+};
 const RLT_LOG_PAGE_SIZE = 10;
-let rltLogPage = 1;
 function rltLogResultText(type, qty) {
   const meta = RLT_REWARD_TYPES[type];
   if (!meta || type === 'miss') return '<span style="color:var(--text-3)">꽝</span>';
@@ -5544,49 +5699,53 @@ function rltLogStatusChip(st) {
   if (st === 'capped') return '<span style="display:inline-block;font-size:11px;font-weight:700;color:#b4791a;background:#fdf3e2;border:1px solid #f2ddb4;border-radius:20px;padding:3px 10px;white-space:nowrap">한도초과</span>';
   return '<span style="display:inline-block;font-size:11px;font-weight:700;color:#8a8a99;background:#f2f2f6;border:1px solid #e0e0e8;border-radius:20px;padding:3px 10px;white-space:nowrap">해당없음</span>';
 }
-function rltLogGoPage(p) {
-  const total = Math.max(1, Math.ceil(RLT_LOG_ROWS.length / RLT_LOG_PAGE_SIZE));
-  if (p < 1 || p > total || p === rltLogPage) return;
-  rltLogPage = p;
-  rltRenderLog();
+function rltLogGoPage(k, p) {
+  const total = Math.max(1, Math.ceil(RLT_LOG_ROWS[k].length / RLT_LOG_PAGE_SIZE));
+  if (p < 1 || p > total || p === rltState[k].logPage) return;
+  rltState[k].logPage = p;
+  rltRenderLog(k);
 }
-function rltRenderLog() {
-  const tbody = document.getElementById('rlt-log-tbody');
+function rltRenderLog(k) {
+  const kind = RLT_KINDS[k];
+  const tbody = document.getElementById(kind.p + '-log-tbody');
   if (!tbody) return;
-  const total = Math.max(1, Math.ceil(RLT_LOG_ROWS.length / RLT_LOG_PAGE_SIZE));
-  if (rltLogPage > total) rltLogPage = total;
-  const from = (rltLogPage - 1) * RLT_LOG_PAGE_SIZE;
-  tbody.innerHTML = RLT_LOG_ROWS.slice(from, from + RLT_LOG_PAGE_SIZE).map(r => {
+  const rows = RLT_LOG_ROWS[k];
+  const total = Math.max(1, Math.ceil(rows.length / RLT_LOG_PAGE_SIZE));
+  if (rltState[k].logPage > total) rltState[k].logPage = total;
+  const cur = rltState[k].logPage;
+  const from = (cur - 1) * RLT_LOG_PAGE_SIZE;
+  tbody.innerHTML = rows.slice(from, from + RLT_LOG_PAGE_SIZE).map(r => {
     const [ts, nick, kakao, type, qty, st] = r;
     const [d, t] = ts.split(' ');
     return `<tr>
       <td style="white-space:nowrap;font-size:12px"><div style="font-weight:700;color:#333333">${d.replace(/-/g, '/')}</div><div style="color:var(--text-3)">${t}</div></td>
       <td><div style="font-weight:500">${nick}</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">${kakao ? '(' + kakao + ')' : '카카오 미연동'}</div></td>
-      <td style="color:var(--text-2)">매일 행운 룰렛</td>
+      <td style="color:var(--text-2)">${kind.name}</td>
       <td>${rltLogResultText(type, qty)}</td>
       <td style="text-align:center">${rltLogStatusChip(st)}</td>
     </tr>`;
   }).join('');
-  const cnt = document.getElementById('rlt-log-count');
-  if (cnt) cnt.textContent = `최근 ${RLT_LOG_ROWS.length}건 · ${rltLogPage} / ${total} 페이지`;
-  const pager = document.getElementById('rlt-log-pager');
+  const cnt = document.getElementById(kind.p + '-log-count');
+  if (cnt) cnt.textContent = `최근 ${rows.length}건 · ${cur} / ${total} 페이지`;
+  const pager = document.getElementById(kind.p + '-log-pager');
   if (pager) {
     const dim = 'opacity:.35;cursor:default';
-    let html = `<button class="page-btn" onclick="rltLogGoPage(${rltLogPage - 1})"${rltLogPage === 1 ? ' disabled style="' + dim + '"' : ''}>‹</button>`;
-    for (let p = 1; p <= total; p++) html += `<button class="page-btn${p === rltLogPage ? ' active' : ''}" onclick="rltLogGoPage(${p})">${p}</button>`;
-    html += `<button class="page-btn" onclick="rltLogGoPage(${rltLogPage + 1})"${rltLogPage === total ? ' disabled style="' + dim + '"' : ''}>›</button>`;
+    let html = `<button class="page-btn" onclick="rltLogGoPage('${k}', ${cur - 1})"${cur === 1 ? ' disabled style="' + dim + '"' : ''}>‹</button>`;
+    for (let p = 1; p <= total; p++) html += `<button class="page-btn${p === cur ? ' active' : ''}" onclick="rltLogGoPage('${k}', ${p})">${p}</button>`;
+    html += `<button class="page-btn" onclick="rltLogGoPage('${k}', ${cur + 1})"${cur === total ? ' disabled style="' + dim + '"' : ''}>›</button>`;
     pager.innerHTML = html;
   }
 }
-
+function rltRenderAll() {
+  Object.keys(RLT_KINDS).forEach(k => { rltRenderSlots(k); rltRenderLog(k); });
+}
 // 섹션 진입 시 테이블 렌더
 (function() {
   const origGo = typeof go === 'function' ? go : null;
   document.addEventListener('DOMContentLoaded', () => {
     // 초기 렌더
     renderGifticonTable();
-    rltRenderSlots();
-    rltRenderLog();
+    rltRenderAll();
   });
 })();
 
@@ -5694,12 +5853,12 @@ function rltRenderLog() {
     "클릭 → 구매 전환율":"Tỷ lệ chuyển đổi nhấp→mua","이탈율 (7일)":"Tỷ lệ thoát (7 ngày)",
     "이번달 신규 가입":"Thành viên mới tháng này",
     "일별 신규 회원 (최근 7일)":"Thành viên mới theo ngày (7 ngày gần nhất)",
-    "스케줄러 현황":"Trạng thái lịch trình","최근 구매 현황 TOP 3":"TOP 3 lượt mua gần nhất",
+    "스케줄러 현황":"Trạng thái lịch trình","최근 구매 현황 TOP 3":"TOP 3 Pick-mua gần nhất",
     "포스트백 로그로":"Đến nhật ký Postback","쇼핑몰":"Cửa hàng","구매금액":"Số tiền mua",
     "적립 티켓":"Vé tích lũy","구매일시":"Ngày/giờ mua","인기 제휴몰 TOP 5":"TOP 5 cửa hàng LK",
     "이번달 클릭·전환 기준":"Theo lượt nhấp và chuyển đổi tháng này","순위":"Xếp hạng",
     "클릭 수":"Lượt nhấp","구매 전환":"Chuyển đổi mua","티켓 적립 TOP 회원":"TOP thành viên tích lũy vé",
-    "이번달 구매 적립 기준":"Theo lượt mua tháng này","이번달 적립":"Tích lũy tháng này",
+    "이번달 구매 적립 기준":"Theo Pick-mua tháng này","이번달 적립":"Tích lũy tháng này",
     "누적 적립":"Tích lũy tổng cộng","닉네임(카카오톡 ID)":"Biệt danh (ID KakaoTalk)",
     /* Member section */
     "데이터 출처":"Nguồn dữ liệu","우리 DB · users 테이블 (PII 포함, 보안 1순위)":"DB nội bộ · bảng users (có PII, ưu tiên bảo mật)",
@@ -5930,14 +6089,14 @@ function rltRenderLog() {
     "이벤트 티켓은":"Vé sự kiện là","경품 응모 전용":"chỉ dùng tham dự giải thưởng",
     "친구초대 보상":"Phần thưởng mời bạn",
     "출석(쿠팡 구경하기)":"Điểm danh (ghé Coupang)","매일 행운 룰렛 당첨":"Trúng thưởng vòng quay may mắn hằng ngày","티켓→포인트 전환":"Đổi vé→điểm","포인트→티켓 전환":"Đổi điểm→vé","온보딩 보상 — 프로필 완성 보상":"Thưởng Onboarding — Thưởng hoàn thiện hồ sơ",
-    "초대 성사 기준":"Tiêu chí mời thành công","피초대자 첫 구매 완료":"Người được mời hoàn thành lần mua đầu tiên",
-    "가입만으로는 미성사. 첫 구매 완료 시점에 성사 처리.":"Chỉ đăng ký chưa tính là thành công. Tính khi hoàn thành lần mua đầu tiên.",
+    "초대 성사 기준":"Tiêu chí mời thành công","피초대자 첫 구매 완료":"Người được mời hoàn thành Pick-mua đầu tiên",
+    "가입만으로는 미성사. 첫 구매 완료 시점에 성사 처리.":"Chỉ đăng ký chưa tính là thành công. Tính khi hoàn thành Pick-mua đầu tiên.",
     "초대자 월 한도":"Giới hạn mời/tháng","월 최대 50명":"Tối đa 50 người/tháng",
     "성사 기준. 자기 초대·동일 IP/기기 차단.":"Theo tiêu chí thành công. Chặn tự mời·IP/thiết bị trùng.",
     "초대자 보상":"Phần thưởng người mời","성사 건당 500P (포인트)":"500P (điểm)/lần thành công",
     "성사 시점에 지급. (이벤트 티켓 → 포인트로 변경)":"Cấp tại thời điểm thành công. (vé sự kiện → đổi thành điểm)",
     "피초대자 보상":"Phần thưởng người được mời","500P (포인트)":"500P (điểm)",
-    "성사(첫 구매 완료) 시점에 지급 — 가입 즉시 아님.":"Cấp khi thành công (hoàn thành lần mua đầu tiên) — không phải ngay khi đăng ký.",
+    "성사(첫 구매 완료) 시점에 지급 — 가입 즉시 아님.":"Cấp khi thành công (hoàn thành Pick-mua đầu tiên) — không phải ngay khi đăng ký.",
     "이벤트 티켓 발급·응모 한도":"Giới hạn phát hành·tham dự vé sự kiện",
     "1일 발급 한도":"Giới hạn phát hành/ngày","5장 / 일":"5 vé/ngày",
     "이벤트 티켓 신규 상한. (구매 적립 랜덤 티켓 1일 5/월 50과 별도)":"Giới hạn mới vé sự kiện. (Riêng biệt với vé ngẫu nhiên tích lũy mua 5/ngày 50/tháng)",
@@ -5952,7 +6111,7 @@ function rltRenderLog() {
     "첫 경유 구매 (가입 7일 내)":"Mua qua LK lần đầu (trong 7 ngày đăng ký)","브론즈 티켓 1장":"1 vé Đồng",
     "구매 확정 후 지급 (연동 D+7 / 미연동 D+30, 취소 먹튀 방지).":"Cấp sau xác nhận mua (LK D+7 / Chưa LK D+30, chống hủy gian lận).",
     "친구초대":"Mời bạn","양쪽 각 500P":"Mỗi bên 500P",
-    "피초대자 첫 구매 성사 시 양쪽 지급.":"Cấp cho cả hai khi người được mời hoàn thành lần mua đầu tiên.",
+    "피초대자 첫 구매 성사 시 양쪽 지급.":"Cấp cho cả hai khi người được mời hoàn thành Pick-mua đầu tiên.",
     "경품 응모 규칙":"Quy tắc tham dự giải thưởng",
     "응모 조건":"Điều kiện tham dự","이벤트 티켓 1장 · 1회 추첨 최대 10장":"1 vé sự kiện · Tối đa 10 vé/lần rút",
     "추첨 회차 기준. 추첨 주기(월1/격주)는 미정 — 운영 회의 후 확정.":"Theo vòng rút thăm. Chu kỳ rút thăm (tháng 1/2 tuần) chưa xác định — sẽ xác nhận sau họp vận hành.",
@@ -5973,7 +6132,7 @@ function rltRenderLog() {
     "전체 유형":"Tất cả loại","티켓 문의":"Hỏi đáp về vé","적립 문의":"Hỏi đáp về tích lũy",
     "계정 문의":"Hỏi đáp về tài khoản",
     "문의 목록":"Danh sách hỏi đáp","문의 상세 / 답변":"Chi tiết hỏi đáp / Trả lời",
-    "티켓이 적립되지 않았어요":"Vé chưa được tích lũy","구매했는데 티켓이 적립 안 됐어요":"Đã mua nhưng vé chưa tích lũy",
+    "티켓이 적립되지 않았어요":"Vé chưa được tích lũy","구매했는데 티켓이 적립 안 됐어요":"Đã Pick-mua nhưng vé chưa tích lũy",
     "카카오 연동 해제하고 싶어요":"Muốn hủy liên kết Kakao","기프티콘 발급이 안 됩니다":"Không thể phát hành Gifticon",
     "답변 대기":"Chờ trả lời","답변 작성":"Viết trả lời","처리 상태":"Trạng thái xử lý",
     "닫기":"Đóng","답변 발송":"Gửi trả lời",
@@ -6634,7 +6793,7 @@ function rltRenderLog() {
   ": 벤더사(Giftishow 등)와 사전 계약 + API 연동 필수. 마진 -10% 미만은 적자.":": Hợp đồng trước với nhà cung cấp (Giftishow v.v.) + Bắt buộc liên kết API. Biên dưới -10% là lỗ.",
   "외 2종 &nbsp;·&nbsp; 참여 티켓 18,240장 &nbsp;·&nbsp; 마감 05/12":"và 2 loại khác &nbsp;·&nbsp; Vé tham dự 18.240 &nbsp;·&nbsp; Đóng 05/12",
   "— 약관 변경 시 법적 요건을 반드시 확인하고, 변경 30일 전 회원에게 사전 공지 후 적용하세요.":"— Khi thay đổi điều khoản, bắt buộc xác nhận yêu cầu pháp lý và thông báo trước cho thành viên 30 ngày trước khi áp dụng.",
-  "· 성사 기준 피초대자 첫 구매 완료(성사 시점 양쪽 지급) · 초대자 월 최대 50명. 상세 정책은":"· Tiêu chuẩn thành công: người được mời hoàn thành lần mua đầu tiên (cấp cả hai khi thành công) · Người mời tối đa 50 người/tháng. Chính sách chi tiết xem",
+  "· 성사 기준 피초대자 첫 구매 완료(성사 시점 양쪽 지급) · 초대자 월 최대 50명. 상세 정책은":"· Tiêu chuẩn thành công: người được mời hoàn thành mua Pick lần đầu (cấp cả hai khi thành công) · Người mời tối đa 50 người/tháng. Chính sách chi tiết xem",
   "제외 대상 카테고리·상품은 적립 계산에서 제외되며, 앱 10e 화면에 \"적립 제외 상품\"으로 안내됩니다.":"Danh mục·sản phẩm loại trừ không tính vào tích lũy, được thông báo là \"Sản phẩm loại trừ tích lũy\" trên màn hình 10e của ứng dụng.",
   "랜덤 티켓: 구매 후 연동 D+7 / 미연동 D+30 확정 시 등급 티켓으로 전환. 취소 시 자동 환수.":"Vé ngẫu nhiên: Sau mua, khi xác nhận liên kết D+7 / chưa LK D+30 chuyển thành vé hạng. Tự động thu hồi khi hủy.",
   "— 친구초대 보상 = 양쪽 각 500P(포인트), 초대자 월 최대 50명. (이벤트 티켓 → 포인트 변경)":"— Thưởng mời bạn = mỗi bên 500P (điểm), người mời tối đa 50 người/tháng. (Vé sự kiện → đổi thành Điểm)",
@@ -6860,19 +7019,22 @@ Object.assign(KO2VI,{
   "일부 지급":"Gửi một phần",
   "미지급":"Chưa gửi"
 });
-/* 매일 행운 룰렛 설정 화면(2026-07-31 개편) — UI 문구만. 닉네임 등 데모 데이터는 한국어 원문 유지 */
+/* 룰렛 2종 화면(2026-07-31 개편) — UI 문구만. 닉네임 등 데모 데이터는 한국어 원문 유지 */
 Object.assign(KO2VI,{
-  "매일 행운 룰렛 설정":"Cài đặt vòng quay may mắn hằng ngày",
   "매일 행운 룰렛":"Vòng quay may mắn hằng ngày",
+  "잭팟 룰렛":"Vòng quay Jackpot",
   "매일 행운 룰렛 = 출석(쿠팡 구경하기) 시 1일 1회 무료 룰렛":"Vòng quay may mắn hằng ngày = vòng quay miễn phí 1 lần/ngày khi điểm danh (dạo Coupang)",
-  "— 슬롯별 보상 내용과 당첨 확률을 운영자가 직접 수정합니다. 확률 합계가 100%가 아니면 저장되지 않습니다. 슬롯은 6개가 기본이며 추가·삭제로 개수를 조정할 수 있습니다. 유료 룰렛(잭팟 룰렛)은 별도 화면으로 신설 예정이며 이 화면에서 관리하지 않습니다.":"— Vận hành viên trực tiếp sửa nội dung thưởng và xác suất trúng của từng ô. Nếu tổng xác suất không phải 100% thì không lưu được. Mặc định có 6 ô, có thể thêm·xóa để điều chỉnh số lượng. Vòng quay trả phí (vòng quay Jackpot) sẽ được tạo ở màn hình riêng và không quản lý tại đây.",
+  "— 슬롯별 보상 내용과 당첨 확률을 운영자가 직접 수정합니다. 확률 합계가 100%가 아니면 저장되지 않습니다. 슬롯은 6개가 기본이며 추가·삭제로 개수를 조정할 수 있습니다. 이벤트 티켓을 쓰는 유료 룰렛은":"— Vận hành viên trực tiếp sửa nội dung thưởng và xác suất trúng của từng ô. Nếu tổng xác suất không phải 100% thì không lưu được. Mặc định có 6 ô, có thể thêm·xóa để điều chỉnh số lượng. Vòng quay trả phí dùng vé sự kiện được quản lý riêng ở menu",
+  "메뉴에서 따로 관리합니다.":".",
+  "잭팟 룰렛 = 이벤트 티켓 1장으로 1회 돌리는 유료 룰렛":"Vòng quay Jackpot = vòng quay trả phí, 1 vé sự kiện đổi 1 lượt",
+  "— 매일 행운 룰렛과 구조는 같고 보상 구성·확률만 다릅니다. 슬롯별 보상 내용과 당첨 확률을 운영자가 직접 수정하며, 확률 합계가 100%가 아니면 저장되지 않습니다. 악용 방지 제한(하루 참여 상한 · 구매 확정 전 티켓 사용 · 이벤트 티켓 월 획득 상한)도 아래에서 조정합니다.":"— Cấu trúc giống Vòng quay may mắn hằng ngày, chỉ khác cơ cấu thưởng·xác suất. Vận hành viên trực tiếp sửa nội dung thưởng và xác suất trúng của từng ô, nếu tổng xác suất không phải 100% thì không lưu được. Các giới hạn chống lạm dụng (trần lượt/ngày · dùng vé trước khi xác nhận mua · trần nhận vé sự kiện theo tháng) cũng chỉnh ở bên dưới.",
   "이번 달 룰렛 실행":"Lượt quay tháng này",
   "2026년 7월 누적":"Tích lũy tháng 7/2026",
   "이번 달 지급 총액":"Tổng tiền cấp tháng này",
   "당첨 보상 원화 환산":"Quy đổi thưởng trúng ra KRW",
   "1회 기대값":"Giá trị kỳ vọng 1 lượt",
-  "현재 설정 기준":"Theo cài đặt hiện tại",
-  "슬롯 구성 · 당첨 확률":"Cấu hình ô · Xác suất trúng",
+  "현재 구성 기준":"Theo cơ cấu hiện tại",
+  "슬롯 구성 · 당첨 확률":"Cơ cấu ô · Xác suất trúng",
   "+ 슬롯 추가":"+ Thêm ô",
   "기본값 복원":"Khôi phục mặc định",
   "슬롯":"Ô",
@@ -6883,6 +7045,17 @@ Object.assign(KO2VI,{
   "기대값 기여":"Đóng góp giá trị kỳ vọng",
   "보상 없음":"Không có thưởng",
   "가치 환산 기준 — 포인트 10P = 1원 · 이벤트 티켓 40원 · 브론즈 티켓 100원 · 실버 티켓 1,000원 · 골드 티켓 2,000원. 기대값 기여 = 가치 × 확률.":"Chuẩn quy đổi giá trị — Điểm 10P = 1₩ · Vé sự kiện 40₩ · Vé Đồng 100₩ · Vé Bạc 1.000₩ · Vé Vàng 2.000₩. Đóng góp giá trị kỳ vọng = giá trị × xác suất.",
+  "참여 제한 정책":"Chính sách giới hạn tham gia",
+  "하루 최대 참여 횟수":"Số lượt tối đa mỗi ngày",
+  "회 / 1일":"lượt / ngày",
+  "매크로로 무제한 돌리는 것을 막는 상한입니다.":"Trần chặn việc dùng macro quay không giới hạn.",
+  "구매 확정 전 이벤트 티켓 사용":"Dùng vé sự kiện trước khi xác nhận mua",
+  "불가 (구매 확정 후에만 사용)":"Không cho phép (chỉ dùng sau khi xác nhận mua)",
+  "가능":"Cho phép",
+  "돌린 뒤 주문을 취소·환불하는 악용을 막습니다.":"Chặn việc quay xong rồi hủy·hoàn đơn để trục lợi.",
+  "이벤트 티켓 월 획득 상한":"Trần nhận vé sự kiện theo tháng",
+  "장 / 월":"vé / tháng",
+  "현행 정책 그대로 30장. 회원 1명이 한 달에 모을 수 있는 이벤트 티켓 총량입니다.":"Giữ nguyên chính sách hiện hành 30 vé. Là tổng số vé sự kiện một hội viên gom được trong một tháng.",
   "룰렛 실행 로그":"Log lượt quay",
   "닉네임 / 카카오톡 ID":"Biệt danh / Kakao ID",
   "룰렛 종류":"Loại vòng quay",
@@ -6897,7 +7070,10 @@ Object.assign(KO2VI,{
   "브론즈 티켓":"Vé Đồng",
   "실버 티켓":"Vé Bạc",
   "골드 티켓":"Vé Vàng",
-  "매일 행운 룰렛 설정이 저장되었습니다.":"Đã lưu cài đặt vòng quay may mắn hằng ngày.",
+  "매일 행운 룰렛 구성을 저장했습니다.":"Đã lưu cơ cấu Vòng quay may mắn hằng ngày.",
+  "잭팟 룰렛 구성을 저장했습니다.":"Đã lưu cơ cấu Vòng quay Jackpot.",
+  "잭팟 룰렛 참여 제한 정책을 저장했습니다.":"Đã lưu chính sách giới hạn tham gia Vòng quay Jackpot.",
+  "참여 상한은 1 이상이어야 합니다.":"Trần tham gia phải từ 1 trở lên.",
   "확률 합계가 100%가 아니라 저장하지 않았습니다.":"Tổng xác suất không phải 100% nên chưa lưu.",
   "수량이 0인 슬롯이 있어 저장하지 않았습니다.":"Có ô số lượng bằng 0 nên chưa lưu.",
   "슬롯을 추가했습니다. 확률 합계를 100%로 다시 맞춰 주세요.":"Đã thêm ô. Hãy chỉnh lại tổng xác suất về 100%.",
