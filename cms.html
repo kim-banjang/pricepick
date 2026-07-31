@@ -151,9 +151,22 @@ html,body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit
 .sb-item-badge{margin-left:auto;background:#EF4444;color:white;font-size:10px;font-weight:700;
   border-radius:10px;padding:1px 7px;min-width:18px;text-align:center;flex-shrink:0;}
 .sb-item.active .sb-item-badge{background:rgba(255,255,255,.25);}
-.sb-status-tag{margin-left:auto;flex-shrink:0;font-size:10px;font-weight:700;background:#E5E7EB;color:#4B5563;
-  border-radius:10px;padding:2px 8px;white-space:nowrap;}
+/* 메뉴 상태 태그 (확인중/확정/숨김) — 운영자가 클릭해서 전환 */
+.sb-status-tag{margin-left:auto;flex-shrink:0;font-size:10px;font-weight:700;
+  border-radius:10px;padding:2px 8px;cursor:pointer;white-space:nowrap;
+  transition:filter .12s;}
+.sb-status-tag:hover{filter:brightness(0.96);}
+.sb-status-tag.confirmed{background:#DCFCE7;color:#15803D;}
+.sb-status-tag.checking{background:#FEF3C7;color:#92400E;}
+.sb-status-tag.st-hidden{background:#E5E7EB;color:#6B7280;}
 .sb-item.active .sb-status-tag{box-shadow:0 0 0 1px rgba(255,255,255,.5) inset;}
+.sidebar.sb-mini .sb-status-tag{display:none;}
+/* 숨김 상태 — 아이콘·라벨만 흐리게, 메뉴 진입 차단(태그는 계속 클릭 가능) */
+.sb-item.sb-item-off{pointer-events:none;}
+.sb-item.sb-item-off .sb-item-ico,
+.sb-item.sb-item-off .sb-item-lbl,
+.sb-item.sb-item-off .sb-item-badge{opacity:.38;}
+.sb-item.sb-item-off .sb-status-tag{pointer-events:auto;}
 
 /* mini 모드 항목 */
 .sidebar.sb-mini .sb-item{padding:10px;justify-content:center;}
@@ -869,7 +882,6 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       <button class="sb-item active" id="nav-dashboard" data-label="대시보드" onclick="go('dashboard',this)" style="margin-bottom:6px;">
         <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></span>
         <span class="sb-item-lbl" id="nav-label-dashboard">대시보드</span>
-        <span class="sb-status-tag">확인중</span>
       </button>
 
 
@@ -882,17 +894,14 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           <button class="sb-item" id="nav-stats" data-label="수익 분석" onclick="go('stats',this)">
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
             <span class="sb-item-lbl" id="nav-label-stats">수익 분석</span>
-            <span class="sb-status-tag">확인중</span>
           </button>
           <button class="sb-item" id="nav-revenue" data-label="매출 내역" onclick="go('revenue',this)">
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
             <span class="sb-item-lbl" id="nav-label-revenue">매출 내역</span>
-            <span class="sb-status-tag">확인중</span>
           </button>
           <button class="sb-item" id="nav-settlement" data-label="정산 내역" onclick="go('settlement',this)">
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
             <span class="sb-item-lbl" id="nav-label-settlement">정산 내역</span>
-            <span class="sb-status-tag">확인중</span>
           </button>
         </div>
       </div>
@@ -1054,7 +1063,6 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           <button class="sb-item" id="nav-postback" data-label="포스트백 로그" onclick="go('postback',this)">
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg></span>
             <span class="sb-item-lbl" id="nav-label-postback">포스트백 로그</span>
-            <span class="sb-status-tag">확인중</span>
           </button>
           <button class="sb-item" id="nav-appver" data-label="앱 버전 관리" onclick="go('appver',this)">
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
@@ -5819,6 +5827,7 @@ function rltRenderAll() {
     "처리하기":"Xử lý","계산":"Tính","재시작":"Khởi động lại","실행":"Thực hiện",
     /* Navigation */
     "확인중":"Đang kiểm tra",
+    "클릭해서 확인중 → 확정 → 숨김 전환":"Nhấn để chuyển Đang kiểm tra → Đã xác nhận → Ẩn",
     "대시보드":"Bảng điều khiển","개요":"Tổng quan","회원 목록":"Danh sách TV",
     "티켓 내역":"Lịch sử vé","추첨 관리":"Quản lý rút thăm",
     "경품/응모 관리":"Quản lý giải thưởng","주간 이벤트 추첨":"Rút thăm sự kiện tuần",
@@ -7214,6 +7223,82 @@ Object.assign(KO2VI,{
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind);
   else bind();
+})();
+</script>
+<!-- ════ 좌측 네비 메뉴 상태 태그 (확인중 / 확정 / 숨김) ════ -->
+<script>
+(function() {
+'use strict';
+/* 태그 클릭 시 확인중 → 확정 → 숨김 → 확인중 순환. 기본값은 '확인중'.
+   '숨김'이면 해당 메뉴가 흐려지고 진입이 막힌다(태그 자체는 계속 클릭 가능).
+   상태는 localStorage(pp_cms_menu_status)에 저장 — 새로고침해도 유지.
+   실동작 데모 CMS는 같은 규칙을 Firestore settings/menu_status 에 저장한다. */
+var MT_KEY = 'pp_cms_menu_status';
+var MT_STATES = ['checking', 'confirmed', 'hidden'];
+var MT_LABEL = { checking: '확인중', confirmed: '확정', hidden: '숨김' };
+var MT_TAG_TITLE = '클릭해서 확인중 → 확정 → 숨김 전환';
+var MT_STATUS = {};
+
+function mtNavId(el) {
+  return (el.id || '').replace(/^nav-/, '');
+}
+function mtStateOf(navId) {
+  return MT_STATES.indexOf(MT_STATUS[navId]) >= 0 ? MT_STATUS[navId] : 'checking';
+}
+function mtLoad() {
+  try {
+    var raw = JSON.parse(localStorage.getItem(MT_KEY));
+    if (raw && typeof raw === 'object') MT_STATUS = raw;
+  } catch (e) { MT_STATUS = {}; }
+}
+function mtSave() {
+  try { localStorage.setItem(MT_KEY, JSON.stringify(MT_STATUS)); } catch (e) {}
+}
+function mtApplyStatuses() {
+  document.querySelectorAll('.sb-status-tag').forEach(function(tag) {
+    var navId = tag.dataset.navId;
+    var st = mtStateOf(navId);
+    tag.classList.toggle('confirmed', st === 'confirmed');
+    tag.classList.toggle('checking', st === 'checking');
+    tag.classList.toggle('st-hidden', st === 'hidden');
+    tag.textContent = MT_LABEL[st];
+    var item = tag.closest('.sb-item');
+    if (!item) return;
+    item.classList.toggle('sb-item-off', st === 'hidden');
+    if (st === 'hidden') { item.setAttribute('aria-disabled', 'true'); item.setAttribute('tabindex', '-1'); }
+    else { item.removeAttribute('aria-disabled'); item.removeAttribute('tabindex'); }
+  });
+}
+function mtToggleStatus(navId) {
+  MT_STATUS[navId] = MT_STATES[(MT_STATES.indexOf(mtStateOf(navId)) + 1) % MT_STATES.length];
+  mtSave();
+  mtApplyStatuses();
+}
+function mtInjectStatusTags() {
+  document.querySelectorAll('.sb-item').forEach(function(el) {
+    if (el.dataset.mtTagged) return;
+    var navId = mtNavId(el);
+    if (!navId) return;
+    el.dataset.mtTagged = '1';
+    var tag = document.createElement('span');
+    tag.className = 'sb-status-tag checking';
+    tag.dataset.navId = navId;
+    tag.textContent = MT_LABEL.checking;
+    tag.title = MT_TAG_TITLE;
+    tag.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      mtToggleStatus(navId);
+    });
+    var existingBadge = el.querySelector('.sb-item-badge');
+    if (existingBadge) el.insertBefore(tag, existingBadge);
+    else el.appendChild(tag);
+  });
+  mtApplyStatuses();
+}
+function mtInit() { mtLoad(); mtInjectStatusTags(); }
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mtInit);
+else mtInit();
 })();
 </script>
 </body>
