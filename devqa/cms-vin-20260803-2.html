@@ -51,9 +51,9 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
 <div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 답변 · Vin · 2026-08-03 (2차)</span><span class="vi">Trả lời CMS PricePick · Vin · 2026-08-03 (lần 2)</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">Vin · CMS · 잭팟 룰렛 / 매일 행운 룰렛 &gt; "데모 앱" 안내 문구가 실제 CMS에도 필요한지 문의 — 답변 KO/VI</span><span class="vi">Vin · CMS · Vòng quay Jackpot / Vòng quay may mắn hằng ngày &gt; Hỏi dòng chữ "데모 앱" (app demo) có cần thiết trên CMS thật không — Trả lời KO/VI</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Vin · CMS · 잭팟 룰렛 / 매일 행운 룰렛 &gt; "데모 앱" 안내 문구 실 CMS 반영 여부 + [기본값 복원] 버그 여부 문의 — 답변 KO/VI</span><span class="vi">Vin · CMS · Vòng quay Jackpot / Vòng quay may mắn hằng ngày &gt; Hỏi dòng chữ "데모 앱" có cần trên CMS thật không + hỏi nút [기본값 복원] có phải lỗi không — Trả lời KO/VI</span></span></div>
 <a class="srclink" href="https://app.notion.com/p/QA-CMS-2026-08-03-2-3b1b92a1096480e380b0dec356dbf6e6" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
-<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건 · 지적 대상 문구 3곳</span><span class="vi">1 câu hỏi · 3 chỗ được hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">2곳 삭제 · 1곳 문구만 수정</span><span class="vi">Xóa 2 chỗ · Sửa chữ 1 chỗ</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 2건 · 지적 대상 문구 3곳 + 버그 문의 1건</span><span class="vi">2 câu hỏi · 3 chỗ được hỏi + 1 câu hỏi lỗi</span></span></span><span class="chip"><span class="i18n"><span class="ko">2곳 삭제 · 1곳 문구만 수정 · 버그 아님(정상 동작)</span><span class="vi">Xóa 2 chỗ · Sửa chữ 1 chỗ · Không phải lỗi (hoạt động bình thường)</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
 
 <!-- ==================== Q ==================== -->
 <h2 class="grp"><span class="i18n"><span class="ko">1. 잭팟 룰렛 · 매일 행운 룰렛 — "데모 앱" 안내 문구, 실제 CMS에도 넣어야 하나</span><span class="vi">1. Vòng quay Jackpot · Vòng quay may mắn hằng ngày — dòng chữ "데모 앱" (app demo) có cần đưa vào CMS thật không</span></span></h2>
@@ -116,7 +116,40 @@ Nếu Vin không biết tiếng Hàn nên khó phán đoán, <b>cứ dán nguyê
 </div>
 </div>
 
-<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Vin · 2026-08-03 (2차) · 삭제 2 / 문구 수정 1 / 판단 기준 신설</span><span class="vi">PricePick · Trả lời CMS · Vin · 2026-08-03 (lần 2) · Xóa 2 / Sửa chữ 1 / Bổ sung tiêu chuẩn phán đoán</span></span></div></div>
+<!-- ==================== Q2 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 매일 행운 룰렛 — [기본값 복원] 클릭 시 값이 9.9원으로 바뀌고 [미저장] 표시, 버그인가</span><span class="vi">2. Vòng quay may mắn hằng ngày — bấm [기본값 복원] thì giá trị đổi thành 9.9원 và hiện [미저장], có phải lỗi không</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">Q</span><div class="qtxt"><span class="i18n"><span class="ko">매일 행운 룰렛 &gt; 기본값 복원 — 설정 데이터를 11.9원으로 수정한 뒤 페이지를 새로고침했습니다. 그다음 [기본값 복원] 버튼을 눌렀더니 값이 9.9원으로 바뀌고 '미저장' 라벨이 표시됩니다. ⇒ 이건 버그입니까 기능입니까? 기능이라면 이 기능의 플로우를 명확히 적어주세요.</span><span class="vi">매일 행운 룰렛 &gt; 기본값 복원. Khi tôi cập nhật dữ liệu config về 11.9원 và sau đó refresh page. Sau đó tôi nhấn nút 기본값 복원 thì giá trị lại chuyển về 9.9원 và hiển thị label 미저장 ⇒ Đây là BUG hay là Tính Năng? Nếu là tính năng thì hãy ghi rõ flow cho tính năng này là gì?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs">
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260803-vin-2/vin2-q3-restore-default.png','매일 행운 룰렛 · 저장값 11.9원 → 기본값 복원 후 9.9원 · 미저장')"><img src="/devqa/assets/20260803-vin-2/vin2-q3-restore-default.png" alt="매일 행운 룰렛 · 기본값 복원 전후 비교" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">위: 저장값 11.9원 · 아래: 기본값 복원 후 9.9원 [미저장]</span><span class="vi">Trên: giá trị đã lưu 11.9원 · Dưới: sau khi bấm 기본값 복원 còn 9.9원 [미저장]</span></span></span></button>
+</div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>버그가 아니라 정상 동작입니다.</b>
+
+[기본값 복원]은 "마지막으로 저장한 값으로 되돌리기"가 아니라 <b>"시스템 기본 구성으로 되돌리기"</b> 버튼입니다. 그래서 저장값(11.9원)이 아니라 기본 구성값(9.9원)이 나오는 것이 맞습니다.</span><span class="vi"><b>Không phải lỗi, đây là hoạt động bình thường.</b>
+
+[기본값 복원] (Khôi phục mặc định) không phải nút "quay về giá trị đã lưu gần nhất", mà là nút <b>"quay về cấu hình mặc định của hệ thống"</b>. Vì vậy việc hiện ra giá trị cấu hình mặc định (9.9원) chứ không phải giá trị đã lưu (11.9원) là đúng.</span></span></div></div>
+</div>
+
+<div class="qa">
+<div class="arow" style="border-top:none;margin-top:0;padding-top:0"><span class="alabel"><span class="i18n"><span class="ko">동작 플로우</span><span class="vi">Luồng hoạt động</span></span></span><div class="atxt"><span class="i18n"><span class="ko">1. <b>[기본값 복원] 클릭</b> → 화면의 슬롯 구성·확률이 시스템 기본 구성으로 채워집니다. <b>이 시점에 DB는 바뀌지 않습니다.</b>
+2. 상단 기대값 카드가 "저장된 구성 기준" → <b>"저장 전 미리보기"</b>로 바뀌고 <b>[미저장]</b> 배지가 붙습니다. 저장 버튼도 [변경사항 저장]으로 바뀝니다. 아직 반영 전이라는 신호입니다.
+3. <b>[변경사항 저장]을 눌러야</b> DB에 반영되고, 그때 앱에도 적용됩니다.
+4. 저장하지 않고 페이지를 새로고침하면 <b>직전 저장값(11.9원)으로 돌아갑니다.</b> 복원 버튼만으로는 아무것도 사라지지 않습니다.</span><span class="vi">1. <b>Bấm [기본값 복원]</b> → cấu hình ô·xác suất trên màn hình được điền lại bằng cấu hình mặc định của hệ thống. <b>Tại thời điểm này DB chưa thay đổi.</b>
+2. Thẻ giá trị kỳ vọng phía trên đổi từ "Theo cấu hình đã lưu" sang <b>"Xem trước khi lưu"</b> và gắn thêm nhãn <b>[미저장]</b> (Chưa lưu). Nút lưu cũng đổi thành [변경사항 저장] (Lưu thay đổi). Đây là tín hiệu báo rằng chưa được áp dụng.
+3. <b>Phải bấm [변경사항 저장]</b> thì mới ghi vào DB, và lúc đó mới áp dụng vào app.
+4. Nếu chưa lưu mà tải lại trang, màn hình sẽ <b>quay về giá trị đã lưu trước đó (11.9원).</b> Chỉ bấm nút khôi phục không làm mất bất cứ gì.</span></span></div></div>
+</div>
+
+<div class="qa">
+<div class="arow" style="border-top:none;margin-top:0;padding-top:0"><span class="alabel"><span class="i18n"><span class="ko">이렇게 설계한 이유</span><span class="vi">Lý do thiết kế như vậy</span></span></span><div class="atxt"><span class="i18n"><span class="ko">운영자가 실수로 [기본값 복원]을 눌러도 저장된 설정이 즉시 날아가지 않게 하기 위해서입니다. 되돌릴 수 없는 동작을 버튼 한 번으로 만들지 않는다는 원칙입니다.</span><span class="vi">Để dù admin lỡ tay bấm [기본값 복원] thì cấu hình đã lưu cũng không bị mất ngay lập tức. Đây là nguyên tắc: không để một hành động không thể hoàn tác xảy ra chỉ bằng một lần bấm nút.</span></span></div></div>
+</div>
+
+<div class="qa">
+<div class="arow" style="border-top:none;margin-top:0;padding-top:0"><span class="alabel"><span class="i18n"><span class="ko">확인 방법</span><span class="vi">Cách kiểm tra</span></span></span><div class="atxt"><span class="i18n"><span class="ko">[기본값 복원] → 저장하지 않고 새로고침 → 11.9원이 그대로 있으면 정상입니다.</span><span class="vi">[기본값 복원] → không lưu, tải lại trang → nếu 11.9원 vẫn còn nguyên thì đúng là bình thường.</span></span></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조] 실제 코드로 확인함</span><span class="vi">[Tham khảo] Đã xác nhận bằng mã nguồn thực tế</span></span></span><span class="i18n"><span class="ko">[기본값 복원] 버튼은 화면의 로컬 상태만 기본 구성으로 채우고 미저장 표시를 켤 뿐, 그 시점에 DB에는 아무것도 쓰지 않습니다. DB 쓰기는 [변경사항 저장] 버튼에서만 일어납니다. 저장 전 새로고침하면 화면이 DB에서 마지막 저장값을 다시 불러오므로 미저장 변경사항(복원한 기본값 포함)은 사라지고 직전 저장값으로 돌아갑니다. 잭팟 룰렛도 매일 행운 룰렛과 같은 로직을 공유하므로 동일하게 동작합니다.</span><span class="vi">Nút [기본값 복원] chỉ điền cấu hình mặc định vào trạng thái cục bộ trên màn hình và bật nhãn chưa lưu, tại thời điểm đó không ghi gì vào DB cả. Việc ghi vào DB chỉ xảy ra ở nút [변경사항 저장] (Lưu thay đổi). Nếu tải lại trang trước khi lưu, màn hình sẽ tải lại giá trị đã lưu gần nhất từ DB, nên các thay đổi chưa lưu (kể cả giá trị mặc định vừa khôi phục) sẽ biến mất và quay về giá trị đã lưu trước đó. Vòng quay Jackpot dùng chung logic với Vòng quay may mắn hằng ngày nên hoạt động giống hệt.</span></span></div></div>
+</div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Vin · 2026-08-03 (2차) · 삭제 2 / 문구 수정 1 / 판단 기준 신설 / 버그 문의 1건 — 정상 동작으로 확인</span><span class="vi">PricePick · Trả lời CMS · Vin · 2026-08-03 (lần 2) · Xóa 2 / Sửa chữ 1 / Bổ sung tiêu chuẩn phán đoán / 1 câu hỏi lỗi — xác nhận là hoạt động bình thường</span></span></div></div>
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
 <script>
 function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
