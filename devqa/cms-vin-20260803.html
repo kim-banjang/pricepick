@@ -137,7 +137,29 @@ Nút "+ Thêm ô" và nút "Xóa" ở từng dòng ô trên CMS đã được g�
 
 Trên cùng màn hình cũng đã thêm <b>huy hiệu JACKPOT</b>. Nó tự gắn vào ô có Giá trị (KRW) cao nhất — tiêu chí là giá trị chứ không phải xác suất.</span></span></div></div></div>
 
-<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Vin · 2026-08-03 · 확정 2 / 전수 조사 수정 13 / 슬롯 6개 고정 확정 / 확인 필요 1</span><span class="vi">PricePick · Trả lời CMS · Vin · 2026-08-03 · Đã chốt 2 / Rà soát sửa 13 / Chốt cố định 6 ô / Cần xác nhận 1</span></span></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">5. 후속 — 슬롯 표 폭이 좁아진 건 (지적 수용)</span><span class="vi">5. Tiếp theo — việc bảng ô bị hẹp lại (tiếp thu góp ý)</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">5</span><div class="qtxt"><span class="i18n"><span class="ko">답변 내용은 괜찮았습니다. 다만 새 데모를 보니 UI가 이전 디자인과 달라졌습니다. "슬롯 추가" 버튼을 숨기는 것에 그치지 않고 보드의 너비가 조정됐습니다. [슬롯 구성·당첨 확률] 섹션은 기존처럼 전체 폭으로 유지되는 게 좋겠습니다.</span><span class="vi">Nội dung trả lời thì ổn. Nhưng khi kiểm tra bản demo mới, tôi thấy UI đã khác so với thiết kế trước. Không chỉ ẩn nút "Thêm ô" mà chiều rộng của bảng cũng bị điều chỉnh. Tôi nghĩ mục [Cơ cấu ô · Xác suất trúng] nên giữ nguyên toàn bộ chiều rộng như thiết kế cũ.</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">지적 수용 · 원복</span><span class="vi">Tiếp thu · Đã khôi phục</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>지적이 맞습니다. 원복했습니다.</b>
+
+지시받은 것은 "슬롯 추가·삭제 버튼 제거"였는데, 그 과정에서 <b>표의 폭까지 함께 바뀌었습니다.</b> 지시하지 않은 변경이며 저희 잘못입니다.
+
+원인은 이렇습니다. 표의 열 폭이 픽셀로 고정돼 있었는데 <b>[삭제] 열(60px)을 없애면서 나머지 열이 전체 폭을 채우지 못하게 됐습니다.</b> 그래서 표 오른쪽에 빈 공간이 생겼습니다.
+
+<b>수정: 열 폭을 픽셀에서 비율(%)로 바꿔 표가 항상 카드 전체 폭을 채우도록 했습니다.</b> 1~5열의 폭 비율은 [삭제] 열이 있던 때와 같고, 없어진 열의 몫은 마지막 열이 가져갑니다. 매일 행운 룰렛·잭팟 룰렛 두 화면 모두 적용했습니다.
+
+버튼 제거 외에 레이아웃·간격·폰트를 바꾼 곳은 없다는 것도 이전 배포본과 대조해 확인했습니다.</span><span class="vi"><b>Góp ý đúng. Đã khôi phục.</b>
+
+Yêu cầu ban đầu chỉ là "gỡ nút thêm·xóa ô", nhưng trong quá trình đó <b>chiều rộng của bảng cũng bị thay đổi theo.</b> Đây là thay đổi không được yêu cầu và là lỗi của chúng tôi.
+
+Nguyên nhân như sau: chiều rộng các cột của bảng vốn được cố định bằng pixel, nên khi <b>bỏ cột [Xóa] (60px) thì các cột còn lại không lấp đầy được toàn bộ chiều rộng.</b> Vì vậy phía bên phải bảng bị trống.
+
+<b>Đã sửa: đổi chiều rộng cột từ pixel sang tỷ lệ phần trăm (%) để bảng luôn lấp đầy toàn bộ chiều rộng của thẻ.</b> Tỷ lệ của cột 1~5 giữ nguyên như khi còn cột [Xóa]; phần của cột đã bỏ được dồn cho cột cuối. Đã áp dụng cho cả hai màn Vòng quay may mắn hằng ngày và Vòng quay Jackpot.
+
+Chúng tôi cũng đã đối chiếu với bản deploy trước để xác nhận không có chỗ nào khác bị đổi bố cục·khoảng cách·cỡ chữ ngoài việc gỡ nút.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">CMS 정본·데모 양쪽에 적용했습니다. 표 폭은 카드 폭을 그대로 채우고, 열 순서와 내용은 이전과 같습니다. 지시 범위를 벗어난 변경을 하지 않도록 작업 기준을 다시 잡았습니다.</span><span class="vi">Đã áp dụng cho cả CMS bản gốc lẫn bản demo. Chiều rộng bảng lấp đầy đúng chiều rộng thẻ, thứ tự và nội dung cột giữ nguyên như trước. Chúng tôi cũng đã siết lại tiêu chuẩn làm việc để không thực hiện thay đổi ngoài phạm vi được yêu cầu.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Vin · 2026-08-03 · 확정 2 / 전수 조사 수정 13 / 슬롯 6개 고정 확정 / 표 폭 원복 1 / 확인 필요 1</span><span class="vi">PricePick · Trả lời CMS · Vin · 2026-08-03 · Đã chốt 2 / Rà soát sửa 13 / Chốt cố định 6 ô / Khôi phục chiều rộng bảng 1 / Cần xác nhận 1</span></span></div></div>
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
 <script>
 function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
