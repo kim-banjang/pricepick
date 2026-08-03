@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱 답변 · John · 2026-08-03</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.tbl td.old{color:#b4453f;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.4px}
+.tbl td.new{color:#1f7a7a;font-weight:700}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:220px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.sw{display:inline-block;width:13px;height:13px;border-radius:3px;margin-right:7px;vertical-align:-2px;border:1px solid rgba(0,0,0,.12)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱 답변 · John · 2026-08-03</span><span class="vi">Trả lời App PricePick · John · 2026-08-03</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">John · App · 슬롯 배경색 규칙 / 신규 보상 결과 팝업 문구 / JACKPOT 표시 기준 정정 — 답변 KO/VI</span><span class="vi">John · App · Quy tắc màu nền ô / câu chữ popup kết quả cho thưởng mới / đính chính tiêu chí JACKPOT — Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/QnA-PricePick-3ae3ac69e7118042ac27f210541d3a70" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 3건</span><span class="vi">3 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 3</span><span class="vi">Đã chốt 3</span></span></span><span class="chip"><span class="i18n"><span class="ko">Q3 이해 정정 있음</span><span class="vi">Có đính chính hiểu nhầm ở Q3</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+<h2 class="grp"><span class="i18n"><span class="ko">0. 먼저 — 슬롯은 6개 고정으로 확정했습니다</span><span class="vi">0. Trước hết — đã chốt cố định 6 ô</span></span></h2>
+<div class="qa"><div class="arow" style="border-top:none;margin-top:0;padding-top:0"><span class="alabel"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>매일 행운 룰렛·잭팟 룰렛 모두 슬롯 6개 고정입니다. 추가·삭제 없습니다.</b>
+
+앞서 "6칸 고정이 아니다"라고 전달한 내용은 <b>2026-08-03자로 정정</b>합니다. 운영자가 CMS에서 바꾸는 것은 6칸 각각의 <b>보상 유형·수량·확률</b>뿐이고, 확률 합계 100% 검증은 그대로입니다. CMS의 "+ 슬롯 추가" 버튼과 행별 "삭제" 버튼은 제거했습니다.
+
+칸 수를 실제로 바꿀 일이 없는데 가변으로 두면 색 규칙·레이아웃·팝업을 전부 경우의 수로 만들어야 합니다. 그 비용이 얻는 것보다 큽니다.</span><span class="vi"><b>Cả Vòng quay may mắn hằng ngày và Vòng quay Jackpot đều cố định 6 ô. Không thêm·xóa.</b>
+
+Nội dung trước đây nói "không cố định 6 ô" nay <b>được đính chính từ ngày 2026-08-03</b>. Quản trị viên ở CMS chỉ đổi <b>loại thưởng·số lượng·xác suất</b> của từng ô trong 6 ô; kiểm tra tổng xác suất 100% giữ nguyên. Nút "+ Thêm ô" và nút "Xóa" từng dòng ở CMS đã được gỡ.
+
+Thực tế không có nhu cầu đổi số ô, mà để nó biến động thì phải làm quy tắc màu·bố cục·popup theo mọi trường hợp. Chi phí đó lớn hơn cái nhận được.</span></span></div></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">1. 기본 6칸 외 슬롯의 배경색 규칙</span><span class="vi">1. Quy tắc màu nền cho ô ngoài 6 ô mặc định</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">6칸 고정이 아니게 됐는데, 기본 6칸 외의 슬롯은 배경색을 어떻게 정하나요?</span><span class="vi">Vì không còn cố định 6 ô, thì ô ngoài 6 ô mặc định lấy màu nền thế nào?</span></span></div><span class="bd hold"><span class="i18n"><span class="ko">해당 없음</span><span class="vi">Không áp dụng</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260803-john/john-q1-slots.png','잭팟 룰렛 휠 · 6칸 구성')"><img src="/devqa/assets/20260803-john/john-q1-slots.png" alt="잭팟 룰렛 휠 · 6칸 구성" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">잭팟 룰렛 휠 · 6칸 구성</span><span class="vi">Bánh xe Vòng quay Jackpot · cấu hình 6 ô</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>해당 없습니다 — 슬롯은 6개 고정입니다.</b> 7번째 슬롯이 생길 일이 없으므로 "기본 6칸 외"라는 경우 자체가 없어졌습니다.
+
+<b>6개 색을 자리별로 고정 배분합니다.</b> 아래 표가 확정값이며, 이 배분은 바뀌지 않습니다.
+
+인접한 칸이 붙어 보이지 않도록 명도를 교차시킨 순서입니다. 색을 코드에서 계산하지 않고 표 그대로 박아 쓰면 됩니다.</span><span class="vi"><b>Không áp dụng — ô cố định 6 ô.</b> Sẽ không có ô thứ 7, nên trường hợp "ngoài 6 ô mặc định" không còn tồn tại.
+
+<b>6 màu được phân bổ cố định theo vị trí.</b> Bảng dưới là giá trị đã chốt và sẽ không thay đổi.
+
+Thứ tự được xen kẽ độ sáng để hai ô liền nhau không bị dính vào nhau. Không cần tính màu bằng code, cứ dùng đúng bảng này.</span></span></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">JACKPOT 칸은 위 배분색을 덮어쓰고 진한 색(#4A2E8F)으로 칠합니다. 즉 한 칸만 예외입니다.</span><span class="vi">Ô JACKPOT ghi đè màu phân bổ ở trên và tô màu đậm (#4A2E8F). Tức chỉ một ô là ngoại lệ.</span></span></div></div></div>
+<div class="tblwrap"><table class="tbl">
+<thead><tr><th><span class="i18n"><span class="ko">슬롯</span><span class="vi">Ô</span></span></th><th><span class="i18n"><span class="ko">배경색</span><span class="vi">Màu nền</span></span></th><th><span class="i18n"><span class="ko">비고</span><span class="vi">Ghi chú</span></span></th></tr></thead>
+<tbody>
+<tr><td>1번</td><td><span class="sw" style="background:#845EEE"></span>#845EEE</td><td><span class="i18n"><span class="ko">메인 보라</span><span class="vi">Tím chính</span></span></td></tr>
+<tr><td>2번</td><td><span class="sw" style="background:#C6AFFF"></span>#C6AFFF</td><td><span class="i18n"><span class="ko">연보라</span><span class="vi">Tím nhạt</span></span></td></tr>
+<tr><td>3번</td><td><span class="sw" style="background:#6C4AB6"></span>#6C4AB6</td><td><span class="i18n"><span class="ko">진보라</span><span class="vi">Tím đậm</span></span></td></tr>
+<tr><td>4번</td><td><span class="sw" style="background:#B79CFF"></span>#B79CFF</td><td><span class="i18n"><span class="ko">중간 보라</span><span class="vi">Tím vừa</span></span></td></tr>
+<tr><td>5번</td><td><span class="sw" style="background:#7C5BE0"></span>#7C5BE0</td><td><span class="i18n"><span class="ko">메인 보라(딥)</span><span class="vi">Tím chính (đậm)</span></span></td></tr>
+<tr><td>6번</td><td><span class="sw" style="background:#D8CCFF"></span>#D8CCFF</td><td><span class="i18n"><span class="ko">가장 연한 보라</span><span class="vi">Tím nhạt nhất</span></span></td></tr>
+<tr><td><b>JACKPOT <span class="i18n"><span class="ko">칸</span><span class="vi">ô</span></span></b></td><td><span class="sw" style="background:#4A2E8F"></span><b>#4A2E8F</b></td><td><span class="i18n"><span class="ko">가치가 가장 높은 칸 — 위 위치색을 덮어쓴다</span><span class="vi">Ô có giá trị cao nhất — ghi đè màu vị trí ở trên</span></span></td></tr>
+</tbody></table></div>
+<h2 class="grp"><span class="i18n"><span class="ko">2. 현재 없는 새 보상의 결과 팝업 문구</span><span class="vi">2. Câu chữ popup kết quả cho loại thưởng mới chưa có</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">지금 없는 새 보상(등급 티켓 등)이 당첨되면 결과 팝업 문구는 무엇으로 하나요?</span><span class="vi">Nếu trúng loại thưởng mới hiện chưa có (vé hạng v.v.) thì câu chữ popup kết quả là gì?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260803-john/john-q2-reward.png','잭팟 룰렛 결과 모달 6종 (시안)')"><img src="/devqa/assets/20260803-john/john-q2-reward.png" alt="잭팟 룰렛 결과 모달 6종 (시안)" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">잭팟 룰렛 결과 모달 6종 (시안)</span><span class="vi">6 loại modal kết quả Vòng quay Jackpot (bản thiết kế)</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>새 문구를 만들지 않습니다. 기존 팝업 형식을 그대로 씁니다.</b>
+
+보상이 등급 티켓(브론즈·실버·골드)이면 <b>이벤트 티켓 팝업과 같은 형식</b>에 아이콘 색만 등급색으로 바꿉니다 — 브론즈 갈색, 실버 은색, 골드 금색.
+
+· 제목: 기존 그대로 "축하해요!"
+· 보상 표기: "실버 티켓 1장" 식으로 등급명 + 수량
+· 안내: "마이페이지 &gt; 내 티켓에 보관됐어요"
+
+<b>JACKPOT에 해당하는 칸에 당첨된 경우에만</b> 제목이 "잭팟 당첨!"으로 바뀝니다. 어느 칸이 JACKPOT인지는 3번 답변 기준으로 정해집니다.
+
+포인트는 기존 포인트 팝업 그대로, 꽝도 기존 그대로입니다. <b>보상 종류가 늘어도 팝업은 티켓형·포인트형·꽝 3종뿐입니다.</b></span><span class="vi"><b>Không tạo câu chữ mới. Dùng nguyên định dạng popup hiện có.</b>
+
+Nếu thưởng là vé hạng (Đồng·Bạc·Vàng) thì dùng <b>cùng định dạng với popup vé sự kiện</b>, chỉ đổi màu icon theo hạng — Đồng nâu, Bạc bạc, Vàng vàng kim.
+
+· Tiêu đề: giữ nguyên "Chúc mừng!"
+· Ghi thưởng: tên hạng + số lượng, ví dụ "Vé Bạc 1 vé"
+· Hướng dẫn: "Đã lưu vào Trang của tôi &gt; Vé của tôi"
+
+<b>Chỉ khi trúng ô được gắn JACKPOT</b> thì tiêu đề đổi thành "Trúng Jackpot!". Ô nào là JACKPOT thì xác định theo tiêu chí ở câu 3.
+
+Điểm dùng nguyên popup điểm hiện có, Trượt cũng giữ nguyên. <b>Dù loại thưởng có tăng thì popup vẫn chỉ có 3 dạng: dạng vé·dạng điểm·Trượt.</b></span></span></div>
+</div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">3. JACKPOT이 붙는 칸의 기준 — 정정</span><span class="vi">3. Tiêu chí ô được gắn JACKPOT — đính chính</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">JACKPOT이 붙은 칸은 확률이 가장 낮은 칸이 맞나요?</span><span class="vi">Ô được gắn JACKPOT có phải là ô có xác suất thấp nhất không?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">정정</span><span class="vi">Đính chính</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>아닙니다. 확률이 아니라 가치가 가장 높은 칸입니다.</b> 이 부분은 정확히 잡고 가야 합니다.
+
+JACKPOT은 유저에게 "이 룰렛에서 제일 좋은 상"이라는 뜻입니다. 그건 확률이 아니라 상의 가치입니다. 그리고 확률은 CMS에서 운영자가 수시로 바꾸는 값이라, 확률 기준으로 붙이면 상이 좋지도 않은 칸에 JACKPOT이 옮겨붙습니다. 예를 들어 운영자가 브론즈 티켓 확률을 0.1%로 낮추면 골드 티켓이 아니라 브론즈 티켓에 JACKPOT이 붙게 됩니다. 그건 틀린 표시입니다.
+
+<b>기준: 원화 환산 가치가 가장 높은 슬롯.</b> 환산 기준은 이미 쓰고 있는 값 그대로입니다 — 포인트 10P = 1원, 이벤트 티켓 40원, 브론즈 100원, 실버 1,000원, 골드 2,000원. 동점이면 최대 2칸까지 붙습니다.
+
+지금 잭팟 룰렛 구성에서는 골드 티켓(2,000원)이 가장 높아 골드 칸에 붙고, 그 칸이 마침 확률도 0.4%로 가장 낮습니다. <b>결과가 같아 보여도 기준은 가치입니다.</b></span><span class="vi"><b>Không. Không phải xác suất — là ô có giá trị cao nhất.</b> Chỗ này cần nắm chính xác.
+
+Với người dùng, JACKPOT nghĩa là "phần thưởng tốt nhất của vòng quay này". Điều đó nằm ở giá trị phần thưởng, không phải xác suất. Hơn nữa xác suất là giá trị quản trị viên đổi thường xuyên trên CMS — nếu gắn theo xác suất thì JACKPOT sẽ nhảy sang ô có phần thưởng chẳng đáng bao nhiêu. Ví dụ nếu quản trị viên hạ xác suất vé Đồng xuống 0,1% thì JACKPOT sẽ gắn vào vé Đồng chứ không phải vé Vàng. Đó là hiển thị sai.
+
+<b>Tiêu chí: ô có giá trị quy đổi ra tiền cao nhất.</b> Chuẩn quy đổi dùng đúng giá trị đang có — Điểm 10P = 1₩, vé sự kiện 40₩, Đồng 100₩, Bạc 1.000₩, Vàng 2.000₩. Nếu bằng nhau thì gắn tối đa 2 ô.
+
+Với cấu hình Vòng quay Jackpot hiện tại, vé Vàng (2.000₩) cao nhất nên gắn vào ô vé Vàng, và ô đó tình cờ cũng có xác suất thấp nhất là 0,4%. <b>Kết quả trông giống nhau nhưng tiêu chí là giá trị.</b></span></span></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">앱·CMS 양쪽 다 이 기준으로 반영했습니다. 앱 휠은 가치 최고 칸에 JACKPOT 라벨과 진한 배경색을 붙이고, CMS 슬롯 표는 가치(원) 열에 JACKPOT 배지를 붙입니다. 타입을 하드코딩해 골드 티켓에만 붙이던 기존 처리는 제거했습니다.</span><span class="vi">Đã áp dụng tiêu chí này ở cả app và CMS. Bánh xe trong app gắn nhãn JACKPOT và màu nền đậm cho ô giá trị cao nhất; bảng ô ở CMS gắn huy hiệu JACKPOT ở cột Giá trị (KRW). Cách xử lý cũ — hardcode theo loại và chỉ gắn cho vé Vàng — đã được gỡ bỏ.</span></span></div></div></div>
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱 답변 · John · 2026-08-03 · 확정 2 / 정정 1 / 확인 필요 0</span><span class="vi">PricePick · Trả lời App · John · 2026-08-03 · Đã chốt 2 / Đính chính 1 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>

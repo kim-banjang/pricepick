@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PricePick App 개발 진도 보고서 (2026.07.30)</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#F7F7FB; color:#333; line-height:1.6; }
+  .wrap { max-width:960px; margin:0 auto; padding:48px 24px 96px; }
+
+  .cover { background:#fff; border:1px solid #E4DEF9; border-radius:16px; padding:40px 44px; margin-bottom:28px; }
+  .cover .label { display:inline-block; background:#F1EBFF; color:#845EEE; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; letter-spacing:.5px; margin-bottom:14px; }
+  .cover h1 { font-size:26px; font-weight:800; color:#222; margin-bottom:8px; }
+  .cover .sub { font-size:14px; color:#888; }
+  .cover .meta { margin-top:18px; padding-top:18px; border-top:1px solid #F0EDFA; font-size:13px; color:#777; display:flex; gap:28px; flex-wrap:wrap; }
+  .cover .meta b { color:#555; font-weight:600; }
+  /* 원본 링크 — DevQA 답변 페이지 .srclink 패턴 (밝은 커버용 색만 조정) */
+  .srclink { display:inline-block; margin-top:12px; font-size:12.5px; color:#6C4FD1; background:#F1EBFF; padding:6px 13px; border-radius:8px; text-decoration:none; font-weight:600; cursor:pointer; }
+  .srclink:hover { background:#E7DEFF; color:#5B3FBF; }
+
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:36px; }
+  .card { background:#fff; border:1px solid #E4DEF9; border-radius:14px; padding:20px 22px; }
+  .card .num { font-size:28px; font-weight:800; color:#845EEE; }
+  .card .num small { font-size:14px; font-weight:600; color:#B9A8F2; }
+  .card .cap { font-size:12.5px; color:#888; margin-top:4px; }
+  .card.dim .num { color:#9A9AA5; }
+  .card.dim .num small { color:#C5C5CE; }
+
+  h2 { font-size:18px; font-weight:800; color:#222; margin:40px 0 6px; padding-left:12px; border-left:4px solid #845EEE; }
+  .h2-desc { font-size:13px; color:#888; margin:0 0 14px 16px; }
+
+  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid #E4DEF9; border-radius:12px; overflow:hidden; font-size:13.5px; }
+  thead th { background:#F5F2FE; color:#6C4FD1; font-weight:700; text-align:left; padding:11px 14px; font-size:12.5px; }
+  tbody td { padding:10px 14px; border-top:1px solid #F3F1FB; vertical-align:top; }
+  tbody tr:hover { background:#FBFAFF; }
+  td.fn { font-weight:600; color:#333; }
+
+  .badge { display:inline-block; font-size:11.5px; font-weight:700; padding:3px 10px; border-radius:12px; white-space:nowrap; }
+  .b-done { background:#EFE9FF; color:#7A55E8; }
+  .b-todo { background:#F1F1F4; color:#8A8A94; }
+  .b-staging { background:#E7F3EC; color:#3E8E63; }
+  .b-new { background:#FFF3E2; color:#C98A2D; }
+  .b-ext { background:#F1F1F4; color:#8A8A94; }
+
+  .note { background:#fff; border:1px solid #E4DEF9; border-radius:12px; padding:22px 26px; }
+  .note h3 { font-size:14.5px; font-weight:700; color:#6C4FD1; margin-bottom:10px; }
+  .note ol { margin-left:18px; }
+  .note li { font-size:13.5px; color:#555; margin-bottom:8px; }
+  .note li b { color:#333; }
+  .note p { font-size:13.5px; color:#555; }
+
+  .last-update { position:fixed; bottom:24px; left:24px; background:#fff; border:1px solid #E4DEF9; border-radius:8px; padding:6px 12px; font-size:11.5px; color:#999; box-shadow:0 2px 8px rgba(132,94,238,.08); }
+
+  @media (max-width:720px){ .cards{grid-template-columns:repeat(2,1fr);} .cover{padding:28px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="cover">
+    <span class="label">PROGRESS REPORT</span>
+    <h1>PricePick App 개발 진도 보고서</h1>
+    <div class="sub">모바일 앱 기능별 개발 현황 및 Google Play 반영 상태</div>
+    <a class="srclink" href="https://docs.google.com/spreadsheets/d/1VTnpO2Jm0ZPoccc57HZMBvqmYzJlJ4MqTpcoI_xb3QI/edit?gid=0#gid=0" target="_blank" rel="noopener">원본 시트 보기 (Google Sheets) &#8599;</a>
+    <div class="meta">
+      <span><b>기준일</b> 2026.07.30</span>
+      <span><b>출처</b> 개발팀 진도 시트</span>
+      <span><b>작성</b> 켈빈</span>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="num">27<small> / 32</small></div><div class="cap">개발 완료 기능</div></div>
+    <div class="card"><div class="num">16</div><div class="cap">Google Play Staging 반영</div></div>
+    <div class="card"><div class="num">11</div><div class="cap">신규 완료 (스토어 미반영)</div></div>
+    <div class="card dim"><div class="num">5</div><div class="cap">외부 연동 대기 (Third-party)</div></div>
+  </div>
+
+  <h2>계정</h2>
+  <p class="h2-desc">4개 기능 전체 완료</p>
+  <table>
+    <thead><tr><th style="width:32%">기능명</th><th style="width:14%">상태</th><th>Google Play 반영</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">닉네임 입력</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">메인 화면</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">카카오 연동</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">관리자 계정 차단</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-new">신규 완료 · 미반영</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>이벤트</h2>
+  <p class="h2-desc">11개 기능 전체 완료</p>
+  <table>
+    <thead><tr><th style="width:32%">기능명</th><th style="width:14%">상태</th><th>Google Play 반영</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">쿠팡 출석체크</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">럭키룰렛</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">친구 초대</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-new">신규 완료 · 미반영</span></td></tr>
+      <tr><td class="fn">이벤트 티켓 적립 안내</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">이벤트 티켓 응모</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-new">신규 완료 · 미반영</span></td></tr>
+      <tr><td class="fn">내 티켓</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">티켓 등급 변경</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">연속 구매 이벤트</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-new">신규 완료 · 미반영</span></td></tr>
+      <tr><td class="fn">온보딩</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-new">신규 완료 · 미반영</span></td></tr>
+      <tr><td class="fn">적립 스토어</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-new">신규 완료 · 미반영</span></td></tr>
+      <tr><td class="fn">홈 화면에 스토어 추가</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-new">신규 완료 · 미반영</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>혜택</h2>
+  <p class="h2-desc">2개 기능 전체 완료</p>
+  <table>
+    <thead><tr><th style="width:32%">기능명</th><th style="width:14%">상태</th><th>Google Play 반영</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">혜택 탭</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">활동 내역</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>설정</h2>
+  <p class="h2-desc">10개 기능 전체 완료</p>
+  <table>
+    <thead><tr><th style="width:32%">기능명</th><th style="width:14%">상태</th><th>Google Play 반영</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">고객센터</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">활동 알림</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-new">신규 완료 · 미반영</span></td></tr>
+      <tr><td class="fn">시스템 알림</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">회원 탈퇴</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-new">신규 완료 · 미반영</span></td></tr>
+      <tr><td class="fn">설정 기능</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-new">신규 완료 · 미반영</span></td></tr>
+      <tr><td class="fn">앱 버전</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">로그아웃</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">프로필 메뉴</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">닉네임 변경</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-staging">기존 Staging 반영</span></td></tr>
+      <tr><td class="fn">앱 업데이트</td><td><span class="badge b-done">완료</span></td><td><span class="badge b-new">신규 완료 · 미반영</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Third-party 연동</h2>
+  <p class="h2-desc">5개 기능 미완료 — 전부 외부 파트너(쿠팡·기프티콘) 연동 대기</p>
+  <table>
+    <thead><tr><th style="width:32%">기능명</th><th style="width:14%">상태</th><th>Google Play 반영</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">쿠팡 연동/구매</td><td><span class="badge b-todo">미완료</span></td><td><span class="badge b-ext">외부 연동 대기</span></td></tr>
+      <tr><td class="fn">기프티콘 목록</td><td><span class="badge b-todo">미완료</span></td><td><span class="badge b-ext">외부 연동 대기</span></td></tr>
+      <tr><td class="fn">기프티콘 상세</td><td><span class="badge b-todo">미완료</span></td><td><span class="badge b-ext">외부 연동 대기</span></td></tr>
+      <tr><td class="fn">기프티콘 교환</td><td><span class="badge b-todo">미완료</span></td><td><span class="badge b-ext">외부 연동 대기</span></td></tr>
+      <tr><td class="fn">쿠팡 구매 내역</td><td><span class="badge b-todo">미완료</span></td><td><span class="badge b-ext">외부 연동 대기</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Google Play 배포 운영 방식</h2>
+  <p class="h2-desc">Demo Feature Flag 운영 기준</p>
+  <div class="note">
+    <h3>Demo Feature Flag</h3>
+    <p style="margin-bottom:12px;">Google Play 정책상 Demo 또는 Beta 기능이 포함된 앱은 배포가 불가능하다. 이를 위해 실시간으로 Demo 기능을 ON/OFF 할 수 있는 Feature Flag를 적용했으며, 운영 방식은 다음과 같다.</p>
+    <ol>
+      <li><b>Google Play 심사 제출 전</b> — Demo 기능 OFF</li>
+      <li><b>Google Play 승인 후</b> — Demo 기능 ON</li>
+    </ol>
+    <p style="margin-top:12px;">이를 통해 새로운 앱 버전 배포 없이도 쿠팡 구매 기능 등의 Demo 테스트 및 쿠팡/기프티콘 파트너 시연이 가능하다.</p>
+  </div>
+
+</div>
+<div class="last-update">Last Update 2026.07.30 09:05</div>
+</body>
+</html>

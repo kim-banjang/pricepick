@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 설명서 · 매일 행운 룰렛</title><style>
+:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px 90px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:26px 0 22px;position:relative}
+.wraphdr{max-width:960px;margin:0 auto;padding:0 22px}
+.crumb{font-size:12px;opacity:.85;margin-bottom:8px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{opacity:1;text-decoration:underline}
+.htitle{font-size:22px;font-weight:700} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+.bd{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+h2.sec{font-size:16px;font-weight:700;color:var(--ink1);margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--pp-l)}
+h3.sub{font-size:13.5px;font-weight:700;margin:18px 0 8px;color:var(--ink1)}
+p{color:var(--ink2);margin:8px 0;max-width:840px}
+strong,b{color:var(--ink1)}
+.callout{background:var(--pp-l);border:1px solid #ddd0fb;border-left:3px solid var(--pp);border-radius:8px;padding:12px 16px;margin:14px 0;max-width:840px}
+.callout.warn{background:#fdf1e3;border-color:#fbd9a8;border-left-color:var(--ck)}
+.callout .tt{font-weight:700;font-size:12px;margin-bottom:4px;color:var(--ink1)}
+table{border-collapse:collapse;width:100%;max-width:900px;margin:12px 0;font-size:12.5px}
+th{background:var(--bg);border:1px solid var(--line);padding:8px 10px;text-align:left;font-weight:700;color:var(--ink1)}
+td{border:1px solid var(--line);padding:8px 10px;color:var(--ink2);vertical-align:top}
+td b{color:var(--ink1)}
+code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--pp-d)}
+.foot{margin-top:34px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr"><div class="crumb"><a href="/cms-storyboard/index.html"><span class="i18n"><span class="ko">&larr; CMS 설명서 전체 목록</span><span class="vi">&larr; Danh sách toàn bộ tài liệu CMS</span></span></a></div>
+<div class="htitle"><span class="i18n"><span class="ko">매일 행운 룰렛</span><span class="vi">Vòng quay may mắn hằng ngày</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">좌측 메뉴 "매일 행운 룰렛" — 슬롯별 보상 내용과 당첨 확률을 운영자가 정하는 화면 + 룰렛 실행 로그. 유료 룰렛은 "잭팟 룰렛" 메뉴에서 따로 관리</span><span class="vi">Menu bên trái "Vòng quay may mắn hằng ngày" — màn hình Vận hành viên đặt nội dung thưởng và xác suất trúng theo từng ô + log lượt quay. Vòng quay trả phí được quản lý riêng ở menu "Vòng quay Jackpot"</span></span></div>
+</div></header>
+<div class="wrap">
+<div class="meta">
+<span class="chip"><span class="i18n"><span class="ko">그룹</span><span class="vi">Nhóm</span></span>: <span class="i18n"><span class="ko">티켓 · 보상</span><span class="vi">Vé · Thưởng</span></span></span>
+<span class="bd ok"><span class="i18n"><span class="ko">작성됨</span><span class="vi">Đã viết</span></span></span>
+</div>
+<div class="meta" style="margin-top:0">
+<span class="chip"><span class="i18n"><span class="ko">근거</span><span class="vi">Căn cứ</span></span>: <span class="i18n"><span class="ko">2026-07-31 이동영 부장 협의 확정 · CMS 정본 화면 캡처</span><span class="vi">Xác nhận qua họp với Trưởng phòng Lee ngày 2026-07-31 · Ảnh chụp màn hình CMS bản chính</span></span></span>
+</div>
+
+<h2 class="sec"><span class="i18n"><span class="ko">1. 한 줄 정의</span><span class="vi">1. Định nghĩa một dòng</span></span></h2>
+<div class="callout"><div class="tt"><span class="i18n"><span class="ko">매일 행운 룰렛이란</span><span class="vi">Vòng quay may mắn hằng ngày là gì</span></span></div><span class="i18n"><span class="ko">매일 행운 룰렛 = 출석(쿠팡 구경하기) 시 하루 1회 무료로 돌리는 룰렛. 슬롯마다 어떤 보상을 얼마나 줄지(보상 내용)와 그 슬롯이 뽑힐 확률을 운영자가 이 화면에서 직접 정한다. 확률 합계가 100%가 아니면 저장이 차단된다. 여기서 저장한 설정을 앱이 그대로 읽어 룰렛을 렌더링하고 당첨 보상을 지급한다.</span><span class="vi">Vòng quay may mắn hằng ngày = vòng quay miễn phí 1 lần/ngày khi điểm danh (dạo Coupang). Vận hành viên trực tiếp quyết định tại màn này: mỗi ô cho thưởng gì với số lượng bao nhiêu (nội dung thưởng) và xác suất ô đó được trúng. Nếu tổng xác suất không phải 100% thì việc lưu bị chặn. App đọc nguyên cấu hình lưu ở đây để render vòng quay và trao thưởng.</span></span></div>
+<p><span class="i18n"><span class="ko">2026-07-31 협의로 명칭이 "행운룰렛"에서 "매일 행운 룰렛"으로 바뀌었다. CMS 좌측 메뉴명도 "설정"·"관리" 같은 중복 단어를 빼고 룰렛 이름만 쓰는 것으로 확정됐다 — <b>매일 행운 룰렛</b> / <b>잭팟 룰렛</b> 두 개다. 유료 룰렛(잭팟 룰렛 · 이벤트 티켓 1장 = 1회)은 바로 아래 <b>잭팟 룰렛</b> 메뉴에서 따로 관리하며, 화면 구조는 이 화면과 같고 보상 구성·확률과 참여 제한 정책만 다르다.</span><span class="vi">Theo thống nhất ngày 2026-07-31, tên gọi đã đổi từ "Vòng quay may mắn" thành "Vòng quay may mắn hằng ngày". Tên menu bên trái của CMS cũng được chốt là bỏ các từ thừa như "Cài đặt"·"Quản lý", chỉ giữ tên vòng quay — gồm <b>Vòng quay may mắn hằng ngày</b> / <b>Vòng quay Jackpot</b>. Vòng quay trả phí (Vòng quay Jackpot · 1 vé sự kiện = 1 lượt) được quản lý riêng ở menu <b>Vòng quay Jackpot</b> ngay bên dưới, cấu trúc màn hình giống màn này, chỉ khác cơ cấu thưởng·xác suất và chính sách giới hạn tham gia.</span></span></p>
+<p><span class="i18n"><span class="ko">'주간 이벤트 추첨 관리'(경품 응모형 추첨)와는 완전히 다른 기능이다 — 이쪽은 룰렛 한 판의 확률·보상 구성을 정하는 화면이고, 추첨 관리는 이벤트 티켓으로 응모하는 별도의 경품 추첨이다.</span><span class="vi">Đây là tính năng hoàn toàn khác với 'Quản lý bốc thăm sự kiện hằng tuần' (bốc thăm kiểu dự thưởng) — màn này quyết định xác suất·cơ cấu thưởng của một lượt quay, còn Quản lý bốc thăm là bốc thăm quà tặng riêng dự thưởng bằng vé sự kiện.</span></span></p>
+
+<h2 class="sec"><span class="i18n"><span class="ko">2. 화면 구성</span><span class="vi">2. Cấu trúc màn hình</span></span></h2>
+<div style="margin:14px 0 18px"><img src="img/roulette-settings-01-overview.png" alt="매일 행운 룰렛 화면" style="max-width:100%;border:1px solid var(--line);border-radius:10px;display:block"></div>
+<p><span class="i18n"><span class="ko">화면은 위에서부터 통계 카드 3장 &rarr; "슬롯 구성 · 당첨 확률" 카드 &rarr; "룰렛 실행 로그" 카드 순이다.</span><span class="vi">Màn hình từ trên xuống gồm: 3 thẻ thống kê &rarr; thẻ "Cấu hình ô · Xác suất trúng" &rarr; thẻ "Log lượt quay".</span></span></p>
+<h3 class="sub"><span class="i18n"><span class="ko">2-1. 통계 카드</span><span class="vi">2-1. Thẻ thống kê</span></span></h3>
+<table>
+  <tr><th style="width:190px"><span class="i18n"><span class="ko">카드</span><span class="vi">Thẻ</span></span></th><th><span class="i18n"><span class="ko">내용</span><span class="vi">Nội dung</span></span></th></tr>
+  <tr><td><b><span class="i18n"><span class="ko">이번 달 룰렛 실행</span><span class="vi">Lượt quay tháng này</span></span></b></td><td><span class="i18n"><span class="ko">이번 달 룰렛을 돌린 횟수. 데모 CMS는 <code>roulette_spins</code> 컬렉션에서 실집계한다.</span><span class="vi">Số lượt quay trong tháng này. CMS demo tổng hợp thật từ collection <code>roulette_spins</code>.</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">이번 달 지급 총액</span><span class="vi">Tổng tiền cấp tháng này</span></span></b></td><td><span class="i18n"><span class="ko">이번 달 당첨 보상의 원화 환산 합계. 포인트 원장(<code>category='roulette'</code>)과 티켓 원장(<code>category='lucky_spin'</code>)을 가치표로 환산해 더한다.</span><span class="vi">Tổng quy đổi ra KRW của thưởng trúng trong tháng. Cộng sổ cái điểm (<code>category='roulette'</code>) và sổ cái vé (<code>category='lucky_spin'</code>) sau khi quy đổi theo bảng giá trị.</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">1회 기대값</span><span class="vi">Giá trị kỳ vọng 1 lượt</span></span></b></td><td><span class="i18n"><span class="ko">현재 구성 기준 1회당 기대 지급액. 슬롯을 고칠 때마다 즉시 다시 계산된다.</span><span class="vi">Số tiền kỳ vọng cấp cho mỗi lượt theo cài đặt hiện tại. Tính lại ngay mỗi khi sửa ô.</span></span></td></tr>
+</table>
+<h3 class="sub"><span class="i18n"><span class="ko">2-2. 슬롯 구성 · 당첨 확률</span><span class="vi">2-2. Cấu hình ô · Xác suất trúng</span></span></h3>
+<p><span class="i18n"><span class="ko">표는 슬롯 / 보상 유형(드롭다운) / 수량 / 가치(원) / 확률(%) / 기대값 기여 / 삭제 7열이다. 보상 유형과 수량이 "슬롯의 내용", 확률이 "당첨 확률"이며 둘 다 운영자가 직접 고친다. 가치와 기대값 기여는 자동 계산이라 입력란이 없다.</span><span class="vi">Bảng có 7 cột: Ô / Loại thưởng (dropdown) / Số lượng / Giá trị (KRW) / Xác suất (%) / Đóng góp giá trị kỳ vọng / Xóa. Loại thưởng và số lượng là "nội dung của ô", xác suất là "xác suất trúng" — Vận hành viên trực tiếp sửa cả hai. Giá trị và đóng góp giá trị kỳ vọng được tính tự động nên không có ô nhập.</span></span></p>
+<p><span class="i18n"><span class="ko">헤더에는 <b>+ 슬롯 추가</b> · <b>기본값 복원</b> · <b>저장</b> 버튼이 있다. 슬롯 수는 6개 고정이 아니다 — 추가·삭제로 늘리고 줄일 수 있고(최소 2개), 슬롯을 추가하면 확률 합계를 100%로 다시 맞춰야 저장된다.</span><span class="vi">Trên header có các nút <b>+ Thêm ô</b> · <b>Khôi phục mặc định</b> · <b>Lưu</b>. Số ô không cố định 6 — có thể tăng giảm bằng thêm·xóa (tối thiểu 2 ô), và khi thêm ô thì phải chỉnh lại tổng xác suất về 100% mới lưu được.</span></span></p>
+<p><span class="i18n"><span class="ko">현재 저장된 확정 구성(6슬롯)은 다음과 같다.</span><span class="vi">Cấu hình đã chốt đang lưu (6 ô) như sau.</span></span></p>
+<table>
+  <tr><th style="width:70px"><span class="i18n"><span class="ko">슬롯</span><span class="vi">Ô</span></span></th><th><span class="i18n"><span class="ko">보상 유형</span><span class="vi">Loại thưởng</span></span></th><th style="width:90px"><span class="i18n"><span class="ko">수량</span><span class="vi">Số lượng</span></span></th><th style="width:100px"><span class="i18n"><span class="ko">가치(원)</span><span class="vi">Giá trị (KRW)</span></span></th><th style="width:90px"><span class="i18n"><span class="ko">확률</span><span class="vi">Xác suất</span></span></th><th style="width:110px"><span class="i18n"><span class="ko">기대값 기여</span><span class="vi">Đóng góp GTKV</span></span></th></tr>
+  <tr><td>1</td><td><span class="i18n"><span class="ko">실버 티켓</span><span class="vi">Vé Bạc</span></span></td><td>1</td><td>1,000</td><td>0.2%</td><td>2.0</td></tr>
+  <tr><td>2</td><td><span class="i18n"><span class="ko">이벤트 티켓</span><span class="vi">Vé sự kiện</span></span></td><td>1</td><td>40</td><td>5%</td><td>2.0</td></tr>
+  <tr><td>3</td><td><span class="i18n"><span class="ko">브론즈 티켓</span><span class="vi">Vé Đồng</span></span></td><td>1</td><td>100</td><td>2%</td><td>2.0</td></tr>
+  <tr><td>4</td><td><span class="i18n"><span class="ko">포인트</span><span class="vi">Điểm</span></span></td><td>100P</td><td>10</td><td>35%</td><td>3.5</td></tr>
+  <tr><td>5</td><td><span class="i18n"><span class="ko">포인트</span><span class="vi">Điểm</span></span></td><td>10P</td><td>1</td><td>40%</td><td>0.4</td></tr>
+  <tr><td>6</td><td><span class="i18n"><span class="ko">꽝</span><span class="vi">Trượt</span></span></td><td>&mdash;</td><td>&mdash;</td><td>17.8%</td><td>0</td></tr>
+  <tr><td colspan="4"><b><span class="i18n"><span class="ko">합계</span><span class="vi">Tổng</span></span></b></td><td><b>100%</b></td><td><b>9.9</b></td></tr>
+</table>
+<div class="callout warn"><div class="tt"><span class="i18n"><span class="ko">확률 합계 100% 검증</span><span class="vi">Kiểm tra tổng xác suất 100%</span></span></div><span class="i18n"><span class="ko">저장을 누르면 먼저 확률 합계를 검사한다. 100%가 아니면 <b>저장하지 않고</b> 카드 하단에 빨간 문구로 "저장 차단 — 확률 합계가 104.8%입니다. 100%가 되어야 저장할 수 있습니다 (초과 4.8%p)."처럼 얼마나 넘치거나 모자란지 알려준다. 합계 행의 확률 값도 100%가 아닐 때 빨간색으로 바뀐다. 꽝이 아닌 슬롯의 수량이 0이어도 같은 방식으로 저장이 차단된다.</span><span class="vi">Khi bấm Lưu, hệ thống kiểm tra tổng xác suất trước. Nếu không phải 100% thì <b>không lưu</b> và hiện dòng chữ đỏ ở đáy thẻ, ví dụ "Chặn lưu — tổng xác suất là 104,8%. Phải bằng 100% mới lưu được (vượt 4,8%p)." cho biết thừa hoặc thiếu bao nhiêu. Giá trị xác suất ở dòng tổng cũng chuyển sang màu đỏ khi khác 100%. Nếu ô không phải "trượt" mà số lượng bằng 0 thì cũng bị chặn lưu tương tự.</span></span></div>
+<h3 class="sub"><span class="i18n"><span class="ko">2-3. 가치 환산 기준</span><span class="vi">2-3. Chuẩn quy đổi giá trị</span></span></h3>
+<p><span class="i18n"><span class="ko">가치와 기대값은 아래 환산표로 자동 계산된다. 이 표는 코드 상수 한 곳(<code>RLT_REWARD_TYPES</code>)에만 있어서 정책이 바뀌면 그 한 곳만 고치면 화면·합계·통계가 전부 따라온다.</span><span class="vi">Giá trị và giá trị kỳ vọng được tính tự động theo bảng quy đổi dưới. Bảng này chỉ nằm ở một hằng số trong code (<code>RLT_REWARD_TYPES</code>) nên khi chính sách đổi thì chỉ sửa một chỗ đó là màn hình·tổng·thống kê đều theo.</span></span></p>
+<table>
+  <tr><th><span class="i18n"><span class="ko">보상 유형</span><span class="vi">Loại thưởng</span></span></th><th><span class="i18n"><span class="ko">단위 가치</span><span class="vi">Giá trị đơn vị</span></span></th></tr>
+  <tr><td><span class="i18n"><span class="ko">포인트</span><span class="vi">Điểm</span></span></td><td><span class="i18n"><span class="ko">10P = 1원</span><span class="vi">10P = 1₩</span></span></td></tr>
+  <tr><td><span class="i18n"><span class="ko">이벤트 티켓</span><span class="vi">Vé sự kiện</span></span></td><td><span class="i18n"><span class="ko">40원 / 장 (잭팟 룰렛 1회 기대값 기준)</span><span class="vi">40₩ / vé (theo giá trị kỳ vọng 1 lượt vòng quay Jackpot)</span></span></td></tr>
+  <tr><td><span class="i18n"><span class="ko">브론즈 티켓</span><span class="vi">Vé Đồng</span></span></td><td>100<span class="i18n"><span class="ko">원 / 장</span><span class="vi">₩ / vé</span></span></td></tr>
+  <tr><td><span class="i18n"><span class="ko">실버 티켓</span><span class="vi">Vé Bạc</span></span></td><td>1,000<span class="i18n"><span class="ko">원 / 장</span><span class="vi">₩ / vé</span></span></td></tr>
+  <tr><td><span class="i18n"><span class="ko">골드 티켓</span><span class="vi">Vé Vàng</span></span></td><td>2,000<span class="i18n"><span class="ko">원 / 장</span><span class="vi">₩ / vé</span></span></td></tr>
+  <tr><td><span class="i18n"><span class="ko">꽝</span><span class="vi">Trượt</span></span></td><td>0</td></tr>
+</table>
+<h3 class="sub"><span class="i18n"><span class="ko">2-4. 룰렛 실행 로그</span><span class="vi">2-4. Log lượt quay</span></span></h3>
+<p><span class="i18n"><span class="ko">화면 맨 아래에 룰렛 실행 이력이 최신순으로 쌓인다. 컬럼은 일시 / 닉네임·카카오톡 ID / 룰렛 종류 / 결과 / 지급 상태 5열이고, 10건 단위로 페이지가 나뉜다.</span><span class="vi">Ở dưới cùng màn hình, lịch sử lượt quay được chất theo thứ tự mới nhất. Có 5 cột: Thời điểm / Biệt danh·Kakao ID / Loại vòng quay / Kết quả / Trạng thái cấp, chia trang 10 dòng.</span></span></p>
+<table>
+  <tr><th style="width:150px"><span class="i18n"><span class="ko">컬럼</span><span class="vi">Cột</span></span></th><th><span class="i18n"><span class="ko">내용</span><span class="vi">Nội dung</span></span></th></tr>
+  <tr><td><b><span class="i18n"><span class="ko">일시</span><span class="vi">Thời điểm</span></span></b></td><td><span class="i18n"><span class="ko">룰렛을 돌린 날짜와 시각</span><span class="vi">Ngày và giờ quay</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">닉네임 / 카카오톡 ID</span><span class="vi">Biệt danh / Kakao ID</span></span></b></td><td><span class="i18n"><span class="ko">회원 닉네임과 괄호 안 카카오 로그인 ID. 미연동 회원은 "카카오 미연동"으로 표시</span><span class="vi">Biệt danh hội viên và Kakao login ID trong ngoặc. Hội viên chưa liên kết hiện "Chưa liên kết Kakao"</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">룰렛 종류</span><span class="vi">Loại vòng quay</span></span></b></td><td><span class="i18n"><span class="ko">현재는 "매일 행운 룰렛"뿐. 잭팟 룰렛이 신설되면 이 컬럼으로 구분한다</span><span class="vi">Hiện chỉ có "Vòng quay may mắn hằng ngày". Khi vòng quay Jackpot ra mắt sẽ phân biệt bằng cột này</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">결과</span><span class="vi">Kết quả</span></span></b></td><td><span class="i18n"><span class="ko">당첨된 슬롯의 보상(예: 포인트 100P, 이벤트 티켓 1장) 또는 꽝</span><span class="vi">Thưởng của ô trúng (vd: Điểm 100P, Vé sự kiện 1 vé) hoặc Trượt</span></span></td></tr>
+  <tr><td><b><span class="i18n"><span class="ko">지급 상태</span><span class="vi">Trạng thái cấp</span></span></b></td><td><span class="i18n"><span class="ko">지급완료 / 한도초과(이벤트 티켓 일 5장·월 30장 상한에 걸려 미지급) / 해당없음(꽝)</span><span class="vi">Đã cấp / Vượt hạn mức (chạm trần 5 vé/ngày·30 vé/tháng nên không cấp) / Không áp dụng (Trượt)</span></span></td></tr>
+</table>
+<p><span class="i18n"><span class="ko">데모 CMS는 <code>roulette_spins</code>(하루 1회 제한용 문서)를 최신순으로 읽고, 결과는 같은 회원·같은 날짜의 포인트·티켓 원장에서 되짚어 채운다. 실행 기록이 아직 없으면 화면이 비지 않도록 데모 행을 보여주며, 이때 건수 옆에 "데모 표시 데이터"라고 명시한다.</span><span class="vi">CMS demo đọc <code>roulette_spins</code> (document dùng để giới hạn 1 lần/ngày) theo thứ tự mới nhất, và điền kết quả bằng cách truy ngược sổ cái điểm·vé của cùng hội viên·cùng ngày. Nếu chưa có bản ghi lượt quay nào thì hiển thị dòng demo để màn hình không trống, và ghi rõ "Dữ liệu hiển thị demo" bên cạnh số lượng.</span></span></p>
+
+<h2 class="sec"><span class="i18n"><span class="ko">3. 정책 근거 — 2026-07-31 확정</span><span class="vi">3. Căn cứ chính sách — chốt ngày 2026-07-31</span></span></h2>
+<div class="callout"><span class="i18n"><span class="ko">2026-07-31 이동영 부장 협의 확정 내용: 룰렛은 2종 체제가 된다. <b>매일 행운 룰렛</b>(무료 · 출석 시 1일 1회)은 기존 "행운룰렛"에서 명칭만 바뀌고 구성·확률은 위 6슬롯 표대로 확정, 1회 기대값 9.9원. <b>잭팟 룰렛</b>(유료 · 이벤트 티켓 1장 = 1회, 1회 기대값 40원)은 신규 화면으로 따로 만든다.<br><br>CMS 요구사항으로 확정된 것: 확률 6항목 전부 조정 가능 · 저장 시 합계 100% 검증 · 월 룰렛 지급 총액 조회 · 슬롯 수 증설 가능한 구조(6슬롯 고정 아님). 이 화면은 그 네 가지를 모두 반영한 상태다.<br><br>앱 표시 정책도 함께 확정됐다 — 룰렛 확률표를 앱 내에 공시하고, 꽝이 있다는 점을 명시한다.</span><span class="vi">Nội dung chốt trong buổi họp với Trưởng phòng Lee ngày 2026-07-31: vòng quay chuyển sang thể chế 2 loại. <b>Vòng quay may mắn hằng ngày</b> (miễn phí · 1 lần/ngày khi điểm danh) chỉ đổi tên từ "Vòng quay may mắn" cũ, cơ cấu·xác suất chốt đúng bảng 6 ô ở trên, giá trị kỳ vọng 1 lượt là 9,9₩. <b>Vòng quay Jackpot</b> (trả phí · 1 vé sự kiện = 1 lượt, giá trị kỳ vọng 1 lượt 40₩) sẽ dựng ở màn hình mới riêng.<br><br>Yêu cầu CMS đã chốt: chỉnh được toàn bộ 6 mục xác suất · kiểm tra tổng 100% khi lưu · xem tổng tiền cấp cho vòng quay theo tháng · cấu trúc cho phép tăng số ô (không cố định 6 ô). Màn hình này đã phản ánh đủ cả bốn.<br><br>Chính sách hiển thị trên app cũng đã chốt — công bố bảng xác suất vòng quay trong app và ghi rõ là có ô trượt.</span></span></div>
+<div class="callout warn"><div class="tt"><span class="i18n"><span class="ko">데모 앱 반영 범위</span><span class="vi">Phạm vi áp dụng cho app demo</span></span></div><span class="i18n"><span class="ko">데모 앱의 룰렛 화면은 아직 구 구성(포인트·이벤트티켓·꽝)만 렌더링한다. CMS는 새 스키마(<code>slots</code>)와 함께 구 스키마(<code>wheel</code>)도 계속 저장해 앱 호환을 유지하지만, 등급 티켓 슬롯을 저장하면 앱은 그 구성을 모르기 때문에 기본값으로 대체해 표시한다. 앱 룰렛 이식은 별도 작업이다.</span><span class="vi">Màn vòng quay của app demo hiện chỉ render cấu hình cũ (điểm·vé sự kiện·trượt). CMS vẫn lưu song song schema cũ (<code>wheel</code>) cùng schema mới (<code>slots</code>) để giữ tương thích với app, nhưng nếu lưu ô vé theo hạng thì app không hiểu cấu hình đó nên sẽ hiển thị bằng giá trị mặc định. Việc chuyển vòng quay sang app là công việc riêng.</span></span></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 설명서</span><span class="vi">PricePick · Tài liệu CMS</span></span> · <span class="i18n"><span class="ko">개발자용 문서 · 김반장님 확정 기준 업데이트</span><span class="vi">Tài liệu dành cho dev · cập nhật theo xác nhận của Mr Mark</span></span></div>
+</div>
+<script>
+(function(){
+  var cb = document.getElementById('langsw');
+  if (!cb) return;
+  var KEY = 'pp_cms_lang';
+  if (localStorage.getItem(KEY) === 'vi') cb.checked = true;
+  cb.addEventListener('change', function(){ localStorage.setItem(KEY, cb.checked ? 'vi' : 'ko'); });
+})();
+</script>
+</body></html>

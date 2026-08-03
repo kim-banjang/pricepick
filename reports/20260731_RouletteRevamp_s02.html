@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026.07.31 이동영 부장 수정 요청 보고서</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#F7F7FB; color:#333; line-height:1.6; }
+  .wrap { max-width:960px; margin:0 auto; padding:48px 24px 96px; }
+
+  .cover { background:#fff; border:1px solid #E4DEF9; border-radius:16px; padding:40px 44px; margin-bottom:28px; }
+  .cover .label { display:inline-block; background:#F1EBFF; color:#845EEE; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; letter-spacing:.5px; margin-bottom:14px; }
+  .cover h1 { font-size:26px; font-weight:800; color:#222; margin-bottom:8px; }
+  .cover .sub { font-size:15px; font-weight:600; color:#6C4FD1; }
+  .cover .desc { font-size:13.5px; color:#888; margin-top:6px; }
+  .cover .meta { margin-top:18px; padding-top:18px; border-top:1px solid #F0EDFA; font-size:13px; color:#777; display:flex; gap:28px; flex-wrap:wrap; }
+  .cover .meta b { color:#555; font-weight:600; }
+
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:36px; }
+  .card { background:#fff; border:1px solid #E4DEF9; border-radius:14px; padding:20px 22px; }
+  .card .num { font-size:28px; font-weight:800; color:#845EEE; }
+  .card .num small { font-size:14px; font-weight:600; color:#B9A8F2; }
+  .card .cap { font-size:12.5px; color:#888; margin-top:4px; }
+  .card.del { border-color:#F5D8D8; }
+  .card.del .num { color:#C0504D; }
+  .card.hide { border-color:#F3E2C4; }
+  .card.hide .num { color:#B57F1E; }
+
+  h2 { font-size:18px; font-weight:800; color:#222; margin:40px 0 6px; padding-left:12px; border-left:4px solid #845EEE; }
+  h2.del { border-left-color:#C0504D; }
+  h2.hide { border-left-color:#D9A227; }
+  .h2-desc { font-size:13px; color:#888; margin:0 0 14px 16px; }
+
+  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid #E4DEF9; border-radius:12px; overflow:hidden; font-size:13.5px; }
+  thead th { background:#F5F2FE; color:#6C4FD1; font-weight:700; text-align:left; padding:11px 14px; font-size:12.5px; }
+  tbody td { padding:10px 14px; border-top:1px solid #F3F1FB; vertical-align:top; }
+  tbody tr:hover { background:#FBFAFF; }
+  td.fn { font-weight:600; color:#333; }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; font-weight:600; color:#444; }
+  tbody tr.total td { background:#FAF8FF; border-top:1px solid #E4DEF9; font-weight:700; color:#6C4FD1; }
+  .strike { color:#A9A9B4; text-decoration:line-through; }
+  .arrow { color:#B9A8F2; padding:0 6px; }
+
+  table.t-del { border-color:#F5D8D8; }
+  table.t-del thead th { background:#FCF3F3; color:#B0413E; }
+  table.t-del tbody tr:hover { background:#FFFAFA; }
+  table.t-hide { border-color:#F3E2C4; }
+  table.t-hide thead th { background:#FDF7EA; color:#9C6F13; }
+  table.t-hide tbody tr:hover { background:#FFFCF6; }
+
+  .badge { display:inline-block; font-size:11.5px; font-weight:700; padding:3px 10px; border-radius:12px; white-space:nowrap; }
+  .b-new { background:#EFE9FF; color:#7A55E8; }
+  .b-keep { background:#E7F3EC; color:#3E8E63; }
+  .b-del { background:#FBE9E9; color:#B0413E; }
+  .b-hide { background:#FBF0DA; color:#9C6F13; }
+  .b-rename { background:#E8F0FB; color:#3F6EA8; }
+
+  .callout { display:flex; gap:14px; align-items:flex-start; border-radius:12px; padding:18px 22px; margin-bottom:14px; }
+  .callout svg { flex:0 0 auto; margin-top:2px; }
+  .callout h3 { font-size:14.5px; font-weight:700; margin-bottom:6px; }
+  .callout p { font-size:13.5px; }
+  .callout p + p { margin-top:6px; }
+  .callout b { font-weight:700; }
+  .c-hide { background:#FFFBF2; border:1px solid #F0DEB8; color:#7A5A11; }
+  .c-hide h3 { color:#8A6410; }
+  .c-del { background:#FDF6F6; border:1px solid #F1D5D5; color:#8E3B39; }
+  .c-del h3 { color:#A03F3C; }
+
+  .note { background:#fff; border:1px solid #E4DEF9; border-radius:12px; padding:22px 26px; }
+  .note h3 { font-size:14.5px; font-weight:700; color:#6C4FD1; margin-bottom:10px; }
+  .note ol, .note ul { margin-left:18px; }
+  .note li { font-size:13.5px; color:#555; margin-bottom:8px; }
+  .note li:last-child { margin-bottom:0; }
+  .note li b { color:#333; }
+  .note p { font-size:13.5px; color:#555; }
+
+  .tblnote { font-size:12.5px; color:#999; margin:8px 0 0 2px; }
+
+  .last-update { position:fixed; bottom:24px; left:24px; background:#fff; border:1px solid #E4DEF9; border-radius:8px; padding:6px 12px; font-size:11.5px; color:#999; box-shadow:0 2px 8px rgba(132,94,238,.08); }
+
+  @media (max-width:720px){ .cards{grid-template-columns:repeat(2,1fr);} .cover{padding:28px;} .wrap{padding:32px 16px 80px;} .last-update{display:none;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="cover">
+    <span class="label">POLICY REPORT</span>
+    <h1>2026.07.31 이동영 부장 수정 요청 보고서</h1>
+    <div class="sub">PricePick 룰렛 개편 · 주간 이벤트 정책 변경</div>
+    <div class="desc">법적 리스크 검토에 따라 주간 경품 추첨을 중단하고, 이벤트 티켓 사용처를 룰렛으로 전환한다.</div>
+    <div class="meta">
+      <span><b>확정일</b> 2026.07.31</span>
+      <span><b>출처</b> 2026-07-31 PricePick 개발 그룹 협의</span>
+      <span><b>구분</b> 확정안</span>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="num">2<small> 종</small></div><div class="cap">룰렛 구성 — 매일 행운(무료) · 잭팟(유료)</div></div>
+    <div class="card"><div class="num">40<small> 원</small></div><div class="cap">잭팟 룰렛 1회 기대값 (티켓 1장)</div></div>
+    <div class="card del"><div class="num">5<small> 건</small></div><div class="cap">삭제 — "픽" 용어 전면 폐기</div></div>
+    <div class="card hide"><div class="num">3<small> 영역</small></div><div class="cap">숨김 — 기능·화면 유지, 노출만 차단</div></div>
+  </div>
+
+  <h2>1. 명칭</h2>
+  <p class="h2-desc">룰렛 2종 체제로 확정</p>
+  <table>
+    <thead><tr><th style="width:24%">명칭</th><th style="width:14%">구분</th><th style="width:20%">진입 조건</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="fn">매일 행운 룰렛</td>
+        <td><span class="badge b-rename">명칭 변경</span></td>
+        <td>무료 · 출석 시 1일 1회</td>
+        <td>기존 "행운룰렛"에서 명칭만 변경. 구성·확률은 현행 유지</td>
+      </tr>
+      <tr>
+        <td class="fn">잭팟 룰렛</td>
+        <td><span class="badge b-new">신규</span></td>
+        <td>유료 · 이벤트 티켓 1장 = 1회</td>
+        <td>가칭. 이벤트 티켓의 신규 사용처</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="del">2. 삭제</h2>
+  <p class="h2-desc">"픽(Pick)" 용어 전부 제거 — 문구 및 관련 요소 삭제</p>
+  <div class="callout c-del">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M9.5 7V5.2A1.2 1.2 0 0 1 10.7 4h2.6a1.2 1.2 0 0 1 1.2 1.2V7"/><path d="M6.4 7l.9 12.1A1.4 1.4 0 0 0 8.7 20.4h6.6a1.4 1.4 0 0 0 1.4-1.3L17.6 7"/></svg>
+    <div>
+      <h3>삭제 — 되돌리지 않는다</h3>
+      <p>아래 항목은 문구·요소를 실제로 제거한다. 3항의 <b>숨김</b>과 혼동하지 말 것.</p>
+    </div>
+  </div>
+  <table class="t-del">
+    <thead><tr><th style="width:16%">위치</th><th style="width:42%">변경</th><th>처리</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">스플래시</td><td><span class="strike">픽구매</span></td><td><span class="badge b-del">삭제</span></td></tr>
+      <tr><td class="fn">홈</td><td><span class="strike">픽하고 티켓받기</span><span class="arrow">→</span><b>구매하고 티켓받기</b></td><td><span class="badge b-del">문구 변경</span></td></tr>
+      <tr><td class="fn">홈</td><td><span class="strike">픽구매란?</span></td><td><span class="badge b-del">삭제</span></td></tr>
+      <tr><td class="fn">혜택</td><td><span class="strike">친구 첫 픽구매</span><span class="arrow">→</span><b>친구 첫 구매</b></td><td><span class="badge b-del">문구 변경</span></td></tr>
+      <tr><td class="fn">설정</td><td><span class="strike">홈화면에 쿠팡픽 추가</span><span class="arrow">→</span><b>쿠팡 바로가기</b></td><td><span class="badge b-del">문구 변경</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="hide">3. 숨김</h2>
+  <p class="h2-desc">기능·화면은 그대로 두고 노출만 차단 — 삭제 아님</p>
+  <div class="callout c-hide">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6 1.8 20.4h20.4L12 3.6z"/><path d="M12 9.6v4.6"/><path d="M12 17.3h.01"/></svg>
+    <div>
+      <h3>코드·화면 삭제 금지</h3>
+      <p>아래 항목은 <b>기능과 화면을 유지한 채 진입 경로와 노출만 차단</b>한다. 부활 여지가 있으므로 코드를 지우면 안 된다.</p>
+      <p>주간 경품 추첨은 <b>실사용자 1만 명 달성 시 실제 지급으로 부활</b>한다.</p>
+    </div>
+  </div>
+  <table class="t-hide">
+    <thead><tr><th style="width:30%">대상</th><th style="width:34%">범위</th><th>처리</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="fn">주간 경품 추첨 전체</td>
+        <td>응모 · 당첨자 발표 · 관련 화면 · 배너 2종</td>
+        <td><span class="badge b-hide">숨김</span> <span class="badge b-keep">기능 유지</span> — 실사용자 1만 명 달성 시 부활</td>
+      </tr>
+      <tr>
+        <td class="fn">티켓 교환소 진입 버튼</td>
+        <td>내 보유티켓 상세 · 혜택 내 적립 티켓 상세 (2곳)</td>
+        <td><span class="badge b-hide">숨김</span> <span class="badge b-keep">기능 유지</span></td>
+      </tr>
+      <tr>
+        <td class="fn">고객센터 카카오채널상담</td>
+        <td>고객센터 내 진입 항목</td>
+        <td><span class="badge b-hide">숨김</span> <span class="badge b-keep">기능 유지</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. 잭팟 룰렛 (유료) — 신규</h2>
+  <p class="h2-desc">이벤트 티켓 1장 = 1회 · 6슬롯 · 1회 기대값 40원</p>
+  <table>
+    <thead><tr><th style="width:34%">슬롯</th><th style="width:22%">가치</th><th style="width:22%">확률</th><th>기대값 기여</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">골드 티켓</td><td class="num">2,000원</td><td class="num">0.4%</td><td class="num">8.0원</td></tr>
+      <tr><td class="fn">실버 티켓</td><td class="num">1,000원</td><td class="num">1%</td><td class="num">10.0원</td></tr>
+      <tr><td class="fn">1000P</td><td class="num">100원</td><td class="num">5%</td><td class="num">5.0원</td></tr>
+      <tr><td class="fn">브론즈 티켓</td><td class="num">100원</td><td class="num">12%</td><td class="num">12.0원</td></tr>
+      <tr><td class="fn">100P</td><td class="num">10원</td><td class="num">50%</td><td class="num">5.0원</td></tr>
+      <tr><td class="fn">꽝</td><td class="num">—</td><td class="num">31.6%</td><td class="num">0원</td></tr>
+      <tr class="total"><td>합계</td><td class="num">—</td><td class="num">100%</td><td class="num">40원</td></tr>
+    </tbody>
+  </table>
+  <p class="tblnote">기대값 기여 = 가치 × 확률. 1회당 총 기대값 40원.</p>
+
+  <h2>잭팟 룰렛 제한 사항</h2>
+  <p class="h2-desc">악용 방지 장치 3종</p>
+  <div class="note">
+    <ul>
+      <li><b>하루 최대 10회</b> — 매크로 방지</li>
+      <li><b>구매 확정 전 티켓 사용 불가</b> — 돌리고 환불하는 악용 방지</li>
+      <li><b>이벤트 티켓 월 획득 30장 상한 유지</b> — 현행 정책 그대로</li>
+    </ul>
+  </div>
+
+  <h2>5. 매일 행운 룰렛 (무료)</h2>
+  <p class="h2-desc">출석(쿠팡 구경하기) 시 1일 1회 · 1회 기대값 9.9원</p>
+  <table>
+    <thead><tr><th style="width:34%">슬롯</th><th style="width:22%">가치</th><th style="width:22%">확률</th><th>기대값 기여</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">실버 티켓</td><td class="num">1,000원</td><td class="num">0.2%</td><td class="num">2.0원</td></tr>
+      <tr><td class="fn">이벤트 티켓</td><td class="num">40원</td><td class="num">5%</td><td class="num">2.0원</td></tr>
+      <tr><td class="fn">브론즈 티켓</td><td class="num">100원</td><td class="num">2%</td><td class="num">2.0원</td></tr>
+      <tr><td class="fn">100P</td><td class="num">10원</td><td class="num">35%</td><td class="num">3.5원</td></tr>
+      <tr><td class="fn">10P</td><td class="num">1원</td><td class="num">40%</td><td class="num">0.4원</td></tr>
+      <tr><td class="fn">꽝</td><td class="num">—</td><td class="num">17.8%</td><td class="num">0원</td></tr>
+      <tr class="total"><td>합계</td><td class="num">—</td><td class="num">100%</td><td class="num">9.9원</td></tr>
+    </tbody>
+  </table>
+  <p class="tblnote">이벤트 티켓 가치 40원은 잭팟 룰렛 1회 기대값 기준. 잭팟 룰렛과는 디자인·명칭만 다르게 구성한다.</p>
+
+  <h2>6. 티켓 등급 교환</h2>
+  <p class="h2-desc">단방향 전환만 허용</p>
+  <table>
+    <thead><tr><th style="width:34%">방향</th><th style="width:18%">허용 여부</th><th>사유</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="fn">이벤트 티켓 5장 <span class="arrow">→</span> 브론즈 티켓 1장</td>
+        <td><span class="badge b-keep">허용</span></td>
+        <td>정상 전환 경로</td>
+      </tr>
+      <tr>
+        <td class="fn">브론즈 티켓 1장 <span class="arrow">→</span> 이벤트 티켓 5장</td>
+        <td><span class="badge b-del">금지</span></td>
+        <td>브론즈 1장(100원) → 이벤트 5장 → 잭팟 룰렛 5회 = 200원. 가치가 2배로 증식되는 취약점</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>7. CMS 요구사항</h2>
+  <p class="h2-desc">운영에서 직접 조정 가능해야 하는 항목</p>
+  <div class="note">
+    <ol>
+      <li><b>룰렛 확률 6항목 전부 조정 가능</b> — 저장 시 합계 100% 검증</li>
+      <li><b>월 룰렛 지급 총액 조회</b></li>
+      <li><b>티켓 환급액 설정</b></li>
+      <li><b>슬롯 수 증설 가능한 구조</b> — 6슬롯 고정 아님</li>
+    </ol>
+  </div>
+
+  <h2>8. 앱 표시</h2>
+  <p class="h2-desc">확률 공시</p>
+  <div class="note">
+    <p>룰렛 확률표를 앱 내에 공시하고, 꽝이 있다는 점을 명시한다.</p>
+  </div>
+
+</div>
+<div class="last-update">Last Update 2026.07.31</div>
+</body>
+</html>
