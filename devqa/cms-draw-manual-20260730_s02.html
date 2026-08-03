@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>[폐기] PricePick 수정 공지 · 주간 이벤트 추첨 관리 · 2026-07-30</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.keybox{background:#f6f2ff;border:1px solid #ddd0ff;border-left:3px solid var(--pp);border-radius:10px;padding:12px 15px;margin:14px 0 4px;font-size:13.3px;color:var(--ink2)}
+.keybox .kt{font-size:11px;font-weight:800;color:var(--pp-d);letter-spacing:.06em;margin-bottom:5px;display:block}
+.keybox b{color:var(--ink1)}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.dead{background:#fdf2f2;border:2px solid #e0b3b1;border-left:6px solid #c0504d;border-radius:12px;padding:16px 20px;margin:22px 0 4px}
+.dead .dt{font-size:13.5px;font-weight:800;color:#a8332f;letter-spacing:.02em;margin-bottom:7px}
+.dead .db{font-size:13px;color:#7d3d3b;line-height:1.65}
+.dead .db b{color:#5f2b29}
+.dead a.dlink{display:inline-block;margin-top:11px;font-size:12.5px;font-weight:700;color:#fff;background:#c0504d;padding:7px 14px;border-radius:8px;text-decoration:none}
+.dead a.dlink:hover{background:#a8332f}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">수정 공지 · 주간 이벤트 추첨 관리 · 2026-07-30</span><span class="vi">Thông báo chỉnh sửa · Quản lý rút thăm sự kiện tuần · 2026-07-30</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">받는 사람: 해리 · 켈빈 · 존 &nbsp;|&nbsp; 07-28 전달 스펙에서 바뀐 부분과 화면 구조 변경을 정리했습니다 (KO/VI)</span><span class="vi">Người nhận: Harry · Kelvin · John &nbsp;|&nbsp; Tổng hợp những phần đã thay đổi so với spec gửi ngày 28/07 và các thay đổi cấu trúc màn hình (KO/VI)</span></span></div>
+</div></header>
+
+<div class="wrap"><div class="dead"><div class="dt"><span class="i18n"><span class="ko">폐기된 공지 — 구현 금지</span><span class="vi">Thông báo đã bị hủy — Không triển khai</span></span></div><div class="db"><span class="i18n"><span class="ko">이 공지는 <b>2026-07-31 룰렛 개편 확정으로 폐기</b>되었습니다. 주간 경품 추첨 자체가 중단·숨김 처리되어, 아래 내용(관리자 수동 선정 부활, 추첨 방식 문구, 지급 현황 컬럼 등)은 <b>더 이상 유효하지 않습니다</b>. 이력 보존용으로만 남겨둔 문서이니 이 문서를 근거로 구현하지 마세요. 최신 확정 내용은 2026-07-31 보고서를 참조하세요.</span><span class="vi">Thông báo này <b>đã bị hủy bỏ theo quyết định cải tổ vòng quay ngày 31/07/2026</b>. Việc quay thưởng hàng tuần đã bị dừng và ẩn đi, nên toàn bộ nội dung bên dưới (khôi phục chọn thủ công của quản trị viên, nội dung "phương thức rút thăm", cột tình trạng gửi quà...) <b>không còn hiệu lực</b>. Tài liệu chỉ được giữ lại để lưu lịch sử, đừng triển khai dựa trên tài liệu này. Vui lòng tham khảo báo cáo ngày 31/07/2026 để xem nội dung chốt mới nhất.</span></span><br><a class="dlink" href="/reports/20260731_RouletteRevamp.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">2026-07-31 확정 보고서 보기 &#8599;</span><span class="vi">Xem báo cáo chốt ngày 31/07/2026 &#8599;</span></span></a></div></div><div class="meta"><span class="chip"><span class="i18n"><span class="ko">정책 변경 2건 · 화면 변경 5건 · 유지 3건</span><span class="vi">2 thay đổi chính sách · 5 thay đổi màn hình · 3 giữ nguyên</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정: 김반장 2026-07-30</span><span class="vi">Chốt: anh 30/07/2026</span></span></span><span class="chip"><span class="i18n"><span class="ko">반영 완료: CMS 데모 · CMS 원본 · 앱 데모 · 인터랙티브 · 정책서 · CMS 설명서</span><span class="vi">Đã phản ánh: CMS demo · CMS gốc · App demo · Interactive · Tài liệu chính sách · Tài liệu CMS</span></span></span></div>
+
+<div class="keybox"><span class="kt"><span class="i18n"><span class="ko">먼저 결론</span><span class="vi">Kết luận trước</span></span></span><span class="i18n"><span class="ko">07-28에 전달한 <b>"당첨자 선정은 완전 자동, 관리자 수동 선정 없음"은 폐기</b>합니다.
+
+이제 <b>진행 중인 회차에서는 운영자가 등수 슬롯 단위로 당첨자를 직접 지정</b>할 수 있고, <b>마감(일요일 23:59:59) 시점에 비어 있는 슬롯만</b> 남은 응모 건 중에서 자동 추첨으로 채웁니다. 자동 추첨 규칙 자체는 07-28에 전달한 그대로입니다 — 응모 건 단위 무작위, 1등부터 등수별 정원까지, 1인 1회 당첨.
+
+정책 변경은 위 1건과 아래 2번(정원·중복 처리 방식)까지 2건이고, 나머지는 화면 구조 변경입니다. <b>9번의 서버단 강제 항목은 백엔드 작업이 필요합니다</b> — 현재 저희 구현은 클라이언트 차단까지만 되어 있습니다.</span><span class="vi">Nội dung đã gửi ngày 28/07 — <b>"chọn người trúng hoàn toàn tự động, không có chọn thủ công của quản trị viên" — được bãi bỏ</b>.
+
+Từ nay <b>với đợt đang diễn ra, Vận hành viên có thể trực tiếp chỉ định người trúng theo từng suất hạng</b>, và <b>tại thời điểm đóng đợt (23:59:59 Chủ Nhật) chỉ những suất còn trống</b> mới được lấp bằng rút thăm tự động từ các lượt dự thưởng còn lại. Bản thân quy tắc rút thăm tự động vẫn đúng như đã gửi ngày 28/07 — ngẫu nhiên theo đơn vị lượt dự thưởng, lấp từ hạng 1 cho đến đủ số lượng từng hạng, mỗi người chỉ trúng 1 lần.
+
+Thay đổi chính sách gồm mục trên và mục 2 bên dưới (cách xử lý số lượng·trùng lặp), tổng 2 mục; phần còn lại là thay đổi cấu trúc màn hình. <b>Các mục cần cưỡng chế ở phía server tại mục 9 cần công việc backend</b> — hiện bên mình chỉ chặn được ở phía client.</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 정책 변경 — 당첨자 수동 지정 부활</span><span class="vi">1. Thay đổi chính sách — Phục hồi chỉ định người trúng thủ công</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">변경</span><span class="vi">Thay đổi</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">07-28 전달문: "당첨자 선정에는 운영자가 누르는 버튼이 없다. 회차 마감 시점의 응모 현황만으로 시스템이 한 번에 결정하며, 수동으로 지정하거나 바꾸는 기능은 없다."</span><span class="vi">Bản gửi 28/07: "Việc chọn người trúng không có nút để Vận hành viên bấm. Hệ thống quyết định một lần duy nhất chỉ dựa trên tình trạng dự thưởng tại thời điểm đóng đợt, không có chức năng chỉ định hay thay đổi thủ công."</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">폐기</span><span class="vi">Bãi bỏ</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">새 스펙</span><span class="vi">Spec mới</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>1) 수동 지정은 진행 중인 회차에서만 됩니다.</b>
+응모자 리스트의 "당첨 등수" 칸이 진행 중 회차에서는 드롭다운으로 나옵니다. 등수를 고르면 그 응모 행이 해당 등수 슬롯의 당첨자가 됩니다. 예정 회차는 응모가 0건이라 리스트 진입 버튼 자체가 없고, 종료 회차는 결과 표시 전용이라 드롭다운이 나오지 않습니다.
+
+<b>2) 마감 시점에는 비어 있는 슬롯만 자동 추첨으로 채웁니다.</b>
+수동 지정된 사람을 제외한 나머지 응모 행을 무작위로 섞고, 등수별로 남은 자리만큼 1등부터 순서대로 채웁니다. 이미 수동 지정된 사람은 자동 추첨 풀에서 빠지며, 그 사람의 다른 응모 행도 건너뜁니다(1인 1회 당첨). 전 슬롯이 수동으로 채워져 있으면 자동 추첨은 0명입니다.
+
+<b>3) 마감 전까지 변경·해제가 가능합니다.</b>
+저장 후에도 마감 전이면 다른 응모 행으로 바꾸거나 "미선택"으로 되돌려 해제할 수 있습니다. 해제된 슬롯은 다시 "비어 있는 슬롯"이 되어 마감 시 자동 추첨 대상이 됩니다. 마감 후에는 당첨자 구성을 바꿀 수 없고, 지급 상태·메모만 수정됩니다.
+
+<b>4) 수동 지정은 앱에 노출하지 않습니다.</b>
+CMS 회차 리스트의 "당첨자" 칸에서만 수동 지정분 뒤에 "(수동)" 표시로 자동 추첨분과 구분합니다. 앱에는 이 구분이 나가지 않습니다.</span><span class="vi"><b>1) Chỉ định thủ công chỉ khả dụng với đợt đang diễn ra.</b>
+Ở đợt đang diễn ra, cột "Hạng trúng thưởng" trong danh sách người dự thưởng hiện dưới dạng dropdown. Chọn một hạng thì dòng dự thưởng đó thành người trúng của suất hạng ấy. Đợt sắp diễn ra không có lượt dự thưởng nào nên không có cả nút vào danh sách; đợt đã kết thúc chỉ dùng để hiển thị kết quả nên không hiện dropdown.
+
+<b>2) Tại thời điểm đóng đợt, chỉ những suất còn trống được lấp bằng rút thăm tự động.</b>
+Hệ thống xáo trộn ngẫu nhiên các dòng dự thưởng còn lại sau khi trừ người đã được chỉ định thủ công, rồi lấp đúng số chỗ còn thiếu của từng hạng theo thứ tự từ hạng 1. Người đã được chỉ định thủ công bị loại khỏi nhóm rút thăm tự động, và các dòng dự thưởng khác của người đó cũng bị bỏ qua (mỗi người chỉ trúng 1 lần). Nếu toàn bộ suất đã được lấp thủ công thì rút thăm tự động là 0 người.
+
+<b>3) Có thể thay đổi·huỷ cho đến khi đóng đợt.</b>
+Sau khi lưu, nếu vẫn chưa đóng đợt thì có thể đổi sang dòng dự thưởng khác hoặc đưa về "Chưa chọn" để huỷ. Suất đã huỷ lại trở thành "suất còn trống" và thuộc diện rút thăm tự động khi đóng đợt. Sau khi đóng đợt thì không đổi được cơ cấu người trúng, chỉ sửa được trạng thái gửi quà·ghi chú.
+
+<b>4) Việc chỉ định thủ công không hiển thị trên app.</b>
+Chỉ ở cột "Người trúng" của danh sách đợt trên CMS mới thêm ký hiệu "(thủ công)" sau phần chỉ định thủ công để phân biệt với phần rút thăm tự động. Phân biệt này không ra phía app.</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[<span class="i18n"><span class="ko">참조</span><span class="vi">Tham khảo</span></span>] <span class="i18n"><span class="ko">저희 구현 방식 — 참고용이며 구현 방법은 판단에 맡깁니다</span><span class="vi">Cách bên mình triển khai — chỉ để tham khảo, cách triển khai tuỳ các bạn quyết định</span></span></span><span class="i18n"><span class="ko"><code>raffles/{id}.winners_confirmed[]</code> 각 항목에 <code>manual</code> 플래그(운영자 지정 <code>true</code> / 마감 자동 추첨 <code>false</code>), 응모 행 매칭은 <code>entry_id</code>. <code>winners_drawn</code>은 마감 자동 추첨이 끝난 회차에만 <code>true</code>(중복 추첨 방지)이고 수동 지정 저장 시에는 세우지 않습니다 — 세우면 마감 때 남은 슬롯이 채워지지 않습니다.</span><span class="vi">Thêm cờ <code>manual</code> vào từng phần tử của <code>raffles/{id}.winners_confirmed[]</code> (do Vận hành viên chỉ định là <code>true</code> / rút thăm tự động khi đóng đợt là <code>false</code>), khớp dòng dự thưởng bằng <code>entry_id</code>. <code>winners_drawn</code> chỉ đặt <code>true</code> ở đợt đã hoàn tất rút thăm tự động khi đóng đợt (chống rút thăm trùng) và không đặt khi lưu chỉ định thủ công — nếu đặt thì các suất còn lại sẽ không được lấp lúc đóng đợt.</span></span></div>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 정책 변경 — 정원 초과·1인 중복은 "선택지에서 제외"로 처리</span><span class="vi">2. Thay đổi chính sách — Vượt số lượng·trùng người xử lý bằng "loại khỏi lựa chọn"</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">변경</span><span class="vi">Thay đổi</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">앞서 전달한 "지정 시점에 경고 알럿을 띄워 막는다" 방식 (정원 초과 / 같은 사람 두 번 지정 알럿 2종)</span><span class="vi">Phương án đã gửi trước đó: "chặn bằng cách hiện alert cảnh báo tại thời điểm chỉ định" (2 loại alert: vượt số lượng / chỉ định cùng một người hai lần)</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">폐기</span><span class="vi">Bãi bỏ</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">새 스펙</span><span class="vi">Spec mới</span></span></span><div class="atxt"><span class="i18n"><span class="ko">고를 수 없는 등수는 <b>애초에 드롭다운 선택지에 넣지 않습니다</b>. 그래서 지정 시점 경고 알럿이 필요 없어졌고, 알럿 2종은 폐기합니다.
+
+<b>선택지 규칙</b>
+· 선택지는 "미선택" + <b>아직 자리가 남은 등수</b>만. 정원이 다 찬 등수는 다른 행 드롭다운에서 사라집니다.
+· <b>자기 행이 이미 지정된 등수는 그 행에서 계속 보입니다</b> — 해제·변경이 가능해야 하므로.
+· <b>같은 회차에서 이미 당첨된 사람의 다른 응모 행은 선택지가 "미선택"뿐</b>입니다(1인 1회 당첨). 그 당첨을 해제하면 나머지 행이 다시 선택 가능해집니다.
+· 지정·해제할 때마다 나머지 행의 선택지를 다시 계산합니다. 검색·페이지 이동 후에도 같은 기준이 유지됩니다.
+
+<b>남은 자리 표시</b> — 등수별로 몇 자리 남았는지는 모달 상단 "등수별 구성" 줄에 <b>"남은 N자리" / "지정 완료"</b>로 붙습니다. 드롭다운 옵션 라벨은 "N등" 그대로 두고 남은 자리 수를 라벨에 끼워넣지 않습니다.
+
+<b>저장 시점 최종 검증은 남깁니다</b> — 정상 흐름에서는 걸릴 일이 없고, 동시 편집처럼 비정상 경로로 어긋난 상태가 들어올 때만 저장을 막습니다("등수별 정원을 넘겨 지정돼 있습니다. 화면을 새로 불러와 주세요." / "같은 응모자가 두 번 지정돼 있습니다. 화면을 새로 불러와 주세요.").</span><span class="vi">Những hạng không thể chọn thì <b>ngay từ đầu không đưa vào lựa chọn của dropdown</b>. Vì vậy không còn cần alert cảnh báo tại thời điểm chỉ định, và 2 loại alert đó bị bãi bỏ.
+
+<b>Quy tắc lựa chọn</b>
+· Lựa chọn chỉ gồm "Chưa chọn" + <b>những hạng còn suất trống</b>. Hạng đã đủ số lượng sẽ biến mất khỏi dropdown của các dòng khác.
+· <b>Hạng mà chính dòng đó đã được chỉ định thì vẫn hiện ở dòng đó</b> — vì phải huỷ·thay đổi được.
+· <b>Các dòng dự thưởng khác của người đã trúng trong cùng đợt thì chỉ có lựa chọn "Chưa chọn"</b> (mỗi người chỉ trúng 1 lần). Huỷ lần trúng đó thì các dòng còn lại lại chọn được.
+· Mỗi lần chỉ định·huỷ thì tính lại lựa chọn của các dòng còn lại. Sau khi tìm kiếm·chuyển trang vẫn giữ cùng chuẩn.
+
+<b>Hiển thị suất còn lại</b> — số suất còn lại của từng hạng được ghi ở dòng "Cơ cấu theo hạng" phía trên modal dưới dạng <b>"còn N suất" / "Đã chỉ định đủ"</b>. Nhãn option của dropdown vẫn giữ nguyên "Hạng N", không nhét số suất còn lại vào nhãn.
+
+<b>Vẫn giữ lần kiểm tra cuối tại thời điểm lưu</b> — luồng bình thường sẽ không bị chặn, chỉ chặn lưu khi trạng thái bị lệch qua đường bất thường như sửa đồng thời ("Đã chỉ định vượt số lượng của từng hạng. Vui lòng tải lại màn hình." / "Cùng một người dự thưởng bị chỉ định hai lần. Vui lòng tải lại màn hình.").</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[<span class="i18n"><span class="ko">참조</span><span class="vi">Tham khảo</span></span>] <span class="i18n"><span class="ko">KO2VI 사전 매칭 때문에 옵션 라벨을 건드리지 않았습니다</span><span class="vi">Không sửa nhãn option vì lý do khớp từ điển KO2VI</span></span></span><span class="i18n"><span class="ko">"1등"·"2등"·"3등" 문자열이 그대로여야 VI 사전("1등"→"Giải Nhất")이 매칭됩니다. 그래서 남은 자리 수를 옵션 라벨에 넣지 않고 상단 요약 줄로 뺐습니다.</span><span class="vi">Chuỗi "1등"·"2등"·"3등" phải giữ nguyên thì từ điển VI mới khớp ("1등"→"Giải Nhất"). Vì vậy số suất còn lại được đưa ra dòng tóm tắt phía trên thay vì nhét vào nhãn option.</span></span></div>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. 바뀌지 않은 것</span><span class="vi">3. Những gì không thay đổi</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">유지</span><span class="vi">Giữ nguyên</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">자동 추첨 규칙 · 회차 자동 등록 · 앱 노출 시점</span><span class="vi">Quy tắc rút thăm tự động · Đăng ký đợt tự động · Thời điểm hiển thị trên app</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">그대로</span><span class="vi">Giữ nguyên</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">내용</span><span class="vi">Nội dung</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>자동 추첨 규칙</b> — 응모 건(티켓 1장 = 1행) 단위 무작위, 1등부터 등수별 정원만큼 순서대로, 1인 1회 당첨, 비복원. 티켓을 많이 쓴 사람이 그만큼 확률이 높아지는 것도 그대로입니다.
+
+<b>회차 자동 등록</b> — 접속 시점 기준 앞으로 4주치 롤링 생성, 월요일 0시 시작 ~ 일요일 23:59:59 마감, 회차명은 마감일 기준 자동 부여. 수동 등록·삭제 없음.
+
+<b>앱 노출 시점</b> — 당첨 알림(PRIZE_WIN)과 "지난 회차 당첨자 명단"은 <b>마감 후에만</b> 나갑니다. 마감 전에 수동 지정을 저장해도 앱에는 아무 변화가 없습니다. 즉 <code>prize_winners</code> 기록은 마감 시점에 최종 당첨자(수동 지정분 포함) 전체를 한 번에 씁니다 — 수동 지정 저장 시에는 쓰지 않습니다. 여기가 구현에서 가장 틀리기 쉬운 지점입니다.
+
+<b>비당첨자 알림 없음</b> — "회차가 마감됐다"는 알림도, 낙첨 통보도 없습니다. 당첨 상세 화면도 없습니다.
+
+<b>수령 정보</b> — 배송지·연락처를 받는 화면은 없고 1:1 문의로 처리합니다. 기프티콘 자동 발송도 없습니다.</span><span class="vi"><b>Quy tắc rút thăm tự động</b> — ngẫu nhiên theo đơn vị lượt dự thưởng (1 vé = 1 dòng), lấp theo thứ tự từ hạng 1 cho đến đủ số lượng từng hạng, mỗi người chỉ trúng 1 lần, không hoàn lại. Việc dùng càng nhiều vé thì xác suất càng cao cũng giữ nguyên.
+
+<b>Đăng ký đợt tự động</b> — tạo rolling 4 tuần tính từ thời điểm truy cập, bắt đầu 0h Thứ Hai ~ đóng 23:59:59 Chủ Nhật, tên đợt tự động đặt theo ngày đóng. Không có đăng ký·xóa thủ công.
+
+<b>Thời điểm hiển thị trên app</b> — thông báo trúng thưởng (PRIZE_WIN) và "danh sách người trúng đợt trước" chỉ ra <b>sau khi đóng đợt</b>. Dù đã lưu chỉ định thủ công trước khi đóng đợt thì app vẫn không thay đổi gì. Tức là bản ghi <code>prize_winners</code> được viết một lần tại thời điểm đóng đợt cho toàn bộ người trúng cuối cùng (bao gồm phần chỉ định thủ công) — không viết lúc lưu chỉ định thủ công. Đây là điểm dễ làm sai nhất khi triển khai.
+
+<b>Không có thông báo cho người không trúng</b> — không có thông báo kiểu "đợt đã đóng", cũng không thông báo việc không trúng. Cũng không có màn chi tiết trúng thưởng.
+
+<b>Thông tin nhận quà</b> — không có màn nhận địa chỉ·số điện thoại, xử lý qua Hỏi đáp 1:1. Cũng không có tự động gửi Gifticon.</span></span></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">4. 앱 문구 정정</span><span class="vi">4. Đính chính nội dung trong app</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">문구</span><span class="vi">Nội dung</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">경품 응모 화면 "추첨 방식" 안내 — 신규 추가</span><span class="vi">Mục "Phương thức rút thăm" ở màn dự thưởng quà — thêm mới</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">문구</span><span class="vi">Nội dung</span></span></span><div class="atxt"><span class="i18n"><span class="ko">앱 "경품 응모" 화면 히어로 카드 아래에 "추첨 방식" 블록을 넣었습니다. 문구는 아래 그대로 씁니다.
+
+KO: 당첨자는 일부 운영 기준에 따라 선정되며, 남은 자리는 응모 건 단위 무작위 추첨으로 결정됩니다. 티켓을 많이 응모할수록 당첨 확률이 올라가며, 1인 1회만 당첨됩니다.
+
+VI: Người trúng thưởng được chọn theo một số tiêu chí vận hành, và các suất còn lại được quyết định bằng rút thăm ngẫu nhiên theo đơn vị lượt dự thưởng. Ứng tuyển càng nhiều vé thì xác suất trúng càng cao, và mỗi người chỉ trúng thưởng 1 lần.
+
+히어로 카드의 <b>"당첨자 자동 발표" → "당첨자 발표"</b>로 바꿨습니다("자동"이 선정 방식까지 자동이라는 오해를 줍니다). 수동 지정 사실 자체는 앱에 노출하지 않습니다.</span><span class="vi">Đã thêm khối "Phương thức rút thăm" bên dưới thẻ hero ở màn "Dự thưởng quà" của app. Dùng đúng nội dung dưới đây.
+
+KO: 당첨자는 일부 운영 기준에 따라 선정되며, 남은 자리는 응모 건 단위 무작위 추첨으로 결정됩니다. 티켓을 많이 응모할수록 당첨 확률이 올라가며, 1인 1회만 당첨됩니다.
+
+VI: Người trúng thưởng được chọn theo một số tiêu chí vận hành, và các suất còn lại được quyết định bằng rút thăm ngẫu nhiên theo đơn vị lượt dự thưởng. Ứng tuyển càng nhiều vé thì xác suất trúng càng cao, và mỗi người chỉ trúng thưởng 1 lần.
+
+Đã đổi <b>"Tự động công bố người trúng" → "Công bố người trúng"</b> ở thẻ hero (chữ "tự động" gây hiểu nhầm rằng cả cách chọn cũng tự động). Bản thân việc chỉ định thủ công không hiển thị trên app.</span></span></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">5. 화면 변경 — 회차 리스트 3구역</span><span class="vi">5. Thay đổi màn hình — Danh sách đợt 3 khu vực</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">화면</span><span class="vi">Màn hình</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">구역별로 액션과 컬럼이 다릅니다 — 07-28 전달문에는 3구역이 같은 컬럼·같은 액션인 것으로 되어 있었습니다</span><span class="vi">Hành động và cột khác nhau theo từng khu vực — bản gửi 28/07 ghi là 3 khu vực có cùng cột·cùng hành động</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">변경</span><span class="vi">Thay đổi</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">스펙</span><span class="vi">Spec</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>진행중인 주간 이벤트</b> — 5칸(회차 · 기간 · 응모건 수 · 당첨자 · 액션). 액션은 <b>"응모자 보기" + "경품 수정"</b> 둘 다.
+
+<b>진행예정 주간 이벤트</b> — <b>3칸(회차 · 기간 · 액션)</b>. 응모건 수가 항상 0건, 당첨자가 항상 미선정이라 그 두 컬럼을 아예 두지 않습니다. 액션은 <b>"경품 수정"만</b> — 응모 0건이라 볼 내용이 없어 "응모자 보기"를 뺐습니다.
+
+<b>종료된 주간 이벤트</b> — <b>6칸(회차 · 기간 · 응모건 수 · 당첨자 · 지급 현황 · 액션)</b>. 액션은 <b>"응모자 보기"만</b> — <b>종료 회차는 경품 구성을 수정할 수 없습니다</b>(당첨자까지 확정된 회차이므로). "지급 현황" 컬럼은 6번 참고.
+
+<b>버튼명 변경</b> — <b>"응모 상세 보기" → "응모자 보기"</b>. 앱·CMS 어디서든 이 이름으로 통일합니다.</span><span class="vi"><b>Sự kiện tuần đang diễn ra</b> — 5 cột (Vòng · Thời gian · Số lượt dự thưởng · Người trúng · Hành động). Hành động có <b>cả "Xem người dự thưởng" + "Chỉnh sửa giải thưởng"</b>.
+
+<b>Sự kiện tuần sắp diễn ra</b> — <b>3 cột (Vòng · Thời gian · Hành động)</b>. Vì số lượt dự thưởng luôn là 0 và người trúng luôn là chưa chọn nên bỏ hẳn hai cột đó. Hành động <b>chỉ có "Chỉnh sửa giải thưởng"</b> — vì 0 lượt dự thưởng nên không có gì để xem, đã bỏ "Xem người dự thưởng".
+
+<b>Sự kiện tuần đã kết thúc</b> — <b>6 cột (Vòng · Thời gian · Số lượt dự thưởng · Người trúng · Tình trạng gửi quà · Hành động)</b>. Hành động <b>chỉ có "Xem người dự thưởng"</b> — <b>đợt đã kết thúc thì không sửa được cấu hình quà</b> (vì đã chốt cả người trúng). Cột "Tình trạng gửi quà" xem mục 6.
+
+<b>Đổi tên nút</b> — <b>"Xem chi tiết dự thưởng" → "Xem người dự thưởng"</b>. Thống nhất dùng tên này ở cả app·CMS.</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[<span class="i18n"><span class="ko">참조</span><span class="vi">Tham khảo</span></span>] <span class="i18n"><span class="ko">종료 회차 경품 수정 차단은 현재 클라이언트 이중 차단까지만</span><span class="vi">Chặn sửa quà ở đợt đã kết thúc hiện chỉ tới mức chặn đôi ở client</span></span></span><span class="i18n"><span class="ko">버튼을 숨기는 것과 별개로 <b>열기 시점·저장 시점 두 곳에서</b> 차단합니다("종료된 회차는 경품을 수정할 수 없습니다."). 다만 이건 클라이언트 차단이므로 <b>서버단 차단이 별도로 필요합니다</b> — 9번 참고.</span><span class="vi">Ngoài việc ẩn nút, còn chặn ở <b>hai chỗ: lúc mở và lúc lưu</b> ("Đợt đã kết thúc thì không thể sửa giải thưởng."). Tuy nhiên đây là chặn ở client nên <b>cần chặn riêng ở phía server</b> — xem mục 9.</span></span></div>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">6. 화면 신설 — 종료 회차 "지급 현황" 컬럼</span><span class="vi">6. Thêm mới màn hình — Cột "Tình trạng gửi quà" ở đợt đã kết thúc</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">신설</span><span class="vi">Thêm mới</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">응모자 리스트를 열지 않아도 회차 단위로 지급 진행 상태를 확인할 수 있게 하는 컬럼 (종료 구역에만)</span><span class="vi">Cột cho phép xem tiến độ gửi quà theo từng đợt mà không cần mở danh sách người dự thưởng (chỉ ở khu vực đã kết thúc)</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">스펙</span><span class="vi">Spec</span></span></span><div class="atxt"><span class="i18n"><span class="ko">칸은 2행입니다 — <b>윗줄에 상태 뱃지, 아랫줄에 "지급 완료 N/M" 카운트</b>(M = 그 회차 당첨자 수, N = 그중 지급 완료 인원).
+
+· <b>전체 완료</b>(초록) — 당첨자 전원 지급 완료. 예: 9/9
+· <b>일부 지급</b>(주황) — 일부만 완료. 예: 7/9
+· <b>미지급</b>(빨강) — 한 명도 안 보냄. 예: 0/9. 마감 직후 상태
+· <b>—</b> — 당첨자가 없는 회차(응모 0건 등). 지급 대상이 없어 카운트를 표시하지 않음
+
+<b>별도 저장값이 아닙니다.</b> 당첨자별 지급 상태를 그때그때 세서 만드는 파생값입니다. 그래서 응모자 리스트 모달에서 지급 상태를 바꿔 "저장"하면 회차 리스트의 뱃지·카운트가 즉시 따라 움직입니다(7/9 → 8/9, 마지막 1명까지 처리하면 "전체 완료 · 9/9"). 저장하지 않고 모달을 닫으면 리스트도 그대로입니다.
+
+<b>진행중·진행예정 구역에는 이 컬럼이 없습니다</b> — 진행중은 마감 전이라 지급 개념이 성립하지 않고, 진행예정은 당첨자 자체가 없습니다.</span><span class="vi">Ô này có 2 dòng — <b>dòng trên là badge trạng thái, dòng dưới là số đếm "Đã gửi quà N/M"</b> (M = số người trúng của đợt đó, N = số người trong đó đã gửi quà).
+
+· <b>Hoàn tất toàn bộ</b> (xanh lá) — toàn bộ người trúng đã gửi quà. VD: 9/9
+· <b>Gửi một phần</b> (cam) — mới hoàn tất một phần. VD: 7/9
+· <b>Chưa gửi</b> (đỏ) — chưa gửi cho ai. VD: 0/9. Trạng thái ngay sau khi đóng đợt
+· <b>—</b> — đợt không có người trúng (0 lượt dự thưởng v.v.). Không có đối tượng gửi nên không hiện số đếm
+
+<b>Không phải giá trị lưu riêng.</b> Đây là giá trị dẫn xuất, được đếm ngay tại chỗ từ trạng thái gửi quà của từng người trúng. Vì vậy khi đổi trạng thái gửi quà trong modal danh sách người dự thưởng rồi bấm "Lưu" thì badge·số đếm ở danh sách đợt cũng đổi theo ngay (7/9 → 8/9, xử lý nốt người cuối thì thành "Hoàn tất toàn bộ · 9/9"). Nếu đóng modal mà không lưu thì danh sách vẫn giữ nguyên.
+
+<b>Khu vực đang diễn ra·sắp diễn ra không có cột này</b> — đang diễn ra thì chưa đóng đợt nên khái niệm gửi quà chưa phát sinh, sắp diễn ra thì chưa có người trúng nào.</span></span></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">7. 화면 변경 — 응모자 리스트</span><span class="vi">7. Thay đổi màn hình — Danh sách người dự thưởng</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">화면</span><span class="vi">Màn hình</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">컬럼 구조 · 검색 · 페이지네이션 · 모달 규격</span><span class="vi">Cấu trúc cột · tìm kiếm · phân trang · quy cách modal</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">변경</span><span class="vi">Thay đổi</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">스펙</span><span class="vi">Spec</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>컬럼 3개로 정리</b> — <b>닉네임(카카오ID) · 응모일시 · 당첨 등수</b>. 07-28 전달문에 있던 우측 "당첨 등수" 컬럼은 없애고, "당첨 경품 지급" 컬럼을 <b>"당첨 등수"로 개칭</b>해 하나로 합쳤습니다. 이 칸 하나가 등수·경품명·지급 상태·메모를 다 담고, <b>내용은 회차 상태에 따라 갈립니다</b>.
+
+· <b>진행 중 회차</b> — 등수 지정 드롭다운 + 그 등수의 경품명. 한 줄. 지급 상태·메모 없음(8번).
+· <b>종료 회차</b> — 2행. 윗줄 = 당첨 뱃지("당첨 · N등") + 경품명, 아랫줄 = 메모칸 + 지급 상태 뱃지.
+
+<b>등수별 경품명 표시</b> — 등수 옆에 그 등수에 걸린 경품명이 붙습니다. 회차의 경품 구성 데이터에서 그대로 읽으므로 "경품 수정"에서 경품을 바꾸면 이 표기도 따라 바뀝니다.
+
+<b>검색</b> — <b>닉네임 + 카카오ID</b> 부분 일치, 대소문자 무시. 카카오ID는 연동 회원만 대상입니다.
+
+<b>페이지네이션</b> — <b>10건씩</b>. 정렬은 검색·페이지와 무관하게 <b>당첨자를 등수 순으로 먼저, 그 뒤에 나머지</b> 순서를 정한 다음 그 순서대로 10건씩 끊습니다. 그래서 1페이지 맨 위는 항상 1등입니다. 검색어를 바꾸면 1페이지로 돌아가고, 모달을 닫았다 열면 검색어·페이지가 초기화됩니다.
+
+<b>모달 규격</b>
+· <b>크기 고정</b> — 표 영역을 10행 높이로 고정하고 페이지 버튼 줄도 자리를 유지합니다. <b>어느 회차를 열든, 페이지를 몇 번 넘기든 모달 크기가 변하지 않습니다.</b>
+· <b>행 높이 약 1.3배</b> — 종료 회차 2행 구조가 답답하지 않게. 그래도 한 페이지 10건은 모달 내부 스크롤 없이 다 보입니다.
+· <b>제목에 회차 구분 접두</b> — "진행중인 주간 이벤트 / 응모자 리스트 — {회차명}" 또는 "종료된 주간 이벤트 / 응모자 리스트 — {회차명}". 제목만 봐도 어느 상태의 회차인지 구분됩니다.
+· <b>중앙 정렬</b> — 이 화면의 모달 전부 화면 정중앙에 뜹니다.
+
+<b>상태 뱃지</b> — 진행 중 회차는 "미지정 (마감 시 전체 무작위 추첨)" / "저장 전 (임시 지정)" / "수동 지정 저장됨" 3가지, 종료 회차는 "미선정" / "당첨자 확정". 드롭다운을 건드리기만 하면 임시 상태이고 <b>"저장"을 눌러야 반영</b>됩니다.</span><span class="vi"><b>Gọn lại thành 3 cột</b> — <b>Biệt danh (Kakao ID) · Thời điểm dự thưởng · Hạng trúng thưởng</b>. Cột "Hạng trúng thưởng" bên phải trong bản gửi 28/07 đã được bỏ, và cột "Trúng thưởng · Gửi quà" được <b>đổi tên thành "Hạng trúng thưởng"</b>, gộp lại thành một. Ô này chứa cả hạng·tên quà·trạng thái gửi quà·ghi chú, và <b>nội dung khác nhau theo trạng thái đợt</b>.
+
+· <b>Đợt đang diễn ra</b> — dropdown chỉ định hạng + tên quà của hạng đó. Một dòng. Không có trạng thái gửi quà·ghi chú (mục 8).
+· <b>Đợt đã kết thúc</b> — 2 dòng. Dòng trên = badge trúng thưởng ("Trúng thưởng · Hạng N") + tên quà, dòng dưới = ô ghi chú + badge trạng thái gửi quà.
+
+<b>Hiển thị tên quà theo hạng</b> — bên cạnh hạng có tên quà gắn với hạng đó. Đọc thẳng từ dữ liệu cấu hình quà của đợt nên đổi quà ở "Chỉnh sửa giải thưởng" thì phần hiển thị này cũng đổi theo.
+
+<b>Tìm kiếm</b> — khớp một phần <b>biệt danh + Kakao ID</b>, không phân biệt hoa thường. Kakao ID chỉ áp dụng cho hội viên đã liên kết.
+
+<b>Phân trang</b> — <b>10 dòng mỗi trang</b>. Sắp xếp không phụ thuộc tìm kiếm·trang: <b>xếp người trúng lên trước theo thứ tự hạng, rồi mới nối phần còn lại</b>, sau đó mới cắt 10 dòng mỗi trang theo thứ tự đó. Nên đầu trang 1 luôn là hạng 1. Đổi từ khóa thì quay về trang 1, đóng modal rồi mở lại thì từ khóa·trang được đặt lại.
+
+<b>Quy cách modal</b>
+· <b>Cố định kích thước</b> — cố định vùng bảng bằng chiều cao 10 dòng và dòng nút chuyển trang cũng giữ nguyên chỗ. <b>Mở đợt nào hay chuyển bao nhiêu trang thì kích thước modal cũng không đổi.</b>
+· <b>Chiều cao dòng khoảng 1,3 lần</b> — để cấu trúc 2 dòng của đợt đã kết thúc không bị chật. Dù vậy 10 dòng của một trang vẫn hiện hết mà không phải cuộn bên trong modal.
+· <b>Tiêu đề có tiền tố phân biệt trạng thái đợt</b> — "Sự kiện tuần đang diễn ra / Danh sách người dự thưởng — {tên đợt}" hoặc "Sự kiện tuần đã kết thúc / Danh sách người dự thưởng — {tên đợt}". Chỉ xem tiêu đề cũng biết đợt đang ở trạng thái nào.
+· <b>Căn giữa</b> — toàn bộ modal của màn này đều hiện ở chính giữa màn hình.
+
+<b>Badge trạng thái</b> — đợt đang diễn ra có 3 loại: "Chưa chỉ định (khi đóng đợt sẽ rút thăm ngẫu nhiên toàn bộ)" / "Trước khi lưu (chỉ định tạm)" / "Đã lưu chỉ định thủ công"; đợt đã kết thúc là "Chưa chọn" / "Đã chốt người trúng". Chỉ chạm vào dropdown thì vẫn là trạng thái tạm, <b>phải bấm "Lưu" mới có hiệu lực</b>.</span></span></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">8. 화면 변경 — 진행 중 회차는 지급 관리 없음</span><span class="vi">8. Thay đổi màn hình — Đợt đang diễn ra không có quản lý gửi quà</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">변경</span><span class="vi">Thay đổi</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">진행 중인 회차에서는 지급 상태 뱃지·메모칸을 렌더하지 않는다 (앞서 전달한 "회색 점선 비활성 + 툴팁" 방식을 대체)</span><span class="vi">Ở đợt đang diễn ra không render badge trạng thái gửi quà·ô ghi chú (thay cho phương án "vô hiệu bằng viền nét đứt xám + tooltip" đã gửi trước đó)</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">변경</span><span class="vi">Thay đổi</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">스펙</span><span class="vi">Spec</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>진행 중인 회차</b> — 지급 관련 표기를 <b>렌더하지 않습니다</b>. 지급 상태 뱃지도, 메모칸도 없습니다. 비활성 처리가 아니라 아예 없습니다. 화면 구성은 <b>닉네임(카카오ID) / 응모일시 / 당첨 등수(수동 지정 드롭다운 + 그 등수의 경품명)</b>가 전부입니다.
+
+<b>이유</b> — 마감 전에는 지급이라는 게 성립하지 않습니다. 진행 중 회차에서 운영자가 할 수 있는 일은 <b>당첨자 수동 지정까지</b>입니다.
+
+왜 없는지는 툴바 ⓘ 버튼 안내(호버 시 툴팁, 클릭 시 펼침) 둘째 줄로 알립니다 — "지급 상태·메모는 아직 지급이 성립하지 않는 구간이라 표시하지 않습니다 — 회차 종료 후 이 리스트에 함께 나타납니다".
+
+<b>종료된 회차</b> — 같은 "당첨 등수" 칸에 당첨 뱃지·등수 + 경품명(윗줄), 메모칸 + 지급 상태 뱃지(아랫줄)가 들어갑니다. 지급 상태 토글·메모 입력·"저장" 커밋 모두 정상 동작합니다.
+
+회차 리스트의 "지급 현황" 컬럼도 같은 이유로 종료 구역에만 있습니다(6번).</span><span class="vi"><b>Đợt đang diễn ra</b> — <b>không render</b> phần liên quan đến gửi quà. Không có badge trạng thái gửi quà, cũng không có ô ghi chú. Không phải vô hiệu mà là hoàn toàn không có. Cấu trúc màn chỉ gồm <b>Biệt danh (Kakao ID) / Thời điểm dự thưởng / Hạng trúng thưởng (dropdown chỉ định thủ công + tên quà của hạng đó)</b>.
+
+<b>Lý do</b> — trước khi đóng đợt thì việc gửi quà chưa phát sinh. Ở đợt đang diễn ra, việc Vận hành viên làm được <b>chỉ đến mức chỉ định người trúng thủ công</b>.
+
+Lý do không có được thông báo ở dòng thứ hai trong phần hướng dẫn của nút ⓘ trên thanh công cụ (hover ra tooltip, bấm thì mở ra) — "Trạng thái gửi quà·ghi chú không được hiển thị vì chưa tới lúc phát sinh việc gửi quà — sẽ xuất hiện trong danh sách này sau khi đợt kết thúc".
+
+<b>Đợt đã kết thúc</b> — cùng ô "Hạng trúng thưởng" chứa badge trúng thưởng·hạng + tên quà (dòng trên), ô ghi chú + badge trạng thái gửi quà (dòng dưới). Đổi trạng thái gửi quà·nhập ghi chú·commit bằng "Lưu" đều hoạt động bình thường.
+
+Cột "Tình trạng gửi quà" ở danh sách đợt cũng vì lý do đó mà chỉ có ở khu vực đã kết thúc (mục 6).</span></span></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">9. 서버단에서 강제해야 하는 것 — 백엔드 반영 요청</span><span class="vi">9. Những điều phải cưỡng chế ở phía server — Đề nghị phản ánh vào backend</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">요청</span><span class="vi">Đề nghị</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">아래 6건은 <b>저희 구현에서 클라이언트 차단까지만</b> 되어 있습니다. 정책상 서버에서 막혀야 하는 항목이라 백엔드 반영을 요청합니다.</span><span class="vi">6 mục dưới đây <b>trong bản triển khai của bên mình chỉ chặn tới mức client</b>. Đây là các mục theo chính sách phải bị chặn ở server, nên đề nghị phản ánh vào backend.</span></span></div><span class="bd hold"><span class="i18n"><span class="ko">백엔드 필요</span><span class="vi">Cần backend</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">항목</span><span class="vi">Mục</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>1) 종료 회차 경품 구성 수정 차단</b>
+현재는 버튼 제거 + 열기·저장 두 지점 클라이언트 차단뿐입니다. 마감이 지난 회차의 경품 구성 변경 요청은 서버에서 거절해야 합니다 — 당첨자가 확정된 뒤 경품 구성이 바뀌면 이미 확정된 당첨 결과와 경품명이 어긋납니다.
+
+<b>2) 마감 후 당첨자 구성 변경 차단</b>
+수동 지정 API는 <b>진행 중인 회차에만</b> 허용해야 합니다. 마감된 회차에 대한 당첨자 추가·변경·해제는 서버에서 거절. CMS에는 재추첨 기능이 없습니다.
+
+<b>3) 등수별 정원 초과 지정 차단</b>
+클라이언트는 정원이 찬 등수를 선택지에서 빼는 방식이라 우회가 가능합니다. 등수별 정원은 서버에서 검증해야 합니다.
+
+<b>4) 1인 1회 당첨 차단</b>
+같은 회차에서 한 사람이 두 개 이상의 슬롯에 들어가는 것을 서버에서 막아야 합니다. 수동 지정과 마감 자동 추첨 <b>양쪽 모두</b>에 적용됩니다.
+
+<b>5) 진행 중 회차 지급 상태·메모 변경 차단</b>
+진행 중 회차에는 지급 표기 자체가 렌더되지 않지만, 지급 상태·메모 갱신 요청 자체를 서버에서 거절해야 합니다.
+
+<b>6) 마감 자동 추첨 멱등성</b>
+한 회차의 마감 자동 추첨은 <b>정확히 한 번만</b> 실행돼야 합니다. 중복 실행 시 당첨자가 덮어써지거나 늘어나면 안 됩니다. 그리고 <code>prize_winners</code> 기록·당첨 알림 발송은 <b>이 마감 처리 시점에 한 번</b>만 일어납니다 — 수동 지정 저장 시에는 일어나지 않습니다.</span><span class="vi"><b>1) Chặn sửa cấu hình quà ở đợt đã kết thúc</b>
+Hiện chỉ có ẩn nút + chặn ở client tại hai chỗ mở·lưu. Yêu cầu thay đổi cấu hình quà của đợt đã qua hạn đóng phải bị server từ chối — nếu cấu hình quà thay đổi sau khi người trúng đã chốt thì kết quả trúng đã chốt và tên quà sẽ lệch nhau.
+
+<b>2) Chặn thay đổi cơ cấu người trúng sau khi đóng đợt</b>
+API chỉ định thủ công chỉ được cho phép với <b>đợt đang diễn ra</b>. Việc thêm·đổi·huỷ người trúng đối với đợt đã đóng phải bị server từ chối. CMS không có chức năng rút thăm lại.
+
+<b>3) Chặn chỉ định vượt số lượng của từng hạng</b>
+Client dùng cách loại hạng đã đủ số lượng khỏi lựa chọn nên có thể đi đường vòng. Số lượng theo từng hạng phải được kiểm tra ở server.
+
+<b>4) Chặn việc một người trúng nhiều lần</b>
+Phải chặn ở server việc một người vào từ hai suất trở lên trong cùng một đợt. Áp dụng cho <b>cả hai</b> phía: chỉ định thủ công và rút thăm tự động khi đóng đợt.
+
+<b>5) Chặn thay đổi trạng thái gửi quà·ghi chú ở đợt đang diễn ra</b>
+Ở đợt đang diễn ra vốn không render phần gửi quà, nhưng bản thân yêu cầu cập nhật trạng thái gửi quà·ghi chú cũng phải bị server từ chối.
+
+<b>6) Tính idempotent của rút thăm tự động khi đóng đợt</b>
+Rút thăm tự động khi đóng đợt của một đợt phải được thực thi <b>đúng một lần</b>. Khi chạy trùng thì không được ghi đè hay làm tăng số người trúng. Và việc ghi <code>prize_winners</code>·gửi thông báo trúng thưởng chỉ xảy ra <b>một lần tại thời điểm xử lý đóng đợt này</b> — không xảy ra khi lưu chỉ định thủ công.</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[<span class="i18n"><span class="ko">참조</span><span class="vi">Tham khảo</span></span>] <span class="i18n"><span class="ko">데모 환경의 마감 처리 방식</span><span class="vi">Cách xử lý đóng đợt ở môi trường demo</span></span></span><span class="i18n"><span class="ko">데모에는 서버 크론이 없어서, CMS 화면을 열 때 "마감은 지났는데 아직 추첨 안 된 회차"를 찾아 그 자리에서 대신 처리합니다. 실제 구현에서는 스케줄러로 도는 게 맞고, 그때 6번 멱등성이 필요합니다.</span><span class="vi">Demo không có cron server nên khi mở màn CMS sẽ tìm "đợt đã qua hạn đóng nhưng chưa rút thăm" rồi xử lý thay ngay tại đó. Ở bản triển khai thật thì nên chạy bằng scheduler, và khi đó cần tính idempotent ở mục 6.</span></span></div>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">10. 반영 위치</span><span class="vi">10. Nơi đã phản ánh</span></span></h2>
+
+<div class="qa"><div class="arow" style="border-top:none;margin-top:0;padding-top:0"><span class="alabel"><span class="i18n"><span class="ko">확인</span><span class="vi">Kiểm tra</span></span></span><div class="atxt"><span class="i18n"><span class="ko">· <b>CMS 데모</b> pricepick-demo/cms — 응모자 리스트 드롭다운 부활, 마감 시 빈 슬롯만 추첨, prize_winners 마감 시 일괄 기록
+· <b>CMS 원본</b> cms.html — 동일 이식 + 3구역 액션·컬럼 정리, 지급 현황 컬럼, 모달 규격
+· <b>앱 데모</b> pricepick-demo/app · <b>인터랙티브 정본</b> interactive.html — "추첨 방식" 안내 신규 + 히어로 문구 정정 (KO/VI)
+· <b>마스터 정책서</b> policyspec.html — 10번 탭 "추첨·경품"의 당첨자 선정·당첨 확률·운영 항목 갱신 + 확정 재확인 탭에 정정 카드 신설
+· <b>CMS 설명서</b> cms-storyboard/weekly-draws.html — 3·4·5·6·8·9번 절 갱신, 캡처 KO/VI 재촬영(진행중 회차 = 드롭다운·경품명만 / 종료 회차 = 2행 구조 + 지급 상태·메모 / 3구역 리스트 = 지급 현황 컬럼)
+
+<b>남은 확인 1건</b> — 약관 제10조(추첨 및 경품)는 "당첨자 발표 및 경품 지급 방법은 각 회차별로 고지합니다"로 되어 있어 새 스펙과 충돌하지 않습니다. 다만 앱에 "일부 운영 기준에 따라 선정"을 고지하는 만큼, 약관에도 선정 기준 관련 한 문장을 넣을지는 김반장 판단이 필요합니다.</span><span class="vi">· <b>CMS demo</b> pricepick-demo/cms — phục hồi dropdown ở danh sách người dự thưởng, khi đóng đợt chỉ rút thăm suất còn trống, ghi prize_winners một lần khi đóng đợt
+· <b>CMS gốc</b> cms.html — port y hệt + sắp xếp lại hành động·cột của 3 khu vực, cột Tình trạng gửi quà, quy cách modal
+· <b>App demo</b> pricepick-demo/app · <b>Interactive bản chính</b> interactive.html — thêm mới mục "Phương thức rút thăm" + đính chính nội dung thẻ hero (KO/VI)
+· <b>Tài liệu chính sách gốc</b> policyspec.html — cập nhật các mục chọn người trúng·xác suất trúng·vận hành ở tab 10 "Rút thăm·Quà tặng" + thêm thẻ đính chính ở tab xác nhận lại
+· <b>Tài liệu CMS</b> cms-storyboard/weekly-draws.html — cập nhật mục 3·4·5·6·8·9, chụp lại ảnh KO/VI (đợt đang diễn ra: chỉ dropdown·tên quà / đợt đã kết thúc: cấu trúc 2 dòng + trạng thái gửi quà·ghi chú / danh sách 3 khu vực: cột Tình trạng gửi quà)
+
+<b>1 việc còn cần xác nhận</b> — Điều 10 của Điều khoản (Rút thăm và quà tặng) ghi "Phương pháp công bố người trúng và gửi quà sẽ được thông báo theo từng đợt" nên không xung đột với spec mới. Tuy nhiên vì app có thông báo "được chọn theo một số tiêu chí vận hành", việc có thêm một câu về tiêu chí chọn vào Điều khoản hay không cần anh quyết định.</span></span></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 개발 전달용 수정 공지 · 2026-07-30 · 확정: 김반장</span><span class="vi">PricePick · Thông báo chỉnh sửa bàn giao phát triển · 30/07/2026 · Chốt: anh</span></span></div>
+</div>
+</body></html>

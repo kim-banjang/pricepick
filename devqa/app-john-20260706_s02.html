@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱(프론트) 질문 답변 #8 · John</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+h2.grp .vn{color:var(--ink3);font-weight:600}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:700;font-size:14px;flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap} .atxt b{color:var(--ink1);font-weight:700}
+.atxt .need{color:var(--ck);font-weight:800}
+.atxt .hold{color:var(--hold);font-weight:800}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;margin-top:11px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+.ref-box{background:#f4f5f8;border-left:3px solid var(--ink3);border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:var(--ink2)}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:var(--ink3);letter-spacing:.06em;margin-bottom:4px;display:block}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱(프론트) 질문 답변 #8 · John</span><span class="vi">Giải đáp câu hỏi App (Frontend) PricePick #8 · John</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">John(Nhon Truong) · App 프론트 · 화면별 질문 4건 · 답변 KO/VI</span><span class="vi">John(Nhon Truong) · App Frontend · 4 câu hỏi theo màn · Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/QnA-PricePick-3953ac69e71180018552eb8735d84818" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 4건</span><span class="vi">4 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 4</span><span class="vi">Đã chốt 4</span></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 고객센터 <span class="vn">(Chăm sóc khách hàng)</span></span><span class="vi">1. Chăm sóc khách hàng</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">고객센터 화면의 카카오 문의 연결 부분은 무엇을 처리해야 하나요?</span><span class="vi">Phần liên hệ Kakao trong màn hình chăm sóc khách hàng cần phải xử lý những gì?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq8-1.png','고객센터 카카오채널 화면')"><img src="/devqa/img/jq8-1.png" alt="고객센터 카카오채널 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">고객센터 카카오채널 화면 (클릭하면 크게)</span><span class="vi">Màn liên hệ kênh Kakao - CSKH (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">앱은 카카오톡 채널로 연결하는 딥링크만 열면 됩니다. 실제 상담은 카카오채널에서 처리하며, 앱이 추가로 처리할 로직은 없습니다.</span><span class="vi">App chỉ cần mở deep link dẫn sang kênh KakaoTalk. Việc tư vấn thực tế diễn ra trên kênh Kakao, app không cần xử lý thêm logic nào khác.</span></span>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">프라이스픽 공식 카카오채널 운영을 전제로 하며, 앱은 채널 URL(딥링크) 연동만 담당합니다.</span><span class="vi">Với điều kiện PricePick vận hành kênh Kakao chính thức; app chỉ đảm nhiệm liên kết URL (deep link) của kênh đó.</span></span></div></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">(카카오 연동) 계정이 이미 카카오 연동된 상태라면 이 화면 부분은 어떻게 표시되나요?</span><span class="vi">(Liên kết Kakao) Khi tài khoản đã liên kết Kakao rồi thì phần giao diện này sẽ hiển thị như thế nào?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq8-2.png','마이 - 카카오 연동 화면')"><img src="/devqa/img/jq8-2.png" alt="마이 - 카카오 연동 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">마이 - 카카오 연동 화면 (클릭하면 크게)</span><span class="vi">Màn liên kết Kakao - Tài khoản của tôi (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">"카카오 미연동 / [연동하기]"가 "카카오 연동됨"(계정 정보 표시 + 연동 해제 옵션)으로 바뀝니다. 연동 해제도 가능하며, 해제해도 티켓·포인트는 유지되고 재연동 시 복구됩니다.</span><span class="vi">"Chưa liên kết Kakao / [Liên kết ngay]" chuyển sang "Đã liên kết Kakao" (hiển thị thông tin tài khoản + tùy chọn hủy liên kết). Có thể hủy liên kết; dù hủy, vé và điểm vẫn được giữ và khôi phục khi liên kết lại.</span></span></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 설정 <span class="vn">(Cài đặt)</span></span><span class="vi">2. Cài đặt</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">'쿠팡 바로가기를 홈 화면에 추가' 기능은 안내 화면만 보여주고 사용자가 직접 조작하는 것이며, 앱에서 별도로 처리할 게 없는 게 맞나요?</span><span class="vi">Chức năng "Thêm lối tắt Coupang vào màn hình chính" này chỉ hiển thị bảng hướng dẫn và người dùng sẽ tự thao tác chứ app không cần phải làm gì đúng không?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq8-3a.png','설정 화면')"><img src="/devqa/img/jq8-3a.png" alt="설정 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">설정 화면 (클릭하면 크게)</span><span class="vi">Màn Cài đặt (nhấn để xem lớn)</span></span></span></button>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq8-3b.png','쿠팡 바로가기 홈 화면 추가 안내 모달')"><img src="/devqa/img/jq8-3b.png" alt="쿠팡 바로가기 홈 화면 추가 안내 모달" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">쿠팡 바로가기 홈 화면 추가 안내 모달 (클릭하면 크게)</span><span class="vi">Modal hướng dẫn thêm lối tắt Coupang vào màn hình chính (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">맞습니다. 앱은 안내 모달만 표시하고, 홈 화면 추가는 OS 기능으로 사용자가 직접 수행합니다. 앱이 추가로 처리할 동작은 없습니다.</span><span class="vi">Đúng vậy. App chỉ hiển thị modal hướng dẫn, còn việc thêm vào màn hình chính do người dùng tự thao tác bằng tính năng của hệ điều hành. App không cần xử lý thêm thao tác nào khác.</span></span>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">iOS: Safari 공유 → '홈 화면에 추가' / Android: 자동 배너</span><span class="vi">iOS: Chia sẻ trên Safari → 'Thêm vào màn hình chính' / Android: banner tự động</span></span></div></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. 활동내역 <span class="vn">(Lịch sử hoạt động)</span></span><span class="vi">3. Lịch sử hoạt động</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">4</span><div class="qtxt"><span class="i18n"><span class="ko">'최신순'과 '오래된순' 두 버튼은 각각 최신 연월이 맨 위, 오래된 연월이 맨 위에 오도록 목록 정렬 순서를 바꾸는 기능이 맞나요?</span><span class="vi">2 button "최신순" và "오래된순" dùng để hiển thị danh sách theo thứ tự tháng năm mới nhất lên trên cùng và tháng năm cũ nhất lên trên cùng đúng không?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq8-4.png','활동내역 정렬 화면')"><img src="/devqa/img/jq8-4.png" alt="활동내역 정렬 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">활동내역 정렬 화면 (클릭하면 크게)</span><span class="vi">Màn Lịch sử hoạt động - sắp xếp (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">맞습니다. 연월(월/년) 기준 정렬입니다. "최신순" = 최근 연월이 맨 위, "오래된순" = 오래된 연월이 맨 위.</span><span class="vi">Đúng vậy. Sắp xếp theo tháng/năm. "최신순" (Mới nhất) = tháng/năm gần đây nhất lên trên cùng, "오래된순" (Cũ nhất) = tháng/năm cũ nhất lên trên cùng.</span></span></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱(프론트) 질문 답변 #8 · John(Nhon Truong) · 2026-07-06</span><span class="vi">PricePick · Giải đáp App (Frontend) #8 · John(Nhon Truong) · 2026-07-06</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>

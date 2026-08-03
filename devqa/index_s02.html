@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick · 개발 QA</title><style>
+:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.55}
+.wrap{max-width:880px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34px 0 30px}
+.htitle{font-size:25px;font-weight:800}.hsub{font-size:13.5px;opacity:.85;margin-top:7px}
+.sec{font-size:12px;color:var(--ink3);font-weight:700;margin:24px 2px 10px;text-transform:uppercase;letter-spacing:.04em}
+.rowwrap{margin-bottom:10px}
+.row{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:13px 13px 0 0;border-bottom:none;padding:16px 18px;text-decoration:none;color:inherit;transition:.12s}
+.row:hover{background:#faf8ff}
+.rmain{flex:1;min-width:0}.rt{font-size:15px;font-weight:700}.rvi{font-size:12px;color:var(--ink3);font-weight:500}
+.rwho{font-size:12px;color:var(--ink3);margin-top:3px}
+.rdate{font-size:12.5px;color:var(--pp-d);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rarrow{font-size:20px;color:var(--ink3)}
+.srcnotion{display:block;background:#fff;border:1px solid var(--line);border-radius:0 0 13px 13px;padding:9px 18px;font-size:12px;color:var(--ink3);text-decoration:none}
+.srcnotion:hover{color:var(--pp-d);background:#faf8ff}
+.srcnotion.btn{cursor:pointer}.srcnotion.btn::after{content:"›";float:right;color:var(--pp-d);font-weight:700}
+.foot{margin-top:26px;font-size:11.5px;color:var(--ink3)}
+.dnotice{display:flex;gap:11px;align-items:flex-start;background:#fff4f2;border:1.5px solid #f7b7ab;border-left:4px solid #e5484d;border-radius:13px;padding:14px 16px;margin:10px 0 4px;font-size:12.8px;color:#8f2420;line-height:1.55;text-decoration:none}
+.dnotice:hover{background:#fff0ed}
+.dnotice svg{width:19px;height:19px;fill:none;stroke:#e5484d;stroke-width:2.2;flex-shrink:0;margin-top:1px}
+.dnotice b{color:#6f1b18} .dnotice .go{color:#b02622;font-weight:800;white-space:nowrap;margin-left:auto;align-self:center}
+/* ── 온보딩 공지 배너(Q&A 카드와 구분) ── */
+.notice{display:flex;align-items:center;gap:15px;background:linear-gradient(120deg,#f4efff,#eae1ff);border:1px solid #ddd0fb;border-left:4px solid var(--pp);border-radius:14px;padding:15px 18px;margin:24px 0 4px;text-decoration:none;color:inherit;transition:.12s}
+.notice:hover{background:linear-gradient(120deg,#efe8ff,#e4d8ff)}
+.notice-ico{flex-shrink:0;width:40px;height:40px;border-radius:11px;background:var(--pp);display:flex;align-items:center;justify-content:center}
+.notice-ico svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2}
+.notice-b{flex:1;min-width:0}
+.notice-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--pp-d);background:#fff;border:1px solid #ddd0fb;padding:2px 8px;border-radius:20px;margin-bottom:5px}
+.notice-t{font-size:15px;font-weight:800;color:var(--ink1)}
+.notice-vi{font-size:12px;color:var(--pp-d);font-weight:500;margin-left:4px}
+.notice-s{font-size:12px;color:var(--ink3);margin-top:2px}
+.notice-arrow{font-size:22px;color:var(--pp);flex-shrink:0}
+/* ── 언어 토글(모달 i18n 구동) ── */
+#langsw{position:absolute;opacity:0;pointer-events:none}
+.modal .vi{display:none}
+#langsw:checked ~ .modal .ko{display:none}
+#langsw:checked ~ .modal .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.2);border-radius:20px;padding:3px;gap:2px;cursor:pointer}
+.langtog .seg{font-size:11.5px;font-weight:700;color:#fff;padding:3px 11px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ .modal .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ .modal .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+/* ── 모달 ── */
+.modal{display:none;position:fixed;inset:0;z-index:100}
+.modal.open{display:block}
+.modal-bg{position:absolute;inset:0;background:rgba(31,35,48,.55)}
+.modal-card{position:relative;max-width:560px;margin:8vh auto 0;background:var(--bg);border-radius:18px;overflow:hidden;box-shadow:0 24px 70px rgba(31,35,48,.34);animation:pop .16s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.modal-top{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mt-title{font-size:15px;font-weight:800}
+.mt-ctrl{display:flex;align-items:center;gap:10px}
+.modal-x{background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.modal-x:hover{background:rgba(255,255,255,.32)}
+.modal-body{padding:20px 20px 24px;max-height:68vh;overflow:auto}
+/* ── 메신저 말풍선 ── */
+.chat{display:flex;gap:11px;align-items:flex-start}
+.ava{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#845EEE,#6a45d4);color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 7px rgba(132,94,238,.35)}
+.bubblewrap{flex:1;min-width:0}
+.who{font-size:11.5px;color:var(--ink3);font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.who .badge{font-size:10px;font-weight:800;color:#fff;background:var(--pp);padding:2px 8px;border-radius:20px;letter-spacing:.02em}
+.bubble{position:relative;background:#fff;border:1px solid var(--line);border-radius:3px 16px 16px 16px;padding:15px 17px 16px;font-size:13.4px;color:var(--ink2);line-height:1.62;white-space:pre-wrap;box-shadow:0 1px 4px rgba(31,35,48,.05)}
+.bubble::before{content:"";position:absolute;top:12px;left:-6px;width:12px;height:12px;background:#fff;border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
+.bubble::after{content:"\201C";position:absolute;top:4px;right:14px;font-size:34px;line-height:1;color:var(--pp-l);font-family:Georgia,'Times New Roman',serif;pointer-events:none}
+/* ── 첨부 썸네일 · 라이트박스 ── */
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;margin-top:13px;padding:6px;background:#fff;border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:210px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><div class="wrap" style="padding-bottom:0"><div class="htitle">PricePick · 개발 QA</div>
+<div class="hsub">Dev Q&amp;A · 개발팀 질문·답변 모음 (Tổng hợp hỏi đáp đội phát triển)</div></div></header>
+<div class="wrap">
+<a class="notice" href="/devqa/handoff.html">
+<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M4 4h13l3 3v13H4z"/><path d="M9 4v6l2-1.4L13 10V4"/></svg></div>
+<div class="notice-b"><span class="notice-label">필독 · ĐỌC TRƯỚC</span>
+<div class="notice-t">개발자 온보딩 가이드<span class="notice-vi">Hướng dẫn Onboarding</span></div>
+<div class="notice-s">레포를 받기 전에 먼저 읽는 안내 · 소스·데모·정책·주의사항</div></div>
+<div class="notice-arrow">&rsaquo;</div>
+</a>
+<a class="dnotice" href="/devqa/demo-design-gap.html"><svg viewBox="0 0 24 24"><path d="M12 3 3 20h18z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg><span><b>디자인 정본은 기획 화면(interactive.html)입니다. 데모(/app)는 비정본 — 그대로 구현하지 마세요.</b> 데모는 실데이터 재구현 과정에서 기획 대비 일부 디자인이 누락됐습니다(등급색 티켓 아이콘·만료/임박·D-day·영수증인증·타입 아이콘·로그아웃 진입점 등). 화면별 누락 비교표를 확인하세요. · <span style="color:#a3231f">Chuẩn thiết kế = Bản thiết kế; Demo không chuẩn, đừng làm y hệt. Xem bảng so sánh thiếu theo màn.</span></span><span class="go">비교표 &rsaquo;</span></a>
+<div class="sec">Q&amp;A 문서 / Tài liệu</div>
+<div class="rowwrap"><a class="row" href="/devqa/api-coupang-20260722.html"><div class="rmain"><div class="rt">API 답변 · 쿠팡 파트너스 <span class="rvi">/ Trả lời API · Coupang Partners</span></div><div class="rwho">쿠팡 파트너스 테스트 API 공유 안내(ddaynet 대행사) · 데모 적용 가능 범위 · 개발자 문의 3건(API 출처·Developer 계정·Sandbox)</div></div><div class="rdate">2026-07-22</div><div class="rarrow">&rsaquo;</div></a></div>
+<div class="rowwrap"><a class="row" href="/devqa/cms-vin-20260722.html"><div class="rmain"><div class="rt">CMS 질문 답변 · Vin <span class="rvi">/ Giải đáp câu hỏi CMS · Vin</span></div><div class="rwho">Vin · CMS · 앱 버전 관리 &gt; 버전 히스토리 정의·행 추가 시점·관리자명 표시 여부</div></div><div class="rdate">2026-07-22</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QA-CMS-2026-07-22-3a5b92a109648061a564cf475d4f52b2" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-harry-20260722.html"><div class="rmain"><div class="rt">앱 질문 답변 · Harry <span class="rvi">/ Giải đáp câu hỏi App · Harry</span></div><div class="rwho">Harry · App · 알림 설정 스위치 OFF 동작 범위·포인트 알림 소속 스위치('이벤트·티켓·포인트'로 통합)</div></div><div class="rdate">2026-07-22</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-07-22-3a586f66c22480d1a5c3ca01d436377d" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/cms-harry-20260721.html"><div class="rmain"><div class="rt">CMS 질문 답변 · Harry <span class="rvi">/ Giải đáp câu hỏi CMS · Harry</span></div><div class="rwho">Harry · CMS · 푸시 알림 관리(맞춤 세그먼트·테스트 발송·수신 동의)·포스트백 로그·수익 분석 QA 상태</div></div><div class="rdate">2026-07-21</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-07-21-3a486f66c224801e8bdec60c7ea562d8" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-kelvin-20260721.html"><div class="rmain"><div class="rt">앱 질문 답변 · Kelvin <span class="rvi">/ Giải đáp câu hỏi App · Kelvin</span></div><div class="rwho">Kelvin · App · 홈 쇼핑몰 리스트·적립 가능 쇼핑몰·혜택 탭 포인트·연속구매 미션·강제 업데이트·계정 차단 표시</div></div><div class="rdate">2026-07-21</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://quixotic-vase-a61.notion.site/PricePick-Q-A-Mobile-21-07-3a47c2753991804aa23fe1990128ebb7" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/cms-vin-20260721.html"><div class="rmain"><div class="rt">CMS 답변 · Vin <span class="rvi">/ Trả lời CMS · Vin</span></div><div class="rwho">Vin · CMS · 관리자 계정·회원 상태·탈퇴 정책·공지사항·1:1 문의 재질문 7건</div></div><div class="rdate">2026-07-21</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QA-CMS-2026-07-21-3a4b92a1096480ab919efce4c75f22d5" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-john-20260720-2.html"><div class="rmain"><div class="rt">앱 질문 답변 #15 · John <span class="rvi">/ Giải đáp câu hỏi App #15 · John</span></div><div class="rwho">John (Nhon Truong) · App · 온보딩 지급 시점 정정 · 푸시 필요 범위 · 가입 보상 팝업</div></div><div class="rdate">2026-07-20</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QnA-PricePick-3a33ac69e71180258613dcc8dd143fd4" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-john-20260720.html"><div class="rmain"><div class="rt">앱 질문 답변 #14 · John <span class="rvi">/ Giải đáp câu hỏi App #14 · John</span></div><div class="rwho">John (Nhon Truong) · App · 포인트 알림·탈퇴 완료 화면·홈 화면 추가</div></div><div class="rdate">2026-07-20</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QnA-PricePick-39f3ac69e711808b8468d64a4e1a21de" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-john-20260716-2.html"><div class="rmain"><div class="rt">앱 질문 답변 #13 · John <span class="rvi">/ Giải đáp câu hỏi App #13 · John</span></div><div class="rwho">John (Nhon Truong) · App</div></div><div class="rdate">2026-07-16</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QnA-PricePick-39f3ac69e711808b8468d64a4e1a21de" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260716.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #12 <span class="rvi">/ Giải đáp câu hỏi Backend #12</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-07-16</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-07-15-3-39e86f66c224800c97f7cb352db422e5" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-john-20260716.html"><div class="rmain"><div class="rt">앱 질문 답변 #12 · John <span class="rvi">/ Giải đáp câu hỏi App #12 · John</span></div><div class="rwho">John (Nhon Truong) · App</div></div><div class="rdate">2026-07-16</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QnA-PricePick-39e3ac69e71180aab0bbe930bd0fc6f1" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/cms-vin-roles-20260715.html"><div class="rmain"><div class="rt">CMS 관리자 권한 모델 재설계 · Vin <span class="rvi">/ Thiết kế lại phân quyền CMS · Vin</span></div><div class="rwho">Vin · CMS</div></div><div class="rdate">2026-07-15</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QA-2026-07-15-39eb92a1096480ef80e7c78e194a22e6" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/status-kelvin-20260715.html"><div class="rmain"><div class="rt">스테이징 앱 준비 현황 · 켈빈 <span class="rvi">/ Tình hình chuẩn bị app staging · Kelvin</span></div><div class="rwho">Kelvin · App</div></div><div class="rdate">2026-07-15</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://quixotic-vase-a61.notion.site/Chu-n-b-ng-k-Price-Pick-app-phi-n-b-n-staging-39e7c275399180e99266d11eeb068376" target="_blank" rel="noopener">&#128206; 원문 보고 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260715-2.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #11 <span class="rvi">/ Giải đáp câu hỏi Backend #11</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-07-15</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-07-15-2-39e86f66c22480b38211c10db20879e1" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260715.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #10 <span class="rvi">/ Giải đáp câu hỏi Backend #10</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-07-15</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/PricePick-C-u-h-i-2027-07-15-39e86f66c22480608878dde0d0a7ca85" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/cms-vin-20260715.html"><div class="rmain"><div class="rt">CMS 질문 답변 #3 · Vin <span class="rvi">/ Giải đáp câu hỏi CMS #3 · Vin</span></div><div class="rwho">Vin · CMS</div></div><div class="rdate">2026-07-15</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QA-2026-07-15-39eb92a1096480ef80e7c78e194a22e6" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-john-20260714.html"><div class="rmain"><div class="rt">앱 질문 답변 #11 · John <span class="rvi">/ Giải đáp câu hỏi App #11 · John</span></div><div class="rwho">John (Nhon Truong) · App</div></div><div class="rdate">2026-07-14</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QnA-PricePick-39d3ac69e711800dade9d0914a8d3f3c" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260714-2.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #9 <span class="rvi">/ Giải đáp câu hỏi Backend #9</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-07-14</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/PricePick-C-u-h-i-2027-07-14-39d86f66c22480d6ae85e2a4fd1c9199" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/cms-vin-20260714.html"><div class="rmain"><div class="rt">CMS 질문 답변 #2 · Vin <span class="rvi">/ Giải đáp câu hỏi CMS #2 · Vin</span></div><div class="rwho">Vin · CMS</div></div><div class="rdate">2026-07-14</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QA-2026-07-14-39db92a109648014b784d13cf0c2a507" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260714.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #8 <span class="rvi">/ Giải đáp câu hỏi Backend #8</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-07-14</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/PricePick-Danh-s-ch-c-u-h-i-2026-07-14-39d86f66c2248003b551c85f4c5dbbbb" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-john-20260713.html"><div class="rmain"><div class="rt">앱 질문 답변 #10 · John <span class="rvi">/ Giải đáp câu hỏi App #10 · John</span></div><div class="rwho">John (Nhon Truong) · App</div></div><div class="rdate">2026-07-13</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QnA-PricePick-39c3ac69e71180589967dd7e63d66b3b" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260713.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #7 <span class="rvi">/ Giải đáp câu hỏi Backend #7</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-07-13</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/PricePick-Danh-s-ch-c-u-h-i-2026-10-07-39986f66c2248010a12de2b491807640" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry2-20260710.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #6 <span class="rvi">/ Giải đáp câu hỏi Backend #6</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-07-10</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/PricePick-Danh-s-ch-c-u-h-i-39986f66c22480259d2ef0c34617de0e" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-john-20260710.html"><div class="rmain"><div class="rt">앱 질문 답변 #9 · John <span class="rvi">/ Giải đáp câu hỏi App #9 · John</span></div><div class="rwho">John (Nhon Truong) · App</div></div><div class="rdate">2026-07-10</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QnA-PricePick-3993ac69e71180a18764d8edcc5168de" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260710.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #5 <span class="rvi">/ Giải đáp câu hỏi Backend #5</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-07-10</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion btn" role="button" tabindex="0" onclick="openOrigin(event,'harry0710Modal')" onkeydown="if(event.key==='Enter'||event.key===' '){openOrigin(event,'harry0710Modal')}">원문 질문 보기 / Xem câu hỏi gốc</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-john-20260706.html"><div class="rmain"><div class="rt">앱 질문 답변 #8 · John <span class="rvi">/ Giải đáp câu hỏi App #8 · John</span></div><div class="rwho">John (Nhon Truong) · App</div></div><div class="rdate">2026-07-06</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QnA-PricePick-3953ac69e71180018552eb8735d84818" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260706.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #4 <span class="rvi">/ Giải đáp câu hỏi Backend #4</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-07-06</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion btn" role="button" tabindex="0" onclick="openOrigin(event,'harry0706Modal')" onkeydown="if(event.key==='Enter'||event.key===' '){openOrigin(event,'harry0706Modal')}">원문 질문 보기 / Xem câu hỏi gốc</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-john-20260626.html"><div class="rmain"><div class="rt">앱 질문 답변 #7 · John <span class="rvi">/ Giải đáp câu hỏi App #7 · John</span></div><div class="rwho">John (Nhon Truong) · App</div></div><div class="rdate">2026-06-26</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/QnA-app-PricePick-38a3ac69e711807b845cee96586dec12" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260624.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #3 <span class="rvi">/ Giải đáp câu hỏi Backend #3</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-06-24</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion btn" role="button" tabindex="0" onclick="openOrigin(event,'harry0624Modal')" onkeydown="if(event.key==='Enter'||event.key===' '){openOrigin(event,'harry0624Modal')}">원문 질문 보기 / Xem câu hỏi gốc</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-john-20260622.html"><div class="rmain"><div class="rt">앱 질문 답변 #6 · John <span class="rvi">/ Giải đáp câu hỏi App #6 · John</span></div><div class="rwho">John (Nhon Truong) · App</div></div><div class="rdate">2026-06-22</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/Danh-s-ch-QnA-app-PricePick-3823ac69e71180c49495dc3017d92c06" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/cms-vin-20260618.html"><div class="rmain"><div class="rt">CMS 질문 답변 · Vin <span class="rvi">/ Giải đáp câu hỏi CMS · Vin</span></div><div class="rwho">Vin · CMS</div></div><div class="rdate">2026-06-18</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/Danh-s-ch-c-u-h-i-li-n-quan-Price-Pick-380b92a1096480828d6bc4aaea833520" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-john-20260618.html"><div class="rmain"><div class="rt">앱 질문 답변 · John <span class="rvi">/ Giải đáp câu hỏi App · John</span></div><div class="rwho">John (Nhon Truong) · App</div></div><div class="rdate">2026-06-18</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/Danh-s-ch-QnA-app-PricePick-3823ac69e71180c49495dc3017d92c06" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/app-kelvin-20260618.html"><div class="rmain"><div class="rt">앱 질문 답변 · Kelvin <span class="rvi">/ Giải đáp câu hỏi App · Kelvin</span></div><div class="rwho">Kelvin · App</div></div><div class="rdate">2026-06-18</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://quixotic-vase-a61.notion.site/PricePick-Q-A-Mobile-3827c275399180b0bb15cee4433bd290" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260616-2.html"><div class="rmain"><div class="rt">백엔드 질문 답변 #2 <span class="rvi">/ Giải đáp câu hỏi Backend #2</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-06-16</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion btn" role="button" tabindex="0" onclick="openOrigin(event)" onkeydown="if(event.key==='Enter'||event.key===' '){openOrigin(event)}">원문 질문 보기 / Xem câu hỏi gốc</a></div>
+<div class="rowwrap"><a class="row" href="/devqa/backend-harry-20260616.html"><div class="rmain"><div class="rt">백엔드 질문 답변 <span class="rvi">/ Giải đáp câu hỏi Backend</span></div><div class="rwho">Harry · Backend</div></div><div class="rdate">2026-06-16</div><div class="rarrow">&rsaquo;</div></a>
+<a class="srcnotion" href="https://app.notion.com/p/Danh-s-ch-c-c-c-u-h-i-PricePick-38086f66c22480498166cc89959dac45" target="_blank" rel="noopener">&#128206; 원문 질문 (Notion) &#8599;</a></div>
+
+<div class="foot">PricePick · Dev Q&amp;A Index · pricepick.vercel.app/devqa</div></div>
+<div class="modal" id="originModal" role="dialog" aria-modal="true" aria-label="원문 질문">
+<div class="modal-bg" data-close></div>
+<div class="modal-card">
+<div class="modal-top"><div class="mt-title"><span class="i18n"><span class="ko">원문 질문</span><span class="vi">Câu hỏi gốc</span></span></div>
+<div class="mt-ctrl"><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><button class="modal-x" data-close aria-label="Close">&times;</button></div></div>
+<div class="modal-body"><div class="chat"><div class="ava">H</div><div class="bubblewrap"><div class="who"><span class="badge">Harry</span><span class="i18n"><span class="ko">Backend · 메신저로 보낸 질문</span><span class="vi">Backend · Câu hỏi đã gửi qua tin nhắn</span></span></div><div class="bubble"><span class="i18n"><span class="ko">Mr Mark! 답변들 봤습니다. 대체로 이해했습니다.
+
+다만 1.1과 3.3은 아직 잘 이해가 안 됩니다.
+
+1.1: 쿠팡(또는 다른 이커머스 쇼핑몰)에서 구매 거래가 일어날 때마다 랜덤 티켓 수량을 생성하는 로직 공식이 필요하다고 생각합니다.
+
+3.3: 티켓(골드·실버·브론즈)의 유효기간은 "적립일 + 1년"입니다. 제가 궁금한 점은 이렇습니다.
+예시)
+브론즈 A 유효기간 2027.1.1
+브론즈 B 유효기간 2027.5.5
+브론즈 C 유효기간 2027.6.6
+나머지 브론즈 7장 유효기간 2027.7.7
+그러면 이 브론즈 10장을 실버 1장으로 전환할 때, 실버 티켓의 유효기간은 언제가 됩니까?</span><span class="vi">Mr Mark! Tôi đã xem các câu trả lời. Tôi đã hiểu tương đối
+
+Còn các câu 1.1 và 3.3 tôi chưa hiểu lắm
+
+1.1: Tôi nghĩ cần có công thức logic để tạo ra số lượng random Ticket sau mỗi giao dịch mua hàng từ Coupang (Hoặc các sàn thương mại điện tử khác…)
+
+3.3: Ticket (Gold, Silver, Bronze) có hạn là: Ngày tích lũy + 1 năm. Vấn đề tôi thắc mắc là:
+Ví dụ:
+1 ticket bronze A có hạn sử dụng tới 1.1.2027
+1 ticket bronze B có hạn sử dụng tới 5.5.2027
+1 ticket bronze C có hạn sử dụng tới 6.6.2027
+7 ticket bronze khác có hạn sử dụng tới 7.7.2027
+Thì khi chuyển đổi 10 ticket bronze này sang 1 ticket silver thì hạn sử dụng của Ticket Silver là khi nào?</span></span></div></div></div></div>
+</div></div>
+<div class="modal" id="harry0624Modal" role="dialog" aria-modal="true" aria-label="원문 질문">
+<div class="modal-bg" data-close></div>
+<div class="modal-card">
+<div class="modal-top"><div class="mt-title"><span class="i18n"><span class="ko">원문 질문</span><span class="vi">Câu hỏi gốc</span></span></div>
+<div class="mt-ctrl"><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><button class="modal-x" data-close aria-label="Close">&times;</button></div></div>
+<div class="modal-body"><div class="chat"><div class="ava">H</div><div class="bubblewrap"><div class="who"><span class="badge">Harry</span><span class="i18n"><span class="ko">Backend · 메신저로 보낸 질문</span><span class="vi">Backend · Câu hỏi đã gửi qua tin nhắn</span></span></div><div class="bubble"><span class="i18n"><span class="ko">Mr Mark SUNG GWON KIM! 카카오톡 계정 연동 function을 작성 중입니다. 적립 티켓·포인트·기타 데이터를 계정에 통합하는 부분이 있습니다. 좀 더 설명해 주실 수 있나요:
+
+기존 카카오톡 계정에 합산되는 티켓 종류는 BRONZE, SILVER, GOLD뿐이 맞나요. EVENT TICKET은 합산 안 함. 포인트 수량도 합산되나요?
+
+그리고 PENDING 상태(쿠팡 구매확정까지 7일간 lock)인 티켓 수량도 합산되나요?
+
+그리고 이 적립 티켓 통합 Transaction은 어떻게 되나요? Transaction type이 또 다른 한 종류인가요?</span><span class="vi">Mr Mark SUNG GWON KIM! Tôi đang viết function liên kết tài khoản với KakaoTalk. Có phần hợp nhất tài khoản với các Vé tích lũy, Point và các data khác. Bạn có thể giải thích thêm giúp tôi:
+
+Các loại Ticket được cộng dồn vào tài khoản KakaoTalk cũ có phải chỉ là: BRONZE, SILVER, GOLD. Không cộng dồn EVENT TICKET. Số lượng Point có được cộng dồn không?
+
+Và số lượng các Ticket đang PENDING (đang lock trong 7 ngày chờ coupang xác nhận mua hàng thành công) có được cộng dồn vào không?
+
+Và Transaction phần hợp nhất Vé tích lũy này sẽ như thế nào? Transaction type là 1 loại khác nữa?</span></span><button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/harry-20260624-policy.png','카카오 연동 데이터 통합 정책 캡처')"><img src="/devqa/img/harry-20260624-policy.png" alt="카카오 연동 데이터 통합 정책 캡처" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">첨부 화면 (클릭하면 크게)</span><span class="vi">Màn đính kèm (nhấn để xem lớn)</span></span></span></button></div></div></div></div>
+</div></div>
+<div class="modal" id="harry0706Modal" role="dialog" aria-modal="true" aria-label="원문 질문">
+<div class="modal-bg" data-close></div>
+<div class="modal-card">
+<div class="modal-top"><div class="mt-title"><span class="i18n"><span class="ko">원문 질문</span><span class="vi">Câu hỏi gốc</span></span></div>
+<div class="mt-ctrl"><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><button class="modal-x" data-close aria-label="Close">&times;</button></div></div>
+<div class="modal-body"><div class="chat"><div class="ava">H</div><div class="bubblewrap"><div class="who"><span class="badge">Harry</span><span class="i18n"><span class="ko">Backend · 메신저로 보낸 질문</span><span class="vi">Backend · Câu hỏi đã gửi qua tin nhắn</span></span></div><div class="bubble"><span class="i18n"><span class="ko">Mark 성권 김님 안녕하세요
+
+친구 초대 기능을 개발 중입니다. 친구 초대 플로우가 정확히 어떻게 되는지 자세히 설명해 주실 수 있나요?
+참고하실 수 있도록 2가지 방안을 제시합니다:
+
+1. Flow 1: 이 방식은 Android·iOS 양쪽 모두 가능합니다
+사용자 A는 고정된 추천 코드(레퍼럴 코드)를 가지고 있습니다. 예: abcde
+사용자 A가 B를 앱 설치로 초대하고 싶을 때: A는 앱 설치 링크와 추천 코드(abcde)를 함께 보냅니다. B가 앱을 설치한 후 이 추천 코드를 입력하면, 앱은 A가 B를 성공적으로 초대했다고 인식하고, B가 첫 주문(쿠팡)을 성사시키면 그때 A·B 둘 다 500 포인트를 받습니다. 이 플로우를 선택하면 회원가입 시 닉네임 입력 UI를 변경하고 추천 코드 입력란을 추가해야 합니다.
+
+2. Flow 2: 이 방식은 Android에서만 가능합니다. iOS는 설치 링크에 추천 코드를 실어 보낼 수 없어서 다른 방법을 찾아야 합니다.
+사용자 A는 고정된 추천 코드를 가지고 있습니다. 예: abcde
+이 코드는 앱 설치 URL에 함께 실려서 전달됩니다. 예: url_cai_dat_app?ref=abcde
+사용자가 B를 초대하고 싶으면 위 URL만 보내면 됩니다. B가 이 URL로 앱을 설치하고 가입하면 앱이 자동으로 B를 A가 초대한 것으로 기록합니다. 그리고 B가 첫 주문(쿠팡)을 성사시키면 A·B 둘 다 500 포인트를 받습니다.
+
+문서를 봐도 친구 초대 기능의 상세 플로우 설명이 없어서, 자세히 설명해 주시면 감사하겠습니다.</span><span class="vi">Hi Mr Mark SUNG GWON KIM
+
+Tôi đang viết chức năng mời bạn bè: Bạn có thể giải thích chi tiết flow mời bạn bè như thế nào không?
+Tôi đang có 2 tùy chọn để bạn tham khảo:
+
+1. Flow 1: Flow này sẽ Ok trên cả Android và IOS
+User A có mã referral cố định ví dụ: abcde
+User A muốn mời B cài đặt app: User A sẽ gửi liên kết cài đặt app và mã giới thiệu: abcde. Khi User A cài đặt App thì sẽ nhập mã giới thiệu này vào thì khi đó app xác nhận là A đã giới thiệu B thành công và chờ B đặt đơn hàng đầu tiên (Coupang) thành công thì cả 2 sẽ nhận được 500 Point. Nếu chọn flow này thi cần thay đổi UI lúc user đăng ký nhập Nickname và thêm ô nhập mã giới thiệu
+
+2. Flow 2: Flow này chỉ Ok trên Android. Còn IOS cần tìm cách khác vì không thể gửi referral code trong link cài đặt app
+User A có mã referral cố định, ví dụ: abcde
+Mã này sẽ được gửi kèm cùng với url cài đặt app. Ví dụ: url_cai_dat_app?ref=abcde
+User muốn mời B cài đặt app thì chỉ cần gửi url trên. Nếu user B cài đặt App và đăng ký thì mặc định app sẽ ghi nhận B là do A mời. Và nếu B đặt đơn hàng đầu tiên (Coupang) thành công thì cả 2 sẽ nhận được 500 Point
+
+Tôi đọc tài liệu không thấy mô tả luồng chi tiết của chức năng mời bạn bè nên vui lòng giải thích chi tiết giúp tôi.</span></span></div></div></div></div>
+</div></div>
+<div class="modal" id="harry0710Modal" role="dialog" aria-modal="true" aria-label="원문 질문">
+<div class="modal-bg" data-close></div>
+<div class="modal-card">
+<div class="modal-top"><div class="mt-title"><span class="i18n"><span class="ko">원문 질문</span><span class="vi">Câu hỏi gốc</span></span></div>
+<div class="mt-ctrl"><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><button class="modal-x" data-close aria-label="Close">&times;</button></div></div>
+<div class="modal-body"><div class="chat"><div class="ava">H</div><div class="bubblewrap"><div class="who"><span class="badge">Harry</span><span class="i18n"><span class="ko">Backend · 메신저로 보낸 질문</span><span class="vi">Backend · Câu hỏi đã gửi qua tin nhắn</span></span></div><div class="bubble"><span class="i18n"><span class="ko">Mr Mark SUNG GWON KIM님 안녕하세요! 계정 탈퇴(회원 탈퇴) 처리 기능을 구현하고 있습니다. 이 기능에 대해 몇 가지 질문이 있습니다. 앱과 CMS 화면만 봐서는 아직 잘 이해가 안 되는 부분이 있어서요:
+1. 사용자가 탈퇴 요청을 클릭하면 h...(이하 문장 캡처 잘림)
+
+그리고 항목: 탈퇴 정책 설정(CMS 내): 다음 2개 항목을 설명해 주시면 감사하겠습니다:
+1. PII 영구 삭제 항목
+2. 통계용 보존 항목(익명)</span><span class="vi">Hi Mr Mark SUNG GWON KIM! Tôi đang thực hiện chức năng xử lý hủy tài khoản. Tôi có vài câu hỏi về chức năng này. Vì xem trên app và cms tôi chưa hiểu lắm:
+1. Khi user click yêu cầu hủy tài khoản thì h...
+
+Và mục: Cài đặt chính sách Hủy Tài khoản (Trong CMS): Vui lòng giải thích 2 mục:
+1. Mục xóa vĩnh viễn PII
+2. Mục lưu giữ cho thống kê (Ẩn Danh)</span></span></div></div></div></div>
+</div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+let _open=null;
+function openOrigin(e,id){if(e)e.preventDefault();_open=document.getElementById(id||'originModal');if(!_open)return;_open.classList.add('open');document.body.style.overflow='hidden';}
+function closeOrigin(){if(_open){_open.classList.remove('open');_open=null;}document.body.style.overflow='';}
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target.hasAttribute('data-close'))closeOrigin();}));
+const _lb=document.getElementById('lightbox');
+function lbOpen(src,alt){const im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';_lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){_lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow=document.querySelector('.modal.open')?'hidden':'';}
+_lb.addEventListener('click',e=>{if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(_lb.classList.contains('open')){lbClose();return;}if(_open)closeOrigin();});
+</script>
+</body></html>

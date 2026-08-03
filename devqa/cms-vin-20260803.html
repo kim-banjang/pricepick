@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 답변 · Vin · 2026-08-03</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.tbl td.old{color:#b4453f;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.4px}
+.tbl td.new{color:#1f7a7a;font-weight:700}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:220px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 답변 · Vin · 2026-08-03</span><span class="vi">Trả lời CMS PricePick · Vin · 2026-08-03</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Vin · CMS · 매일 행운 룰렛 / 잭팟 룰렛 &gt; "roulette_spins 실집계" 문구 지적 2건 — 답변 KO/VI</span><span class="vi">Vin · CMS · Vòng quay may mắn hằng ngày / Vòng quay Jackpot &gt; 2 góp ý về dòng chữ "roulette_spins 실집계" — Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/QA-CMS-2026-08-03-3b1b92a1096480a28d61fcff4f765e0e" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 2건</span><span class="vi">2 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 2 · 지적 전부 수용</span><span class="vi">Đã chốt 2 · Tiếp thu toàn bộ</span></span></span><span class="chip"><span class="i18n"><span class="ko">전수 조사 추가 수정 13건</span><span class="vi">Rà soát toàn bộ, sửa thêm 13 mục</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+
+<!-- ==================== Q1 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 매일 행운 룰렛 — "roulette_spins 실집계" 문구</span><span class="vi">1. Vòng quay may mắn hằng ngày — dòng chữ "roulette_spins 실집계"</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">빨간 박스의 [roulette_spins 실집계]는 관리자가 무슨 내용인지 알기 어렵습니다. roulette_spins 대신 내용을 다시 정리하는 게 좋겠습니다.</span><span class="vi">Nếu nhìn vào mục redbox [roulette_spins 실집계], admin sẽ khó xác định là đang đề cập đến nội dung gì, vì vậy tôi nghĩ nên cần cập nhật lại nội dung thay vì hiển thị là roulette_spins.</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260803-vin/vin-q1-daily-roulette.png','매일 행운 룰렛 · 이번 달 룰렛 실행 카드')"><img src="/devqa/assets/20260803-vin/vin-q1-daily-roulette.png" alt="매일 행운 룰렛 화면 · 이번 달 룰렛 실행 카드" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">매일 행운 룰렛 · 이번 달 룰렛 실행 카드</span><span class="vi">Vòng quay may mắn hằng ngày · Thẻ Lượt quay tháng này</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>지적이 맞습니다. 그대로 반영했습니다.</b>
+
+"roulette_spins"는 DB 컬렉션 이름이 화면에 그대로 새어 나온 것입니다. 운영자는 개발 용어를 모르는 사람이고, 이 카드가 무엇을 세는 숫자인지만 알면 됩니다.
+
+<b>변경 — "roulette_spins 실집계" → "실제 돌린 횟수 집계"</b>
+
+카드 위에 이미 제목("이번 달 룰렛 실행")과 큰 숫자("0회")가 있으므로 캡션은 짧게 갑니다. 뜻은 <b>이번 달에 이 룰렛이 실제로 돌아간 횟수를 센 값</b>이라는 것입니다. 목표치나 예상치가 아니라 실행 기록을 집계한 실제 숫자입니다.
+
+<b>원칙 — 운영자 화면에는 DB 테이블명·필드명·영문 코드를 노출하지 않습니다.</b> 앞으로 CMS 문구를 넣을 때 이 기준을 적용해 주세요.</span><span class="vi"><b>Góp ý đúng. Đã sửa đúng như vậy.</b>
+
+"roulette_spins" là tên collection trong DB bị lộ nguyên xi ra màn hình. Quản trị viên không biết thuật ngữ lập trình, họ chỉ cần biết con số trên thẻ này đang đếm cái gì.
+
+<b>Thay đổi — "roulette_spins 실집계" → "실제 돌린 횟수 집계" (Tổng hợp số lượt quay thực tế)</b>
+
+Phía trên thẻ đã có tiêu đề ("Lượt quay tháng này") và con số lớn ("0 lượt"), nên chú thích phải ngắn. Ý nghĩa là <b>giá trị đếm số lần vòng quay này thực sự được quay trong tháng này</b>. Không phải chỉ tiêu hay ước tính, mà là con số thật tổng hợp từ bản ghi lượt quay.
+
+<b>Nguyên tắc — màn hình quản trị viên không lộ tên bảng·tên trường DB·mã tiếng Anh.</b> Từ nay khi đưa chữ vào CMS, xin áp dụng chuẩn này.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">캡션 문구만 교체했고 집계 로직·데이터 소스는 그대로입니다. VI 사전도 함께 교체했습니다 — "Tổng hợp thật từ roulette_spins" → "Tổng hợp số lượt quay thực tế". 실행 기록이 하나도 없을 때 뜨는 대체 문구("실행 기록 없음 · 데모 표시 데이터")는 원래부터 개발 용어가 없어 그대로 둡니다.</span><span class="vi">Chỉ thay dòng chú thích, logic tổng hợp·nguồn dữ liệu giữ nguyên. Từ điển VI cũng đổi theo — "Tổng hợp thật từ roulette_spins" → "Tổng hợp số lượt quay thực tế". Dòng dự phòng khi chưa có bản ghi nào ("Chưa có bản ghi lượt quay · dữ liệu hiển thị Demo") vốn không có thuật ngữ lập trình nên giữ nguyên.</span></span></div></div></div></div>
+
+<!-- ==================== Q2 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 잭팟 룰렛 — 같은 문구</span><span class="vi">2. Vòng quay Jackpot — cùng dòng chữ đó</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">1번과 같은 내용입니다. 잭팟 룰렛의 [roulette_spins 실집계]도 같이 정리하면 좋겠습니다.</span><span class="vi">Tương tự với nội dung từ mục (1), tôi nghĩ cũng nên cập nhật lại nội dung của [roulette_spins 실집계].</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260803-vin/vin-q2-jackpot-roulette.png','잭팟 룰렛 · 이번 달 룰렛 실행 카드')"><img src="/devqa/assets/20260803-vin/vin-q2-jackpot-roulette.png" alt="잭팟 룰렛 화면 · 이번 달 룰렛 실행 카드" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">잭팟 룰렛 · 이번 달 룰렛 실행 카드</span><span class="vi">Vòng quay Jackpot · Thẻ Lượt quay tháng này</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>동일하게 반영했습니다 — "실제 돌린 횟수 집계".</b>
+
+두 룰렛은 같은 구조의 화면이므로 같은 자리의 문구는 항상 같아야 합니다.
+
+한 화면에서 문제가 발견되면 <b>같은 유형이 다른 화면에도 있는지 전부 확인하고 한 번에 고치는 것</b>이 우리 원칙입니다. 이번에도 그렇게 처리했고 결과는 아래 3번에 정리했습니다.</span><span class="vi"><b>Đã sửa y như vậy — "실제 돌린 횟수 집계" (Tổng hợp số lượt quay thực tế).</b>
+
+Hai vòng quay có cấu trúc màn hình giống nhau, nên chữ ở cùng vị trí phải luôn giống nhau.
+
+Khi phát hiện vấn đề ở một màn hình, <b>nguyên tắc của chúng ta là kiểm tra xem cùng loại đó có ở màn hình khác không và sửa hết một lượt.</b> Lần này cũng vậy, kết quả ở mục 3 bên dưới.</span></span></div></div></div>
+
+<!-- ==================== Q3 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">3. 전수 조사 — CMS 전체에서 같은 유형 찾아 일괄 교체</span><span class="vi">3. Rà soát toàn bộ — tìm và thay hàng loạt cùng loại trên toàn CMS</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">Vin의 지적을 계기로 CMS 전 화면을 훑어, DB 테이블명·필드명·영문 개발 용어가 운영자 화면에 그대로 노출된 곳을 모두 찾았습니다.</span><span class="vi">Nhân góp ý của Vin, đã rà soát toàn bộ màn hình CMS để tìm mọi chỗ lộ tên bảng·tên trường DB·thuật ngữ lập trình tiếng Anh ra màn hình quản trị viên.</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">수정 완료</span><span class="vi">Đã sửa xong</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">결과</span><span class="vi">Kết quả</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>룰렛 2건 외에 13건을 더 찾아 전부 교체했습니다.</b> KO·VI 양쪽, CMS 정본·데모 양쪽에 동일 적용했습니다.</span><span class="vi"><b>Ngoài 2 mục vòng quay, đã tìm thêm 13 mục và thay hết.</b> Áp dụng như nhau cho cả KO·VI, cả CMS bản gốc·bản demo.</span></span></div></div>
+<div class="tblwrap"><table class="tbl">
+<thead><tr><th><span class="i18n"><span class="ko">화면</span><span class="vi">Màn hình</span></span></th><th><span class="i18n"><span class="ko">기존 (노출된 개발 용어)</span><span class="vi">Trước (thuật ngữ lập trình bị lộ)</span></span></th><th><span class="i18n"><span class="ko">변경</span><span class="vi">Sau khi sửa</span></span></th></tr></thead>
+<tbody>
+<tr><td><span class="i18n"><span class="ko">매일 행운 룰렛 · 잭팟 룰렛</span><span class="vi">Vòng quay hằng ngày · Jackpot</span></span></td><td class="old">roulette_spins 실집계</td><td class="new"><span class="i18n"><span class="ko">실제 돌린 횟수 집계</span><span class="vi">Tổng hợp số lượt quay thực tế</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">회원 목록 · 데이터 출처</span><span class="vi">Danh sách hội viên · Nguồn dữ liệu</span></span></td><td class="old">users 테이블 (PII 포함)</td><td class="new"><span class="i18n"><span class="ko">회원 정보 (개인정보 포함)</span><span class="vi">Thông tin hội viên (có thông tin cá nhân)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">통계 · 데이터 출처</span><span class="vi">Thống kê · Nguồn dữ liệu</span></span></td><td class="old">clicks, orders, tickets, gifticons 테이블</td><td class="new"><span class="i18n"><span class="ko">클릭·주문·티켓·기프티콘 데이터</span><span class="vi">Dữ liệu click·đơn hàng·vé·gifticon</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">수익 분석 · 데이터 출처</span><span class="vi">Phân tích doanh thu · Nguồn dữ liệu</span></span></td><td class="old">revenue_logs</td><td class="new"><span class="i18n"><span class="ko">수익 기록</span><span class="vi">Bản ghi doanh thu</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">포스트백 로그 · 데이터 출처</span><span class="vi">Nhật ký Postback · Nguồn dữ liệu</span></span></td><td class="old">postback_logs 테이블 (append-only)</td><td class="new"><span class="i18n"><span class="ko">포스트백 수신 기록 (추가만 가능 · 수정·삭제 불가)</span><span class="vi">Bản ghi nhận postback (chỉ thêm mới · không sửa/xóa)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">티켓 내역 · 포인트 내역 · 안내문</span><span class="vi">Chi tiết vé · Chi tiết điểm · Hướng dẫn</span></span></td><td class="old">append-only</td><td class="new"><span class="i18n"><span class="ko">추가만 가능 · 수정·삭제 불가</span><span class="vi">Chỉ thêm mới · không sửa/xóa</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">스케줄러 · 안내문</span><span class="vi">Bộ hẹn giờ · Hướng dẫn</span></span></td><td class="old">cron · Firestore(scheduler_jobs)</td><td class="new"><span class="i18n"><span class="ko">정기 실행 엔진 · 예약 작업 기록</span><span class="vi">Engine chạy định kỳ · Bản ghi tác vụ hẹn giờ</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">티켓 회수·소멸 상세</span><span class="vi">Chi tiết thu hồi·hủy vé</span></span></td><td class="old">원장(ticket_transactions)</td><td class="new"><span class="i18n"><span class="ko">티켓 원장</span><span class="vi">Sổ cái vé</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">대시보드 KPI 카드</span><span class="vi">Thẻ KPI Bảng điều khiển</span></span></td><td class="old">데모 Firestore 집계 · pending 상태</td><td class="new"><span class="i18n"><span class="ko">데모 데이터 실집계 · 미처리 상태</span><span class="vi">Tổng hợp dữ liệu Demo thực tế · Trạng thái chưa xử lý</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">포인트 정책 · 적립 산정</span><span class="vi">Chính sách điểm · Tính tích lũy</span></span></td><td class="old">Greedy (큰 단위 우선)</td><td class="new"><span class="i18n"><span class="ko">큰 등급 우선 배분</span><span class="vi">Ưu tiên hạng lớn</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">포인트 정책 · 만료 기준</span><span class="vi">Chính sách điểm · Tiêu chuẩn hết hạn</span></span></td><td class="old">선입선출(FIFO) 소멸</td><td class="new"><span class="i18n"><span class="ko">먼저 적립된 것부터 소멸</span><span class="vi">Hủy theo thứ tự tích lũy trước</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">탈퇴 관리 · 정책</span><span class="vi">Quản lý hủy TK · Chính sách</span></span></td><td class="old">status='withdrawn' 전환 · PII 스크럽 · user_id로만 연결</td><td class="new"><span class="i18n"><span class="ko">회원 상태가 '탈퇴'로 전환 · 개인정보 삭제 · 회원 식별번호로만 연결</span><span class="vi">Chuyển trạng thái hội viên sang 'đã hủy' · xóa thông tin cá nhân · chỉ liên kết bằng mã định danh hội viên</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">수익·포스트백 표 머리글, 회원 검색창</span><span class="vi">Tiêu đề bảng doanh thu·postback, ô tìm hội viên</span></span></td><td class="old">회원(UID) · UID 검색</td><td class="new"><span class="i18n"><span class="ko">회원(식별번호) · 식별번호 검색</span><span class="vi">Thành viên (mã định danh) · Tìm mã định danh</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">API 키 관리 · 상태 입력창</span><span class="vi">Quản lý API key · Ô nhập trạng thái</span></span></td><td class="old">ok / error / unchecked</td><td class="new"><span class="i18n"><span class="ko">정상 / 오류 / 미확인</span><span class="vi">Bình thường / Lỗi / Chưa kiểm tra</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">알림 발송 · 안내문</span><span class="vi">Gửi thông báo · Hướng dẫn</span></span></td><td class="old">발송 내역만 Firestore에 기록</td><td class="new"><span class="i18n"><span class="ko">발송 내역만 DB에 기록</span><span class="vi">Chỉ ghi lịch sử gửi vào DB</span></span></td></tr>
+</tbody></table></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조] 일부러 그대로 둔 것 · 남은 1건</span><span class="vi">[Tham khảo] Cố ý giữ nguyên · còn 1 mục</span></span></span><span class="i18n"><span class="ko">그대로 둔 것 — ① 「개발 · 데모」 그룹의 <b>데이터 관리(데모)</b> 화면: 컬렉션 이름 자체가 그 화면의 내용이고 운영자용이 아니라 개발·시연용 도구입니다. ② 개인정보처리방침 본문의 법률 용어(UUID·IDFA 등): 약관 원문이라 손대지 않습니다. ③ 개발자 콘솔 메시지: 화면 노출이 아닙니다. ④ 소스 코드의 실제 컬렉션·필드 이름: 당연히 그대로 유지합니다(바뀐 것은 화면 문구뿐).
+
+<b>확인 필요 1건</b> — DB 권한 오류가 나면 원문 오류 메시지("Missing or insufficient permissions.")가 운영자 화면에 그대로 뜹니다. 오류 메시지 한글화는 이번 범위 밖으로 두고 별도로 다룹니다.</span><span class="vi">Giữ nguyên — ① Màn hình <b>Quản lý dữ liệu (Demo)</b> trong nhóm 「Phát triển · Demo」: chính tên collection là nội dung của màn hình đó, và đây là công cụ cho dev·trình diễn chứ không phải cho người vận hành. ② Thuật ngữ pháp lý trong nội dung Chính sách xử lý thông tin cá nhân (UUID·IDFA v.v.): là nguyên văn điều khoản nên không đụng tới. ③ Thông báo console cho lập trình viên: không hiện ra màn hình. ④ Tên collection·trường thật trong mã nguồn: đương nhiên giữ nguyên (chỉ đổi chữ hiển thị trên màn hình).
+
+<b>Cần xác nhận 1 mục</b> — khi xảy ra lỗi quyền DB, thông báo lỗi nguyên bản ("Missing or insufficient permissions.") hiện thẳng lên màn hình quản trị viên. Việc Hàn hóa thông báo lỗi để ngoài phạm vi lần này, sẽ xử lý riêng.</span></span></div>
+</div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Vin · 2026-08-03 · 확정 2 / 전수 조사 수정 13 / 확인 필요 1</span><span class="vi">PricePick · Trả lời CMS · Vin · 2026-08-03 · Đã chốt 2 / Rà soát sửa 13 / Cần xác nhận 1</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>

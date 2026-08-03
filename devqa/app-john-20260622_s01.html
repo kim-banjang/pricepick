@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱(프론트) 질문 답변 #6 · John</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280;--replan:#c0342a}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+h2.grp .vn{color:var(--ink3);font-weight:600}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:700;font-size:14px;flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.bd.replan{background:#fdeceb;color:var(--replan)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap} .atxt b{color:var(--ink1);font-weight:700}
+.atxt .need{color:var(--ck);font-weight:800}
+.atxt .hold{color:var(--hold);font-weight:800}
+.atxt .replan{color:var(--replan);font-weight:800}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.ref-box{background:#f4f5f8;border-left:3px solid var(--ink3);border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:var(--ink2)}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:var(--ink3);letter-spacing:.06em;margin-bottom:4px;display:block}
+.replan-box{background:#fff4f2;border:1.5px solid #f7b7ab;border-left:4px solid #e5484d;border-radius:10px;padding:11px 15px;margin-top:9px;font-size:12.8px;color:#8f2420;font-weight:700;line-height:1.55}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+/* ── 확인모달·완료토스트 목업 ── */
+.mk-wrap{margin-top:13px;display:flex;gap:14px;flex-wrap:wrap}
+.mk-col{flex:1;min-width:230px}
+.mk-cap{font-size:11px;font-weight:800;color:var(--ink3);margin-bottom:7px;letter-spacing:.02em}
+.mk-stage{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px 16px;min-height:172px;display:flex;align-items:center;justify-content:center}
+.mk-modal{width:100%;max-width:260px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 34px rgba(31,35,48,.16);overflow:hidden}
+.mk-mtitle{font-size:14px;font-weight:800;color:var(--ink1);padding:16px 16px 4px;text-align:center}
+.mk-msub{font-size:11px;color:var(--ink3);text-align:center;padding:0 16px 12px}
+.mk-sum{display:flex;align-items:center;justify-content:center;gap:9px;margin:0 16px 11px;padding:11px 8px;background:var(--pp-l);border-radius:11px}
+.mk-tk{display:flex;flex-direction:column;align-items:center;gap:3px}
+.mk-medal{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.mk-medal.br{background:linear-gradient(135deg,#C68250,#8B5A2B)}
+.mk-medal.si{background:linear-gradient(135deg,#D8D8D8,#999)}
+.mk-medal svg{width:16px;height:16px}
+.mk-tk .n{font-size:11.5px;font-weight:800;color:var(--ink1)}
+.mk-tk .l{font-size:9.5px;color:var(--ink3)}
+.mk-arrow{font-size:17px;color:var(--pp);font-weight:800}
+.mk-note{font-size:9.8px;color:var(--ink3);line-height:1.5;text-align:center;padding:0 16px 13px}
+.mk-btns{display:flex;border-top:1px solid var(--line)}
+.mk-btn{flex:1;text-align:center;padding:12px 0;font-size:12.5px;font-weight:800;cursor:default}
+.mk-btn.cancel{color:var(--ink3);border-right:1px solid var(--line)}
+.mk-btn.pri{color:var(--pp-d)}
+.mk-toast{background:rgba(31,35,48,.92);color:#fff;border-radius:13px;padding:13px 18px;display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;box-shadow:0 10px 30px rgba(31,35,48,.3)}
+.mk-toast .ck{width:22px;height:22px;border-radius:50%;background:var(--ok);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mk-toast .ck svg{width:13px;height:13px}
+/* ── 첨부 썸네일 · 라이트박스 ── */
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;margin-top:11px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱(프론트) 질문 답변 #6 · John</span><span class="vi">Giải đáp câu hỏi App (Frontend) PricePick #6 · John</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">John(Nhon Truong) · App 프론트 · 화면별 질문 5건 · 프로토타입/확정 사양 기반 · 답변 KO/VI</span><span class="vi">John(Nhon Truong) · App Frontend · 5 câu hỏi theo màn · Dựa trên prototype/spec đã chốt · Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/Danh-s-ch-QnA-app-PricePick-3823ac69e71180c49495dc3017d92c06" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 5건</span><span class="vi">5 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 4</span><span class="vi">Đã chốt 4</span></span></span><span class="chip"><span class="i18n"><span class="ko">재기획 예정 1</span><span class="vi">Sẽ tái thiết kế 1</span></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 탈퇴 <span class="vn">(Hủy tài khoản)</span></span><span class="vi">1. Hủy tài khoản</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">미연동(닉네임 전용·카카오 재인증 불가) 계정 탈퇴는 본인인증 대신 '동의 체크 + 삭제항목 재고지 모달 + 2차 확인'으로 대체했는데, '계정 탈퇴' 진입 시 이 화면이 바로 뜨는 건가요?</span><span class="vi">Hủy tài khoản với trường hợp tài khoản chưa liên kết (chỉ biệt danh) không thể xác thực lại Kakao, nên thay xác minh bằng 'ô đồng ý + modal nhắc lại các mục bị xóa' kèm một bước xác nhận thứ hai. Vậy khi vào mục 'Hủy tài khoản' sẽ hiển thị màn hình này luôn hay sao?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq1.webp','계정 탈퇴 화면')"><img src="/devqa/img/jq1.webp" alt="계정 탈퇴 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">첨부 화면 (클릭하면 크게)</span><span class="vi">Màn đính kèm (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">네, 맞습니다. '계정 탈퇴' 진입 시 <b>이 화면이 바로 뜹니다.</b> 화면에는 삭제 항목 재고지, 본인 재확인 영역, 동의 체크, 하단 '취소 / 탈퇴하기'가 있습니다.
+
+미연동(닉네임 전용·게스트) 계정은 '카카오 재인증'이 <b>없고</b>, 동의 체크로 본인 확인을 갈음합니다. 즉 미연동은 <b>[동의 체크 → '탈퇴하기' → '탈퇴 최종 확인'에서 삭제 항목 재확인 → 탈퇴 처리]</b>의 2차 확인 구조입니다. 연동 계정은 기존대로 카카오 재인증 유지.
+
+정리: 진입 즉시 이 화면 노출이 맞고, '한 번에 즉시 탈퇴'가 아니라 (미연동) <b>동의 체크 + 2차 확인 한 단계</b>를 더 거칩니다. 탈퇴 완료 후 <b>로그인/시작 첫 화면으로 복귀</b>(쿨타임 없이 재가입 가능).</span><span class="vi">Đúng vậy. Khi vào 'Hủy tài khoản' thì <b>màn hình này hiện ra ngay.</b> Màn gồm: nhắc lại các mục bị xóa, vùng xác minh lại danh tính, ô đồng ý, dưới cùng 'Hủy / Hủy tài khoản'.
+
+Tài khoản chưa liên kết (chỉ biệt danh·guest) thì <b>không có</b> 'xác thực lại Kakao', dùng ô đồng ý để thay xác minh. Tức chưa liên kết theo cấu trúc xác nhận 2 lớp: <b>[tick đồng ý → 'Hủy tài khoản' → màn 'Xác nhận hủy cuối cùng' kiểm tra lại mục bị xóa → xử lý hủy]</b>. Tài khoản đã liên kết vẫn giữ xác thực lại Kakao như cũ.
+
+Tóm lại: vào là hiện màn này ngay, nhưng không phải 'hủy tức thì một phát' mà (chưa liên kết) còn qua thêm <b>một bước tick đồng ý + xác nhận lần hai</b>. Hủy xong thì <b>quay về màn đăng nhập/bắt đầu</b> (đăng ký lại ngay, không thời gian chờ).</span></span>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">화면: 마이 → 설정 → 계정 관리 → 계정 탈퇴(프로토타입 06c / pw-33). 삭제 항목 재고지 문구: "적립 티켓 전부 · 활동 내역 · 닉네임/계정 정보 — 30일 보존 후 완전 삭제, 정산 데이터는 전자상거래법상 5년 마스킹 보존". 동의 체크 문구: "위 내용을 모두 확인했으며, 탈퇴에 동의합니다". 미연동 안내 문구: "카카오 미연동(게스트) 계정은 재인증 단계가 없어요. 아래 동의 체크로 본인 확인을 갈음하고, 탈퇴 시 삭제 항목을 한 번 더 안내드립니다".</span><span class="vi">Màn: Của tôi → Cài đặt → Quản lý tài khoản → Hủy tài khoản (prototype 06c / pw-33). Nhắc lại mục bị xóa: "toàn bộ vé tích lũy · lịch sử hoạt động · biệt danh/thông tin tài khoản — lưu 30 ngày rồi xóa hoàn toàn, dữ liệu quyết toán giữ mask 5 năm theo luật TMĐT". Ô đồng ý: "Tôi đã đọc hết và đồng ý hủy". Thông báo cho tài khoản chưa liên kết: "Tài khoản chưa liên kết Kakao (guest) không có bước xác thực lại. Dùng ô đồng ý bên dưới để thay xác minh, và khi hủy sẽ nhắc lại các mục bị xóa một lần nữa".</span></span></div></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 등급 교환 <span class="vn">(Đổi hạng vé)</span></span><span class="vi">2. Đổi hạng vé</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">티켓 등급 교환 화면: 교환 방향을 선택하면 하단(수량 입력·받을 티켓 자동 계산)이 그에 맞게 바뀌는 구조(4방향 교환+수량+자동 계산)가 맞나요? '지금 교환'→확인 모달→완료 토스트→내 적립 티켓(혜택) 복귀 흐름이 맞나요?</span><span class="vi">Màn đổi hạng vé: khi chọn hướng đổi thì khu vực bên dưới (ô nhập số lượng · tự tính vé sẽ nhận) thay đổi theo (đổi 4 hướng + nhập số lượng + tự tính) đúng không? Nhấn 'Đổi ngay' → modal xác nhận → toast hoàn tất → quay về màn vé tích lũy của tôi (Ưu đãi) đúng không?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq2.webp','티켓 등급 교환 화면')"><img src="/devqa/img/jq2.webp" alt="티켓 등급 교환 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">첨부 화면 (클릭하면 크게)</span><span class="vi">Màn đính kèm (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">흐름 맞습니다. 상단 보유 현황(브론즈·실버·골드) → 교환 비율 안내 → '교환 방향 선택'(<b>4방향</b>: 브론즈→실버, 실버→브론즈, 실버→골드, 골드→실버). <b>방향을 고르면 그 아래 영역(수량 입력칸·받을 티켓 자동 계산·교환 후 시뮬레이션)이 선택에 맞춰 동적으로 바뀝니다.</b> 하단 '<b>티켓 교환하기</b>'를 누르면 → <b>확인 모달 → 완료 토스트 → 내 적립 티켓 상세(혜택) 화면으로 복귀</b>합니다.
+
+주의: 하단 '티켓 교환하기'는 <b>등급↔등급 교환에만</b> 적용됩니다. <b>티켓↔포인트 전환</b>은 같은 화면 하단의 별도 섹션에서 각 줄 옆 '교환' 버튼으로 개별 처리됩니다(DevQA#5 4-b 참조).</span><span class="vi">Luồng đúng. Trên cùng là tồn vé (Bronze·Silver·Gold) → bảng tỷ lệ đổi → 'Chọn hướng đổi' (<b>4 hướng</b>: Bronze→Silver, Silver→Bronze, Silver→Gold, Gold→Silver). <b>Khi chọn hướng thì khu vực bên dưới (ô nhập số lượng·tự tính vé nhận·mô phỏng sau đổi) thay đổi động theo lựa chọn.</b> Nhấn nút '<b>Đổi vé</b>' ở dưới → <b>modal xác nhận → toast hoàn tất → quay về màn vé tích lũy của tôi (Ưu đãi)</b>.
+
+Lưu ý: nút 'Đổi vé' dưới cùng chỉ áp dụng cho <b>đổi hạng↔hạng</b>. <b>Đổi vé↔điểm</b> thì xử lý riêng bằng nút 'Đổi' bên cạnh từng dòng ở mục riêng phía dưới cùng màn (xem DevQA#5 4-b).</span></span>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">화면: 티켓 등급 교환(프로토타입 05d / pw-22). 교환 비율: 브론즈 10 ⇄ 실버 1, 실버 2 ⇄ 골드 1, 1:1 등가.</span><span class="vi">Màn: Đổi hạng vé (prototype 05d / pw-22). Tỷ lệ đổi: Bronze 10 ⇄ Silver 1, Silver 2 ⇄ Gold 1, ngang giá 1:1.</span></span></div></div></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">UI 예시</span><span class="vi">Ví dụ UI</span></span></span><div class="atxt"><span class="i18n"><span class="ko">John 코멘트('확인 모달·완료 토스트 UI 일러스트 필요') 반영 — 아래 목업으로 시각화합니다(프로토타입 사양 기준 재현, 실제 카피·수치는 동적). 예시는 '<b>브론즈 10장 → 실버 1장</b>' 교환 기준.</span><span class="vi">Phản ánh bình luận của John ('cần minh họa UI modal xác nhận · toast hoàn tất') — trực quan bằng mockup bên dưới (tái hiện theo spec prototype, nội dung·số liệu thực tế là động). Ví dụ theo '<b>10 vé Bronze → 1 vé Silver</b>'.</span></span>
+<div class="mk-wrap">
+<div class="mk-col"><div class="mk-cap"><span class="i18n"><span class="ko">① 확인 모달</span><span class="vi">① Modal xác nhận</span></span></div>
+<div class="mk-stage"><div class="mk-modal">
+<div class="mk-mtitle"><span class="i18n"><span class="ko">티켓을 교환할까요?</span><span class="vi">Đổi vé chứ?</span></span></div>
+<div class="mk-msub"><span class="i18n"><span class="ko">교환 후에는 되돌릴 수 없어요</span><span class="vi">Sau khi đổi không thể hoàn tác</span></span></div>
+<div class="mk-sum">
+<div class="mk-tk"><span class="mk-medal br"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M9 14.5 7 22l5-3 5 3-2-7.5"/></svg></span><span class="n">10</span><span class="l"><span class="i18n"><span class="ko">브론즈</span><span class="vi">Bronze</span></span></span></div>
+<span class="mk-arrow">→</span>
+<div class="mk-tk"><span class="mk-medal si"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M9 14.5 7 22l5-3 5 3-2-7.5"/></svg></span><span class="n">1</span><span class="l"><span class="i18n"><span class="ko">실버</span><span class="vi">Silver</span></span></span></div>
+</div>
+<div class="mk-note"><span class="i18n"><span class="ko">만료 임박분부터 사용(FIFO) · 새 티켓은 가장 이른 적립일 승계(만료 연장 없음)</span><span class="vi">Dùng từ vé sắp hết hạn (FIFO) · vé mới kế thừa ngày tích sớm nhất (không gia hạn)</span></span></div>
+<div class="mk-btns"><div class="mk-btn cancel"><span class="i18n"><span class="ko">취소</span><span class="vi">Hủy</span></span></div><div class="mk-btn pri"><span class="i18n"><span class="ko">교환하기</span><span class="vi">Đổi vé</span></span></div></div>
+</div></div></div>
+<div class="mk-col"><div class="mk-cap"><span class="i18n"><span class="ko">② 완료 토스트</span><span class="vi">② Toast hoàn tất</span></span></div>
+<div class="mk-stage"><div class="mk-toast"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="i18n"><span class="ko">교환이 완료됐어요</span><span class="vi">Đã đổi vé xong</span></span></div></div></div>
+</div>
+<div class="atxt" style="margin-top:11px"><span class="i18n"><span class="ko">순서: '티켓 교환하기' 탭 → <b>①모달</b>에서 '교환하기' 확정 → 처리 → <b>②토스트</b> 노출 → 내 적립 티켓 상세(혜택)로 자동 복귀. (티켓↔포인트 전환은 모달 없이 '교환' 즉시 처리 후 토스트만.)</span><span class="vi">Trình tự: chạm 'Đổi vé' → xác nhận 'Đổi vé' ở <b>①modal</b> → xử lý → hiện <b>②toast</b> → tự quay về màn vé tích lũy (Ưu đãi). (Đổi vé↔điểm thì không modal, nhấn 'Đổi' xử lý ngay rồi chỉ hiện toast.)</span></span></div></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. 구매 내역 <span class="vn">(Lịch sử mua)</span></span><span class="vi">3. Lịch sử mua</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">이 화면(구매 내역)은 아직 베트남어 버전이 없습니다. 처리 버튼을 누른 뒤 화면이 어떻게 표시되나요?</span><span class="vi">Màn này (Lịch sử mua) chưa có phiên bản tiếng Việt. Sau khi ấn nút xử lý thì giao diện sẽ hiển thị như thế nào?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq3.webp','구매 내역 화면')"><img src="/devqa/img/jq3.webp" alt="구매 내역 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">첨부 화면 (클릭하면 크게)</span><span class="vi">Màn đính kèm (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>(1) 베트남어 버전:</b> '없음'은 프로토타입(interactive.html) 한정입니다. <b>실제 앱은 i18n(KO/VI 리소스 키) 적용이 전제</b>이며, 사용자 노출 문구는 전부 키로 분리해 VI 번역을 채웁니다. 프로덕션은 VI 필수(구매 내역도 동일).
+
+<b>(2) 처리 버튼 누른 뒤:</b> <b>인라인 갱신 + 토스트</b> 방식으로, 화면 전환 없이 카드/리스트가 그 자리에서 바뀝니다. 정렬 변경은 리스트 즉시 재정렬, 탭 필터는 해당 상태 카드만 노출, '영수증 인증하기'는 카드 안에서 처리 단계가 펼쳐지고 제출 시 완료 토스트 후 카드 상태가 갱신됩니다. 별도 풀스크린 결과 화면으로 넘어가지 않습니다.
+
+<b>(3) 영수증 인증은 <span class="replan">재기획 예정</span>입니다 — 아래 [참조]는 구현 대상이 아닙니다.</b></span><span class="vi"><b>(1) Phiên bản tiếng Việt:</b> 'chưa có' chỉ giới hạn ở prototype (interactive.html). <b>App thật mặc định áp dụng i18n (key tài nguyên KO/VI)</b>, mọi chuỗi hiển thị đều tách thành key để điền bản dịch VI. Production bắt buộc có VI (Lịch sử mua cũng vậy).
+
+<b>(2) Sau khi ấn nút xử lý:</b> theo kiểu <b>cập nhật tại chỗ + toast</b>, không chuyển màn. Đổi sắp xếp thì danh sách sắp xếp lại ngay, tab lọc thì chỉ hiện thẻ đúng trạng thái, 'Xác thực hóa đơn' thì các bước xử lý mở ngay trong thẻ, nhấn nộp thì hiện toast hoàn tất rồi thẻ cập nhật trạng thái. Không chuyển sang màn kết quả toàn màn hình riêng.
+
+<b>(3) Xác thực hóa đơn <span class="replan">sẽ tái thiết kế</span> — phần [Tham khảo] bên dưới không phải đối tượng triển khai.</b></span></span>
+<div class="replan-box"><span class="i18n"><span class="ko">⚠️ 영수증 인증은 상세 기획이 확정되지 않았습니다. 타사 사례 조사 후 재기획할 예정입니다. 아래 [참조]는 이전 초안이며 <b>이대로 구현하지 마세요</b> — 현재 개발 대상이 아닙니다.</span><span class="vi">⚠️ Xác thực hóa đơn chưa chốt thiết kế chi tiết. Sẽ tái thiết kế sau khi khảo sát cách làm của các đơn vị khác. Phần [Tham khảo] bên dưới là bản nháp cũ — <b>đừng triển khai theo bản này</b>, hiện chưa phải đối tượng phát triển.</span></span></div>
+<div class="ref-box"><span class="ref-label">[참조 · 미확정 초안 — 구현 금지]</span><span class="i18n"><span class="ko">프로토타입은 한국어 기준, 우상단 KO/VI 토글로 부분 대응(내부 KO→VI 문자열 사전 보유).
+
+영수증 인증 처리 흐름(이전 초안, 미확정): <b>표시 조건</b> — 모든 카드에 뜨지 않음. 경유(구매 링크) 자동 추적이 아직 확인되지 않은 주문에만 노출('주문 확인 중' 카드에 "경유 추적이 아직 확인되지 않았어요. 영수증을 인증하면 적립을 받을 수 있어요." 안내+버튼). 자동 추적 정상 주문(구매확정 대기/완료)엔 버튼 없음(자동 적립). <b>처리 단계</b> — (1) 주문번호 입력(기본)+영수증 캡처 첨부(보조) → (2) 자동 매칭(주문번호·금액·일시) → (3) 성공 시 적립 가지급(구매확정 D+7 확정)/실패 시 운영 수동검수 큐로 이관. 남용 방지로 1주문 1회·접속 후 일정 기간 내 제한(기간 미정).
+
+<span class="replan">* 이 초안은 타사 사례 조사 후 재기획 예정 — 현재 개발 대상 아님.</span></span><span class="vi">Prototype làm theo tiếng Hàn, chỉ đáp ứng một phần qua toggle KO/VI góc trên phải (bên trong có sẵn từ điển chuỗi KO→VI).
+
+Luồng xử lý Xác thực hóa đơn (bản nháp cũ, chưa chốt): <b>Điều kiện hiển thị</b> — không hiện trên mọi thẻ. Chỉ hiện ở đơn mà việc theo dõi tự động qua link liên kết chưa được xác nhận (thẻ 'Đang xác nhận đơn' có dòng "Chưa xác nhận theo dõi qua link. Xác thực hóa đơn thì có thể được tích lũy." kèm nút). Đơn theo dõi tự động bình thường (chờ xác nhận mua/hoàn tất) không có nút (tự tích lũy). <b>Các bước xử lý</b> — (1) nhập mã đơn (chính)+đính ảnh hóa đơn (phụ) → (2) tự đối chiếu (mã đơn·số tiền·thời gian) → (3) khớp thì tạm cấp tích lũy (xác định sau D+7 từ xác nhận mua)/không khớp thì chuyển hàng đợi kiểm duyệt thủ công. Giới hạn 1 lần/đơn·trong thời hạn nhất định sau truy cập để chống lạm dụng (thời hạn chưa xác định).
+
+<span class="replan">* Bản nháp này sẽ tái thiết kế sau khi khảo sát cách làm đơn vị khác — hiện chưa phải đối tượng phát triển.</span></span></span></div></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">4. 영수증 인증 <span class="vn">(Xác thực hoá đơn)</span></span><span class="vi">4. Xác thực hoá đơn</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">4</span><div class="qtxt"><span class="i18n"><span class="ko">'영수증 인증' 버튼의 표시 조건이 아직 이해되지 않습니다. 어떤 조건에서 뜨나요?</span><span class="vi">Điều kiện hiển thị nút 'Xác thực hoá đơn' vẫn chưa hiểu rõ. Hiện ra trong điều kiện nào?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq4.png','영수증 인증 화면')"><img src="/devqa/img/jq4.png" alt="영수증 인증 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">첨부 화면 (클릭하면 크게)</span><span class="vi">Màn đính kèm (nhấn để xem lớn)</span></span></span></button></div><span class="bd replan"><span class="i18n"><span class="ko">재기획 예정</span><span class="vi">Sẽ tái thiết kế</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><div class="replan-box"><span class="i18n"><span class="ko">⚠️ <span class="replan">재기획 예정</span> — 이 기능은 상세 기획이 확정되지 않았습니다. 먼저 타사(경쟁 서비스)가 영수증 인증을 어떻게 처리하는지 조사한 뒤 재기획합니다. 표시 조건·처리 단계는 재기획 확정 전까지 미정이며, <b>현재 개발(구현) 대상이 아닙니다.</b></span><span class="vi">⚠️ <span class="replan">Sẽ tái thiết kế</span> — Tính năng này chưa chốt thiết kế chi tiết. Sẽ khảo sát cách các đơn vị khác (đối thủ) xử lý xác thực hóa đơn trước, rồi mới tái thiết kế. Điều kiện hiển thị·các bước xử lý vẫn chưa xác định cho đến khi tái thiết kế được chốt, và <b>hiện chưa phải đối tượng phát triển.</b></span></span></div></div></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">5. 알림 <span class="vn">(Thông báo)</span></span><span class="vi">5. Thông báo</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">5</span><div class="qtxt"><span class="i18n"><span class="ko">이 알림(notification) 섹션 항목들은 보기 전용이고 클릭 이벤트가 없는 게 맞나요?</span><span class="vi">Các item trong phần thông báo này là chỉ xem thôi chứ không có event click vào đúng không?</span></span>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/img/jq5.webp','알림 화면')"><img src="/devqa/img/jq5.webp" alt="알림 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">첨부 화면 (클릭하면 크게)</span><span class="vi">Màn đính kèm (nhấn để xem lớn)</span></span></span></button></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">부분적으로 맞습니다. 알림함 항목은 <b>별도 상세 화면으로 이동하는 딥링크·네비게이션이 없습니다.</b> 항목 탭의 유일한 동작은 <b>'읽음 처리'</b>이고, 상단 '모두 읽음'으로 일괄 처리도 됩니다. 상단 전체/구매/티켓/이벤트 탭은 필터입니다. 즉 현재는 <b>'보기 + 읽음 토글' 전용</b>이고 클릭 시 화면 전환은 없습니다.
+
+참고: 다음 단계에서 알림 종류별 딥링크(예: '브론즈 만료 7일 전' → 적립 티켓 상세)를 붙이는 건 별도 기획 선택지로 열어둡니다. 운영자 게시 '공지사항'은 별개 화면이고, 그쪽 항목은 클릭 시 전문 모달이 열립니다(DevQA#5 1번 참조).</span><span class="vi">Đúng một phần. Các item ở màn thông báo <b>không có deep-link·điều hướng sang màn chi tiết riêng.</b> Hành động duy nhất khi chạm item là <b>'đánh dấu đã đọc'</b>, và có thể xử lý hàng loạt bằng 'Đọc tất cả' ở trên. Các tab Tất cả/mua hàng/Vé/Sự kiện ở trên là bộ lọc. Tức hiện tại <b>chỉ 'xem + bật/tắt đã đọc'</b>, chạm không chuyển màn.
+
+Lưu ý: ở giai đoạn sau, gắn deep-link theo loại thông báo (VD: 'Bronze sắp hết hạn 7 ngày' → màn vé tích lũy) là một lựa chọn thiết kế riêng để mở sau. 'Thông báo chung' (quản trị đăng) là màn riêng, item ở đó khi nhấn sẽ mở modal toàn văn (xem DevQA#5 câu 1).</span></span>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">화면: 알림함(프로토타입 S1).</span><span class="vi">Màn: Hộp thông báo (prototype S1).</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱(프론트) 질문 답변 #6 · John(Nhon Truong) · 2026-06-22</span><span class="vi">PricePick · Giải đáp App (Frontend) #6 · John(Nhon Truong) · 2026-06-22</span></span></div></div>
+<!-- ── 재사용 라이트박스 (Q1~Q5 공통) ── -->
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
