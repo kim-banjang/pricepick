@@ -159,7 +159,44 @@ Nguyên nhân như sau: chiều rộng các cột của bảng vốn được c�
 Chúng tôi cũng đã đối chiếu với bản deploy trước để xác nhận không có chỗ nào khác bị đổi bố cục·khoảng cách·cỡ chữ ngoài việc gỡ nút.</span></span>
 <div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">CMS 정본·데모 양쪽에 적용했습니다. 표 폭은 카드 폭을 그대로 채우고, 열 순서와 내용은 이전과 같습니다. 지시 범위를 벗어난 변경을 하지 않도록 작업 기준을 다시 잡았습니다.</span><span class="vi">Đã áp dụng cho cả CMS bản gốc lẫn bản demo. Chiều rộng bảng lấp đầy đúng chiều rộng thẻ, thứ tự và nội dung cột giữ nguyên như trước. Chúng tôi cũng đã siết lại tiêu chuẩn làm việc để không thực hiện thay đổi ngoài phạm vi được yêu cầu.</span></span></div></div></div></div>
 
-<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Vin · 2026-08-03 · 확정 2 / 전수 조사 수정 13 / 슬롯 6개 고정 확정 / 표 폭 원복 1 / 확인 필요 1</span><span class="vi">PricePick · Trả lời CMS · Vin · 2026-08-03 · Đã chốt 2 / Rà soát sửa 13 / Chốt cố định 6 ô / Khôi phục chiều rộng bảng 1 / Cần xác nhận 1</span></span></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">6. 1회 기대값은 언제 갱신되나</span><span class="vi">6. Giá trị kỳ vọng 1 lượt được cập nhật khi nào</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">6</span><div class="qtxt"><span class="i18n"><span class="ko">수량을 바꾸면 상단 통계 카드의 1회 기대값과 표의 기대값 기여가 같이 바뀌는 걸 봤습니다. 1회 기대값은 수량을 바꿀 때마다 갱신되나요, 아니면 저장 후에 한 번만 계산되어 다음 저장 때까지 그대로인가요?</span><span class="vi">Tôi thấy khi đổi số lượng thì Giá trị kỳ vọng 1 lượt ở thẻ thống kê phía trên và Đóng góp GTKV trong bảng cũng đổi theo. Vậy Giá trị kỳ vọng 1 lượt được cập nhật mỗi khi đổi số lượng, hay chỉ được tính một lần sau khi Lưu và giữ nguyên cho đến lần lưu tiếp theo?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260803-vin/vin-q3-ev-preview.png','수량 변경 시 1회 기대값 실시간 변동')"><img src="/devqa/assets/20260803-vin/vin-q3-ev-preview.png" alt="수량 변경 시 1회 기대값 실시간 변동" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">수량 20으로 변경 · 1회 기대값 47.9원 (질문 시점 캡처)</span><span class="vi">Đổi số lượng thành 20 · GTKV 1 lượt 47,9₩ (ảnh lúc hỏi)</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>바꿀 때마다 즉시 다시 계산됩니다. 저장 후에 한 번만 계산되는 방식이 아닙니다.</b>
+
+보상 유형·수량·확률 중 하나라도 건드리면 그 자리에서 <b>가치(원) · 기대값 기여 · 합계 · 상단 1회 기대값</b>이 모두 다시 계산됩니다. 저장 버튼과는 무관합니다.
+
+<b>의도된 동작입니다.</b> 운영자가 값을 바꿔보면서 "이 구성이면 1회에 얼마가 나가는지"를 저장 전에 확인하고 판단해야 하기 때문입니다. 저장해야만 보이면 운영자가 저장·확인·되돌리기를 반복하게 됩니다.
+
+<b>다만 지적하신 대로 저장 전 값과 저장된 값이 구분되지 않는 문제가 있어 표시를 추가했습니다.</b>
+
+· 값을 하나라도 바꾸면 상단 1회 기대값 카드 캡션이 <b>"저장된 구성 기준" → "저장 전 미리보기 [미저장]"</b>으로 바뀝니다.
+· 표 합계 행의 기대값도 미저장 상태에서는 색이 바뀝니다.
+· 저장 버튼 문구가 <b>"저장" → "변경사항 저장"</b>으로 바뀝니다.
+· 저장에 성공하거나 저장된 구성을 다시 불러오면 <b>"저장된 구성 기준"</b>으로 돌아갑니다.
+
+<b>실제로 앱에 적용되는 값은 저장한 구성뿐입니다.</b> 미리보기 값은 화면 계산일 뿐이고, 저장하지 않고 나가면 사라집니다.
+
+<b>잭팟 룰렛도 완전히 같은 동작</b>입니다. 두 화면은 같은 로직을 씁니다.</span><span class="vi"><b>Được tính lại ngay mỗi khi thay đổi. Không phải kiểu chỉ tính một lần sau khi Lưu.</b>
+
+Chỉ cần chạm vào một trong ba thứ — loại thưởng·số lượng·xác suất — thì ngay tại chỗ <b>Giá trị (KRW) · Đóng góp GTKV · Tổng · Giá trị kỳ vọng 1 lượt ở trên</b> đều được tính lại. Không liên quan đến nút Lưu.
+
+<b>Đây là hành vi có chủ đích.</b> Vì quản trị viên cần vừa đổi giá trị vừa xem "với cấu hình này thì mỗi lượt chi ra bao nhiêu" để quyết định trước khi lưu. Nếu phải lưu mới thấy thì họ sẽ phải lặp đi lặp lại lưu·kiểm tra·hoàn tác.
+
+<b>Tuy nhiên đúng như anh chỉ ra, giá trị trước khi lưu và giá trị đã lưu không phân biệt được, nên chúng tôi đã bổ sung phần hiển thị.</b>
+
+· Chỉ cần đổi một giá trị bất kỳ, chú thích của thẻ Giá trị kỳ vọng 1 lượt sẽ đổi từ <b>"Theo cấu hình đã lưu" → "Xem trước khi lưu [Chưa lưu]"</b>.
+· Giá trị kỳ vọng ở hàng Tổng của bảng cũng đổi màu khi đang ở trạng thái chưa lưu.
+· Chữ trên nút lưu đổi từ <b>"Lưu" → "Lưu thay đổi"</b>.
+· Khi lưu thành công hoặc tải lại cấu hình đã lưu thì quay về <b>"Theo cấu hình đã lưu"</b>.
+
+<b>Giá trị thực sự được áp dụng vào app chỉ là cấu hình đã lưu.</b> Giá trị xem trước chỉ là phép tính trên màn hình, thoát ra mà không lưu thì mất.
+
+<b>Vòng quay Jackpot cũng hoạt động hoàn toàn giống vậy</b> — hai màn hình dùng chung một logic.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">기대값 기여 = 가치 × 확률, 1회 기대값 = 기대값 기여의 합입니다. 계산식은 그대로이고 이번에 바뀐 것은 저장 전 상태를 알리는 표시뿐입니다. 상단 카드 캡션이 기존 "현재 구성 기준"이었는데 저장된 값인지 편집 중 값인지 모호해서 "저장된 구성 기준"으로 바꿨습니다. CMS 정본·데모 양쪽, KO/VI 모두 적용했습니다.</span><span class="vi">Đóng góp GTKV = Giá trị × Xác suất, Giá trị kỳ vọng 1 lượt = tổng các Đóng góp GTKV. Công thức giữ nguyên; lần này chỉ thêm phần hiển thị trạng thái chưa lưu. Chú thích thẻ phía trên trước đây là "Theo cấu hình hiện tại" — dễ nhầm giữa giá trị đã lưu và giá trị đang sửa — nên đã đổi thành "Theo cấu hình đã lưu". Đã áp dụng cho cả CMS bản gốc·bản demo và cả KO/VI.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Vin · 2026-08-03 · 확정 3 / 전수 조사 수정 13 / 슬롯 6개 고정 확정 / 표 폭 원복 1 / 미저장 표시 신설 1 / 확인 필요 1</span><span class="vi">PricePick · Trả lời CMS · Vin · 2026-08-03 · Đã chốt 3 / Rà soát sửa 13 / Chốt cố định 6 ô / Khôi phục chiều rộng bảng 1 / Thêm hiển thị chưa lưu 1 / Cần xác nhận 1</span></span></div></div>
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
 <script>
 function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
