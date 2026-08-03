@@ -14429,15 +14429,13 @@ function bindAttendanceScreen() {
 }
 
 // ===== 행운룰렛 (pw-15) =====
-/* 매일 행운 룰렛 6칸 — 2026-07-31 확정 구성. 색은 20260729 시안의 자리별 고정 배분 그대로다
-   (칸 수는 6개 고정이라 색 순환 규칙이 필요 없다). JACKPOT 라벨은 가치가 가장 높은 칸에 붙는다. */
 var RL_REWARDS = [
-  { label:'실버 티켓',   sub:'1장',  win:true,  color:'#6C4AB6' },
-  { label:'이벤트 티켓', sub:'1장',  win:true,  color:'#C6AFFF' },
-  { label:'브론즈 티켓', sub:'1장',  win:true,  color:'#845EEE' },
-  { label:'포인트',      sub:'100P', win:true,  color:'#7C5BE0' },
-  { label:'포인트',      sub:'10P',  win:true,  color:'#C6AFFF' },
-  { label:'꽝',          sub:'',     win:false, color:'#9B78FF' }
+  { label:'이벤트 티켓', sub:'1장', win:true,  color:'#9B78FF' },
+  { label:'꽝',          sub:'',    win:false, color:'#C6AFFF' },
+  { label:'이벤트 티켓', sub:'2장', win:true,  color:'#6C4AB6' },
+  { label:'이벤트 티켓', sub:'1장', win:true,  color:'#845EEE' },
+  { label:'꽝',          sub:'',    win:false, color:'#C6AFFF' },
+  { label:'이벤트 티켓', sub:'1장', win:true,  color:'#7C5BE0' }
 ];
 var RL_LS_KEY = 'pp_roulette_last_date';
 function rlTodayStr() {

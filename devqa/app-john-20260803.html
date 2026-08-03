@@ -53,6 +53,9 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 .tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
 .tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
 .sw{display:inline-block;width:13px;height:13px;border-radius:3px;margin-right:7px;vertical-align:-2px;border:1px solid rgba(0,0,0,.12)}
+
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
 </style></head><body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
@@ -75,25 +78,38 @@ Thực tế không có nhu cầu đổi số ô, mà để nó biến động th
 <div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260803-john/john-q1-slots.png','잭팟 룰렛 휠 · 6칸 구성')"><img src="/devqa/assets/20260803-john/john-q1-slots.png" alt="잭팟 룰렛 휠 · 6칸 구성" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">잭팟 룰렛 휠 · 6칸 구성</span><span class="vi">Bánh xe Vòng quay Jackpot · cấu hình 6 ô</span></span></span></button></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>해당 없습니다 — 슬롯은 6개 고정입니다.</b> 7번째 슬롯이 생길 일이 없으므로 "기본 6칸 외"라는 경우 자체가 없어졌습니다.
 
-<b>6개 색을 자리별로 고정 배분합니다.</b> 아래 표가 확정값이며, 이 배분은 바뀌지 않습니다.
+<b>6개 색을 자리별로 고정 배분합니다.</b> 아래 표가 확정값입니다. <b>매일 행운 룰렛과 잭팟 룰렛은 색상표가 서로 다릅니다</b> — 두 표를 하나로 합치지 마십시오.
 
 인접한 칸이 붙어 보이지 않도록 명도를 교차시킨 순서입니다. 색을 코드에서 계산하지 않고 표 그대로 박아 쓰면 됩니다.</span><span class="vi"><b>Không áp dụng — ô cố định 6 ô.</b> Sẽ không có ô thứ 7, nên trường hợp "ngoài 6 ô mặc định" không còn tồn tại.
 
-<b>6 màu được phân bổ cố định theo vị trí.</b> Bảng dưới là giá trị đã chốt và sẽ không thay đổi.
+<b>6 màu được phân bổ cố định theo vị trí.</b> Bảng dưới là giá trị đã chốt. <b>Vòng quay may mắn hằng ngày và Vòng quay Jackpot có bảng màu khác nhau</b> — xin đừng gộp hai bảng làm một.
 
 Thứ tự được xen kẽ độ sáng để hai ô liền nhau không bị dính vào nhau. Không cần tính màu bằng code, cứ dùng đúng bảng này.</span></span>
-<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">JACKPOT 칸은 위 배분색을 덮어쓰고 진한 색(#4A2E8F)으로 칠합니다. 즉 한 칸만 예외입니다.</span><span class="vi">Ô JACKPOT ghi đè màu phân bổ ở trên và tô màu đậm (#4A2E8F). Tức chỉ một ô là ngoại lệ.</span></span></div></div></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">JACKPOT 칸은 색을 바꾸지 않고 라벨로만 구분합니다. 시안 원본과 같습니다.</span><span class="vi">Ô JACKPOT không đổi màu, chỉ phân biệt bằng nhãn. Giống nguyên bản thiết kế.</span></span></div></div></div></div>
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">매일 행운 룰렛 (무료) — 6칸 자리별 고정색</span><span class="vi">Vòng quay may mắn hằng ngày (miễn phí) — 6 màu cố định theo vị trí</span></span></h3>
 <div class="tblwrap"><table class="tbl">
-<thead><tr><th><span class="i18n"><span class="ko">슬롯</span><span class="vi">Ô</span></span></th><th><span class="i18n"><span class="ko">배경색</span><span class="vi">Màu nền</span></span></th><th><span class="i18n"><span class="ko">비고</span><span class="vi">Ghi chú</span></span></th></tr></thead>
+<thead><tr><th><span class="i18n"><span class="ko">슬롯 (자리)</span><span class="vi">Ô (vị trí)</span></span></th><th><span class="i18n"><span class="ko">배경색</span><span class="vi">Màu nền</span></span></th><th><span class="i18n"><span class="ko">현재 구성상 보상</span><span class="vi">Thưởng theo cấu hình hiện tại</span></span></th></tr></thead>
 <tbody>
-<tr><td>1번</td><td><span class="sw" style="background:#845EEE"></span>#845EEE</td><td><span class="i18n"><span class="ko">메인 보라</span><span class="vi">Tím chính</span></span></td></tr>
-<tr><td>2번</td><td><span class="sw" style="background:#C6AFFF"></span>#C6AFFF</td><td><span class="i18n"><span class="ko">연보라</span><span class="vi">Tím nhạt</span></span></td></tr>
-<tr><td>3번</td><td><span class="sw" style="background:#6C4AB6"></span>#6C4AB6</td><td><span class="i18n"><span class="ko">진보라</span><span class="vi">Tím đậm</span></span></td></tr>
-<tr><td>4번</td><td><span class="sw" style="background:#B79CFF"></span>#B79CFF</td><td><span class="i18n"><span class="ko">중간 보라</span><span class="vi">Tím vừa</span></span></td></tr>
-<tr><td>5번</td><td><span class="sw" style="background:#7C5BE0"></span>#7C5BE0</td><td><span class="i18n"><span class="ko">메인 보라(딥)</span><span class="vi">Tím chính (đậm)</span></span></td></tr>
-<tr><td>6번</td><td><span class="sw" style="background:#D8CCFF"></span>#D8CCFF</td><td><span class="i18n"><span class="ko">가장 연한 보라</span><span class="vi">Tím nhạt nhất</span></span></td></tr>
-<tr><td><b>JACKPOT <span class="i18n"><span class="ko">칸</span><span class="vi">ô</span></span></b></td><td><span class="sw" style="background:#4A2E8F"></span><b>#4A2E8F</b></td><td><span class="i18n"><span class="ko">가치가 가장 높은 칸 — 위 위치색을 덮어쓴다</span><span class="vi">Ô có giá trị cao nhất — ghi đè màu vị trí ở trên</span></span></td></tr>
+<tr><td>1번</td><td><span class="sw" style="background:#6C4AB6"></span>#6C4AB6</td><td><span class="i18n"><span class="ko">실버 티켓 1장</span><span class="vi">1 vé Bạc</span></span></td></tr>
+<tr><td>2번</td><td><span class="sw" style="background:#C6AFFF"></span>#C6AFFF</td><td><span class="i18n"><span class="ko">이벤트 티켓 1장</span><span class="vi">1 vé sự kiện</span></span></td></tr>
+<tr><td>3번</td><td><span class="sw" style="background:#845EEE"></span>#845EEE</td><td><span class="i18n"><span class="ko">브론즈 티켓 1장</span><span class="vi">1 vé Đồng</span></span></td></tr>
+<tr><td>4번</td><td><span class="sw" style="background:#7C5BE0"></span>#7C5BE0</td><td><span class="i18n"><span class="ko">포인트 100P</span><span class="vi">Điểm 100P</span></span></td></tr>
+<tr><td>5번</td><td><span class="sw" style="background:#C6AFFF"></span>#C6AFFF</td><td><span class="i18n"><span class="ko">포인트 10P</span><span class="vi">Điểm 10P</span></span></td></tr>
+<tr><td>6번</td><td><span class="sw" style="background:#9B78FF"></span>#9B78FF</td><td><span class="i18n"><span class="ko">꽝</span><span class="vi">Trượt</span></span></td></tr>
 </tbody></table></div>
+<div class="note-box"><span class="i18n"><span class="ko"><b>매일 행운 룰렛 — 자리별 고정 배분</b>입니다. 슬롯 6개가 고정이므로 1번~6번 자리에 위 색이 그대로 박힙니다. 운영자가 CMS에서 보상 유형을 바꿔도 <b>색은 자리를 따릅니다</b>. 2번과 5번이 같은 색인 것은 시안 원본 그대로이며, 두 칸이 마주 보는 위치라 붙어 보이지 않습니다. JACKPOT 칸은 색을 바꾸지 않고 <b>JACKPOT 라벨만</b> 붙입니다.</span><span class="vi"><b>Vòng quay may mắn hằng ngày — phân bổ cố định theo vị trí.</b> Vì cố định 6 ô nên các màu trên gắn cứng vào vị trí ô 1~6. Dù quản trị viên đổi loại thưởng trên CMS thì <b>màu vẫn theo vị trí</b>. Việc ô 2 và ô 5 cùng màu là nguyên bản thiết kế, và hai ô đó ở vị trí đối diện nhau nên không bị dính. Ô JACKPOT không đổi màu, <b>chỉ gắn nhãn JACKPOT</b>.</span></span></div>
+<h3 style="font-size:13px;color:var(--pp-d);margin:20px 0 2px"><span class="i18n"><span class="ko">잭팟 룰렛 (유료) — 보상 유형별 색</span><span class="vi">Vòng quay Jackpot (trả phí) — màu theo loại thưởng</span></span></h3>
+<div class="tblwrap"><table class="tbl">
+<thead><tr><th><span class="i18n"><span class="ko">보상 유형</span><span class="vi">Loại thưởng</span></span></th><th><span class="i18n"><span class="ko">배경색</span><span class="vi">Màu nền</span></span></th><th><span class="i18n"><span class="ko">비고</span><span class="vi">Ghi chú</span></span></th></tr></thead>
+<tbody>
+<tr><td>골드 티켓</td><td><span class="sw" style="background:linear-gradient(160deg,#FFD93B 50%,#E6A800 50%)"></span>#FFD93B → #E6A800</td><td><span class="i18n"><span class="ko">금속 그라데이션 · 글자색 #4A2E00</span><span class="vi">Gradient kim loại · màu chữ #4A2E00</span></span></td></tr>
+<tr><td>실버 티켓</td><td><span class="sw" style="background:linear-gradient(160deg,#D8D8D8 50%,#999999 50%)"></span>#D8D8D8 → #999999</td><td><span class="i18n"><span class="ko">금속 그라데이션 · 글자색 #22252B</span><span class="vi">Gradient kim loại · màu chữ #22252B</span></span></td></tr>
+<tr><td>브론즈 티켓</td><td><span class="sw" style="background:linear-gradient(160deg,#D89A68 50%,#A96B33 50%)"></span>#D89A68 → #A96B33</td><td><span class="i18n"><span class="ko">금속 그라데이션 · 글자색 #3A1B04</span><span class="vi">Gradient kim loại · màu chữ #3A1B04</span></span></td></tr>
+<tr><td>포인트 (고액 칸)</td><td><span class="sw" style="background:#2A1A5E"></span>#2A1A5E</td><td><span class="i18n"><span class="ko">포인트가 2칸이면 첫 칸</span><span class="vi">Ô đầu nếu có 2 ô điểm</span></span></td></tr>
+<tr><td>포인트 (소액 칸)</td><td><span class="sw" style="background:#845EEE"></span>#845EEE</td><td><span class="i18n"><span class="ko">포인트가 2칸이면 둘째 칸</span><span class="vi">Ô thứ hai nếu có 2 ô điểm</span></span></td></tr>
+<tr><td>꽝</td><td><span class="sw" style="background:#221546"></span>#221546</td><td><span class="i18n"><span class="ko">가장 어두운 보라</span><span class="vi">Tím tối nhất</span></span></td></tr>
+</tbody></table></div>
+<div class="note-box"><span class="i18n"><span class="ko"><b>잭팟 룰렛 — 보상 유형별 색</b>입니다. 매일 행운 룰렛과 규칙 자체가 다릅니다. 자리가 아니라 그 칸의 보상 유형을 보고 칠합니다. 등급 티켓 3종은 금속 그라데이션(위→아래 50% 지점에서 단절)이고, 배경은 다크(#0E0821) 위에 얹힙니다. JACKPOT 칸도 색을 따로 두지 않고 <b>JACKPOT 라벨</b>로 표시합니다.</span><span class="vi"><b>Vòng quay Jackpot — màu theo loại thưởng.</b> Quy tắc khác hẳn Vòng quay may mắn hằng ngày. Tô theo loại thưởng của ô chứ không theo vị trí. 3 loại vé hạng dùng gradient kim loại (chuyển đột ngột tại mốc 50% từ trên xuống), đặt trên nền tối (#0E0821). Ô JACKPOT cũng không có màu riêng, chỉ hiển thị bằng <b>nhãn JACKPOT</b>.</span></span></div>
 <h2 class="grp"><span class="i18n"><span class="ko">2. 현재 없는 새 보상의 결과 팝업 문구</span><span class="vi">2. Câu chữ popup kết quả cho loại thưởng mới chưa có</span></span></h2>
 <div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">지금 없는 새 보상(등급 티켓 등)이 당첨되면 결과 팝업 문구는 무엇으로 하나요?</span><span class="vi">Nếu trúng loại thưởng mới hiện chưa có (vé hạng v.v.) thì câu chữ popup kết quả là gì?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
 <div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260803-john/john-q2-reward.png','잭팟 룰렛 결과 모달 6종 (시안)')"><img src="/devqa/assets/20260803-john/john-q2-reward.png" alt="잭팟 룰렛 결과 모달 6종 (시안)" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">잭팟 룰렛 결과 모달 6종 (시안)</span><span class="vi">6 loại modal kết quả Vòng quay Jackpot (bản thiết kế)</span></span></span></button></div>
