@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 답변 · Vin · 2026-08-03 (2차)</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.tbl td.old{color:#b4453f;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.4px}
+.tbl td.new{color:#1f7a7a;font-weight:700}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:220px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 답변 · Vin · 2026-08-03 (2차)</span><span class="vi">Trả lời CMS PricePick · Vin · 2026-08-03 (lần 2)</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Vin · CMS · 잭팟 룰렛 / 매일 행운 룰렛 &gt; "데모 앱" 안내 문구가 실제 CMS에도 필요한지 문의 — 답변 KO/VI</span><span class="vi">Vin · CMS · Vòng quay Jackpot / Vòng quay may mắn hằng ngày &gt; Hỏi dòng chữ "데모 앱" (app demo) có cần thiết trên CMS thật không — Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/QA-CMS-2026-08-03-2-3b1b92a1096480e380b0dec356dbf6e6" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건 · 지적 대상 문구 3곳</span><span class="vi">1 câu hỏi · 3 chỗ được hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">2곳 삭제 · 1곳 문구만 수정</span><span class="vi">Xóa 2 chỗ · Sửa chữ 1 chỗ</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+
+<!-- ==================== Q ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 잭팟 룰렛 · 매일 행운 룰렛 — "데모 앱" 안내 문구, 실제 CMS에도 넣어야 하나</span><span class="vi">1. Vòng quay Jackpot · Vòng quay may mắn hằng ngày — dòng chữ "데모 앱" (app demo) có cần đưa vào CMS thật không</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">Q</span><div class="qtxt"><span class="i18n"><span class="ko">(베트남어 원문 요약) "잭팟 룰렛과 매일 행운 룰렛 — 아래 내용을 꼭 추가해야 합니까? 추가해야 한다면 'DEMO'라는 표현이 들어가지 않도록 수정해 주세요. 저는 한국어를 몰라서 내용을 정확히 수정할 수 없습니다."</span><span class="vi">Jackpot roulette và Vòng quay may mắn hằng ngày — Nội dung bên dưới có cần thiết phải thêm vào không, nếu cần thêm vào thì hãy chỉnh sửa để không áp dụng chữ DEMO. Vì tôi không biết tiếng Hàn, nên tôi không thể chỉnh sửa cho chính xác nội dung được.</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs">
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260803-vin-2/vin2-q1-jackpot-roulette.png','잭팟 룰렛 · 참여 제한 정책 · 빨간 박스 2곳')"><img src="/devqa/assets/20260803-vin-2/vin2-q1-jackpot-roulette.png" alt="잭팟 룰렛 화면 · 빨간 박스 2곳" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">잭팟 룰렛 · 지적 문구 2곳(박스1·박스2)</span><span class="vi">Vòng quay Jackpot · 2 chỗ được hỏi (khung 1·khung 2)</span></span></span></button>
+<button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260803-vin-2/vin2-q2-daily-roulette.png','매일 행운 룰렛 · 빨간 박스')"><img src="/devqa/assets/20260803-vin-2/vin2-q2-daily-roulette.png" alt="매일 행운 룰렛 화면 · 빨간 박스" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">매일 행운 룰렛 · 지적 문구 1곳</span><span class="vi">Vòng quay may mắn hằng ngày · 1 chỗ được hỏi</span></span></span></button>
+</div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>지적이 정확합니다. 그 문구들은 데모(웹 데모) 전용 안내입니다. 실제 CMS에는 들어가면 안 됩니다.</b>
+
+세 곳을 하나씩 나눠 답합니다.</span><span class="vi"><b>Góp ý chính xác. Những dòng chữ đó là hướng dẫn dành riêng cho bản demo (web demo). Không được đưa vào CMS thật.</b>
+
+Trả lời từng chỗ một dưới đây.</span></span></div></div>
+</div>
+
+<div class="qa">
+<div class="arow" style="border-top:none;margin-top:0;padding-top:0"><span class="alabel"><span class="i18n"><span class="ko">답변 1</span><span class="vi">Trả lời 1</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>박스1 계열 문구("여기서 저장한 슬롯 구성·보상·확률과 ... 데모 앱 ... 화면이 그대로 읽어 적용합니다")는 실제 CMS에서 삭제합니다. 수정해서 넣는 게 아니라 빼는 게 맞습니다.</b>
+
+이 문구는 웹 데모에서 "CMS에서 저장한 값이 데모 앱에 실제로 반영된다"는 것을 김반장·이동영 부장이 확인하기 위해 넣은 데모 검증용 안내입니다. 실 서비스 CMS에서는 관리자가 저장한 설정이 앱에 반영되는 것이 당연하므로 설명할 필요가 없습니다.</span><span class="vi"><b>Dòng chữ ở khung 1 ("여기서 저장한 슬롯 구성·보상·확률과 ... 데모 앱 ... 화면이 그대로 읽어 적용합니다" — cấu hình ô·thưởng·xác suất đã lưu ở đây được app demo đọc và áp dụng nguyên xi) sẽ bị xóa khỏi CMS thật. Không phải sửa lại rồi thêm vào, mà là bỏ đi.</b>
+
+Dòng chữ này là hướng dẫn kiểm chứng chỉ dùng cho bản demo, được thêm vào để anh Kim (김반장) và trưởng phòng Lee Dong-young xác nhận rằng "giá trị đã lưu ở CMS thực sự được phản ánh vào app demo". Ở CMS dịch vụ thật, việc cấu hình admin lưu được phản ánh vào app là điều đương nhiên nên không cần giải thích.</span></span></div></div>
+</div>
+
+<div class="qa">
+<div class="arow" style="border-top:none;margin-top:0;padding-top:0"><span class="alabel"><span class="i18n"><span class="ko">답변 2</span><span class="vi">Trả lời 2</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>매일 행운 룰렛 박스의 "앱을 새로고침하면 반영됩니다"도 삭제합니다.</b>
+
+실제 서비스에서 설정 반영 시점·방식은 구현에 따라 달라지므로 데모 문구를 그대로 옮기면 안 됩니다. 관리자에게 반영 시점 안내가 필요하다고 판단되면, 실제 동작에 맞는 문구를 개발팀이 정해서 넣어 주세요.</span><span class="vi"><b>Dòng "앱을 새로고침하면 반영됩니다" (khi tải lại app thì được phản ánh) ở khung của Vòng quay may mắn hằng ngày cũng bị xóa.</b>
+
+Ở dịch vụ thật, thời điểm·cách thức phản ánh cấu hình tùy vào cách triển khai nên không được giữ nguyên dòng chữ của bản demo. Nếu thấy cần thông báo cho admin về thời điểm phản ánh, xin đội dev tự quyết định dòng chữ đúng với hành vi thực tế rồi đưa vào.</span></span></div></div>
+</div>
+
+<div class="qa">
+<div class="arow" style="border-top:none;margin-top:0;padding-top:0"><span class="alabel"><span class="i18n"><span class="ko">답변 3</span><span class="vi">Trả lời 3</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>박스2 — 이벤트 티켓 월 획득 상한 아래 설명 문구는 필드 설명이므로 남깁니다.</b> 단 "현행 정책 그대로"는 데모용 표현이니 뺍니다.</span><span class="vi"><b>Khung 2 — dòng giải thích dưới mục Hạn mức nhận vé sự kiện/tháng là chú thích cho ô nhập nên được giữ lại.</b> Nhưng "현행 정책 그대로" (giữ nguyên chính sách hiện hành) là cách nói chỉ dùng cho demo nên bị bỏ.</span></span></div>
+<div class="tblwrap"><table class="tbl">
+<thead><tr><th><span class="i18n"><span class="ko">구분</span><span class="vi">Phân loại</span></span></th><th><span class="i18n"><span class="ko">문구</span><span class="vi">Nội dung</span></span></th></tr></thead>
+<tbody>
+<tr><td><span class="i18n"><span class="ko">변경 전</span><span class="vi">Trước</span></span></td><td class="old">현행 정책 그대로 30장. 회원 1명이 한 달에 모을 수 있는 이벤트 티켓 총량입니다.</td></tr>
+<tr><td><span class="i18n"><span class="ko">변경 후</span><span class="vi">Sau</span></span></td><td class="new"><span class="i18n"><span class="ko">회원 1명이 한 달에 모을 수 있는 이벤트 티켓 총량입니다.</span><span class="vi">Đây là tổng lượng vé sự kiện mà 1 hội viên có thể nhận được trong 1 tháng.</span></span></td></tr>
+</tbody></table></div>
+</div>
+
+<div class="qa">
+<div class="arow" style="border-top:none;margin-top:0;padding-top:0"><span class="alabel"><span class="i18n"><span class="ko">답변 4</span><span class="vi">Trả lời 4</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>판단 기준 (앞으로 같은 상황에서)</b>
+
+CMS 문구를 데모에서 실제로 옮길 때 기준은 하나입니다.
+
+· <b>남긴다</b> — 관리자가 그 입력 필드를 이해하는 데 필요한 설명 (예: "회원 1명이 한 달에 모을 수 있는 이벤트 티켓 총량입니다")
+· <b>뺀다</b> — 데모임을 전제로 한 설명. "데모 앱"·"현행 정책 그대로"·"앱을 새로고침하면" 같은 데모 검증용 문구
+
+Vin이 한국어를 몰라 판단이 어려운 경우, <b>해당 문구를 그대로 붙여서 물어보면 남길지 뺄지 알려드리겠습니다.</b> 임의로 번역하거나 지우지 말고 물어봐 주세요.</span><span class="vi"><b>Tiêu chuẩn phán đoán (áp dụng cho tình huống tương tự về sau)</b>
+
+Khi chuyển chữ CMS từ bản demo sang CMS thật, chỉ có một tiêu chuẩn.
+
+· <b>Giữ lại</b> — chú thích cần thiết để admin hiểu ô nhập đó (VD: "Đây là tổng lượng vé sự kiện mà 1 hội viên có thể nhận được trong 1 tháng")
+· <b>Bỏ đi</b> — chú thích chỉ đúng khi đang ở bản demo. Các dòng kiểm chứng demo như "데모 앱" (app demo)·"현행 정책 그대로" (giữ nguyên chính sách hiện hành)·"앱을 새로고침하면" (khi tải lại app)
+
+Nếu Vin không biết tiếng Hàn nên khó phán đoán, <b>cứ dán nguyên văn dòng chữ đó vào và hỏi, tôi sẽ trả lời nên giữ hay bỏ.</b> Đừng tự dịch hoặc tự xóa, hãy hỏi trước.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조] 웹 데모 CMS는 그대로 둡니다</span><span class="vi">[Tham khảo] Giữ nguyên CMS bản web demo</span></span></span><span class="i18n"><span class="ko">이번 답변은 <b>실제 서비스 CMS</b>에서 그 문구를 뺀다는 내용입니다. 웹 데모 CMS(pricepick-demo/cms/)의 문구는 그대로 둡니다 — 데모에서는 그 안내가 실제로 필요합니다. 이번 답변에 따라 데모 화면을 수정하지 않았습니다.</span><span class="vi">Câu trả lời lần này nói về việc bỏ dòng chữ đó ở <b>CMS dịch vụ thật</b>. Dòng chữ ở CMS bản web demo (pricepick-demo/cms/) được giữ nguyên — vì ở demo, hướng dẫn đó thực sự cần thiết. Không sửa màn hình demo theo câu trả lời này.</span></span></div>
+</div>
+</div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Vin · 2026-08-03 (2차) · 삭제 2 / 문구 수정 1 / 판단 기준 신설</span><span class="vi">PricePick · Trả lời CMS · Vin · 2026-08-03 (lần 2) · Xóa 2 / Sửa chữ 1 / Bổ sung tiêu chuẩn phán đoán</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
