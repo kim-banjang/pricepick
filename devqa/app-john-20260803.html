@@ -81,8 +81,8 @@ Thực tế không có nhu cầu đổi số ô, mà để nó biến động th
 
 <b>6 màu được phân bổ cố định theo vị trí.</b> Bảng dưới là giá trị đã chốt và sẽ không thay đổi.
 
-Thứ tự được xen kẽ độ sáng để hai ô liền nhau không bị dính vào nhau. Không cần tính màu bằng code, cứ dùng đúng bảng này.</span></span></div>
-<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">JACKPOT 칸은 위 배분색을 덮어쓰고 진한 색(#4A2E8F)으로 칠합니다. 즉 한 칸만 예외입니다.</span><span class="vi">Ô JACKPOT ghi đè màu phân bổ ở trên và tô màu đậm (#4A2E8F). Tức chỉ một ô là ngoại lệ.</span></span></div></div></div>
+Thứ tự được xen kẽ độ sáng để hai ô liền nhau không bị dính vào nhau. Không cần tính màu bằng code, cứ dùng đúng bảng này.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">JACKPOT 칸은 위 배분색을 덮어쓰고 진한 색(#4A2E8F)으로 칠합니다. 즉 한 칸만 예외입니다.</span><span class="vi">Ô JACKPOT ghi đè màu phân bổ ở trên và tô màu đậm (#4A2E8F). Tức chỉ một ô là ngoại lệ.</span></span></div></div></div></div>
 <div class="tblwrap"><table class="tbl">
 <thead><tr><th><span class="i18n"><span class="ko">슬롯</span><span class="vi">Ô</span></span></th><th><span class="i18n"><span class="ko">배경색</span><span class="vi">Màu nền</span></span></th><th><span class="i18n"><span class="ko">비고</span><span class="vi">Ghi chú</span></span></th></tr></thead>
 <tbody>
@@ -117,8 +117,8 @@ Nếu thưởng là vé hạng (Đồng·Bạc·Vàng) thì dùng <b>cùng đị
 
 <b>Chỉ khi trúng ô được gắn JACKPOT</b> thì tiêu đề đổi thành "Trúng Jackpot!". Ô nào là JACKPOT thì xác định theo tiêu chí ở câu 3.
 
-Điểm dùng nguyên popup điểm hiện có, Trượt cũng giữ nguyên. <b>Dù loại thưởng có tăng thì popup vẫn chỉ có 3 dạng: dạng vé·dạng điểm·Trượt.</b></span></span></div>
-</div></div>
+Điểm dùng nguyên popup điểm hiện có, Trượt cũng giữ nguyên. <b>Dù loại thưởng có tăng thì popup vẫn chỉ có 3 dạng: dạng vé·dạng điểm·Trượt.</b></span></span>
+</div></div></div>
 <h2 class="grp"><span class="i18n"><span class="ko">3. JACKPOT이 붙는 칸의 기준 — 정정</span><span class="vi">3. Tiêu chí ô được gắn JACKPOT — đính chính</span></span></h2>
 <div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">JACKPOT이 붙은 칸은 확률이 가장 낮은 칸이 맞나요?</span><span class="vi">Ô được gắn JACKPOT có phải là ô có xác suất thấp nhất không?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">정정</span><span class="vi">Đính chính</span></span></span></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>아닙니다. 확률이 아니라 가치가 가장 높은 칸입니다.</b> 이 부분은 정확히 잡고 가야 합니다.
@@ -133,8 +133,8 @@ Với người dùng, JACKPOT nghĩa là "phần thưởng tốt nhất của v�
 
 <b>Tiêu chí: ô có giá trị quy đổi ra tiền cao nhất.</b> Chuẩn quy đổi dùng đúng giá trị đang có — Điểm 10P = 1₩, vé sự kiện 40₩, Đồng 100₩, Bạc 1.000₩, Vàng 2.000₩. Nếu bằng nhau thì gắn tối đa 2 ô.
 
-Với cấu hình Vòng quay Jackpot hiện tại, vé Vàng (2.000₩) cao nhất nên gắn vào ô vé Vàng, và ô đó tình cờ cũng có xác suất thấp nhất là 0,4%. <b>Kết quả trông giống nhau nhưng tiêu chí là giá trị.</b></span></span></div>
-<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">앱·CMS 양쪽 다 이 기준으로 반영했습니다. 앱 휠은 가치 최고 칸에 JACKPOT 라벨과 진한 배경색을 붙이고, CMS 슬롯 표는 가치(원) 열에 JACKPOT 배지를 붙입니다. 타입을 하드코딩해 골드 티켓에만 붙이던 기존 처리는 제거했습니다.</span><span class="vi">Đã áp dụng tiêu chí này ở cả app và CMS. Bánh xe trong app gắn nhãn JACKPOT và màu nền đậm cho ô giá trị cao nhất; bảng ô ở CMS gắn huy hiệu JACKPOT ở cột Giá trị (KRW). Cách xử lý cũ — hardcode theo loại và chỉ gắn cho vé Vàng — đã được gỡ bỏ.</span></span></div></div></div>
+Với cấu hình Vòng quay Jackpot hiện tại, vé Vàng (2.000₩) cao nhất nên gắn vào ô vé Vàng, và ô đó tình cờ cũng có xác suất thấp nhất là 0,4%. <b>Kết quả trông giống nhau nhưng tiêu chí là giá trị.</b></span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">앱·CMS 양쪽 다 이 기준으로 반영했습니다. 앱 휠은 가치 최고 칸에 JACKPOT 라벨과 진한 배경색을 붙이고, CMS 슬롯 표는 가치(원) 열에 JACKPOT 배지를 붙입니다. 타입을 하드코딩해 골드 티켓에만 붙이던 기존 처리는 제거했습니다.</span><span class="vi">Đã áp dụng tiêu chí này ở cả app và CMS. Bánh xe trong app gắn nhãn JACKPOT và màu nền đậm cho ô giá trị cao nhất; bảng ô ở CMS gắn huy hiệu JACKPOT ở cột Giá trị (KRW). Cách xử lý cũ — hardcode theo loại và chỉ gắn cho vé Vàng — đã được gỡ bỏ.</span></span></div></div></div></div>
 <div class="foot"><span class="i18n"><span class="ko">PricePick · 앱 답변 · John · 2026-08-03 · 확정 2 / 정정 1 / 확인 필요 0</span><span class="vi">PricePick · Trả lời App · John · 2026-08-03 · Đã chốt 2 / Đính chính 1 / Cần xác nhận 0</span></span></div></div>
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
 <script>
