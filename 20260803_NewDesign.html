@@ -63,6 +63,7 @@
     justify-content: center;
     color: #a9aab4;
     font-size: 13px;
+    z-index: 1;
   }
   .placeholder.hidden { display: none; }
 </style>
@@ -70,22 +71,31 @@
 <body>
   <header>
     <div class="tabs">
-      <button class="tab active" data-target="invite">친구초대</button>
+      <button class="tab active" data-target="friend">친구초대</button>
+      <button class="tab" data-target="mission">연속구매 미션</button>
       <button class="tab" data-target="ticket">티켓 교환</button>
     </div>
   </header>
   <div class="frame-wrap">
     <div id="ph-invite" class="placeholder">불러오는 중...</div>
     <div id="ph-ticket" class="placeholder hidden">불러오는 중...</div>
-    <iframe id="frame-invite" class="active" src="20260803_NewDesign_invite.html" title="친구초대 시안"></iframe>
+    <iframe id="frame-invite" class="active" src="20260803_NewDesign_invite.html" title="친구초대 / 연속구매 미션 시안"></iframe>
     <iframe id="frame-ticket" title="티켓 교환 시안"></iframe>
   </div>
 
   <script>
     var TICKET_SRC = '20260803_NewDesign_ticket.html';
+
+    // PricePick_Invite.html 내부 구조: #dc-root > .sc-host > section (직계 자식 2개)
+    //   section[0] = 연속구매 미션 화면, section[1] = 친구초대 화면
+    // 원본 마크업은 그대로 두고, 활성 탭에 맞춰 섹션의 display만 토글한다.
+    var INVITE_SECTION_SELECTOR = '.sc-host > section';
+    var SECTION_INDEX = { mission: 0, friend: 1 };
+
     var tabs = document.querySelectorAll('.tab');
     var frames = {
-      invite: document.getElementById('frame-invite'),
+      friend: document.getElementById('frame-invite'),
+      mission: document.getElementById('frame-invite'),
       ticket: document.getElementById('frame-ticket')
     };
     var placeholders = {
@@ -93,10 +103,42 @@
       ticket: document.getElementById('ph-ticket')
     };
 
-    frames.invite.addEventListener('load', function () {
-      placeholders.invite.classList.add('hidden');
+    var inviteFrame = document.getElementById('frame-invite');
+    var ticketFrame = document.getElementById('frame-ticket');
+    var inviteReady = false;
+    var pendingInviteTarget = 'friend';
+
+    function applyInviteSection(target) {
+      if (!inviteReady) { pendingInviteTarget = target; return; }
+      try {
+        var doc = inviteFrame.contentDocument;
+        var sections = doc.querySelectorAll(INVITE_SECTION_SELECTOR);
+        if (sections.length < 2) return;
+        sections.forEach(function (sec, i) {
+          sec.style.display = (i === SECTION_INDEX[target]) ? '' : 'none';
+        });
+      } catch (e) {
+        // 분리 실패 시 원본 전체를 그대로 보여준다 (안전한 기본값)
+      }
+    }
+
+    inviteFrame.addEventListener('load', function () {
+      var tries = 0;
+      var iv = setInterval(function () {
+        tries++;
+        var doc;
+        try { doc = inviteFrame.contentDocument; } catch (e) { doc = null; }
+        var sections = doc ? doc.querySelectorAll(INVITE_SECTION_SELECTOR) : [];
+        if (sections.length >= 2 || tries > 50) {
+          clearInterval(iv);
+          inviteReady = true;
+          placeholders.invite.classList.add('hidden');
+          applyInviteSection(pendingInviteTarget);
+        }
+      }, 200);
     });
-    frames.ticket.addEventListener('load', function () {
+
+    ticketFrame.addEventListener('load', function () {
       placeholders.ticket.classList.add('hidden');
     });
 
@@ -108,14 +150,19 @@
         tabs.forEach(function (t) { t.classList.remove('active'); });
         tab.classList.add('active');
 
-        Object.keys(frames).forEach(function (key) {
-          frames[key].classList.toggle('active', key === target);
-        });
+        inviteFrame.classList.toggle('active', target === 'friend' || target === 'mission');
+        ticketFrame.classList.toggle('active', target === 'ticket');
 
-        if (target === 'ticket' && !frames.ticket.src) {
-          frames.ticket.src = TICKET_SRC;
-        } else {
-          placeholders[target].classList.add('hidden');
+        if (target === 'friend' || target === 'mission') {
+          pendingInviteTarget = target;
+          applyInviteSection(target);
+        } else if (target === 'ticket') {
+          placeholders.invite.classList.add('hidden');
+          if (!ticketFrame.src) {
+            ticketFrame.src = TICKET_SRC;
+          } else {
+            placeholders.ticket.classList.add('hidden');
+          }
         }
       });
     });
