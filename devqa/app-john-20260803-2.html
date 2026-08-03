@@ -132,7 +132,40 @@ Thứ quản trị viên đổi trên CMS chỉ là loại thưởng·số lư�
 </tbody></table></div>
 <div class="note-box"><span class="i18n"><span class="ko"><b>잭팟 룰렛 — 보상 유형별 색</b>입니다. 매일 행운 룰렛과 규칙 자체가 다릅니다. 자리가 아니라 그 칸의 보상 유형을 보고 칠합니다. 등급 티켓 3종은 금속 그라데이션(위→아래 50% 지점에서 단절)이고, 배경은 다크(#0E0821) 위에 얹힙니다. JACKPOT 칸도 색을 따로 두지 않고 <b>JACKPOT 라벨</b>로 표시합니다.</span><span class="vi"><b>Vòng quay Jackpot — màu theo loại thưởng.</b> Quy tắc khác hẳn Vòng quay may mắn hằng ngày. Tô theo loại thưởng của ô chứ không theo vị trí. 3 loại vé hạng dùng gradient kim loại (chuyển đột ngột tại mốc 50% từ trên xuống), đặt trên nền tối (#0E0821). Ô JACKPOT cũng không có màu riêng, chỉ hiển thị bằng <b>nhãn JACKPOT</b>.</span></span></div>
 </div>
-<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱 답변 · John · 2026-08-03 (2차) · 지적 수용 1 / 정정 1 / 색값 확정 · 화면 반영 완료</span><span class="vi">PricePick · Trả lời App · John · 2026-08-03 (lần 2) · Tiếp thu 1 / Đính chính 1 / Chốt 2 bảng màu · đã áp dụng màn hình</span></span></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">5. 홈 잭팟 배너의 "내 보유 이벤트 티켓 N장"</span><span class="vi">5. Dòng "Vé sự kiện của tôi: N vé" trên banner Jackpot ở trang chủ</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">5</span><div class="qtxt"><span class="i18n"><span class="ko">홈 하단 잭팟 룰렛 배너의 "내 보유 이벤트 티켓 7장" 문구는 유저가 현재 보유한 이벤트 티켓 수를 가져와 표시하는 것이 맞나요?</span><span class="vi">Dòng "Vé sự kiện của tôi: 7 vé" trên banner Vòng quay Jackpot ở dưới trang chủ có phải là lấy số vé sự kiện người dùng đang có để hiển thị không?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정 · 기준 정정</span><span class="vi">Đã chốt · Đính chính tiêu chí</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260803-john2/john-q5-jackpot-banner.png','홈 하단 잭팟 룰렛 진입 배너')"><img src="/devqa/assets/20260803-john2/john-q5-jackpot-banner.png" alt="홈 하단 잭팟 룰렛 진입 배너" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">홈 하단 잭팟 룰렛 진입 배너 (질문 시점 캡처)</span><span class="vi">Banner vào Vòng quay Jackpot ở dưới trang chủ (ảnh lúc hỏi)</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>맞습니다. 유저의 실시간 보유 이벤트 티켓 수입니다.</b> 고정값이나 예시가 아니고, 티켓이 지급·소모될 때마다 즉시 다시 그립니다.
+
+<b>다만 세는 기준을 정정했습니다 — 사용 가능한(승인된) 티켓만 셉니다.</b>
+
+이벤트 티켓에는 승인 대기 상태가 있습니다. 구매로 발급된 티켓은 그 구매가 확정되기 전까지 사용할 수 없습니다(카카오 연동 D+7 / 미연동 D+30 경과 또는 쿠팡 구매 확정 시 승인). 배너가 <b>승인 대기 중인 티켓까지 세면 "7장 있는데 왜 못 돌리지"가 생깁니다.</b>
+
+확인해보니 실제로 그 상태였습니다. 배너 숫자는 보유분 전체를 세고 있었고, 잭팟 룰렛에서 실제로 차감할 때는 승인된 티켓만 골라 씁니다. <b>배너 숫자를 차감 기준과 같게 맞췄습니다.</b> 이제 배너에 보이는 수는 곧바로 돌릴 수 있는 장수입니다.
+
+<b>0장일 때 분기는 이미 구현돼 있습니다.</b> 07-31 시안의 2상태 그대로입니다.
+
+· 보유 있음 — "이벤트 티켓 1장으로 골드 티켓 도전" · "내 보유 이벤트 티켓 N장" · 버튼 <b>[돌리기]</b>
+· 보유 없음 — "이벤트 티켓을 모아 골드 티켓에 도전하세요" · 보유 문구 숨김 · 버튼 <b>[이벤트 티켓 모으기]</b>
+
+<b>하루 10회 상한은 배너에 반영하지 않습니다.</b> 배너는 보유 장수만 보여주고, 상한 안내와 참여 차단은 잭팟 룰렛 화면에서 처리합니다. 배너에까지 상한을 넣으면 같은 정보가 두 곳에서 어긋날 수 있어 한 곳에서만 관리합니다.</span><span class="vi"><b>Đúng vậy. Đó là số vé sự kiện người dùng đang có, theo thời gian thực.</b> Không phải giá trị cố định hay ví dụ; mỗi khi vé được cấp·bị tiêu thì vẽ lại ngay.
+
+<b>Tuy nhiên chúng tôi đã đính chính tiêu chí đếm — chỉ đếm vé dùng được (đã duyệt).</b>
+
+Vé sự kiện có trạng thái chờ duyệt. Vé phát hành từ giao dịch mua thì không dùng được cho tới khi đơn đó được xác nhận (duyệt khi qua D+7 nếu đã liên kết Kakao / D+30 nếu chưa, hoặc khi đơn Coupang được xác nhận). Nếu banner <b>đếm cả vé đang chờ duyệt thì sẽ sinh ra tình huống "có 7 vé mà sao không quay được".</b>
+
+Kiểm tra thì đúng là đang như vậy: banner đếm toàn bộ vé đang có, còn khi thực sự trừ vé ở Vòng quay Jackpot thì chỉ chọn vé đã duyệt. <b>Chúng tôi đã chỉnh số trên banner cho khớp với tiêu chí trừ vé.</b> Từ giờ số hiện trên banner chính là số vé quay được ngay.
+
+<b>Nhánh khi có 0 vé thì đã được hiện thực sẵn</b>, đúng 2 trạng thái trong bản thiết kế 07-31.
+
+· Có vé — "Dùng 1 vé sự kiện thử vận vé Vàng" · "Vé sự kiện của tôi: N vé" · nút <b>[Quay]</b>
+· Không có vé — "Hãy gom vé sự kiện để thử vận vé Vàng" · ẩn dòng số vé · nút <b>[Gom vé sự kiện]</b>
+
+<b>Trần 10 lượt/ngày không được phản ánh lên banner.</b> Banner chỉ hiện số vé đang có; phần thông báo trần và chặn tham gia do màn Vòng quay Jackpot xử lý. Nếu đưa cả trần vào banner thì cùng một thông tin có thể lệch nhau ở hai nơi, nên chỉ quản lý ở một chỗ.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">앱 데모에 반영했습니다. 보유 티켓 집계에서 이벤트 티켓만 승인 여부를 함께 보도록 바꿨고, 등급 티켓(브론즈·실버·골드) 집계 기준은 그대로입니다. 잭팟 배너는 인터랙티브 정본에는 아직 없는 화면이라(07-31 신규) 반영 대상이 데모 앱뿐입니다.</span><span class="vi">Đã áp dụng vào app demo. Trong phần đếm vé đang có, riêng vé sự kiện nay xét thêm trạng thái đã duyệt; tiêu chí đếm vé hạng (Đồng·Bạc·Vàng) giữ nguyên. Banner Jackpot là màn mới của 07-31 nên bản Interactive gốc chưa có, do đó chỉ áp dụng cho app demo.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱 답변 · John · 2026-08-03 (2차) · 지적 수용 1 / 정정 1 / 색값 확정 · 화면 반영 완료</span><span class="vi">PricePick · Trả lời App · John · 2026-08-03 (lần 2) · Tiếp thu 1 / Đính chính 2 / Chốt 2 bảng màu / Sửa tiêu chí đếm banner 1 · đã áp dụng màn hình</span></span></div></div>
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
 <script>
 function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
