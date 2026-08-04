@@ -1,0 +1,16 @@
+<svg width="60" height="60" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pcoin_ms" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="49.9%" stop-color="#FFE066"></stop>
+      <stop offset="50%" stop-color="#F0AE00"></stop>
+    </linearGradient>
+    <linearGradient id="pcoin_ms_face" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="49.9%" stop-color="#FFDA3D"></stop>
+      <stop offset="50%" stop-color="#FFC400"></stop>
+    </linearGradient>
+  </defs>
+  <ellipse cx="32" cy="57" rx="17" ry="3" fill="#E6A800" opacity="0.16"></ellipse>
+  <circle cx="32" cy="30" r="27" fill="url(#pcoin_ms)"></circle>
+  <circle cx="32" cy="30" r="21.5" fill="url(#pcoin_ms_face)"></circle>
+  <path d="M24.16 40.50H29.14V33.85H32.69C37.55 33.85 40.54 30.98 40.54 26.58C40.54 22.28 37.61 19.29 32.83 19.29H24.16ZM29.14 29.89V23.33H31.78C34.12 23.33 35.38 24.59 35.38 26.58C35.38 28.58 34.12 29.89 31.78 29.89Z" fill="#FFE477" stroke="#E0A600" stroke-width="0.6" paint-order="stroke" stroke-linejoin="round"></path>
+</svg>
