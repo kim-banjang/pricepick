@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱 답변 · John · 2026-08-04</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.qbox{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-top:8px;font-size:12.6px;color:var(--ink2)}
+.qbox .qb-label{font-size:10px;font-weight:800;color:var(--ink3);letter-spacing:.06em;margin-bottom:4px;display:block}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:220px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱 답변 · John · 2026-08-04</span><span class="vi">Trả lời App PricePick · John · 2026-08-04</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">John · App · 포인트 교환 「티켓→포인트」 탭 수량 입력 — <b>자유 입력 아님, 버튼식 배수 입력</b>. 백엔드 전환 로직 수정 불필요 확인(배포본 DOM 실측) — 답변 KO/VI</span><span class="vi">John · App · Nhập số lượng ở tab "Vé→Điểm" (Đổi điểm) — <b>không phải nhập tự do, chỉ nhập theo bội số qua nút</b>. Xác nhận backend không cần sửa logic chuyển đổi (đo thực tế DOM bản deploy) — Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/QnA-PricePick-3b23ac69e71180608bb8d44d67548471" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건</span><span class="vi">1 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 1</span><span class="vi">Đã chốt 1</span></span></span><span class="chip"><span class="i18n"><span class="ko">배포본 DOM 직접 검증</span><span class="vi">Đã kiểm tra trực tiếp DOM bản deploy</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 포인트 교환 「티켓→포인트」 수량 입력 — 자유 입력이 아닙니다</span><span class="vi">1. Nhập số lượng ở tab "Vé→Điểm" (Đổi điểm) — không phải nhập tự do</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">이 포인트·티켓 교환 부분은 예전에는 숫자를 자유롭게 입력할 수 없었는데, 새 디자인에서는 자유 입력을 허용하는 것이 맞습니까? 백엔드가 전환 로직을 전부 수정해야 하기 때문에 확인이 필요합니다.</span><span class="vi">Phần đổi point và ticket này trước đây không cho phép nhập con số tự do, giờ design mới thì cho nhập tự do có đúng như vậy không, vì backend sẽ phải sửa lại cả logic chuyển đổi.</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="qbox"><span class="qb-label i18n"><span class="ko">출처</span><span class="vi">Nguồn</span></span><span class="i18n"><span class="ko">노션 원문(베트남어) 요약·번역. 원문은 상단 링크 참조.</span><span class="vi">Tóm tắt·dịch từ bản gốc tiếng Việt trên Notion. Xem nguyên văn ở link phía trên.</span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260804-john/john-q1-point-ticket-exchange.png','포인트 교환 · 티켓→포인트 탭 (질문 첨부)')"><img src="/devqa/assets/20260804-john/john-q1-point-ticket-exchange.png" alt="포인트 교환 · 티켓→포인트 탭" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">포인트 교환 · 티켓→포인트 탭 (질문 첨부 캡처)</span><span class="vi">Tab Đổi điểm · Vé→Điểm (ảnh đính kèm câu hỏi)</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>자유 입력이 아닙니다. 백엔드 전환 로직을 고칠 필요가 없습니다.</b>
+
+배포본 화면을 열어 DOM을 직접 조회했습니다. <b>화면 전체에 &lt;input&gt; 요소가 하나도 없습니다.</b> 첨부 캡처의 큰 숫자("0")는 표시 전용 텍스트이고, 수량은 버튼으로만 바뀝니다 — <b>[+N장] · [최대] · [초기화]</b> 세 개뿐입니다.
+
+<b>[+N장]의 N은 그 교환의 최소 단위(전환 비율)에 고정</b>돼 있습니다. 화면별로 실측한 값입니다.
+
+· 포인트 교환 · 티켓→포인트(질문 캡처의 화면, 브론즈→포인트 등) — <b>[+1장]</b>
+· 등급 교환 · 브론즈→실버 — <b>[+10장]</b>
+· 이벤트티켓 교환 · 이벤트→브론즈 — <b>[+5장]</b>
+
+즉 숫자를 직접 입력하는 방식이 새로 생긴 게 아니라, 화면마다 그 교환의 최소 단위만큼 버튼값이 다르게 박혀 있는 것뿐입니다. <b>[최대]</b>는 보유 수량 안에서 그 배수의 최댓값까지 채우고, <b>[초기화]</b>는 0으로 되돌립니다.
+
+<b>전환 비율도 바뀐 게 없습니다.</b> 브론즈 1장=1,000P·실버 1장=10,000P·골드 1장=20,000P처럼 캡처에 보이는 값 그대로입니다. 화면에서 배수가 아닌 값이 넘어가는 경로 자체가 없으므로, <b>백엔드는 기존과 동일하게 '세트 수(배수)' 파라미터만 받으면 됩니다.</b></span><span class="vi"><b>Không phải nhập tự do. Backend không cần sửa lại logic chuyển đổi.</b>
+
+Chúng tôi đã mở bản deploy và truy vấn trực tiếp DOM. <b>Toàn bộ màn hình không có bất kỳ phần tử &lt;input&gt; nào.</b> Con số lớn ("0") trong ảnh đính kèm chỉ là text hiển thị; số lượng chỉ đổi được qua nút — chỉ có 3 nút: <b>[+N vé] · [Tối đa] · [Đặt lại]</b>.
+
+<b>Số N trong [+N vé] cố định theo đơn vị nhỏ nhất (tỷ lệ chuyển đổi)</b> của lượt đổi đó. Đây là giá trị đo thực tế theo từng màn.
+
+· Đổi điểm · Vé→Điểm (màn trong ảnh câu hỏi, ví dụ Đồng→Điểm) — <b>[+1 vé]</b>
+· Đổi hạng · Đồng→Bạc — <b>[+10 vé]</b>
+· Đổi vé sự kiện · Sự kiện→Đồng — <b>[+5 vé]</b>
+
+Tức là không phải mới có cách nhập số trực tiếp, mà chỉ là mỗi màn có giá trị nút khác nhau, khớp với đơn vị nhỏ nhất của lượt đổi đó. <b>[Tối đa]</b> điền đến giá trị lớn nhất theo bội số đó trong phạm vi đang có, <b>[Đặt lại]</b> đưa về 0.
+
+<b>Tỷ lệ chuyển đổi cũng không thay đổi.</b> Vẫn đúng như trong ảnh: 1 vé Đồng=1.000P · 1 vé Bạc=10.000P · 1 vé Vàng=20.000P. Vì không tồn tại đường nào để giá trị không phải bội số được gửi từ màn hình, <b>backend chỉ cần nhận đúng một tham số 'số bộ (bội số)' như trước, không có gì khác.</b></span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[검증 방법]</span><span class="vi">[Cách kiểm tra]</span></span></span><span class="i18n"><span class="ko">배포본 <code>https://pricepick.vercel.app/20260803_NewDesign_ticket.html</code>을 열어 콘솔에서 DOM을 직접 조회했습니다. 페이지 전체 <code>&lt;input&gt;</code> 0개·<code>contenteditable</code> 0개·<code>&lt;textarea&gt;</code> 0개 확인. "+N장" 형태 버튼은 <code>+10장</code>·<code>+1장</code>·<code>+5장</code> 세 종류만 존재합니다(등급 교환/포인트 교환/이벤트티켓 교환 각 1종씩). 추측 없이 실측한 결과이며, 시안과 다른 점은 없었습니다.</span><span class="vi">Đã mở bản deploy <code>https://pricepick.vercel.app/20260803_NewDesign_ticket.html</code> và truy vấn trực tiếp DOM qua console. Xác nhận toàn trang có <code>&lt;input&gt;</code>: 0 · <code>contenteditable</code>: 0 · <code>&lt;textarea&gt;</code>: 0. Nút dạng "+N vé" chỉ tồn tại 3 loại: <code>+10 vé</code>·<code>+1 vé</code>·<code>+5 vé</code> (mỗi loại ứng với Đổi hạng/Đổi điểm/Đổi vé sự kiện). Đây là kết quả đo thực tế, không suy đoán, và không có điểm nào khác so với bản thiết kế.</span></span></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱 답변 · John · 2026-08-04 · 확정 1 / 확인 필요 0</span><span class="vi">PricePick · Trả lời App · John · 2026-08-04 · Đã chốt 1 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
