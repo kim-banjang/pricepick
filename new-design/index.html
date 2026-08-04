@@ -184,11 +184,65 @@
   }
   .lang-btn.active { background: var(--purple); color: #fff; }
   .lang-btn:hover:not(.active) { color: var(--ink); }
+  /* 통합 보기 진입 — 리스트 위 고정, 날짜별 행과 시각적으로 구분 */
+  .merged-entry {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+    padding: 18px 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, var(--purple-soft), #FFFFFF);
+    border: 1.5px solid #D9CEF7;
+    box-shadow: 0 4px 16px rgba(132, 94, 238, 0.10);
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .merged-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(132, 94, 238, 0.18);
+    border-color: var(--purple);
+  }
+  .merged-entry:active { transform: translateY(0); }
+  .me-icon {
+    flex: 0 0 auto;
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #E4DAFB;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--purple-deep);
+  }
+  .me-main { flex: 1; min-width: 0; }
+  .me-title {
+    font-size: 15.5px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+  .me-desc {
+    margin-top: 4px;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .me-arrow {
+    flex: 0 0 auto;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--purple-deep);
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
   @media (max-width: 560px) {
     .wrap { padding: 44px 18px 24px; }
     .logo { font-size: 29px; }
     .row { align-items: flex-start; gap: 13px; padding: 16px 16px; }
     .rmeta { flex-direction: column; align-items: flex-end; gap: 6px; }
+    .merged-entry { align-items: flex-start; padding: 16px 16px; }
+    .me-arrow { display: none; }
     footer { justify-content: flex-start; padding: 24px 20px 32px; }
   }
 </style>
@@ -206,6 +260,22 @@
       <div class="logo">Price<span class="pick">Pick</span></div>
       <div class="subtitle"><span id="page-title-text">New Design</span> <span class="dot">·</span> <span id="page-subtitle-text">클로드 디자인 시안 모음</span></div>
     </header>
+
+    <a class="merged-entry" href="/NewDesign.html" target="_blank" rel="noopener">
+      <div class="me-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <path d="M3 9h18"/>
+          <path d="M8 4v5"/>
+          <path d="M14 4v5"/>
+        </svg>
+      </div>
+      <div class="me-main">
+        <div class="me-title" id="me-title">통합 보기 — 전체 시안 한 번에</div>
+        <div class="me-desc" id="me-desc">지금까지 나온 모든 New Design 시안을 탭 하나로 모은 통합본. 날짜별 목록은 그 아래.</div>
+      </div>
+      <div class="me-arrow" id="me-arrow">열기 →</div>
+    </a>
 
     <div class="seclabel" id="seclabel-new">디자인 시안 (최신순)</div>
 
@@ -287,6 +357,9 @@ const I18N = {
     'page.title': 'New Design',
     'page.subtitle': '클로드 디자인 시안 모음',
     'back': '← Design Hub',
+    'me.title': '통합 보기 — 전체 시안 한 번에',
+    'me.desc': '지금까지 나온 모든 New Design 시안을 탭 하나로 모은 통합본. 날짜별 목록은 그 아래.',
+    'me.arrow': '열기 →',
     'seclabel.new': '디자인 시안 (최신순)',
     'nd1.title': '친구초대 · 연속구매 미션 · 티켓 교환 (3탭)',
     'nd1.desc': '친구초대 유도 화면, 연속구매 미션 진행 화면, 이벤트 티켓 교환 화면을 탭 3개로 묶은 시안.',
@@ -300,6 +373,9 @@ const I18N = {
     'page.title': 'New Design',
     'page.subtitle': 'Tổng hợp thiết kế Claude',
     'back': '← Design Hub',
+    'me.title': 'Xem tổng hợp — Toàn bộ bản thiết kế trong 1 file',
+    'me.desc': 'Tổng hợp mọi bản thiết kế New Design từ trước đến nay theo dạng tab. Danh sách theo ngày ở bên dưới.',
+    'me.arrow': 'Mở →',
     'seclabel.new': 'Bản thiết kế (mới nhất trước)',
     'nd1.title': 'Mời bạn · Nhiệm vụ mua liên tiếp · Đổi vé (3 tab)',
     'nd1.desc': 'Bản thiết kế gộp 3 tab: màn mời bạn bè, màn tiến trình nhiệm vụ mua liên tiếp, màn đổi vé sự kiện.',
@@ -331,6 +407,9 @@ function applyLang() {
   setTxt('back-link',          t('back'));
   setTxt('page-title-text',    t('page.title'));
   setTxt('page-subtitle-text', t('page.subtitle'));
+  setTxt('me-title',           t('me.title'));
+  setTxt('me-desc',            t('me.desc'));
+  setTxt('me-arrow',           t('me.arrow'));
   setTxt('seclabel-new',       t('seclabel.new'));
   setTxt('nd1-title',          t('nd1.title'));
   setTxt('nd1-desc',           t('nd1.desc'));
