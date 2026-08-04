@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>PricePick · New Design</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --purple: #845EEE;
+    --purple-deep: #6D3BC9;
+    --purple-soft: #F3EFFD;
+    --ink: #1A1A2E;
+    --ink-soft: #5A5A6E;
+    --ink-faint: #8A8A9A;
+    --line: #E8E8EF;
+    --bg: #FAFAFB;
+    --card-bg: #FFFFFF;
+  }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    flex: 1;
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 56px 24px 28px;
+  }
+  header { margin-bottom: 26px; }
+  .back {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink-faint);
+    text-decoration: none;
+    letter-spacing: 0.2px;
+  }
+  .back:hover { color: var(--purple-deep); }
+  .logo {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    line-height: 1.1;
+  }
+  .logo .pick { color: var(--purple); }
+  .subtitle {
+    margin-top: 11px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    letter-spacing: -0.2px;
+  }
+  .subtitle .dot { color: var(--line); margin: 0 8px; }
+  .seclabel {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin: 0 4px 12px;
+  }
+  /* List rows */
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 11px;
+    padding: 18px 20px;
+    border-radius: 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 3px rgba(20, 20, 40, 0.04);
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(20, 20, 40, 0.09);
+    border-color: #D9CEF7;
+  }
+  .row:active { transform: translateY(0); }
+  .ricon {
+    flex: 0 0 auto;
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: var(--purple-soft);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--purple-deep);
+  }
+  .rmain { flex: 1; min-width: 0; }
+  .rtitle {
+    font-size: 15.5px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .rdesc {
+    margin-top: 4px;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .rmeta {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .rdate {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--purple-deep);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .rarrow { font-size: 20px; color: var(--ink-faint); line-height: 1; }
+  .rextra {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 9px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--purple-soft);
+    border: 1px solid #E4DAFB;
+    color: var(--purple-deep);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .rextra:hover { background: #E9E0FB; border-color: #D6C6F6; }
+  footer {
+    max-width: 880px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 28px 36px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.2px;
+  }
+  /* Lang toggle */
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: var(--purple-soft);
+    border: 1px solid #D9CEF7;
+    border-radius: 8px;
+    padding: 3px;
+    height: 34px;
+    position: fixed;
+    top: 16px;
+    right: 18px;
+    z-index: 100;
+  }
+  .lang-btn {
+    padding: 0 10px;
+    height: 26px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--ink-faint);
+    transition: all .15s;
+    letter-spacing: .3px;
+  }
+  .lang-btn.active { background: var(--purple); color: #fff; }
+  .lang-btn:hover:not(.active) { color: var(--ink); }
+  @media (max-width: 560px) {
+    .wrap { padding: 44px 18px 24px; }
+    .logo { font-size: 29px; }
+    .row { align-items: flex-start; gap: 13px; padding: 16px 16px; }
+    .rmeta { flex-direction: column; align-items: flex-end; gap: 6px; }
+    footer { justify-content: flex-start; padding: 24px 20px 32px; }
+  }
+</style>
+</head>
+<body>
+  <!-- Language toggle -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-ko" onclick="setLang('ko')">KO</button>
+    <button class="lang-btn" id="btn-vi" onclick="setLang('vi')">VI</button>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <a class="back" href="/" id="back-link">← Design Hub</a>
+      <div class="logo">Price<span class="pick">Pick</span></div>
+      <div class="subtitle"><span id="page-title-text">New Design</span> <span class="dot">·</span> <span id="page-subtitle-text">클로드 디자인 시안 모음</span></div>
+    </header>
+
+    <div class="seclabel" id="seclabel-new">디자인 시안 (최신순)</div>
+
+    <a class="row" href="/20260803_NewDesign.html" target="_blank" rel="noopener">
+      <div class="ricon">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="M3 9h18"/>
+          <path d="M7.5 5v4"/>
+          <path d="M12 5v4"/>
+          <path d="M16.5 5v4"/>
+        </svg>
+      </div>
+      <div class="rmain">
+        <div class="rtitle" id="nd1-title">친구초대 · 연속구매 미션 · 티켓 교환 (3탭)</div>
+        <div class="rdesc" id="nd1-desc">친구초대 유도 화면, 연속구매 미션 진행 화면, 이벤트 티켓 교환 화면을 탭 3개로 묶은 시안.</div>
+      </div>
+      <div class="rmeta">
+        <span class="rdate">2026-08-03</span>
+        <span class="rarrow">&rsaquo;</span>
+      </div>
+    </a>
+
+    <a class="row" href="/20260731_NewDesign.html" target="_blank" rel="noopener">
+      <div class="ricon">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="8.8"/>
+          <circle cx="12" cy="12" r="2.1"/>
+          <path d="M12 3.2v6.7"/>
+          <path d="M20.8 12h-6.7"/>
+          <path d="M12 20.8v-6.7"/>
+          <path d="M3.2 12h6.7"/>
+        </svg>
+      </div>
+      <div class="rmain">
+        <div class="rtitle" id="nd2-title">잭팟 룰렛</div>
+        <div class="rdesc" id="nd2-desc">유료 잭팟 룰렛 화면(다크 테마) + 결과 모달 6종 — 골드·실버·브론즈 티켓, 포인트 1,000P/100P, 꽝.</div>
+      </div>
+      <div class="rmeta">
+        <span class="rdate">2026-07-31</span>
+        <span class="rarrow">&rsaquo;</span>
+      </div>
+    </a>
+
+    <a class="row" href="/20260729_NewDesign.html" target="_blank" rel="noopener">
+      <div class="ricon">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="8.8"/>
+          <circle cx="12" cy="12" r="2.1"/>
+          <path d="M12 3.2v6.7"/>
+          <path d="M20.8 12h-6.7"/>
+          <path d="M12 20.8v-6.7"/>
+          <path d="M3.2 12h6.7"/>
+        </svg>
+      </div>
+      <div class="rmain">
+        <div class="rtitle" id="nd3-title">스플래시·로그인 / 매일 행운 룰렛 / 출석체크</div>
+        <div class="rdesc" id="nd3-desc">무료 행운 룰렛(매일 1회) + 쿠팡 구경 출석체크 화면, 룰렛 결과 모달 5종 · 출석체크 결과 모달 2종 포함. 스플래시·로그인은 별도 파일로 연결.</div>
+        <span class="rextra" id="nd3-extra" role="link" tabindex="0"
+          onclick="event.preventDefault();event.stopPropagation();window.open('/design-splash-login-20260729.html','_blank','noopener');"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/design-splash-login-20260729.html','_blank','noopener');}">스플래시·로그인 바로가기 ↗</span>
+      </div>
+      <div class="rmeta">
+        <span class="rdate">2026-07-29</span>
+        <span class="rarrow">&rsaquo;</span>
+      </div>
+    </a>
+  </div>
+
+  <footer>
+    <span>Last Update 2026-08-03</span>
+  </footer>
+<script>
+// ── i18n 언어 시스템 (허브와 동일 방식) ──
+let currentLang = 'ko';
+
+const I18N = {
+  ko: {
+    'page.title': 'New Design',
+    'page.subtitle': '클로드 디자인 시안 모음',
+    'back': '← Design Hub',
+    'seclabel.new': '디자인 시안 (최신순)',
+    'nd1.title': '친구초대 · 연속구매 미션 · 티켓 교환 (3탭)',
+    'nd1.desc': '친구초대 유도 화면, 연속구매 미션 진행 화면, 이벤트 티켓 교환 화면을 탭 3개로 묶은 시안.',
+    'nd2.title': '잭팟 룰렛',
+    'nd2.desc': '유료 잭팟 룰렛 화면(다크 테마) + 결과 모달 6종 — 골드·실버·브론즈 티켓, 포인트 1,000P/100P, 꽝.',
+    'nd3.title': '스플래시·로그인 / 매일 행운 룰렛 / 출석체크',
+    'nd3.desc': '무료 행운 룰렛(매일 1회) + 쿠팡 구경 출석체크 화면, 룰렛 결과 모달 5종 · 출석체크 결과 모달 2종 포함. 스플래시·로그인은 별도 파일로 연결.',
+    'nd3.extra': '스플래시·로그인 바로가기 ↗',
+  },
+  vi: {
+    'page.title': 'New Design',
+    'page.subtitle': 'Tổng hợp thiết kế Claude',
+    'back': '← Design Hub',
+    'seclabel.new': 'Bản thiết kế (mới nhất trước)',
+    'nd1.title': 'Mời bạn · Nhiệm vụ mua liên tiếp · Đổi vé (3 tab)',
+    'nd1.desc': 'Bản thiết kế gộp 3 tab: màn mời bạn bè, màn tiến trình nhiệm vụ mua liên tiếp, màn đổi vé sự kiện.',
+    'nd2.title': 'Vòng quay Jackpot',
+    'nd2.desc': 'Màn vòng quay Jackpot trả phí (nền tối) + 6 modal kết quả — vé Vàng·Bạc·Đồng, điểm 1.000P/100P, trượt.',
+    'nd3.title': 'Splash·Đăng nhập / Vòng quay may mắn hàng ngày / Điểm danh',
+    'nd3.desc': 'Màn vòng quay may mắn miễn phí (1 lần/ngày) + màn điểm danh xem Coupang, gồm 5 modal kết quả vòng quay · 2 modal kết quả điểm danh. Splash·Đăng nhập nằm ở file riêng.',
+    'nd3.extra': 'Xem Splash·Đăng nhập ↗',
+  }
+};
+
+function t(key) {
+  return (I18N[currentLang] && I18N[currentLang][key]) || (I18N['ko'][key]) || key;
+}
+
+function setTxt(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+  document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+  applyLang();
+}
+
+function applyLang() {
+  setTxt('back-link',          t('back'));
+  setTxt('page-title-text',    t('page.title'));
+  setTxt('page-subtitle-text', t('page.subtitle'));
+  setTxt('seclabel-new',       t('seclabel.new'));
+  setTxt('nd1-title',          t('nd1.title'));
+  setTxt('nd1-desc',           t('nd1.desc'));
+  setTxt('nd2-title',          t('nd2.title'));
+  setTxt('nd2-desc',           t('nd2.desc'));
+  setTxt('nd3-title',          t('nd3.title'));
+  setTxt('nd3-desc',           t('nd3.desc'));
+  setTxt('nd3-extra',          t('nd3.extra'));
+}
+</script>
+</body>
+</html>

@@ -426,6 +426,21 @@
       </a>
     </div>
 
+    <a class="featured" href="/new-design/" target="_blank" rel="noopener">
+      <div class="ftop">
+        <div class="ficon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/>
+            <path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/>
+          </svg>
+        </div>
+        <span class="badge" id="featured-newdesign-badge">신규 시안</span>
+      </div>
+      <h2 id="card-newdesign-title">New Design</h2>
+      <p id="card-newdesign-desc">클로드가 넘긴 신규 디자인 시안을 날짜별로 모은 목록. 최신 시안부터 확인.</p>
+      <div class="arrow" id="card-newdesign-arrow">열기 →</div>
+    </a>
+
     <!-- ── 기획 산출물 ── -->
     <div class="seclabel" id="seclabel-core">기획 산출물</div>
     <main class="grid">
@@ -743,6 +758,9 @@ const I18N = {
     'card.devqa.desc': '존·해리 등 개발자 질문에 대한 확정 답변 모음. 모든 답변은 마스터 정책서 근거.',
     'card.reports.title': '보고서',
     'card.reports.desc': '개발 진도 · 운영 현황 보고 모음. 기능별 완료 상태와 Google Play 반영 현황을 날짜별로 확인.',
+    'newdesign.badge': '신규 시안',
+    'card.newdesign.title': 'New Design',
+    'card.newdesign.desc': '클로드가 넘긴 신규 디자인 시안을 날짜별로 모은 목록. 최신 시안부터 확인.',
     'card.serversetup.title': '서버 운용 계획',
     'card.serversetup.desc': '서버 현황 분석 · 용량 계획 · 인프라 로드맵. 해리 원문 기반.',
     'card.gplay.title': '구글 플레이 등록 자료',
@@ -798,6 +816,9 @@ const I18N = {
     'card.devqa.desc': 'Tổng hợp giải đáp đã chốt cho câu hỏi của John·Harry v.v. Mọi câu trả lời đều dựa trên Chính sách tổng hợp.',
     'card.reports.title': 'Báo cáo',
     'card.reports.desc': 'Tổng hợp báo cáo tiến độ phát triển · hiện trạng vận hành. Xem trạng thái hoàn tất theo chức năng và tình hình áp dụng lên Google Play theo từng ngày.',
+    'newdesign.badge': 'Thiết kế mới',
+    'card.newdesign.title': 'New Design',
+    'card.newdesign.desc': 'Tổng hợp bản thiết kế mới từ Claude theo từng ngày. Xem bản mới nhất trước.',
     'card.serversetup.title': 'Kế hoạch vận hành Server',
     'card.serversetup.desc': 'Phân tích hiện trạng Server · Kế hoạch công suất · Lộ trình hạ tầng. Dựa trên tài liệu gốc của Harry.',
     'card.gplay.title': 'Tài liệu đăng ký Google Play',
@@ -887,6 +908,10 @@ function applyLang() {
   setTxt('card-reports-title',        t('card.reports.title'));
   setTxt('card-reports-desc',         t('card.reports.desc'));
   setTxt('card-reports-arrow',        t('card.arrow'));
+  setTxt('featured-newdesign-badge',  t('newdesign.badge'));
+  setTxt('card-newdesign-title',      t('card.newdesign.title'));
+  setTxt('card-newdesign-desc',       t('card.newdesign.desc'));
+  setTxt('card-newdesign-arrow',      t('card.arrow'));
   setTxt('card-serversetup-title',    t('card.serversetup.title'));
   setTxt('card-serversetup-desc',     t('card.serversetup.desc'));
   setTxt('card-serversetup-arrow',    t('card.arrow'));
