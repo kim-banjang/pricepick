@@ -399,33 +399,6 @@ document.addEventListener('DOMContentLoaded', async function() {
   <script>
   (function(){
     var DICT = {
-"PRICEPICK · 연속구매 미션": "PRICEPICK · Nhiệm vụ mua hàng liên tục",
-"연속구매 미션 New Design": "Nhiệm vụ mua hàng liên tục New Design",
-"진행도를 칸으로, 보상은 티켓으로": "Tiến độ hiển thị theo ô, thưởng bằng vé",
-"남은 횟수가 칸으로 보이고, 미션 3단은 한 줄씩": "Số lần còn lại hiện theo ô, 3 cấp nhiệm vụ mỗi cấp một dòng",
-"연속구매 미션": "Nhiệm vụ mua hàng liên tục",
-"3회 연속 미션": "Nhiệm vụ liên tục 3 lần",
-"첫 경유구매로 미션을 시작해보세요 · 7일 내 3회": "Bắt đầu nhiệm vụ bằng lần mua qua link đầu tiên · 3 lần trong 7 ngày",
-"미션 보상": "Thưởng nhiệm vụ",
-"3회 연속 · 7일 내": "3 lần liên tục · Trong 7 ngày",
-"진행중": "Đang thực hiện",
-"5회 연속 · 14일 내": "5 lần liên tục · Trong 14 ngày",
-"잠김": "Khóa",
-"10회 연속 · 30일 내": "10 lần liên tục · Trong 30 ngày",
-"이벤트티켓은 하루 5장 · 월 30장까지 적립": "Vé sự kiện tích lũy tối đa 5 vé/ngày · 30 vé/tháng",
-"쇼핑하러 가기": "Đi mua sắm",
-"경유 쇼핑몰을 거쳐 구매하면 1회로 인정돼요": "Mua qua link trung gian sẽ được tính là 1 lần",
-"① 미션 시작 전 (0/3)": "① Trước khi bắt đầu nhiệm vụ (0/3)",
-"1회만 더 하면 이벤트티켓 1장 · 5일 남음": "Chỉ cần 1 lần nữa là nhận 1 vé sự kiện · Còn 5 ngày",
-"3회 달성 후 열려요": "Mở khóa sau khi đạt 3 lần",
-"5회 달성 후 열려요": "Mở khóa sau khi đạt 5 lần",
-"② 진행 중 (2/3, 1회 남음)": "② Đang tiến hành (2/3, còn 1 lần)",
-"3회 연속 달성!": "Đạt 3 lần liên tục!",
-"지급": "Cấp",
-"다음 미션 · 5회 연속": "Nhiệm vụ tiếp theo · 5 lần liên tục",
-"2회만 더 하면 이벤트티켓 3장 · 12일 남음": "Chỉ cần 2 lần nữa là nhận 3 vé sự kiện · Còn 12 ngày",
-"달성 완료 · 2026.08.03 지급": "Đã đạt · Cấp ngày 2026.08.03",
-"③ 3회 달성 · 티켓 지급 후": "③ Đạt 3 lần · Sau khi cấp vé",
 "PRICEPICK · 친구초대": "PRICEPICK · Mời bạn bè",
 "친구초대 New Design": "Mời bạn bè New Design",
 "보상 구조 시각화 두 방향 —": "Trực quan hóa cấu trúc thưởng theo 2 hướng —",
@@ -465,17 +438,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 "둘 다 500P 받기": "Cả hai đều nhận 500P",
 "코드 공유": "Chia sẻ mã",
 "첫 구매": "Mua lần đầu",
-"각 500P": "Mỗi bên 500P",
-"/3회": "/3 lần",
-"/5회": "/5 lần",
-"/50명": "/50 người",
-"회": " lần",
-"1장": "1 vé",
-"3장": "3 vé",
-"5장": "5 vé",
-"1장 지급": "Cấp 1 vé"
+"각 500P": "Mỗi bên 500P"
 };
-    var SKIP = new Set(["1a", "1b", "2a", "500P", "1,000P", "3", "4", "5", "7B5KZH", "김민****", "이수****", "박서****", "정하****", "최지****", "윤채****", "한도****"]);
+    var SKIP = new Set(["1a", "1b", "500P", "1,000P", "3", "4", "5", "7B5KZH", "김민****", "이수****", "박서****", "정하****", "최지****", "윤채****", "한도****"]);
     var SVG_NS = 'http://www.w3.org/2000/svg';
 
     function applyI18n(root) {
@@ -523,7 +488,13 @@ document.addEventListener('DOMContentLoaded', async function() {
           '.i18n .vi{display:none}',
           '#langsw{position:fixed;opacity:0;pointer-events:none;top:0;left:0}',
           '#langsw:checked ~ #dc-root .i18n .ko{display:none}',
-          '#langsw:checked ~ #dc-root .i18n .vi{display:inline}'
+          '#langsw:checked ~ #dc-root .i18n .vi{display:inline}',
+          '#ps-lang-switch{position:fixed;top:18px;right:22px;z-index:9002;}',
+          '#ip-lang-toggle{display:inline-flex;align-items:center;gap:0;background:#ffffff;border:1px solid #E3E0EC;border-radius:999px;padding:3px;cursor:pointer;font-family:inherit;box-shadow:0 2px 10px rgba(90,60,150,0.12);}',
+          '#ip-lang-toggle span{font-size:12px;font-weight:700;letter-spacing:.4px;color:#9890ad;padding:3px 12px;border-radius:999px;line-height:1.4;transition:background .15s,color .15s;}',
+          '#ip-lang-toggle span.on{background:#845EEE;color:#fff;}',
+          '#ip-lang-toggle:hover{border-color:#845EEE;}',
+          '@media (max-width:560px){#ps-lang-switch{top:12px;right:12px;}}'
         ].join('\n');
         document.head.appendChild(style);
 
@@ -532,8 +503,55 @@ document.addEventListener('DOMContentLoaded', async function() {
         cb.id = 'langsw';
 
         document.body.insertBefore(cb, root);
+
+        var switchWrap = document.createElement('div');
+        switchWrap.id = 'ps-lang-switch';
+        var toggleBtn = document.createElement('button');
+        toggleBtn.id = 'ip-lang-toggle';
+        toggleBtn.type = 'button';
+        toggleBtn.setAttribute('data-lang', 'ko');
+        toggleBtn.title = 'KO / VI';
+        toggleBtn.setAttribute('aria-label', 'KO/VI');
+        var koSpan = document.createElement('span');
+        koSpan.setAttribute('data-l', 'ko');
+        koSpan.className = 'on';
+        koSpan.textContent = 'KO';
+        var viSpan = document.createElement('span');
+        viSpan.setAttribute('data-l', 'vi');
+        viSpan.textContent = 'VI';
+        toggleBtn.appendChild(koSpan);
+        toggleBtn.appendChild(viSpan);
+        switchWrap.appendChild(toggleBtn);
+        document.body.appendChild(switchWrap);
+
+        cb.addEventListener('change', function() {
+          var lang = cb.checked ? 'vi' : 'ko';
+          toggleBtn.setAttribute('data-lang', lang);
+          koSpan.className = (lang === 'ko') ? 'on' : '';
+          viSpan.className = (lang === 'vi') ? 'on' : '';
+        });
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          window.ipSetLang(window.ipGetLang() === 'vi' ? 'ko' : 'vi');
+        });
       }
     }
+
+    window.ipSetLang = function(lang) {
+      var cbEl = document.getElementById('langsw');
+      if (!cbEl) return;
+      var wantVi = (lang === 'vi');
+      if (cbEl.checked === wantVi) return;
+      cbEl.checked = wantVi;
+      var evt;
+      try { evt = new Event('change', { bubbles: true }); }
+      catch (e) { evt = document.createEvent('HTMLEvents'); evt.initEvent('change', true, true); }
+      cbEl.dispatchEvent(evt);
+    };
+    window.ipGetLang = function() {
+      var cbEl = document.getElementById('langsw');
+      return (cbEl && cbEl.checked) ? 'vi' : 'ko';
+    };
 
     var ppObserver = null;
     function observeContent(root) {
