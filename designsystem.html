@@ -516,6 +516,81 @@
         </div>
       </div>
     </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div style="font-size:11px;font-weight:700;color:var(--text2);margin-bottom:4px;">폰트 굵기 규정 (2026-08-03 확정)</div>
+      <div style="font-size:10px;color:var(--text3);margin-bottom:14px;line-height:1.6;"><strong style="color:var(--text1);">볼드 기본값은 700이다. 800·900은 특별한 경우에만 쓴다.</strong> 배포본 실측(티켓 교환 시안 텍스트 노드 128개, 앱 데모 1686개) 기준 앱 데모에만 900이 10곳 있었고 그중 다수가 10.5px 이하 소형 텍스트였다 — 이는 잘못 쓰인 사례이지 허용 기준이 아니다.</div>
+
+      <div style="display:grid;grid-template-columns:56px 1fr 2fr;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;font-size:10.5px;">
+        <div style="background:var(--bg2);border-bottom:1px solid var(--border);padding:7px 6px;font-weight:700;color:var(--text2);">굵기</div>
+        <div style="background:var(--bg2);border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;font-weight:700;color:var(--text2);">용도</div>
+        <div style="background:var(--bg2);border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;font-weight:700;color:var(--text2);">예시 (실측 반영)</div>
+
+        <div style="border-bottom:1px solid var(--border);padding:7px 6px;font-weight:400;color:var(--text1);">400</div>
+        <div style="border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);">본문 텍스트</div>
+        <div style="border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);">설명 문단, 안내 카피의 기본 톤</div>
+
+        <div style="border-bottom:1px solid var(--border);padding:7px 6px;font-weight:500;color:var(--text1);">500</div>
+        <div style="border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);">보조 텍스트</div>
+        <div style="border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);">캡션, 타임스탬프, 부연 설명 (본문/보조 typo-row 참고)</div>
+
+        <div style="border-bottom:1px solid var(--border);padding:7px 6px;font-weight:600;color:var(--text1);">600</div>
+        <div style="border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);">라벨 / 본문 강조</div>
+        <div style="border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);">필드 라벨, 리스트 항목명, 본문 중 강조 구간</div>
+
+        <div style="border-bottom:1px solid var(--border);padding:7px 6px;font-weight:700;color:var(--text1);">700</div>
+        <div style="border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);"><strong>볼드 기본값</strong></div>
+        <div style="border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);">버튼 텍스트, 섹션 제목, 화면 제목 — 볼드가 필요하면 우선 이걸 쓴다</div>
+
+        <div style="border-bottom:1px solid var(--border);padding:7px 6px;font-weight:800;color:var(--text1);">800</div>
+        <div style="border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);">특별한 경우</div>
+        <div style="border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);">24px 이상 대형 숫자 강조(보유 수량 등), 메인 타이틀급 헤더 1곳 한정 — 남발 금지</div>
+
+        <div style="padding:7px 6px;font-weight:900;color:var(--text1);">900</div>
+        <div style="border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);">극예외</div>
+        <div style="border-left:1px solid var(--border);padding:7px 8px;color:var(--text2);">원칙적으로 사용하지 않는다. 꼭 필요하면 32px 이상 초대형 강조 숫자 1곳 한정 검토 — 근거 없이 쓰지 말 것</div>
+      </div>
+
+      <div style="margin-top:12px;padding:10px 12px;background:#FFF4E5;border:1px solid #F5C57A;border-radius:8px;font-size:10.5px;color:#8A5A00;line-height:1.6;">
+        ⚠️ <strong>작은 글자(12px 이하)에는 800·900 금지.</strong> 작은 크기에서 굵기를 올리면 글자가 뭉개진다. 실측에서도 900 사용례 다수가 10.5px 이하였다 — 반면교사로 삼을 것.
+      </div>
+
+      <div style="margin-top:14px;font-size:10px;font-weight:700;color:var(--text2);margin-bottom:8px;">굵기별 렌더 비교 (크기별)</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
+          <span style="width:52px;font-size:9px;color:var(--text3);flex-shrink:0;">10px</span>
+          <span style="font-size:10px;font-weight:400;color:var(--text1);">보유 3장</span>
+          <span style="font-size:10px;font-weight:500;color:var(--text1);">보유 3장</span>
+          <span style="font-size:10px;font-weight:600;color:var(--text1);">보유 3장</span>
+          <span style="font-size:10px;font-weight:700;color:var(--text1);">보유 3장</span>
+          <span style="font-size:10px;font-weight:800;color:#C8200A;">보유 3장 (금지)</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
+          <span style="width:52px;font-size:9px;color:var(--text3);flex-shrink:0;">13px</span>
+          <span style="font-size:13px;font-weight:400;color:var(--text1);">교환하기</span>
+          <span style="font-size:13px;font-weight:500;color:var(--text1);">교환하기</span>
+          <span style="font-size:13px;font-weight:600;color:var(--text1);">교환하기</span>
+          <span style="font-size:13px;font-weight:700;color:var(--text1);">교환하기</span>
+          <span style="font-size:13px;font-weight:800;color:var(--text1);">교환하기</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
+          <span style="width:52px;font-size:9px;color:var(--text3);flex-shrink:0;">17px</span>
+          <span style="font-size:17px;font-weight:600;color:var(--text1);">티켓 교환</span>
+          <span style="font-size:17px;font-weight:700;color:var(--text1);">티켓 교환</span>
+          <span style="font-size:17px;font-weight:800;color:var(--text1);">티켓 교환</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
+          <span style="width:52px;font-size:9px;color:var(--text3);flex-shrink:0;">24px+</span>
+          <span style="font-size:24px;font-weight:700;letter-spacing:-1px;color:var(--text1);">12장</span>
+          <span style="font-size:24px;font-weight:800;letter-spacing:-1px;color:var(--text1);">12장 (허용)</span>
+          <span style="font-size:24px;font-weight:900;letter-spacing:-1px;color:var(--text1);">12장 (극예외만)</span>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:9.5px;color:var(--text3);line-height:1.6;">
+        실측 출처: 배포본 텍스트 노드 전수 조사(2026-08-03). 티켓 교환 시안 128개 — 400:11 · 500:17 · 600:36 · 700:29 · 800:35 · 900:0. 앱 데모 1686개 — 300:2 · 400:375 · 500:259 · 600:288 · 700:465 · 800:287 · 900:10. 현재 800 사용이 320곳 넘게 있으나 이 규정은 신규 작업 기준이며 <strong style="color:var(--text1);">기존 화면 일괄 수정은 범위 밖</strong>이다.
+      </div>
+    </div>
   </div>
 
   <!-- 3. 심볼 / 로고 -->
