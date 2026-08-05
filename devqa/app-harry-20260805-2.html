@@ -72,49 +72,33 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 
 <div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260805-harry/harry-q2-refund-carryover-highlight.png','어제 답변 캡처 · 회수 규정 문장 표시')"><img src="/devqa/assets/20260805-harry/harry-q2-refund-carryover-highlight.png" alt="어제 답변 캡처, 회수 규정 문장에 빨간 박스 표시" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">어제 답변 캡처 · 질문 근거 문장(빨간 박스)</span><span class="vi">Ảnh chụp trả lời hôm qua · Câu làm căn cứ câu hỏi (khung đỏ)</span></span></span></button></div>
 
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt" style="flex:1;min-width:0"><span class="i18n"><span class="ko"><b>결론: 마이너스 잔액을 허용하고, 이후 획득분에서 자동 차감합니다.</b>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt" style="flex:1;min-width:0"><span class="i18n"><span class="ko"><b>결론: 회수 시점에 남아 있는 만큼만 회수합니다. 부족분은 회수하지 않고 손실로 감수합니다.</b>
 
-회수해야 할 이벤트 티켓이 남아 있지 않으면 <b>잔액을 음수로 기록</b>합니다. 이후 이벤트 티켓을 받을 때 그만큼 먼저 차감되고 남은 수량이 반영됩니다.
+이벤트 티켓이 남아 있으면 그만큼 회수합니다. 부족하면 부족한 대로 넘어갑니다 — <b>마이너스 잔액을 만들지 않고, 이후 지급분에서 차감하지도 않습니다.</b> 잔액은 항상 0 이상입니다.
 
-예) 이벤트 티켓 2장을 회수해야 하는데 보유가 0장 → 잔액 −2장. 다음에 3장을 받으면 1장이 됩니다.
+<b>경우별 처리</b>는 아래 표를 참고하세요.</span><span class="vi"><b>Kết luận: Chỉ thu hồi đúng số lượng còn lại tại thời điểm thu hồi. Phần thiếu không thu hồi, chấp nhận là tổn thất.</b>
 
-<b>경우별 처리</b>는 아래 표를 참고하세요.</span><span class="vi"><b>Kết luận: Cho phép số dư âm, và tự động trừ vào lượt nhận vé sau đó.</b>
-
-Nếu không còn đủ vé sự kiện để thu hồi, <b>ghi nhận số dư ở giá trị âm</b>. Khi nhận vé sự kiện lần sau, phần âm được trừ trước, số còn lại mới cộng vào tài khoản.
-
-Ví dụ: Cần thu hồi 2 vé sự kiện nhưng đang có 0 vé → số dư −2 vé. Lần sau nhận 3 vé thì còn lại 1 vé.
+Nếu vé sự kiện vẫn còn thì thu hồi đúng số đó. Nếu thiếu thì bỏ qua phần thiếu — <b>không tạo số dư âm, cũng không trừ vào lượt cấp sau đó.</b> Số dư luôn ≥ 0.
 
 <b>Cách xử lý theo từng trường hợp</b> xem bảng bên dưới.</span></span>
 
 <table class="reftable"><thead><tr><th style="width:34%"><span class="i18n"><span class="ko">상황</span><span class="vi">Trường hợp</span></span></th><th><span class="i18n"><span class="ko">처리</span><span class="vi">Xử lý</span></span></th></tr></thead><tbody>
 <tr><td><span class="i18n"><span class="ko">티켓이 그대로 있음</span><span class="vi">Vé vẫn còn nguyên</span></span></td><td><span class="i18n"><span class="ko">해당 수량 회수</span><span class="vi">Thu hồi đúng số lượng</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">일부만 사용</span><span class="vi">Đã dùng một phần</span></span></td><td><span class="i18n"><span class="ko">남은 만큼 회수, 부족분은 마이너스</span><span class="vi">Thu hồi phần còn lại, phần thiếu ghi số dư âm</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">전부 사용</span><span class="vi">Đã dùng hết</span></span></td><td><span class="i18n"><span class="ko">전량 마이너스</span><span class="vi">Toàn bộ ghi số dư âm</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">이미 만료됨</span><span class="vi">Đã hết hạn</span></span></td><td><span class="i18n"><span class="ko">전량 마이너스</span><span class="vi">Toàn bộ ghi số dư âm</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">다른 티켓으로 교환함</span><span class="vi">Đã đổi sang vé khác</span></span></td><td><span class="i18n"><span class="ko">교환 결과물은 되돌리지 않고, <b>이벤트 티켓 기준으로만</b> 마이너스 처리</span><span class="vi">Không hoàn tác kết quả đã đổi, chỉ ghi số dư âm <b>theo vé sự kiện</b></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">일부만 사용</span><span class="vi">Đã dùng một phần</span></span></td><td><span class="i18n"><span class="ko"><b>남은 만큼만</b> 회수</span><span class="vi">Chỉ thu hồi <b>phần còn lại</b></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">전부 사용</span><span class="vi">Đã dùng hết</span></span></td><td><span class="i18n"><span class="ko">회수하지 않음</span><span class="vi">Không thu hồi</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">이미 만료됨</span><span class="vi">Đã hết hạn</span></span></td><td><span class="i18n"><span class="ko">회수하지 않음</span><span class="vi">Không thu hồi</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">다른 티켓으로 교환함</span><span class="vi">Đã đổi sang vé khác</span></span></td><td><span class="i18n"><span class="ko">회수하지 않음 (역추적 없음)</span><span class="vi">Không thu hồi (không truy ngược)</span></span></td></tr>
 </tbody></table>
 
-<div style="margin-top:11px"><span class="i18n"><span class="ko">교환된 결과물(브론즈 티켓 등)은 역추적하지 않습니다. 이미 다른 등급으로 바뀐 것을 다시 쪼갤 수 없고, 추적 비용이 이득보다 큽니다.
-
-<b>이렇게 정한 이유</b>
-· 어뷰징이 막힙니다 — 사고 → 티켓 받고 → 쓰고 → 반품해도 빚이 남으므로 이득이 없습니다.
+<div style="margin-top:11px"><span class="i18n"><span class="ko"><b>이렇게 정한 이유</b>
+· 구현이 가장 단순합니다 — 음수 상태 관리도, 이후 지급 차감 로직도 필요 없습니다.
 · 발생 빈도가 낮습니다 — 승인 전에는 티켓을 쓸 수 없으므로, 「구매 확정 → 티켓 승인 → 사용 → 그 뒤 반품」인 경우에만 생깁니다.
-· 이벤트 티켓 1장의 가치가 40원이라 손실 규모가 작습니다. 복잡한 보정 로직을 만들 이유가 없습니다.</span><span class="vi">Không truy ngược kết quả đã đổi (ví dụ vé Đồng). Đã chuyển sang hạng khác thì không thể chia nhỏ lại, và chi phí truy vết lớn hơn lợi ích thu được.
-
-<b>Lý do chốt như vậy</b>
-· Chặn được abuse — dù mua → nhận vé → dùng → trả hàng thì vẫn còn nợ nên không có lợi.
+· 이벤트 티켓 1장의 가치가 40원이라 손실 규모가 작습니다.
+· 반복 악용하려면 실제 구매·반품을 계속해야 하므로 경제성이 없습니다.</span><span class="vi"><b>Lý do chốt như vậy</b>
+· Cách triển khai đơn giản nhất — không cần quản lý trạng thái âm, cũng không cần logic trừ vào lượt cấp sau.
 · Tần suất phát sinh thấp — vé không dùng được trước khi duyệt, nên tình huống này chỉ xảy ra khi đi đúng trình tự "xác nhận mua → duyệt vé → dùng vé → sau đó trả hàng".
-· Giá trị 1 vé sự kiện chỉ 40 KRW nên quy mô tổn thất nhỏ. Không cần dựng logic bù trừ phức tạp.</span></span></div>
-
-<div style="margin-top:11px"><span class="i18n"><span class="ko"><b>화면 표기</b> — 보유 수량은 <b>0장으로 표시</b>합니다. 마이너스 잔액을 사용자에게 노출하지 않습니다.
-
-회수로 잔액이 음수가 되어도 화면의 보유 수량은 0장으로 보입니다. 마이너스는 <b>활동 내역에만</b> 기록됩니다(예: 「회수 −2장」). 이후 티켓 지급 시 차감된 결과가 반영되고, 그 차감도 내역에 남습니다.
-
-새 화면이나 새 UI 요소를 만들지 않습니다 — 기존 내역 목록에 항목이 하나 늘어나는 것뿐입니다.</span><span class="vi"><b>Cách hiển thị trên màn hình</b> — Số lượng vé đang có <b>hiển thị là 0 vé</b>. Không hiển thị số dư âm cho user.
-
-Dù thu hồi khiến số dư thành âm, số lượng vé đang có trên màn hình vẫn hiển thị 0 vé. Số âm chỉ được <b>ghi trong lịch sử hoạt động</b> (vd: "Thu hồi −2 vé"). Khi nhận vé lần sau, kết quả sau khi trừ được phản ánh, và lần trừ đó cũng được ghi vào lịch sử.
-
-Không tạo màn hình mới hay thành phần UI mới — chỉ là thêm một mục vào danh sách lịch sử đã có sẵn.</span></span></div>
+· Giá trị 1 vé sự kiện chỉ 40 KRW nên quy mô tổn thất nhỏ.
+· Muốn lạm dụng lặp lại thì phải liên tục mua·trả hàng thật, nên không có lợi về kinh tế.</span></span></div>
 
 <div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">이 답변은 어제 답변(연속구매 미션 카운트 시점, 2026-08-05)에 이어지는 후속 정책입니다. 마스터 정책서 미반영 상태 — 별도 절차로 반영 예정. 출처: 김반장 확정 2026-08-05.</span><span class="vi">Trả lời này là chính sách tiếp theo của trả lời hôm qua (Thời điểm tính số lần mua Nhiệm vụ mua liên tục, 2026-08-05). Chưa cập nhật vào tài liệu chính sách gốc — sẽ cập nhật qua quy trình riêng. Nguồn: Trưởng phòng Kim chốt 2026-08-05.</span></span></div></div></div></div>
 
