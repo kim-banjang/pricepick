@@ -5,7 +5,6 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28p
 .htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
 .meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
 .chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
-.chip.hold{background:#eef0f4;color:var(--hold);font-weight:700}
 h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
 .qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
 .qrow{display:flex;gap:10px;align-items:flex-start}
@@ -19,7 +18,6 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 .alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
 .atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
 .atxt b{color:var(--ink1)}
-.inline-hold{display:inline-block;font-size:10px;font-weight:800;color:var(--hold);background:#eef0f4;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle}
 .ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
 .ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
 .quote-box{background:#f9f7ff;border-left:3px solid var(--pp);border-radius:8px;padding:11px 14px;margin:9px 0;font-size:12.5px;color:var(--ink2)}
@@ -63,7 +61,7 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <a class="srclink" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-08-05-2-3b386f66c2248002b7f9dd2965e4d5f2" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a>
 </div>
 </div></header>
-<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건 · 어제 답변 후속</span><span class="vi">1 câu hỏi · Câu hỏi tiếp theo</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 1</span><span class="vi">Đã chốt 1</span></span></span><span class="chip hold"><span class="i18n"><span class="ko">화면 표기 확인 대기</span><span class="vi">Cách hiển thị: cần xác nhận</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건 · 어제 답변 후속</span><span class="vi">1 câu hỏi · Câu hỏi tiếp theo</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 1</span><span class="vi">Đã chốt 1</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
 
 <!-- ==================== H1 : 회수 대상 티켓을 이미 다 쓴 경우 ==================== -->
 <h2 class="grp"><span class="i18n"><span class="ko">1. 연속구매 미션 — 회수 대상 이벤트 티켓을 이미 다 쓴 경우</span><span class="vi">1. Nhiệm vụ mua liên tục — Trường hợp đã dùng hết vé sự kiện cần thu hồi</span></span></h2>
@@ -108,11 +106,19 @@ Ví dụ: Cần thu hồi 2 vé sự kiện nhưng đang có 0 vé → số dư 
 · Tần suất phát sinh thấp — vé không dùng được trước khi duyệt, nên tình huống này chỉ xảy ra khi đi đúng trình tự "xác nhận mua → duyệt vé → dùng vé → sau đó trả hàng".
 · Giá trị 1 vé sự kiện chỉ 40 KRW nên quy mô tổn thất nhỏ. Không cần dựng logic bù trừ phức tạp.</span></span></div>
 
-<div style="margin-top:11px"><span class="i18n"><span class="ko"><b>화면 표기</b><span class="inline-hold">확인 대기</span> — 마이너스 잔액이 사용자에게 어떻게 보일지는 확정되지 않았습니다. 화면 설계 시 별도로 정합니다.</span><span class="vi"><b>Cách hiển thị trên màn hình</b><span class="inline-hold">Cần xác nhận</span> — Số dư âm hiển thị cho user như thế nào chưa được chốt. Sẽ quyết định riêng khi thiết kế màn hình.</span></span></div>
+<div style="margin-top:11px"><span class="i18n"><span class="ko"><b>화면 표기</b> — 보유 수량은 <b>0장으로 표시</b>합니다. 마이너스 잔액을 사용자에게 노출하지 않습니다.
+
+회수로 잔액이 음수가 되어도 화면의 보유 수량은 0장으로 보입니다. 마이너스는 <b>활동 내역에만</b> 기록됩니다(예: 「회수 −2장」). 이후 티켓 지급 시 차감된 결과가 반영되고, 그 차감도 내역에 남습니다.
+
+새 화면이나 새 UI 요소를 만들지 않습니다 — 기존 내역 목록에 항목이 하나 늘어나는 것뿐입니다.</span><span class="vi"><b>Cách hiển thị trên màn hình</b> — Số lượng vé đang có <b>hiển thị là 0 vé</b>. Không hiển thị số dư âm cho user.
+
+Dù thu hồi khiến số dư thành âm, số lượng vé đang có trên màn hình vẫn hiển thị 0 vé. Số âm chỉ được <b>ghi trong lịch sử hoạt động</b> (vd: "Thu hồi −2 vé"). Khi nhận vé lần sau, kết quả sau khi trừ được phản ánh, và lần trừ đó cũng được ghi vào lịch sử.
+
+Không tạo màn hình mới hay thành phần UI mới — chỉ là thêm một mục vào danh sách lịch sử đã có sẵn.</span></span></div>
 
 <div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">이 답변은 어제 답변(연속구매 미션 카운트 시점, 2026-08-05)에 이어지는 후속 정책입니다. 마스터 정책서 미반영 상태 — 별도 절차로 반영 예정. 출처: 김반장 확정 2026-08-05.</span><span class="vi">Trả lời này là chính sách tiếp theo của trả lời hôm qua (Thời điểm tính số lần mua Nhiệm vụ mua liên tục, 2026-08-05). Chưa cập nhật vào tài liệu chính sách gốc — sẽ cập nhật qua quy trình riêng. Nguồn: Trưởng phòng Kim chốt 2026-08-05.</span></span></div></div></div></div>
 
-<div class="foot"><span class="i18n"><span class="ko">PricePick · App 답변 · Harry · 2026-08-05 (2) · 확정 1 / 화면 표기 확인 대기 1</span><span class="vi">PricePick · Trả lời App · Harry · 2026-08-05 (2) · Đã chốt 1 / Cách hiển thị cần xác nhận 1</span></span></div></div>
+<div class="foot"><span class="i18n"><span class="ko">PricePick · App 답변 · Harry · 2026-08-05 (2) · 확정 1 / 확인 필요 0</span><span class="vi">PricePick · Trả lời App · Harry · 2026-08-05 (2) · Đã chốt 1 / Cần xác nhận 0</span></span></div></div>
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
 <script>
 function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
