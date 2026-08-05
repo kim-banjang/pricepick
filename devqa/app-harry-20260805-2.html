@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱 답변 · Harry · 2026-08-05 (2)</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+.chip.hold{background:#eef0f4;color:var(--hold);font-weight:700}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.inline-hold{display:inline-block;font-size:10px;font-weight:800;color:var(--hold);background:#eef0f4;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.quote-box{background:#f9f7ff;border-left:3px solid var(--pp);border-radius:8px;padding:11px 14px;margin:9px 0;font-size:12.5px;color:var(--ink2)}
+.quote-box .qb-label{font-size:10px;font-weight:800;color:var(--pp-d);letter-spacing:.06em;margin-bottom:5px;display:block}
+.quote-box .qb-vi{font-style:italic;color:var(--ink2)}
+.quote-box .qb-ko{margin-top:7px;padding-top:7px;border-top:1px dashed #ddd0fb;color:var(--ink1)}
+.reftable{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
+.reftable th,.reftable td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+.reftable th{background:#f4f5f8;color:var(--ink2);font-weight:700}
+.reftable td{color:var(--ink2)}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclinks{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.srclink{display:inline-block;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.srclink:hover{background:rgba(255,255,255,.28)}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱 답변 · Harry · 2026-08-05 (2)</span><span class="vi">Trả lời App PricePick · Harry · 2026-08-05 (2)</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry · App · 연속구매 미션 후속 질문 — 회수 대상 이벤트 티켓을 이미 다 쓴 경우 — 답변 KO/VI</span><span class="vi">Harry · App · Câu hỏi tiếp theo về Nhiệm vụ mua liên tục — Trường hợp đã dùng hết vé sự kiện cần thu hồi — Trả lời KO/VI</span></span></div>
+<div class="srclinks">
+<a class="srclink" href="/devqa/app-harry-20260805.html"><span class="i18n"><span class="ko">← 어제 답변 보기 (1차)</span><span class="vi">← Xem trả lời hôm qua (lần 1)</span></span></a>
+<a class="srclink" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-08-05-2-3b386f66c2248002b7f9dd2965e4d5f2" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a>
+</div>
+</div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건 · 어제 답변 후속</span><span class="vi">1 câu hỏi · Câu hỏi tiếp theo</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 1</span><span class="vi">Đã chốt 1</span></span></span><span class="chip hold"><span class="i18n"><span class="ko">화면 표기 확인 대기</span><span class="vi">Cách hiển thị: cần xác nhận</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+
+<!-- ==================== H1 : 회수 대상 티켓을 이미 다 쓴 경우 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 연속구매 미션 — 회수 대상 이벤트 티켓을 이미 다 쓴 경우</span><span class="vi">1. Nhiệm vụ mua liên tục — Trường hợp đã dùng hết vé sự kiện cần thu hồi</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">어제 답변에서 "구매가 취소·반품되면 카운트와 그 주문으로 받은 이벤트 티켓이 모두 회수된다"고 했는데, 사용자가 그 이벤트 티켓을 취소·반품 시점 이전에 이미 다 써버렸다면 회수는 어떻게 처리되나요?</span><span class="vi">Trong trả lời hôm qua có nói "nếu đơn mua bị hủy hoặc trả hàng, cả số đếm lẫn vé sự kiện nhận từ đơn đó đều bị thu hồi" — vậy nếu đến thời điểm hủy/trả hàng mà user đã dùng hết vé sự kiện đó rồi thì việc thu hồi được xử lý thế nào?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+
+<div class="quote-box"><span class="qb-label i18n"><span class="ko">질문 원문 (Notion, 2026-08-05)</span><span class="vi">Nguyên văn câu hỏi (Notion, 2026-08-05)</span></span><span class="qb-vi">"Nếu đơn mua đó bị hủy hoặc trả hàng, cả số đếm lẫn vé sự kiện nhận từ đơn đó đều bị thu hồi → Vậy nếu user đã sử dụng hết các vé sự kiện đã được tặng thì sao? Lúc này phát sinh nhiều vấn đề"</span><div class="qb-ko i18n"><span class="ko">[한국어 번역] "구매가 취소·반품되면 카운트와 그 주문으로 받은 이벤트 티켓이 모두 회수된다 → 그럼 사용자가 지급받은 이벤트 티켓을 이미 다 써버렸으면 어떻게 되나? 이 경우 여러 문제가 발생한다"</span><span class="vi">[Bản dịch tiếng Hàn] "구매가 취소·반품되면 카운트와 그 주문으로 받은 이벤트 티켓이 모두 회수된다 → 그럼 사용자가 지급받은 이벤트 티켓을 이미 다 써버렸으면 어떻게 되나? 이 경우 여러 문제가 발생한다"</span></div></div>
+
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260805-harry/harry-q2-refund-carryover-highlight.png','어제 답변 캡처 · 회수 규정 문장 표시')"><img src="/devqa/assets/20260805-harry/harry-q2-refund-carryover-highlight.png" alt="어제 답변 캡처, 회수 규정 문장에 빨간 박스 표시" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">어제 답변 캡처 · 질문 근거 문장(빨간 박스)</span><span class="vi">Ảnh chụp trả lời hôm qua · Câu làm căn cứ câu hỏi (khung đỏ)</span></span></span></button></div>
+
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt" style="flex:1;min-width:0"><span class="i18n"><span class="ko"><b>결론: 마이너스 잔액을 허용하고, 이후 획득분에서 자동 차감합니다.</b>
+
+회수해야 할 이벤트 티켓이 남아 있지 않으면 <b>잔액을 음수로 기록</b>합니다. 이후 이벤트 티켓을 받을 때 그만큼 먼저 차감되고 남은 수량이 반영됩니다.
+
+예) 이벤트 티켓 2장을 회수해야 하는데 보유가 0장 → 잔액 −2장. 다음에 3장을 받으면 1장이 됩니다.
+
+<b>경우별 처리</b>는 아래 표를 참고하세요.</span><span class="vi"><b>Kết luận: Cho phép số dư âm, và tự động trừ vào lượt nhận vé sau đó.</b>
+
+Nếu không còn đủ vé sự kiện để thu hồi, <b>ghi nhận số dư ở giá trị âm</b>. Khi nhận vé sự kiện lần sau, phần âm được trừ trước, số còn lại mới cộng vào tài khoản.
+
+Ví dụ: Cần thu hồi 2 vé sự kiện nhưng đang có 0 vé → số dư −2 vé. Lần sau nhận 3 vé thì còn lại 1 vé.
+
+<b>Cách xử lý theo từng trường hợp</b> xem bảng bên dưới.</span></span>
+
+<table class="reftable"><thead><tr><th style="width:34%"><span class="i18n"><span class="ko">상황</span><span class="vi">Trường hợp</span></span></th><th><span class="i18n"><span class="ko">처리</span><span class="vi">Xử lý</span></span></th></tr></thead><tbody>
+<tr><td><span class="i18n"><span class="ko">티켓이 그대로 있음</span><span class="vi">Vé vẫn còn nguyên</span></span></td><td><span class="i18n"><span class="ko">해당 수량 회수</span><span class="vi">Thu hồi đúng số lượng</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">일부만 사용</span><span class="vi">Đã dùng một phần</span></span></td><td><span class="i18n"><span class="ko">남은 만큼 회수, 부족분은 마이너스</span><span class="vi">Thu hồi phần còn lại, phần thiếu ghi số dư âm</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">전부 사용</span><span class="vi">Đã dùng hết</span></span></td><td><span class="i18n"><span class="ko">전량 마이너스</span><span class="vi">Toàn bộ ghi số dư âm</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">이미 만료됨</span><span class="vi">Đã hết hạn</span></span></td><td><span class="i18n"><span class="ko">전량 마이너스</span><span class="vi">Toàn bộ ghi số dư âm</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">다른 티켓으로 교환함</span><span class="vi">Đã đổi sang vé khác</span></span></td><td><span class="i18n"><span class="ko">교환 결과물은 되돌리지 않고, <b>이벤트 티켓 기준으로만</b> 마이너스 처리</span><span class="vi">Không hoàn tác kết quả đã đổi, chỉ ghi số dư âm <b>theo vé sự kiện</b></span></span></td></tr>
+</tbody></table>
+
+<div style="margin-top:11px"><span class="i18n"><span class="ko">교환된 결과물(브론즈 티켓 등)은 역추적하지 않습니다. 이미 다른 등급으로 바뀐 것을 다시 쪼갤 수 없고, 추적 비용이 이득보다 큽니다.
+
+<b>이렇게 정한 이유</b>
+· 어뷰징이 막힙니다 — 사고 → 티켓 받고 → 쓰고 → 반품해도 빚이 남으므로 이득이 없습니다.
+· 발생 빈도가 낮습니다 — 승인 전에는 티켓을 쓸 수 없으므로, 「구매 확정 → 티켓 승인 → 사용 → 그 뒤 반품」인 경우에만 생깁니다.
+· 이벤트 티켓 1장의 가치가 40원이라 손실 규모가 작습니다. 복잡한 보정 로직을 만들 이유가 없습니다.</span><span class="vi">Không truy ngược kết quả đã đổi (ví dụ vé Đồng). Đã chuyển sang hạng khác thì không thể chia nhỏ lại, và chi phí truy vết lớn hơn lợi ích thu được.
+
+<b>Lý do chốt như vậy</b>
+· Chặn được abuse — dù mua → nhận vé → dùng → trả hàng thì vẫn còn nợ nên không có lợi.
+· Tần suất phát sinh thấp — vé không dùng được trước khi duyệt, nên tình huống này chỉ xảy ra khi đi đúng trình tự "xác nhận mua → duyệt vé → dùng vé → sau đó trả hàng".
+· Giá trị 1 vé sự kiện chỉ 40 KRW nên quy mô tổn thất nhỏ. Không cần dựng logic bù trừ phức tạp.</span></span></div>
+
+<div style="margin-top:11px"><span class="i18n"><span class="ko"><b>화면 표기</b><span class="inline-hold">확인 대기</span> — 마이너스 잔액이 사용자에게 어떻게 보일지는 확정되지 않았습니다. 화면 설계 시 별도로 정합니다.</span><span class="vi"><b>Cách hiển thị trên màn hình</b><span class="inline-hold">Cần xác nhận</span> — Số dư âm hiển thị cho user như thế nào chưa được chốt. Sẽ quyết định riêng khi thiết kế màn hình.</span></span></div>
+
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">이 답변은 어제 답변(연속구매 미션 카운트 시점, 2026-08-05)에 이어지는 후속 정책입니다. 마스터 정책서 미반영 상태 — 별도 절차로 반영 예정. 출처: 김반장 확정 2026-08-05.</span><span class="vi">Trả lời này là chính sách tiếp theo của trả lời hôm qua (Thời điểm tính số lần mua Nhiệm vụ mua liên tục, 2026-08-05). Chưa cập nhật vào tài liệu chính sách gốc — sẽ cập nhật qua quy trình riêng. Nguồn: Trưởng phòng Kim chốt 2026-08-05.</span></span></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · App 답변 · Harry · 2026-08-05 (2) · 확정 1 / 화면 표기 확인 대기 1</span><span class="vi">PricePick · Trả lời App · Harry · 2026-08-05 (2) · Đã chốt 1 / Cách hiển thị cần xác nhận 1</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
