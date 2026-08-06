@@ -8704,14 +8704,14 @@ window.PP_FEATURES = {
   <div class="ip-nav-section collapsed" id="sec-home">
     <div class="ip-nav-grouplbl" onclick="toggleNavSection('sec-home')"><span class="sec-lbl">홈 탭<span class="sec-count">14</span></span><span class="sec-arrow">▾</span></div>
     <button class="ip-nav-btn" id="nav-pw-10" onclick="showScreen('pw-10')">10 홈 메인</button>
-    <button class="ip-nav-btn unbuilt" id="nav-pw-11" onclick="showScreen('pw-11')">11 적립 가능 쇼핑몰 · 준비중</button>
-    <button class="ip-nav-btn unbuilt" id="nav-pw-12" onclick="showScreen('pw-12')">12 쇼핑몰 상세 · 준비중</button>
-    <button class="ip-nav-btn unbuilt" id="nav-pw-13" onclick="showScreen('pw-13')">13 구매 브릿지 · 준비중</button>
-    <button class="ip-nav-btn unbuilt" id="nav-pw-14" onclick="showScreen('pw-14')">14 출석체크 · 준비중</button>
-    <button class="ip-nav-btn unbuilt" id="nav-pw-14-win" onclick="showScreen('pw-14-win')">14-win 출석체크 5일 달성 · 준비중</button>
-    <button class="ip-nav-btn unbuilt" id="nav-pw-14-fail" onclick="showScreen('pw-14-fail')">14-fail 출석체크 리셋 · 준비중</button>
-    <button class="ip-nav-btn unbuilt" id="nav-pw-14-new" onclick="showScreen('pw-14-new')">14-new 출석체크 신규 · 준비중</button>
-    <button class="ip-nav-btn unbuilt" id="nav-pw-14-done" onclick="showScreen('pw-14-done')">14-done 출석체크 당일완료 · 준비중</button>
+    <button class="ip-nav-btn" id="nav-pw-11" onclick="showScreen('pw-11')">11 적립 가능 쇼핑몰</button>
+    <button class="ip-nav-btn" id="nav-pw-12" onclick="showScreen('pw-12')">12 쇼핑몰 상세</button>
+    <button class="ip-nav-btn" id="nav-pw-13" onclick="showScreen('pw-13')">13 구매 브릿지</button>
+    <button class="ip-nav-btn" id="nav-pw-14" onclick="showScreen('pw-14')">14 출석체크</button>
+    <button class="ip-nav-btn" id="nav-pw-14-win" onclick="showScreen('pw-14-win')">14-win 출석체크 5일 달성</button>
+    <button class="ip-nav-btn" id="nav-pw-14-fail" onclick="showScreen('pw-14-fail')">14-fail 출석체크 리셋</button>
+    <button class="ip-nav-btn" id="nav-pw-14-new" onclick="showScreen('pw-14-new')">14-new 출석체크 신규</button>
+    <button class="ip-nav-btn" id="nav-pw-14-done" onclick="showScreen('pw-14-done')">14-done 출석체크 당일완료</button>
     <button class="ip-nav-btn unbuilt" id="nav-pw-15" onclick="showScreen('pw-15')">15 매일 행운 룰렛 · 준비중</button>
     <button class="ip-nav-btn unbuilt" id="nav-pw-15b" onclick="showScreen('pw-15b')">15b 룰렛 결과 · 준비중</button>
     <button class="ip-nav-btn unbuilt" id="nav-pw-16" onclick="showScreen('pw-16')">16 친구초대 · 준비중</button>
@@ -10177,6 +10177,436 @@ window.PP_FEATURES = {
           <div style="width:100%;display:flex;flex-direction:column;gap:8px;">
             <button style="width:100%;height:48px;background:var(--main);border:none;border-radius:12px;font-size:var(--fs-body);font-weight:700;color:white;cursor:pointer;">다시 시도</button>
             <button style="width:100%;height:40px;background:transparent;border:1px solid var(--border-strong);border-radius:10px;font-size:var(--fs-caption);font-weight:600;color:var(--text2);cursor:pointer;">처음으로</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="phone-wrap" id="pw-11" data-screen="04b">
+    <div class="phone">
+      <div class="app-screen">
+        <div class="statusbar"><span>9:41</span><div class="statusbar-icons"><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 2.5C10.2 2.5 12.2 3.4 13.6 4.9L15 3.4C13.2 1.5 10.7 0.3 8 0.3C5.3 0.3 2.8 1.5 1 3.4L2.4 4.9C3.8 3.4 5.8 2.5 8 2.5Z"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="currentColor"/></svg></div></div>
+        <div class="sub-header">
+          <button class="back-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="sh-title">적립 가능 쇼핑몰</div>
+        </div>
+        <div class="scroll">
+          <div class="C-search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            쇼핑몰 검색…
+          </div>
+          <div class="C-group">
+            <div class="C-group-hd">
+              <div class="C-group-t">🛒 종합 쇼핑몰</div>
+              <div class="C-group-cnt">4개</div>
+            </div>
+            <div class="C-mall-row" data-ip-bound="1" data-mall="coupang.com" data-mall-name="쿠팡"><div class="C-ml-logo" style="cursor:pointer;" onclick="selectMall('쿠팡','coupang.com','pw-12')"><img src="https://www.google.com/s2/favicons?domain=coupang.com&sz=64" alt="쿠팡" onerror="this.remove()"><span>쿠팡</span></div><div class="C-ml-name" style="cursor:pointer;" onclick="selectMall('쿠팡','coupang.com','pw-12')">쿠팡</div><button class="C-ml-go" data-ip-bound="1" onclick="selectMall('쿠팡','coupang.com','pw-13')">바로가기 ›</button></div>
+            <div class="C-mall-row" data-ip-bound="1" data-mall="11st.co.kr" data-mall-name="11번가"><div class="C-ml-logo" style="cursor:pointer;" onclick="selectMall('11번가','11st.co.kr','pw-12')"><img src="https://www.google.com/s2/favicons?domain=11st.co.kr&sz=64" alt="11번가" onerror="this.remove()"><span>11</span></div><div class="C-ml-name" style="cursor:pointer;" onclick="selectMall('11번가','11st.co.kr','pw-12')">11번가</div><button class="C-ml-go" data-ip-bound="1" onclick="selectMall('11번가','11st.co.kr','pw-13')">바로가기 ›</button></div>
+            <div class="C-mall-row" data-ip-bound="1" data-mall="gmarket.co.kr" data-mall-name="G마켓"><div class="C-ml-logo" style="cursor:pointer;" onclick="selectMall('G마켓','gmarket.co.kr','pw-12')"><img src="https://www.google.com/s2/favicons?domain=gmarket.co.kr&sz=64" alt="G마켓" onerror="this.remove()"><span>G</span></div><div class="C-ml-name" style="cursor:pointer;" onclick="selectMall('G마켓','gmarket.co.kr','pw-12')">G마켓</div><button class="C-ml-go" data-ip-bound="1" onclick="selectMall('G마켓','gmarket.co.kr','pw-13')">바로가기 ›</button></div>
+            <div class="C-mall-row" data-ip-bound="1" data-mall="auction.co.kr" data-mall-name="옥션"><div class="C-ml-logo" style="cursor:pointer;" onclick="selectMall('옥션','auction.co.kr','pw-12')"><img src="https://www.google.com/s2/favicons?domain=auction.co.kr&sz=64" alt="옥션" onerror="this.remove()"><span>옥션</span></div><div class="C-ml-name" style="cursor:pointer;" onclick="selectMall('옥션','auction.co.kr','pw-12')">옥션</div><button class="C-ml-go" data-ip-bound="1" onclick="selectMall('옥션','auction.co.kr','pw-13')">바로가기 ›</button></div>
+          </div>
+          <div class="C-group">
+            <div class="C-group-hd">
+              <div class="C-group-t">✈️ 해외직구</div>
+              <div class="C-group-cnt">3개</div>
+            </div>
+            <div class="C-mall-row" data-ip-bound="1" data-mall="aliexpress.com" data-mall-name="알리익스프레스"><div class="C-ml-logo" style="cursor:pointer;" onclick="selectMall('알리익스프레스','aliexpress.com','pw-12')"><img src="https://www.google.com/s2/favicons?domain=aliexpress.com&sz=64" alt="알리익스프레스" onerror="this.remove()"><span>Ali</span></div><div class="C-ml-name" style="cursor:pointer;" onclick="selectMall('알리익스프레스','aliexpress.com','pw-12')">알리익스프레스</div><button class="C-ml-go" data-ip-bound="1" onclick="selectMall('알리익스프레스','aliexpress.com','pw-13')">바로가기 ›</button></div>
+            <div class="C-mall-row" data-ip-bound="1" data-mall="temu.com" data-mall-name="테무"><div class="C-ml-logo" style="cursor:pointer;" onclick="selectMall('테무','temu.com','pw-12')"><img src="https://www.google.com/s2/favicons?domain=temu.com&sz=64" alt="테무" onerror="this.remove()"><span>Temu</span></div><div class="C-ml-name" style="cursor:pointer;" onclick="selectMall('테무','temu.com','pw-12')">테무</div><button class="C-ml-go" data-ip-bound="1" onclick="selectMall('테무','temu.com','pw-13')">바로가기 ›</button></div>
+            <div class="C-mall-row" data-ip-bound="1" data-mall="iherb.com" data-mall-name="아이허브"><div class="C-ml-logo" style="cursor:pointer;" onclick="selectMall('아이허브','iherb.com','pw-12')"><img src="https://www.google.com/s2/favicons?domain=iherb.com&sz=64" alt="아이허브" onerror="this.remove()"><span>iHerb</span></div><div class="C-ml-name" style="cursor:pointer;" onclick="selectMall('아이허브','iherb.com','pw-12')">아이허브</div><button class="C-ml-go" data-ip-bound="1" onclick="selectMall('아이허브','iherb.com','pw-13')">바로가기 ›</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="phone-wrap" id="pw-12" data-screen="04c">
+    <div class="phone">
+      <div class="app-screen">
+        <div class="statusbar"><span>9:41</span><div class="statusbar-icons"><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 2.5C10.2 2.5 12.2 3.4 13.6 4.9L15 3.4C13.2 1.5 10.7 0.3 8 0.3C5.3 0.3 2.8 1.5 1 3.4L2.4 4.9C3.8 3.4 5.8 2.5 8 2.5Z"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="currentColor"/></svg></div></div>
+        <div class="sub-header">
+          <button class="back-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="sh-title" id="mall12-title">쿠팡 적립 안내</div>
+        </div>
+        <div class="scroll">
+          <div class="C-meta">
+            <div class="C-meta-logo" id="mall12-logo"><img src="https://www.google.com/s2/favicons?domain=coupang.com&sz=64" alt="쿠팡" onerror="this.remove()"><span>쿠팡</span></div>
+            <div class="C-meta-body">
+              <div class="C-meta-name" id="mall12-name">쿠팡</div>
+              <div class="C-meta-rate">구매 시 <b>랜덤 티켓</b> 1장</div>
+            </div>
+          </div>
+          <button class="C-cta" id="mall12-cta" onclick="selectMall(currentMall.name, currentMall.domain, 'pw-13')">
+            <span id="mall12-cta-txt">쿠팡 바로가기</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <!-- 쿠팡 홈 바로가기 (파트너 코드 박힌 쿠팡 링크를 홈 화면 아이콘으로) -->
+          <button type="button" onclick="cpkOpen()" style="margin:2px 16px 8px;width:calc(100% - 32px);display:flex;align-items:center;justify-content:center;gap:8px;background:#E4002B;border:none;color:#fff;font-size:var(--fs-body);font-weight:800;border-radius:14px;padding:14px;cursor:pointer;box-shadow:0 5px 16px rgba(228,0,43,.30);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="12" y1="8.5" x2="12" y2="13.5"/><line x1="9.5" y1="11" x2="14.5" y2="11"/></svg>
+            홈 화면에 '<span id="mall12-cpk-name">쿠팡</span>' 바로가기 추가
+          </button>
+          <div class="C-steps">
+            <div class="C-step">
+              <div class="C-step-no">1</div>
+              <div class="C-step-body">
+                <div class="C-step-t">바로가기로 쿠팡 접속</div>
+                <div class="C-step-d">반드시 위 버튼으로 접속해야 적립이 시작돼요.</div>
+              </div>
+            </div>
+            <div class="C-step">
+              <div class="C-step-no">2</div>
+              <div class="C-step-body">
+                <div class="C-step-t">24시간 이내 구매</div>
+                <div class="C-step-d">접속 후 24시간 안에 구매분만 적립 대상이에요.</div>
+              </div>
+            </div>
+            <div class="C-step">
+              <div class="C-step-no">3</div>
+              <div class="C-step-body">
+                <div class="C-step-t">티켓 확정</div>
+                <div class="C-step-d">구매 확정 후 7일 사용 가능.</div>
+              </div>
+            </div>
+          </div>
+          <div class="C-tip">💡 쿠팡 앱이 이미 열려 있다면 종료 후 바로가기를 눌러주세요. 적립 추적이 정확해져요.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="phone-wrap" id="pw-13" data-screen="04d">
+    <div class="phone">
+      <div class="app-screen">
+        <div class="statusbar"><span>9:41</span><div class="statusbar-icons"><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 2.5C10.2 2.5 12.2 3.4 13.6 4.9L15 3.4C13.2 1.5 10.7 0.3 8 0.3C5.3 0.3 2.8 1.5 1 3.4L2.4 4.9C3.8 3.4 5.8 2.5 8 2.5Z"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="currentColor"/></svg></div></div>
+        <div class="C-bridge">
+          <div class="C-spin">
+            <div class="C-spin-logo" id="mall13-logo"><img src="https://www.google.com/s2/favicons?domain=coupang.com&sz=64" alt="쿠팡" onerror="this.remove()"><span>쿠팡</span></div>
+          </div>
+          <div class="C-t" id="mall13-title">쿠팡으로 이동 중</div>
+          <div class="C-s" id="mall13-sub">지금부터 쿠팡에서 구매하면<br>티켓이 자동으로 적립돼요</div>
+          <div class="C-check-list">
+            <div class="row"><span class="ico">✓</span>적립 추적 시작</div>
+            <div class="row"><span class="ico">✓</span>24시간 유효</div>
+            <div class="row muted" id="mall13-hint">잠시 후 쿠팡 앱이 열려요…</div>
+          </div>
+          <div class="C-ac-return" id="ac-bridge-return" style="display:none;">
+            <div style="font-size:var(--fs-caption);color:#9A8FB5;line-height:1.5;margin-bottom:10px;text-align:center;padding:0 8px;">쿠팡에서 30초 이상 둘러봐야 적립돼요.<br>단순히 앱만 켰다 끄면 적립되지 않아요.</div>
+            <button id="ac-bridge-return-btn" onclick="acReturnFromBridge()">쿠팡 구경 완료 · 100P 받기</button>
+          </div>
+          <div class="C-shop-return" id="shop-bridge-info" style="display:none;">
+            <div class="C-shop-txt">구매하신 내역은 제휴사를 통해 <b>자동으로 감지</b>돼요.<br>지금 앱에서 따로 입력하실 건 없어요.<br>구매가 확인되면 <b>적립 대기(가지급)</b> 티켓이 생기고,<br>구매 확정(카카오 연동 D+7 · 미연동 D+30) 후 사용할 수 있어요.</div>
+            <button class="C-shop-home-btn" onclick="showScreen('pw-10')">홈으로 가기</button>
+            <button class="C-demo-entry" onclick="confirmDemoPurchaseSim()"><span class="C-demo-chip">DEMO</span><span class="C-demo-txt">방금 결제했다고 가정하고 시뮬레이션 보기</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="phone-wrap" id="pw-14" data-screen="14">
+    <div class="phone">
+      <div class="ac-screen">
+        <div class="statusbar">
+          <span>9:41</span>
+          <div class="statusbar-icons"><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 2.5C10.2 2.5 12.2 3.4 13.6 4.9L15 3.4C13.2 1.5 10.7 0.3 8 0.3C5.3 0.3 2.8 1.5 1 3.4L2.4 4.9C3.8 3.4 5.8 2.5 8 2.5Z"/><path d="M8 5.5C9.4 5.5 10.7 6.1 11.6 7L13 5.5C11.7 4.2 10 3.3 8 3.3C6 3.3 4.3 4.2 3 5.5L4.4 7C5.3 6.1 6.6 5.5 8 5.5Z"/><circle cx="8" cy="10" r="1.8"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="currentColor"/><path d="M23 4V8C23.8 7.6 24.5 6.9 24.5 6C24.5 5.1 23.8 4.4 23 4Z" fill="currentColor" fill-opacity="0.4"/></svg></div>
+        </div>
+        <div class="ac-header">
+          <button class="back-btn"><svg width="22" height="22" viewBox="0 0 18 18" fill="none"><path d="M11.25 15.5L5.96 10.45C5.17 9.65 5.17 8.35 5.96 7.55L11.25 2.66" stroke="currentColor" stroke-width="1.6" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <span class="ac-header-title">쿠팡 구경하기</span>
+          <div style="width:36px"></div>
+        </div>
+        <div style="flex:1;overflow-y:auto;padding-bottom:4px;">
+          <div class="ac-streak-card">
+            <div class="ac-streak-row"><div class="ac-streak-num">4</div><div class="ac-streak-unit">일</div></div>
+            <div class="ac-streak-label">연속 구경 중</div>
+            <div class="ac-streak-badge">내일 구경하면 이벤트 티켓 1장!</div>
+          </div>
+          <div class="ac-week-card">
+            <div class="ac-week-title">이번 주 구경 현황</div>
+            <div class="ac-week-row">
+            </div>
+          </div>
+          <div class="ac-progress-section">
+            <div class="ac-progress-header">
+              <span class="ac-progress-label">5일 연속 달성까지</span>
+              <span class="ac-progress-count">4 / 5일</span>
+            </div>
+            <div class="ac-progress-bar"><div class="ac-progress-fill" style="width:80%"></div></div>
+            <div class="ac-progress-sub">1일만 더 구경하면 이벤트 티켓 1장 지급!</div>
+          </div>
+          <div class="ac-reward-row">
+            <div class="ac-reward-ico"><svg width="28" height="28" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="reward_0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9AAFF"/><stop offset="100%" stop-color="#845EEE"/></linearGradient></defs><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="url(#reward_0)"/><path d="M316.2,155.8l12.1,6.2c.8.4,1.8.3,2.4-.4l9.6-9.6c1.4-1.4,3.8-.2,3.5,1.8l-2.1,13.5c-.1.9.3,1.8,1.1,2.2l12.1,6.2c1.8.9,1.4,3.6-.6,3.9l-13.5,2.1c-.9.1-1.6.8-1.7,1.7l-2.1,13.5c-.3,2-3,2.4-3.9.6l-6.2-12.1c-.4-.8-1.3-1.3-2.2-1.1l-13.5,2.1c-2,.3-3.2-2.1-1.8-3.5l9.6-9.6c.6-.6.8-1.6.4-2.4l-6.2-12.1c-.9-1.8,1-3.7,2.8-2.8Z" fill="rgba(255,255,255,0.95)"/><path d="M180.7,298.9l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2ZM215.3,319.1l-4.7,4.7-31.6-31.6,4.7-4.7,31.6,31.6ZM231.9,296.8c1.9,1.9,1.9,3.9,0,5.8l-9.9,9.9c-1.9,1.9-3.8,1.8-5.7,0l-25.8-25.8c-1.9-1.9-2-3.8-.1-5.7l9.9-9.9c1.9-1.9,3.9-1.9,5.8,0l7.4,7.4-4.7,4.7-6.2-6.2-6.1,6.1,23.5,23.5,6.1-6.1-6.6-6.6,4.7-4.7,7.8,7.8ZM254.4,280l-5.2,5.2-20.1-8.1,14.1,14.1-4.7,4.7-31.6-31.6,4.7-4.7,13.4,13.4-8.1-18.6,5.2-5.2.2.2,8.6,21.4,23.6,9.2ZM269.5,265l-13.1,13.1-31.6-31.6,13-13,4.2,4.2-8.3,8.3,9.2,9.2,7.1-7.1,4.1,4.1-7.1,7.1,9.9,9.9,8.4-8.4,4.2,4.2ZM259,220.6l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2Z" fill="rgba(255,255,255,0.95)"/></svg></div>
+            <div>
+              <div class="ac-reward-title">이벤트 티켓 1장</div>
+              <div class="ac-reward-sub">5일 연속 구경 달성 시 자동 지급 · 유효기간 30일</div>
+            </div>
+          </div>
+        </div>
+        <div class="ac-footer">
+          <button class="btn-primary" id="ac-check-btn-14">쿠팡 구경하러 가기</button>
+          <div class="ac-check-info">쿠팡에서 30초 이상 둘러본 뒤 복귀해야 100P 적립 · 5일 연속 시 이벤트 티켓 1장</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="phone-wrap" id="pw-14-win" data-screen="14-win">
+    <div class="phone">
+      <div class="ac-screen">
+        <div class="statusbar">
+          <span>9:41</span>
+          <div class="statusbar-icons"><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 2.5C10.2 2.5 12.2 3.4 13.6 4.9L15 3.4C13.2 1.5 10.7 0.3 8 0.3C5.3 0.3 2.8 1.5 1 3.4L2.4 4.9C3.8 3.4 5.8 2.5 8 2.5Z"/><path d="M8 5.5C9.4 5.5 10.7 6.1 11.6 7L13 5.5C11.7 4.2 10 3.3 8 3.3C6 3.3 4.3 4.2 3 5.5L4.4 7C5.3 6.1 6.6 5.5 8 5.5Z"/><circle cx="8" cy="10" r="1.8"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="currentColor"/><path d="M23 4V8C23.8 7.6 24.5 6.9 24.5 6C24.5 5.1 23.8 4.4 23 4Z" fill="currentColor" fill-opacity="0.4"/></svg></div>
+        </div>
+        <div class="ac-header">
+          <button class="back-btn" data-jump="10"><svg width="22" height="22" viewBox="0 0 18 18" fill="none"><path d="M11.25 15.5L5.96 10.45C5.17 9.65 5.17 8.35 5.96 7.55L11.25 2.66" stroke="currentColor" stroke-width="1.6" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <span class="ac-header-title">쿠팡 구경하기</span>
+          <div style="width:36px"></div>
+        </div>
+        <div style="flex:1;overflow-y:auto;padding-bottom:4px;">
+          <div class="ac-win-card">
+            <div class="ac-win-stars"><svg width="28" height="28" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFB800" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="28" height="28" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFB800" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="28" height="28" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFB800" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div class="ac-win-title">5일 연속 달성!</div>
+            <div class="ac-win-sub">이벤트 티켓 1장이 지급됐어요</div>
+            <div class="ac-win-ticket">
+              <svg width="24" height="24" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="card_hdr2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9AAFF"/><stop offset="100%" stop-color="#845EEE"/></linearGradient></defs><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="url(#card_hdr2)"/><path d="M316.2,155.8l12.1,6.2c.8.4,1.8.3,2.4-.4l9.6-9.6c1.4-1.4,3.8-.2,3.5,1.8l-2.1,13.5c-.1.9.3,1.8,1.1,2.2l12.1,6.2c1.8.9,1.4,3.6-.6,3.9l-13.5,2.1c-.9.1-1.6.8-1.7,1.7l-2.1,13.5c-.3,2-3,2.4-3.9.6l-6.2-12.1c-.4-.8-1.3-1.3-2.2-1.1l-13.5,2.1c-2,.3-3.2-2.1-1.8-3.5l9.6-9.6c.6-.6.8-1.6.4-2.4l-6.2-12.1c-.9-1.8,1-3.7,2.8-2.8Z" fill="rgba(255,255,255,0.95)"/><path d="M180.7,298.9l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2ZM215.3,319.1l-4.7,4.7-31.6-31.6,4.7-4.7,31.6,31.6ZM231.9,296.8c1.9,1.9,1.9,3.9,0,5.8l-9.9,9.9c-1.9,1.9-3.8,1.8-5.7,0l-25.8-25.8c-1.9-1.9-2-3.8-.1-5.7l9.9-9.9c1.9-1.9,3.9-1.9,5.8,0l7.4,7.4-4.7,4.7-6.2-6.2-6.1,6.1,23.5,23.5,6.1-6.1-6.6-6.6,4.7-4.7,7.8,7.8ZM254.4,280l-5.2,5.2-20.1-8.1,14.1,14.1-4.7,4.7-31.6-31.6,4.7-4.7,13.4,13.4-8.1-18.6,5.2-5.2.2.2,8.6,21.4,23.6,9.2ZM269.5,265l-13.1,13.1-31.6-31.6,13-13,4.2,4.2-8.3,8.3,9.2,9.2,7.1-7.1,4.1,4.1-7.1,7.1,9.9,9.9,8.4-8.4,4.2,4.2ZM259,220.6l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2Z" fill="rgba(255,255,255,0.95)"/></svg>
+              이벤트 티켓 +1장 지급 완료
+            </div>
+            <div class="ac-win-point"><svg width="20" height="20" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pcoin_win" x1="0" y1="0" x2="0.35" y2="1"><stop offset="49.9%" stop-color="#FFE066"/><stop offset="50%" stop-color="#F0AE00"/></linearGradient><linearGradient id="pcoinf_win" x1="0" y1="0" x2="0.35" y2="1"><stop offset="49.9%" stop-color="#FFDA3D"/><stop offset="50%" stop-color="#FFC400"/></linearGradient></defs><ellipse cx="32" cy="57" rx="17" ry="3" fill="#E6A800" opacity="0.16"/><circle cx="32" cy="30" r="27" fill="url(#pcoin_win)"/><circle cx="32" cy="30" r="21.5" fill="url(#pcoinf_win)"/><path d="M23.35 42.37H29.16V34.61H33.29C38.97 34.61 42.45 31.26 42.45 26.14C42.45 21.11 39.04 17.63 33.46 17.63H23.35ZM29.16 30.00V22.34H32.23C34.97 22.34 36.44 23.81 36.44 26.14C36.44 28.46 34.97 30.00 32.23 30.00Z" fill="#FFE477" stroke="#E0A600" stroke-width="0.6" paint-order="stroke" stroke-linejoin="round"/></svg>+100P 오늘 구경 적립</div>
+
+          <!-- 티켓 수령 카드 -->
+          <div style="margin:12px 16px 0; background:white; border-radius:16px; overflow:hidden; border:1.5px solid #C6AFFF; box-shadow:0 4px 16px rgba(132,94,238,0.15);">
+            <!-- 티켓 상단 헤더 -->
+            <div style="background:var(--sub-4); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--sub-3);">
+              <div style="display:flex; align-items:center; gap:3px;">
+                <svg width="24" height="24" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="card_hdr2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9AAFF"/><stop offset="100%" stop-color="#845EEE"/></linearGradient></defs><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0Z" fill="url(#card_hdr2)"/><circle cx="428.9" cy="83.1" r="21.9" fill="rgba(255,255,255,0.95)"/><circle cx="83.1" cy="428.9" r="21.9" fill="rgba(255,255,255,0.95)"/></svg>
+                <span style="font-size:var(--fs-body); font-weight:700; color:var(--main);">이벤트 티켓</span>
+              </div>
+              <span data-pp-feature="weekly-raffle" style="font-size:var(--fs-caption); color:var(--main); background:var(--sub-3); font-weight:600; border-radius:20px; padding:2px 10px; margin-left:14px; flex-shrink:0;">경품 응모 전용</span>
+            </div>
+            <!-- 티켓 점선 구분자 -->
+            <div style="display:flex; align-items:center; margin:0 -1px;">
+              <div style="width:12px; height:12px; border-radius:50%; background:var(--bg); border:1.5px solid #C6AFFF; margin-left:-7px; flex-shrink:0;"></div>
+              <div style="flex:1; border-top:1.5px dashed #C6AFFF;"></div>
+              <div style="width:12px; height:12px; border-radius:50%; background:var(--bg); border:1.5px solid #C6AFFF; margin-right:-7px; flex-shrink:0;"></div>
+            </div>
+            <!-- 티켓 하단 정보 -->
+            <div style="padding:14px 18px; display:flex; align-items:center; justify-content:space-between;">
+              <div>
+                <div style="font-size:var(--fs-title); font-weight:800; color:var(--text1); letter-spacing:-1px;">1장</div>
+                <div style="font-size:var(--fs-caption); color:var(--text3); margin-top:2px;">유효기간 30일</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:var(--fs-caption); color:var(--text3);">5일 연속 구경 보상</div>
+                <div style="font-size:var(--fs-caption); color:var(--main); font-weight:600; margin-top:2px;">내 티켓함에 추가됨</div>
+              </div>
+            </div>
+          </div>
+
+
+          </div>
+          <div class="ac-week-card">
+            <div class="ac-week-title">이번 주 구경 현황</div>
+            <div class="ac-week-row">
+            </div>
+          </div>
+          <div class="ac-progress-section">
+            <div class="ac-progress-header">
+              <span class="ac-progress-label">이번 주 목표 달성!</span>
+              <span class="ac-progress-count" style="color:#27AE60;">5 / 5일 ✓</span>
+            </div>
+            <div class="ac-progress-bar"><div class="ac-progress-fill" style="width:100%;background:#27AE60;"></div></div>
+            <div class="ac-progress-sub">내일부터 다시 5일 연속 구경에 도전해봐요</div>
+          </div>
+          <div class="ac-reward-row" style="background:#F0FBF6;border:1.5px solid #B7EBD0;">
+            <div class="ac-reward-ico" style="background:#EDE8FB;"><svg width="36" height="36" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ac_tk_win" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9AAFF"/><stop offset="100%" stop-color="#845EEE"/></linearGradient></defs><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4,-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="url(#ac_tk_win)"/><path d="M316.2,155.8l12.1,6.2c.8.4,1.8.3,2.4-.4l9.6-9.6c1.4-1.4,3.8-.2,3.5,1.8l-2.1,13.5c-.1.9.3,1.8,1.1,2.2l12.1,6.2c1.8.9,1.4,3.6-.6,3.9l-13.5,2.1c-.9.1-1.6.8-1.7,1.7l-2.1,13.5c-.3,2-3,2.4-3.9.6l-6.2-12.1c-.4-.8-1.3-1.3-2.2-1.1l-13.5,2.1c-2,.3-3.2-2.1-1.8-3.5l9.6-9.6c.6-.6.8-1.6.4-2.4l-6.2-12.1c-.9-1.8,1-3.7,2.8-2.8Z" fill="rgba(255,255,255,0.95)"/><path d="M180.7,298.9l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2ZM215.3,319.1l-4.7,4.7-31.6-31.6,4.7-4.7,31.6,31.6ZM231.9,296.8c1.9,1.9,1.9,3.9,0,5.8l-9.9,9.9c-1.9,1.9-3.8,1.8-5.7,0l-25.8-25.8c-1.9-1.9-2-3.8-.1-5.7l9.9-9.9c1.9-1.9,3.9-1.9,5.8,0l7.4,7.4-4.7,4.7-6.2-6.2-6.1,6.1,23.5,23.5,6.1-6.1-6.6-6.6,4.7-4.7,7.8,7.8ZM254.4,280l-5.2,5.2-20.1-8.1,14.1,14.1-4.7,4.7-31.6-31.6,4.7-4.7,13.4,13.4-8.1-18.6,5.2-5.2.2.2,8.6,21.4,23.6,9.2ZM269.5,265l-13.1,13.1-31.6-31.6,13-13,4.2,4.2-8.3,8.3,9.2,9.2,7.1-7.1,4.1,4.1-7.1,7.1,9.9,9.9,8.4-8.4,4.2,4.2ZM259,220.6l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2Z" fill="rgba(255,255,255,0.95)"/></svg></div>
+            <div>
+              <div class="ac-reward-title" style="color:#1A7A4A;">이벤트 티켓 지급 완료</div>
+              <div class="ac-reward-sub">경품 응모에서 사용해보세요 · 유효기간 30일</div>
+            </div>
+          </div>
+        </div>
+        <div class="ac-footer">
+          <button class="btn-primary" onclick="showScreen('pw-26')" data-pp-feature="weekly-raffle" style="cursor:pointer;">경품 응모 바로가기</button>
+          <div class="ac-check-info">내일부터 다시 5일 연속 구경에 도전해보세요</div>
+        </div>
+
+        <!-- 출석체크 결과 모달 — 5일 연속 달성(GOAL) -->
+        <div class="ac-result-overlay" id="ac-result-overlay-win">
+          <div class="ac-result-modal">
+            <div class="ac-result-ico">
+              <svg width="64" height="64" viewBox="96 96 320 320" style="flex-shrink:0;"><defs><linearGradient id="ac_res_win" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9AAFF"></stop><stop offset="100%" stop-color="#845EEE"></stop></linearGradient></defs><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4,-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7,-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4,-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7,-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4,-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="url(#ac_res_win)"></path><path d="M316.2,155.8l12.1,6.2c.8.4,1.8.3,2.4-.4l9.6-9.6c1.4-1.4,3.8-.2,3.5,1.8l-2.1,13.5c-.1.9.3,1.8,1.1,2.2l12.1,6.2c1.8.9,1.4,3.6-.6,3.9l-13.5,2.1c-.9.1-1.6.8-1.7,1.7l-2.1,13.5c-.3,2-3,2.4-3.9.6l-6.2-12.1c-.4-.8-1.3-1.3-2.2-1.1l-13.5,2.1c-2,.3-3.2-2.1-1.8-3.5l9.6-9.6c.6-.6.8,-1.6.4-2.4l-6.2-12.1c-.9-1.8,1-3.7,2.8-2.8Z" fill="rgba(255,255,255,0.95)"></path><path d="M180.7,298.9l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2ZM215.3,319.1l-4.7,4.7-31.6-31.6,4.7-4.7,31.6,31.6ZM231.9,296.8c1.9,1.9,1.9,3.9,0,5.8l-9.9,9.9c-1.9,1.9-3.8,1.8-5.7,0l-25.8-25.8c-1.9-1.9-2-3.8-.1-5.7l9.9-9.9c1.9-1.9,3.9-1.9,5.8,0l7.4,7.4-4.7,4.7-6.2-6.2-6.1,6.1,23.5,23.5,6.1-6.1-6.6-6.6,4.7-4.7,7.8,7.8ZM254.4,280l-5.2,5.2-20.1-8.1,14.1,14.1-4.7,4.7-31.6-31.6,4.7-4.7,13.4,13.4-8.1-18.6,5.2-5.2.2.2,8.6,21.4,23.6,9.2ZM269.5,265l-13.1,13.1-31.6-31.6,13-13,4.2,4.2-8.3,8.3,9.2,9.2,7.1-7.1,4.1,4.1-7.1,7.1,9.9,9.9,8.4,-8.4,4.2,4.2ZM259,220.6l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2Z" fill="rgba(255,255,255,0.95)"></path></svg>
+              <div style="text-align:left;"><div style="font-size:var(--fs-title);font-weight:800;color:#845EEE;line-height:1.1;"><span class="i18n"><span class="ko">100P +1장</span><span class="vi">100P +1 vé</span></span></div><div style="font-size:var(--fs-caption);font-weight:600;color:#5A5370;margin-top:2px;"><span class="i18n"><span class="ko">포인트 · 이벤트 티켓</span><span class="vi">Điểm · Vé sự kiện</span></span></div></div>
+            </div>
+            <div class="ac-result-headline"><span class="i18n"><span class="ko">축하해요!</span><span class="vi">Chúc mừng!</span></span></div>
+            <div class="ac-result-desc"><span class="i18n"><span class="ko">5일 연속 달성 · 내 티켓에 보관됐어요</span><span class="vi">Đạt 5 ngày liên tiếp · đã lưu vào vé của tôi</span></span></div>
+            <button class="ac-result-confirm" data-ac-confirm="1"><span class="i18n"><span class="ko">확인</span><span class="vi">Xác nhận</span></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="phone-wrap" id="pw-14-fail" data-screen="14-fail">
+    <div class="phone">
+      <div class="ac-screen">
+        <div class="statusbar">
+          <span>9:41</span>
+          <div class="statusbar-icons"><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 2.5C10.2 2.5 12.2 3.4 13.6 4.9L15 3.4C13.2 1.5 10.7 0.3 8 0.3C5.3 0.3 2.8 1.5 1 3.4L2.4 4.9C3.8 3.4 5.8 2.5 8 2.5Z"/><path d="M8 5.5C9.4 5.5 10.7 6.1 11.6 7L13 5.5C11.7 4.2 10 3.3 8 3.3C6 3.3 4.3 4.2 3 5.5L4.4 7C5.3 6.1 6.6 5.5 8 5.5Z"/><circle cx="8" cy="10" r="1.8"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="currentColor"/><path d="M23 4V8C23.8 7.6 24.5 6.9 24.5 6C24.5 5.1 23.8 4.4 23 4Z" fill="currentColor" fill-opacity="0.4"/></svg></div>
+        </div>
+        <div class="ac-header">
+          <button class="back-btn" data-jump="10"><svg width="22" height="22" viewBox="0 0 18 18" fill="none"><path d="M11.25 15.5L5.96 10.45C5.17 9.65 5.17 8.35 5.96 7.55L11.25 2.66" stroke="currentColor" stroke-width="1.6" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <span class="ac-header-title">쿠팡 구경하기</span>
+          <div style="width:36px"></div>
+        </div>
+        <div style="flex:1;overflow-y:auto;padding-bottom:4px;">
+          <div class="ac-streak-card">
+            <div class="ac-streak-row"><div class="ac-streak-num">1</div><div class="ac-streak-unit">일</div></div>
+            <div class="ac-streak-label">연속 구경 중</div>
+            <div class="ac-streak-badge">다시 5일에 도전해봐요!</div>
+          </div>
+          <div class="ac-fail-card">
+            <div class="ac-fail-ico">
+              <svg width="20" height="20" viewBox="0 0 24 24" style="flex-shrink:0;"><path d="M12 4 L21 19 H3 Z" fill="none" stroke="#D49B1E" stroke-width="2" stroke-linejoin="round"/><path d="M12 10 V14" stroke="#D49B1E" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16.6" r="1.1" fill="#D49B1E"/></svg>
+            </div>
+            <div>
+              <div class="ac-fail-title">구경을 놓쳐 연속 방문이 끊겼어요</div>
+              <div class="ac-fail-sub">목요일 구경이 누락됐어요. 오늘부터 다시 시작하면 5일 후 이벤트 티켓을 받을 수 있어요.</div>
+            </div>
+          </div>
+          <div class="ac-week-card">
+            <div class="ac-week-title">이번 주 구경 현황</div>
+            <div class="ac-week-row">
+            </div>
+          </div>
+          <div class="ac-progress-section">
+            <div class="ac-progress-header">
+              <span class="ac-progress-label">5일 연속 달성까지</span>
+              <span class="ac-progress-count">1 / 5일</span>
+            </div>
+            <div class="ac-progress-bar"><div class="ac-progress-fill" style="width:20%"></div></div>
+            <div class="ac-progress-sub">연속 5일을 채워야 이벤트 티켓이 지급돼요</div>
+          </div>
+          <div class="ac-reward-row">
+            <div class="ac-reward-ico"><svg width="28" height="28" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="reward_2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9AAFF"/><stop offset="100%" stop-color="#845EEE"/></linearGradient></defs><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="url(#reward_2)"/><path d="M316.2,155.8l12.1,6.2c.8.4,1.8.3,2.4-.4l9.6-9.6c1.4-1.4,3.8-.2,3.5,1.8l-2.1,13.5c-.1.9.3,1.8,1.1,2.2l12.1,6.2c1.8.9,1.4,3.6-.6,3.9l-13.5,2.1c-.9.1-1.6.8-1.7,1.7l-2.1,13.5c-.3,2-3,2.4-3.9.6l-6.2-12.1c-.4-.8-1.3-1.3-2.2-1.1l-13.5,2.1c-2,.3-3.2-2.1-1.8-3.5l9.6-9.6c.6-.6.8-1.6.4-2.4l-6.2-12.1c-.9-1.8,1-3.7,2.8-2.8Z" fill="rgba(255,255,255,0.95)"/><path d="M180.7,298.9l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2ZM215.3,319.1l-4.7,4.7-31.6-31.6,4.7-4.7,31.6,31.6ZM231.9,296.8c1.9,1.9,1.9,3.9,0,5.8l-9.9,9.9c-1.9,1.9-3.8,1.8-5.7,0l-25.8-25.8c-1.9-1.9-2-3.8-.1-5.7l9.9-9.9c1.9-1.9,3.9-1.9,5.8,0l7.4,7.4-4.7,4.7-6.2-6.2-6.1,6.1,23.5,23.5,6.1-6.1-6.6-6.6,4.7-4.7,7.8,7.8ZM254.4,280l-5.2,5.2-20.1-8.1,14.1,14.1-4.7,4.7-31.6-31.6,4.7-4.7,13.4,13.4-8.1-18.6,5.2-5.2.2.2,8.6,21.4,23.6,9.2ZM269.5,265l-13.1,13.1-31.6-31.6,13-13,4.2,4.2-8.3,8.3,9.2,9.2,7.1-7.1,4.1,4.1-7.1,7.1,9.9,9.9,8.4-8.4,4.2,4.2ZM259,220.6l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2Z" fill="rgba(255,255,255,0.95)"/></svg></div>
+            <div>
+              <div class="ac-reward-title">이벤트 티켓 1장</div>
+              <div class="ac-reward-sub">5일 연속 구경 달성 시 자동 지급 · 유효기간 30일</div>
+            </div>
+          </div>
+        </div>
+        <div class="ac-footer">
+          <div class="ac-done-badge" style="background:#F0EEF5;color:#6B6380;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            오늘 구경 완료
+          </div>
+          <div class="ac-check-info">내일도 잊지 말고 쿠팡 구경해봐요!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="phone-wrap" id="pw-14-new" data-screen="14-new">
+    <div class="phone">
+      <div class="ac-screen">
+        <div class="statusbar">
+          <span>9:41</span>
+          <div class="statusbar-icons"><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 2.5C10.2 2.5 12.2 3.4 13.6 4.9L15 3.4C13.2 1.5 10.7 0.3 8 0.3C5.3 0.3 2.8 1.5 1 3.4L2.4 4.9C3.8 3.4 5.8 2.5 8 2.5Z"/><path d="M8 5.5C9.4 5.5 10.7 6.1 11.6 7L13 5.5C11.7 4.2 10 3.3 8 3.3C6 3.3 4.3 4.2 3 5.5L4.4 7C5.3 6.1 6.6 5.5 8 5.5Z"/><circle cx="8" cy="10" r="1.8"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="currentColor"/><path d="M23 4V8C23.8 7.6 24.5 6.9 24.5 6C24.5 5.1 23.8 4.4 23 4Z" fill="currentColor" fill-opacity="0.4"/></svg></div>
+        </div>
+        <div class="ac-header">
+          <button class="back-btn" data-jump="10"><svg width="22" height="22" viewBox="0 0 18 18" fill="none"><path d="M11.25 15.5L5.96 10.45C5.17 9.65 5.17 8.35 5.96 7.55L11.25 2.66" stroke="currentColor" stroke-width="1.6" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <span class="ac-header-title">쿠팡 구경하기</span>
+          <div style="width:36px"></div>
+        </div>
+        <div style="flex:1;overflow-y:auto;padding-bottom:4px;">
+          <div class="ac-streak-card">
+            <div class="ac-streak-row">
+              <div class="ac-streak-num">0</div>
+              <div class="ac-streak-unit">일</div>
+            </div>
+            <div class="ac-streak-label">아직 구경 기록이 없어요</div>
+            <div class="ac-streak-badge">오늘 첫 체크로 시작해보세요!</div>
+          </div>
+          <div class="ac-week-card">
+            <div class="ac-week-title">이번 주 구경 현황</div>
+            <div class="ac-week-row">
+            </div>
+          </div>
+          <div class="ac-progress-section">
+            <div class="ac-progress-header">
+              <span class="ac-progress-label">5일 연속 달성까지</span>
+              <span class="ac-progress-count">0 / 5일</span>
+            </div>
+            <div class="ac-progress-bar"><div class="ac-progress-fill" style="width:0%"></div></div>
+            <div class="ac-progress-sub">매일 쿠팡 구경하면 5일 후 이벤트 티켓 1장!</div>
+          </div>
+          <div class="ac-reward-row">
+            <div class="ac-reward-ico"><svg width="28" height="28" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="reward_3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9AAFF"/><stop offset="100%" stop-color="#845EEE"/></linearGradient></defs><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="url(#reward_3)"/><path d="M316.2,155.8l12.1,6.2c.8.4,1.8.3,2.4-.4l9.6-9.6c1.4-1.4,3.8-.2,3.5,1.8l-2.1,13.5c-.1.9.3,1.8,1.1,2.2l12.1,6.2c1.8.9,1.4,3.6-.6,3.9l-13.5,2.1c-.9.1-1.6.8-1.7,1.7l-2.1,13.5c-.3,2-3,2.4-3.9.6l-6.2-12.1c-.4-.8-1.3-1.3-2.2-1.1l-13.5,2.1c-2,.3-3.2-2.1-1.8-3.5l9.6-9.6c.6-.6.8-1.6.4-2.4l-6.2-12.1c-.9-1.8,1-3.7,2.8-2.8Z" fill="rgba(255,255,255,0.95)"/><path d="M180.7,298.9l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2ZM215.3,319.1l-4.7,4.7-31.6-31.6,4.7-4.7,31.6,31.6ZM231.9,296.8c1.9,1.9,1.9,3.9,0,5.8l-9.9,9.9c-1.9,1.9-3.8,1.8-5.7,0l-25.8-25.8c-1.9-1.9-2-3.8-.1-5.7l9.9-9.9c1.9-1.9,3.9-1.9,5.8,0l7.4,7.4-4.7,4.7-6.2-6.2-6.1,6.1,23.5,23.5,6.1-6.1-6.6-6.6,4.7-4.7,7.8,7.8ZM254.4,280l-5.2,5.2-20.1-8.1,14.1,14.1-4.7,4.7-31.6-31.6,4.7-4.7,13.4,13.4-8.1-18.6,5.2-5.2.2.2,8.6,21.4,23.6,9.2ZM269.5,265l-13.1,13.1-31.6-31.6,13-13,4.2,4.2-8.3,8.3,9.2,9.2,7.1-7.1,4.1,4.1-7.1,7.1,9.9,9.9,8.4-8.4,4.2,4.2ZM259,220.6l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2Z" fill="rgba(255,255,255,0.95)"/></svg></div>
+            <div>
+              <div class="ac-reward-title">이벤트 티켓 1장</div>
+              <div class="ac-reward-sub">5일 연속 구경 달성 시 자동 지급 · 유효기간 30일</div>
+            </div>
+          </div>
+        </div>
+        <div class="ac-footer">
+          <button class="btn-primary" id="ac-check-btn-new">쿠팡 구경하러 가기</button>
+          <div class="ac-check-info">쿠팡에서 30초 이상 둘러본 뒤 복귀해야 100P 적립 · 5일 연속 시 이벤트 티켓 1장</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="phone-wrap" id="pw-14-done" data-screen="14-done">
+    <div class="phone">
+      <div class="ac-screen">
+        <div class="statusbar">
+          <span>9:41</span>
+          <div class="statusbar-icons"><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 2.5C10.2 2.5 12.2 3.4 13.6 4.9L15 3.4C13.2 1.5 10.7 0.3 8 0.3C5.3 0.3 2.8 1.5 1 3.4L2.4 4.9C3.8 3.4 5.8 2.5 8 2.5Z"/><path d="M8 5.5C9.4 5.5 10.7 6.1 11.6 7L13 5.5C11.7 4.2 10 3.3 8 3.3C6 3.3 4.3 4.2 3 5.5L4.4 7C5.3 6.1 6.6 5.5 8 5.5Z"/><circle cx="8" cy="10" r="1.8"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="currentColor"/><path d="M23 4V8C23.8 7.6 24.5 6.9 24.5 6C24.5 5.1 23.8 4.4 23 4Z" fill="currentColor" fill-opacity="0.4"/></svg></div>
+        </div>
+        <div class="ac-header">
+          <button class="back-btn" data-jump="10"><svg width="22" height="22" viewBox="0 0 18 18" fill="none"><path d="M11.25 15.5L5.96 10.45C5.17 9.65 5.17 8.35 5.96 7.55L11.25 2.66" stroke="currentColor" stroke-width="1.6" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <span class="ac-header-title">쿠팡 구경하기</span>
+          <div style="width:36px"></div>
+        </div>
+        <div style="flex:1;overflow-y:auto;padding-bottom:4px;">
+          <div class="ac-streak-card">
+            <div class="ac-streak-row">
+              <div class="ac-streak-num">2</div>
+              <div class="ac-streak-unit">일</div>
+            </div>
+            <div class="ac-streak-label">연속 구경 중</div>
+            <div class="ac-streak-badge">3일 더 구경하면 이벤트 티켓 1장!</div>
+          </div>
+          <div class="ac-week-card">
+            <div class="ac-week-title">이번 주 구경 현황</div>
+            <div class="ac-week-row">
+            </div>
+          </div>
+          <div class="ac-progress-section">
+            <div class="ac-progress-header">
+              <span class="ac-progress-label">5일 연속 달성까지</span>
+              <span class="ac-progress-count">2 / 5일</span>
+            </div>
+            <div class="ac-progress-bar"><div class="ac-progress-fill" style="width:40%"></div></div>
+            <div class="ac-progress-sub">내일도 구경하면 3일째에요. 계속 이어가봐요!</div>
+          </div>
+          <div class="ac-reward-row">
+            <div class="ac-reward-ico"><svg width="28" height="28" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="reward_done" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9AAFF"/><stop offset="100%" stop-color="#845EEE"/></linearGradient></defs><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="url(#reward_done)"/><path d="M316.2,155.8l12.1,6.2c.8.4,1.8.3,2.4-.4l9.6-9.6c1.4-1.4,3.8-.2,3.5,1.8l-2.1,13.5c-.1.9.3,1.8,1.1,2.2l12.1,6.2c1.8.9,1.4,3.6-.6,3.9l-13.5,2.1c-.9.1-1.6.8-1.7,1.7l-2.1,13.5c-.3,2-3,2.4-3.9.6l-6.2-12.1c-.4-.8-1.3-1.3-2.2-1.1l-13.5,2.1c-2,.3-3.2-2.1-1.8-3.5l9.6-9.6c.6-.6.8-1.6.4-2.4l-6.2-12.1c-.9-1.8,1-3.7,2.8-2.8Z" fill="rgba(255,255,255,0.95)"/><path d="M180.7,298.9l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2ZM215.3,319.1l-4.7,4.7-31.6-31.6,4.7-4.7,31.6,31.6ZM231.9,296.8c1.9,1.9,1.9,3.9,0,5.8l-9.9,9.9c-1.9,1.9-3.8,1.8-5.7,0l-25.8-25.8c-1.9-1.9-2-3.8-.1-5.7l9.9-9.9c1.9-1.9,3.9-1.9,5.8,0l7.4,7.4-4.7,4.7-6.2-6.2-6.1,6.1,23.5,23.5,6.1-6.1-6.6-6.6,4.7-4.7,7.8,7.8ZM254.4,280l-5.2,5.2-20.1-8.1,14.1,14.1-4.7,4.7-31.6-31.6,4.7-4.7,13.4,13.4-8.1-18.6,5.2-5.2.2.2,8.6,21.4,23.6,9.2ZM269.5,265l-13.1,13.1-31.6-31.6,13-13,4.2,4.2-8.3,8.3,9.2,9.2,7.1-7.1,4.1,4.1-7.1,7.1,9.9,9.9,8.4-8.4,4.2,4.2ZM259,220.6l-5.2,5.2,27.4,27.4-4.7,4.7-27.4-27.4-5.2,5.2-4.2-4.2,15.1-15.1,4.2,4.2Z" fill="rgba(255,255,255,0.95)"/></svg></div>
+            <div>
+              <div class="ac-reward-title">이벤트 티켓 1장</div>
+              <div class="ac-reward-sub">5일 연속 구경 달성 시 자동 지급 · 유효기간 30일</div>
+            </div>
+          </div>
+        </div>
+        <div class="ac-footer">
+          <div class="ac-done-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--main)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            오늘 구경 완료
+          </div>
+          <div class="ac-check-info">내일 자정 이후 다시 구경할 수 있어요</div>
+        </div>
+
+        <!-- 출석체크 결과 모달 — 일반 100P(DAILY) -->
+        <div class="ac-result-overlay" id="ac-result-overlay-done">
+          <div class="ac-result-modal">
+            <div class="ac-result-ico">
+              <svg width="60" height="60" viewBox="0 0 64 64" style="flex-shrink:0;"><defs><linearGradient id="pcoin_acm" x1="0" y1="0" x2="0.35" y2="1"><stop offset="49.9%" stop-color="#FFE066"/><stop offset="50%" stop-color="#F0AE00"/></linearGradient><linearGradient id="pcoin_acm_face" x1="0" y1="0" x2="0.35" y2="1"><stop offset="49.9%" stop-color="#FFDA3D"/><stop offset="50%" stop-color="#FFC400"/></linearGradient></defs><ellipse cx="32" cy="57" rx="17" ry="3" fill="#E6A800" opacity="0.16"/><circle cx="32" cy="30" r="27" fill="url(#pcoin_acm)"/><circle cx="32" cy="30" r="21.5" fill="url(#pcoin_acm_face)"/><path d="M23.35 42.37H29.16V34.61H33.29C38.97 34.61 42.45 31.26 42.45 26.14C42.45 21.11 39.04 17.63 33.46 17.63H23.35ZM29.16 30.00V22.34H32.23C34.97 22.34 36.44 23.81 36.44 26.14C36.44 28.46 34.97 30.00 32.23 30.00Z" fill="#FFE477" stroke="#E0A600" stroke-width="0.6" paint-order="stroke" stroke-linejoin="round"/></svg>
+              <div style="text-align:left;"><div style="font-size:var(--fs-title);font-weight:800;color:#845EEE;line-height:1.1;">100P</div><div style="font-size:var(--fs-caption);font-weight:600;color:#5A5370;margin-top:2px;"><span class="i18n"><span class="ko">포인트 적립</span><span class="vi">Tích lũy điểm</span></span></div></div>
+            </div>
+            <div class="ac-result-headline"><span class="i18n"><span class="ko">100P 적립 완료!</span><span class="vi">Đã tích lũy 100P!</span></span></div>
+            <div class="ac-result-desc" id="ac-result-done-desc">연속 방문 · 1일 더 구경하면 보상 지급</div>
+            <button class="ac-result-confirm" data-ac-confirm="1"><span class="i18n"><span class="ko">확인</span><span class="vi">Xác nhận</span></span></button>
           </div>
         </div>
       </div>
