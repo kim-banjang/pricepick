@@ -12863,43 +12863,30 @@ window.PP_FEATURES = { exchangeEntry: false };
           </div>
 
 
-          <!-- 티켓 보유 현황 — 등급별 줄 토글(김반장 2026-08-06, devqa Q1 답변). 상위 토글 없이 등급 3줄 바로 노출, 초기 전부 접힘.
-               임박(D-7 이내) 만료일은 별도 안내 줄 없이 해당 줄 자체를 주황으로 강조(devqa Q2 답변) -->
+          <!-- 등급 티켓 보유 현황 + 만료일 -->
           <div class="gd-section">
-            <div class="gd-section-t">티켓 보유 현황</div>
-            <div style="border-radius:14px;background:#fff;border:1px solid #EFEAF7;overflow:hidden;">
-              <button type="button" onclick="var b=this.nextElementSibling;var open=b.style.display==='flex';b.style.display=open?'none':'flex';this.querySelector('.gd-hold-chev').style.transform=open?'':'rotate(180deg)';" style="width:100%;background:none;border:none;padding:12px 14px;margin:0;font:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;text-align:left;">
-                <span style="font-size:11px;font-weight:700;color:#92400E;">브론즈</span>
-                <span style="font-size:10.5px;color:var(--text3);">12장 · 만료일 4개</span>
-                <svg class="gd-hold-chev" width="10" height="10" viewBox="0 0 10 10" fill="none" style="transition:transform .2s;margin-left:auto;flex-shrink:0;"><path d="M1.5 3.5L5 7l3.5-3.5" stroke="var(--main)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <div style="display:none;flex-direction:column;gap:4px;padding:0 14px 12px;">
-                <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-radius:8px;background:#FFF4EC;"><span style="color:#D4661E;">1장</span><span style="color:#D4661E;font-weight:700;">2026.06.25 · D-7</span></div>
-                <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-radius:8px;background:#FFF4EC;"><span style="color:#D4661E;">2장</span><span style="color:#D4661E;font-weight:700;">2026.06.25 · D-7</span></div>
-                <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-radius:8px;background:#F8F6FE;"><span style="color:#5A5370;">4장</span><span style="color:#5A5370;">2026.12.10</span></div>
-                <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-radius:8px;background:#F8F6FE;"><span style="color:#5A5370;">5장</span><span style="color:#5A5370;">2027.02.18</span></div>
+            <div class="gd-section-t">등급 티켓 보유 현황</div>
+            <div style="display:flex;flex-direction:column;gap:6px;padding:0 2px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;background:#FFF9F0;border:1px solid #FDE68A;border-radius:8px;padding:8px 10px;">
+                <div style="font-size:11px;font-weight:700;color:#92400E;">브론즈 12장</div>
+                <div style="font-size:9.5px;color:#DC2626;background:#FEF2F2;border:1px solid #FECACA;border-radius:4px;padding:2px 6px;font-weight:700;">⚠ 3장 D-7 만료</div>
               </div>
-              <div style="height:1px;background:#F1EFF6;"></div>
-              <button type="button" onclick="var b=this.nextElementSibling;var open=b.style.display==='flex';b.style.display=open?'none':'flex';this.querySelector('.gd-hold-chev').style.transform=open?'':'rotate(180deg)';" style="width:100%;background:none;border:none;padding:12px 14px;margin:0;font:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;text-align:left;">
-                <span style="font-size:11px;font-weight:700;color:#5A5370;">실버</span>
-                <span style="font-size:10.5px;color:var(--text3);">4장 · 만료일 1개</span>
-                <svg class="gd-hold-chev" width="10" height="10" viewBox="0 0 10 10" fill="none" style="transition:transform .2s;margin-left:auto;flex-shrink:0;"><path d="M1.5 3.5L5 7l3.5-3.5" stroke="var(--main)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <div style="display:none;flex-direction:column;gap:4px;padding:0 14px 12px;">
-                <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-radius:8px;background:#F8F6FE;"><span style="color:#5A5370;">4장</span><span style="color:#5A5370;">2027.03.15</span></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;background:#F8F7FC;border:1px solid #E4DFF0;border-radius:8px;padding:8px 10px;">
+                <div style="font-size:11px;font-weight:700;color:#5A5370;">실버 4장</div>
+                <div style="font-size:9.5px;color:#9B93B0;">만료 2027.03.15</div>
               </div>
-              <div style="height:1px;background:#F1EFF6;"></div>
-              <button type="button" onclick="var b=this.nextElementSibling;var open=b.style.display==='flex';b.style.display=open?'none':'flex';this.querySelector('.gd-hold-chev').style.transform=open?'':'rotate(180deg)';" style="width:100%;background:none;border:none;padding:12px 14px;margin:0;font:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;text-align:left;">
-                <span style="font-size:11px;font-weight:700;color:#92400E;">골드</span>
-                <span style="font-size:10.5px;color:var(--text3);">2장 · 만료일 1개</span>
-                <svg class="gd-hold-chev" width="10" height="10" viewBox="0 0 10 10" fill="none" style="transition:transform .2s;margin-left:auto;flex-shrink:0;"><path d="M1.5 3.5L5 7l3.5-3.5" stroke="var(--main)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <div style="display:none;flex-direction:column;gap:4px;padding:0 14px 12px;">
-                <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-radius:8px;background:#F8F6FE;"><span style="color:#5A5370;">2장</span><span style="color:#5A5370;">2027.05.20</span></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;background:#FFFBF0;border:1px solid #FDE68A;border-radius:8px;padding:8px 10px;">
+                <div style="font-size:11px;font-weight:700;color:#92400E;">골드 2장</div>
+                <div style="font-size:9.5px;color:#9B93B0;">만료 2027.05.20</div>
               </div>
             </div>
-            <div style="padding:8px 2px 0;">
-              <span style="display:block;color:var(--text3);font-size:10.5px;font-weight:400;line-height:1.5;">만료가 임박한(적립일이 오래된) 티켓부터 자동 사용되고, 등급을 바꿔도 만료일은 늘어나지 않아요.</span>
+            <button type="button" onclick="var p=this.nextElementSibling;p.style.display=(p.style.display==='block')?'none':'block';" style="margin-top:8px;width:100%;background:none;border:none;font-size:11px;font-weight:700;color:var(--main);cursor:pointer;text-align:left;padding:2px;">장별 만료일 자세히 보기 ▾</button>
+            <div style="display:none;margin-top:6px;background:#fff;border:1px solid #EFEAF7;border-radius:8px;overflow:hidden;">
+              <div style="font-size:10px;color:var(--text3);padding:7px 10px;background:#FAF8FF;font-weight:700;">브론즈 12장 · 만료일 오름차순(임박 순)</div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 1장</span><span style="color:#DC2626;font-weight:700;">2026.06.25 (D-7)</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 2장</span><span style="color:#DC2626;font-weight:700;">2026.06.25 (D-7)</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 4장</span><span style="color:var(--text3);">2026.12.10</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:7px 10px;border-top:1px solid #F3EFFA;"><span>브론즈 5장</span><span style="color:var(--text3);">2027.02.18</span></div>
             </div>
           </div>
 
@@ -16017,13 +16004,6 @@ Object.assign(KO2VI, {
 });
 /* VI 모드 전수 점검에서 나온 사전 누락분(2026-07-30) */
 Object.assign(KO2VI, {
-  /* pw-21 티켓 보유 현황 — 등급별 토글 5줄(김반장 2026-08-06, devqa Q1/Q2 답변) */
-  "티켓 보유 현황": "Tình trạng sở hữu vé",
-  "12장 · 만료일 4개": "12 vé · 4 hạn dùng",
-  "4장 · 만료일 1개": "4 vé · 1 hạn dùng",
-  "2장 · 만료일 1개": "2 vé · 1 hạn dùng",
-  "만료가 임박한(적립일이 오래된) 티켓부터 자동 사용되고, 등급을 바꿔도 만료일은 늘어나지 않아요.":
-    "Vé sắp hết hạn (tích lũy lâu nhất) được dùng trước, và đổi hạng không kéo dài thêm hạn dùng.",
   /* 05b 경품 응모 — 당첨 인원(1명·3명은 이미 있었고 5명만 빠져 있었다)·티켓 모으기 부제 */
   "5명": "5 người",
   "5일 연속 +1장": "5 ngày liên tục +1 vé",
