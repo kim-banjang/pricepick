@@ -8624,6 +8624,13 @@ body.pp-hide-exchange-entry.pp-hide-weekly-raffle .mtc-cta-row { display: none !
 .ip-nav-btn.unbuilt { opacity: .45; cursor: default; }
 .ip-nav-btn.unbuilt:hover { background: transparent; color: #666; }
 .ip-empty-note { position: fixed; bottom: 24px; left: 24px; z-index: 9999; font-family: "Pretendard Variable", sans-serif; font-size: 12px; color: #888; background: rgba(255,255,255,0.9); padding: 6px 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+/* 중첩 flex(overflow:hidden) 자동최소크기 0 축소 버그 보정 — 시뮬레이터 프레임 고정폭 유지 (720px 미만은 데모의 100vw 풀블리드 규칙 유지) */
+@media (min-width: 720px) {
+  body.interactive-mode .ip-stage { min-width: 390px !important; min-height: 844px !important; }
+  body.interactive-mode #ip-screen-container { width: 390px !important; height: 844px !important; min-width: 390px !important; min-height: 844px !important; flex-shrink: 0 !important; }
+  body.interactive-mode .phone-wrap.ip-active { width: 390px !important; height: 844px !important; min-width: 390px !important; min-height: 844px !important; flex-shrink: 0 !important; }
+  body.interactive-mode .phone-wrap.ip-active .phone { min-width: 390px !important; min-height: 844px !important; flex-shrink: 0 !important; }
+}
 </style>
 </head>
 <body class="interactive-mode">
@@ -8794,8 +8801,6 @@ window.PP_FEATURES = {
       </div>
     </div>
   </div>
-
-  <div class="phone-wrap" id="pw-01" data-screen="02">
 
 
   <div class="phone-wrap" id="pw-10" data-screen="04">
