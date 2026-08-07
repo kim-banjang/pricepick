@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026.08.06 이동영 부장 요청사항 보고서</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#F7F7FB; color:#333; line-height:1.6; }
+  .wrap { max-width:960px; margin:0 auto; padding:48px 24px 96px; }
+
+  .cover { background:#fff; border:1px solid #E4DEF9; border-radius:16px; padding:40px 44px; margin-bottom:28px; }
+  .cover .label { display:inline-block; background:#F1EBFF; color:#845EEE; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; letter-spacing:.5px; margin-bottom:14px; }
+  .cover h1 { font-size:26px; font-weight:800; color:#222; margin-bottom:8px; }
+  .cover .sub { font-size:15px; font-weight:600; color:#6C4FD1; }
+  .cover .desc { font-size:13.5px; color:#888; margin-top:6px; }
+  .cover .meta { margin-top:18px; padding-top:18px; border-top:1px solid #F0EDFA; font-size:13px; color:#777; display:flex; gap:28px; flex-wrap:wrap; }
+  .cover .meta b { color:#555; font-weight:600; }
+
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:36px; }
+  .card { background:#fff; border:1px solid #E4DEF9; border-radius:14px; padding:20px 22px; }
+  .card .num { font-size:28px; font-weight:800; color:#845EEE; }
+  .card .num small { font-size:14px; font-weight:600; color:#B9A8F2; }
+  .card .cap { font-size:12.5px; color:#888; margin-top:4px; }
+
+  h2 { font-size:18px; font-weight:800; color:#222; margin:40px 0 6px; padding-left:12px; border-left:4px solid #845EEE; }
+  .h2-desc { font-size:13px; color:#888; margin:0 0 14px 16px; }
+
+  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid #E4DEF9; border-radius:12px; overflow:hidden; font-size:13.5px; }
+  thead th { background:#F5F2FE; color:#6C4FD1; font-weight:700; text-align:left; padding:11px 14px; font-size:12.5px; }
+  tbody td { padding:10px 14px; border-top:1px solid #F3F1FB; vertical-align:top; }
+  tbody tr:hover { background:#FBFAFF; }
+  td.fn { font-weight:600; color:#333; white-space:nowrap; }
+
+  .badge { display:inline-block; font-size:11.5px; font-weight:700; padding:3px 10px; border-radius:12px; white-space:nowrap; }
+  .b-req { background:#F1EBFF; color:#6C4FD1; }
+  .b-ext { background:#F1F1F4; color:#8A8A94; }
+
+  .note { background:#fff; border:1px solid #E4DEF9; border-radius:12px; padding:22px 26px; }
+  .note h3 { font-size:14.5px; font-weight:700; color:#6C4FD1; margin-bottom:10px; }
+  .note p { font-size:13.5px; color:#555; }
+  .note p + p { margin-top:8px; }
+
+  .last-update { position:fixed; bottom:24px; left:24px; background:#fff; border:1px solid #E4DEF9; border-radius:8px; padding:6px 12px; font-size:11.5px; color:#999; box-shadow:0 2px 8px rgba(132,94,238,.08); }
+
+  @media (max-width:720px){ .cards{grid-template-columns:repeat(2,1fr);} .cover{padding:28px;} .wrap{padding:32px 16px 80px;} .last-update{display:none;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="cover">
+    <span class="label">POLICY REPORT</span>
+    <h1>2026.08.06 이동영 부장 요청사항 보고서</h1>
+    <div class="sub">PricePick 수정 요청 4건 접수</div>
+    <div class="desc">포인트 교환·행운 룰렛·CMS에 대한 수정 요청과, 쿠팡 파트너스 연동 진행 상황에 대한 회신 요청이 접수되었다.</div>
+    <div class="meta">
+      <span><b>접수일</b> 2026.08.06</span>
+      <span><b>출처</b> 이동영 부장 메신저 (2026-08-06 09:24)</span>
+      <span><b>구분</b> 요청 접수</span>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="num">4<small> 건</small></div><div class="cap">이동영 부장 요청사항</div></div>
+    <div class="card"><div class="num">2<small> 건</small></div><div class="cap">화면 변경 요청 — 포인트 교환 · 행운 룰렛</div></div>
+    <div class="card"><div class="num">1<small> 건</small></div><div class="cap">CMS 기능 요청 — 티켓 환급액 설정</div></div>
+    <div class="card"><div class="num">1<small> 건</small></div><div class="cap">회신 요청 — 쿠팡 파트너스 일정</div></div>
+  </div>
+
+  <h2>1. 포인트 교환 — 티켓→포인트 변환 삭제 요청</h2>
+  <p class="h2-desc">포인트 교환 화면 수정 요청</p>
+  <table>
+    <thead><tr><th style="width:18%">구분</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">요청 내용</td><td>포인트 교환에서 티켓을 포인트로 변환하는 기능은 필요하지 않다는 의견과 함께 삭제가 요청됨</td></tr>
+      <tr><td class="fn">현재 상태</td><td><span class="badge b-req">요청 접수 · 검토 예정</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>2. 행운 룰렛 확률 표시 추가 요청</h2>
+  <p class="h2-desc">잭팟 룰렛과의 표시 방식 통일 요청</p>
+  <table>
+    <thead><tr><th style="width:18%">구분</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">요청 내용</td><td>잭팟 룰렛에는 확률이 표시되어 있으나 행운 룰렛에는 표시되지 않음. 화면 상단에 확률 버튼을 두고, 누르면 확률표가 펼쳐지는 방식이 제안됨</td></tr>
+      <tr><td class="fn">현재 상태</td><td><span class="badge b-req">요청 접수 · 검토 예정</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. CMS 티켓 환급액 설정 기능 요청</h2>
+  <p class="h2-desc">운영 기능 반영 요청</p>
+  <table>
+    <thead><tr><th style="width:18%">구분</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">요청 내용</td><td>CMS에서 티켓 환급액을 설정할 수 있는 기능 반영이 요청됨</td></tr>
+      <tr><td class="fn">현재 상태</td><td><span class="badge b-req">요청 접수 · 검토 예정</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. 쿠팡 파트너스 연동 — 진행 상황 문의</h2>
+  <p class="h2-desc">막힌 단계와 예상 완료 시점에 대한 회신 요청</p>
+  <table>
+    <thead><tr><th style="width:18%">구분</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">요청 내용</td><td>쿠팡 파트너스 연동이 어느 단계에서 막혀 있는지, 예상 완료 시점은 언제인지에 대한 회신이 요청됨</td></tr>
+      <tr><td class="fn">현재 상태</td><td><span class="badge b-req">회신 요청 접수</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note" style="margin-top:14px;">
+    <h3>참고</h3>
+    <p>2026-08-06 개발팀 업데이트 기준, 쿠팡 연동 관련 항목(쿠팡 연동 / 구매, 쿠팡 구매 내역)은 <span class="badge b-ext">third-party 표시</span>로 미완료 상태다.</p>
+    <p>막힌 단계와 예상 완료 시점은 해당 업데이트에 명시되지 않았다.</p>
+  </div>
+
+</div>
+<div class="last-update">Last Update 2026.08.07 10:12</div>
+</body>
+</html>
