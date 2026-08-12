@@ -100,9 +100,9 @@ table.mtbl tr:hover td{background:var(--bg)}
 </div>
 
 <div class="filters">
-<select id="f-cat"><option value=""><span class="i18n"><span class="ko">카테고리 전체</span><span class="vi">Tất cả danh mục</span></span></option></select>
-<select id="f-status"><option value=""><span class="i18n"><span class="ko">승인상태 전체</span><span class="vi">Tất cả trạng thái</span></span></option></select>
-<input type="text" id="f-search" placeholder="머천트명 검색">
+<select id="f-cat"><option value="" data-ko="카테고리 전체" data-vi="Tất cả danh mục">카테고리 전체</option></select>
+<select id="f-status"><option value="" data-ko="승인상태 전체" data-vi="Tất cả trạng thái">승인상태 전체</option></select>
+<input type="text" id="f-search" data-ko-ph="머천트명 검색" data-vi-ph="Tìm theo tên sàn" placeholder="머천트명 검색">
 <span class="fcount"><span id="f-count">0</span><span class="i18n"><span class="ko">건 표시 중</span><span class="vi"> đang hiển thị</span></span></span>
 </div>
 
@@ -278,6 +278,21 @@ window.LP.openDetail = function(idx){
 document.getElementById('detail-modal').addEventListener('click', function(e){
   if(e.target === this) this.classList.remove('open');
 });
+
+// <option>·placeholder는 자손 span의 display:none을 무시하고 텍스트를 그대로 이어붙여
+// 렌더링하므로(브라우저 네이티브 위젯), CSS 토글이 아니라 JS로 직접 텍스트를 바꾼다.
+var langsw = document.getElementById('langsw');
+function syncLangText(){
+  var vi = langsw.checked;
+  document.querySelectorAll('option[data-ko]').forEach(function(o){
+    o.textContent = vi ? o.dataset.vi : o.dataset.ko;
+  });
+  document.querySelectorAll('input[data-ko-ph]').forEach(function(el){
+    el.placeholder = vi ? el.dataset.viPh : el.dataset.koPh;
+  });
+}
+langsw.addEventListener('change', syncLangText);
+syncLangText();
 })();
 </script>
 </body></html>
