@@ -86,7 +86,35 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 
 <div class="keybox"><span class="kt"><span class="i18n"><span class="ko">요약</span><span class="vi">Tóm tắt</span></span></span><span class="i18n"><span class="ko">「티켓 가치 설정」은 티켓 1장의 원화 환산가치(브론즈·실버·골드·이벤트)를 저장한다. 「티켓 적립 설정」은 제휴몰별 수수료·적립률·링크프라이스 상태·적용 여부를 저장한다. 두 화면 모두 저장 즉시 <b>Firestore</b>에 반영되고, 앱은 이 값을 읽어서 룰렛 잭팟 판정·포인트↔티켓 교환 비율·등급 교환 비율 표시에 쓴다. 적립액 계산 자체(수수료×적립률)는 <b>서버(백엔드)</b>가 하고, 앱은 결과만 표시한다.</span><span class="vi">「Thiết lập giá trị vé」 lưu giá trị quy đổi ra 원 của 1 vé (Đồng·Bạc·Vàng·Sự kiện). 「Thiết lập tích lũy vé」 lưu hoa hồng·tỷ lệ tích lũy·trạng thái Linkprice·trạng thái áp dụng theo từng sàn liên kết. Cả 2 màn hình đều ghi vào <b>Firestore</b> ngay khi lưu, và app đọc giá trị này để dùng cho phán định jackpot vòng quay·tỷ lệ đổi Điểm↔Vé·hiển thị tỷ lệ đổi hạng. Bản thân phép tính số tiền tích lũy (hoa hồng×tỷ lệ tích lũy) do <b>server (backend)</b> thực hiện, app chỉ hiển thị kết quả.</span></span></div>
 
-<h2 class="grp">1. <span class="i18n"><span class="ko">저장 구조</span><span class="vi">Cấu trúc lưu trữ</span></span> (Firestore)</h2>
+<h2 class="grp">1. <span class="i18n"><span class="ko">지금 착수 가능 / 정책 확정 후</span><span class="vi">Có thể bắt đầu ngay / Sau khi chốt chính sách</span></span></h2>
+
+<div class="qa"><div class="qtxt"><span class="i18n"><span class="ko">티켓 가치·등급 정책은 아직 이부장과 상의 중이다. 개발은 이를 기다리지 않는다. 아래 기준으로 지금 착수한다.</span><span class="vi">Chính sách giá trị vé·hạng vẫn đang được trao đổi với 이부장. Việc phát triển không chờ chính sách này. Bắt đầu ngay theo tiêu chuẩn dưới đây.</span></span></div></div>
+
+<div class="qa"><div class="qrow"><span class="bd ok"><span class="i18n"><span class="ko">지금 착수 가능</span><span class="vi">Có thể bắt đầu ngay</span></span></span></div>
+<ul style="margin:10px 0 0 20px;font-size:13.3px;line-height:1.8;color:var(--ink2)">
+<li><span class="i18n"><span class="ko">등급·티켓 가치를 설정에서 읽는 구조</span><span class="vi">Cấu trúc đọc hạng·giá trị vé từ cấu hình (settings)</span></span></li>
+<li><span class="i18n"><span class="ko">포스트백 → 적립 계산 → 티켓 발행 흐름</span><span class="vi">Luồng Postback → tính tích lũy → phát hành vé</span></span></li>
+<li><span class="i18n"><span class="ko">제휴몰별 적립률·적용여부 조회</span><span class="vi">Tra cứu tỷ lệ tích lũy·trạng thái áp dụng theo từng sàn liên kết</span></span></li>
+<li><span class="i18n"><span class="ko">확정/회수 처리</span><span class="vi">Xử lý xác nhận/thu hồi</span></span></li>
+</ul>
+</div>
+
+<div class="qa"><div class="qrow"><span class="bd hold"><span class="i18n"><span class="ko">정책 확정 후</span><span class="vi">Sau khi chốt chính sách</span></span></span></div>
+<ul style="margin:10px 0 0 20px;font-size:13.3px;line-height:1.8;color:var(--ink2)">
+<li><span class="i18n"><span class="ko">등급이 3단계인지 4단계인지, 새 등급 이름</span><span class="vi">Số hạng là 3 hay 4, tên hạng mới</span></span></li>
+<li><span class="i18n"><span class="ko">티켓 가치 실제 숫자</span><span class="vi">Con số thực tế của giá trị vé</span></span></li>
+<li><span class="i18n"><span class="ko">룰렛 보상·포인트 교환 비율·등급별 적립 기준 재조정</span><span class="vi">Điều chỉnh lại phần thưởng vòng quay·tỷ lệ đổi điểm·tiêu chuẩn tích lũy theo hạng</span></span></li>
+</ul>
+</div>
+
+<h2 class="grp">2. <span class="i18n"><span class="ko">등급 수는 고정이 아니다 — 설정 기반 설계</span><span class="vi">Số hạng không cố định — Thiết kế dựa trên cấu hình</span></span></h2>
+
+<div class="warn"><span class="wt"><span class="i18n"><span class="ko">지금 3단계, 검토 중인 안에 따라 4단계가 될 수 있다</span><span class="vi">Hiện tại 3 hạng, có thể thành 4 hạng tùy phương án đang xem xét</span></span></span><span class="i18n"><span class="ko">지금은 브론즈·실버·골드 3단계다. 검토 중인 안에 따라 4단계가 될 수 있다 — <b>01안</b>은 위에 다이아몬드 추가(브론즈·실버·골드·다이아몬드), <b>02안</b>은 아래에 아이언 추가(아이언·브론즈·실버·골드).</span><span class="vi">Hiện tại có 3 hạng: Đồng·Bạc·Vàng. Tùy phương án đang xem xét có thể thành 4 hạng — <b>Phương án 01</b> thêm Kim cương ở trên (Đồng·Bạc·Vàng·Kim cương), <b>Phương án 02</b> thêm Sắt ở dưới (Sắt·Đồng·Bạc·Vàng).</span></span></div>
+
+<div class="qa"><div class="qtxt"><span class="i18n"><span class="ko">등급 목록과 각 등급의 가치를 코드에 박지 않고 설정에서 읽어야 한다. 등급이 몇 개든, 이름이 무엇이든, 가치가 얼마든 동작해야 한다.</span><span class="vi">Danh sách hạng và giá trị từng hạng không được viết cứng trong code mà phải đọc từ cấu hình. Phải hoạt động được dù số hạng là bao nhiêu, tên gì, giá trị bao nhiêu.</span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">등급 환산 규칙</span><span class="vi">Quy tắc quy đổi hạng</span></span></span><div class="atxt"><span class="i18n"><span class="ko">그대로다 — 큰 단위부터 채우고 최하위 등급 미만 잔돈은 미지급. 이 규칙은 <b>등급 개수와 무관하게</b> 성립한다.</span><span class="vi">Giữ nguyên — ưu tiên đơn vị lớn trước, số dư dưới mức hạng thấp nhất thì không cấp vé. Quy tắc này đúng <b>bất kể số lượng hạng</b>.</span></span></div></div></div>
+
+<h2 class="grp">3. <span class="i18n"><span class="ko">저장 구조</span><span class="vi">Cấu trúc lưu trữ</span></span> (Firestore)</h2>
 
 <div class="qa"><div class="qrow"><span class="qno">①</span><div class="qtxt">settings/ticket_value — <span class="i18n"><span class="ko">티켓 1장의 원화 환산가치</span><span class="vi">Giá trị quy đổi 원 của 1 vé</span></span></div></div>
 <div class="tblwrap"><table class="tbl"><thead><tr><th><span class="i18n"><span class="ko">필드</span><span class="vi">Trường</span></span></th><th><span class="i18n"><span class="ko">타입</span><span class="vi">Loại</span></span></th><th><span class="i18n"><span class="ko">설명</span><span class="vi">Mô tả</span></span></th></tr></thead><tbody>
@@ -109,7 +137,19 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">코드 네임스페이스</span><span class="vi">Namespace của mã</span></span></span><span class="i18n"><span class="ko">대표 제휴몰(쿠팡 직접 제휴)의 코드는 </span><span class="vi">Mã của sàn liên kết đại diện (Coupang liên kết trực tiếp) là </span></span><b>coupang_direct</b><span class="i18n"><span class="ko">다. 링크프라이스 카탈로그의 각 제휴몰 코드는 </span><span class="vi">. Mỗi mã sàn trong danh mục Linkprice có tiền tố </span></span><b>lp:</b><span class="i18n"><span class="ko"> 접두사를 붙인다(예: lp:coupang). 링크프라이스 카탈로그 안에도 쿠팡이라는 이름의 별개 딜이 있어, 접두사로 두 코드가 절대 겹치지 않게 분리한다.</span><span class="vi">(ví dụ: lp:coupang). Trong danh mục Linkprice cũng có một deal riêng tên Coupang, nên dùng tiền tố để tách 2 mã, tuyệt đối không trùng nhau.</span></span></div>
 </div>
 
-<h2 class="grp">2. <span class="i18n"><span class="ko">티켓 가치가 물려 있는 자리</span><span class="vi">Nơi giá trị vé được áp dụng</span></span></h2>
+<h2 class="grp">4. <span class="i18n"><span class="ko">서버 처리 흐름</span><span class="vi">Luồng xử lý phía server</span></span></h2>
+
+<div class="qa"><div class="qtxt"><span class="i18n"><span class="ko">포스트백 수신부터 티켓 확정까지의 순서다. 계산은 서버가 하고 앱은 결과만 표시한다는 원칙(요약 참고)이 아래 흐름 전체에 적용된다.</span><span class="vi">Đây là trình tự từ khi nhận Postback đến khi xác nhận vé. Nguyên tắc server tính toán, app chỉ hiển thị kết quả (xem phần Tóm tắt) áp dụng cho toàn bộ luồng dưới đây.</span></span></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">제휴몰 경유 구매 발생 → 포스트백 수신</span><span class="vi">Phát sinh giao dịch qua sàn liên kết → Nhận Postback</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">그 몰의 적립률을 settings/ticket_accrual.rates에서 조회</span><span class="vi">Tra tỷ lệ tích lũy của sàn đó từ settings/ticket_accrual.rates</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">적립액 = 구매확정금액 × 적립률</span><span class="vi">Số tiền tích lũy = Số tiền xác nhận mua × tỷ lệ tích lũy</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">4</span><div class="qtxt"><span class="i18n"><span class="ko">적립액을 등급 티켓으로 환산 (큰 단위부터, 최하위 미만 잔돈 미지급)</span><span class="vi">Quy đổi số tiền tích lũy thành vé theo hạng (ưu tiên đơn vị lớn trước, số dư dưới mức hạng thấp nhất không cấp vé)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">5</span><div class="qtxt"><span class="i18n"><span class="ko">가지급(적립예정)으로 발행</span><span class="vi">Phát hành ở trạng thái tạm cấp (chờ tích lũy)</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">6</span><div class="qtxt"><span class="i18n"><span class="ko">확정 대기 — 카카오 연동 D+7 / 미연동 D+30</span><span class="vi">Chờ xác nhận — đã liên kết Kakao D+7 / chưa liên kết D+30</span></span></div></div></div>
+<div class="qa"><div class="qrow"><span class="qno">7</span><div class="qtxt"><span class="i18n"><span class="ko">취소·반품 시 회수, 기간 경과 시 확정</span><span class="vi">Thu hồi khi hủy·trả hàng, xác nhận khi hết thời hạn</span></span></div></div></div>
+
+<h2 class="grp">5. <span class="i18n"><span class="ko">티켓 가치가 물려 있는 자리</span><span class="vi">Nơi giá trị vé được áp dụng</span></span></h2>
 
 <div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">매일 행운 룰렛 · 잭팟 룰렛 — 잭팟 칸 판정</span><span class="vi">Vòng quay May mắn hằng ngày · Vòng quay Jackpot — Phán định ô jackpot</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">연동됨</span><span class="vi">Đã liên kết</span></span></span></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">규칙</span><span class="vi">Quy tắc</span></span></span><div class="atxt"><span class="i18n"><span class="ko">각 칸의 원화 환산가치(수량 × 티켓 가치)가 가장 높은 칸을 JACKPOT으로 표시한다. 확률이 아니라 <b>가치</b> 기준이다. 운영자가 확률만 바꿔도 JACKPOT 표기가 엉뚱한 칸으로 옮겨가지 않는다.</span><span class="vi">Ô có giá trị quy đổi 원 (số lượng × giá trị vé) cao nhất được đánh dấu JACKPOT. Tiêu chuẩn là <b>giá trị</b>, không phải xác suất. Nên khi quản trị viên chỉ đổi xác suất, nhãn JACKPOT không bị nhảy sang ô khác một cách vô lý.</span></span></div></div></div>
@@ -120,24 +160,27 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">등급 교환(브론즈↔실버↔골드) — 표시 비율</span><span class="vi">Đổi hạng (Đồng↔Bạc↔Vàng) — Tỷ lệ hiển thị</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">연동됨</span><span class="vi">Đã liên kết</span></span></span></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">규칙</span><span class="vi">Quy tắc</span></span></span><div class="atxt"><span class="i18n"><span class="ko">교환 비율 = 상위 등급 가치 ÷ 하위 등급 가치(정수 배수일 때만). 화면에 보이는 "브론즈 N장 = 실버 1장" 표기가 이 값을 그대로 따른다. 정수 배수가 아니게 되면 표시를 갱신하지 않는다 — 이 경우는 등급 값 설계 자체를 다시 봐야 한다.</span><span class="vi">Tỷ lệ đổi = giá trị hạng trên ÷ giá trị hạng dưới (chỉ khi là bội số nguyên). Nhãn hiển thị trên màn hình "Đồng N vé = Bạc 1 vé" theo đúng giá trị này. Nếu không còn là bội số nguyên thì không cập nhật hiển thị — trường hợp này cần xem lại thiết kế giá trị hạng.</span></span></div></div></div>
 
-<h2 class="grp">3. <span class="i18n"><span class="ko">이벤트 티켓은 등급 체계와 분리</span><span class="vi">Vé Sự kiện tách biệt khỏi hệ thống hạng</span></span></h2>
+<h2 class="grp">6. <span class="i18n"><span class="ko">이벤트 티켓은 등급 체계와 분리</span><span class="vi">Vé Sự kiện tách biệt khỏi hệ thống hạng</span></span></h2>
 
 <div class="warn"><span class="wt"><span class="i18n"><span class="ko">가치 증식 방지 — 고정 정책값</span><span class="vi">Chống nhân giá trị — Giá trị chính sách cố định</span></span></span><span class="i18n"><span class="ko">이벤트 티켓 5장 → 브론즈 1장 교환은 <b>등급 티켓 가치 비율을 따라가지 않는 고정값</b>이다. 이벤트 티켓 가치(40원)를 바꿔도 이 5:1 비율은 그대로다. 브론즈 1장(100원)을 이벤트 5장으로 바꾼 뒤 잭팟 룰렛 5회(40원×5=200원)를 돌리면 가치가 2배로 불어나는 경로가 되므로, 이 교환비만은 티켓 가치와 독립적으로 고정해 둔다.</span><span class="vi">Đổi 5 vé Sự kiện → 1 vé Đồng là <b>giá trị cố định, không theo tỷ lệ giá trị vé hạng.</b> Dù giá trị vé Sự kiện (40원) thay đổi, tỷ lệ 5:1 này vẫn giữ nguyên. Vì nếu đổi 1 vé Đồng (100원) thành 5 vé Sự kiện rồi quay Jackpot 5 lần (40원×5=200원) sẽ tạo ra đường nhân đôi giá trị, nên riêng tỷ lệ đổi này được cố định độc lập với giá trị vé.</span></span></div>
 
-<h2 class="grp">4. <span class="i18n"><span class="ko">적립률 계산 규칙</span><span class="vi">Quy tắc tính tỷ lệ tích lũy</span></span></h2>
+<h2 class="grp">7. <span class="i18n"><span class="ko">적립률 계산 규칙</span><span class="vi">Quy tắc tính tỷ lệ tích lũy</span></span></h2>
 
 <div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">규칙</span><span class="vi">Quy tắc</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">적립액 = 구매확정금액 × 그 제휴몰의 적립률</span><span class="vi">Số tiền tích lũy = Số tiền xác nhận mua × tỷ lệ tích lũy của sàn liên kết đó</span></span></div></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">등급 환산</span><span class="vi">Quy đổi hạng</span></span></span><div class="atxt"><span class="i18n"><span class="ko">적립액을 티켓으로 바꿀 때는 <b>큰 단위(골드)부터</b> 채우고 남는 금액을 실버, 그다음 브론즈로 채운다. 브론즈 미만으로 남는 잔돈은 <b>티켓으로 지급하지 않는다.</b></span><span class="vi">Khi đổi số tiền tích lũy thành vé, <b>ưu tiên đơn vị lớn (Vàng) trước,</b> số dư còn lại đổi sang Bạc, rồi đến Đồng. Số dư dưới mức Đồng thì <b>không cấp vé.</b></span></span></div></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">계산 주체</span><span class="vi">Nơi thực hiện tính toán</span></span></span><div class="atxt"><span class="i18n"><span class="ko">이 계산은 <b>서버(백엔드)</b>가 수행한다. 앱은 계산 결과만 표시하며, 클라이언트에서 적립액을 다시 계산하지 않는다.</span><span class="vi">Phép tính này do <b>server (backend)</b> thực hiện. App chỉ hiển thị kết quả, không tính lại số tiền tích lũy ở phía client.</span></span></div></div></div>
 
-<h2 class="grp">5. <span class="i18n"><span class="ko">적용 여부 · 링크프라이스 상태</span><span class="vi">Trạng thái áp dụng · Trạng thái Linkprice</span></span></h2>
+<h2 class="grp">8. <span class="i18n"><span class="ko">적용 여부 · 링크프라이스 상태</span><span class="vi">Trạng thái áp dụng · Trạng thái Linkprice</span></span></h2>
 
 <div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">미적용(applied: false) 몰은 적립 대상이 아니다</span><span class="vi">Sàn chưa áp dụng (applied: false) không phải đối tượng tích lũy</span></span></div></div></div>
 
 <div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">링크프라이스 상태(approval)와 적용 여부(applied)는 서로 다른 값이다</span><span class="vi">Trạng thái Linkprice (approval) và trạng thái áp dụng (applied) là hai giá trị khác nhau</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">별개 판단</span><span class="vi">Xét riêng biệt</span></span></span></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">규칙</span><span class="vi">Quy tắc</span></span></span><div class="atxt"><span class="i18n"><span class="ko">링크프라이스 쪽에서 승인이 나도, 그 몰을 실제 서비스에 붙일지는 별도로 정한다. 두 값은 CMS에서 각각 독립적으로 바뀌며, 한쪽이 바뀐다고 다른 쪽이 자동으로 따라가지 않는다.</span><span class="vi">Dù phía Linkprice đã duyệt, việc có gắn sàn đó vào dịch vụ thực tế hay không được quyết định riêng. Hai giá trị này thay đổi độc lập trên CMS, một bên đổi không tự động kéo theo bên còn lại.</span></span></div></div></div>
 
-<h2 class="grp">6. <span class="i18n"><span class="ko">CMS에 있는데 앱이 읽지 않는 설정</span><span class="vi">Cài đặt có trong CMS nhưng app không đọc</span></span></h2>
+<div class="qa"><div class="qrow"><div class="qtxt"><span class="i18n"><span class="ko">미적용 몰 처리</span><span class="vi">Xử lý sàn chưa áp dụng</span></span></div><span class="bd hold"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">미확정</span><span class="vi">Chưa xác định</span></span></span><div class="atxt"><span class="i18n"><span class="ko">미적용(applied: false) 몰을 앱 목록에서 빼는지, 목록에는 두되 적립만 안 하는지 — 확인 필요.</span><span class="vi">Sàn chưa áp dụng (applied: false) có bị ẩn khỏi danh sách trong app, hay vẫn hiển thị trong danh sách nhưng chỉ không tích lũy — cần xác nhận.</span></span></div></div></div>
+
+<h2 class="grp">9. <span class="i18n"><span class="ko">CMS에 있는데 앱이 읽지 않는 설정</span><span class="vi">Cài đặt có trong CMS nhưng app không đọc</span></span></h2>
 
 <div class="tblwrap"><table class="tbl"><thead><tr><th><span class="i18n"><span class="ko">문서.필드</span><span class="vi">Tài liệu.Trường</span></span></th><th><span class="i18n"><span class="ko">CMS 화면</span><span class="vi">Màn hình CMS</span></span></th><th><span class="i18n"><span class="ko">비고</span><span class="vi">Ghi chú</span></span></th></tr></thead><tbody>
 <tr><td class="mono gone">settings/point_policy.direction</td><td><span class="i18n"><span class="ko">포인트 정책 — 교환 방향</span><span class="vi">Chính sách điểm — Chiều đổi</span></span></td><td><span class="i18n"><span class="ko">앱은 이 필드 대신 별도의 클라이언트 플래그로 단방향/양방향을 정한다</span><span class="vi">App dùng cờ (flag) riêng ở client thay vì trường này để quyết định một chiều/hai chiều</span></span></td></tr>
@@ -146,7 +189,7 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <tr><td class="mono gone">settings/ticket_accrual (전체)</td><td><span class="i18n"><span class="ko">티켓 적립 설정</span><span class="vi">Thiết lập tích lũy vé</span></span></td><td><span class="i18n"><span class="ko">앱(클라이언트)은 읽지 않는 게 맞다 — 적립 계산은 서버 몫이다. <b>서버가 이 문서를 읽어야 한다.</b></span><span class="vi">App (client) đúng ra không cần đọc — tính tích lũy là việc của server. <b>Server cần đọc tài liệu này.</b></span></span></td></tr>
 </tbody></table></div>
 
-<h2 class="grp">7. <span class="i18n"><span class="ko">제휴몰 데이터 출처</span><span class="vi">Nguồn dữ liệu sàn liên kết</span></span></h2>
+<h2 class="grp">10. <span class="i18n"><span class="ko">제휴몰 데이터 출처</span><span class="vi">Nguồn dữ liệu sàn liên kết</span></span></h2>
 
 <div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">구조</span><span class="vi">Cấu trúc</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">제휴몰(링크프라이스) 목록 = 링크프라이스 제휴몰 카탈로그 110개</span><span class="vi">Danh sách sàn liên kết (Linkprice) = 110 sàn trong danh mục Linkprice</span></span></div></div>
 <div class="arow"><span class="alabel">Coupang</span><div class="atxt"><span class="i18n"><span class="ko">쿠팡은 링크프라이스를 거치지 않는 <b>직접 제휴</b>라, 「대표 제휴몰」로 목록과 별도 표시하고 저장 코드도 별도(coupang_direct)로 관리한다. 링크프라이스 카탈로그 안에 있는 별개의 쿠팡 딜(lp:coupang)과는 값이 서로 섞이지 않는다.</span><span class="vi">Coupang là <b>liên kết trực tiếp,</b> không qua Linkprice, nên hiển thị riêng dưới dạng 「Sàn liên kết đại diện」 và quản lý bằng mã riêng (coupang_direct). Giá trị này không lẫn với deal Coupang riêng biệt (lp:coupang) nằm trong danh mục Linkprice.</span></span></div></div>
@@ -156,14 +199,14 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 </div>
 </div>
 
-<h2 class="grp">8. <span class="i18n"><span class="ko">화면</span><span class="vi">Màn hình</span></span></h2>
+<h2 class="grp">11. <span class="i18n"><span class="ko">화면</span><span class="vi">Màn hình</span></span></h2>
 <div class="thumbs">
 <div class="q-thumb" data-lb="img/ticket-value-screen-20260811.png"><img src="img/ticket-value-screen-20260811.png"><span class="q-thumb-cap"><span class="i18n"><span class="ko">티켓 가치 설정</span><span class="vi">Thiết lập giá trị vé</span></span></span></div>
 <div class="q-thumb" data-lb="img/ticket-accrual-screen-20260811.png"><img src="img/ticket-accrual-screen-20260811.png"><span class="q-thumb-cap"><span class="i18n"><span class="ko">티켓 적립 설정 — 제휴몰 목록</span><span class="vi">Thiết lập tích lũy vé — Danh sách sàn liên kết</span></span></span></div>
 <div class="q-thumb" data-lb="img/ticket-sim-modal-20260811.png"><img src="img/ticket-sim-modal-20260811.png"><span class="q-thumb-cap"><span class="i18n"><span class="ko">적립 시뮬레이터</span><span class="vi">Bộ mô phỏng tích lũy</span></span></span></div>
 </div>
 
-<h2 class="grp">9. <span class="i18n"><span class="ko">확인 경로</span><span class="vi">Đường dẫn kiểm tra</span></span></h2>
+<h2 class="grp">12. <span class="i18n"><span class="ko">확인 경로</span><span class="vi">Đường dẫn kiểm tra</span></span></h2>
 <div class="qa"><div class="arow" style="margin-top:0;padding-top:0;border-top:none"><span class="alabel">CMS</span><div class="atxt"><span class="i18n"><span class="ko">사이드바 「티켓·보상」 → 「티켓 가치 설정」 / 「티켓 적립 설정」</span><span class="vi">Sidebar 「Vé·Thưởng」 → 「Thiết lập giá trị vé」 / 「Thiết lập tích lũy vé」</span></span></div></div></div>
 
 <div class="foot">PricePick · <span class="i18n"><span class="ko">개발 전달용 정책 문서</span><span class="vi">Tài liệu chính sách bàn giao phát triển</span></span> · 2026-08-11 · <span class="i18n"><span class="ko">문의</span><span class="vi">Liên hệ</span></span>: 김반장님</div>
