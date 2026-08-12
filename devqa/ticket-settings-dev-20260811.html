@@ -101,15 +101,14 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 
 <div class="qa"><div class="qrow"><span class="bd hold"><span class="i18n"><span class="ko">정책 확정 후</span><span class="vi">Sau khi chốt chính sách</span></span></span></div>
 <ul style="margin:10px 0 0 20px;font-size:13.3px;line-height:1.8;color:var(--ink2)">
-<li><span class="i18n"><span class="ko">등급이 3단계인지 4단계인지, 새 등급 이름</span><span class="vi">Số hạng là 3 hay 4, tên hạng mới</span></span></li>
-<li><span class="i18n"><span class="ko">티켓 가치 실제 숫자</span><span class="vi">Con số thực tế của giá trị vé</span></span></li>
+<li><span class="i18n"><span class="ko">등급 수와 각 등급의 이름·가치</span><span class="vi">Số lượng hạng và tên·giá trị từng hạng</span></span></li>
 <li><span class="i18n"><span class="ko">룰렛 보상·포인트 교환 비율·등급별 적립 기준 재조정</span><span class="vi">Điều chỉnh lại phần thưởng vòng quay·tỷ lệ đổi điểm·tiêu chuẩn tích lũy theo hạng</span></span></li>
 </ul>
 </div>
 
 <h2 class="grp">2. <span class="i18n"><span class="ko">등급 수는 고정이 아니다 — 설정 기반 설계</span><span class="vi">Số hạng không cố định — Thiết kế dựa trên cấu hình</span></span></h2>
 
-<div class="warn"><span class="wt"><span class="i18n"><span class="ko">지금 3단계, 검토 중인 안에 따라 4단계가 될 수 있다</span><span class="vi">Hiện tại 3 hạng, có thể thành 4 hạng tùy phương án đang xem xét</span></span></span><span class="i18n"><span class="ko">지금은 브론즈·실버·골드 3단계다. 검토 중인 안에 따라 4단계가 될 수 있다 — <b>01안</b>은 위에 다이아몬드 추가(브론즈·실버·골드·다이아몬드), <b>02안</b>은 아래에 아이언 추가(아이언·브론즈·실버·골드).</span><span class="vi">Hiện tại có 3 hạng: Đồng·Bạc·Vàng. Tùy phương án đang xem xét có thể thành 4 hạng — <b>Phương án 01</b> thêm Kim cương ở trên (Đồng·Bạc·Vàng·Kim cương), <b>Phương án 02</b> thêm Sắt ở dưới (Sắt·Đồng·Bạc·Vàng).</span></span></div>
+<div class="warn"><span class="wt"><span class="i18n"><span class="ko">등급 수·이름·가치는 확정 전이다</span><span class="vi">Số hạng·tên·giá trị hạng chưa được chốt</span></span></span><span class="i18n"><span class="ko">등급은 현재 브론즈·실버·골드 3단계다. <b>등급 수와 각 등급의 이름·가치는 앞으로 바뀔 수 있다</b> — 어느 방향으로 확정될지는 아직 정해지지 않았다. 아래 요구사항대로 설계하면 결과가 무엇으로 확정되든 코드를 다시 짤 필요가 없다.</span><span class="vi">Hiện tại có 3 hạng: Đồng·Bạc·Vàng. <b>Số lượng hạng và tên·giá trị từng hạng có thể thay đổi trong tương lai</b> — phương án cuối cùng vẫn chưa được chốt. Nếu thiết kế theo yêu cầu dưới đây thì dù kết quả chốt là gì cũng không cần viết lại code.</span></span></div>
 
 <div class="qa"><div class="qtxt"><span class="i18n"><span class="ko">등급 목록과 각 등급의 가치를 코드에 박지 않고 설정에서 읽어야 한다. 등급이 몇 개든, 이름이 무엇이든, 가치가 얼마든 동작해야 한다.</span><span class="vi">Danh sách hạng và giá trị từng hạng không được viết cứng trong code mà phải đọc từ cấu hình. Phải hoạt động được dù số hạng là bao nhiêu, tên gì, giá trị bao nhiêu.</span></span></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">등급 환산 규칙</span><span class="vi">Quy tắc quy đổi hạng</span></span></span><div class="atxt"><span class="i18n"><span class="ko">그대로다 — 큰 단위부터 채우고 최하위 등급 미만 잔돈은 미지급. 이 규칙은 <b>등급 개수와 무관하게</b> 성립한다.</span><span class="vi">Giữ nguyên — ưu tiên đơn vị lớn trước, số dư dưới mức hạng thấp nhất thì không cấp vé. Quy tắc này đúng <b>bất kể số lượng hạng</b>.</span></span></div></div></div>
