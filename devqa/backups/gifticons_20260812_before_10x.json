@@ -1,0 +1,249 @@
+[
+  {
+    "_id": "2pUYqkq5nJabPQfRYXO8",
+    "name": "아메리카노 R",
+    "validity_days": 90,
+    "required_count": 1,
+    "required_grade": "bronze",
+    "created_at": {
+      "seconds": 1784555642,
+      "nanoseconds": 98000000
+    },
+    "price": 2000,
+    "category": "커피",
+    "brand": "이디야",
+    "status": "active",
+    "product_code": "DEMO-2PUYQKQ5",
+    "emoji": "☕"
+  },
+  {
+    "_id": "D5ceKj24gYEty5fpzCxX",
+    "name": "2만원권",
+    "validity_days": 90,
+    "required_grade": "gold",
+    "brand": "올리브영",
+    "status": "active",
+    "price": 20000,
+    "created_at": {
+      "seconds": 1784555642,
+      "nanoseconds": 98000000
+    },
+    "required_count": 1,
+    "product_code": "DEMO-D5CEKJ24",
+    "category": "외식",
+    "emoji": "🛍️"
+  },
+  {
+    "_id": "GrZ7rZ8Appn8fOJlQS5a",
+    "created_at": {
+      "seconds": 1784555642,
+      "nanoseconds": 98000000
+    },
+    "product_code": "DEMO-GRZ7RZ8A",
+    "required_grade": "gold",
+    "required_count": 1,
+    "status": "active",
+    "category": "치킨",
+    "emoji": "🍗",
+    "validity_days": 90,
+    "name": "황금올리브치킨",
+    "brand": "BBQ",
+    "price": 20000
+  },
+  {
+    "_id": "MbrUyho7oUZRtfb1ssCQ",
+    "emoji": "☕",
+    "created_at": {
+      "seconds": 1783415266,
+      "nanoseconds": 785000000
+    },
+    "required_count": 2,
+    "required_grade": "bronze",
+    "category": "카페",
+    "brand": "이디야커피",
+    "name": "아메리카노",
+    "validity_days": 30,
+    "updated_at": {
+      "seconds": 1783415266,
+      "nanoseconds": 786000000
+    },
+    "status": "active"
+  },
+  {
+    "_id": "XNv1gW1ReT9UHNSS4qhy",
+    "required_count": 2,
+    "updated_at": {
+      "seconds": 1783563946,
+      "nanoseconds": 936000000
+    },
+    "name": "아메리카노",
+    "required_grade": "bronze",
+    "brand": "이디야커피",
+    "validity_days": 30,
+    "category": "카페",
+    "created_at": {
+      "seconds": 1783563946,
+      "nanoseconds": 936000000
+    },
+    "status": "active",
+    "emoji": "☕"
+  },
+  {
+    "_id": "bDXJfvFMEevkGKisUSGj",
+    "status": "active",
+    "required_count": 1,
+    "required_grade": "silver",
+    "validity_days": 90,
+    "created_at": {
+      "seconds": 1784555642,
+      "nanoseconds": 98000000
+    },
+    "product_code": "DEMO-BDXJFVFM",
+    "category": "편의점",
+    "emoji": "🏪",
+    "brand": "CU",
+    "price": 10000,
+    "name": "모바일상품권 1만원"
+  },
+  {
+    "_id": "gif-baemin-10000",
+    "category": "배달",
+    "price": 10000,
+    "product_code": "BAEMIN-10000-001",
+    "name": "배민 10,000원 상품권",
+    "brand": "배달의민족",
+    "sale_end_at": null,
+    "required_count": 11,
+    "emoji": "🍔",
+    "required_grade": "silver",
+    "created_at": {
+      "seconds": 1767225600,
+      "nanoseconds": 0
+    },
+    "validity_days": 30,
+    "status": "active"
+  },
+  {
+    "_id": "gif-cu-3000",
+    "emoji": "🏪",
+    "created_at": {
+      "seconds": 1767225600,
+      "nanoseconds": 0
+    },
+    "brand": "CU",
+    "product_code": "CU-3000-001",
+    "required_count": 33,
+    "sale_end_at": null,
+    "required_grade": "bronze",
+    "price": 3000,
+    "category": "편의점",
+    "validity_days": 30,
+    "status": "active",
+    "name": "CU 3,000원 금액권"
+  },
+  {
+    "_id": "gif-ediya-2000",
+    "validity_days": 30,
+    "sale_end_at": null,
+    "status": "active",
+    "required_count": 2,
+    "category": "카페",
+    "required_grade": "bronze",
+    "created_at": {
+      "seconds": 1772323200,
+      "nanoseconds": 0
+    },
+    "emoji": "☕",
+    "product_code": "EDIYA-AMR-001",
+    "brand": "이디야커피",
+    "price": 2000,
+    "name": "이디야 아메리카노"
+  },
+  {
+    "_id": "gif-gs25-3000",
+    "emoji": "🏬",
+    "price": 3000,
+    "created_at": {
+      "seconds": 1772323200,
+      "nanoseconds": 0
+    },
+    "required_count": 3,
+    "product_code": "GS25-3000-001",
+    "required_grade": "bronze",
+    "brand": "GS25",
+    "category": "편의점",
+    "name": "GS25 3,000원 금액권",
+    "sale_end_at": null,
+    "validity_days": 30,
+    "status": "active"
+  },
+  {
+    "_id": "gif-starbucks-4500",
+    "emoji": "☕",
+    "product_code": "SBX-TALL-001",
+    "brand": "스타벅스",
+    "status": "active",
+    "price": 4500,
+    "sale_end_at": null,
+    "created_at": {
+      "seconds": 1767225600,
+      "nanoseconds": 0
+    },
+    "category": "카페",
+    "validity_days": 30,
+    "required_grade": "bronze",
+    "required_count": 50,
+    "name": "아메리카노 Tall (4,500원)"
+  },
+  {
+    "_id": "qA9YLiWnPjPDo9hswLtl",
+    "validity_days": 90,
+    "required_count": 1,
+    "brand": "스타벅스",
+    "product_code": "DEMO-QA9YLIWN",
+    "price": 4500,
+    "required_grade": "silver",
+    "category": "커피",
+    "name": "아메리카노 T",
+    "emoji": "☕",
+    "created_at": {
+      "seconds": 1784555642,
+      "nanoseconds": 98000000
+    },
+    "status": "active"
+  },
+  {
+    "_id": "test-item-001",
+    "status": "active",
+    "category": "카페",
+    "validity_days": 30,
+    "emoji": "☕",
+    "required_grade": "bronze",
+    "name": "테스트상품",
+    "required_count": 2,
+    "brand": "테스트브랜드",
+    "updated_at": {
+      "seconds": 1783618625,
+      "nanoseconds": 733000000
+    }
+  },
+  {
+    "_id": "test-item-002",
+    "required_count": 5,
+    "validity_days": 60,
+    "updated_at": {
+      "seconds": 1783618779,
+      "nanoseconds": 263000000
+    },
+    "required_grade": "silver",
+    "name": "테스트상품2",
+    "category": "분식",
+    "brand": "테스트브랜드2",
+    "status": "active",
+    "created_at": {
+      "seconds": 1783618779,
+      "nanoseconds": 263000000
+    },
+    "emoji": "🍔"
+  }
+]
