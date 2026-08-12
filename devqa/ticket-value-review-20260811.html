@@ -26,12 +26,21 @@ h2.grp:first-of-type{margin-top:22px}
 .exbox .sub{font-size:12px;color:var(--ink3);margin-top:2px}
 .cmpwrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 @media(max-width:600px){.cmpwrap{grid-template-columns:1fr}}
+.cmpwrap3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+@media(max-width:820px){.cmpwrap3{grid-template-columns:1fr}}
 .cmpcard{border-radius:12px;padding:16px 18px;border:1px solid var(--line)}
 .cmpcard.now{background:#fdf6f5}
 .cmpcard.plan{background:#f4faf8}
-.cmp-title{font-size:12.5px;font-weight:800;color:var(--ink3);letter-spacing:.03em;margin-bottom:8px}
+.cmpcard.reco{background:#f6f2ff;border:1.5px solid #ddd0ff}
+.cmp-title{font-size:12.5px;font-weight:800;color:var(--ink3);letter-spacing:.03em;margin-bottom:8px;display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.reco-badge{background:var(--pp);color:#fff;font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;letter-spacing:.02em}
 .cmp-row{display:flex;justify-content:space-between;font-size:13.5px;padding:5px 0}
 .cmp-row b{font-variant-numeric:tabular-nums}
+.cmp-note{font-size:11.8px;color:var(--ink3);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.cmp-scope{font-size:10.5px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.04em;margin-top:12px}
+.cmp-scope-bd{margin-top:5px}
+.cmp-scope-desc{font-size:11.8px;color:var(--ink2);margin-top:6px;line-height:1.6}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap;display:inline-block}
 .thumbs{display:flex;gap:10px;flex-wrap:wrap;margin-top:0}
 .q-thumb{display:inline-flex;flex-direction:column;gap:6px;padding:7px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:280px;text-align:left}
 .q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
@@ -109,35 +118,56 @@ h2.grp:first-of-type{margin-top:22px}
 </div>
 <p style="font-size:13.3px;color:var(--ink3);margin-top:12px"><span class="i18n"><span class="ko">G마켓만의 얘기가 아닙니다. 수수료가 낮은 대부분의 몰에서, 소액 구매는 적립이 안 나갑니다.</span><span class="vi">Đây không chỉ là chuyện riêng của G마켓. Ở hầu hết sàn có hoa hồng thấp, giao dịch nhỏ đều không được tích lũy.</span></span></p>
 
-<h2 class="grp"><span class="i18n"><span class="ko">1/10로 낮추는 안</span><span class="vi">Phương án giảm xuống 1/10</span></span></h2>
+<h2 class="grp"><span class="i18n"><span class="ko">검토 중인 안 — 세 가지</span><span class="vi">Ba phương án đang xem xét</span></span></h2>
 <div class="card">
-<p style="font-size:14px;color:var(--ink2)"><span class="i18n"><span class="ko">브론즈·실버·골드를 <b>지금의 1/10 (10원 / 100원 / 200원)</b>으로 낮추는 안입니다.</span><span class="vi">Đây là phương án giảm Đồng·Bạc·Vàng xuống còn <b>1/10 so với hiện tại (10원 / 100원 / 200원)</b>.</span></span></p>
-<div class="cmpwrap">
-<div class="cmpcard now"><div class="cmp-title"><span class="i18n"><span class="ko">지금</span><span class="vi">Hiện tại</span></span></div>
-<div class="cmp-row"><span><span class="i18n"><span class="ko">브론즈</span><span class="vi">Đồng</span></span></span><b>100원</b></div>
-<div class="cmp-row"><span><span class="i18n"><span class="ko">실버</span><span class="vi">Bạc</span></span></span><b>1,000원</b></div>
-<div class="cmp-row"><span><span class="i18n"><span class="ko">골드</span><span class="vi">Vàng</span></span></span><b>2,000원</b></div>
-<div class="cmp-row"><span><span class="i18n"><span class="ko">G마켓 5,000원 구매</span><span class="vi">Mua 5,000원 tại G마켓</span></span></span><b style="color:var(--bad)">0<span class="i18n"><span class="ko">장</span><span class="vi"> vé</span></span></b></div>
-</div>
+<p style="font-size:14px;color:var(--ink2)"><span class="i18n"><span class="ko">지금 검토 중인 안은 세 가지입니다. 등급 수와 최저 티켓 가치를 정하는 방식이 다르지만, <b>세 안 모두 최저 가치가 10원</b>이라 소액 구매에서 적립이 사라지는 문제는 똑같이 해결됩니다. G마켓 5,000원 구매 기준으로는 세 안 모두 최하위 등급 <b>1장</b>이 나갑니다(적립 18원 ÷ 10원).</span><span class="vi">Hiện có ba phương án đang được xem xét. Cách xác định số hạng và giá trị vé thấp nhất khác nhau, nhưng <b>cả ba đều đưa giá trị thấp nhất về 10원</b> nên vấn đề mất tích lũy ở giao dịch nhỏ được giải quyết như nhau. Với mức mua 5,000원 tại G마켓, cả ba phương án đều cho ra <b>1 vé</b> ở hạng thấp nhất (tích lũy 18원 ÷ 10원).</span></span></p>
+
+<div class="cmpwrap3">
+
 <div class="cmpcard plan"><div class="cmp-title"><span class="i18n"><span class="ko">1/10 안</span><span class="vi">Phương án 1/10</span></span></div>
 <div class="cmp-row"><span><span class="i18n"><span class="ko">브론즈</span><span class="vi">Đồng</span></span></span><b>10원</b></div>
 <div class="cmp-row"><span><span class="i18n"><span class="ko">실버</span><span class="vi">Bạc</span></span></span><b>100원</b></div>
 <div class="cmp-row"><span><span class="i18n"><span class="ko">골드</span><span class="vi">Vàng</span></span></span><b>200원</b></div>
-<div class="cmp-row"><span><span class="i18n"><span class="ko">G마켓 5,000원 구매</span><span class="vi">Mua 5,000원 tại G마켓</span></span></span><b style="color:var(--ok)">1<span class="i18n"><span class="ko">장</span><span class="vi"> vé</span></span></b></div>
+<div class="cmp-note"><span class="i18n"><span class="ko">등급 수 그대로(3단계), 값만 전부 1/10로</span><span class="vi">Giữ nguyên số hạng (3 hạng), chỉ giảm toàn bộ giá trị còn 1/10</span></span></div>
+<div class="cmp-scope"><span class="i18n"><span class="ko">손대야 하는 범위</span><span class="vi">Phạm vi cần điều chỉnh</span></span></div>
+<div class="cmp-scope-bd"><span class="bd" style="background:#fdecea;color:var(--bad)"><span class="i18n"><span class="ko">전체 재조정</span><span class="vi">Điều chỉnh toàn bộ</span></span></span></div>
+<div class="cmp-scope-desc"><span class="i18n"><span class="ko">기존 3개 등급 값이 전부 바뀌어 룰렛 보상·포인트 교환 비율·등급별 적립 기준을 다 다시 맞춰야 함</span><span class="vi">Cả 3 giá trị hạng hiện có đều thay đổi nên phải điều chỉnh lại toàn bộ phần thưởng vòng quay·tỷ lệ đổi điểm·tiêu chuẩn tích lũy theo hạng</span></span></div>
 </div>
+
+<div class="cmpcard plan"><div class="cmp-title">01<span class="i18n"><span class="ko">안</span><span class="vi"> — Phương án</span></span> · <span class="i18n"><span class="ko">다이아몬드 신설</span><span class="vi">Thêm hạng Kim cương</span></span></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">브론즈</span><span class="vi">Đồng</span></span></span><b>10원</b></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">실버</span><span class="vi">Bạc</span></span></span><b>100원</b></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">골드</span><span class="vi">Vàng</span></span></span><b>200원</b></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">다이아몬드</span><span class="vi">Kim cương</span></span></span><b>2,000원</b></div>
+<div class="cmp-note"><span class="i18n"><span class="ko">4단계로 위에 확장 — 다이아몬드가 기존 골드(2,000원) 자리를 채움</span><span class="vi">Mở rộng lên 4 hạng — Kim cương thay vào vị trí 2,000원 mà Vàng từng chiếm</span></span></div>
+<div class="cmp-scope"><span class="i18n"><span class="ko">손대야 하는 범위</span><span class="vi">Phạm vi cần điều chỉnh</span></span></div>
+<div class="cmp-scope-bd"><span class="bd" style="background:#fdecea;color:var(--bad)"><span class="i18n"><span class="ko">전체 재조정</span><span class="vi">Điều chỉnh toàn bộ</span></span></span></div>
+<div class="cmp-scope-desc"><span class="i18n"><span class="ko">1/10 안과 같은 범위(룰렛·포인트 교환·등급별 적립 기준 전부)에 더해, 새 등급(다이아몬드) 하나가 룰렛·CMS·앱 화면 전체에 추가로 반영돼야 함</span><span class="vi">Cùng phạm vi với phương án 1/10 (toàn bộ vòng quay·đổi điểm·tiêu chuẩn tích lũy theo hạng), cộng thêm việc phản ánh hạng mới (Kim cương) trên toàn bộ vòng quay·CMS·màn hình app</span></span></div>
 </div>
-<p style="font-size:13.3px;color:var(--ink3);margin-top:14px"><span class="i18n"><span class="ko">1/10 안으로 바꾸면 대부분의 구매에서 적립이 나가고, 버려지는 돈이 거의 없어집니다.</span><span class="vi">Nếu đổi sang phương án 1/10, hầu hết giao dịch đều được tích lũy, gần như không còn tiền bị bỏ phí.</span></span></p>
+
+<div class="cmpcard reco"><div class="cmp-title">02<span class="i18n"><span class="ko">안</span><span class="vi"> — Phương án</span></span> · <span class="i18n"><span class="ko">아이언 신설</span><span class="vi">Thêm hạng Sắt</span></span><span class="reco-badge"><span class="i18n"><span class="ko">김반장님 추천</span><span class="vi">김반장님 đề xuất</span></span></span></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">아이언</span><span class="vi">Sắt</span></span></span><b>10원</b></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">브론즈</span><span class="vi">Đồng</span></span></span><b>100원</b></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">실버</span><span class="vi">Bạc</span></span></span><b>1,000원</b></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">골드</span><span class="vi">Vàng</span></span></span><b>2,000원</b></div>
+<div class="cmp-note"><span class="i18n"><span class="ko">4단계로 아래에 확장 — 기존 브론즈·실버·골드 값은 그대로</span><span class="vi">Mở rộng xuống dưới thành 4 hạng — giá trị Đồng·Bạc·Vàng hiện có giữ nguyên</span></span></div>
+<div class="cmp-scope"><span class="i18n"><span class="ko">손대야 하는 범위</span><span class="vi">Phạm vi cần điều chỉnh</span></span></div>
+<div class="cmp-scope-bd"><span class="bd" style="background:#e6f5f5;color:var(--ok)"><span class="i18n"><span class="ko">매우 적음</span><span class="vi">Rất ít</span></span></span></div>
+<div class="cmp-scope-desc"><span class="i18n"><span class="ko">기존 값을 안 건드리므로 룰렛 보상·포인트 교환 비율·등급별 적립 기준은 그대로 두고, 새 등급(아이언) 하나만 추가하면 됨</span><span class="vi">Không đụng đến giá trị hiện có nên phần thưởng vòng quay·tỷ lệ đổi điểm·tiêu chuẩn tích lũy theo hạng giữ nguyên, chỉ cần thêm hạng mới (Sắt)</span></span></div>
+</div>
+
+</div>
 </div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">티켓 장수가 늘어나는 것에 대해</span><span class="vi">Về việc số lượng vé tăng lên</span></span></h2>
-<div class="card"><p style="font-size:14px;color:var(--ink2)"><span class="i18n"><span class="ko">티켓 가치를 1/10로 낮추면 같은 적립액에 대해 <b>티켓 장수는 10배 늘어납니다.</b> 고객이 실제로 받는 총 가치(원화 기준)는 똑같습니다 — 나눠서 더 여러 장으로 받을 뿐입니다. 다만 받는 느낌은 다를 수 있고, 무엇보다 <b>"0장"이 "1장"이 되는 차이가 큽니다.</b> 지금은 소액 구매의 상당수가 0장으로 끝나고 있습니다.</span><span class="vi">Nếu giảm giá trị vé xuống 1/10, với cùng một số tiền tích lũy thì <b>số lượng vé sẽ tăng gấp 10 lần.</b> Tổng giá trị thực tế khách hàng nhận được (tính theo 원) vẫn như cũ — chỉ là được chia thành nhiều vé hơn. Cảm nhận khi nhận có thể khác, nhưng quan trọng nhất là <b>khoảng cách giữa "0 vé" và "1 vé" rất lớn.</b> Hiện tại phần lớn giao dịch nhỏ đang kết thúc với 0 vé.</span></span></p></div>
+<div class="card"><p style="font-size:14px;color:var(--ink2)"><span class="i18n"><span class="ko">최하위 등급의 가치가 지금(브론즈 100원)보다 작아지면(값을 낮추거나, 더 낮은 등급을 새로 만들거나) 같은 적립액이라도 <b>받는 티켓 장수는 늘어납니다.</b> 고객이 실제로 받는 총 가치(원화 기준)는 똑같습니다 — 나눠서 더 여러 장으로 받을 뿐입니다. 다만 받는 느낌은 다를 수 있고, 무엇보다 <b>"0장"이 "1장"이 되는 차이가 큽니다.</b> 지금은 소액 구매의 상당수가 0장으로 끝나고 있습니다.</span><span class="vi">Khi giá trị hạng thấp nhất nhỏ hơn hiện tại (100원 của Đồng) — bằng cách giảm giá trị hoặc thêm hạng mới thấp hơn — thì với cùng số tiền tích lũy, <b>số lượng vé nhận được sẽ tăng lên.</b> Tổng giá trị thực tế khách hàng nhận được (tính theo 원) vẫn như cũ — chỉ là được chia thành nhiều vé hơn. Cảm nhận khi nhận có thể khác, nhưng quan trọng nhất là <b>khoảng cách giữa "0 vé" và "1 vé" rất lớn.</b> Hiện tại phần lớn giao dịch nhỏ đang kết thúc với 0 vé.</span></span></p></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">같이 조정해야 하는 것들</span><span class="vi">Những việc cần điều chỉnh cùng lúc</span></span></h2>
-<div class="warn"><span class="wt"><span class="i18n"><span class="ko">티켓 가치만 따로 바꿀 수 없습니다</span><span class="vi">Không thể chỉ thay đổi riêng giá trị vé</span></span></span><span class="i18n"><span class="ko">티켓 가치를 바꾸면 아래도 같이 다시 맞춰야 합니다. 지금은 손대지 않았습니다.</span><span class="vi">Nếu thay đổi giá trị vé, các mục dưới đây cũng cần được điều chỉnh lại theo. Hiện tại chưa đụng đến các mục này.</span></span>
+<div class="warn"><span class="wt"><span class="i18n"><span class="ko">티켓 가치만 따로 바꿀 수 없습니다</span><span class="vi">Không thể chỉ thay đổi riêng giá trị vé</span></span></span><span class="i18n"><span class="ko">아래 항목들과 같이 맞춰야 하며, <b>범위는 안마다 다릅니다</b>(위 비교 참고 — 1/10 안·01안은 전체 재조정, 02안은 거의 필요 없음). 지금은 아래 항목을 손대지 않았습니다.</span><span class="vi">Cần điều chỉnh cùng các mục dưới đây, và <b>phạm vi khác nhau tùy phương án</b> (xem bảng so sánh phía trên — Phương án 1/10·01 cần điều chỉnh toàn bộ, Phương án 02 gần như không cần). Hiện tại chưa đụng đến các mục dưới đây.</span></span>
 <ul style="margin:10px 0 0 20px;font-size:13.5px;line-height:1.8">
-<li><span class="i18n"><span class="ko">룰렛(매일 행운·잭팟) 보상 구성 — 지금 보상 그대로면 당첨 체감이 달라집니다</span><span class="vi">Cấu hình phần thưởng vòng quay (May mắn hằng ngày·Jackpot) — nếu giữ nguyên phần thưởng hiện tại, cảm giác trúng thưởng sẽ khác đi</span></span></li>
-<li><span class="i18n"><span class="ko">포인트 ↔ 티켓 교환 비율 — 지금 비율 그대로면 포인트로 사는 티켓 값이 어긋납니다</span><span class="vi">Tỷ lệ đổi Điểm ↔ Vé — nếu giữ nguyên tỷ lệ hiện tại, giá trị vé đổi bằng điểm sẽ bị lệch</span></span></li>
-<li><span class="i18n"><span class="ko">등급별 적립 기준(몇 원당 몇 장) — 티켓 가치와 같이 다시 맞춰야 합니다</span><span class="vi">Tiêu chuẩn tích lũy theo hạng (bao nhiêu 원 thì được bao nhiêu vé) — cần điều chỉnh lại cùng với giá trị vé</span></span></li>
+<li><span class="i18n"><span class="ko">룰렛(매일 행운·잭팟) 보상 구성 — 값이 바뀌는 안이면 당첨 체감이 달라집니다</span><span class="vi">Cấu hình phần thưởng vòng quay (May mắn hằng ngày·Jackpot) — nếu là phương án đổi giá trị, cảm giác trúng thưởng sẽ khác đi</span></span></li>
+<li><span class="i18n"><span class="ko">포인트 ↔ 티켓 교환 비율 — 값이 바뀌는 안이면 포인트로 사는 티켓 값이 어긋납니다</span><span class="vi">Tỷ lệ đổi Điểm ↔ Vé — nếu là phương án đổi giá trị, giá trị vé đổi bằng điểm sẽ bị lệch</span></span></li>
+<li><span class="i18n"><span class="ko">등급별 적립 기준(몇 원당 몇 장) — 값이 바뀌는 안이면 같이 다시 맞춰야 합니다</span><span class="vi">Tiêu chuẩn tích lũy theo hạng (bao nhiêu 원 thì được bao nhiêu vé) — nếu là phương án đổi giá trị thì cần điều chỉnh lại cùng lúc</span></span></li>
 </ul>
 </div>
 
@@ -159,7 +189,7 @@ h2.grp:first-of-type{margin-top:22px}
 <div class="q-thumb" data-lb="img/ticket-sim-modal-20260811.png"><img src="img/ticket-sim-modal-20260811.png"><span class="q-thumb-cap"><span class="i18n"><span class="ko">구매 금액별 적립 시뮬레이터</span><span class="vi">Bộ mô phỏng tích lũy theo số tiền mua</span></span></span></div>
 </div>
 
-<div class="decide"><div class="dt"><span class="i18n"><span class="ko">결정해 주십시오</span><span class="vi">Xin vui lòng quyết định</span></span></div><p><span class="i18n"><span class="ko">티켓 가치를 지금 그대로 둘지, 1/10 안(또는 다른 비율)으로 낮출지 <b>이부장님이 정해 주시면</b>, 그 값과 함께 룰렛·포인트 교환·등급 적립 기준을 맞춰서 반영하겠습니다.</span><span class="vi">Nếu <b>이부장님 quyết định</b> giữ nguyên giá trị vé hay giảm theo phương án 1/10 (hoặc tỷ lệ khác), chúng tôi sẽ điều chỉnh vòng quay·đổi điểm·tiêu chuẩn tích lũy theo hạng cho phù hợp với giá trị đó.</span></span></p></div>
+<div class="decide"><div class="dt"><span class="i18n"><span class="ko">결정해 주십시오</span><span class="vi">Xin vui lòng quyết định</span></span></div><p><span class="i18n"><span class="ko">티켓 가치를 지금 그대로 둘지, 세 안(1/10 안 · 01안 · 02안) 중 무엇으로 바꿀지 <b>이부장님이 정해 주시면</b>, 그 안에 맞는 범위로 룰렛·포인트 교환·등급 적립 기준을 반영하겠습니다.</span><span class="vi">Nếu <b>이부장님 quyết định</b> giữ nguyên giá trị vé, hay đổi sang một trong ba phương án (1/10 · 01 · 02), chúng tôi sẽ điều chỉnh vòng quay·đổi điểm·tiêu chuẩn tích lũy theo hạng theo đúng phạm vi của phương án đó.</span></span></p></div>
 
 <div class="foot">PricePick · <span class="i18n"><span class="ko">이부장님 상의용</span><span class="vi">Tài liệu trao đổi với 이부장님</span></span> · 2026-08-11 · <span class="i18n"><span class="ko">요청</span><span class="vi">Yêu cầu</span></span>: 김반장님</div>
 </div>
