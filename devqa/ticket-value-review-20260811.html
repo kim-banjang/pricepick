@@ -26,8 +26,9 @@ h2.grp:first-of-type{margin-top:22px}
 .exbox .sub{font-size:12px;color:var(--ink3);margin-top:2px}
 .cmpwrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 @media(max-width:600px){.cmpwrap{grid-template-columns:1fr}}
-.cmpwrap3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
-@media(max-width:820px){.cmpwrap3{grid-template-columns:1fr}}
+.cmpwrap3{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+@media(max-width:1040px){.cmpwrap3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.cmpwrap3{grid-template-columns:1fr}}
 .cmpcard{border-radius:12px;padding:16px 18px;border:1px solid var(--line)}
 .cmpcard.now{background:#fdf6f5}
 .cmpcard.plan{background:#f4faf8}
@@ -118,9 +119,9 @@ h2.grp:first-of-type{margin-top:22px}
 </div>
 <p style="font-size:13.3px;color:var(--ink3);margin-top:12px"><span class="i18n"><span class="ko">G마켓만의 얘기가 아닙니다. 수수료가 낮은 대부분의 몰에서, 소액 구매는 적립이 안 나갑니다.</span><span class="vi">Đây không chỉ là chuyện riêng của G마켓. Ở hầu hết sàn có hoa hồng thấp, giao dịch nhỏ đều không được tích lũy.</span></span></p>
 
-<h2 class="grp"><span class="i18n"><span class="ko">검토 중인 안 — 세 가지</span><span class="vi">Ba phương án đang xem xét</span></span></h2>
+<h2 class="grp"><span class="i18n"><span class="ko">검토 중인 안 — 네 가지</span><span class="vi">Bốn phương án đang xem xét</span></span></h2>
 <div class="card">
-<p style="font-size:14px;color:var(--ink2)"><span class="i18n"><span class="ko">지금 검토 중인 안은 세 가지입니다. 등급 수와 최저 티켓 가치를 정하는 방식이 다르지만, <b>세 안 모두 최저 가치가 10원</b>이라 소액 구매에서 적립이 사라지는 문제는 똑같이 해결됩니다. G마켓 5,000원 구매 기준으로는 세 안 모두 최하위 등급 <b>1장</b>이 나갑니다(적립 18원 ÷ 10원).</span><span class="vi">Hiện có ba phương án đang được xem xét. Cách xác định số hạng và giá trị vé thấp nhất khác nhau, nhưng <b>cả ba đều đưa giá trị thấp nhất về 10원</b> nên vấn đề mất tích lũy ở giao dịch nhỏ được giải quyết như nhau. Với mức mua 5,000원 tại G마켓, cả ba phương án đều cho ra <b>1 vé</b> ở hạng thấp nhất (tích lũy 18원 ÷ 10원).</span></span></p>
+<p style="font-size:14px;color:var(--ink2)"><span class="i18n"><span class="ko">지금 검토 중인 안은 네 가지입니다. 소액 구매에서 적립이 사라지는 문제를 푸는 방식이 서로 다릅니다 — <b>앞의 세 가지(1/10 안·01안·02안)는 최저 티켓 가치를 10원으로 낮추고</b>, <b>나머지 한 가지(가치 유지 + 잔돈 포인트 지급)는 티켓 가치를 그대로 두고 브론즈 미만 잔돈을 포인트로 지급</b>합니다. G마켓 5,000원 구매 기준으로 앞의 세 가지는 최하위 등급 <b>1장</b>이, 나머지 한 가지는 <b>180P</b>(10P = 1원)가 나갑니다 — 어느 쪽이든 적립이 통째로 사라지는 경우는 없습니다.</span><span class="vi">Hiện có bốn phương án đang được xem xét. Cách giải quyết vấn đề mất tích lũy ở giao dịch nhỏ khác nhau — <b>ba phương án (1/10·01·02) hạ giá trị vé thấp nhất xuống 10원</b>, còn <b>phương án còn lại (giữ nguyên giá trị + cấp điểm cho phần dư) giữ nguyên giá trị vé và cấp điểm cho phần dư dưới mức Đồng</b>. Với mức mua 5,000원 tại G마켓, ba phương án đầu cho ra <b>1 vé</b> ở hạng thấp nhất, phương án còn lại cho ra <b>180P</b> (10P = 1원) — không có trường hợp nào mất trắng hoàn toàn phần tích lũy.</span></span></p>
 
 <div class="cmpwrap3">
 
@@ -156,14 +157,25 @@ h2.grp:first-of-type{margin-top:22px}
 <div class="cmp-scope-desc"><span class="i18n"><span class="ko">기존 값을 안 건드리므로 룰렛 보상·포인트 교환 비율·등급별 적립 기준은 그대로 두고, 새 등급(아이언) 하나만 추가하면 됨</span><span class="vi">Không đụng đến giá trị hiện có nên phần thưởng vòng quay·tỷ lệ đổi điểm·tiêu chuẩn tích lũy theo hạng giữ nguyên, chỉ cần thêm hạng mới (Sắt)</span></span></div>
 </div>
 
+<div class="cmpcard plan"><div class="cmp-title"><span class="i18n"><span class="ko">가치 유지 + 잔돈 포인트 지급</span><span class="vi">Giữ nguyên giá trị + Cấp điểm cho phần dư</span></span></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">브론즈</span><span class="vi">Đồng</span></span></span><b>100원</b></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">실버</span><span class="vi">Bạc</span></span></span><b>1,000원</b></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">골드</span><span class="vi">Vàng</span></span></span><b>2,000원</b></div>
+<div class="cmp-row"><span><span class="i18n"><span class="ko">G마켓 5,000원 구매</span><span class="vi">Mua 5,000원 tại G마켓</span></span></span><b style="color:var(--ok)">180P <span class="i18n"><span class="ko">지급</span><span class="vi">cấp</span></span></b></div>
+<div class="cmp-note"><span class="i18n"><span class="ko">티켓 가치는 지금 그대로 — 브론즈 미만으로 남는 적립액을 포인트로 지급(10P = 1원). 구매 시 받는 랜덤 티켓이 확정 시점에 포인트로 풀릴 뿐이라 <b>받는 경험은 지금과 같음</b> — "0장" 상황 자체가 없음</span><span class="vi">Giá trị vé giữ nguyên như hiện tại — số tiền tích lũy dưới mức Đồng được cấp bằng điểm (10P = 1원). Vé ngẫu nhiên nhận khi mua chỉ chuyển thành điểm tại thời điểm xác nhận, nên <b>trải nghiệm nhận thưởng giống hệt hiện tại</b> — không có tình huống "0 vé"</span></span></div>
+<div class="cmp-scope"><span class="i18n"><span class="ko">손대야 하는 범위</span><span class="vi">Phạm vi cần điều chỉnh</span></span></div>
+<div class="cmp-scope-bd"><span class="bd" style="background:#e6f5f5;color:var(--ok)"><span class="i18n"><span class="ko">가장 적음</span><span class="vi">Ít nhất</span></span></span></div>
+<div class="cmp-scope-desc"><span class="i18n"><span class="ko">기존 티켓 가치를 안 바꾸므로 룰렛 보상 구성·기프티콘 교환 필요 티켓 수(455개 상품)·포인트 교환 비율·등급별 적립 기준 전부 그대로 둔다. 확정 시점에 "브론즈 미만이면 포인트로 지급" 처리만 추가하면 됨. 포인트는 이미 운영 중인 체계(출석체크 등)라 사용자에게도 익숙함</span><span class="vi">Không thay đổi giá trị vé hiện có nên cấu hình phần thưởng vòng quay·số vé cần đổi gifticon (455 sản phẩm)·tỷ lệ đổi điểm·tiêu chuẩn tích lũy theo hạng đều giữ nguyên. Chỉ cần thêm xử lý "dưới mức Đồng thì cấp điểm" tại thời điểm xác nhận. Điểm là hệ thống đã vận hành sẵn (điểm danh v.v.) nên người dùng cũng đã quen thuộc</span></span></div>
+</div>
+
 </div>
 </div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">티켓 장수가 늘어나는 것에 대해</span><span class="vi">Về việc số lượng vé tăng lên</span></span></h2>
-<div class="card"><p style="font-size:14px;color:var(--ink2)"><span class="i18n"><span class="ko">최하위 등급의 가치가 지금(브론즈 100원)보다 작아지면(값을 낮추거나, 더 낮은 등급을 새로 만들거나) 같은 적립액이라도 <b>받는 티켓 장수는 늘어납니다.</b> 고객이 실제로 받는 총 가치(원화 기준)는 똑같습니다 — 나눠서 더 여러 장으로 받을 뿐입니다. 다만 받는 느낌은 다를 수 있고, 무엇보다 <b>"0장"이 "1장"이 되는 차이가 큽니다.</b> 지금은 소액 구매의 상당수가 0장으로 끝나고 있습니다.</span><span class="vi">Khi giá trị hạng thấp nhất nhỏ hơn hiện tại (100원 của Đồng) — bằng cách giảm giá trị hoặc thêm hạng mới thấp hơn — thì với cùng số tiền tích lũy, <b>số lượng vé nhận được sẽ tăng lên.</b> Tổng giá trị thực tế khách hàng nhận được (tính theo 원) vẫn như cũ — chỉ là được chia thành nhiều vé hơn. Cảm nhận khi nhận có thể khác, nhưng quan trọng nhất là <b>khoảng cách giữa "0 vé" và "1 vé" rất lớn.</b> Hiện tại phần lớn giao dịch nhỏ đang kết thúc với 0 vé.</span></span></p></div>
+<div class="card"><p style="font-size:14px;color:var(--ink2)"><span class="i18n"><span class="ko">최하위 등급의 가치가 지금(브론즈 100원)보다 작아지면(값을 낮추거나, 더 낮은 등급을 새로 만들거나) 같은 적립액이라도 <b>받는 티켓 장수는 늘어납니다.</b> 고객이 실제로 받는 총 가치(원화 기준)는 똑같습니다 — 나눠서 더 여러 장으로 받을 뿐입니다. 다만 받는 느낌은 다를 수 있고, 무엇보다 <b>"0장"이 "1장"이 되는 차이가 큽니다.</b> 지금은 소액 구매의 상당수가 0장으로 끝나고 있습니다. (가치를 유지하고 잔돈을 포인트로 지급하는 안은 티켓 가치 자체를 안 바꾸므로 <b>티켓 장수가 늘어나지 않습니다</b> — 대신 브론즈 미만 잔돈이 포인트로 지급됩니다.)</span><span class="vi">Khi giá trị hạng thấp nhất nhỏ hơn hiện tại (100원 của Đồng) — bằng cách giảm giá trị hoặc thêm hạng mới thấp hơn — thì với cùng số tiền tích lũy, <b>số lượng vé nhận được sẽ tăng lên.</b> Tổng giá trị thực tế khách hàng nhận được (tính theo 원) vẫn như cũ — chỉ là được chia thành nhiều vé hơn. Cảm nhận khi nhận có thể khác, nhưng quan trọng nhất là <b>khoảng cách giữa "0 vé" và "1 vé" rất lớn.</b> Hiện tại phần lớn giao dịch nhỏ đang kết thúc với 0 vé. (Phương án giữ nguyên giá trị và cấp điểm cho phần dư không thay đổi giá trị vé nên <b>số lượng vé không tăng</b> — thay vào đó phần dư dưới mức Đồng được cấp bằng điểm.)</span></span></p></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">같이 조정해야 하는 것들</span><span class="vi">Những việc cần điều chỉnh cùng lúc</span></span></h2>
-<div class="warn"><span class="wt"><span class="i18n"><span class="ko">티켓 가치만 따로 바꿀 수 없습니다</span><span class="vi">Không thể chỉ thay đổi riêng giá trị vé</span></span></span><span class="i18n"><span class="ko">아래 항목들과 같이 맞춰야 하며, <b>범위는 안마다 다릅니다</b>(위 비교 참고 — 1/10 안·01안은 전체 재조정, 02안은 거의 필요 없음). 지금은 아래 항목을 손대지 않았습니다.</span><span class="vi">Cần điều chỉnh cùng các mục dưới đây, và <b>phạm vi khác nhau tùy phương án</b> (xem bảng so sánh phía trên — Phương án 1/10·01 cần điều chỉnh toàn bộ, Phương án 02 gần như không cần). Hiện tại chưa đụng đến các mục dưới đây.</span></span>
+<div class="warn"><span class="wt"><span class="i18n"><span class="ko">티켓 가치만 따로 바꿀 수 없습니다</span><span class="vi">Không thể chỉ thay đổi riêng giá trị vé</span></span></span><span class="i18n"><span class="ko">아래 항목들과 같이 맞춰야 하며, <b>범위는 안마다 다릅니다</b>(위 비교 참고 — 1/10 안·01안은 전체 재조정, 02안은 거의 필요 없음, 가치 유지+포인트 지급 안은 조정이 필요 없음). 지금은 아래 항목을 손대지 않았습니다.</span><span class="vi">Cần điều chỉnh cùng các mục dưới đây, và <b>phạm vi khác nhau tùy phương án</b> (xem bảng so sánh phía trên — Phương án 1/10·01 cần điều chỉnh toàn bộ, Phương án 02 gần như không cần, phương án giữ nguyên giá trị + cấp điểm không cần điều chỉnh). Hiện tại chưa đụng đến các mục dưới đây.</span></span>
 <ul style="margin:10px 0 0 20px;font-size:13.5px;line-height:1.8">
 <li><span class="i18n"><span class="ko">룰렛(매일 행운·잭팟) 보상 구성 — 값이 바뀌는 안이면 당첨 체감이 달라집니다</span><span class="vi">Cấu hình phần thưởng vòng quay (May mắn hằng ngày·Jackpot) — nếu là phương án đổi giá trị, cảm giác trúng thưởng sẽ khác đi</span></span></li>
 <li><span class="i18n"><span class="ko">포인트 ↔ 티켓 교환 비율 — 값이 바뀌는 안이면 포인트로 사는 티켓 값이 어긋납니다</span><span class="vi">Tỷ lệ đổi Điểm ↔ Vé — nếu là phương án đổi giá trị, giá trị vé đổi bằng điểm sẽ bị lệch</span></span></li>
