@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 등급 티켓 가치 조정 반영 보고서 · 2026-08-12</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--bad:#c0392b;--bad-l:#fdecea}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.7}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:30px 0 26px;position:relative}
+.htitle{font-size:22px;font-weight:800;line-height:1.35} .hsub{font-size:13.5px;opacity:.88;margin-top:8px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:16px;color:var(--pp-d);margin:36px 0 14px;padding-bottom:7px;border-bottom:2px solid var(--pp-l)}
+h2.grp:first-of-type{margin-top:22px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:0}
+.keybox{background:#f6f2ff;border:1px solid #ddd0ff;border-left:4px solid var(--pp);border-radius:10px;padding:18px 20px;margin:22px 0 0;font-size:14.5px;color:var(--ink2)}
+.keybox .kt{font-size:11.5px;font-weight:800;color:var(--pp-d);letter-spacing:.06em;margin-bottom:7px;display:block}
+.keybox b{color:var(--ink1)}
+.okbox{border-radius:12px;padding:18px 20px;margin-bottom:0;font-size:14px;background:#eaf7f5;border:1px solid #bfe6e0;border-left:5px solid var(--ok);color:#1c5e56}
+.okbox .wt{font-size:12.5px;font-weight:800;letter-spacing:.03em;margin-bottom:7px;display:block;color:#1c5e56}
+.okbox b{color:#0f3a34}
+.chtable{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.5px}
+.chtable th{text-align:left;font-size:11.5px;color:var(--ink3);font-weight:700;padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+.chtable td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+.chtable td.item{font-weight:700;color:var(--ink1);white-space:nowrap}
+.chtable .arrow{color:var(--ink3);margin:0 6px}
+.chtable .after{color:var(--pp-d);font-weight:800}
+.chtable tr:last-child td{border-bottom:none}
+@media(max-width:640px){
+  .chtable{font-size:12.5px}
+  .chtable th{display:none}
+  .chtable tr{display:block;padding:10px 0;border-bottom:1px solid var(--line)}
+  .chtable td{display:block;border-bottom:none;padding:2px 0}
+  .chtable td.item{color:var(--ink3);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+}
+.keeplist{list-style:none;margin-top:12px;display:grid;gap:8px}
+.keeplist li{display:flex;align-items:flex-start;gap:10px;font-size:13.8px;color:var(--ink2);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.keeplist .ico{color:var(--ok);font-weight:800;flex-shrink:0}
+.scopebar{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.scopebar span{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:7px 14px;font-size:12.5px;color:var(--ink2);font-weight:600}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.foot{margin-top:26px;font-size:11.5px;color:var(--ink3)}
+@media(max-width:640px){
+  .htitle{font-size:16.5px;line-height:1.4}
+  .wrap{padding:0 16px 60px}
+  header{padding:24px 0 20px}
+  .card,.okbox,.keybox{padding:15px 16px}
+  h2.grp{margin:28px 0 12px;font-size:15px}
+  h2.grp:first-of-type{margin-top:18px}
+  .langtog{position:static;margin-top:14px}
+}
+</style></head><body>
+<input type="checkbox" id="langsw">
+
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:900px;margin:0 auto;padding:0 22px">
+<div class="htitle"><span class="i18n"><span class="ko">PricePick 등급 티켓 가치 조정 반영 보고서</span><span class="vi">PricePick Báo cáo phản ánh điều chỉnh giá trị vé hạng</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">등급 티켓 환산가치 1/10 조정에 따라 함께 바뀐 항목을 정리한 문서입니다</span><span class="vi">Tài liệu tổng hợp các mục thay đổi theo việc điều chỉnh giá trị quy đổi vé hạng còn 1/10</span></span></div>
+</div></header>
+
+<div class="wrap"><div class="meta">
+<span class="chip"><span class="i18n"><span class="ko">문서일</span><span class="vi">Ngày tài liệu</span></span>: 2026-08-12</span>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 무엇이 바뀌었나</span><span class="vi">1. Điều gì đã thay đổi</span></span></h2>
+<div class="card">
+<p style="font-size:14.5px;color:var(--ink2)"><span class="i18n"><span class="ko">등급 티켓 환산가치를 1/10로 조정했습니다.</span><span class="vi">Giá trị quy đổi vé hạng đã được điều chỉnh còn 1/10.</span></span></p>
+<div class="scopebar">
+<span><span class="i18n"><span class="ko">브론즈</span><span class="vi">Đồng</span></span> 100원 → <b style="color:var(--pp-d)">10원</b></span>
+<span><span class="i18n"><span class="ko">실버</span><span class="vi">Bạc</span></span> 1,000원 → <b style="color:var(--pp-d)">100원</b></span>
+<span><span class="i18n"><span class="ko">골드</span><span class="vi">Vàng</span></span> 2,000원 → <b style="color:var(--pp-d)">200원</b></span>
+</div>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 왜 바꿨나</span><span class="vi">2. Lý do điều chỉnh</span></span></h2>
+<div class="card">
+<p style="font-size:14px;color:var(--ink2)"><span class="i18n"><span class="ko">제휴몰별 실제 수수료가 낮아, 5,000원 이상을 구매해도 적립액이 브론즈 1장(100원)에 못 미치는 구간이 넓었습니다. 예를 들어 적립률 0.36%인 제휴몰에서 20,000원을 구매하면 적립액이 72원이라 등급 티켓이 지급되지 않았습니다.</span><span class="vi">Do hoa hồng thực tế của từng sàn liên kết thấp, có nhiều trường hợp dù mua từ 5,000원 trở lên nhưng số tiền tích lũy vẫn không đạt giá trị 1 vé Đồng (100원). Ví dụ, tại một sàn liên kết có tỷ lệ tích lũy 0.36%, nếu mua 20,000원 thì số tiền tích lũy chỉ 72원, nên không được cấp vé hạng.</span></span></p>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. 그에 따라 조정된 것</span><span class="vi">3. Các mục được điều chỉnh theo đó</span></span></h2>
+<div class="card">
+<table class="chtable">
+<thead><tr><th><span class="i18n"><span class="ko">항목</span><span class="vi">Mục</span></span></th><th><span class="i18n"><span class="ko">변경 전</span><span class="vi">Trước thay đổi</span></span></th><th></th><th><span class="i18n"><span class="ko">변경 후</span><span class="vi">Sau thay đổi</span></span></th></tr></thead>
+<tbody>
+<tr><td class="item"><span class="i18n"><span class="ko">포인트 → 티켓 교환</span><span class="vi">Đổi Điểm → Vé</span></span></td><td colspan="3">브 1,000P · 실 10,000P · 골 20,000P <span class="arrow">&rarr;</span> <span class="after">브 100P · 실 1,000P · 골 2,000P</span></td></tr>
+<tr><td class="item"><span class="i18n"><span class="ko">이벤트 티켓 교환</span><span class="vi">Đổi vé Sự kiện</span></span></td><td colspan="3"><span class="i18n"><span class="ko">5장 → 브론즈 1장</span><span class="vi">5 vé → 1 vé Đồng</span></span> <span class="arrow">&rarr;</span> <span class="after"><span class="i18n"><span class="ko">5장 → 실버 1장</span><span class="vi">5 vé → 1 vé Bạc</span></span></span></td></tr>
+<tr><td class="item"><span class="i18n"><span class="ko">온보딩 첫 구매 보상</span><span class="vi">Thưởng mua hàng đầu (Onboarding)</span></span></td><td colspan="3"><span class="i18n"><span class="ko">브론즈 1장</span><span class="vi">1 vé Đồng</span></span> <span class="arrow">&rarr;</span> <span class="after"><span class="i18n"><span class="ko">실버 1장</span><span class="vi">1 vé Bạc</span></span></span></td></tr>
+<tr><td class="item"><span class="i18n"><span class="ko">매일 행운 룰렛</span><span class="vi">Vòng quay may mắn hằng ngày</span></span></td><td colspan="3"><span class="i18n"><span class="ko">실버 슬롯</span><span class="vi">Ô Bạc</span></span> <span class="after"><span class="i18n"><span class="ko">→ 실버 10장</span><span class="vi">→ 10 vé Bạc</span></span></span> · <span class="i18n"><span class="ko">브론즈 슬롯</span><span class="vi">Ô Đồng</span></span> <span class="after"><span class="i18n"><span class="ko">→ 실버 1장</span><span class="vi">→ 1 vé Bạc</span></span></span></td></tr>
+<tr><td class="item"><span class="i18n"><span class="ko">잭팟 룰렛</span><span class="vi">Vòng quay Jackpot</span></span></td><td colspan="3"><span class="i18n"><span class="ko">골드 슬롯</span><span class="vi">Ô Vàng</span></span> <span class="after"><span class="i18n"><span class="ko">→ 골드 10장</span><span class="vi">→ 10 vé Vàng</span></span></span> · <span class="i18n"><span class="ko">실버 슬롯</span><span class="vi">Ô Bạc</span></span> <span class="after"><span class="i18n"><span class="ko">→ 실버 10장</span><span class="vi">→ 10 vé Bạc</span></span></span> · <span class="i18n"><span class="ko">브론즈 슬롯</span><span class="vi">Ô Đồng</span></span> <span class="after"><span class="i18n"><span class="ko">→ 실버 1장</span><span class="vi">→ 1 vé Bạc</span></span></span></td></tr>
+<tr><td class="item"><span class="i18n"><span class="ko">기프티콘 교환 필요 장수</span><span class="vi">Số vé cần để đổi Gifticon</span></span></td><td colspan="3"><span class="after"><span class="i18n"><span class="ko">전 상품 10배로 재산정</span><span class="vi">Tính lại ×10 cho toàn bộ sản phẩm</span></span></span></td></tr>
+<tr><td class="item"><span class="i18n"><span class="ko">화면 표기</span><span class="vi">Hiển thị trên màn hình</span></span></td><td colspan="3"><span class="i18n"><span class="ko">룰렛 안내·운영정책 표·기프티콘 카탈로그의 환산가치 문구를 새 값으로 갱신</span><span class="vi">Cập nhật văn bản giá trị quy đổi ở phần hướng dẫn vòng quay·bảng chính sách vận hành·danh mục Gifticon theo giá trị mới</span></span></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">4. 함께 바로잡은 것</span><span class="vi">4. Các mục đã chỉnh sửa cùng lúc</span></span></h2>
+<div class="card">
+<table class="chtable">
+<tbody>
+<tr><td class="item"><span class="i18n"><span class="ko">포인트 환산율</span><span class="vi">Tỷ giá quy đổi điểm</span></span></td><td colspan="3"><span class="i18n"><span class="ko">저장값이 10P = 4원으로 되어 있어</span><span class="vi">Giá trị lưu là 10P = 4원 nên đã</span></span> <span class="after">10P = 1원</span><span class="i18n"><span class="ko">으로 복구. 정책서 기준값입니다.</span><span class="vi"> khôi phục. Đây là giá trị chuẩn theo tài liệu chính sách.</span></span></td></tr>
+<tr><td class="item"><span class="i18n"><span class="ko">포인트 ↔ 티켓 교환 방향</span><span class="vi">Chiều đổi Điểm ↔ Vé</span></span></td><td colspan="3"><span class="i18n"><span class="ko">정책서에 양방향으로 남아 있던 것을</span><span class="vi">Tài liệu chính sách còn ghi hai chiều, đã sửa thành</span></span> <span class="after"><span class="i18n"><span class="ko">단방향(포인트 → 티켓)</span><span class="vi">một chiều (Điểm → Vé)</span></span></span><span class="i18n"><span class="ko">으로 정리. 역방향은 2026년 8월에 중단됐습니다.</span><span class="vi">. Chiều ngược lại đã dừng từ tháng 8/2026.</span></span></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">5. 바뀌지 않은 것</span><span class="vi">5. Những điều không thay đổi</span></span></h2>
+<div class="okbox"><span class="wt"><span class="i18n"><span class="ko">아래 항목은 이번 조정과 무관합니다</span><span class="vi">Các mục dưới đây không liên quan đến điều chỉnh lần này</span></span></span>
+<ul class="keeplist" style="margin-top:10px">
+<li><span class="ico">✓</span><span class="i18n"><span class="ko">등급 간 교환 비율(브론즈 10 ⇄ 실버 1 · 실버 2 ⇄ 골드 1)</span><span class="vi">Tỷ lệ đổi giữa các hạng (10 vé Đồng ⇄ 1 vé Bạc · 2 vé Bạc ⇄ 1 vé Vàng)</span></span></li>
+<li><span class="ico">✓</span><span class="i18n"><span class="ko">포인트 가치(10P = 1원)</span><span class="vi">Giá trị điểm (10P = 1원)</span></span></li>
+<li><span class="ico">✓</span><span class="i18n"><span class="ko">이벤트 티켓 가치(40원) — 등급 체계와 독립된 값</span><span class="vi">Giá trị vé Sự kiện (40원) — giá trị độc lập với hệ thống hạng</span></span></li>
+<li><span class="ico">✓</span><span class="i18n"><span class="ko">룰렛 당첨 확률</span><span class="vi">Xác suất trúng thưởng vòng quay</span></span></li>
+<li><span class="ico">✓</span><span class="i18n"><span class="ko">5,000원 미만 경유구매 → 이벤트 티켓 1장 지급 정책</span><span class="vi">Chính sách mua qua liên kết dưới 5,000원 → cấp 1 vé Sự kiện</span></span></li>
+<li><span class="ico">✓</span><span class="i18n"><span class="ko">적립 확정 대기(연동 D+7 / 미연동 D+30)</span><span class="vi">Thời gian chờ xác nhận tích lũy (đã liên kết D+7 / chưa liên kết D+30)</span></span></li>
+<li><span class="ico">✓</span><span class="i18n"><span class="ko">이벤트 티켓·구매 적립 한도</span><span class="vi">Hạn mức vé Sự kiện·tích lũy mua hàng</span></span></li>
+</ul>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">6. 반영 범위</span><span class="vi">6. Phạm vi áp dụng</span></span></h2>
+<div class="card">
+<div class="scopebar">
+<span><span class="i18n"><span class="ko">앱 데모</span><span class="vi">App demo</span></span></span>
+<span><span class="i18n"><span class="ko">CMS 데모</span><span class="vi">CMS demo</span></span></span>
+<span><span class="i18n"><span class="ko">마스터 정책서</span><span class="vi">Tài liệu chính sách gốc</span></span></span>
+<span><span class="i18n"><span class="ko">개발 전달 문서</span><span class="vi">Tài liệu bàn giao phát triển</span></span></span>
+</div>
+</div>
+
+<div class="foot">PricePick · <span class="i18n"><span class="ko">정책 변경 보고서</span><span class="vi">Báo cáo thay đổi chính sách</span></span> · 2026-08-12</div>
+</div>
+
+</body></html>
