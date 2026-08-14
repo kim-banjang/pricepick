@@ -100,12 +100,46 @@ table.spec tr:last-child td{border-bottom:none}
 .txtpanel{display:none}
 .txtpanel.active{display:block}
 @media (max-width:480px){.txttab{padding:9px 10px;font-size:11.5px}.txttab-now{font-size:8px;padding:2px 6px;margin-left:4px}}
+.toc-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:20px}
+.toc-label{font-size:11px;font-weight:800;color:var(--ink3);letter-spacing:.04em;margin-bottom:9px}
+.toc-links{display:flex;flex-wrap:wrap;gap:7px}
+.toc-link{font-size:12px;font-weight:700;color:var(--pp-d);background:var(--pp-l);border-radius:20px;padding:5px 12px;text-decoration:none;white-space:nowrap}
+.toc-link:hover{background:#e2d8fb}
+.subhead{display:flex;align-items:baseline;gap:10px;margin:30px 0 14px;scroll-margin-top:16px}
+.subhead-num{width:24px;height:24px;border-radius:50%;background:var(--pp);color:#fff;font-size:12px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.subhead-t{font-size:15px;font-weight:800;color:var(--ink1)}
+.subhead-sub{font-size:12px;color:var(--ink3);font-weight:500}
+.stepno{display:inline-block;font-size:10.5px;font-weight:800;color:#fff;background:var(--pp);border-radius:6px;padding:1px 6px;margin-right:7px;vertical-align:middle}
+.refnote{font-size:11px;font-weight:700;color:var(--ink3);background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:3px 10px;display:inline-block;margin:2px 0 12px}
+details.dcard{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+details.dcard summary{padding:16px 18px;font-size:12.5px;font-weight:800;color:var(--ink3);cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px}
+details.dcard summary::-webkit-details-marker{display:none}
+details.dcard summary .dcaret{font-size:11px;color:var(--pp-d);transition:transform .15s;flex-shrink:0}
+details.dcard[open] summary .dcaret{transform:rotate(90deg)}
+details.dcard summary:hover{background:var(--bg)}
+details.dcard .dbody{padding:0 18px 16px}
+.appendix-h{font-size:12px;font-weight:800;color:var(--ink3);letter-spacing:.04em;margin:34px 0 6px}
 </style></head><body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
 <div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">애플 앱스토어 등록 자료</span><span class="vi">Tài liệu đăng ký Apple App Store</span></span></div>
 <div class="hsub"><span class="i18n"><span class="ko">1단계 TestFlight 외부 테스트 · 2단계 정식 출시 · 캡처 원본 · 개인정보 수집 항목 안내</span><span class="vi">Giai đoạn 1 TestFlight · Giai đoạn 2 Ra mắt chính thức · Ảnh gốc · Hướng dẫn thu thập dữ liệu cá nhân</span></span></div></div></header>
 <div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">현재 단계: TestFlight 준비</span><span class="vi">Giai đoạn hiện tại: Chuẩn bị TestFlight</span></span></span><span class="chip"><span class="i18n"><span class="ko">스크린샷(정식) 1320×2868 (6.9형)</span><span class="vi">Ảnh chụp (chính thức) 1320×2868 (màn 6.9")</span></span></span><span class="chip"><span class="i18n"><span class="ko">규격 출처: Apple 공식 문서</span><span class="vi">Nguồn quy cách: Tài liệu chính thức Apple</span></span></span></div>
+
+<div class="toc-card">
+<div class="toc-label i18n"><span class="ko">목차</span><span class="vi">MỤC LỤC</span></div>
+<div class="toc-links">
+<a class="toc-link" href="#stage1"><span class="i18n"><span class="ko">1단계 · TestFlight</span><span class="vi">Giai đoạn 1 · TestFlight</span></span></a>
+<a class="toc-link" href="#stage2"><span class="i18n"><span class="ko">2단계 · 정식 출시</span><span class="vi">Giai đoạn 2 · Ra mắt</span></span></a>
+<a class="toc-link" href="#s2-1">① <span class="i18n"><span class="ko">앱 정보</span><span class="vi">Thông tin app</span></span></a>
+<a class="toc-link" href="#s2-2">② <span class="i18n"><span class="ko">스토어 문구</span><span class="vi">Câu chữ trên store</span></span></a>
+<a class="toc-link" href="#s2-3">③ <span class="i18n"><span class="ko">이미지</span><span class="vi">Hình ảnh</span></span></a>
+<a class="toc-link" href="#s2-4">④ <span class="i18n"><span class="ko">심사·연령 등급</span><span class="vi">Xét duyệt·Độ tuổi</span></span></a>
+<a class="toc-link" href="#s2-5">⑤ <span class="i18n"><span class="ko">개인정보</span><span class="vi">Dữ liệu cá nhân</span></span></a>
+<a class="toc-link" href="#appendix-raw"><span class="i18n"><span class="ko">부록 · 캡처 원본</span><span class="vi">Phụ lục · Ảnh gốc</span></span></a>
+<a class="toc-link" href="#appendix-compare"><span class="i18n"><span class="ko">부록 · 구글 플레이 비교</span><span class="vi">Phụ lục · So sánh Google Play</span></span></a>
+</div>
+</div>
 
 <div class="warnbox"><b><span class="i18n"><span class="ko">정식 출시는 아직 못 합니다.</span><span class="vi">Chưa thể ra mắt chính thức.</span></span></b> <span class="i18n"><span class="ko">쿠팡 파트너스 API 연동과 실 구매→적립 처리가 아직 실서비스로 동작하지 않습니다. 개발자(켈빈)와 합의된 방향은 <b>TestFlight 외부 테스트(공개 링크)로 먼저 배포</b>하는 것입니다. 안드로이드도 같은 상황입니다 — 구글 플레이 콘솔 확인 결과 프로덕션이 비활성 상태이고, 패키지명이 <code>com.inetkr.pricepick.stg</code>(스테이징)이며 비공개 테스트 1/5단계입니다.</span><span class="vi">Việc tích hợp API Coupang Partners và xử lý mua hàng thật → tích điểm chưa hoạt động ở môi trường thật. Hướng đã thống nhất với lập trình viên (Kelvin) là <b>ra mắt trước bằng TestFlight external testing (link công khai)</b>. Android cũng ở tình trạng tương tự — kiểm tra Google Play Console cho thấy Production đang tắt, package name là <code>com.inetkr.pricepick.stg</code> (staging), và đang ở bước 1/5 của Closed testing.</span></span>
 <table class="spec stage-table" style="margin-top:12px;background:#fff;border-radius:10px;overflow:hidden">
@@ -118,10 +152,10 @@ table.spec tr:last-child td{border-bottom:none}
 <div class="srcnote"><span class="i18n"><span class="ko">안드로이드 현황은 김반장이 구글 플레이 콘솔에서 직접 확인한 사실입니다. 추측 없이 사실만 기재.</span><span class="vi">Tình trạng Android là do người quản lý tự kiểm tra trực tiếp trên Google Play Console. Chỉ ghi sự thật, không suy đoán.</span></span></div>
 </div>
 
-<div class="stage-banner now"><span class="stg-num">1</span><span class="stg-label"><span class="i18n"><span class="ko">1단계 · TestFlight 외부 테스트</span><span class="vi">Giai đoạn 1 · TestFlight External Testing</span></span></span><span class="stg-tag"><span class="i18n"><span class="ko">지금 진행</span><span class="vi">Đang tiến hành</span></span></span><span class="stg-sub"><span class="i18n"><span class="ko">지금 실제로 등록·제출에 쓸 자료입니다. 아래 「테스터 안내」부터 「개인정보처리방침 URL」까지가 이 단계 대상입니다.</span><span class="vi">Đây là tài liệu sẽ dùng thực tế để đăng ký·nộp ngay bây giờ. Từ "Hướng dẫn cho tester" đến "URL Chính sách bảo mật" bên dưới thuộc giai đoạn này.</span></span></span></div>
+<div class="stage-banner now" id="stage1"><span class="stg-num">1</span><span class="stg-label"><span class="i18n"><span class="ko">1단계 · TestFlight 외부 테스트</span><span class="vi">Giai đoạn 1 · TestFlight External Testing</span></span></span><span class="stg-tag"><span class="i18n"><span class="ko">지금 진행</span><span class="vi">Đang tiến hành</span></span></span><span class="stg-sub"><span class="i18n"><span class="ko">지금 실제로 등록·제출에 쓸 자료입니다. 아래 「테스터 안내」부터 「개인정보처리방침 URL」까지가 이 단계 대상입니다.</span><span class="vi">Đây là tài liệu sẽ dùng thực tế để đăng ký·nộp ngay bây giờ. Từ "Hướng dẫn cho tester" đến "URL Chính sách bảo mật" bên dưới thuộc giai đoạn này.</span></span></span></div>
 
 <div class="card launch">
-<div class="card-t"><span class="i18n"><span class="ko">테스터 안내 문구</span><span class="vi">Hướng dẫn gửi cho tester</span></span></div>
+<div class="card-t"><span class="i18n"><span class="stepno">1-1</span><span class="ko">테스터 안내 문구</span><span class="vi">Hướng dẫn gửi cho tester</span></span></div>
 <div class="copybox">
 <button class="copybtn" type="button" onclick="copyText(this,'tester-guide-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
 <pre id="tester-guide-ko">[PricePick 베타 테스트 안내]
@@ -143,7 +177,7 @@ table.spec tr:last-child td{border-bottom:none}
 </div>
 
 <div class="card launch">
-<div class="card-t"><span class="i18n"><span class="ko">무엇을 테스트하나 (What to Test) <span style="color:var(--pp-d)">— 빌드마다 갱신</span></span><span class="vi">Nội dung cần test (What to Test) <span style="color:var(--pp-d)">— cập nhật mỗi build</span></span></span></div>
+<div class="card-t"><span class="i18n"><span class="stepno">1-2</span><span class="ko">무엇을 테스트하나 (What to Test) <span style="color:var(--pp-d)">— 빌드마다 갱신</span></span><span class="vi">Nội dung cần test (What to Test) <span style="color:var(--pp-d)">— cập nhật mỗi build</span></span></span></div>
 <div class="copybox">
 <button class="copybtn" type="button" onclick="copyText(this,'whattotest-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
 <pre id="whattotest-ko">[이번 빌드에서 확인해 주세요 — 1차 빌드]
@@ -171,7 +205,7 @@ table.spec tr:last-child td{border-bottom:none}
 </div>
 
 <div class="card launch">
-<div class="card-t"><span class="i18n"><span class="ko">베타 앱 설명 (Beta App Description) <span style="color:var(--pp-d)">— TestFlight에 표시</span></span><span class="vi">Mô tả app beta (Beta App Description) <span style="color:var(--pp-d)">— hiển thị trong TestFlight</span></span></span></div>
+<div class="card-t"><span class="i18n"><span class="stepno">1-3</span><span class="ko">베타 앱 설명 (Beta App Description) <span style="color:var(--pp-d)">— TestFlight에 표시</span></span><span class="vi">Mô tả app beta (Beta App Description) <span style="color:var(--pp-d)">— hiển thị trong TestFlight</span></span></span></div>
 <div class="copybox">
 <button class="copybtn" type="button" onclick="copyText(this,'betadesc-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
 <pre id="betadesc-ko">프라이스픽 베타 – 쇼핑이 곧 리워드가 되는 경유 쇼핑 앱테크
@@ -192,12 +226,12 @@ Bạn có thể bắt đầu ngay chỉ bằng biệt danh, và rất mong nhậ
 </div>
 
 <div class="card launch">
-<div class="card-t"><span class="i18n"><span class="ko">베타 심사 정보 — 연락처 (App Review Contact)</span><span class="vi">Thông tin xét duyệt beta — Liên hệ (App Review Contact)</span></span></div>
+<div class="card-t"><span class="i18n"><span class="stepno">1-4</span><span class="ko">베타 심사 정보 — 연락처 (App Review Contact)</span><span class="vi">Thông tin xét duyệt beta — Liên hệ (App Review Contact)</span></span></div>
 <div class="warnbox" style="margin-bottom:0"><b><span class="i18n"><span class="ko">확인 필요 — 아직 지정 안 됨.</span><span class="vi">Cần xác nhận — chưa chỉ định.</span></span></b> <span class="i18n"><span class="ko">담당자 이름 · 이메일 · 전화번호가 필수 항목인데 아직 정해진 값이 없습니다(추측해서 채우지 않습니다). App Store Connect 등록 전에 김반장이 직접 채워 주세요.</span><span class="vi">Tên · email · số điện thoại người phụ trách là mục bắt buộc nhưng hiện chưa có giá trị xác định (không tự suy đoán để điền). Vui lòng để người quản lý tự điền trước khi đăng ký trên App Store Connect.</span></span></div>
 </div>
 
 <div class="card launch">
-<div class="card-t"><span class="i18n"><span class="ko">베타 심사 정보 — 로그인 필요 여부 (Sign-In Information)</span><span class="vi">Thông tin xét duyệt beta — Yêu cầu đăng nhập (Sign-In Information)</span></span></div>
+<div class="card-t"><span class="i18n"><span class="stepno">1-5</span><span class="ko">베타 심사 정보 — 로그인 필요 여부 (Sign-In Information)</span><span class="vi">Thông tin xét duyệt beta — Yêu cầu đăng nhập (Sign-In Information)</span></span></div>
 <div class="reviewnote-box">
 <div class="qa-row"><div class="qa-q i18n"><span class="ko">데모 계정 필요?</span><span class="vi">Cần tài khoản demo?</span></div><div class="qa-a i18n"><span class="ko"><b>필요 없음</b> — "로그인 필요" 토글을 꺼두고, 아래 심사 메모에 이유를 적어둡니다.</span><span class="vi"><b>Không cần</b> — Tắt toggle "Sign-in required" và ghi lý do vào ghi chú xét duyệt bên dưới.</span></div></div>
 </div>
@@ -245,13 +279,14 @@ Mở app → Nhập biệt danh → Có thể kiểm tra ngay các tính năng c
 </div>
 
 <div class="card launch">
-<div class="card-t"><span class="i18n"><span class="ko">개인정보처리방침 URL (Privacy Policy URL)</span><span class="vi">URL Chính sách bảo mật (Privacy Policy URL)</span></span></div>
+<div class="card-t"><span class="i18n"><span class="stepno">1-6</span><span class="ko">개인정보처리방침 URL (Privacy Policy URL)</span><span class="vi">URL Chính sách bảo mật (Privacy Policy URL)</span></span></div>
 <div class="warnbox" style="margin-bottom:0">
 <b><span class="i18n"><span class="ko">X — 확인 결과 아직 없습니다.</span><span class="vi">X — Đã kiểm tra, hiện chưa có.</span></span></b> <span class="i18n"><span class="ko">개인정보처리방침 본문은 CMS 「약관 관리」에 저장돼 있고 앱 내 "이용약관·개인정보처리방침" 메뉴에서 볼 수 있지만, 이건 앱 안에서만 열리는 화면이라 애플이 요구하는 "외부에서 접속 가능한 공개 URL"이 아닙니다. TestFlight 외부 테스트도 Apple 공식 문서 확인 결과 App Store 정식 제출과 동일한 요건이 적용되어 <b>공개 URL이 필수</b>입니다. 등록 전에 별도의 공개 웹페이지(예: pricepick.vercel.app/privacy)를 만들어야 합니다.</span><span class="vi">Nội dung Chính sách bảo mật đang được lưu trong "Quản lý điều khoản" của CMS và có thể xem trong menu "Điều khoản sử dụng·Chính sách bảo mật" trong app, nhưng đây chỉ là màn hình mở được trong app, không phải "URL công khai truy cập được từ bên ngoài" mà Apple yêu cầu. Theo tài liệu chính thức của Apple, TestFlight external testing cũng áp dụng yêu cầu giống hệt nộp App Store chính thức nên <b>bắt buộc phải có URL công khai</b>. Cần tạo trang web công khai riêng (VD: pricepick.vercel.app/privacy) trước khi đăng ký.</span></span>
 <div class="srcnote" style="color:#8a5a12">출처: <a href="https://developer.apple.com/app-store/review/guidelines/" target="_blank" rel="noopener">Apple App Review Guidelines</a> (5.1.1 개인정보처리방침 필수 조항) — 직접 확인</div>
 </div>
 </div>
 
+<div class="refnote i18n"><span class="ko">참고 자료 (제출 항목 아님)</span><span class="vi">Tài liệu tham khảo (không phải mục cần nộp)</span></div>
 <div class="card launch">
 <div class="card-t"><span class="i18n"><span class="ko">TestFlight 외부 테스트 요건 (Apple 공식 문서 확인)</span><span class="vi">Yêu cầu TestFlight External Testing (đã xác nhận từ tài liệu chính thức Apple)</span></span></div>
 <div style="overflow-x:auto">
@@ -268,7 +303,7 @@ Mở app → Nhập biệt danh → Có thể kiểm tra ngay các tính năng c
 <div class="srcnote">출처: <a href="https://developer.apple.com/help/app-store-connect/test-a-beta-version/provide-test-information/" target="_blank" rel="noopener">Provide test information</a> · <a href="https://developer.apple.com/help/glossary/testflight-app-review/" target="_blank" rel="noopener">TestFlight App Review</a> · <a href="https://developer.apple.com/help/app-store-connect/test-a-beta-version/overview-of-testflight/" target="_blank" rel="noopener">Overview of TestFlight</a> · <a href="https://developer.apple.com/help/app-store-connect/reference/app-review-information" target="_blank" rel="noopener">App Review Information</a> (Apple Developer 공식 문서, 직접 확인)</div>
 </div>
 
-<div class="stage-banner later"><span class="stg-num">2</span><span class="stg-label"><span class="i18n"><span class="ko">2단계 · 정식 출시</span><span class="vi">Giai đoạn 2 · Ra mắt chính thức</span></span></span><span class="stg-tag"><span class="i18n"><span class="ko">출시 조건 충족 후</span><span class="vi">Sau khi đủ điều kiện ra mắt</span></span></span><span class="stg-sub"><span class="i18n"><span class="ko">아래는 정식 App Store 등록 시 쓸 자료입니다. 지금 당장 제출하는 게 아니라 미리 준비만 해두는 것입니다.</span><span class="vi">Bên dưới là tài liệu dùng khi đăng ký App Store chính thức. Không nộp ngay bây giờ, chỉ chuẩn bị trước.</span></span></span></div>
+<div class="stage-banner later" id="stage2"><span class="stg-num">2</span><span class="stg-label"><span class="i18n"><span class="ko">2단계 · 정식 출시</span><span class="vi">Giai đoạn 2 · Ra mắt chính thức</span></span></span><span class="stg-tag"><span class="i18n"><span class="ko">출시 조건 충족 후</span><span class="vi">Sau khi đủ điều kiện ra mắt</span></span></span><span class="stg-sub"><span class="i18n"><span class="ko">아래는 정식 App Store 등록 시 쓸 자료입니다. 지금 당장 제출하는 게 아니라 미리 준비만 해두는 것입니다.</span><span class="vi">Bên dưới là tài liệu dùng khi đăng ký App Store chính thức. Không nộp ngay bây giờ, chỉ chuẩn bị trước.</span></span></span></div>
 
 <div class="warnbox"><b><span class="i18n"><span class="ko">출시 전제 조건</span><span class="vi">Điều kiện tiên quyết để ra mắt</span></span></b>
 <ul>
@@ -279,9 +314,7 @@ Mở app → Nhập biệt danh → Có thể kiểm tra ngay các tính năng c
 </ul>
 </div>
 
-<h2 class="grp"><span class="i18n"><span class="ko">1. 텍스트 자료</span><span class="vi">1. Tài liệu văn bản</span></span></h2>
-
-<div class="warnbox"><b><span class="i18n"><span class="ko">첫 출시 버전엔 기프티콘 메뉴가 없습니다.</span><span class="vi">Phiên bản ra mắt đầu tiên không có menu Gifticon.</span></span></b> <span class="i18n"><span class="ko">그래서 텍스트 자료를 탭으로 나눴습니다 — 「기프티콘 제외 (출시용)」 탭이 지금 실제로 등록할 문구이고, 「기프티콘 포함」 탭은 나중에 기프티콘 기능이 나오면 바꿔 쓸 예비 문구입니다.</span><span class="vi">Vì vậy tài liệu văn bản được chia theo tab — tab "Không có Gifticon (bản ra mắt)" là văn bản sẽ đăng ký thực tế ngay bây giờ, còn tab "Có Gifticon" là văn bản dự phòng để thay vào khi tính năng Gifticon ra mắt sau này.</span></span></div>
+<div class="subhead" id="s2-1"><span class="subhead-num">1</span><span class="subhead-t i18n"><span class="ko">앱 정보</span><span class="vi">Thông tin app</span></span><span class="subhead-sub i18n"><span class="ko">(App Information)</span><span class="vi">(App Information)</span></span></div>
 
 <div class="card">
 <div class="card-t"><span class="i18n"><span class="ko">앱 이름 (Name) <span style="color:var(--ink3)">— 두 버전 공통</span></span><span class="vi">Tên ứng dụng (Name) <span style="color:var(--ink3)">— chung cho cả 2 bản</span></span></span><span class="charcount i18n"><span class="ko">30자 이내 · 현재 24자</span><span class="vi">Trong 30 ký tự · Hiện tại 24</span></span></div>
@@ -292,6 +325,10 @@ Mở app → Nhập biệt danh → Có thể kiểm tra ngay các tính năng c
 <div class="txt-vi-sub vi-only">PricePick - Ứng dụng thưởng tích lũy qua mua sắm chuyển tiếp <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
 <div class="srcnote">기프티콘 언급이 원래 없어 출시용·기프티콘포함 버전 공통 — 구글 플레이 「앱 이름」과 동일, 애플 30자 제한에 이미 부합</div>
 </div>
+
+<div class="subhead" id="s2-2"><span class="subhead-num">2</span><span class="subhead-t i18n"><span class="ko">스토어 문구</span><span class="vi">Câu chữ trên store</span></span><span class="subhead-sub i18n"><span class="ko">(부제·프로모션 텍스트·설명·키워드)</span><span class="vi">(Phụ đề·Promotional Text·Mô tả·Từ khóa)</span></span></div>
+
+<div class="warnbox"><b><span class="i18n"><span class="ko">첫 출시 버전엔 기프티콘 메뉴가 없습니다.</span><span class="vi">Phiên bản ra mắt đầu tiên không có menu Gifticon.</span></span></b> <span class="i18n"><span class="ko">그래서 텍스트 자료를 탭으로 나눴습니다 — 「기프티콘 제외 (출시용)」 탭이 지금 실제로 등록할 문구이고, 「기프티콘 포함」 탭은 나중에 기프티콘 기능이 나오면 바꿔 쓸 예비 문구입니다.</span><span class="vi">Vì vậy tài liệu văn bản được chia theo tab — tab "Không có Gifticon (bản ra mắt)" là văn bản sẽ đăng ký thực tế ngay bây giờ, còn tab "Có Gifticon" là văn bản dự phòng để thay vào khi tính năng Gifticon ra mắt sau này.</span></span></div>
 
 <div class="txttab-nav" role="tablist">
 <button class="txttab active" type="button" data-tab="launch" onclick="switchTxtTab(this,'launch')" role="tab" aria-selected="true">🚀 <span class="i18n"><span class="ko">기프티콘 제외 (출시용)</span><span class="vi">Không có Gifticon (bản ra mắt)</span></span><span class="txttab-now i18n"><span class="ko">지금 등록</span><span class="vi">Đăng ký ngay</span></span></button>
@@ -488,7 +525,7 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 </div>
 </div>
 
-<h2 class="grp"><span class="i18n"><span class="ko">2. 그래픽 자료</span><span class="vi">2. Tài liệu đồ họa</span></span></h2>
+<div class="subhead" id="s2-3"><span class="subhead-num">3</span><span class="subhead-t i18n"><span class="ko">이미지</span><span class="vi">Hình ảnh</span></span><span class="subhead-sub i18n"><span class="ko">(아이콘·스크린샷)</span><span class="vi">(Icon·Ảnh chụp màn hình)</span></span></div>
 
 <div class="gcard">
 <div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">앱 아이콘</span><span class="vi">Icon ứng dụng</span></span></span></div>
@@ -529,7 +566,8 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 <div class="icon-note"><span class="i18n"><span class="ko">애플 앱스토어엔 이 항목 자체가 없습니다(구글 플레이 전용 규격). 애플은 대신 위 스크린샷과 앱 미리보기 영상(선택)으로 노출을 구성합니다.</span><span class="vi">Apple App Store không có mục này (chỉ dành riêng cho Google Play). Apple thay vào đó dùng ảnh chụp màn hình ở trên và video xem trước app (tùy chọn).</span></span></div>
 </div>
 
-<h2 class="grp"><span class="i18n"><span class="ko">3. 연령 등급 (Age Rating)</span><span class="vi">3. Xếp hạng độ tuổi (Age Rating)</span></span></h2>
+<div class="subhead" id="s2-4"><span class="subhead-num">4</span><span class="subhead-t i18n"><span class="ko">심사·연령 등급</span><span class="vi">Xét duyệt·Độ tuổi</span></span><span class="subhead-sub i18n"><span class="ko">(App Review·Age Rating)</span><span class="vi">(App Review·Age Rating)</span></span></div>
+<div class="refnote i18n"><span class="ko">심사 연락처·로그인 정보·심사 메모는 1단계에서 이미 준비돼 있습니다 (그대로 재사용, 스테이징 언급만 정리 예정)</span><span class="vi">Liên hệ xét duyệt·thông tin đăng nhập·ghi chú xét duyệt đã chuẩn bị sẵn ở giai đoạn 1 (dùng lại nguyên bản, chỉ cần bỏ phần đề cập staging)</span></div>
 
 <div class="card">
 <div class="reviewnote-box">
@@ -539,12 +577,13 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 </div>
 </div>
 
-<h2 class="grp"><span class="i18n"><span class="ko">4. 개인정보 수집 항목 안내 (App Privacy)</span><span class="vi">4. Hướng dẫn mục thu thập dữ liệu cá nhân (App Privacy)</span></span></h2>
+<div class="subhead" id="s2-5"><span class="subhead-num">5</span><span class="subhead-t i18n"><span class="ko">개인정보</span><span class="vi">Dữ liệu cá nhân</span></span><span class="subhead-sub i18n"><span class="ko">(App Privacy)</span><span class="vi">(App Privacy)</span></span></div>
 
 <div class="warnbox"><b><span class="i18n"><span class="ko">⚠ 광고식별자(IDFA)를 실제로 쓰면 앱 추적 투명성(ATT) 권한 요청이 필수입니다.</span><span class="vi">⚠ Nếu thực sự dùng mã định danh quảng cáo (IDFA) thì bắt buộc phải xin quyền App Tracking Transparency (ATT).</span></span></b> <span class="i18n"><span class="ko">CMS 개인정보처리방침 원문에도 이 항목 옆에 "[개발팀 확인 1번]" 표시가 있어 — 실제 iOS 앱에 IDFA 수집이 구현돼 있는지 자체가 아직 미확인 상태입니다. 아래 표는 CMS 방침 문구를 애플 App Privacy 카테고리에 그대로 대응시킨 것이며, 실제 신고는 개발팀이 코드 기준으로 다시 확인해야 합니다.</span><span class="vi">Trong nguyên văn Chính sách bảo mật của CMS cũng có đánh dấu "[Đội dev xác nhận số 1]" bên cạnh mục này — bản thân việc IDFA có được triển khai thu thập trong app iOS thực tế hay không vẫn chưa được xác nhận. Bảng dưới đây chỉ là đối chiếu trực tiếp câu chữ trong chính sách CMS với danh mục App Privacy của Apple; việc khai báo thực tế cần đội phát triển xác nhận lại dựa trên code.</span></span></div>
 
-<div class="card">
-<div class="card-t"><span class="i18n"><span class="ko">CMS 개인정보처리방침 항목 → 애플 App Privacy 카테고리 대응표</span><span class="vi">Bảng đối chiếu mục Chính sách bảo mật CMS → Danh mục App Privacy của Apple</span></span></div>
+<details class="dcard" open>
+<summary><span class="i18n"><span class="ko">CMS 개인정보처리방침 항목 → 애플 App Privacy 카테고리 대응표</span><span class="vi">Bảng đối chiếu mục Chính sách bảo mật CMS → Danh mục App Privacy của Apple</span></span><span class="dcaret">▶</span></summary>
+<div class="dbody">
 <div style="overflow-x:auto">
 <table class="spec">
 <thead><tr><th><span class="i18n"><span class="ko">CMS 방침의 수집 항목</span><span class="vi">Mục thu thập trong chính sách CMS</span></span></th><th><span class="i18n"><span class="ko">애플 카테고리</span><span class="vi">Danh mục Apple</span></span></th><th><span class="i18n"><span class="ko">ATT 필요</span><span class="vi">Cần ATT</span></span></th></tr></thead>
@@ -560,8 +599,10 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 </div>
 <div class="icon-note" style="margin-top:10px"><span class="i18n"><span class="ko">애플은 이 데이터들을 "사용자와 연결됨" 여부·"추적 목적 사용" 여부까지 별도로 묻습니다. 경유 구매 실적을 광고식별자로 매칭한다면(CMS 방침 원문 그대로) "추적 목적"에 해당할 가능성이 높아 ATT 문구도 함께 준비해야 합니다.</span><span class="vi">Apple còn hỏi riêng việc dữ liệu này có "liên kết với người dùng" hay không, có "dùng cho mục đích theo dõi (tracking)" hay không. Nếu việc khớp thực tích mua sắm chuyển tiếp dùng mã định danh quảng cáo (đúng như nguyên văn chính sách CMS) thì khả năng cao thuộc "mục đích theo dõi", nên cần chuẩn bị sẵn văn bản ATT.</span></span></div>
 </div>
+</details>
 
-<h2 class="grp"><span class="i18n"><span class="ko">캡처 원본 10장 <span style="color:var(--ink3);font-weight:600">(단계 무관 · 공통 소재)</span></span><span class="vi">10 ảnh gốc <span style="color:var(--ink3);font-weight:600">(dùng chung mọi giai đoạn)</span></span></span></h2>
+<div class="appendix-h i18n"><span class="ko">부록 A</span><span class="vi">PHỤ LỤC A</span></div>
+<h2 class="grp" id="appendix-raw"><span class="i18n"><span class="ko">캡처 원본 10장 <span style="color:var(--ink3);font-weight:600">(단계 무관 · 공통 소재)</span></span><span class="vi">10 ảnh gốc <span style="color:var(--ink3);font-weight:600">(dùng chung mọi giai đoạn)</span></span></span></h2>
 
 <div class="gcard">
 <div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">캡처 원본 10장 (미가공)</span><span class="vi">10 ảnh gốc chụp màn hình (chưa xử lý)</span></span></span><span class="gcard-spec"><span class="i18n"><span class="ko">앱 데모 실캡처</span><span class="vi">Chụp thật từ app demo</span></span></span></div>
@@ -584,7 +625,8 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 </div>
 </div>
 
-<h2 class="grp"><span class="i18n"><span class="ko">5. 구글 플레이와 다른 점</span><span class="vi">5. Khác biệt so với Google Play</span></span></h2>
+<div class="appendix-h i18n"><span class="ko">부록 B</span><span class="vi">PHỤ LỤC B</span></div>
+<h2 class="grp" id="appendix-compare"><span class="i18n"><span class="ko">구글 플레이와 다른 점</span><span class="vi">Khác biệt so với Google Play</span></span></h2>
 
 <div class="card">
 <div style="overflow-x:auto">
