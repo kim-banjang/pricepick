@@ -647,6 +647,32 @@
         <div class="arrow" id="card-gplay-arrow">열기 →</div>
       </a>
 
+      <a class="card" href="/devqa/app-store-assets.html" target="_blank" rel="noopener">
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 3v18l14-9z"/>
+          </svg>
+        </div>
+        <h2 id="card-astore-title">애플 앱스토어 등록 자료</h2>
+        <p id="card-astore-desc">스토어 등록에 그대로 쓰는 앱 이름·부제·프로모션 텍스트·키워드·심사 정보 모음.</p>
+        <div class="arrow" id="card-astore-arrow">열기 →</div>
+      </a>
+
+      <a class="card" href="/devqa/linkprice-merchants-20260811.html" target="_blank" rel="noopener">
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <h2 id="card-linkprice-title">링크프라이스 제휴몰 목록</h2>
+        <p id="card-linkprice-desc">제휴몰 110곳의 카테고리·승인 상태·커미션 조건 전체. 엑셀 원본도 함께.</p>
+        <div class="arrow" id="card-linkprice-arrow">열기 →</div>
+      </a>
+
       <a class="card" href="/server-setup.html" target="_blank" rel="noopener">
         <div class="cicon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -765,6 +791,10 @@ const I18N = {
     'card.serversetup.desc': '서버 현황 분석 · 용량 계획 · 인프라 로드맵. 해리 원문 기반.',
     'card.gplay.title': '구글 플레이 등록 자료',
     'card.gplay.desc': '스토어 등록에 그대로 쓰는 앱 이름·설명·아이콘·스크린샷 모음.',
+    'card.astore.title': '애플 앱스토어 등록 자료',
+    'card.astore.desc': '스토어 등록에 그대로 쓰는 앱 이름·부제·프로모션 텍스트·키워드·심사 정보 모음.',
+    'card.linkprice.title': '링크프라이스 제휴몰 목록',
+    'card.linkprice.desc': '제휴몰 110곳의 카테고리·승인 상태·커미션 조건 전체. 엑셀 원본도 함께.',
     'card.designsystem.title': '디자인시스템',
     'card.designsystem.desc': '컴포넌트 · 컬러 · 타이포 기준. 개발 핸드오프용.',
     'card.datamodel.title': '데이터 모델',
@@ -823,6 +853,10 @@ const I18N = {
     'card.serversetup.desc': 'Phân tích hiện trạng Server · Kế hoạch công suất · Lộ trình hạ tầng. Dựa trên tài liệu gốc của Harry.',
     'card.gplay.title': 'Tài liệu đăng ký Google Play',
     'card.gplay.desc': 'Tên ứng dụng·mô tả·icon·ảnh chụp màn hình dùng trực tiếp để đăng ký store.',
+    'card.astore.title': 'Tài liệu đăng ký Apple App Store',
+    'card.astore.desc': 'Tên ứng dụng·phụ đề·văn bản quảng cáo·từ khóa·thông tin xét duyệt dùng trực tiếp để đăng ký store.',
+    'card.linkprice.title': 'Danh sách cửa hàng liên kết Linkprice',
+    'card.linkprice.desc': 'Toàn bộ danh mục·trạng thái duyệt·điều kiện hoa hồng của 110 cửa hàng liên kết. Kèm cả file Excel gốc.',
     'card.designsystem.title': 'Design System',
     'card.designsystem.desc': 'Tiêu chuẩn thành phần, màu sắc và typography. Dùng để bàn giao phát triển.',
     'card.datamodel.title': 'Mô hình dữ liệu',
@@ -918,6 +952,12 @@ function applyLang() {
   setTxt('card-gplay-title',          t('card.gplay.title'));
   setTxt('card-gplay-desc',           t('card.gplay.desc'));
   setTxt('card-gplay-arrow',          t('card.arrow'));
+  setTxt('card-astore-title',         t('card.astore.title'));
+  setTxt('card-astore-desc',          t('card.astore.desc'));
+  setTxt('card-astore-arrow',         t('card.arrow'));
+  setTxt('card-linkprice-title',      t('card.linkprice.title'));
+  setTxt('card-linkprice-desc',       t('card.linkprice.desc'));
+  setTxt('card-linkprice-arrow',      t('card.arrow'));
   setTxt('card-designsystem-title',   t('card.designsystem.title'));
   setTxt('card-designsystem-desc',    t('card.designsystem.desc'));
   setTxt('card-designsystem-arrow',   t('card.arrow'));
