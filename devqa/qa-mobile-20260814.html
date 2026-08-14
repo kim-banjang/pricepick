@@ -61,6 +61,8 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 
 카테고리 분류도 <b>CMS의 분류를 그대로</b> 씁니다. 앱에서 별도로 묶지 않습니다. 적용된 몰이 하나도 없는 카테고리는 화면에 표시하지 않습니다.
 
+정렬은 <b>카테고리별로 묶고, 카테고리 안에서는 적립률이 높은 순</b>으로 나열합니다. 홈 화면과 같은 기준(적립률)을 씁니다.
+
 지금 화면의 「종합 쇼핑몰 / 해외직구」 2분류는 쓰지 않습니다 — CMS 분류로 대체됩니다.
 
 「테무」는 샘플 데이터였습니다. 실제 제휴몰이 아니므로 제거합니다.</span><span class="vi">Có lấy. Màn này đọc và hiển thị nguyên trạng <b>dữ liệu cửa hàng liên kết từ mục 「Cài đặt tích lũy vé」 trên CMS</b>. Không cố định danh sách cửa hàng trong app.
@@ -68,6 +70,8 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 Chỉ hiển thị cửa hàng đã bật 「Áp dụng」. Cửa hàng chưa áp dụng sẽ không hiện trên app.
 
 Phân loại danh mục cũng dùng <b>đúng theo phân loại trên CMS</b>. App không tự gom nhóm riêng. Danh mục nào không có cửa hàng nào được áp dụng thì không hiển thị.
+
+Sắp xếp: <b>gom theo danh mục, trong mỗi danh mục xếp theo tỷ lệ tích lũy từ cao đến thấp</b>. Dùng cùng tiêu chí (tỷ lệ tích lũy) với trang Home.
 
 2 nhóm 「Trung tâm mua sắm tổng hợp / Mua hàng xách tay」 ở màn hiện tại sẽ không dùng nữa — được thay bằng phân loại của CMS.
 
@@ -85,17 +89,21 @@ Phân loại danh mục cũng dùng <b>đúng theo phân loại trên CMS</b>. A
 <div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260814-kelvin/kelvin-q2-home-list.png','현재 홈 화면 — 「구매하고 티켓받기」 영역, BEST·HOT 뱃지와 강조 문구')"><img src="/devqa/assets/20260814-kelvin/kelvin-q2-home-list.png" alt="현재 홈 화면 — 구매하고 티켓받기 영역에 BEST·HOT 뱃지와 강조 문구 있음" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">현재 화면 — 「구매하고 티켓받기」, BEST·HOT 뱃지 포함</span><span class="vi">Màn hiện tại — 「Mua hàng nhận vé」, có nhãn BEST·HOT</span></span></span></button></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">홈의 「구매하고 티켓받기」 영역엔 <b>적용된 몰을 전부</b> 표시합니다. 일부만 골라서 보여주지 않습니다.
 
-정렬은 <b>쿠팡을 최상단에 고정</b>하고, 나머지는 이름순으로 나열합니다.
+정렬은 <b>쿠팡을 최상단에 고정</b>하고, 나머지 몰은 <b>적립률이 높은 순</b>으로 나열합니다. 여기서 기준은 수수료율이 아니라 <b>적립률</b>(사용자에게 돌려주는 %, CMS 「티켓 적립 설정」에 있는 값)입니다 — 사용자에게 유리한 몰이 위로 오도록 하는 정렬입니다.
 
-별도의 CMS 설정을 새로 만들지 않습니다. CMS 「티켓 적립 설정」에서 「적용」을 켜면 목록 화면과 홈 화면 양쪽에 자동으로 나타납니다.
+뱃지는 <b>쿠팡에 「BEST」</b>가 붙고(최상단 고정과 함께), <b>쿠팡을 제외한 나머지 중 적립률 상위 3개에 「HOT」</b>이 붙습니다. 뱃지는 운영자가 지정하는 게 아니라 적립률 값으로 자동 판정됩니다 — 적립률을 조정하면 정렬 순서도, HOT이 붙는 몰도 그에 따라 같이 바뀝니다.
 
-지금 붙어 있는 「BEST」·「HOT」 뱃지와 「구매 시 티켓 적립 실시간」·「해외직구 · 누적 후 정산」 같은 강조 문구는 쓰지 않습니다. 단순 목록으로 나열합니다.</span><span class="vi">Ở khu vực 「Mua hàng nhận vé」 trên Home sẽ hiển thị <b>toàn bộ cửa hàng đã áp dụng</b>. Không chọn hiển thị một phần.
+별도의 CMS 설정을 새로 만들지 않습니다. CMS 「티켓 적립 설정」에서 「적용」을 켜면 목록 화면과 홈 화면 양쪽에 자동으로 나타나고, 적립률 값을 바꾸면 정렬·뱃지에 바로 반영됩니다.
 
-Thứ tự sắp xếp: <b>Coupang cố định ở trên cùng</b>, các cửa hàng còn lại xếp theo thứ tự tên.
+「구매 시 티켓 적립 실시간」·「해외직구 · 누적 후 정산」 같은 개별 설명 문구는 쓰지 않습니다. BEST·HOT 뱃지만 붙습니다.</span><span class="vi">Ở khu vực 「Mua hàng nhận vé」 trên Home sẽ hiển thị <b>toàn bộ cửa hàng đã áp dụng</b>. Không chọn hiển thị một phần.
 
-Không tạo thêm thiết lập riêng nào trên CMS. Khi bật 「Áp dụng」 ở mục 「Cài đặt tích lũy vé」 trên CMS thì sẽ tự động hiện ra ở cả màn danh sách lẫn trang Home.
+Thứ tự sắp xếp: <b>Coupang cố định ở trên cùng</b>, các cửa hàng còn lại xếp theo <b>tỷ lệ tích lũy cao đến thấp</b>. Tiêu chí ở đây là <b>tỷ lệ tích lũy</b> (% trả lại cho người dùng, giá trị trong mục 「Cài đặt tích lũy vé」 trên CMS) chứ không phải tỷ lệ hoa hồng — sắp xếp sao cho cửa hàng có lợi cho người dùng lên trên.
 
-Các nhãn 「BEST」·「HOT」 và câu chữ nhấn mạnh như 「Tích vé mua hàng thời gian thực」·「Mua hàng xách tay · quyết toán sau khi tích lũy」 đang gắn hiện tại sẽ không dùng nữa. Chỉ liệt kê dạng danh sách đơn giản.</span></span>
+Về nhãn: <b>Coupang gắn nhãn 「BEST」</b> (cùng với cố định trên cùng), và <b>3 cửa hàng có tỷ lệ tích lũy cao nhất (không tính Coupang) gắn nhãn 「HOT」</b>. Nhãn không do quản trị viên chỉ định mà được tự động phán định theo giá trị tỷ lệ tích lũy — nếu đổi tỷ lệ tích lũy thì cả thứ tự sắp xếp lẫn cửa hàng được gắn HOT cũng thay đổi theo.
+
+Không tạo thêm thiết lập riêng nào trên CMS. Khi bật 「Áp dụng」 ở mục 「Cài đặt tích lũy vé」 trên CMS thì sẽ tự động hiện ra ở cả màn danh sách lẫn trang Home, và khi đổi giá trị tỷ lệ tích lũy thì thứ tự·nhãn cũng được phản ánh ngay.
+
+Không dùng các câu chữ mô tả riêng như 「Tích vé mua hàng thời gian thực」·「Mua hàng xách tay · quyết toán sau khi tích lũy」. Chỉ gắn nhãn BEST·HOT.</span></span>
 <div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">홈 화면과 「1. 적립 가능 쇼핑몰 목록」은 같은 CMS 데이터(적용된 몰)를 공유하는 두 개의 다른 화면입니다 — 소스는 하나, 노출 위치만 다릅니다.</span><span class="vi">Trang Home và 「1. Danh sách cửa hàng tích lũy」 là 2 màn khác nhau nhưng dùng chung một nguồn dữ liệu CMS (cửa hàng đã áp dụng) — một nguồn duy nhất, chỉ khác vị trí hiển thị.</span></span></div></div></div></div>
 
 <div class="foot"><span class="i18n"><span class="ko">PricePick · Mobile 답변 · Kelvin · 2026-08-14 · 확정 2 / 확인 필요 0</span><span class="vi">PricePick · Trả lời Mobile · Kelvin · 2026-08-14 · Đã chốt 2 / Cần xác nhận 0</span></span></div></div>
