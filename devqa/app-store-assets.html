@@ -72,6 +72,20 @@ table.spec tr:last-child td{border-bottom:none}
 .qa-row:last-child{border-bottom:none}
 .qa-q{font-size:12.5px;font-weight:700;color:var(--ink3);min-width:110px;flex-shrink:0}
 .qa-a{font-size:13px;color:var(--ink1);line-height:1.6}
+.verpick{display:flex;align-items:center;gap:8px;margin:22px 0 10px}
+.verpick-tag{font-size:12px;font-weight:800;padding:5px 12px;border-radius:20px;white-space:nowrap}
+.verpick-tag.launch{background:var(--pp);color:#fff}
+.verpick-tag.full{background:#eef2f6;color:#5a6472}
+.verline{flex:1;height:1px;background:var(--line)}
+.card.launch{border:2px solid var(--pp);background:linear-gradient(180deg,#faf8ff,#fff)}
+.card.full{opacity:.82}
+.badge-exclude{display:inline-block;font-size:10px;font-weight:800;color:#fff;background:#c0392b;padding:3px 9px;border-radius:20px;white-space:nowrap;margin-left:8px;vertical-align:middle}
+.raw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
+.raw-item{display:flex;flex-direction:column;gap:6px;position:relative}
+.raw-item.excluded{opacity:.55}
+.raw-item img{width:100%;border-radius:10px;border:1px solid var(--line);display:block;box-shadow:0 2px 8px rgba(31,35,48,.08);cursor:zoom-in}
+.raw-cap{font-size:11px;color:var(--ink2);font-weight:700}
+.raw-res{font-size:10px;color:var(--ink3)}
 </style></head><body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
@@ -83,6 +97,8 @@ table.spec tr:last-child td{border-bottom:none}
 
 <h2 class="grp"><span class="i18n"><span class="ko">1. 텍스트 자료</span><span class="vi">1. Tài liệu văn bản</span></span></h2>
 
+<div class="warnbox"><b><span class="i18n"><span class="ko">첫 출시 버전엔 기프티콘 메뉴가 없습니다.</span><span class="vi">Phiên bản ra mắt đầu tiên không có menu Gifticon.</span></span></b> <span class="i18n"><span class="ko">그래서 텍스트 자료를 두 벌로 나눴습니다 — 아래 보라색 강조 카드(「출시용」)가 지금 실제로 등록할 문구이고, 회색 카드(「기프티콘 포함」)는 나중에 기프티콘 기능이 나오면 바꿔 낄 예비 문구입니다.</span><span class="vi">Vì vậy tài liệu văn bản được chia làm 2 bộ — thẻ nhấn mạnh màu tím bên dưới ("Bản ra mắt") là văn bản sẽ đăng ký thực tế lúc này, còn thẻ màu xám ("Có Gifticon") là văn bản dự phòng để thay vào khi tính năng Gifticon ra mắt sau này.</span></span></div>
+
 <div class="card">
 <div class="card-t"><span class="i18n"><span class="ko">앱 이름 (Name)</span><span class="vi">Tên ứng dụng (Name)</span></span><span class="charcount i18n"><span class="ko">30자 이내 · 현재 24자</span><span class="vi">Trong 30 ký tự · Hiện tại 24</span></span></div>
 <div class="copybox inline">
@@ -90,27 +106,49 @@ table.spec tr:last-child td{border-bottom:none}
 <div class="txt-ko" id="appname-ko">프라이스픽 - 경유 쇼핑 적립 리워드 앱테크</div>
 </div>
 <div class="txt-vi-sub vi-only">PricePick - Ứng dụng thưởng tích lũy qua mua sắm chuyển tiếp <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
-<div class="srcnote">구글 플레이 「앱 이름」과 동일 — 애플 30자 제한에 이미 부합해 그대로 사용</div>
+<div class="srcnote">기프티콘 언급이 원래 없어 출시용·기프티콘포함 버전 공통 — 구글 플레이 「앱 이름」과 동일, 애플 30자 제한에 이미 부합</div>
 </div>
 
-<div class="card">
-<div class="card-t"><span class="i18n"><span class="ko">부제 (Subtitle) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Phụ đề (Subtitle) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">30자 이내 · 현재 22자</span><span class="vi">Trong 30 ký tự · Hiện tại 22</span></span></div>
+<div class="verpick"><span class="verpick-tag launch">🚀 <span class="i18n"><span class="ko">출시용 (기프티콘 제외)</span><span class="vi">Bản ra mắt (không có Gifticon)</span></span></span><span class="verline"></span></div>
+<div class="card launch">
+<div class="card-t"><span class="i18n"><span class="ko">부제 (Subtitle) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Phụ đề (Subtitle) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">30자 이내 · 현재 20자</span><span class="vi">Trong 30 ký tự · Hiện tại 20</span></span></div>
 <div class="copybox inline">
-<button class="copybtn" type="button" onclick="copyText(this,'subtitle-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
-<div class="txt-ko" id="subtitle-ko">쇼핑하고 티켓·포인트 모아 기프티콘 교환</div>
+<button class="copybtn" type="button" onclick="copyText(this,'subtitle-launch-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="subtitle-launch-ko">쇼핑하고 룰렛 돌려 티켓·포인트 받기</div>
+</div>
+<div class="txt-vi-sub vi-only">Mua sắm, quay vòng quay nhận vé·điểm <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="srcnote">기프티콘 교환 언급을 빼고 룰렛 참여로 대체</div>
+</div>
+<div class="verpick"><span class="verpick-tag full">🎁 <span class="i18n"><span class="ko">기프티콘 포함 (추후 예비)</span><span class="vi">Có Gifticon (dự phòng sau này)</span></span></span><span class="verline"></span></div>
+<div class="card full">
+<div class="card-t"><span class="i18n"><span class="ko">부제 (Subtitle)</span><span class="vi">Phụ đề (Subtitle)</span></span><span class="charcount i18n"><span class="ko">30자 이내 · 현재 22자</span><span class="vi">Trong 30 ký tự · Hiện tại 22</span></span></div>
+<div class="copybox inline">
+<button class="copybtn" type="button" onclick="copyText(this,'subtitle-full-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="subtitle-full-ko">쇼핑하고 티켓·포인트 모아 기프티콘 교환</div>
 </div>
 <div class="txt-vi-sub vi-only">Mua sắm, tích vé·điểm rồi đổi Gifticon <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
-<div class="srcnote">앱 이름에 이미 있는 단어(경유 쇼핑·리워드·앱테크)는 반복하지 않고, 기프티콘 교환·룰렛 등 이름에 없는 정보를 새로 추가</div>
+<div class="srcnote">기프티콘 기능 출시 후 사용할 예비 문구 — 구글 플레이 문구 기준</div>
 </div>
 
-<div class="card">
-<div class="card-t"><span class="i18n"><span class="ko">프로모션 텍스트 (Promotional Text) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Văn bản quảng cáo (Promotional Text) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">170자 이내 · 현재 81자</span><span class="vi">Trong 170 ký tự · Hiện tại 81</span></span></div>
+<div class="verpick"><span class="verpick-tag launch">🚀 <span class="i18n"><span class="ko">출시용 (기프티콘 제외)</span><span class="vi">Bản ra mắt (không có Gifticon)</span></span></span><span class="verline"></span></div>
+<div class="card launch">
+<div class="card-t"><span class="i18n"><span class="ko">프로모션 텍스트 (Promotional Text) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Văn bản quảng cáo (Promotional Text) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">170자 이내 · 현재 71자</span><span class="vi">Trong 170 ký tự · Hiện tại 71</span></span></div>
 <div class="copybox inline">
-<button class="copybtn" type="button" onclick="copyText(this,'promo-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
-<div class="txt-ko" id="promo-ko">출석하면 포인트, 매일 룰렛 돌리면 티켓까지! 쿠팡 등 경유 쇼핑으로 쌓은 티켓·포인트를 스타벅스·이디야 등 인기 기프티콘으로 바로 교환해보세요.</div>
+<button class="copybtn" type="button" onclick="copyText(this,'promo-launch-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="promo-launch-ko">출석하면 포인트, 매일 룰렛 돌리면 티켓까지! 쿠팡 등 경유 쇼핑으로 쌓은 티켓으로 잭팟 룰렛에 도전하고 경품에도 응모해보세요.</div>
+</div>
+<div class="txt-vi-sub vi-only">Điểm danh nhận điểm, quay vòng quay mỗi ngày nhận vé! Dùng vé tích được từ mua sắm chuyển tiếp (Coupang…) để thử vận may ở Vòng quay Jackpot và dự thưởng. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="srcnote">기프티콘 교환 문장을 빼고 잭팟 룰렛·경품 응모로 티켓 용처를 설명</div>
+</div>
+<div class="verpick"><span class="verpick-tag full">🎁 <span class="i18n"><span class="ko">기프티콘 포함 (추후 예비)</span><span class="vi">Có Gifticon (dự phòng sau này)</span></span></span><span class="verline"></span></div>
+<div class="card full">
+<div class="card-t"><span class="i18n"><span class="ko">프로모션 텍스트 (Promotional Text)</span><span class="vi">Văn bản quảng cáo (Promotional Text)</span></span><span class="charcount i18n"><span class="ko">170자 이내 · 현재 81자</span><span class="vi">Trong 170 ký tự · Hiện tại 81</span></span></div>
+<div class="copybox inline">
+<button class="copybtn" type="button" onclick="copyText(this,'promo-full-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="promo-full-ko">출석하면 포인트, 매일 룰렛 돌리면 티켓까지! 쿠팡 등 경유 쇼핑으로 쌓은 티켓·포인트를 스타벅스·이디야 등 인기 기프티콘으로 바로 교환해보세요.</div>
 </div>
 <div class="txt-vi-sub vi-only">Điểm danh nhận điểm, quay vòng quay mỗi ngày nhận vé! Đổi ngay vé·điểm tích được từ mua sắm chuyển tiếp (Coupang…) thành Gifticon Starbucks·Ediya và các thương hiệu nổi tiếng khác. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
-<div class="srcnote">심사·검색순위엔 영향 없는 필드(애플 공식 안내) — 앱 화면 상단 배너처럼 계절/이벤트에 맞춰 수시로 바꿔도 됨. 구글 플레이엔 없는 필드라 새로 작성</div>
+<div class="srcnote">기프티콘 기능 출시 후 사용할 예비 문구</div>
 </div>
 
 <div class="card">
@@ -120,14 +158,72 @@ table.spec tr:last-child td{border-bottom:none}
 <div class="txt-ko" id="shortdesc-ko">경유 쇼핑만 해도 티켓·포인트가 쌓여요! 출석·룰렛으로 더 모아 기프티콘으로 교환하세요.</div>
 </div>
 <div class="txt-vi-sub vi-only">Chỉ cần mua sắm qua link là tích vé·điểm! Tích thêm bằng điểm danh·vòng quay rồi đổi gifticon. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
-<div class="srcnote">애플 앱스토어엔 「간단한 설명」 필드가 없음(부제·프로모션 텍스트가 그 역할). 구글 플레이 동시 등록 시 재사용하도록 참고용으로만 남김</div>
+<div class="srcnote">애플 앱스토어엔 「간단한 설명」 필드가 없음(부제·프로모션 텍스트가 그 역할). 이건 구글 플레이용 참고 문구라 두 벌로 안 나눔 — 구글 플레이도 기프티콘 뺄지는 별도 확인 필요</div>
 </div>
 
-<div class="card">
+<div class="verpick"><span class="verpick-tag launch">🚀 <span class="i18n"><span class="ko">출시용 (기프티콘 제외)</span><span class="vi">Bản ra mắt (không có Gifticon)</span></span></span><span class="verline"></span></div>
+<div class="card launch">
+<div class="card-t"><span class="i18n"><span class="ko">설명 (Description)</span><span class="vi">Mô tả (Description)</span></span><span class="charcount i18n"><span class="ko">4,000자 이내 · 현재 약 430자</span><span class="vi">Trong 4.000 ký tự · Hiện tại khoảng 430</span></span></div>
+<div class="copybox">
+<button class="copybtn" type="button" onclick="copyText(this,'full-desc-launch-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<pre id="full-desc-launch-ko">프라이스픽 – 쇼핑이 곧 리워드가 되는 경유 쇼핑 앱테크
+
+늘 하던 온라인 쇼핑, 프라이스픽을 한 번 거쳐 들어가기만 하면 티켓과 포인트가 쌓입니다. 추가 비용도, 번거로운 미션도 없어요.
+
+■ 경유 쇼핑 – 사면 살수록 쌓이는 티켓
+· 프라이스픽에서 쇼핑몰로 이동해 구매하면 티켓 자동 적립
+· 구매 금액에 따라 브론즈·실버·골드 등급 티켓
+
+■ 매일 쌓는 재미 – 출석·룰렛·이벤트 티켓
+· 매일 출석만 해도 포인트
+· 행운 룰렛으로 포인트·이벤트 티켓
+
+■ 잭팟 룰렛 – 이벤트 티켓으로 더 큰 도전
+· 모은 이벤트 티켓으로 잭팟 룰렛 참여
+· 골드 티켓 등 더 큰 보상에 도전
+
+■ 경품 응모
+· 이벤트 티켓으로 다양한 경품에 응모
+
+■ 친구 초대
+· 초대하면 나도 친구도 포인트
+
+닉네임만으로 편하게 시작. 지금 프라이스픽 설치하고 쇼핑부터 리워드를 시작하세요!</pre>
+</div>
+<div class="vi-full-t vi-only">번역 참고용 · Bản dịch tham khảo (không phải bản đăng ký)</div>
+<div class="copybox vi-only" style="margin-top:8px">
+<pre style="color:var(--ink3);font-size:12.3px">PricePick – Ứng dụng mua sắm chuyển tiếp biến việc mua sắm thành phần thưởng
+
+Vẫn là mua sắm trực tuyến như thường ngày, chỉ cần vào qua PricePick một lần là vé và điểm được tích lũy. Không phát sinh chi phí, không cần nhiệm vụ rắc rối.
+
+■ Mua sắm chuyển tiếp – Mua càng nhiều, vé càng tích
+· Chuyển từ PricePick sang sàn mua sắm để mua thì tự động tích vé
+· Vé hạng Đồng·Bạc·Vàng theo số tiền mua
+
+■ Niềm vui tích lũy mỗi ngày – Điểm danh·Vòng quay·Vé sự kiện
+· Chỉ cần điểm danh mỗi ngày là có điểm
+· Vòng quay may mắn nhận điểm·vé sự kiện
+
+■ Vòng quay Jackpot – Thử thách lớn hơn với vé sự kiện
+· Dùng vé sự kiện đã tích để tham gia Vòng quay Jackpot
+· Thử vận may với phần thưởng lớn hơn như vé Vàng
+
+■ Dự thưởng
+· Dùng vé sự kiện để dự thưởng nhiều giải khác nhau
+
+■ Mời bạn bè
+· Mời bạn là cả hai đều nhận điểm
+
+Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay và bắt đầu nhận thưởng từ việc mua sắm!</pre>
+</div>
+<div class="srcnote">「■ 기프티콘 교환」 항목을 빼고 「■ 잭팟 룰렛」·「■ 경품 응모」로 티켓 용처를 다시 설명 — 안 그러면 "모아서 뭘 하는지"가 사라짐</div>
+</div>
+<div class="verpick"><span class="verpick-tag full">🎁 <span class="i18n"><span class="ko">기프티콘 포함 (추후 예비)</span><span class="vi">Có Gifticon (dự phòng sau này)</span></span></span><span class="verline"></span></div>
+<div class="card full">
 <div class="card-t"><span class="i18n"><span class="ko">설명 (Description)</span><span class="vi">Mô tả (Description)</span></span><span class="charcount i18n"><span class="ko">4,000자 이내 · 현재 약 400자</span><span class="vi">Trong 4.000 ký tự · Hiện tại khoảng 400</span></span></div>
 <div class="copybox">
-<button class="copybtn" type="button" onclick="copyText(this,'full-desc-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
-<pre id="full-desc-ko">프라이스픽 – 쇼핑이 곧 리워드가 되는 경유 쇼핑 앱테크
+<button class="copybtn" type="button" onclick="copyText(this,'full-desc-full-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<pre id="full-desc-full-ko">프라이스픽 – 쇼핑이 곧 리워드가 되는 경유 쇼핑 앱테크
 
 늘 하던 온라인 쇼핑, 프라이스픽을 한 번 거쳐 들어가기만 하면 티켓과 포인트가 쌓입니다. 추가 비용도, 번거로운 미션도 없어요.
 
@@ -171,17 +267,28 @@ Vẫn là mua sắm trực tuyến như thường ngày, chỉ cần vào qua Pr
 
 Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay và bắt đầu nhận thưởng từ việc mua sắm!</pre>
 </div>
-<div class="srcnote">구글 플레이 「전체 설명」을 그대로 재사용 — 4,000자 한도에 여유가 커서 축약할 필요 없음</div>
+<div class="srcnote">기프티콘 기능 출시 후 사용할 예비 문구 — 구글 플레이 「전체 설명」 원본</div>
 </div>
 
-<div class="card">
-<div class="card-t"><span class="i18n"><span class="ko">키워드 (Keywords) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Từ khóa (Keywords) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">100자 이내(쉼표 구분, 공백 없이) · 현재 66자</span><span class="vi">Trong 100 ký tự (phân cách bằng dấu phẩy, không khoảng trắng) · Hiện tại 66</span></span></div>
+<div class="verpick"><span class="verpick-tag launch">🚀 <span class="i18n"><span class="ko">출시용 (기프티콘 제외)</span><span class="vi">Bản ra mắt (không có Gifticon)</span></span></span><span class="verline"></span></div>
+<div class="card launch">
+<div class="card-t"><span class="i18n"><span class="ko">키워드 (Keywords) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Từ khóa (Keywords) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">100자 이내(쉼표 구분, 공백 없이) · 현재 64자</span><span class="vi">Trong 100 ký tự (phân cách bằng dấu phẩy, không khoảng trắng) · Hiện tại 64</span></span></div>
 <div class="copybox inline">
-<button class="copybtn" type="button" onclick="copyText(this,'keywords-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
-<div class="txt-ko" id="keywords-ko" style="font-size:13.5px;font-weight:600">리워드앱,적립,쿠팡,기프티콘,앱테크,포인트적립,캐시백,쇼핑리워드,룰렛,출석체크,경유쇼핑,기프티콘교환,친구초대,모바일쿠폰</div>
+<button class="copybtn" type="button" onclick="copyText(this,'keywords-launch-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="keywords-launch-ko" style="font-size:13.5px;font-weight:600">리워드앱,적립,쿠팡,앱테크,포인트적립,캐시백,쇼핑리워드,룰렛,출석체크,경유쇼핑,친구초대,경품응모,잭팟룰렛,모바일쿠폰</div>
 </div>
 <div class="txt-vi-sub vi-only">한국 앱스토어 검색용 한국어 키워드라 베트남어로 옮기지 않음 (검색 노출 목적) <span style="color:var(--ink3)">— Từ khóa tìm kiếm tiếng Hàn dành riêng cho App Store Hàn Quốc nên không dịch sang tiếng Việt</span></div>
-<div class="srcnote">신규 작성(구글 플레이엔 없는 필드). 앱 이름·부제에 이미 들어간 「프라이스픽·경유쇼핑·티켓·포인트·기프티콘(부제)」은 중복이라 빼고, 검색 유입 효율이 높은 단어 위주로 구성. 복수형·일반 단어(앱/게임)·특수문자는 애플이 비권장</div>
+<div class="srcnote">「기프티콘·기프티콘교환」을 빼고 「경품응모·잭팟룰렛」으로 대체</div>
+</div>
+<div class="verpick"><span class="verpick-tag full">🎁 <span class="i18n"><span class="ko">기프티콘 포함 (추후 예비)</span><span class="vi">Có Gifticon (dự phòng sau này)</span></span></span><span class="verline"></span></div>
+<div class="card full">
+<div class="card-t"><span class="i18n"><span class="ko">키워드 (Keywords)</span><span class="vi">Từ khóa (Keywords)</span></span><span class="charcount i18n"><span class="ko">100자 이내(쉼표 구분, 공백 없이) · 현재 66자</span><span class="vi">Trong 100 ký tự (phân cách bằng dấu phẩy, không khoảng trắng) · Hiện tại 66</span></span></div>
+<div class="copybox inline">
+<button class="copybtn" type="button" onclick="copyText(this,'keywords-full-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="keywords-full-ko" style="font-size:13.5px;font-weight:600">리워드앱,적립,쿠팡,기프티콘,앱테크,포인트적립,캐시백,쇼핑리워드,룰렛,출석체크,경유쇼핑,기프티콘교환,친구초대,모바일쿠폰</div>
+</div>
+<div class="txt-vi-sub vi-only">한국 앱스토어 검색용 한국어 키워드라 베트남어로 옮기지 않음 (검색 노출 목적) <span style="color:var(--ink3)">— Từ khóa tìm kiếm tiếng Hàn dành riêng cho App Store Hàn Quốc nên không dịch sang tiếng Việt</span></div>
+<div class="srcnote">기프티콘 기능 출시 후 사용할 예비 문구</div>
 </div>
 
 <div class="card">
@@ -214,15 +321,39 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 </div>
 
 <div class="gcard">
-<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">스크린샷 5장</span><span class="vi">5 ảnh chụp màn hình</span></span></span><span class="gcard-spec">1320×2868</span></div>
-<div class="shot-row">
-<div class="shot"><img src="/devqa/assets/appstore/screenshot-01.png" alt="홈 화면" onclick="lbOpen('/devqa/assets/appstore/screenshot-01.png','홈')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">1. 홈</span><span class="vi">1. Trang chủ</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/screenshot-01.png" download="pricepick-appstore-screenshot-01.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
-<div class="shot"><img src="/devqa/assets/appstore/screenshot-02.png" alt="룰렛 화면" onclick="lbOpen('/devqa/assets/appstore/screenshot-02.png','룰렛')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">2. 룰렛</span><span class="vi">2. Vòng quay</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/screenshot-02.png" download="pricepick-appstore-screenshot-02.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
-<div class="shot"><img src="/devqa/assets/appstore/screenshot-03.png" alt="출석 화면" onclick="lbOpen('/devqa/assets/appstore/screenshot-03.png','출석')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">3. 출석</span><span class="vi">3. Điểm danh</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/screenshot-03.png" download="pricepick-appstore-screenshot-03.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
-<div class="shot"><img src="/devqa/assets/appstore/screenshot-04.png" alt="혜택 화면" onclick="lbOpen('/devqa/assets/appstore/screenshot-04.png','혜택')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">4. 혜택</span><span class="vi">4. Ưu đãi</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/screenshot-04.png" download="pricepick-appstore-screenshot-04.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
-<div class="shot"><img src="/devqa/assets/appstore/screenshot-05.png" alt="기프티콘 화면" onclick="lbOpen('/devqa/assets/appstore/screenshot-05.png','기프티콘')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">5. 기프티콘</span><span class="vi">5. Gifticon</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/screenshot-05.png" download="pricepick-appstore-screenshot-05.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">스크린샷 5장 — 규격 안내</span><span class="vi">5 ảnh chụp màn hình — Hướng dẫn quy cách</span></span></span><span class="gcard-spec">1320×2868</span></div>
+<div class="warnbox" style="margin-bottom:0"><b><span class="i18n"><span class="ko">이미지는 별도 제작 예정입니다.</span><span class="vi">Hình ảnh sẽ được tạo riêng.</span></span></b> <span class="i18n"><span class="ko">규격 맞춘 최종 이미지 5장은 김반장이 아래 「캡처 원본」을 ChatGPT에 넘겨 직접 만드십니다. 여기서는 애플이 요구하는 규격만 안내합니다.</span><span class="vi">5 ảnh cuối cùng đúng quy cách sẽ do người quản lý tự tạo bằng cách đưa "Ảnh gốc chụp màn hình" bên dưới cho ChatGPT. Ở đây chỉ hướng dẫn quy cách mà Apple yêu cầu.</span></span></div>
+<table class="spec" style="margin-top:12px">
+<tbody>
+<tr><td style="font-weight:700;color:var(--ink1)"><span class="i18n"><span class="ko">필수 규격</span><span class="vi">Quy cách bắt buộc</span></span></td><td>1320×2868px (6.9<span class="i18n"><span class="ko">형 디스플레이</span><span class="vi">" display</span></span>)</td></tr>
+<tr><td style="font-weight:700;color:var(--ink1)"><span class="i18n"><span class="ko">그 외 허용 규격</span><span class="vi">Quy cách khác được chấp nhận</span></span></td><td>1290×2796px · 1260×2736px</td></tr>
+<tr><td style="font-weight:700;color:var(--ink1)"><span class="i18n"><span class="ko">형식·투명도</span><span class="vi">Định dạng·độ trong suốt</span></span></td><td>PNG/JPEG, <span class="i18n"><span class="ko">알파 채널·투명도 금지</span><span class="vi">không kênh alpha·trong suốt</span></span></td></tr>
+<tr><td style="font-weight:700;color:var(--ink1)"><span class="i18n"><span class="ko">장수</span><span class="vi">Số lượng</span></span></td><td>1~10<span class="i18n"><span class="ko">장</span><span class="vi"> ảnh</span></span></td></tr>
+<tr><td style="font-weight:700;color:var(--ink1)"><span class="i18n"><span class="ko">화면 구성</span><span class="vi">Thành phần màn hình</span></span></td><td><span class="i18n"><span class="ko">구글 플레이와 동일 5개(홈·룰렛·출석·혜택·기프티콘) — 단, <b>출시 버전에는 기프티콘 화면을 넣지 않습니다.</b> 아래 「캡처 원본」의 다른 화면(내 티켓&amp;포인트·티켓교환소 등)으로 대체 검토</span><span class="vi">Giống Google Play, 5 màn (Trang chủ·Vòng quay·Điểm danh·Ưu đãi·Gifticon) — nhưng <b>phiên bản ra mắt sẽ không đưa màn hình Gifticon vào.</b> Cân nhắc thay bằng màn hình khác trong "Ảnh gốc" bên dưới (Vé&amp;Điểm của tôi·Quầy đổi vé...)</span></span></td></tr>
+</tbody>
+</table>
+<div class="srcnote" style="margin-top:10px">출처: <a href="https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications/" target="_blank" rel="noopener">Apple Developer — Screenshot Specifications</a> (6.9형 디스플레이 항목, 직접 확인)</div>
 </div>
-<div class="icon-note" style="margin-top:8px"><span class="i18n"><span class="ko">클릭하면 크게 보기. 앱 데모(pricepick-demo.vercel.app/app)에서 직접 캡처 후 1320×2868로 정확히 맞춤, 알파 채널 없음. 구글 플레이와 동일한 5개 화면(홈·룰렛·출석·혜택·기프티콘)으로 구성. 표시된 수치(0장 등)는 신규 계정 기준 화면입니다.</span><span class="vi">Nhấn để xem lớn. Chụp trực tiếp từ app demo (pricepick-demo.vercel.app/app) rồi chỉnh đúng 1320×2868, không có kênh alpha. Gồm cùng 5 màn hình như Google Play (Trang chủ·Vòng quay·Điểm danh·Ưu đãi·Gifticon). Các số liệu hiển thị (0 vé...) là màn hình theo tài khoản mới.</span></span></div>
+
+<div class="gcard">
+<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">캡처 원본 10장 (미가공)</span><span class="vi">10 ảnh gốc chụp màn hình (chưa xử lý)</span></span></span><span class="gcard-spec"><span class="i18n"><span class="ko">앱 데모 실캡처</span><span class="vi">Chụp thật từ app demo</span></span></span></div>
+<div class="warnbox" style="margin-bottom:12px"><b><span class="i18n"><span class="ko">규격 미가공 원본 — 스토어 제출용으로 리사이즈 필요.</span><span class="vi">Ảnh gốc chưa qua xử lý quy cách — cần resize trước khi nộp lên store.</span></span></b> <span class="i18n"><span class="ko">애플 규격(1320×2868)에 맞추지 않고 앱 화면을 있는 그대로 캡처했습니다. ChatGPT 등으로 규격에 맞게 다시 제작할 때 원본으로 사용하세요.</span><span class="vi">Chưa chỉnh theo quy cách Apple (1320×2868) mà chụp nguyên trạng màn hình app. Dùng làm ảnh gốc khi tạo lại đúng quy cách bằng ChatGPT hoặc công cụ khác.</span></span></div>
+<div class="raw-grid">
+<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-01-home.png" alt="홈" onclick="lbOpen('/devqa/assets/appstore/raw/raw-01-home.png','홈')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">1. 홈</span><span class="vi">1. Trang chủ</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-01-home.png" download="pricepick-raw-01-home.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-02-daily-roulette.png" alt="매일 행운 룰렛" onclick="lbOpen('/devqa/assets/appstore/raw/raw-02-daily-roulette.png','매일 행운 룰렛')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">2. 매일 행운 룰렛</span><span class="vi">2. Vòng quay hằng ngày</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-02-daily-roulette.png" download="pricepick-raw-02-daily-roulette.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-03-jackpot-roulette.png" alt="잭팟 룰렛" onclick="lbOpen('/devqa/assets/appstore/raw/raw-03-jackpot-roulette.png','잭팟 룰렛')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">3. 잭팟 룰렛</span><span class="vi">3. Vòng quay Jackpot</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-03-jackpot-roulette.png" download="pricepick-raw-03-jackpot-roulette.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-04-attendance.png" alt="출석체크" onclick="lbOpen('/devqa/assets/appstore/raw/raw-04-attendance.png','출석체크')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">4. 출석체크</span><span class="vi">4. Điểm danh</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-04-attendance.png" download="pricepick-raw-04-attendance.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-05-benefit.png" alt="혜택" onclick="lbOpen('/devqa/assets/appstore/raw/raw-05-benefit.png','혜택')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">5. 혜택</span><span class="vi">5. Ưu đãi</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-05-benefit.png" download="pricepick-raw-05-benefit.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="raw-item excluded"><img src="/devqa/assets/appstore/raw/raw-06-gifticon.png" alt="기프티콘" onclick="lbOpen('/devqa/assets/appstore/raw/raw-06-gifticon.png','기프티콘')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">6. 기프티콘</span><span class="vi">6. Gifticon</span></span></span><span class="badge-exclude"><span class="i18n"><span class="ko">출시 버전 제외</span><span class="vi">Loại khỏi bản ra mắt</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-06-gifticon.png" download="pricepick-raw-06-gifticon.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-07-my-tickets-points.png" alt="내 티켓 & 포인트" onclick="lbOpen('/devqa/assets/appstore/raw/raw-07-my-tickets-points.png','내 티켓 & 포인트')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">7. 내 티켓 &amp; 포인트</span><span class="vi">7. Vé &amp; Điểm của tôi</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-07-my-tickets-points.png" download="pricepick-raw-07-my-tickets-points.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-08-exchange.png" alt="티켓 교환소" onclick="lbOpen('/devqa/assets/appstore/raw/raw-08-exchange.png','티켓 교환소')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">8. 티켓 교환소</span><span class="vi">8. Quầy đổi vé</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-08-exchange.png" download="pricepick-raw-08-exchange.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-09-coupang-bridge.png" alt="쿠팡 경유 화면" onclick="lbOpen('/devqa/assets/appstore/raw/raw-09-coupang-bridge.png','쿠팡 경유 화면')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">9. 쿠팡 경유 화면</span><span class="vi">9. Màn hình chuyển tiếp Coupang</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-09-coupang-bridge.png" download="pricepick-raw-09-coupang-bridge.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-10-my.png" alt="마이" onclick="lbOpen('/devqa/assets/appstore/raw/raw-10-my.png','마이')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">10. 마이</span><span class="vi">10. Của tôi</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-10-my.png" download="pricepick-raw-10-my.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+</div>
+<div class="icon-note" style="margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+<span class="i18n"><span class="ko">클릭하면 크게 보기. 티켓·포인트 값이 채워진 테스트 계정으로 캡처(빈 값 없음). 「6. 기프티콘」엔 출시 버전 제외 뱃지가 붙어 있습니다 — 화면은 지우지 않고 남겨뒀습니다(나중에 사용).</span><span class="vi">Nhấn để xem lớn. Chụp bằng tài khoản test đã có sẵn vé·điểm (không có giá trị trống). "6. Gifticon" có gắn nhãn loại khỏi bản ra mắt — vẫn giữ lại màn hình này (dùng sau này).</span></span>
+<a class="dlbtn" href="/devqa/assets/appstore/pricepick-appstore-raw-10.zip" download="pricepick-appstore-raw-10.zip"><span class="i18n"><span class="ko">전체 다운로드 (zip) ↓</span><span class="vi">Tải tất cả (zip) ↓</span></span></a>
+</div>
 </div>
 
 <div class="gcard">
