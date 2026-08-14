@@ -102,19 +102,15 @@ details.dcard summary:hover{background:var(--bg)}
 details.dcard .dbody{padding:0 18px 16px}
 details.dcard .dright{display:flex;align-items:center;gap:8px}
 .appendix-h{font-size:12px;font-weight:800;color:var(--ink3);letter-spacing:.04em;margin:30px 0 6px}
-.maintab-nav{display:flex;gap:6px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:6px;margin:20px 0 28px;position:sticky;top:10px;z-index:20;box-shadow:0 6px 20px rgba(31,35,48,.06)}
-.maintab{flex:1;padding:13px 10px;font-size:13px;font-weight:800;color:var(--ink3);background:none;border:none;border-radius:11px;cursor:pointer;text-align:center;font-family:inherit;transition:background .15s,color .15s}
-.maintab .mt-badge{display:block;font-size:10px;font-weight:700;margin-top:3px;opacity:.85}
-.maintab.active{color:#fff}
-.maintab[data-tab="testflight"].active{background:linear-gradient(120deg,#845EEE,#6a45d4);box-shadow:0 4px 14px rgba(132,94,238,.35)}
-.maintab[data-tab="launch"].active{background:#5a6472;box-shadow:0 4px 14px rgba(90,100,114,.3)}
-.maintab[data-tab="reference"].active{background:#3f4658;box-shadow:0 4px 14px rgba(63,70,88,.3)}
+.maintab-nav{display:flex;gap:4px;background:#1c1d24;border:1px solid #2c2d36;border-radius:14px;padding:10px 10px 0;margin:20px 0 28px;overflow-x:auto;scrollbar-width:thin}
+.maintab{appearance:none;border:none;background:transparent;color:#8a8b96;font-size:13px;font-weight:600;padding:10px 14px;border-radius:10px 10px 0 0;cursor:pointer;white-space:nowrap;flex:0 0 auto;transition:background .15s ease,color .15s ease;font-family:inherit}
+.maintab:hover{color:#d6d7e0}
+.maintab.active{background:#f5f5f7;color:#14151a}
 .mainpanel{display:none}
 .mainpanel.active{display:block}
 .panel-intro{border-left:3px solid var(--pp);padding:11px 16px;margin:0 0 24px;font-size:13px;color:var(--ink2);background:var(--pp-l);border-radius:0 10px 10px 0}
 .panel-intro.later{border-left-color:#8b93a7;background:#f4f5f8}
 .panel-intro.ref{border-left-color:#c9791a;background:var(--warn-bg)}
-@media (max-width:480px){.maintab{font-size:11.5px;padding:11px 6px}.maintab .mt-badge{font-size:9px}.maintab-nav{position:static}}
 </style></head><body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
@@ -134,9 +130,9 @@ details.dcard .dright{display:flex;align-items:center;gap:8px}
 </div>
 
 <div class="maintab-nav" role="tablist">
-<button class="maintab active" type="button" data-tab="testflight" onclick="switchMainTab(this,'testflight')" role="tab" aria-selected="true">🚀 <span class="i18n"><span class="ko">1단계 · TestFlight</span><span class="vi">Giai đoạn 1 · TestFlight</span></span><span class="mt-badge i18n"><span class="ko">지금 하는 것</span><span class="vi">Đang làm</span></span></button>
-<button class="maintab" type="button" data-tab="launch" onclick="switchMainTab(this,'launch')" role="tab" aria-selected="false">🎯 <span class="i18n"><span class="ko">2단계 · 정식 출시</span><span class="vi">Giai đoạn 2 · Ra mắt</span></span><span class="mt-badge i18n"><span class="ko">조건 충족 후</span><span class="vi">Sau điều kiện</span></span></button>
-<button class="maintab" type="button" data-tab="reference" onclick="switchMainTab(this,'reference')" role="tab" aria-selected="false">📎 <span class="i18n"><span class="ko">자료 · 참고</span><span class="vi">Tài liệu · Tham khảo</span></span><span class="mt-badge i18n"><span class="ko">공통 소재</span><span class="vi">Dùng chung</span></span></button>
+<button class="maintab active" type="button" data-tab="testflight" onclick="switchMainTab(this,'testflight')" role="tab" aria-selected="true"><span class="i18n"><span class="ko">1단계 · TestFlight</span><span class="vi">Giai đoạn 1 · TestFlight</span></span></button>
+<button class="maintab" type="button" data-tab="launch" onclick="switchMainTab(this,'launch')" role="tab" aria-selected="false"><span class="i18n"><span class="ko">2단계 · 정식 출시</span><span class="vi">Giai đoạn 2 · Ra mắt</span></span></button>
+<button class="maintab" type="button" data-tab="reference" onclick="switchMainTab(this,'reference')" role="tab" aria-selected="false"><span class="i18n"><span class="ko">자료 · 참고</span><span class="vi">Tài liệu · Tham khảo</span></span></button>
 </div>
 
 <!-- ==================== 탭 1: TestFlight ==================== -->
