@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>앱 질문 답변 · Kelvin · 2026-08-14</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box ul{margin:6px 0 0 18px;padding:0}
+.ref-box li{margin-bottom:3px}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:220px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">앱 질문 답변 · Kelvin · 2026-08-14</span><span class="vi">Giải đáp câu hỏi App · Kelvin · 2026-08-14</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Kelvin · App · 적립 가능 쇼핑몰 로고 표시 방식 (2차)</span><span class="vi">Kelvin · App · Cách hiển thị logo cửa hàng tích lũy (lần 2)</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건</span><span class="vi">1 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 1</span><span class="vi">Đã chốt 1</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장 확정</span><span class="vi">Căn cứ: Người quản lý đã chốt</span></span></span></div>
+
+<!-- ==================== K3 : 제휴몰 로고 표시 방식 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 적립 가능 쇼핑몰 — 로고를 구글 파비콘으로 쓸지, CMS에 등록할지</span><span class="vi">1. Cửa hàng tích lũy — Dùng favicon Google hay đăng ký trên CMS</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">적립 가능 쇼핑몰 목록 — 앱에 쇼핑몰 로고를 표시해야 하는데 CMS엔 그 정보가 없습니다. 구글 favicon 서비스 URL(예: https://www.google.com/s2/favicons?domain=coupang.com&amp;sz=64)을 쓸까요, 아니면 CMS 제휴몰 설정에 로고를 추가할까요?</span><span class="vi">Danh sách cửa hàng tích lũy — App cần hiển thị logo cửa hàng nhưng CMS chưa có dữ liệu này. Nên dùng URL dịch vụ favicon của Google (VD: https://www.google.com/s2/favicons?domain=coupang.com&amp;sz=64), hay thêm logo vào mục cài đặt cửa hàng liên kết trên CMS?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260814-kelvin/kelvin-q3-mall-logo.png','Kelvin 질문 첨부 — 실제 로고가 들어간 적립 가능 쇼핑몰 디자인 시안(쿠팡·11번가·G마켓·옥션·알리익스프레스·아이허브 등)')"><img src="/devqa/assets/20260814-kelvin/kelvin-q3-mall-logo.png" alt="Kelvin 질문 첨부 — 실제 로고가 들어간 적립 가능 쇼핑몰 디자인 시안" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">Kelvin 질문 첨부 — 디자인 시안(실제 브랜드 로고 적용된 상태)</span><span class="vi">Ảnh Kelvin đính kèm — bản thiết kế (đã gắn logo thương hiệu thật)</span></span></span></button></div>
+<a class="srclink" href="https://quixotic-vase-a61.notion.site/PricePick-Q-A-Mobile-14-08-1-3bc7c27539918034a32cc8479ca4daa4" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">구글 파비콘은 안 씁니다. CMS 「티켓 적립 설정」에 제휴몰별 로고를 등록하는 기능을 만들었습니다. 로고 파일은 제가 따로 드립니다.
+
+앱은 이 CMS 등록값을 읽어서 홈 화면과 「적립 가능 쇼핑몰」 목록 양쪽에 그대로 씁니다. 로고를 아직 못 받은 몰은 몰 이름 첫 글자로 된 기본 배지가 대신 표시됩니다 — 화면에 빈 자리가 뚫리진 않습니다.
+
+110개 전부 등록할 필요는 없습니다. 앱에는 「적용」 켜진 몰만 나오니까, 적용된 몰부터 순서대로 채우면 됩니다.</span><span class="vi">Không dùng favicon của Google. Đã làm tính năng đăng ký logo theo từng cửa hàng liên kết ở mục 「Cài đặt tích lũy vé」 trên CMS. File logo tôi sẽ gửi riêng.
+
+App sẽ đọc giá trị đã đăng ký trên CMS và dùng nguyên cho cả trang Home lẫn danh sách 「Cửa hàng tích lũy」. Cửa hàng nào chưa có logo thì hiện tạm huy hiệu chữ cái đầu tên cửa hàng — không để trống màn hình.
+
+Không cần đăng ký đủ cả 110 cửa hàng. App chỉ hiện cửa hàng đã bật 「Áp dụng」, nên cứ đăng ký dần theo thứ tự cửa hàng đã áp dụng trước là được.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><ul>
+<li><span class="i18n"><span class="ko">CMS 티켓·보상 &gt; 티켓 적립 설정 — 대표 제휴몰·제휴몰(링크프라이스) 표에 로고 열 신설, 등록/변경/삭제 가능. 저장은 그 구획 저장 버튼을 눌러야 반영(수수료·적립률과 같은 방식).</span><span class="vi">CMS Vé·Thưởng &gt; Cài đặt tích lũy vé — thêm cột logo vào bảng cửa hàng đại diện·cửa hàng liên kết (Linkprice), có thể đăng ký/đổi/xóa. Lưu bằng đúng nút Lưu của mục đó (giống hoa hồng·tỷ lệ tích lũy).</span></span></li>
+<li><span class="i18n"><span class="ko">앱 「적립 가능 쇼핑몰」 목록·홈 화면 몰 카드 — 구글 파비콘 이미지 주소를 지우고 CMS 등록 로고를 읽어오도록 교체. 테무는 실제 제휴몰이 아닌 샘플이라 같이 제거.</span><span class="vi">Danh sách 「Cửa hàng tích lũy」 và thẻ cửa hàng ở trang Home — đã bỏ URL favicon Google, thay bằng đọc logo đã đăng ký trên CMS. Đã xóa Temu vì chỉ là dữ liệu mẫu, không phải cửa hàng liên kết thật.</span></span></li>
+</ul></div></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱 답변 · Kelvin · 2026-08-14 · 확정 1 / 확인 필요 0</span><span class="vi">PricePick · Trả lời App · Kelvin · 2026-08-14 · Đã chốt 1 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
