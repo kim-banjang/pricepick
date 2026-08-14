@@ -1,0 +1,357 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>애플 앱스토어 등록 자료 · PricePick</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--warn:#c9791a;--warn-bg:#fdf3e2;--warn-line:#f2ddb4}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:26px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.card-t{font-size:12.5px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;display:flex;align-items:center;gap:8px;justify-content:space-between}
+.card-t .lim{font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink3)}
+.txt-ko{font-size:15px;font-weight:700;color:var(--ink1);line-height:1.55;white-space:pre-wrap}
+.txt-vi-sub{font-size:12px;color:var(--ink3);margin-top:6px;line-height:1.55;white-space:pre-wrap}
+.copybox{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:2px}
+.copybox.inline{padding:14px 84px 14px 16px}
+.copybox pre{font-family:inherit;font-size:13.3px;color:var(--ink2);white-space:pre-wrap;line-height:1.7;word-break:break-all}
+.copybtn{position:absolute;top:10px;right:10px;background:var(--pp);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.copybtn:hover{background:var(--pp-d)}
+.copybtn.done{background:var(--ok)}
+.vi-full-t{font-size:11px;font-weight:800;color:var(--pp-d);letter-spacing:.04em;margin:12px 0 6px}
+.charcount{font-size:11px;color:var(--ink3);font-weight:600}
+.gcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.gcard-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.gcard-t{font-size:14px;font-weight:800;color:var(--ink1)}
+.gcard-spec{font-size:11px;font-weight:700;color:#fff;background:var(--pp);padding:3px 10px;border-radius:20px;white-space:nowrap}
+.icon-variants{display:flex;gap:24px;flex-wrap:wrap}
+.icon-variant{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;min-width:150px;text-align:center}
+.icon-variant img{width:96px;height:96px;border-radius:22px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(31,35,48,.1)}
+.iv-label{font-size:13px;font-weight:700;color:var(--ink1)}
+.iv-spec{font-size:11px;font-weight:700;color:#fff;background:var(--pp);padding:3px 10px;border-radius:20px}
+.icon-note{font-size:12.5px;color:var(--ink2);line-height:1.55}
+.dlbtn{display:inline-flex;align-items:center;gap:4px;background:var(--pp);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;cursor:pointer;flex-shrink:0}
+.dlbtn:hover{background:var(--pp-d)}
+.shot-dl{display:inline-block;font-size:10.5px;font-weight:700;color:var(--pp-d);text-decoration:none;padding:3px 0;border:1px solid var(--pp-l);border-radius:20px;text-align:center;cursor:pointer}
+.shot-dl:hover{background:var(--pp-l)}
+.shot-row{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 8px}
+.shot{flex:0 0 auto;display:flex;flex-direction:column;gap:6px}
+.shot img{width:120px;border-radius:12px;border:1px solid var(--line);display:block;box-shadow:0 2px 10px rgba(31,35,48,.08);cursor:zoom-in}
+.shot-cap{font-size:11px;color:var(--ink3);font-weight:700;text-align:center}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+.vi-only{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+#langsw:checked ~ .wrap .vi-only{display:block}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-x:hover{background:rgba(255,255,255,.35)}
+.warnbox{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:14px 16px;margin-bottom:12px;font-size:13px;color:#8a5a12;line-height:1.6}
+.warnbox b{color:#7a4d0a}
+.srcnote{font-size:11px;color:var(--ink3);margin-top:6px}
+.srcnote a{color:var(--pp-d)}
+table.spec{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+table.spec th{text-align:left;color:var(--ink3);font-weight:700;font-size:11.5px;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.spec td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink2)}
+table.spec tr:last-child td{border-bottom:none}
+.badge-att{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.badge-att.yes{background:#fdeaea;color:#c0392b}
+.badge-att.na{background:#eef2f6;color:#5a6472}
+.reviewnote-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.qa-row{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.qa-row:last-child{border-bottom:none}
+.qa-q{font-size:12.5px;font-weight:700;color:var(--ink3);min-width:110px;flex-shrink:0}
+.qa-a{font-size:13px;color:var(--ink1);line-height:1.6}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">애플 앱스토어 등록 자료</span><span class="vi">Tài liệu đăng ký Apple App Store</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">텍스트 6종 · 그래픽 2종 · 심사 정보 · 개인정보 수집 항목 안내</span><span class="vi">6 mục văn bản · 2 mục đồ họa · Thông tin xét duyệt · Hướng dẫn mục thu thập dữ liệu cá nhân</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">스크린샷 1320×2868 (6.9형)</span><span class="vi">Ảnh chụp 1320×2868 (màn 6.9")</span></span></span><span class="chip"><span class="i18n"><span class="ko">아이콘 1024×1024, 알파 없음</span><span class="vi">Icon 1024×1024, không alpha</span></span></span><span class="chip"><span class="i18n"><span class="ko">규격 출처: Apple 공식 문서</span><span class="vi">Nguồn quy cách: Tài liệu chính thức Apple</span></span></span></div>
+
+<div class="warnbox"><b><span class="i18n"><span class="ko">이 문서만으로는 제출이 끝나지 않습니다.</span><span class="vi">Chỉ với tài liệu này thì chưa thể nộp app được.</span></span></b> <span class="i18n"><span class="ko">개인정보처리방침 공개 URL이 아직 없고(5번 항목 참고), 광고식별자(IDFA) 실제 구현 여부는 개발팀 확인이 필요합니다(6번 항목 참고).</span><span class="vi">Chưa có URL công khai cho Chính sách bảo mật (xem mục 5), và cần đội phát triển xác nhận việc triển khai thực tế của mã định danh quảng cáo (IDFA) (xem mục 6).</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 텍스트 자료</span><span class="vi">1. Tài liệu văn bản</span></span></h2>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">앱 이름 (Name)</span><span class="vi">Tên ứng dụng (Name)</span></span><span class="charcount i18n"><span class="ko">30자 이내 · 현재 24자</span><span class="vi">Trong 30 ký tự · Hiện tại 24</span></span></div>
+<div class="copybox inline">
+<button class="copybtn" type="button" onclick="copyText(this,'appname-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="appname-ko">프라이스픽 - 경유 쇼핑 적립 리워드 앱테크</div>
+</div>
+<div class="txt-vi-sub vi-only">PricePick - Ứng dụng thưởng tích lũy qua mua sắm chuyển tiếp <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="srcnote">구글 플레이 「앱 이름」과 동일 — 애플 30자 제한에 이미 부합해 그대로 사용</div>
+</div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">부제 (Subtitle) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Phụ đề (Subtitle) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">30자 이내 · 현재 22자</span><span class="vi">Trong 30 ký tự · Hiện tại 22</span></span></div>
+<div class="copybox inline">
+<button class="copybtn" type="button" onclick="copyText(this,'subtitle-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="subtitle-ko">쇼핑하고 티켓·포인트 모아 기프티콘 교환</div>
+</div>
+<div class="txt-vi-sub vi-only">Mua sắm, tích vé·điểm rồi đổi Gifticon <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="srcnote">앱 이름에 이미 있는 단어(경유 쇼핑·리워드·앱테크)는 반복하지 않고, 기프티콘 교환·룰렛 등 이름에 없는 정보를 새로 추가</div>
+</div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">프로모션 텍스트 (Promotional Text) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Văn bản quảng cáo (Promotional Text) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">170자 이내 · 현재 81자</span><span class="vi">Trong 170 ký tự · Hiện tại 81</span></span></div>
+<div class="copybox inline">
+<button class="copybtn" type="button" onclick="copyText(this,'promo-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="promo-ko">출석하면 포인트, 매일 룰렛 돌리면 티켓까지! 쿠팡 등 경유 쇼핑으로 쌓은 티켓·포인트를 스타벅스·이디야 등 인기 기프티콘으로 바로 교환해보세요.</div>
+</div>
+<div class="txt-vi-sub vi-only">Điểm danh nhận điểm, quay vòng quay mỗi ngày nhận vé! Đổi ngay vé·điểm tích được từ mua sắm chuyển tiếp (Coupang…) thành Gifticon Starbucks·Ediya và các thương hiệu nổi tiếng khác. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="srcnote">심사·검색순위엔 영향 없는 필드(애플 공식 안내) — 앱 화면 상단 배너처럼 계절/이벤트에 맞춰 수시로 바꿔도 됨. 구글 플레이엔 없는 필드라 새로 작성</div>
+</div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">간단한 설명 (구글 플레이용 · 참고)</span><span class="vi">Mô tả ngắn (dùng cho Google Play · tham khảo)</span></span></div>
+<div class="copybox inline">
+<button class="copybtn" type="button" onclick="copyText(this,'shortdesc-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="shortdesc-ko">경유 쇼핑만 해도 티켓·포인트가 쌓여요! 출석·룰렛으로 더 모아 기프티콘으로 교환하세요.</div>
+</div>
+<div class="txt-vi-sub vi-only">Chỉ cần mua sắm qua link là tích vé·điểm! Tích thêm bằng điểm danh·vòng quay rồi đổi gifticon. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="srcnote">애플 앱스토어엔 「간단한 설명」 필드가 없음(부제·프로모션 텍스트가 그 역할). 구글 플레이 동시 등록 시 재사용하도록 참고용으로만 남김</div>
+</div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">설명 (Description)</span><span class="vi">Mô tả (Description)</span></span><span class="charcount i18n"><span class="ko">4,000자 이내 · 현재 약 400자</span><span class="vi">Trong 4.000 ký tự · Hiện tại khoảng 400</span></span></div>
+<div class="copybox">
+<button class="copybtn" type="button" onclick="copyText(this,'full-desc-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<pre id="full-desc-ko">프라이스픽 – 쇼핑이 곧 리워드가 되는 경유 쇼핑 앱테크
+
+늘 하던 온라인 쇼핑, 프라이스픽을 한 번 거쳐 들어가기만 하면 티켓과 포인트가 쌓입니다. 추가 비용도, 번거로운 미션도 없어요.
+
+■ 경유 쇼핑 – 사면 살수록 쌓이는 티켓
+· 프라이스픽에서 쇼핑몰로 이동해 구매하면 티켓 자동 적립
+· 구매 금액에 따라 브론즈·실버·골드 등급 티켓
+
+■ 매일 쌓는 재미 – 출석·룰렛·이벤트 티켓
+· 매일 출석만 해도 포인트
+· 행운 룰렛으로 포인트·이벤트 티켓
+· 이벤트 티켓으로 경품 응모
+
+■ 기프티콘 교환
+· 쌓인 티켓·포인트를 인기 브랜드 기프티콘으로
+
+■ 친구 초대
+· 초대하면 나도 친구도 포인트
+
+닉네임만으로 편하게 시작. 지금 프라이스픽 설치하고 쇼핑부터 리워드를 시작하세요!</pre>
+</div>
+<div class="vi-full-t vi-only">번역 참고용 · Bản dịch tham khảo (không phải bản đăng ký)</div>
+<div class="copybox vi-only" style="margin-top:8px">
+<pre style="color:var(--ink3);font-size:12.3px">PricePick – Ứng dụng mua sắm chuyển tiếp biến việc mua sắm thành phần thưởng
+
+Vẫn là mua sắm trực tuyến như thường ngày, chỉ cần vào qua PricePick một lần là vé và điểm được tích lũy. Không phát sinh chi phí, không cần nhiệm vụ rắc rối.
+
+■ Mua sắm chuyển tiếp – Mua càng nhiều, vé càng tích
+· Chuyển từ PricePick sang sàn mua sắm để mua thì tự động tích vé
+· Vé hạng Đồng·Bạc·Vàng theo số tiền mua
+
+■ Niềm vui tích lũy mỗi ngày – Điểm danh·Vòng quay·Vé sự kiện
+· Chỉ cần điểm danh mỗi ngày là có điểm
+· Vòng quay may mắn nhận điểm·vé sự kiện
+· Dùng vé sự kiện dự thưởng
+
+■ Đổi Gifticon
+· Đổi vé·điểm đã tích thành gifticon các thương hiệu nổi tiếng
+
+■ Mời bạn bè
+· Mời bạn là cả hai đều nhận điểm
+
+Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay và bắt đầu nhận thưởng từ việc mua sắm!</pre>
+</div>
+<div class="srcnote">구글 플레이 「전체 설명」을 그대로 재사용 — 4,000자 한도에 여유가 커서 축약할 필요 없음</div>
+</div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">키워드 (Keywords) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Từ khóa (Keywords) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">100자 이내(쉼표 구분, 공백 없이) · 현재 66자</span><span class="vi">Trong 100 ký tự (phân cách bằng dấu phẩy, không khoảng trắng) · Hiện tại 66</span></span></div>
+<div class="copybox inline">
+<button class="copybtn" type="button" onclick="copyText(this,'keywords-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<div class="txt-ko" id="keywords-ko" style="font-size:13.5px;font-weight:600">리워드앱,적립,쿠팡,기프티콘,앱테크,포인트적립,캐시백,쇼핑리워드,룰렛,출석체크,경유쇼핑,기프티콘교환,친구초대,모바일쿠폰</div>
+</div>
+<div class="txt-vi-sub vi-only">한국 앱스토어 검색용 한국어 키워드라 베트남어로 옮기지 않음 (검색 노출 목적) <span style="color:var(--ink3)">— Từ khóa tìm kiếm tiếng Hàn dành riêng cho App Store Hàn Quốc nên không dịch sang tiếng Việt</span></div>
+<div class="srcnote">신규 작성(구글 플레이엔 없는 필드). 앱 이름·부제에 이미 들어간 「프라이스픽·경유쇼핑·티켓·포인트·기프티콘(부제)」은 중복이라 빼고, 검색 유입 효율이 높은 단어 위주로 구성. 복수형·일반 단어(앱/게임)·특수문자는 애플이 비권장</div>
+</div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">지원 URL (Support URL) · 마케팅 URL (Marketing URL)</span><span class="vi">URL hỗ trợ (Support URL) · URL marketing (Marketing URL)</span></span></div>
+<div class="reviewnote-box">
+<div class="qa-row"><div class="qa-q i18n"><span class="ko">지원 URL</span><span class="vi">URL hỗ trợ</span></div><div class="qa-a i18n"><span class="ko">글자 수 제한 없음(유효한 URL이면 됨). 확인 필요 — 고객센터·문의 안내 페이지가 아직 없으면 만들어야 함</span><span class="vi">Không giới hạn ký tự (chỉ cần là URL hợp lệ). Cần xác nhận — nếu chưa có trang CS/hỗ trợ thì cần tạo</span></div></div>
+<div class="qa-row"><div class="qa-q i18n"><span class="ko">마케팅 URL</span><span class="vi">URL marketing</span></div><div class="qa-a i18n"><span class="ko">선택 항목. 없으면 비워도 제출 가능</span><span class="vi">Mục tùy chọn. Có thể để trống khi nộp</span></div></div>
+</div>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 그래픽 자료</span><span class="vi">2. Tài liệu đồ họa</span></span></h2>
+
+<div class="gcard">
+<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">앱 아이콘</span><span class="vi">Icon ứng dụng</span></span></span></div>
+<div class="icon-variants">
+<div class="icon-variant">
+<img src="/devqa/assets/appstore/app-icon-1024.png" alt="PricePick 앱 아이콘 (3D 버전)" onerror="this.style.display='none'">
+<div class="iv-label"><span class="i18n"><span class="ko">앱 아이콘 (3D 버전)</span><span class="vi">Icon (bản 3D)</span></span></div>
+<div class="iv-spec">1024×1024</div>
+<a class="dlbtn" href="/devqa/assets/appstore/app-icon-1024.png" download="pricepick-appstore-icon-1024.png"><span class="i18n"><span class="ko">다운로드 ↓</span><span class="vi">Tải xuống ↓</span></span></a>
+</div>
+<div class="icon-variant">
+<img src="/devqa/assets/appstore/app-icon-flat-1024.png" alt="PricePick 앱 아이콘 (일반 버전)" onerror="this.style.display='none'">
+<div class="iv-label"><span class="i18n"><span class="ko">앱 아이콘 (일반 버전)</span><span class="vi">Icon (bản thường)</span></span></div>
+<div class="iv-spec">1024×1024</div>
+<a class="dlbtn" href="/devqa/assets/appstore/app-icon-flat-1024.png" download="pricepick-appstore-icon-flat-1024.png"><span class="i18n"><span class="ko">다운로드 ↓</span><span class="vi">Tải xuống ↓</span></span></a>
+</div>
+</div>
+<div class="icon-note" style="margin-top:12px"><span class="i18n"><span class="ko">정방형 1024×1024, 알파 채널·투명도 없음 — 확인 결과 구글 플레이용 원본 파일이 이미 알파 없는 RGB라 그대로 재사용(수정 불필요). 등록 시 둘 중 하나 선택.</span><span class="vi">Vuông 1024×1024, không kênh alpha·trong suốt — Kiểm tra thấy file gốc dùng cho Google Play đã là RGB không alpha nên dùng lại nguyên bản (không cần chỉnh sửa). Chọn 1 trong 2 khi đăng ký.</span></span></div>
+</div>
+
+<div class="gcard">
+<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">스크린샷 5장</span><span class="vi">5 ảnh chụp màn hình</span></span></span><span class="gcard-spec">1320×2868</span></div>
+<div class="shot-row">
+<div class="shot"><img src="/devqa/assets/appstore/screenshot-01.png" alt="홈 화면" onclick="lbOpen('/devqa/assets/appstore/screenshot-01.png','홈')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">1. 홈</span><span class="vi">1. Trang chủ</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/screenshot-01.png" download="pricepick-appstore-screenshot-01.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="shot"><img src="/devqa/assets/appstore/screenshot-02.png" alt="룰렛 화면" onclick="lbOpen('/devqa/assets/appstore/screenshot-02.png','룰렛')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">2. 룰렛</span><span class="vi">2. Vòng quay</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/screenshot-02.png" download="pricepick-appstore-screenshot-02.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="shot"><img src="/devqa/assets/appstore/screenshot-03.png" alt="출석 화면" onclick="lbOpen('/devqa/assets/appstore/screenshot-03.png','출석')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">3. 출석</span><span class="vi">3. Điểm danh</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/screenshot-03.png" download="pricepick-appstore-screenshot-03.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="shot"><img src="/devqa/assets/appstore/screenshot-04.png" alt="혜택 화면" onclick="lbOpen('/devqa/assets/appstore/screenshot-04.png','혜택')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">4. 혜택</span><span class="vi">4. Ưu đãi</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/screenshot-04.png" download="pricepick-appstore-screenshot-04.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="shot"><img src="/devqa/assets/appstore/screenshot-05.png" alt="기프티콘 화면" onclick="lbOpen('/devqa/assets/appstore/screenshot-05.png','기프티콘')" onerror="this.closest('.shot').style.display='none'"><span class="shot-cap"><span class="i18n"><span class="ko">5. 기프티콘</span><span class="vi">5. Gifticon</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/screenshot-05.png" download="pricepick-appstore-screenshot-05.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+</div>
+<div class="icon-note" style="margin-top:8px"><span class="i18n"><span class="ko">클릭하면 크게 보기. 앱 데모(pricepick-demo.vercel.app/app)에서 직접 캡처 후 1320×2868로 정확히 맞춤, 알파 채널 없음. 구글 플레이와 동일한 5개 화면(홈·룰렛·출석·혜택·기프티콘)으로 구성. 표시된 수치(0장 등)는 신규 계정 기준 화면입니다.</span><span class="vi">Nhấn để xem lớn. Chụp trực tiếp từ app demo (pricepick-demo.vercel.app/app) rồi chỉnh đúng 1320×2868, không có kênh alpha. Gồm cùng 5 màn hình như Google Play (Trang chủ·Vòng quay·Điểm danh·Ưu đãi·Gifticon). Các số liệu hiển thị (0 vé...) là màn hình theo tài khoản mới.</span></span></div>
+</div>
+
+<div class="gcard">
+<div class="gcard-h"><span class="gcard-t"><span class="i18n"><span class="ko">특징 그래픽 (Feature Graphic)</span><span class="vi">Đồ họa tính năng (Feature Graphic)</span></span></span></div>
+<div class="icon-note"><span class="i18n"><span class="ko">애플 앱스토어엔 이 항목 자체가 없습니다(구글 플레이 전용 규격). 애플은 대신 위 스크린샷과 앱 미리보기 영상(선택)으로 노출을 구성합니다.</span><span class="vi">Apple App Store không có mục này (chỉ dành riêng cho Google Play). Apple thay vào đó dùng ảnh chụp màn hình ở trên và video xem trước app (tùy chọn).</span></span></div>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. 심사 정보 (App Review Information)</span><span class="vi">3. Thông tin xét duyệt (App Review Information)</span></span></h2>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">로그인 정보 (Sign-In Information)</span><span class="vi">Thông tin đăng nhập (Sign-In Information)</span></span></div>
+<div class="reviewnote-box">
+<div class="qa-row"><div class="qa-q i18n"><span class="ko">데모 계정 필요?</span><span class="vi">Cần tài khoản demo?</span></div><div class="qa-a i18n"><span class="ko"><b>필요 없음</b> — "로그인 필요" 토글을 꺼두고, 아래 심사 메모에 이유를 적어둡니다.</span><span class="vi"><b>Không cần</b> — Tắt toggle "Sign-in required" và ghi lý do vào ghi chú xét duyệt bên dưới.</span></div></div>
+</div>
+<div class="vi-full-t" style="margin-top:12px"><span class="i18n"><span class="ko">심사 메모에 넣을 문안 (복사해서 "Sign-In Information" 메모란에 붙여넣기)</span><span class="vi">Đoạn văn dùng cho ghi chú xét duyệt (copy dán vào ô ghi chú "Sign-In Information")</span></span></div>
+<div class="copybox" style="margin-top:8px">
+<button class="copybtn" type="button" onclick="copyText(this,'demo-account-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<pre id="demo-account-ko">PricePick은 별도 회원가입·로그인이 없는 앱입니다. 앱을 처음 실행하면 닉네임만 입력해 바로 이용할 수 있으며(이메일·비밀번호 불필요), 원하는 경우 카카오 계정으로 추가 연동할 수 있습니다. 심사 시에는 임의의 닉네임을 입력해 진행해 주시면 됩니다. 카카오 로그인 연동 화면까지 확인이 필요하시면 알려주시면 테스트 카카오 계정을 별도로 안내드리겠습니다.</pre>
+</div>
+<div class="vi-full-t vi-only" style="margin-top:8px">번역 참고용 · Bản dịch tham khảo</div>
+<div class="copybox vi-only" style="margin-top:8px">
+<pre style="color:var(--ink3);font-size:12.3px">PricePick là ứng dụng không yêu cầu đăng ký thành viên hay đăng nhập riêng. Khi mở app lần đầu, chỉ cần nhập biệt danh (nickname) là có thể sử dụng ngay (không cần email·mật khẩu), và có thể liên kết thêm tài khoản Kakao nếu muốn. Khi xét duyệt, vui lòng nhập một biệt danh bất kỳ để tiếp tục. Nếu cần kiểm tra màn hình liên kết đăng nhập Kakao, vui lòng cho chúng tôi biết, chúng tôi sẽ cung cấp tài khoản Kakao thử nghiệm riêng.</pre>
+</div>
+</div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">심사 메모 (App Review Notes)</span><span class="vi">Ghi chú xét duyệt (App Review Notes)</span></span><span class="charcount i18n"><span class="ko">4,000자 이내</span><span class="vi">Trong 4.000 ký tự</span></span></div>
+<div class="copybox">
+<button class="copybtn" type="button" onclick="copyText(this,'reviewnote-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
+<pre id="reviewnote-ko">[서비스 구조 안내]
+PricePick은 "경유 쇼핑" 리워드 앱입니다. 이용자가 앱 안에서 쿠팡 등 제휴 쇼핑몰 링크를 눌러 외부 쇼핑몰로 이동한 뒤 그곳에서 구매를 완료하면, 제휴사가 구매 확정 신호(포스트백)를 저희 서버로 보내고, 앱은 이를 근거로 등급 티켓(브론즈·실버·골드)을 지급합니다. 앱 내에서 자체적으로 결제나 실물 상품 판매를 하지 않으며, 실제 구매·결제는 전부 이동한 외부 쇼핑몰에서 이루어집니다.
+
+[리워드 사용처]
+쌓은 티켓·포인트는 앱 내 "기프티콘샵"에서 브랜드 기프티콘(모바일 상품권)으로 교환할 수 있습니다. 실물 배송이나 앱 내 결제는 없습니다.
+
+[룰렛 기능 안내]
+"행운 룰렛"은 매일 무료로 1회 참여 가능하며, 포인트·이벤트 티켓 등 앱 내 리워드를 확률에 따라 지급하는 기능입니다. 실제 금전을 걸거나 환전하는 기능이 아니며, 참여에 별도 결제가 필요하지 않습니다.
+
+[심사 시 확인 방법]
+앱 실행 → 닉네임 입력 → 홈 화면에서 "쿠팡 구경"·"행운 룰렛"·"기프티콘" 등 주요 기능을 바로 확인하실 수 있습니다. 데모 데이터가 채워진 상태라 티켓·포인트 보유 수량은 0으로 보일 수 있습니다.</pre>
+</div>
+<div class="vi-full-t vi-only">번역 참고용 · Bản dịch tham khảo</div>
+<div class="copybox vi-only" style="margin-top:8px">
+<pre style="color:var(--ink3);font-size:12.3px">[Giới thiệu cấu trúc dịch vụ]
+PricePick là ứng dụng thưởng theo hình thức "mua sắm chuyển tiếp". Người dùng nhấn vào link sàn liên kết như Coupang trong app để chuyển sang sàn mua sắm bên ngoài, hoàn tất mua hàng tại đó, sau đó đối tác gửi tín hiệu xác nhận mua hàng (postback) về server của chúng tôi, và app cấp vé theo hạng (Đồng·Bạc·Vàng) dựa trên đó. App không tự bán hàng hay thanh toán, toàn bộ việc mua·thanh toán thực tế diễn ra ở sàn mua sắm bên ngoài.
+
+[Nơi sử dụng phần thưởng]
+Vé·điểm tích lũy có thể đổi thành Gifticon (phiếu quà tặng di động) của các thương hiệu tại "Gifticon Shop" trong app. Không có giao hàng vật lý hay thanh toán trong app.
+
+[Giới thiệu tính năng Vòng quay]
+"Vòng quay may mắn" cho phép tham gia miễn phí 1 lần/ngày, cấp thưởng trong app (điểm·vé sự kiện...) theo xác suất. Đây không phải là tính năng đặt cược hay đổi tiền thật, và không cần thanh toán riêng để tham gia.
+
+[Cách kiểm tra khi xét duyệt]
+Mở app → Nhập biệt danh → Có thể kiểm tra ngay các tính năng chính như "Xem Coupang"·"Vòng quay may mắn"·"Gifticon" ở màn hình chính. Vì là trạng thái tài khoản demo nên số lượng vé·điểm có thể hiển thị là 0.</pre>
+</div>
+</div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">개인정보처리방침 URL (Privacy Policy URL)</span><span class="vi">URL Chính sách bảo mật (Privacy Policy URL)</span></span></div>
+<div class="warnbox" style="margin-bottom:0">
+<b><span class="i18n"><span class="ko">X — 확인 결과 아직 없습니다.</span><span class="vi">X — Đã kiểm tra, hiện chưa có.</span></span></b> <span class="i18n"><span class="ko">개인정보처리방침 본문은 CMS 「약관 관리」에 저장돼 있고 앱 내 "이용약관·개인정보처리방침" 메뉴에서 볼 수 있지만, 이건 앱 안에서만 열리는 화면이라 애플이 요구하는 "외부에서 접속 가능한 공개 URL"이 아닙니다. 등록 전에 이 내용을 별도의 공개 웹페이지(예: pricepick.vercel.app/privacy)로 만들어야 합니다. <b>필수 항목이라 이것 없이는 심사 제출 자체가 불가능</b>합니다.</span><span class="vi">Nội dung Chính sách bảo mật đang được lưu trong "Quản lý điều khoản" của CMS và có thể xem trong menu "Điều khoản sử dụng·Chính sách bảo mật" trong app, nhưng đây chỉ là màn hình mở được trong app, không phải "URL công khai truy cập được từ bên ngoài" mà Apple yêu cầu. Cần tạo nội dung này thành một trang web công khai riêng (VD: pricepick.vercel.app/privacy) trước khi đăng ký. <b>Đây là mục bắt buộc nên nếu thiếu thì không thể nộp xét duyệt được.</b></span></span></div>
+</div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">연령 등급 (Age Rating)</span><span class="vi">Xếp hạng độ tuổi (Age Rating)</span></span></div>
+<div class="reviewnote-box">
+<div class="qa-row"><div class="qa-q i18n"><span class="ko">확인 방법</span><span class="vi">Cách xác nhận</span></div><div class="qa-a i18n"><span class="ko">App Store Connect의 「연령 등급」 설문에 직접 답변해야 산정됩니다(자동 계산). 여기서는 해당될 만한 항목만 안내합니다.</span><span class="vi">Phải tự trả lời khảo sát "Age Rating" trong App Store Connect thì hệ thống mới tự tính (tự động). Ở đây chỉ hướng dẫn các mục có khả năng liên quan.</span></div></div>
+<div class="qa-row"><div class="qa-q i18n"><span class="ko">확률형 보상</span><span class="vi">Thưởng theo xác suất</span></div><div class="qa-a i18n"><span class="ko">"행운 룰렛"이 확률로 포인트·티켓을 주는 기능이라 설문의 <b>"모의 도박(Simulated Gambling)"</b> 항목에서 "예"로 답해야 할 가능성이 있습니다. 실제 금전 베팅·환전은 없지만 확률형 보상 자체가 해당 여부의 판단 기준이라 개발팀·정책 담당자 확인이 필요합니다.</span><span class="vi">Vì "Vòng quay may mắn" cấp điểm·vé theo xác suất nên có khả năng phải trả lời "Có" ở mục <b>"Cờ bạc mô phỏng (Simulated Gambling)"</b> trong khảo sát. Tuy không có đặt cược·đổi tiền thật nhưng bản thân phần thưởng theo xác suất là tiêu chí đánh giá nên cần đội phát triển·phụ trách chính sách xác nhận.</span></div></div>
+<div class="qa-row"><div class="qa-q i18n"><span class="ko">기타 항목</span><span class="vi">Mục khác</span></div><div class="qa-a i18n"><span class="ko">폭력·선정성·공포·약물 등 다른 항목은 해당 사항 없어 보임(전부 "없음"으로 답변 가능할 것으로 예상)</span><span class="vi">Các mục khác như bạo lực·khiêu dâm·kinh dị·chất kích thích có vẻ không liên quan (dự kiến có thể trả lời "Không" cho tất cả)</span></div></div>
+</div>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">4. 개인정보 수집 항목 안내 (App Privacy)</span><span class="vi">4. Hướng dẫn mục thu thập dữ liệu cá nhân (App Privacy)</span></span></h2>
+
+<div class="warnbox"><b><span class="i18n"><span class="ko">⚠ 광고식별자(IDFA)를 실제로 쓰면 앱 추적 투명성(ATT) 권한 요청이 필수입니다.</span><span class="vi">⚠ Nếu thực sự dùng mã định danh quảng cáo (IDFA) thì bắt buộc phải xin quyền App Tracking Transparency (ATT).</span></span></b> <span class="i18n"><span class="ko">CMS 개인정보처리방침 원문에도 이 항목 옆에 "[개발팀 확인 1번]" 표시가 있어 — 실제 iOS 앱에 IDFA 수집이 구현돼 있는지 자체가 아직 미확인 상태입니다. 아래 표는 CMS 방침 문구를 애플 App Privacy 카테고리에 그대로 대응시킨 것이며, 실제 신고는 개발팀이 코드 기준으로 다시 확인해야 합니다.</span><span class="vi">Trong nguyên văn Chính sách bảo mật của CMS cũng có đánh dấu "[Đội dev xác nhận số 1]" bên cạnh mục này — bản thân việc IDFA có được triển khai thu thập trong app iOS thực tế hay không vẫn chưa được xác nhận. Bảng dưới đây chỉ là đối chiếu trực tiếp câu chữ trong chính sách CMS với danh mục App Privacy của Apple; việc khai báo thực tế cần đội phát triển xác nhận lại dựa trên code.</span></span></div>
+
+<div class="card">
+<div class="card-t"><span class="i18n"><span class="ko">CMS 개인정보처리방침 항목 → 애플 App Privacy 카테고리 대응표</span><span class="vi">Bảng đối chiếu mục Chính sách bảo mật CMS → Danh mục App Privacy của Apple</span></span></div>
+<div style="overflow-x:auto">
+<table class="spec">
+<thead><tr><th><span class="i18n"><span class="ko">CMS 방침의 수집 항목</span><span class="vi">Mục thu thập trong chính sách CMS</span></span></th><th><span class="i18n"><span class="ko">애플 카테고리</span><span class="vi">Danh mục Apple</span></span></th><th><span class="i18n"><span class="ko">ATT 필요</span><span class="vi">Cần ATT</span></span></th></tr></thead>
+<tbody>
+<tr><td><span class="i18n"><span class="ko">기기 광고식별자(ADID/IDFA)</span><span class="vi">Mã định danh quảng cáo thiết bị (ADID/IDFA)</span></span></td><td><span class="i18n"><span class="ko">식별자 &gt; 기기 ID</span><span class="vi">Identifiers &gt; Device ID</span></span></td><td><span class="badge-att yes"><span class="i18n"><span class="ko">필요</span><span class="vi">Cần</span></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">기기 식별정보·OS·앱 버전</span><span class="vi">Thông tin định danh thiết bị·OS·phiên bản app</span></span></td><td><span class="i18n"><span class="ko">진단 &gt; 기타 진단 데이터 / 식별자 &gt; 기기 ID</span><span class="vi">Diagnostics &gt; Other Diagnostic Data / Identifiers &gt; Device ID</span></span></td><td><span class="badge-att na">-</span></td></tr>
+<tr><td><span class="i18n"><span class="ko">푸시 알림 토큰</span><span class="vi">Token thông báo đẩy</span></span></td><td><span class="i18n"><span class="ko">식별자 &gt; 기타 식별자</span><span class="vi">Identifiers &gt; Other Identifiers</span></span></td><td><span class="badge-att na">-</span></td></tr>
+<tr><td><span class="i18n"><span class="ko">IP 주소·접속 기록</span><span class="vi">Địa chỉ IP·lịch sử truy cập</span></span></td><td><span class="i18n"><span class="ko">식별자 &gt; IP 주소 / 진단 &gt; 성능 데이터</span><span class="vi">Identifiers &gt; IP Address / Diagnostics &gt; Performance Data</span></span></td><td><span class="badge-att na">-</span></td></tr>
+<tr><td><span class="i18n"><span class="ko">카카오 회원번호·닉네임·프로필</span><span class="vi">Số hội viên Kakao·biệt danh·hồ sơ</span></span></td><td><span class="i18n"><span class="ko">연락처 정보 &gt; 이름 / 식별자 &gt; 사용자 ID</span><span class="vi">Contact Info &gt; Name / Identifiers &gt; User ID</span></span></td><td><span class="badge-att na">-</span></td></tr>
+<tr><td><span class="i18n"><span class="ko">구매 데이터(주문번호·구매금액·구매일시)</span><span class="vi">Dữ liệu mua hàng (mã đơn·số tiền·thời điểm mua)</span></span></td><td><span class="i18n"><span class="ko">구매 &gt; 구매 내역</span><span class="vi">Purchases &gt; Purchase History</span></span></td><td><span class="badge-att na">-</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="icon-note" style="margin-top:10px"><span class="i18n"><span class="ko">애플은 이 데이터들을 "사용자와 연결됨" 여부·"추적 목적 사용" 여부까지 별도로 묻습니다. 경유 구매 실적을 광고식별자로 매칭한다면(CMS 방침 원문 그대로) "추적 목적"에 해당할 가능성이 높아 ATT 문구도 함께 준비해야 합니다.</span><span class="vi">Apple còn hỏi riêng việc dữ liệu này có "liên kết với người dùng" hay không, có "dùng cho mục đích theo dõi (tracking)" hay không. Nếu việc khớp thực tích mua sắm chuyển tiếp dùng mã định danh quảng cáo (đúng như nguyên văn chính sách CMS) thì khả năng cao thuộc "mục đích theo dõi", nên cần chuẩn bị sẵn văn bản ATT.</span></span></div>
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">5. 구글 플레이와 다른 점</span><span class="vi">5. Khác biệt so với Google Play</span></span></h2>
+
+<div class="card">
+<div style="overflow-x:auto">
+<table class="spec">
+<thead><tr><th><span class="i18n"><span class="ko">항목</span><span class="vi">Mục</span></span></th><th><span class="i18n"><span class="ko">구글 플레이</span><span class="vi">Google Play</span></span></th><th><span class="i18n"><span class="ko">애플 앱스토어</span><span class="vi">Apple App Store</span></span></th></tr></thead>
+<tbody>
+<tr><td><span class="i18n"><span class="ko">스크린샷 규격</span><span class="vi">Quy cách ảnh chụp</span></span></td><td>941×1672 (9:16)</td><td>1320×2868 (6.9형)</td></tr>
+<tr><td><span class="i18n"><span class="ko">특징 그래픽</span><span class="vi">Đồ họa tính năng</span></span></td><td>1024×500 <span class="i18n"><span class="ko">필수</span><span class="vi">bắt buộc</span></span></td><td><span class="i18n"><span class="ko">해당 항목 없음</span><span class="vi">Không có mục này</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">부제(Subtitle)</span><span class="vi">Phụ đề (Subtitle)</span></span></td><td><span class="i18n"><span class="ko">없음</span><span class="vi">Không có</span></span></td><td>30<span class="i18n"><span class="ko">자</span><span class="vi"> ký tự</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">프로모션 텍스트</span><span class="vi">Văn bản quảng cáo</span></span></td><td><span class="i18n"><span class="ko">없음</span><span class="vi">Không có</span></span></td><td>170<span class="i18n"><span class="ko">자, 언제든 수정 가능(재심사 불필요)</span><span class="vi"> ký tự, có thể sửa bất cứ lúc nào (không cần xét duyệt lại)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">키워드</span><span class="vi">Từ khóa</span></span></td><td><span class="i18n"><span class="ko">설명문 안에 자연스럽게 녹여야 함</span><span class="vi">Phải lồng tự nhiên trong mô tả</span></span></td><td><span class="i18n"><span class="ko">별도 필드 100자, 쉼표 구분</span><span class="vi">Trường riêng 100 ký tự, phân cách bằng dấu phẩy</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">앱 이름 길이</span><span class="vi">Độ dài tên app</span></span></td><td>50<span class="i18n"><span class="ko">자</span><span class="vi"> ký tự</span></span></td><td>30<span class="i18n"><span class="ko">자(더 짧음)</span><span class="vi"> ký tự (ngắn hơn)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">개인정보 신고 방식</span><span class="vi">Cách khai báo dữ liệu cá nhân</span></span></td><td>Data safety <span class="i18n"><span class="ko">양식</span><span class="vi">form</span></span></td><td>App Privacy <span class="i18n"><span class="ko">양식(질문 항목이 더 세분화됨)</span><span class="vi">form (câu hỏi chi tiết hơn)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">추적 권한</span><span class="vi">Quyền theo dõi</span></span></td><td><span class="i18n"><span class="ko">해당 없음</span><span class="vi">Không áp dụng</span></span></td><td>ATT(<span class="i18n"><span class="ko">광고식별자 사용 시 필수</span><span class="vi">bắt buộc nếu dùng mã định danh quảng cáo</span></span>)</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 애플 앱스토어 등록 자료 · 스크린샷 규격 출처: </span><span class="vi">PricePick · Tài liệu đăng ký Apple App Store · Nguồn quy cách ảnh chụp: </span></span><a href="https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications/" target="_blank" rel="noopener" style="color:var(--pp-d)">Apple Developer — Screenshot Specifications</a><span class="i18n"><span class="ko"> · 2026-08-14</span><span class="vi"> · 2026-08-14</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="스크린샷"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+function copyText(btn,elId){
+  var txt=document.getElementById(elId).textContent;
+  navigator.clipboard.writeText(txt).then(function(){
+    var orig=btn.innerHTML;
+    btn.classList.add('done');
+    btn.innerHTML='<span class="i18n"><span class="ko">복사됨 ✓</span><span class="vi">Đã copy ✓</span></span>';
+    setTimeout(function(){btn.classList.remove('done');btn.innerHTML=orig;},1600);
+  });
+}
+</script>
+</body></html>
