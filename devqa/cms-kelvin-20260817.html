@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 답변 · Kelvin · 2026-08-17</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 답변 · Kelvin · 2026-08-17</span><span class="vi">Trả lời CMS PricePick · Kelvin · 2026-08-17</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Kelvin · CMS · 티켓 적립 설정 &gt; 로고 등록 모달 안내문구 성격 질문 1건 — 답변 KO/VI</span><span class="vi">Kelvin · CMS · 1 câu hỏi về tính chất đoạn chú thích trong modal Đăng ký logo ở Cài đặt tích lũy vé — Trả lời KO/VI</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건</span><span class="vi">1 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 1</span><span class="vi">Đã chốt 1</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 실제 화면 반영·코드 확인</span><span class="vi">Căn cứ: đã áp dụng lên màn hình thật·đối chiếu code</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 김반장 전달 기준 요약</span><span class="vi">Câu hỏi ở đây là bản tóm tắt do Mr Mark truyền đạt lại</span></span></span></div>
+
+<!-- ==================== Q1 : 로고 등록 모달 안내문구 — 개발자용인가 Admin용인가 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 티켓 적립 설정 — 「로고 등록」 모달 안내문구의 성격</span><span class="vi">1. Cài đặt tích lũy vé — Tính chất đoạn chú thích trong modal "Đăng ký logo"</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">Mark님이 CMS에 로고 URL 첨부 기능을 추가하신 걸 봤는데, 「로고 등록」 모달에 주석(설명) 문구가 있습니다. 이 내용은 개발자가 이해하고 구현하라고 쓴 것인가요, 아니면 실제 CMS에 그대로 나타나서 Admin이 보게 되는 것인가요?</span><span class="vi">Tôi thấy Mark đã thêm chức năng đính kèm URL logo trong CMS, và trong modal "Đăng ký logo" có một đoạn chú thích. Đoạn này là ghi chú để lập trình viên hiểu và triển khai, hay là nó hiển thị nguyên văn trên CMS thật để Admin nhìn thấy?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">둘 다 맞지만 문구를 갈랐습니다. 원래 문구엔 성격이 다른 두 가지가 섞여 있었습니다.
+
+<b>Admin이 알아야 할 사용 안내·동작</b>(로고 이미지 주소를 붙여넣으라는 것, 비워두면 몰 이름 첫 글자 배지로 표시된다는 것)은 그대로 <b>화면에 남깁니다.</b> <b>개발 결정 사항</b>(구글 파비콘 서비스를 안 쓴다는 것)과 <b>내부 표현</b>(「김반장이 제공하는」)은 <b>화면에서 뺐습니다</b> — Admin이 알 필요가 없는 내용이라서입니다.
+
+지금 화면(로고 등록 모달, 「로고 이미지 주소 (URL)」 입력칸 바로 아래)에 남은 문구:
+「로고 이미지 주소를 입력하세요. 비워두면 몰 이름 첫 글자가 표시됩니다.」
+
+빨간 테두리 강조도 뺐습니다 — 경고가 아니라 안내라서, CMS 전체가 이미 쓰고 있는 작은 회색 도움말 스타일로 바꿨습니다.
+
+로고를 비워두면 앱 「적립 가능 쇼핑몰」 화면에서 몰 이름 첫 글자 배지로 대신 표시됩니다(예: 지마켓 → "G").</span><span class="vi">Cả hai đều đúng, nhưng đã tách đoạn văn ra. Đoạn văn gốc gộp hai loại nội dung khác tính chất.
+
+<b>Hướng dẫn sử dụng·hành vi mà Admin cần biết</b> (dán địa chỉ ảnh logo vào đây, nếu để trống sẽ hiện huy hiệu chữ cái đầu tên cửa hàng) thì <b>giữ nguyên trên màn hình.</b> <b>Quyết định kỹ thuật</b> (không dùng dịch vụ favicon của Google) và <b>cách diễn đạt nội bộ</b> ("do Mark cung cấp") thì <b>đã bỏ khỏi màn hình</b> — vì Admin không cần biết những điều này.
+
+Đoạn văn còn lại trên màn hình hiện tại (modal Đăng ký logo, ngay dưới ô nhập "Địa chỉ ảnh logo (URL)"):
+"Nhập địa chỉ ảnh logo. Nếu để trống sẽ hiện chữ cái đầu tên cửa hàng."
+
+Cũng đã bỏ viền đỏ nhấn mạnh — vì đây là hướng dẫn chứ không phải cảnh báo, nên đổi sang kiểu chú thích nhỏ màu xám mà toàn bộ CMS đang dùng sẵn.
+
+Nếu để trống logo, màn "Cửa hàng có thể tích điểm" trong app sẽ hiện huy hiệu chữ cái đầu tên cửa hàng thay thế (ví dụ: Gmarket → "G").</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">pricepick-demo/cms/index.html 3597~3598행. class를 icon-note(CSS 정의가 아예 없던 클래스 — 실질적으로 빨간 테두리 없이 무스타일이었음)에서 CMS 전역 도움말 클래스 form-hint(font-size:11px, color:var(--text-3), 다른 모달에서도 이미 여러 곳에 씀)로 교체. 「구글 파비콘 서비스는 쓰지 않습니다 — 김반장이 제공하는...」 문구는 코드 주석(3581~3583행)에는 그대로 남겨 개발 맥락(왜 이 기능이 생겼는지)을 보존. 폴백 배지 로직: taLogoPreviewUpdate()가 로고 URL이 비어 있으면 몰 이름 첫 글자를 대문자로 표시(10679행) — 이미 구현돼 있고 이번에 안 건드림.</span><span class="vi">pricepick-demo/cms/index.html dòng 3597~3598. Đổi class từ icon-note (class chưa từng được định nghĩa CSS — thực chất không có viền đỏ, không có style riêng) sang class chú thích dùng chung toàn CMS form-hint (font-size:11px, color:var(--text-3), đã dùng ở nhiều modal khác). Câu "구글 파비콘 서비스는 쓰지 않습니다 — 김반장이 제공하는..." vẫn giữ nguyên trong comment code (dòng 3581~3583) để lưu lại bối cảnh phát triển (vì sao có chức năng này). Logic huy hiệu dự phòng: taLogoPreviewUpdate() hiện chữ cái đầu tên cửa hàng viết hoa khi URL logo trống (dòng 10679) — đã có sẵn từ trước, lần này không đụng vào.</span></span></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Kelvin · 2026-08-17 · 확정 1 / 확인 필요 0</span><span class="vi">PricePick · Trả lời CMS · Kelvin · 2026-08-17 · Đã chốt 1 / Cần xác nhận 0</span></span></div></div>
+</body></html>
