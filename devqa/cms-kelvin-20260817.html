@@ -34,8 +34,8 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
 <div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 답변 · Kelvin · 2026-08-17</span><span class="vi">Trả lời CMS PricePick · Kelvin · 2026-08-17</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">Kelvin · CMS · 티켓 적립 설정 &gt; 로고 등록 모달 안내문구 성격 질문 1건 — 답변 KO/VI</span><span class="vi">Kelvin · CMS · 1 câu hỏi về tính chất đoạn chú thích trong modal Đăng ký logo ở Cài đặt tích lũy vé — Trả lời KO/VI</span></span></div></div></header>
-<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건</span><span class="vi">1 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 1</span><span class="vi">Đã chốt 1</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 실제 화면 반영·코드 확인</span><span class="vi">Căn cứ: đã áp dụng lên màn hình thật·đối chiếu code</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 김반장 전달 기준 요약</span><span class="vi">Câu hỏi ở đây là bản tóm tắt do Mr Mark truyền đạt lại</span></span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Kelvin · CMS · 티켓 적립 설정 &gt; 로고 등록 모달 안내문구 성격 질문 1건 + 로고 파일 업로드 정책 확정 — 답변 KO/VI</span><span class="vi">Kelvin · CMS · 1 câu hỏi về tính chất đoạn chú thích trong modal Đăng ký logo ở Cài đặt tích lũy vé + xác nhận chính sách tải file logo — Trả lời KO/VI</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건</span><span class="vi">1 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 1 + 정책 확정 1</span><span class="vi">Đã chốt 1 + 1 chính sách</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 실제 화면 반영·코드 확인</span><span class="vi">Căn cứ: đã áp dụng lên màn hình thật·đối chiếu code</span></span></span><span class="chip" style="background:#fdf1e3;border-color:#f3d9b0;color:#8a5b12"><span class="i18n"><span class="ko">⚠ 파일 업로드는 개발팀 요청 · 화면 미반영</span><span class="vi">⚠ Tải file logo: yêu cầu đội dev · chưa áp dụng màn hình</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 김반장 전달 기준 요약</span><span class="vi">Câu hỏi ở đây là bản tóm tắt do Mr Mark truyền đạt lại</span></span></span></div>
 
 <!-- ==================== Q1 : 로고 등록 모달 안내문구 — 개발자용인가 Admin용인가 ==================== -->
 <h2 class="grp"><span class="i18n"><span class="ko">1. 티켓 적립 설정 — 「로고 등록」 모달 안내문구의 성격</span><span class="vi">1. Cài đặt tích lũy vé — Tính chất đoạn chú thích trong modal "Đăng ký logo"</span></span></h2>
@@ -50,7 +50,21 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 
 빨간 테두리 강조도 뺐습니다 — 경고가 아니라 안내라서, CMS 전체가 이미 쓰고 있는 작은 회색 도움말 스타일로 바꿨습니다.
 
-로고를 비워두면 앱 「적립 가능 쇼핑몰」 화면에서 몰 이름 첫 글자 배지로 대신 표시됩니다(예: 지마켓 → "G").</span><span class="vi">Cả hai đều đúng, nhưng đã tách đoạn văn ra. Đoạn văn gốc gộp hai loại nội dung khác tính chất.
+로고를 비워두면 앱 「적립 가능 쇼핑몰」 화면에서 몰 이름 첫 글자 배지로 대신 표시됩니다(예: 지마켓 → "G").
+
+━━━━━━━━━━━━━━━━━━━━
+
+<b>추가 확정(2026-08-17, 김반장) — 로고는 운영자가 파일로 직접 올릴 수 있어야 합니다.</b> 지금처럼 「이미지 호스팅에 먼저 올리고 그 주소를 붙여넣는」 방식만으로는 부족합니다. 호스팅에 올리는 일 자체를 운영자에게 시키면 안 됩니다.
+
+<b>이건 화면(HTML/CSS/JS)만 고쳐서 되는 일이 아닙니다</b> — 파일을 받아 저장하고 주소를 돌려주는 서버 쪽 기능이 필요해서, 있는지부터 확인했습니다. CMS 전체를 훑어봤는데 <b>「파일을 올리면 서버가 저장해서 주소를 돌려주는」 기능이 어디에도 없습니다</b> — 배너는 색상만 고르고(이미지 자체가 없음), 기프티콘 상품은 이모지로 표시하고(이미지 없음), CSV 일괄등록은 브라우저에서 텍스트만 읽습니다(파일 저장 없음). 이 저장소(pricepick-demo)의 Firebase 프로젝트에는 Storage(파일 저장소) 보안 규칙조차 배포된 적이 없습니다.
+
+재사용할 게 없어서, <b>혼자 새 저장소를 붙이지 않고 개발팀에 요청드립니다:</b>
+① 「로고 등록」 모달에 <b>파일 선택 또는 끌어다 놓기</b>로 이미지를 올리는 기능을 추가해주세요. 올리면 서버가 저장하고 그 주소를 자동으로 채워주세요.
+② <b>기존 「이미지 주소(URL) 붙여넣기」도 그대로 남겨주세요</b> — 이미 주소로 등록된 로고가 있어서, 지우면 그 데이터를 못 쓰게 됩니다. 두 방법 다 되게 해주세요.
+③ <b>올린 뒤 미리보기</b>가 바로 보여야 합니다.
+④ 비워두면 몰 이름 첫 글자 배지로 표시되는 지금 동작은 그대로 두시면 됩니다.
+
+문구는 이 기능이 실제로 들어간 뒤에 「로고 파일을 올리거나 이미지 주소를 입력하세요. 비워두면 몰 이름 첫 글자가 표시됩니다.」로 다시 정리하겠습니다. <b>지금 데모 화면(위 문구)은 아직 안 바꿨습니다</b> — 문구를 먼저 바꾸면 실제로는 안 되는 기능이 있는 것처럼 보이게 되기 때문입니다.</span><span class="vi">Cả hai đều đúng, nhưng đã tách đoạn văn ra. Đoạn văn gốc gộp hai loại nội dung khác tính chất.
 
 <b>Hướng dẫn sử dụng·hành vi mà Admin cần biết</b> (dán địa chỉ ảnh logo vào đây, nếu để trống sẽ hiện huy hiệu chữ cái đầu tên cửa hàng) thì <b>giữ nguyên trên màn hình.</b> <b>Quyết định kỹ thuật</b> (không dùng dịch vụ favicon của Google) và <b>cách diễn đạt nội bộ</b> ("do Mark cung cấp") thì <b>đã bỏ khỏi màn hình</b> — vì Admin không cần biết những điều này.
 
@@ -59,8 +73,23 @@ h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;bo
 
 Cũng đã bỏ viền đỏ nhấn mạnh — vì đây là hướng dẫn chứ không phải cảnh báo, nên đổi sang kiểu chú thích nhỏ màu xám mà toàn bộ CMS đang dùng sẵn.
 
-Nếu để trống logo, màn "Cửa hàng có thể tích điểm" trong app sẽ hiện huy hiệu chữ cái đầu tên cửa hàng thay thế (ví dụ: Gmarket → "G").</span></span>
-<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">pricepick-demo/cms/index.html 3597~3598행. class를 icon-note(CSS 정의가 아예 없던 클래스 — 실질적으로 빨간 테두리 없이 무스타일이었음)에서 CMS 전역 도움말 클래스 form-hint(font-size:11px, color:var(--text-3), 다른 모달에서도 이미 여러 곳에 씀)로 교체. 「구글 파비콘 서비스는 쓰지 않습니다 — 김반장이 제공하는...」 문구는 코드 주석(3581~3583행)에는 그대로 남겨 개발 맥락(왜 이 기능이 생겼는지)을 보존. 폴백 배지 로직: taLogoPreviewUpdate()가 로고 URL이 비어 있으면 몰 이름 첫 글자를 대문자로 표시(10679행) — 이미 구현돼 있고 이번에 안 건드림.</span><span class="vi">pricepick-demo/cms/index.html dòng 3597~3598. Đổi class từ icon-note (class chưa từng được định nghĩa CSS — thực chất không có viền đỏ, không có style riêng) sang class chú thích dùng chung toàn CMS form-hint (font-size:11px, color:var(--text-3), đã dùng ở nhiều modal khác). Câu "구글 파비콘 서비스는 쓰지 않습니다 — 김반장이 제공하는..." vẫn giữ nguyên trong comment code (dòng 3581~3583) để lưu lại bối cảnh phát triển (vì sao có chức năng này). Logic huy hiệu dự phòng: taLogoPreviewUpdate() hiện chữ cái đầu tên cửa hàng viết hoa khi URL logo trống (dòng 10679) — đã có sẵn từ trước, lần này không đụng vào.</span></span></div></div></div>
+Nếu để trống logo, màn "Cửa hàng có thể tích điểm" trong app sẽ hiện huy hiệu chữ cái đầu tên cửa hàng thay thế (ví dụ: Gmarket → "G").
 
-<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Kelvin · 2026-08-17 · 확정 1 / 확인 필요 0</span><span class="vi">PricePick · Trả lời CMS · Kelvin · 2026-08-17 · Đã chốt 1 / Cần xác nhận 0</span></span></div></div>
+━━━━━━━━━━━━━━━━━━━━
+
+<b>Xác nhận thêm (2026-08-17, Mr Mark) — Vận hành viên phải có thể tự tải file logo lên trực tiếp.</b> Cách hiện tại — "tải lên dịch vụ lưu trữ ảnh trước rồi dán URL vào" — là chưa đủ. Không được bắt vận hành viên tự đi tải lên dịch vụ lưu trữ ảnh.
+
+<b>Đây không phải việc chỉ sửa màn hình (HTML/CSS/JS) là xong</b> — cần chức năng phía server nhận file, lưu và trả về địa chỉ, nên đã kiểm tra xem có sẵn chưa. Đã rà soát toàn bộ CMS và <b>không có ở đâu chức năng "tải file lên thì server lưu và trả về địa chỉ"</b> — banner chỉ chọn màu (không có ảnh), sản phẩm Gifticon hiển thị bằng emoji (không có ảnh), đăng ký hàng loạt CSV chỉ đọc text trên trình duyệt (không lưu file). Dự án Firebase của kho này (pricepick-demo) thậm chí chưa từng triển khai quy tắc bảo mật Storage (nơi lưu file).
+
+Vì không có gì để tái sử dụng, <b>không tự ý gắn thêm nơi lưu trữ mới mà yêu cầu đội phát triển:</b>
+① Thêm chức năng <b>chọn file hoặc kéo-thả</b> để tải ảnh lên trong modal "Đăng ký logo". Khi tải lên, server lưu và tự động điền địa chỉ đó vào.
+② <b>Vẫn giữ nguyên ô "Dán địa chỉ ảnh (URL)" hiện có</b> — vì đã có logo đăng ký bằng URL rồi, nếu xóa đi thì dữ liệu đó không dùng được nữa. Cần làm được cả hai cách.
+③ Phải thấy <b>bản xem trước ngay sau khi tải lên.</b>
+④ Hành vi hiện tại (để trống thì hiện huy hiệu chữ cái đầu tên cửa hàng) giữ nguyên không cần đổi.
+
+Chữ trên màn hình sẽ được chỉnh lại thành "Tải file logo lên hoặc nhập địa chỉ ảnh. Nếu để trống sẽ hiện chữ cái đầu tên cửa hàng." sau khi chức năng này thực sự được thêm vào. <b>Màn demo hiện tại (chữ ở trên) chưa đổi</b> — vì nếu đổi chữ trước thì sẽ trông như thể chức năng đã có trong khi thực tế chưa làm được.</span></span>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">pricepick-demo/cms/index.html 3597~3598행. class를 icon-note(CSS 정의가 아예 없던 클래스 — 실질적으로 빨간 테두리 없이 무스타일이었음)에서 CMS 전역 도움말 클래스 form-hint(font-size:11px, color:var(--text-3), 다른 모달에서도 이미 여러 곳에 씀)로 교체. 「구글 파비콘 서비스는 쓰지 않습니다 — 김반장이 제공하는...」 문구는 코드 주석(3581~3583행)에는 그대로 남겨 개발 맥락(왜 이 기능이 생겼는지)을 보존. 폴백 배지 로직: taLogoPreviewUpdate()가 로고 URL이 비어 있으면 몰 이름 첫 글자를 대문자로 표시(10679행) — 이미 구현돼 있고 이번에 안 건드림.</span><span class="vi">pricepick-demo/cms/index.html dòng 3597~3598. Đổi class từ icon-note (class chưa từng được định nghĩa CSS — thực chất không có viền đỏ, không có style riêng) sang class chú thích dùng chung toàn CMS form-hint (font-size:11px, color:var(--text-3), đã dùng ở nhiều modal khác). Câu "구글 파비콘 서비스는 쓰지 않습니다 — 김반장이 제공하는..." vẫn giữ nguyên trong comment code (dòng 3581~3583) để lưu lại bối cảnh phát triển (vì sao có chức năng này). Logic huy hiệu dự phòng: taLogoPreviewUpdate() hiện chữ cái đầu tên cửa hàng viết hoa khi URL logo trống (dòng 10679) — đã có sẵn từ trước, lần này không đụng vào.</span></span></div>
+<div class="ref-box" style="border-left-color:#e8943a;background:#fdf6ee"><span class="ref-label" style="color:#e8943a"><span class="i18n"><span class="ko">[참조] 파일 업로드 조사 결과 — 개발팀 요청 사유</span><span class="vi">[Tham khảo] Kết quả rà soát tải file — lý do yêu cầu đội dev</span></span></span><span class="i18n"><span class="ko">pricepick-demo·pricepick 저장소 전체에서 "파일 업로드 → 서버 저장 → 주소 반환" 패턴 없음(grep 확인). 배너(m-banner 모달, 3380행)는 color-presets만 있고 이미지 필드 자체가 없음. 기프티콘 상품은 pp-gi-emoji(6091행) 이모지만 쓰고 이미지 없음. CSV 일괄등록(gi-bulk-file, 2054행)은 FileReader로 텍스트만 읽고 서버에 안 올림. pricepick-demo의 firebase.json에 "storage" 항목이 없어 Storage 보안 규칙이 배포된 적 없음(firestore만 있음) — 즉 이 데모에도 파일 저장 인프라가 아예 준비돼 있지 않음. 이 저장소는 김반장(Claude 세션)만 커밋해온 개발자 인계용 데모이지 빈·Kelvin 등 실제 개발팀이 쓰는 저장소가 아닐 가능성이 높아, 직접 구현 대신 요청 형태로 남김.</span><span class="vi">Không có mẫu "tải file → server lưu → trả về địa chỉ" ở bất kỳ đâu trong cả 2 repo pricepick-demo·pricepick (đã kiểm bằng grep). Modal banner (m-banner, dòng 3380) chỉ có color-presets, không có trường ảnh. Sản phẩm Gifticon chỉ dùng emoji pp-gi-emoji (dòng 6091), không có ảnh. Đăng ký hàng loạt CSV (gi-bulk-file, dòng 2054) chỉ đọc text bằng FileReader, không upload lên server. firebase.json của pricepick-demo không có mục "storage" nên quy tắc bảo mật Storage chưa từng được triển khai (chỉ có firestore) — nghĩa là hạ tầng lưu file chưa hề được chuẩn bị kể cả ở bản demo này. Repo này có vẻ chỉ do Mr Mark (qua phiên Claude) commit, khả năng cao không phải repo mà Vin·Kelvin và đội dev thật đang dùng, nên để dạng yêu cầu thay vì tự triển khai.</span></span></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Kelvin · 2026-08-17 · 확정 1 / 개발팀 요청 1 / 확인 필요 0</span><span class="vi">PricePick · Trả lời CMS · Kelvin · 2026-08-17 · Đã chốt 1 / Yêu cầu đội dev 1 / Cần xác nhận 0</span></span></div></div>
 </body></html>
