@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 티켓 가치 조정 상의 · 2026-08-11</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--bad:#c0392b;--bad-l:#fdecea}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.7}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:30px 0 26px;position:relative}
+.htitle{font-size:24px;font-weight:800} .hsub{font-size:13.5px;opacity:.88;margin-top:8px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:16px;color:var(--pp-d);margin:28px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--pp-l)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:14px}
+.keybox{background:#f6f2ff;border:1px solid #ddd0ff;border-left:4px solid var(--pp);border-radius:10px;padding:16px 19px;margin:16px 0 6px;font-size:14.5px;color:var(--ink2)}
+.keybox .kt{font-size:11.5px;font-weight:800;color:var(--pp-d);letter-spacing:.06em;margin-bottom:7px;display:block}
+.keybox b{color:var(--ink1)}
+.warn{border-radius:12px;padding:16px 20px;margin:2px 0 14px;font-size:14px;background:var(--bad-l);border:1px solid #f2c2bb;border-left:5px solid var(--bad);color:#7a2418}
+.warn .wt{font-size:12.5px;font-weight:800;letter-spacing:.03em;margin-bottom:7px;display:block;color:#96291a}
+.warn b{color:#5c160c}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:14px}
+.stat{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-align:center}
+.stat-num{font-size:26px;font-weight:800;color:var(--pp-d);font-variant-numeric:tabular-nums}
+.stat-lbl{font-size:12px;color:var(--ink3);margin-top:4px;font-weight:600}
+.exbox{display:flex;gap:14px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-top:12px;flex-wrap:wrap}
+.exbox .arrow{color:var(--ink3);font-size:18px}
+.exbox .big{font-size:19px;font-weight:800}
+.exbox .big.bad{color:var(--bad)}
+.exbox .big.good{color:var(--ok)}
+.exbox .sub{font-size:12px;color:var(--ink3);margin-top:2px}
+.cmpwrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media(max-width:600px){.cmpwrap{grid-template-columns:1fr}}
+.cmpcard{border-radius:12px;padding:16px 18px;border:1px solid var(--line)}
+.cmpcard.now{background:#fdf6f5}
+.cmpcard.plan{background:#f4faf8}
+.cmp-title{font-size:12.5px;font-weight:800;color:var(--ink3);letter-spacing:.03em;margin-bottom:8px}
+.cmp-row{display:flex;justify-content:space-between;font-size:13.5px;padding:5px 0}
+.cmp-row b{font-variant-numeric:tabular-nums}
+.thumbs{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:6px;padding:7px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:280px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:11.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.decide{background:linear-gradient(120deg,#f6f2ff,#fff);border:1.5px solid #ddd0ff;border-radius:16px;padding:22px 24px;margin-top:20px}
+.decide .dt{font-size:15px;font-weight:800;color:var(--pp-d);margin-bottom:8px}
+.decide p{font-size:14px;color:var(--ink2)}
+.foot{margin-top:26px;font-size:11.5px;color:var(--ink3)}
+@media(max-width:640px){.htitle{font-size:20px}}
+</style></head><body>
+
+<header><div class="wraphdr" style="max-width:900px;margin:0 auto;padding:0 22px"><div class="htitle">티켓 가치, 다시 정해야 합니다</div>
+<div class="hsub">받는 사람: 이부장님 &nbsp;|&nbsp; 티켓 1장의 원화 가치를 조정할지 결정해 주십시오</div>
+</div></header>
+
+<div class="wrap"><div class="meta"><span class="chip">문서일: 2026-08-11</span><span class="chip">요청: 김반장님</span></div>
+
+<div class="keybox"><span class="kt">지금 이걸 정해야 하는 이유</span>제휴몰마다 저희가 받는 수수료율이 다른데, 지금 티켓 가치(브론즈 100원)로는 수수료가 낮은 몰에서 <b>적립이 통째로 사라지는 구매가 많습니다.</b> 아래에서 실제 숫자로 보여드립니다.</div>
+
+<h2 class="grp">제휴몰 수수료, 생각보다 낮습니다</h2>
+<div class="card">
+<p style="font-size:14px;color:var(--ink2)">저희와 제휴된 몰 110곳의 실제 커미션(수수료)율입니다.</p>
+<div class="statgrid">
+<div class="stat"><div class="stat-num">2.1%</div><div class="stat-lbl">110곳 중앙값</div></div>
+<div class="stat"><div class="stat-num">18곳</div><div class="stat-lbl">1% 미만</div></div>
+<div class="stat"><div class="stat-num">44곳</div><div class="stat-lbl">3% 이상</div></div>
+</div>
+<p style="font-size:13.5px;color:var(--ink3);margin-top:14px">특히 사람들이 자주 사는 대형몰일수록 낮습니다 — G마켓 0.6%, 11번가 0.7%.</p>
+</div>
+
+<h2 class="grp">적립률은 수수료의 60%로 정해뒀습니다</h2>
+<div class="card"><p style="font-size:14px;color:var(--ink2)">저희가 받는 수수료 중 <b>60%는 고객에게 적립으로 돌려주고, 나머지 40%가 저희 수익</b>입니다. 이 비율 자체는 이번 상의 대상이 아닙니다.</p></div>
+
+<h2 class="grp">지금 티켓 가치로 두면 생기는 문제</h2>
+<div class="warn"><span class="wt">소액 구매는 적립이 통째로 사라집니다</span>브론즈 티켓이 100원인데, G마켓(수수료 0.6%)에서 5,000원을 사면 적립액이 18원입니다. <b>티켓 1장(100원) 값도 안 돼서 0장</b>이 나갑니다. 이 손님은 적립을 하나도 못 받습니다.</div>
+<div class="exbox">
+<div><div class="sub">G마켓에서 5,000원 구매</div><div class="big">적립액 18원</div></div>
+<div class="arrow">→</div>
+<div><div class="sub">브론즈 100원 기준</div><div class="big bad">티켓 0장</div></div>
+</div>
+<p style="font-size:13.3px;color:var(--ink3);margin-top:12px">G마켓만의 얘기가 아닙니다. 수수료가 낮은 대부분의 몰에서, 소액 구매는 적립이 안 나갑니다.</p>
+</div>
+
+<h2 class="grp">1/10로 낮추는 안</h2>
+<div class="card">
+<p style="font-size:14px;color:var(--ink2)">브론즈·실버·골드를 <b>지금의 1/10 (10원 / 100원 / 200원)</b>으로 낮추는 안입니다.</p>
+<div class="cmpwrap">
+<div class="cmpcard now"><div class="cmp-title">지금</div>
+<div class="cmp-row"><span>브론즈</span><b>100원</b></div>
+<div class="cmp-row"><span>실버</span><b>1,000원</b></div>
+<div class="cmp-row"><span>골드</span><b>2,000원</b></div>
+<div class="cmp-row"><span>G마켓 5,000원 구매</span><b style="color:var(--bad)">0장</b></div>
+</div>
+<div class="cmpcard plan"><div class="cmp-title">1/10 안</div>
+<div class="cmp-row"><span>브론즈</span><b>10원</b></div>
+<div class="cmp-row"><span>실버</span><b>100원</b></div>
+<div class="cmp-row"><span>골드</span><b>200원</b></div>
+<div class="cmp-row"><span>G마켓 5,000원 구매</span><b style="color:var(--ok)">1~6장</b></div>
+</div>
+</div>
+<p style="font-size:13.3px;color:var(--ink3);margin-top:14px">1/10 안으로 바꾸면 대부분의 구매에서 적립이 나가고, 버려지는 돈이 거의 없어집니다.</p>
+</div>
+
+<h2 class="grp">티켓 장수가 늘어나는 것에 대해</h2>
+<div class="card"><p style="font-size:14px;color:var(--ink2)">티켓 가치를 1/10로 낮추면 같은 적립액에 대해 <b>티켓 장수는 10배 늘어납니다.</b> 고객이 실제로 받는 총 가치(원화 기준)는 똑같습니다 — 나눠서 더 여러 장으로 받을 뿐입니다. 다만 받는 느낌은 다를 수 있고, 무엇보다 <b>"0장"이 "1장"이 되는 차이가 큽니다.</b> 지금은 소액 구매의 상당수가 0장으로 끝나고 있습니다.</p></div>
+
+<h2 class="grp">같이 조정해야 하는 것들</h2>
+<div class="warn"><span class="wt">티켓 가치만 따로 바꿀 수 없습니다</span>티켓 가치를 바꾸면 아래도 같이 다시 맞춰야 합니다. 지금은 손대지 않았습니다.
+<ul style="margin:10px 0 0 20px;font-size:13.5px;line-height:1.8">
+<li>룰렛(매일 행운·잭팟) 보상 구성 — 지금 보상 그대로면 당첨 체감이 달라집니다</li>
+<li>포인트 ↔ 티켓 교환 비율 — 지금 비율 그대로면 포인트로 사는 티켓 값이 어긋납니다</li>
+<li>등급별 적립 기준(몇 원당 몇 장) — 티켓 가치와 같이 다시 맞춰야 합니다</li>
+</ul>
+</div>
+
+<h2 class="grp">지금 상태</h2>
+<div class="card"><p style="font-size:14px;color:var(--ink2)">CMS에 티켓 가치·적립률을 관리하는 <b>화면만 만들어뒀고, 실제 서비스 값은 아직 그대로(브론즈 100원 등 현행 그대로)</b>입니다. 아무것도 자동으로 바뀌지 않았습니다.</p></div>
+
+<h2 class="grp">화면</h2>
+<div class="thumbs">
+<div class="q-thumb" data-lb="img/ticket-value-screen-20260811.png"><img src="img/ticket-value-screen-20260811.png"><span class="q-thumb-cap">티켓 가치를 정하는 화면</span></div>
+<div class="q-thumb" data-lb="img/ticket-sim-modal-20260811.png"><img src="img/ticket-sim-modal-20260811.png"><span class="q-thumb-cap">구매 금액별 적립 시뮬레이터</span></div>
+</div>
+
+<div class="decide"><div class="dt">결정해 주십시오</div><p>티켓 가치를 지금 그대로 둘지, 1/10 안(또는 다른 비율)으로 낮출지 <b>이부장님이 정해 주시면</b>, 그 값과 함께 룰렛·포인트 교환·등급 적립 기준을 맞춰서 반영하겠습니다.</p></div>
+
+<div class="foot">PricePick · 이부장님 상의용 · 2026-08-11 · 요청: 김반장님</div>
+</div>
+
+<div class="lb" id="lb"><div class="lb-bg" onclick="document.getElementById('lb').classList.remove('open')"></div>
+<div class="lb-card"><button class="lb-x" onclick="document.getElementById('lb').classList.remove('open')">&times;</button><img class="lb-img" id="lb-img" src=""></div></div>
+<script>
+document.querySelectorAll('.q-thumb').forEach(function(el){
+  el.addEventListener('click', function(){
+    document.getElementById('lb-img').src = el.dataset.lb;
+    document.getElementById('lb').classList.add('open');
+  });
+});
+</script>
+</body></html>

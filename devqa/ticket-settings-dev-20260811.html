@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 정책 문서 · 티켓 가치 · 적립 설정 · 2026-08-11</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280;--gone:#b4453f}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.bd.gone{background:#fdecea;color:var(--gone)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.keybox{background:#f6f2ff;border:1px solid #ddd0ff;border-left:3px solid var(--pp);border-radius:10px;padding:12px 15px;margin:14px 0 4px;font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.keybox .kt{font-size:11px;font-weight:800;color:var(--pp-d);letter-spacing:.06em;margin-bottom:5px;display:block}
+.keybox b{color:var(--ink1)}
+.warn{border-radius:12px;padding:14px 17px;margin:2px 0 12px;font-size:13.2px;white-space:pre-wrap;background:#fdf1e3;border:1px solid #f3d9b0;border-left:5px solid var(--ck);color:#7a5310}
+.warn .wt{font-size:12px;font-weight:800;letter-spacing:.03em;margin-bottom:6px;display:block;color:#8a5f10}
+.warn b{color:#5d3f0c}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.tbl td.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.6px;color:var(--pp-d)}
+.tbl td.gone{color:var(--gone)}
+.thumbs{display:flex;gap:10px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:6px;padding:7px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:260px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:11px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.srclink:hover{background:rgba(255,255,255,.3)}
+@media(max-width:640px){.htitle{font-size:19px}}
+</style></head><body>
+
+<header><div class="wraphdr" style="max-width:960px;margin:0 auto;padding:0 22px"><div class="htitle">PricePick 정책 문서 · 티켓 가치 · 적립 설정</div>
+<div class="hsub">받는 사람: 켈빈 · 해리 &nbsp;|&nbsp; 「티켓 가치 설정」·「티켓 적립 설정」 두 화면의 저장 구조·계산 규칙 정리</div>
+<a class="srclink" href="https://pricepick-demo.vercel.app/cms/ticket-value.html" target="_blank" rel="noopener">CMS 화면에서 바로 확인 ↗</a>
+</div></header>
+
+<div class="wrap"><div class="meta"><span class="chip">범위: CMS 「티켓 가치 설정」·「티켓 적립 설정」</span><span class="chip">문서일: 2026-08-11</span><span class="chip">문의: 김반장님</span></div>
+
+<div class="keybox"><span class="kt">요약</span>「티켓 가치 설정」은 티켓 1장의 원화 환산가치(브론즈·실버·골드·이벤트)를 저장한다. 「티켓 적립 설정」은 제휴몰별 수수료·적립률·링크프라이스 상태·적용 여부를 저장한다. 두 화면 모두 저장 즉시 <b>Firestore</b>에 반영되고, 앱은 이 값을 읽어서 룰렛 잭팟 판정·포인트↔티켓 교환 비율·등급 교환 비율 표시에 쓴다. 적립액 계산 자체(수수료×적립률)는 <b>서버(백엔드)</b>가 하고, 앱은 결과만 표시한다.</div>
+
+<h2 class="grp">1. 저장 구조 (Firestore)</h2>
+
+<div class="qa"><div class="qrow"><span class="qno">①</span><div class="qtxt">settings/ticket_value — 티켓 1장의 원화 환산가치</div></div>
+<div class="tblwrap"><table class="tbl"><thead><tr><th>필드</th><th>타입</th><th>설명</th></tr></thead><tbody>
+<tr><td class="mono">bronze</td><td>number</td><td>브론즈 티켓 1장의 원화 가치</td></tr>
+<tr><td class="mono">silver</td><td>number</td><td>실버 티켓 1장의 원화 가치. 등급 체계 내에서 브론즈의 정수 배수로 유지된다</td></tr>
+<tr><td class="mono">gold</td><td>number</td><td>골드 티켓 1장의 원화 가치. 실버의 정수 배수로 유지된다</td></tr>
+<tr><td class="mono">event</td><td>number</td><td>이벤트 티켓 1장의 원화 가치. 등급 체계와 독립 — 아래 3번 참고</td></tr>
+<tr><td class="mono">updated_at</td><td>timestamp</td><td>서버 타임스탬프</td></tr>
+</tbody></table></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">②</span><div class="qtxt">settings/ticket_accrual — 제휴몰별 수수료·적립률·상태</div></div>
+<div class="tblwrap"><table class="tbl"><thead><tr><th>필드</th><th>타입</th><th>설명</th></tr></thead><tbody>
+<tr><td class="mono">rates</td><td>map&lt;code, number&gt;</td><td>제휴몰 코드별 적립률(%)</td></tr>
+<tr><td class="mono">fees</td><td>map&lt;code, number&gt;</td><td>제휴몰 코드별 수수료(%)</td></tr>
+<tr><td class="mono">approval</td><td>map&lt;code, string&gt;</td><td>링크프라이스 상태 — 승인 / 승인대기 / 거부 / 미신청</td></tr>
+<tr><td class="mono">applied</td><td>map&lt;code, boolean&gt;</td><td>이 몰을 실제 서비스에 적용했는지</td></tr>
+<tr><td class="mono">customMalls</td><td>array</td><td>링크프라이스 카탈로그 외에 CMS에서 직접 추가한 제휴몰</td></tr>
+<tr><td class="mono">updated_at</td><td>timestamp</td><td>서버 타임스탬프</td></tr>
+</tbody></table></div>
+<div class="ref-box"><span class="ref-label">코드 네임스페이스</span>대표 제휴몰(쿠팡 직접 제휴)의 코드는 <b>coupang_direct</b>다. 링크프라이스 카탈로그의 각 제휴몰 코드는 <b>lp:</b> 접두사를 붙인다(예: lp:coupang). 링크프라이스 카탈로그 안에도 쿠팡이라는 이름의 별개 딜이 있어, 접두사로 두 코드가 절대 겹치지 않게 분리한다.</div>
+</div>
+
+<h2 class="grp">2. 티켓 가치가 물려 있는 자리</h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt">매일 행운 룰렛 · 잭팟 룰렛 — 잭팟 칸 판정</div><span class="bd ok">연동됨</span></div>
+<div class="arow"><span class="alabel">규칙</span><div class="atxt">각 칸의 원화 환산가치(수량 × 티켓 가치)가 가장 높은 칸을 JACKPOT으로 표시한다. 확률이 아니라 <b>가치</b> 기준이다. 운영자가 확률만 바꿔도 JACKPOT 표기가 엉뚱한 칸으로 옮겨가지 않는다.</div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt">포인트 ↔ 티켓 교환 — 등급별 필요 포인트</div><span class="bd ok">연동됨</span></div>
+<div class="arow"><span class="alabel">규칙</span><div class="atxt">필요 포인트 = 티켓 가치(원) × 포인트 정책의 교환 비율(예: 10P = 1원이면 ×10). 포인트 정책의 교환 비율(settings/point_policy.rate)이 바뀌어도 같이 반영된다.</div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt">등급 교환(브론즈↔실버↔골드) — 표시 비율</div><span class="bd ok">연동됨</span></div>
+<div class="arow"><span class="alabel">규칙</span><div class="atxt">교환 비율 = 상위 등급 가치 ÷ 하위 등급 가치(정수 배수일 때만). 화면에 보이는 "브론즈 N장 = 실버 1장" 표기가 이 값을 그대로 따른다. 정수 배수가 아니게 되면 표시를 갱신하지 않는다 — 이 경우는 등급 값 설계 자체를 다시 봐야 한다.</div></div></div>
+
+<h2 class="grp">3. 이벤트 티켓은 등급 체계와 분리</h2>
+
+<div class="warn"><span class="wt">가치 증식 방지 — 고정 정책값</span>이벤트 티켓 5장 → 브론즈 1장 교환은 <b>등급 티켓 가치 비율을 따라가지 않는 고정값</b>이다. 이벤트 티켓 가치(40원)를 바꿔도 이 5:1 비율은 그대로다. 브론즈 1장(100원)을 이벤트 5장으로 바꾼 뒤 잭팟 룰렛 5회(40원×5=200원)를 돌리면 가치가 2배로 불어나는 경로가 되므로, 이 교환비만은 티켓 가치와 독립적으로 고정해 둔다.</div>
+
+<h2 class="grp">4. 적립률 계산 규칙</h2>
+
+<div class="qa"><div class="qrow"><span class="qno">규칙</span><div class="qtxt">적립액 = 구매확정금액 × 그 제휴몰의 적립률</div></div>
+<div class="arow"><span class="alabel">등급 환산</span><div class="atxt">적립액을 티켓으로 바꿀 때는 <b>큰 단위(골드)부터</b> 채우고 남는 금액을 실버, 그다음 브론즈로 채운다. 브론즈 미만으로 남는 잔돈은 <b>티켓으로 지급하지 않는다.</b></div></div>
+<div class="arow"><span class="alabel">계산 주체</span><div class="atxt">이 계산은 <b>서버(백엔드)</b>가 수행한다. 앱은 계산 결과만 표시하며, 클라이언트에서 적립액을 다시 계산하지 않는다.</div></div></div>
+
+<h2 class="grp">5. 적용 여부 · 링크프라이스 상태</h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt">미적용(applied: false) 몰은 적립 대상이 아니다</div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt">링크프라이스 상태(approval)와 적용 여부(applied)는 서로 다른 값이다</div><span class="bd ck">별개 판단</span></div>
+<div class="arow"><span class="alabel">규칙</span><div class="atxt">링크프라이스 쪽에서 승인이 나도, 그 몰을 실제 서비스에 붙일지는 별도로 정한다. 두 값은 CMS에서 각각 독립적으로 바뀌며, 한쪽이 바뀐다고 다른 쪽이 자동으로 따라가지 않는다.</div></div></div>
+
+<h2 class="grp">6. CMS에 있는데 앱이 읽지 않는 설정</h2>
+
+<div class="tblwrap"><table class="tbl"><thead><tr><th>문서.필드</th><th>CMS 화면</th><th>비고</th></tr></thead><tbody>
+<tr><td class="mono gone">settings/point_policy.direction</td><td>포인트 정책 — 교환 방향</td><td>앱은 이 필드 대신 별도의 클라이언트 플래그로 단방향/양방향을 정한다</td></tr>
+<tr><td class="mono gone">settings/point_policy.limit</td><td>포인트 정책 — 일일 적립 한도</td><td>앱 어디에서도 이 한도를 체크하지 않는다</td></tr>
+<tr><td class="mono gone">settings/point_policy.apply / apply_at</td><td>포인트 정책 — 예약 적용</td><td>실제 스케줄러와 연결돼 있지 않다</td></tr>
+<tr><td class="mono gone">settings/ticket_accrual (전체)</td><td>티켓 적립 설정</td><td>앱(클라이언트)은 읽지 않는 게 맞다 — 적립 계산은 서버 몫이다. <b>서버가 이 문서를 읽어야 한다.</b></td></tr>
+</tbody></table></div>
+
+<h2 class="grp">7. 제휴몰 데이터 출처</h2>
+
+<div class="qa"><div class="qrow"><span class="qno">구조</span><div class="qtxt">제휴몰(링크프라이스) 목록 = 링크프라이스 제휴몰 카탈로그 110개</div></div>
+<div class="arow"><span class="alabel">쿠팡</span><div class="atxt">쿠팡은 링크프라이스를 거치지 않는 <b>직접 제휴</b>라, 「대표 제휴몰」로 목록과 별도 표시하고 저장 코드도 별도(coupang_direct)로 관리한다. 링크프라이스 카탈로그 안에 있는 별개의 쿠팡 딜(lp:coupang)과는 값이 서로 섞이지 않는다.</div></div></div>
+
+<h2 class="grp">8. 화면</h2>
+<div class="thumbs">
+<div class="q-thumb" data-lb="img/ticket-value-screen-20260811.png"><img src="img/ticket-value-screen-20260811.png"><span class="q-thumb-cap">티켓 가치 설정</span></div>
+<div class="q-thumb" data-lb="img/ticket-accrual-screen-20260811.png"><img src="img/ticket-accrual-screen-20260811.png"><span class="q-thumb-cap">티켓 적립 설정 — 제휴몰 목록</span></div>
+<div class="q-thumb" data-lb="img/ticket-sim-modal-20260811.png"><img src="img/ticket-sim-modal-20260811.png"><span class="q-thumb-cap">적립 시뮬레이터</span></div>
+</div>
+
+<h2 class="grp">9. 확인 경로</h2>
+<div class="qa"><div class="arow" style="margin-top:0;padding-top:0;border-top:none"><span class="alabel">CMS</span><div class="atxt">사이드바 「티켓·보상」 → 「티켓 가치 설정」 / 「티켓 적립 설정」</div></div></div>
+
+<div class="foot">PricePick · 개발 전달용 정책 문서 · 2026-08-11 · 문의: 김반장님</div>
+</div>
+
+<div class="lb" id="lb"><div class="lb-bg" onclick="document.getElementById('lb').classList.remove('open')"></div>
+<div class="lb-card"><button class="lb-x" onclick="document.getElementById('lb').classList.remove('open')">&times;</button><img class="lb-img" id="lb-img" src=""></div></div>
+<script>
+document.querySelectorAll('.q-thumb').forEach(function(el){
+  el.addEventListener('click', function(){
+    document.getElementById('lb-img').src = el.dataset.lb;
+    document.getElementById('lb').classList.add('open');
+  });
+});
+</script>
+</body></html>
