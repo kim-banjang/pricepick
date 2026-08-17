@@ -124,9 +124,10 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 <button class="devtab" type="button" data-dev="vin" role="tab" aria-selected="false">Vin</button>
 <button class="devtab" type="button" data-dev="kelvin" role="tab" aria-selected="false">Kelvin</button>
 <button class="devtab" type="button" data-dev="john" role="tab" aria-selected="false">John</button>
+<button class="devtab" type="button" data-dev="bin" role="tab" aria-selected="false">Bin</button>
 </div>
 
-<div class="rowwrap" data-dev="kelvin"><a class="row" href="/devqa/cms-kelvin-20260817.html"><div class="rmain"><div class="rt"><span class="i18n"><span class="ko">CMS 질문 답변 · Kelvin</span><span class="vi">Giải đáp câu hỏi CMS · Kelvin</span></span></div><div class="rwho"><span class="i18n"><span class="ko">Kelvin · CMS · 로고 등록 모달 안내문구는 Admin이 보는 안내문 — URL 입력·파일 업로드 둘 다 데모에 구현, 비워두면 몰 이름 첫 글자 표시</span><span class="vi">Kelvin · CMS · Đoạn chú thích trong modal Đăng ký logo là hướng dẫn Admin — đã làm cả nhập URL lẫn tải file trong bản demo, để trống thì hiện chữ cái đầu tên cửa hàng</span></span></div></div><div class="rdate">2026-08-17</div><div class="rarrow">&rsaquo;</div></a>
+<div class="rowwrap" data-dev="bin"><a class="row" href="/devqa/cms-bin-20260817.html"><div class="rmain"><div class="rt"><span class="i18n"><span class="ko">CMS 질문 답변 · Bin</span><span class="vi">Giải đáp câu hỏi CMS · Bin</span></span></div><div class="rwho"><span class="i18n"><span class="ko">Bin · CMS · 로고 등록 모달 안내문구는 Admin이 보는 안내문 — URL 입력·파일 업로드 둘 다 데모에 구현, 비워두면 몰 이름 첫 글자 표시</span><span class="vi">Bin · CMS · Đoạn chú thích trong modal Đăng ký logo là hướng dẫn Admin — đã làm cả nhập URL lẫn tải file trong bản demo, để trống thì hiện chữ cái đầu tên cửa hàng</span></span></div></div><div class="rdate">2026-08-17</div><div class="rarrow">&rsaquo;</div></a>
 <div class="srcnotion"><span class="i18n"><span class="ko">원문 질문: Notion 아님 — 김반장이 채팅으로 전달</span><span class="vi">Câu hỏi gốc: không qua Notion — Mr Mark truyền đạt qua chat</span></span></div></div>
 <div class="rowwrap" data-dev="john"><a class="row" href="/devqa/app-john-20260806.html"><div class="rmain"><div class="rt"><span class="i18n"><span class="ko">앱 질문 답변 · John</span><span class="vi">Giải đáp câu hỏi App · John</span></span></div><div class="rwho"><span class="i18n"><span class="ko">John · App · 내 티켓&amp;포인트 만료일 표시 3건 — <b>「만료일 자세히 보기」 상위 토글 제거, 등급 5줄(브론즈·실버·골드·이벤트·포인트) 바로 노출 + 줄별 개별 토글</b> · <b>D-day 안내 줄 제거, 임박(D-7 이내) 만료일은 주황 강조로 대체</b> · 「대기 N건」은 pending 랜덤 티켓 수 그대로 유지(한도초과 거절 건 미포함), lazy loading은 구현 재량 · APP 데모 pw-21 화면 반영</span><span class="vi">John · App · 3 câu hỏi về hiển thị hạn dùng ở Vé&amp;điểm của tôi — <b>bỏ toggle cấp trên "Xem chi tiết hạn dùng", hiện ngay 5 dòng theo hạng (Bronze·Silver·Gold·Sự kiện·Điểm) + toggle riêng từng dòng</b> · <b>bỏ dòng thông báo D-day, thay bằng highlight cam cho hạn dùng cận kề (trong D-7)</b> · giữ nguyên "Đang chờ N" là số vé ngẫu nhiên pending (không tính vé bị từ chối do vượt giới hạn), lazy loading để tùy triển khai · đã cập nhật màn hình App demo pw-21</span></span></div></div><div class="rdate">2026-08-06</div><div class="rarrow">&rsaquo;</div></a>
 <a class="srcnotion" href="https://app.notion.com/p/QnA-PricePick-3b33ac69e7118045b9d4fbe38e30a456" target="_blank" rel="noopener"><span class="i18n"><span class="ko">&#128206; 원문 질문 (Notion) &#8599;</span><span class="vi">&#128206; Xem câu hỏi gốc (Notion) &#8599;</span></span></a></div>
@@ -373,8 +374,8 @@ function lbClose(){_lb.classList.remove('open');document.getElementById('lb-img'
 _lb.addEventListener('click',e=>{if(e.target.hasAttribute('data-lbclose'))lbClose();});
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(_lb.classList.contains('open')){lbClose();return;}if(_open)closeOrigin();});
 
-/* ── 개발자 필터 탭 (전체/Harry/Vin/Kelvin/John), ?dev= URL 반영 ── */
-const DEV_TABS=['all','harry','vin','kelvin','john'];
+/* ── 개발자 필터 탭 (전체/Harry/Vin/Kelvin/John/Bin), ?dev= URL 반영 ── */
+const DEV_TABS=['all','harry','vin','kelvin','john','bin'];
 function applyDevFilter(dev,push){
   if(!DEV_TABS.includes(dev))dev='all';
   document.querySelectorAll('.rowwrap').forEach(r=>{
