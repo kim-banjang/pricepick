@@ -58,16 +58,16 @@ Dữ liệu mà Backend cần lưu lại sẽ ở dạng Base64 hay URL string?<
 <span class="i18n"><span class="ko">파일 선택 또는 끌어다 놓기로 이미지를 고른 뒤 모달의 「적용」을 누르면, 그 즉시 업로드 API를 부르는지 아니면 로컬에만 들고 있다가 표(목록)의 「적용」을 누를 때 올리는지. 그리고 백엔드가 저장할 값이 Base64인지 URL 문자열인지.</span><span class="vi">Khi chọn ảnh bằng nút chọn file hoặc kéo-thả rồi bấm 적용 trong modal, hệ thống gọi API upload ngay lúc đó hay chỉ giữ ở local rồi upload khi bấm 적용 ở bảng danh sách? Và dữ liệu Backend lưu là Base64 hay URL string?</span></span>
 </div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
 <div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260817-vin-2/vin-q-logo-upload.png','Vin이 첨부한 화면 — CMS 로고 등록 모달, 「로고 파일 업로드」 영역')"><img src="/devqa/assets/20260817-vin-2/vin-q-logo-upload.png" alt="CMS 로고 등록 모달, 파일 업로드 영역 빨간 테두리 표시" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">Vin이 첨부한 화면 — CMS 로고 등록 모달, 「로고 파일 업로드」 영역</span><span class="vi">Màn hình Vin đính kèm — modal Đăng ký logo CMS, khu vực "Tải file logo"</span></span></span></button></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">모달의 「적용」을 누르는 순간 업로드됩니다 — 파일을 고른 시점엔 미리보기만이고 서버로 안 보냅니다.
-표(목록)의 「적용」은 로고와 무관합니다. 그 몰을 앱에 노출할지 켜고 끄는 스위치입니다.
-백엔드가 저장할 값은 <b>URL 문자열</b>입니다. 파일을 스토리지에 올리고 돌려받은 주소만 DB에 저장하세요 — 기존 배너 관리 이미지 업로드와 같은 방식으로 맞춰주세요.
-데모는 화면 확인용이라 이미지를 그대로(base64) Firestore에 담고 있는데, 그건 데모라서 그런 것이고 실제 CMS는 위 방식(URL)이 맞습니다.
-「또는 이미지 주소(URL)」 칸에 직접 입력한 경우엔 업로드 없이 그 주소를 그대로 저장합니다.
-규격·용도는 오늘 오전 답변과 같습니다 → <a href="/devqa/cms-vin-20260817.html">cms-vin-20260817.html</a>.</span><span class="vi">Hệ thống gọi API upload ngay khi bấm 적용 trong modal — lúc chọn file chỉ xem trước, chưa gửi lên server.
-Nút 적용 ở bảng danh sách không liên quan đến logo. Đó là công tắc bật/tắt hiển thị cửa hàng đó trên app.
-Dữ liệu Backend lưu là <b>URL string</b>. Upload file lên storage rồi chỉ lưu URL trả về vào DB — làm theo đúng cách upload ảnh banner đang dùng.
-Bản demo lưu nguyên ảnh (base64) vào Firestore để xem màn hình cho tiện, đó là vì demo thôi — CMS thật phải theo cách URL ở trên.
-Nếu nhập trực tiếp vào ô "Hoặc địa chỉ ảnh (URL)" thì lưu nguyên URL đó, không upload.
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">지금 구현하신 방식이 맞습니다.
+모달의 「적용」은 화면(그 행)에만 반영되고 서버로 가지 않습니다. 표 오른쪽 위 <b>「저장」</b>을 눌러야 그때 저장·업로드됩니다.
+표 안의 「적용」 토글은 로고와 무관합니다 — 그 몰을 앱에 노출할지 켜고 끄는 스위치입니다.
+백엔드가 저장할 값은 <b>URL 문자열</b>입니다. 파일을 스토리지에 올리고 돌려받은 주소만 DB에 저장하세요 — 기존 배너 관리 이미지 업로드와 같은 방식으로 맞춰주세요. 「또는 이미지 주소(URL)」에 직접 입력했으면 그 주소를 그대로 저장합니다.
+데모는 화면 확인용이라 base64로 담고 있을 뿐, 실제 CMS는 위 방식(URL)이 맞습니다.
+규격·용도는 오늘 오전 답변과 같습니다 → <a href="/devqa/cms-vin-20260817.html">cms-vin-20260817.html</a>.</span><span class="vi">Cách bạn đã triển khai là đúng.
+Nút 적용 trong modal chỉ phản ánh lên màn hình (dòng đó), chưa gửi lên server. Phải bấm <b>「저장」</b> ở góc trên bảng thì mới thật sự lưu·upload.
+Công tắc 적용 trong bảng không liên quan logo — đó là bật/tắt hiển thị cửa hàng đó trên app.
+Dữ liệu Backend lưu là <b>URL string</b>. Upload file lên storage rồi chỉ lưu URL trả về vào DB — làm theo đúng cách upload ảnh banner đang dùng. Nếu nhập trực tiếp vào ô "Hoặc địa chỉ ảnh (URL)" thì lưu nguyên URL đó.
+Bản demo lưu base64 chỉ để xem màn hình cho tiện, CMS thật phải theo cách URL ở trên.
 Quy cách·mục đích giống câu trả lời sáng nay → <a href="/devqa/cms-vin-20260817.html">cms-vin-20260817.html</a>.</span></span></div></div></div>
 
 <div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 답변 · Vin · 2026-08-17 (2차) · 확정 1 / 확인 필요 0</span><span class="vi">PricePick · Trả lời CMS · Vin · 2026-08-17 (lần 2) · Đã chốt 1 / Cần xác nhận 0</span></span></div></div>
