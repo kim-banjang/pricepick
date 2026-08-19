@@ -140,6 +140,21 @@
     <div class="card"><div class="num">5<small><span class="ko"> 항목</span><span class="vi"> mục</span></small></div><div class="cap"><span class="ko">CMS에서 운영 중 조정하는 값</span><span class="vi">Giá trị điều chỉnh được trên CMS khi vận hành</span></div></div>
   </div>
 
+  <h3 class="sec" style="margin-top:2px;"><span class="ko">상태 코드 — 우리 로직에서 쓰는 4가지</span><span class="vi">Mã trạng thái — 4 mã dùng trong logic của chúng ta</span></h3>
+  <table>
+    <thead><tr>
+      <th style="width:10%"><span class="ko">코드</span><span class="vi">Mã</span></th>
+      <th style="width:48%"><span class="ko">링크프라이스 설명</span><span class="vi">Mô tả của Linkprice</span></th>
+      <th><span class="ko">우리 로직에서 하는 일</span><span class="vi">Việc chúng ta xử lý</span></th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="code">100</td><td><span class="ko">일반 상태. 실적이 발생하면 부여</span><span class="vi">Trạng thái thường. Được gán khi phát sinh doanh số</span></td><td><span class="ko">랜덤 티켓 즉시 지급</span><span class="vi">Cấp vé ngẫu nhiên ngay</span></td></tr>
+      <tr><td class="code">200</td><td><span class="ko">정산 대기. 내부 정산 과정에서 관리되는 상태로 구매 확정이 아님</span><span class="vi">Chờ quyết toán. Là trạng thái được quản lý trong quá trình quyết toán nội bộ, chưa phải là đã xác nhận mua</span></td><td><span class="ko">「구매 확정 대기」 — 사용 · 룰렛 · 교환 불가</span><span class="vi">「Chờ xác nhận mua」 — không dùng được, không quay vòng quay, không đổi được</span></td></tr>
+      <tr><td class="code">210</td><td><span class="ko">정산 완료. 커미션 지급이 확정된 상태이며 이후 상태가 변경되지 않음</span><span class="vi">Quyết toán hoàn tất. Đã chốt việc chi trả hoa hồng, sau đó trạng thái không thay đổi nữa</span></td><td><span class="ko">등급 티켓으로 전환</span><span class="vi">Chuyển thành vé hạng</span></td></tr>
+      <tr><td class="code">310</td><td><span class="ko">취소 확정. 이후 상태가 변경되지 않음</span><span class="vi">Xác nhận hủy. Sau đó trạng thái không thay đổi nữa</span></td><td><span class="ko">회수</span><span class="vi">Thu hồi</span></td></tr>
+    </tbody>
+  </table>
+
   <!-- ============ 1. 최종 결정안 ============ -->
   <h2><span class="ko">1. 최종 결정안 — 이렇게 하기로 했다</span><span class="vi">1. Phương án chốt cuối — Đã thống nhất như sau</span></h2>
   <p class="h2-desc"><span class="ko">2026-08-19 협의로 확정된 내용이다.</span><span class="vi">Nội dung đã chốt trong buổi trao đổi ngày 19/08/2026.</span></p>
@@ -147,15 +162,15 @@
   <h3 class="sec"><span class="ko">1-1. 티켓 지급과 전환 구조</span><span class="vi">1-1. Cấu trúc cấp vé và chuyển đổi vé</span></h3>
   <div class="dl">
     <div class="dl-row">
-      <div class="dl-k"><span class="ko">랜덤 티켓 지급 (200)</span><span class="vi">Cấp vé ngẫu nhiên (200)</span></div>
+      <div class="dl-k"><span class="ko">랜덤 티켓 지급 (상태 100)</span><span class="vi">Cấp vé ngẫu nhiên (trạng thái 100)</span></div>
       <div class="dl-v"><span class="ko">구매가 확인되면 즉시 지급한다.</span><span class="vi">Cấp ngay khi xác nhận được đơn mua.</span></div>
     </div>
     <div class="dl-row">
-      <div class="dl-k"><span class="ko">확정 전 상태 (200)</span><span class="vi">Trạng thái trước khi xác nhận (200)</span></div>
+      <div class="dl-k"><span class="ko">확정 전 상태 (상태 200)</span><span class="vi">Trước khi được xác nhận (trạng thái 200)</span></div>
       <div class="dl-v"><span class="ko">「구매 확정 대기」 상태로 둔다. 확정 전에는 랜덤 티켓 상태이므로 사용 · 룰렛 · 교환 모두 불가하다.</span><span class="vi">Giữ ở trạng thái 「Chờ xác nhận mua」. Trước khi được xác nhận thì vé đang ở trạng thái vé ngẫu nhiên nên không dùng được, không quay vòng quay và không đổi được.</span></div>
     </div>
     <div class="dl-row">
-      <div class="dl-k"><span class="ko">등급 티켓 전환 (210)</span><span class="vi">Chuyển sang vé hạng (210)</span></div>
+      <div class="dl-k"><span class="ko">등급 티켓 전환 (상태 210)</span><span class="vi">Chuyển sang vé hạng (trạng thái 210)</span></div>
       <div class="dl-v"><span class="ko">상태가 210으로 전환되면 랜덤 티켓 한 장이 등급 티켓으로 전환된다.</span><span class="vi">Khi trạng thái chuyển sang 210, một vé ngẫu nhiên được chuyển thành vé hạng.</span></div>
     </div>
     <div class="dl-row">
@@ -184,11 +199,11 @@
   <h3 class="sec"><span class="ko">1-3. 링크프라이스 머천트 — 정산 확정 기준</span><span class="vi">1-3. Merchant Linkprice — Căn cứ xác nhận quyết toán</span></h3>
   <div class="dl">
     <div class="dl-row">
-      <div class="dl-k"><span class="ko">지급(전환) 시점</span><span class="vi">Thời điểm cấp (chuyển đổi)</span></div>
+      <div class="dl-k"><span class="ko">지급(전환) 시점 (상태 210)</span><span class="vi">Thời điểm cấp (chuyển đổi) (trạng thái 210)</span></div>
       <div class="dl-v"><span class="ko">정산이 확정되면 그 시점에 지급(전환)한다. 기간을 채울 때까지 기다리지 않는다.</span><span class="vi">Khi quyết toán được xác nhận thì cấp (chuyển đổi) ngay tại thời điểm đó. Không chờ cho hết thời hạn.</span></div>
     </div>
     <div class="dl-row">
-      <div class="dl-k"><span class="ko">미확정 건</span><span class="vi">Đơn chưa được xác nhận</span></div>
+      <div class="dl-k"><span class="ko">미확정 건 (상태 100·200)</span><span class="vi">Đơn chưa được xác nhận (trạng thái 100·200)</span></div>
       <div class="dl-v"><span class="ko">지급(전환)하지 않는다. 기간이 지났다는 이유로 자동 지급하지 않는다.</span><span class="vi">Không cấp (chuyển đổi). Không tự động cấp chỉ vì đã quá thời hạn.</span></div>
     </div>
     <div class="dl-row">
@@ -196,7 +211,7 @@
       <div class="dl-v"><span class="ko">아직 지급(전환)하지 않은 건은 회수한다. 이미 지급(전환)된 등급 티켓 또한 회수한다. 회수 방법은 1-7에 정리했다.</span><span class="vi">Đơn chưa cấp (chuyển đổi) thì thu hồi. Vé hạng đã cấp (chuyển đổi) cũng thu hồi. Cách thu hồi được nêu ở mục 1-7.</span></div>
     </div>
     <div class="dl-row">
-      <div class="dl-k"><span class="ko">머천트별 지급(전환) 시점</span><span class="vi">Thời điểm cấp (chuyển đổi) của từng merchant</span></div>
+      <div class="dl-k"><span class="ko">머천트별 지급(전환) 시점 (상태 210)</span><span class="vi">Thời điểm cấp (chuyển đổi) của từng merchant (trạng thái 210)</span></div>
       <div class="dl-v"><span class="ko">쿠팡을 제외한 몰은 관리자가 개별적으로 지급(전환) 시점을 설정할 수 있도록 개발한다. 현재 프로세스에서는 몰별 가능 시점이 나오지 않아, 반품 기간을 기준으로 정했다.</span><span class="vi">Với các sàn ngoài Coupang, phát triển để admin thiết lập riêng thời điểm cấp (chuyển đổi) cho từng sàn. Quy trình hiện tại chưa cho biết thời điểm khả dụng của từng sàn nên tạm lấy thời hạn trả hàng làm căn cứ.</span></div>
     </div>
     <div class="dl-row">
@@ -252,7 +267,7 @@
   <h3 class="sec"><span class="ko">1-7. 취소 처리</span><span class="vi">1-7. Xử lý hủy đơn</span></h3>
   <div class="dl">
     <div class="dl-row">
-      <div class="dl-k"><span class="ko">취소 확정 시 (310)</span><span class="vi">Khi hủy được xác nhận (310)</span></div>
+      <div class="dl-k"><span class="ko">취소 확정 시 (상태 310)</span><span class="vi">Khi hủy được xác nhận (trạng thái 310)</span></div>
       <div class="dl-v"><span class="ko">아직 지급(전환)되지 않은 건은 회수하고, 이미 지급(전환)된 등급 티켓 또한 회수한다. 랜덤 티켓이든 210을 지나 전환된 등급 티켓이든 이미 나간 것은 모두 회수 대상이다.</span><span class="vi">Đơn chưa cấp (chuyển đổi) thì thu hồi, và vé hạng đã cấp (chuyển đổi) cũng thu hồi. Dù là vé ngẫu nhiên hay vé hạng đã chuyển đổi sau khi qua 210, mọi vé đã cấp ra đều thuộc diện thu hồi.</span></div>
     </div>
     <div class="dl-row">
