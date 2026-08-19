@@ -192,7 +192,7 @@
     <tbody>
       <tr><td class="fn"><span class="ko">카카오 연동 구매</span><span class="vi">Mua khi đã liên kết Kakao</span></td><td><span class="ko">구매 후 7일</span><span class="vi">7 ngày sau khi mua</span></td></tr>
       <tr><td class="fn"><span class="ko">미연동 구매</span><span class="vi">Mua khi chưa liên kết</span></td><td><span class="ko">구매 후 30일</span><span class="vi">30 ngày sau khi mua</span></td></tr>
-      <tr><td class="fn"><span class="ko">적용 범위</span><span class="vi">Phạm vi áp dụng</span></td><td><span class="ko">7일 · 30일 규칙은 쿠팡에 대해서만 적용하는 규칙으로 명시한다. <span class="badge b-keep">기존 유지</span></span><span class="vi">Ghi rõ quy tắc 7 ngày · 30 ngày chỉ áp dụng cho Coupang. <span class="badge b-keep">Giữ nguyên</span></span></td></tr>
+      <tr><td class="fn"><span class="ko">적용 범위</span><span class="vi">Phạm vi áp dụng</span></td><td><span class="ko">7일 · 30일 규칙은 쿠팡에 대해서만 적용하는 규칙으로 명시한다.</span><span class="vi">Ghi rõ quy tắc 7 ngày · 30 ngày chỉ áp dụng cho Coupang.</span> <span class="badge b-keep"><span class="ko">기존 유지</span><span class="vi">Giữ nguyên</span></span></td></tr>
     </tbody>
   </table>
 
@@ -200,11 +200,7 @@
   <div class="dl">
     <div class="dl-row">
       <div class="dl-k"><span class="ko">지급(전환) 시점 (상태 210)</span><span class="vi">Thời điểm cấp (chuyển đổi) (trạng thái 210)</span></div>
-      <div class="dl-v"><span class="ko">정산이 확정되면 그 시점에 지급(전환)한다. 기간을 채울 때까지 기다리지 않는다.</span><span class="vi">Khi quyết toán được xác nhận thì cấp (chuyển đổi) ngay tại thời điểm đó. Không chờ cho hết thời hạn.</span></div>
-    </div>
-    <div class="dl-row">
-      <div class="dl-k"><span class="ko">미확정 건 (상태 100·200)</span><span class="vi">Đơn chưa được xác nhận (trạng thái 100·200)</span></div>
-      <div class="dl-v"><span class="ko">지급(전환)하지 않는다. 기간이 지났다는 이유로 자동 지급하지 않는다.</span><span class="vi">Không cấp (chuyển đổi). Không tự động cấp chỉ vì đã quá thời hạn.</span></div>
+      <div class="dl-v"><span class="ko">210으로 확정되면 그 시점에 전환한다(1-1). 기간을 채울 때까지 기다리지 않으며, 기간이 지났다는 이유로 자동 지급하지도 않는다.</span><span class="vi">Khi được xác nhận là 210 thì chuyển đổi ngay tại thời điểm đó (mục 1-1). Không chờ cho hết thời hạn, và ngược lại cũng không tự động cấp chỉ vì đã quá thời hạn.</span></div>
     </div>
     <div class="dl-row">
       <div class="dl-k"><span class="ko">취소 확정 건 (상태 310)</span><span class="vi">Đơn đã xác nhận hủy (trạng thái 310)</span></div>
@@ -276,7 +272,7 @@
     </div>
     <div class="dl-row">
       <div class="dl-k"><span class="ko">이미 사용한 경우</span><span class="vi">Khi vé đã được sử dụng</span></div>
-      <div class="dl-v"><span class="ko">동급의 다른 티켓에서 차감한다. 차감할 티켓이 없는 경우의 처리는 이동영 부장님이 확인 중인 미확정 사항이다(3항).</span><span class="vi">Trừ vào vé khác cùng hạng. Cách xử lý khi không còn vé để trừ là nội dung chưa chốt, Trưởng phòng Lee đang xem lại (mục 3).</span></div>
+      <div class="dl-v"><span class="ko">동급의 다른 티켓에서 차감한다. 차감할 티켓이 없는 경우는 3항 참조.</span><span class="vi">Trừ vào vé khác cùng hạng. Trường hợp không còn vé để trừ thì xem mục 3.</span></div>
     </div>
     <div class="dl-row">
       <div class="dl-k"><span class="ko">재확정되는 경우</span><span class="vi">Khi đơn được xác nhận lại</span></div>
@@ -304,14 +300,14 @@
     <div class="tlitem">
       <div class="tlwho"><span class="ko">Huynh Huy — 링크프라이스 주문 상태 질문</span><span class="vi">Huynh Huy — Câu hỏi về trạng thái đơn hàng của Linkprice</span><span class="tltime">10:41</span></div>
       <div class="tlbody">
-        <p><span class="ko">링크프라이스 문서(<code>AffiliateSetup/docs/자주묻는_질문.md</code>)에 정리된 주문 상태 5종을 근거로 세 가지를 물었다.</span><span class="vi">Dựa trên 5 trạng thái đơn hàng nêu trong tài liệu Linkprice (<code>AffiliateSetup/docs/자주묻는_질문.md</code>), Huy đặt ra ba câu hỏi.</span></p>
+        <p><span class="ko">링크프라이스 문서(</span><span class="vi">Dựa trên 5 trạng thái đơn hàng nêu trong tài liệu Linkprice (</span><code>AffiliateSetup/docs/자주묻는_질문.md</code><span class="ko">)에 정리된 주문 상태 5종을 근거로 세 가지를 물었다.</span><span class="vi">), Huy đặt ra ba câu hỏi.</span></p>
         <ul>
           <li><span class="ko">주문 상태를 확인하려면 하루에 크론을 몇 번 돌려야 하는가</span><span class="vi">Mỗi ngày cần chạy cron bao nhiêu lần để kiểm tra trạng thái đơn hàng?</span></li>
           <li><span class="ko">상태가 210이 되면 사용자에게 티켓을 잠금 해제하는 것이 맞는가</span><span class="vi">Khi trạng thái thành 210 thì mở khóa vé cho người dùng, như vậy có đúng không?</span></li>
           <li><span class="ko">210이 된 뒤 300이나 310으로 다시 바뀔 수 있는가 — 이미 티켓을 지급했는데 사용자가 주문을 취소하는 경우</span><span class="vi">Sau khi đã thành 210, trạng thái có thể quay lại 300 hoặc 310 không — tức trường hợp đã cấp vé rồi mà người dùng hủy đơn?</span></li>
         </ul>
         <details class="fold">
-          <summary><span class="ko">링크프라이스 주문 상태 5종</span><span class="vi">5 trạng thái đơn hàng của Linkprice</span></summary>
+          <summary><span class="ko">링크프라이스 주문 상태 5종 (원문)</span><span class="vi">5 trạng thái đơn hàng của Linkprice (nguyên văn)</span></summary>
           <table style="margin-top:9px;">
             <thead><tr>
               <th style="width:14%"><span class="ko">상태</span><span class="vi">Trạng thái</span></th>
@@ -362,16 +358,7 @@
     <div class="tlitem">
       <div class="tlwho"><span class="ko">이동영 부장님 — 「적립 확정 정책」 제시</span><span class="vi">Trưởng phòng Lee — Đưa ra 「Chính sách xác nhận tích lũy」</span><span class="tltime">13:56</span></div>
       <div class="tlbody">
-        <p><span class="ko">티켓 사용 가능 시점, 머천트별 기간 차이의 근거, CMS 조정 항목, 적립 기준, 화면 표시를 담은 정책안을 공유했다. 이 문서가 이후 논의의 기준이 되었다.</span><span class="vi">Trưởng phòng Lee đã chia sẻ dự thảo chính sách gồm thời điểm vé dùng được, lý do thời hạn khác nhau theo merchant, các mục điều chỉnh trên CMS, căn cứ tích lũy và cách hiển thị trên màn hình. Tài liệu này trở thành chuẩn cho các trao đổi về sau.</span></p>
-        <details class="fold">
-          <summary><span class="ko">정책안 원문 요지</span><span class="vi">Nội dung chính của dự thảo chính sách</span></summary>
-          <div class="tlbody">
-            <p><span class="ko">티켓 사용 가능 시점 — 쿠팡은 카카오 연동 구매 7일, 미연동 구매 30일로 기존 유지. 링크프라이스 머천트는 정산이 확정된 후 사용 가능하며, 확정 기간은 머천트마다 다르다. 일반 머천트는 약 2개월, 정산이 오래 걸리는 머천트는 그보다 길다. 사용자 안내는 「최대 2개월」로 표시하고, 90일이 지나도 확정되지 않는 건은 별도 안내로 처리한다.</span><span class="vi">Thời điểm vé dùng được — Coupang giữ nguyên 7 ngày với đơn đã liên kết Kakao và 30 ngày với đơn chưa liên kết. Merchant Linkprice chỉ dùng được sau khi quyết toán được xác nhận, và thời gian xác nhận khác nhau tùy merchant: merchant thông thường khoảng 2 tháng, merchant quyết toán chậm thì lâu hơn. Thông báo cho người dùng hiển thị 「tối đa 2 tháng」, còn đơn quá 90 ngày vẫn chưa được xác nhận thì xử lý bằng thông báo riêng.</span></p>
-            <p><span class="ko">공통 — 확정 전에는 「적립 예정」 상태로 사용 · 룰렛 · 교환이 모두 불가하다. 연동을 나중에 해도 이전 구매 건의 대기 기간은 줄지 않으며, 취소가 확인되면 미사용분을 회수한다.</span><span class="vi">Điểm chung — Trước khi được xác nhận, vé ở trạng thái 「Chờ tích lũy」, không dùng được, không quay vòng quay và không đổi được. Liên kết muộn cũng không rút ngắn thời gian chờ của các đơn đã mua trước đó, và khi xác nhận có hủy đơn thì thu hồi phần chưa sử dụng.</span></p>
-            <p><span class="ko">머천트별로 기간이 다른 이유 — 반품 신청 기간이 몰마다 다르기 때문이다. 알리처럼 반품 기간이 긴 몰은 대기 기간도 그만큼 길어야 하며, 초기에는 적립에서 제외할 예정이다.</span><span class="vi">Lý do thời hạn khác nhau theo merchant — vì thời hạn yêu cầu trả hàng khác nhau ở mỗi sàn. Sàn có thời hạn trả hàng dài như Ali thì thời gian chờ cũng phải dài tương ứng, và dự kiến loại khỏi tích lũy trong giai đoạn đầu.</span></p>
-            <p><span class="ko">적립 기준 — 실제 결제 금액 기준이며 쿠폰 · 할인 · 적립금은 제외한다.</span><span class="vi">Căn cứ tích lũy — tính theo số tiền thanh toán thực tế, loại trừ coupon · giảm giá · điểm tích lũy.</span></p>
-          </div>
-        </details>
+        <p><span class="ko">티켓 사용 가능 시점, 머천트별 기간 차이의 근거, CMS 조정 항목, 적립 기준, 화면 표시를 담은 정책안을 공유했다. 이 문서가 이후 논의의 기준이 되었다. 구체적인 내용은 1항에 정리했다.</span><span class="vi">Trưởng phòng Lee đã chia sẻ dự thảo chính sách gồm thời điểm vé dùng được, lý do thời hạn khác nhau theo merchant, các mục điều chỉnh trên CMS, căn cứ tích lũy và cách hiển thị trên màn hình. Tài liệu này trở thành chuẩn cho các trao đổi về sau. Nội dung cụ thể được tổng hợp ở mục 1.</span></p>
       </div>
     </div>
 
@@ -431,15 +418,7 @@
     <div class="tlitem">
       <div class="tlwho"><span class="ko">이동영 부장님 — 3단계 요구사항 회신</span><span class="vi">Trưởng phòng Lee — Trả lời yêu cầu của bước 3</span></div>
       <div class="tlbody">
-        <p><span class="ko">1번과 2번은 확인했고, 3번은 기존 정책서(적립 확정 정책)를 기준으로 답변했다.</span><span class="vi">Mục 1 và mục 2 đã xác nhận xong, còn mục 3 thì trả lời dựa trên tài liệu chính sách hiện có (Chính sách xác nhận tích lũy).</span></p>
-        <ul>
-          <li><span class="ko">링크프라이스 머천트는 정산이 확정되면 그 시점에 지급(전환)하고, 기간을 채울 때까지 기다리지 않는다.</span><span class="vi">Với merchant Linkprice, cấp (chuyển đổi) ngay khi quyết toán được xác nhận, không chờ cho hết thời hạn.</span></li>
-          <li><span class="ko">확정되지 않은 건은 지급(전환)하지 않으며, 기간이 지났다고 자동 지급하지 않는다. 취소가 확정된 건도 지급(전환)하지 않는다.</span><span class="vi">Đơn chưa được xác nhận thì không cấp (chuyển đổi), và không tự động cấp chỉ vì đã quá thời hạn. Đơn đã xác nhận hủy cũng không cấp (chuyển đổi).</span></li>
-          <li><span class="ko">쿠팡은 기존대로 카카오 연동 7일, 미연동 30일을 유지한다.</span><span class="vi">Coupang giữ nguyên như hiện tại: đã liên kết Kakao 7 ngày, chưa liên kết 30 ngày.</span></li>
-          <li><span class="ko">취소가 확정되면 티켓을 삭제한다. 다만 정산이 3개월 이상 걸리는 머천트는 취소되었다가 다시 확정되는 경우가 있으므로, 이후 확정되면 재지급(전환)되도록 처리한다.</span><span class="vi">Khi hủy được xác nhận thì xóa vé. Tuy nhiên với merchant quyết toán trên 3 tháng, có đơn đã hủy rồi lại được xác nhận, nên nếu sau đó được xác nhận thì xử lý cấp (chuyển đổi) lại.</span></li>
-          <li><span class="ko">「최대 2개월」 안내 문구는 지급(전환) 조건이 아니라 안내용이며, CMS에서 머천트별로 수정 가능하게 한다. 정책서의 「90일 초과 미확정 건 별도 안내」는 「제휴사 정산 지연」 상태 표시로 처리한다.</span><span class="vi">Câu 「tối đa 2 tháng」 chỉ mang tính thông báo chứ không phải điều kiện cấp (chuyển đổi), và cho phép sửa theo từng merchant trên CMS. Mục 「thông báo riêng cho đơn quá 90 ngày chưa được xác nhận」 trong tài liệu chính sách sẽ xử lý bằng cách hiển thị trạng thái 「Đối tác chậm quyết toán」.</span></li>
-          <li><span class="ko">clickbuy는 확정 상태를 볼 수 없는 테스트 머천트이므로, 확정되었다고 가정한 값으로 먼저 구현하고 실제 검증은 실 머천트 연동 후에 진행한다.</span><span class="vi">clickbuy là merchant kiểm thử không xem được trạng thái xác nhận, nên triển khai trước với giả định là đã xác nhận, còn kiểm chứng thực tế sẽ làm sau khi kết nối merchant thật.</span></li>
-        </ul>
+        <p><span class="ko">1번과 2번은 확인했고, 3번은 기존 정책서(적립 확정 정책)를 기준으로 답변했다. 회신 내용은 그대로 1항으로 확정되었다.</span><span class="vi">Mục 1 và mục 2 đã xác nhận xong, còn mục 3 thì trả lời dựa trên tài liệu chính sách hiện có (Chính sách xác nhận tích lũy). Nội dung trả lời được chốt nguyên vẹn thành mục 1.</span></p>
       </div>
     </div>
 
@@ -452,7 +431,7 @@
         <p><span class="ko">이에 대해 이동영 부장님은 몰별 가능 시점이 나오지 않아 반품 기간을 기준으로 정했다고 답했다.</span><span class="vi">Về việc này, Trưởng phòng Lee trả lời rằng vì không có thời điểm khả dụng của từng sàn nên đã tạm lấy thời hạn trả hàng làm căn cứ.</span></p>
         <p><span class="ko">랜덤 티켓은 구매 확인 시 즉시 지급하고 전환 시점을 「지급」으로 보기로 했다.</span><span class="vi">Hai bên thống nhất cấp vé ngẫu nhiên ngay khi xác nhận được đơn mua, và coi thời điểm chuyển đổi là thời điểm cấp vé.</span></p>
         <div class="quote"><span class="ko">김반장님 — 「그럼 각 몰들은 랜덤티켓에서 "구매 확정 대기" 상태였다가 210 상태로 전환되면 등급티켓으로 전환」 / 이동영 부장님 — 「넵 맞습니다」 / 김반장님 — 「이 프로세스로 하면 될것 같습니다.」</span><span class="vi">Mr Mark — 「Vậy các sàn sẽ ở trạng thái vé ngẫu nhiên 『Chờ xác nhận mua』, khi chuyển sang trạng thái 210 thì chuyển thành vé hạng.」 / Trưởng phòng Lee — 「Vâng, đúng vậy.」 / Mr Mark — 「Tôi nghĩ làm theo quy trình này là được.」</span></div>
-        <p><span class="ko"><span class="badge b-fix">확정</span> 이 구조로 최종 합의되었다.</span><span class="vi"><span class="badge b-fix">Đã chốt</span> Hai bên đã thống nhất cuối cùng theo cấu trúc này.</span></p>
+        <p><span class="badge b-fix"><span class="ko">확정</span><span class="vi">Đã chốt</span></span> <span class="ko">이 구조로 최종 합의되었다.</span><span class="vi">Hai bên đã thống nhất cuối cùng theo cấu trúc này.</span></p>
       </div>
     </div>
 
@@ -461,7 +440,6 @@
       <div class="tlbody">
         <div class="quote"><span class="ko">「취소상태인 310으로 전환 될경우 지급된 적립 티켓은 회수 한다. but. 지급된 티켓을 이미 사용했을경우 동급의 다른티켓이 있을경우 차감을 하는데 문제는 차감할 티켓이 없을 경우 입니다.」 「그때는 loss 로 두고 새로 적립(지급) 이 될경우 선차감을 시키도록 하겠습니다.」</span><span class="vi">「Khi chuyển sang trạng thái hủy 310 thì thu hồi vé tích lũy đã cấp. Nhưng nếu vé đã cấp mà người dùng đã sử dụng rồi thì trừ vào vé khác cùng hạng nếu còn; vấn đề là khi không còn vé nào để trừ.」 「Khi đó sẽ ghi nhận là loss, và trừ trước vào lần tích lũy (cấp vé) mới.」</span></div>
         <p><span class="ko">아직 지급(전환)하지 않은 건과 이미 지급(전환)된 등급 티켓을 모두 회수한다는 원칙은 이 자리에서 확정되었다. 이동영 부장님은 차감할 티켓이 없는 경우에 대해 확인해 보겠다고 답했다.</span><span class="vi">Nguyên tắc thu hồi cả đơn chưa cấp (chuyển đổi) lẫn vé hạng đã cấp (chuyển đổi) được chốt ngay tại đây. Trưởng phòng Lee trả lời sẽ xem lại trường hợp không còn vé để trừ.</span></p>
-        <p><span class="ko"><span class="badge b-fix">확정</span> 회수 원칙은 확정되었고, 차감할 티켓이 없는 경우의 처리만 3항으로 넘겼다.</span><span class="vi"><span class="badge b-fix">Đã chốt</span> Nguyên tắc thu hồi đã được chốt, chỉ chuyển trường hợp không còn vé để trừ sang mục 3.</span></p>
       </div>
     </div>
   </div>
@@ -472,10 +450,10 @@
 
   <div class="warn">
     <h3><span class="ko">취소된 티켓을 이미 사용했고, 차감할 티켓도 없는 경우</span><span class="vi">Khi vé của đơn bị hủy đã được sử dụng và cũng không còn vé nào để trừ</span></h3>
-    <p><span class="ko">취소가 확정되면 아직 지급(전환)하지 않은 건과 이미 지급(전환)된 등급 티켓을 모두 회수한다는 원칙은 1-7로 확정되었다. 이미 사용한 경우에는 동급의 다른 티켓에서 차감한다. 남은 문제는 차감할 티켓이 하나도 없는 경우다.</span><span class="vi">Nguyên tắc thu hồi cả đơn chưa cấp (chuyển đổi) lẫn vé hạng đã cấp (chuyển đổi) khi hủy được xác nhận đã được chốt ở mục 1-7. Nếu vé đã được sử dụng thì trừ vào vé khác cùng hạng. Vấn đề còn lại là khi không còn vé nào để trừ.</span></p>
+    <p><span class="ko">남은 문제는 차감할 티켓이 하나도 없는 경우다.</span><span class="vi">Vấn đề còn lại là khi không còn vé nào để trừ.</span></p>
     <p><span class="ko">김반장님은 그때는 loss로 두고, 새로 적립이 될 경우 선차감시키는 방향을 제시했다. 극히 드문 경우이지만 처리 방식은 만들어 두어야 한다는 의견이다.</span><span class="vi">Mr Mark đề xuất trong trường hợp đó thì ghi nhận là loss, và khi có tích lũy mới thì trừ trước vào đó. Đây là tình huống rất hiếm nhưng vẫn cần chuẩn bị sẵn cách xử lý.</span></p>
     <p><span class="ko">이동영 부장님은 이 경우의 처리를 확인해 보겠다고 했으며, 정책 확정 이후에 별도로 회신하기로 했다. 김반장님도 이 부분은 더 면밀하게 확인한 뒤 적용하기로 했다.</span><span class="vi">Trưởng phòng Lee cho biết sẽ xem lại cách xử lý cho trường hợp này và sẽ phản hồi riêng sau khi chính sách được chốt. Mr Mark cũng thống nhất kiểm tra kỹ phần này rồi mới áp dụng.</span></p>
-    <p><span class="ko"><span class="badge b-hold">확정 대기</span> 확정 대기 대상은 이 경우의 처리 방식뿐이다. 회수 원칙을 포함한 나머지는 본 보고서 1항으로 확정되었다.</span><span class="vi"><span class="badge b-hold">Chờ chốt</span> Chỉ còn cách xử lý cho trường hợp này là đang chờ chốt. Phần còn lại, gồm cả nguyên tắc thu hồi, đã được chốt như mục 1 của báo cáo này.</span></p>
+    <p><span class="badge b-hold"><span class="ko">확정 대기</span><span class="vi">Chờ chốt</span></span> <span class="ko">이 경우의 처리 방식만 남았고, 회수 원칙을 포함한 나머지는 본 보고서 1항으로 확정되었다.</span><span class="vi">Chỉ còn cách xử lý cho trường hợp này, phần còn lại gồm cả nguyên tắc thu hồi đã được chốt như mục 1 của báo cáo này.</span></p>
   </div>
 
 </div>
