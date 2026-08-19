@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>PricePick 적립 확정 정책 보고서</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#F7F7FB; color:#333; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:960px; margin:0 auto; padding:48px 24px 96px; }
+
+  /* ── 언어 토글 (reports/index.html과 동일) ── */
+  .lang-toggle { display:flex; align-items:center; gap:2px; background:#F1EBFF; border:1px solid #D9CEF7; border-radius:8px; padding:3px; height:34px; position:fixed; top:16px; right:18px; z-index:100; }
+  .lang-btn { padding:0 10px; height:26px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; border:none; background:transparent; color:#8A8A9A; transition:all .15s; letter-spacing:.3px; }
+  .lang-btn.active { background:#845EEE; color:#fff; }
+  .lang-btn:hover:not(.active) { color:#1A1A2E; }
+  .vi { display:none; }
+  html[data-lang="vi"] .ko { display:none; }
+  html[data-lang="vi"] .vi { display:inline; }
+  .ko.blk { display:block; }
+  html[data-lang="vi"] .vi.blk { display:block; }
+
+  .cover { background:#fff; border:1px solid #E4DEF9; border-radius:16px; padding:40px 44px; margin-bottom:28px; }
+  .cover .label { display:inline-block; background:#F1EBFF; color:#845EEE; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; letter-spacing:.5px; margin-bottom:14px; }
+  .cover h1 { font-size:26px; font-weight:700; color:#222; margin-bottom:8px; letter-spacing:-.4px; }
+  .cover .sub { font-size:15px; font-weight:600; color:#6C4FD1; }
+  .cover .desc { font-size:13.5px; color:#888; margin-top:6px; }
+  .cover .meta { margin-top:18px; padding-top:18px; border-top:1px solid #F0EDFA; font-size:13px; color:#777; display:flex; gap:28px; flex-wrap:wrap; }
+  .cover .meta b { color:#555; font-weight:600; }
+
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:36px; }
+  .card { background:#fff; border:1px solid #E4DEF9; border-radius:14px; padding:20px 22px; }
+  .card .num { font-size:26px; font-weight:700; color:#845EEE; letter-spacing:-.5px; }
+  .card .num small { font-size:14px; font-weight:600; color:#B9A8F2; }
+  .card .cap { font-size:12.5px; color:#888; margin-top:4px; }
+
+  h2 { font-size:18px; font-weight:700; color:#222; margin:40px 0 6px; padding-left:12px; border-left:4px solid #845EEE; }
+  .h2-desc { font-size:13px; color:#888; margin:0 0 14px 16px; }
+  h3.sec { font-size:14.5px; font-weight:600; color:#6C4FD1; margin:26px 0 10px 2px; }
+
+  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid #E4DEF9; border-radius:12px; overflow:hidden; font-size:13.5px; }
+  thead th { background:#F5F2FE; color:#6C4FD1; font-weight:700; text-align:left; padding:11px 14px; font-size:12.5px; }
+  tbody td { padding:10px 14px; border-top:1px solid #F3F1FB; vertical-align:top; }
+  tbody tr:hover { background:#FBFAFF; }
+  td.fn { font-weight:600; color:#333; white-space:nowrap; }
+  td.code { font-variant-numeric:tabular-nums; font-weight:600; color:#6C4FD1; white-space:nowrap; }
+
+  /* ── 결정 항목 목록 ── */
+  .dl { background:#fff; border:1px solid #E4DEF9; border-radius:12px; overflow:hidden; }
+  .dl-row { display:flex; gap:18px; padding:14px 18px; border-top:1px solid #F3F1FB; }
+  .dl-row:first-child { border-top:none; }
+  .dl-k { flex:0 0 30%; font-size:13px; font-weight:600; color:#333; }
+  .dl-v { flex:1; font-size:13.5px; color:#555; }
+  .dl-v ul { margin:0 0 0 17px; }
+  .dl-v li { margin-bottom:3px; }
+  .dl-v li:last-child { margin-bottom:0; }
+
+  .badge { display:inline-block; font-size:11.5px; font-weight:700; padding:3px 10px; border-radius:12px; white-space:nowrap; }
+  .b-fix { background:#E9F5EF; color:#2E7D5B; }
+  .b-keep { background:#F1EBFF; color:#6C4FD1; }
+  .b-hold { background:#FDF3E3; color:#A8752A; }
+
+  /* ── 회의록 타임라인 ── */
+  .tlday { margin-top:24px; }
+  .tlday-head { display:flex; align-items:center; gap:11px; flex-wrap:wrap; margin-bottom:12px; }
+  .tldate { font-size:12.5px; font-weight:700; color:#6C4FD1; background:#F1EBFF; padding:4px 12px; border-radius:20px; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .tlday-title { font-size:13px; color:#999; }
+  .tlitem { background:#fff; border:1px solid #E4DEF9; border-radius:12px; padding:16px 18px; margin-bottom:10px; }
+  .tlwho { font-size:12.5px; font-weight:600; color:#6C4FD1; margin-bottom:7px; display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
+  .tltime { font-size:11.5px; font-weight:600; color:#B9A8F2; font-variant-numeric:tabular-nums; }
+  .tlbody { font-size:13.5px; color:#555; }
+  .tlbody ul { margin:7px 0 0 17px; }
+  .tlbody li { margin-bottom:4px; }
+  .tlbody li:last-child { margin-bottom:0; }
+  .tlbody p + p { margin-top:7px; }
+  .quote { border-left:3px solid #D9CEF7; padding:5px 0 5px 13px; margin:9px 0; font-size:13px; color:#6E6E7C; }
+  .quote + .quote { margin-top:-2px; }
+
+  details.fold { margin-top:11px; border-top:1px solid #F3F1FB; padding-top:10px; }
+  details.fold summary { font-size:12.5px; font-weight:600; color:#6C4FD1; cursor:pointer; list-style:none; }
+  details.fold summary::-webkit-details-marker { display:none; }
+  details.fold summary::before { content:"+ "; }
+  details.fold[open] summary::before { content:"\2212  "; }
+  details.fold .tlbody { margin-top:9px; }
+
+  .note { background:#fff; border:1px solid #E4DEF9; border-radius:12px; padding:22px 26px; }
+  .note h3 { font-size:14.5px; font-weight:600; color:#6C4FD1; margin-bottom:10px; }
+  .note p { font-size:13.5px; color:#555; }
+  .note p + p { margin-top:8px; }
+
+  .warn { background:#FFFCF5; border:1px solid #F2E3C4; border-radius:12px; padding:22px 26px; }
+  .warn h3 { font-size:14.5px; font-weight:600; color:#A8752A; margin-bottom:10px; }
+  .warn p { font-size:13.5px; color:#78633F; }
+  .warn p + p { margin-top:8px; }
+  .warn ul { margin:8px 0 0 17px; font-size:13.5px; color:#78633F; }
+  .warn li { margin-bottom:4px; }
+
+  .last-update { position:fixed; bottom:24px; left:24px; background:#fff; border:1px solid #E4DEF9; border-radius:8px; padding:6px 12px; font-size:11.5px; color:#999; box-shadow:0 2px 8px rgba(132,94,238,.08); }
+
+  @media (max-width:720px){
+    .cards { grid-template-columns:repeat(2,1fr); }
+    .cover { padding:28px 24px; }
+    .cover h1 { font-size:22px; }
+    .cover .meta { gap:12px; flex-direction:column; }
+    .wrap { padding:32px 16px 80px; }
+    .last-update { display:none; }
+    .dl-row { flex-direction:column; gap:5px; }
+    .dl-k { flex:none; }
+    table { font-size:12.5px; }
+    thead th, tbody td { padding:9px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button class="lang-btn active" id="btn-ko" onclick="setLang('ko')">KO</button>
+  <button class="lang-btn" id="btn-vi" onclick="setLang('vi')">VI</button>
+</div>
+
+<div class="wrap">
+
+  <div class="cover">
+    <span class="label">POLICY REPORT</span>
+    <h1><span class="ko">PricePick 적립 확정 정책 보고서</span><span class="vi">Báo cáo chính sách xác nhận tích lũy PricePick</span></h1>
+    <div class="sub"><span class="ko">링크프라이스 머천트 적립 확정 구조 · 등급 티켓 전환 시점</span><span class="vi">Cấu trúc xác nhận tích lũy cho merchant Linkprice · Thời điểm chuyển đổi vé hạng</span></div>
+    <div class="desc"><span class="ko">쿠팡은 기존 정책을 그대로 유지하고, 링크프라이스 머천트는 정산이 확정된 시점(상태 210)에 랜덤 티켓을 등급 티켓으로 전환하는 구조로 확정했다.</span><span class="vi">Coupang giữ nguyên chính sách hiện hành; với merchant Linkprice, chốt cấu trúc chuyển vé ngẫu nhiên thành vé hạng tại thời điểm đối soát được xác nhận (trạng thái 210).</span></div>
+    <div class="meta">
+      <span><b><span class="ko">작성일</span><span class="vi">Ngày lập</span></b> 2026.08.19</span>
+      <span><b><span class="ko">출처</span><span class="vi">Nguồn</span></b> <span class="ko">MS Teams 「PricePick 개발 그룹」 (2026-08-14 ~ 2026-08-19)</span><span class="vi">MS Teams "PricePick 개발 그룹" (14/08/2026 ~ 19/08/2026)</span></span>
+      <span><b><span class="ko">협의</span><span class="vi">Trao đổi</span></b> <span class="ko">이동영 부장님 · Huynh Huy · 김반장님</span><span class="vi">Trưởng phòng Lee · Huynh Huy · Mr Mark</span></span>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="num">210</div><div class="cap"><span class="ko">등급 티켓 전환 기준 상태 — 정산 완료</span><span class="vi">Trạng thái chuẩn để chuyển vé hạng — đối soát hoàn tất</span></div></div>
+    <div class="card"><div class="num">7 / 30<small><span class="ko"> 일</span><span class="vi"> ngày</span></small></div><div class="cap"><span class="ko">쿠팡 — 카카오 연동 / 미연동 (기존 유지)</span><span class="vi">Coupang — có / không liên kết Kakao (giữ nguyên)</span></div></div>
+    <div class="card"><div class="num"><span class="ko">최대 2</span><span class="vi">Tối đa 2</span><small><span class="ko"> 개월</span><span class="vi"> tháng</span></small></div><div class="cap"><span class="ko">링크프라이스 — 사용자 안내 표시 문구</span><span class="vi">Linkprice — câu thông báo hiển thị cho người dùng</span></div></div>
+    <div class="card"><div class="num">5<small><span class="ko"> 항목</span><span class="vi"> mục</span></small></div><div class="cap"><span class="ko">CMS에서 운영 중 조정하는 값</span><span class="vi">Giá trị điều chỉnh trong quá trình vận hành trên CMS</span></div></div>
+  </div>
+
+  <!-- ============ 1. 최종 결정안 ============ -->
+  <h2><span class="ko">1. 최종 결정안 — 이렇게 하기로 했다</span><span class="vi">1. Phương án chốt cuối — Đã quyết định như sau</span></h2>
+  <p class="h2-desc"><span class="ko">2026-08-19 협의로 확정된 내용이다.</span><span class="vi">Nội dung đã được chốt qua trao đổi ngày 19/08/2026.</span></p>
+
+  <h3 class="sec"><span class="ko">1-1. 티켓 지급과 전환 구조</span><span class="vi">1-1. Cấu trúc cấp và chuyển đổi vé</span></h3>
+  <div class="dl">
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">랜덤 티켓 지급</span><span class="vi">Cấp vé ngẫu nhiên</span></div>
+      <div class="dl-v"><span class="ko">구매가 확인되면 즉시 지급한다.</span><span class="vi">Cấp ngay khi xác nhận có giao dịch mua.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">확정 전 상태</span><span class="vi">Trạng thái trước khi xác nhận</span></div>
+      <div class="dl-v"><span class="ko">「구매 확정 대기」 상태로 둔다. 확정 전에는 사용 · 룰렛 · 교환 모두 불가하다.</span><span class="vi">Giữ ở trạng thái "Chờ xác nhận mua". Trước khi xác nhận thì không thể sử dụng · quay vòng quay · đổi.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">등급 티켓 전환</span><span class="vi">Chuyển sang vé hạng</span></div>
+      <div class="dl-v"><span class="ko">상태가 210으로 전환되면 랜덤 티켓 한 장이 등급 티켓으로 전환된다.</span><span class="vi">Khi trạng thái chuyển thành 210, một vé ngẫu nhiên sẽ được chuyển thành vé hạng.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">「지급」의 기준</span><span class="vi">Mốc tính là "đã cấp"</span></div>
+      <div class="dl-v"><span class="ko">전환 시점을 지급으로 본다.</span><span class="vi">Thời điểm chuyển đổi được coi là thời điểm cấp.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">카카오 연동과의 관계</span><span class="vi">Quan hệ với liên kết Kakao</span></div>
+      <div class="dl-v"><span class="ko">카카오톡 로그인과 관계없이 설정한 시점에 전환한다. 전환해 준 뒤 다시 사용 가능일을 표기하는 방식은 사용자에게 더 불편하므로 쓰지 않는다.</span><span class="vi">Chuyển đổi tại thời điểm đã thiết lập, không phụ thuộc việc đăng nhập Kakao. Cách chuyển đổi rồi lại ghi thêm ngày có thể sử dụng gây bất tiện hơn cho người dùng nên không áp dụng.</span></div>
+    </div>
+  </div>
+
+  <h3 class="sec"><span class="ko">1-2. 쿠팡 — 기존 정책 유지</span><span class="vi">1-2. Coupang — Giữ nguyên chính sách hiện hành</span></h3>
+  <table>
+    <thead><tr>
+      <th style="width:34%"><span class="ko">구분</span><span class="vi">Phân loại</span></th>
+      <th><span class="ko">내용</span><span class="vi">Nội dung</span></th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="fn"><span class="ko">카카오 연동 구매</span><span class="vi">Mua có liên kết Kakao</span></td><td><span class="ko">구매 후 7일</span><span class="vi">7 ngày sau khi mua</span></td></tr>
+      <tr><td class="fn"><span class="ko">미연동 구매</span><span class="vi">Mua không liên kết</span></td><td><span class="ko">구매 후 30일</span><span class="vi">30 ngày sau khi mua</span></td></tr>
+      <tr><td class="fn"><span class="ko">적용 범위</span><span class="vi">Phạm vi áp dụng</span></td><td><span class="ko">7일 · 30일 규칙은 쿠팡에 대해서만 적용하는 규칙으로 명시한다. <span class="badge b-keep">기존 유지</span></span><span class="vi">Quy tắc 7 ngày · 30 ngày được ghi rõ là chỉ áp dụng cho Coupang. <span class="badge b-keep">Giữ nguyên</span></span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec"><span class="ko">1-3. 링크프라이스 머천트 — 정산 확정 기준</span><span class="vi">1-3. Merchant Linkprice — Căn cứ xác nhận đối soát</span></h3>
+  <div class="dl">
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">지급 시점</span><span class="vi">Thời điểm cấp</span></div>
+      <div class="dl-v"><span class="ko">정산이 확정되면 그 시점에 지급한다. 기간을 채울 때까지 기다리지 않는다.</span><span class="vi">Cấp ngay tại thời điểm đối soát được xác nhận. Không chờ cho đủ thời hạn.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">미확정 건</span><span class="vi">Trường hợp chưa xác nhận</span></div>
+      <div class="dl-v"><span class="ko">지급하지 않는다. 기간이 지났다는 이유로 자동 지급하지 않는다.</span><span class="vi">Không cấp. Không tự động cấp chỉ vì đã quá thời hạn.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">취소 확정 건</span><span class="vi">Trường hợp hủy đã xác nhận</span></div>
+      <div class="dl-v"><span class="ko">지급하지 않는다.</span><span class="vi">Không cấp.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">머천트별 전환 시점</span><span class="vi">Thời điểm chuyển đổi theo từng merchant</span></div>
+      <div class="dl-v"><span class="ko">쿠팡을 제외한 몰은 관리자가 개별적으로 전환 시점을 설정할 수 있도록 개발한다. 현재 프로세스에서는 몰별 가능 시점이 나오지 않아, 반품 기간을 기준으로 정했다.</span><span class="vi">Với các sàn ngoài Coupang, phát triển để quản trị viên thiết lập riêng thời điểm chuyển đổi cho từng sàn. Quy trình hiện tại không cho biết thời điểm khả dụng theo từng sàn, nên tạm căn cứ theo thời hạn đổi trả hàng.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">확정 기간의 실제</span><span class="vi">Thực tế thời gian xác nhận</span></div>
+      <div class="dl-v"><span class="ko">머천트마다 다르다. 일반 머천트는 약 2개월, 정산이 오래 걸리는 머천트는 그보다 길다.</span><span class="vi">Khác nhau theo từng merchant. Merchant thông thường khoảng 2 tháng, merchant đối soát lâu thì dài hơn.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">연동 시점의 영향</span><span class="vi">Ảnh hưởng của thời điểm liên kết</span></div>
+      <div class="dl-v"><span class="ko">연동을 나중에 하더라도 이전 구매 건의 대기 기간은 줄지 않는다.</span><span class="vi">Dù liên kết muộn thì thời gian chờ của các giao dịch mua trước đó cũng không được rút ngắn.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">반품 기간이 긴 몰</span><span class="vi">Sàn có thời hạn đổi trả dài</span></div>
+      <div class="dl-v"><span class="ko">반품 신청 기간이 몰마다 달라 대기 기간도 달라진다. 알리처럼 반품 기간이 긴 몰은 초기에는 적립 제외 예정이다.</span><span class="vi">Thời hạn yêu cầu đổi trả khác nhau theo từng sàn nên thời gian chờ cũng khác. Các sàn có thời hạn đổi trả dài như Ali dự kiến sẽ loại khỏi tích lũy trong giai đoạn đầu.</span></div>
+    </div>
+  </div>
+
+  <h3 class="sec"><span class="ko">1-4. CMS에서 조정하는 값</span><span class="vi">1-4. Các giá trị điều chỉnh trên CMS</span></h3>
+  <p class="h2-desc" style="margin-left:2px;"><span class="ko">운영하면서 바꿀 값이므로 관리자 화면에서 수정할 수 있어야 한다.</span><span class="vi">Là các giá trị sẽ thay đổi trong quá trình vận hành nên phải sửa được trên màn hình quản trị.</span></p>
+  <table>
+    <thead><tr>
+      <th style="width:6%">#</th>
+      <th style="width:30%"><span class="ko">항목</span><span class="vi">Mục</span></th>
+      <th><span class="ko">내용</span><span class="vi">Nội dung</span></th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="code">1</td><td class="fn"><span class="ko">머천트별 대기 기간</span><span class="vi">Thời gian chờ theo merchant</span></td><td><span class="ko">머천트마다 개별 설정</span><span class="vi">Thiết lập riêng cho từng merchant</span></td></tr>
+      <tr><td class="code">2</td><td class="fn"><span class="ko">적립 제외 카테고리</span><span class="vi">Danh mục loại trừ tích lũy</span></td><td><span class="ko">상품권 · 기프티콘 · e쿠폰, 여행상품, 금 · 귀금속 등 환금성 상품, 모바일 기기, 배송비 · 쿠폰 할인분. 머천트별로 추가할 수 있다.</span><span class="vi">Phiếu quà tặng · Gifticon · e-coupon, sản phẩm du lịch, hàng có tính quy đổi tiền mặt như vàng · kim loại quý, thiết bị di động, phí vận chuyển · phần giảm giá coupon. Có thể bổ sung theo từng merchant.</span></td></tr>
+      <tr><td class="code">3</td><td class="fn"><span class="ko">일 적립 한도</span><span class="vi">Hạn mức tích lũy theo ngày</span></td><td><span class="ko">월 한도는 두지 않는다.</span><span class="vi">Không đặt hạn mức theo tháng.</span></td></tr>
+      <tr><td class="code">4</td><td class="fn"><span class="ko">머천트별 적립 ON / OFF</span><span class="vi">Bật / tắt tích lũy theo merchant</span></td><td><span class="ko">머천트 단위로 적립을 켜고 끈다.</span><span class="vi">Bật tắt tích lũy theo đơn vị merchant.</span></td></tr>
+      <tr><td class="code">5</td><td class="fn"><span class="ko">머천트별 취소율 확인</span><span class="vi">Theo dõi tỷ lệ hủy theo merchant</span></td><td><span class="ko">30% 초과 시 알림</span><span class="vi">Cảnh báo khi vượt quá 30%</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec"><span class="ko">1-5. 적립 기준</span><span class="vi">1-5. Căn cứ tích lũy</span></h3>
+  <div class="note">
+    <p><span class="ko">실제 결제 금액을 기준으로 한다. 쿠폰 · 할인 · 적립금은 제외한다.</span><span class="vi">Căn cứ theo số tiền thanh toán thực tế. Loại trừ coupon · giảm giá · điểm tích lũy.</span></p>
+  </div>
+
+  <h3 class="sec"><span class="ko">1-6. 화면 표시</span><span class="vi">1-6. Hiển thị trên màn hình</span></h3>
+  <table>
+    <thead><tr>
+      <th style="width:34%"><span class="ko">대상</span><span class="vi">Đối tượng</span></th>
+      <th><span class="ko">표시 내용</span><span class="vi">Nội dung hiển thị</span></th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="fn"><span class="ko">쿠팡 구매 건</span><span class="vi">Giao dịch mua tại Coupang</span></td><td><span class="ko">「카카오 연동하면 7일로 단축」</span><span class="vi">"Liên kết Kakao sẽ rút ngắn còn 7 ngày"</span></td></tr>
+      <tr><td class="fn"><span class="ko">링크프라이스 구매 건</span><span class="vi">Giao dịch mua qua Linkprice</span></td><td><span class="ko">「카카오 미연동시 적립 내역이 사라질 수 있습니다」</span><span class="vi">"Nếu không liên kết Kakao, lịch sử tích lũy có thể bị mất"</span></td></tr>
+      <tr><td class="fn"><span class="ko">대기 기간 안내</span><span class="vi">Thông báo thời gian chờ</span></td><td><span class="ko">「최대 2개월」로 표시한다. 이 문구는 지급 조건이 아니라 안내용이며, CMS에서 머천트별로 수정할 수 있게 한다.</span><span class="vi">Hiển thị là "tối đa 2 tháng". Câu này chỉ để thông báo, không phải điều kiện cấp vé, và cho phép sửa theo từng merchant trên CMS.</span></td></tr>
+      <tr><td class="fn"><span class="ko">90일 초과 미확정 건</span><span class="vi">Trường hợp quá 90 ngày chưa xác nhận</span></td><td><span class="ko">「제휴사 정산 지연」 상태로 표시해 처리한다.</span><span class="vi">Xử lý bằng cách hiển thị trạng thái "Đối tác chậm đối soát".</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec"><span class="ko">1-7. 취소 처리</span><span class="vi">1-7. Xử lý hủy</span></h3>
+  <div class="dl">
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">취소 확정 시</span><span class="vi">Khi hủy được xác nhận</span></div>
+      <div class="dl-v"><span class="ko">티켓을 삭제한다. 상태 310으로 전환될 경우 지급된 적립 티켓은 회수한다.</span><span class="vi">Xóa vé. Khi chuyển sang trạng thái 310 thì thu hồi vé tích lũy đã cấp.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">미사용분</span><span class="vi">Phần chưa sử dụng</span></div>
+      <div class="dl-v"><span class="ko">취소가 확인되면 회수한다.</span><span class="vi">Thu hồi khi xác nhận hủy.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">이미 사용한 경우</span><span class="vi">Trường hợp đã sử dụng</span></div>
+      <div class="dl-v"><span class="ko">동급의 다른 티켓이 있으면 그것을 차감한다.</span><span class="vi">Nếu còn vé khác cùng hạng thì trừ vào vé đó.</span></div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-k"><span class="ko">재확정되는 경우</span><span class="vi">Trường hợp được xác nhận lại</span></div>
+      <div class="dl-v"><span class="ko">정산이 3개월 이상 걸리는 머천트는 취소되었다가 다시 확정되는 경우가 있다. 이후 확정되면 재지급되도록 처리한다.</span><span class="vi">Với merchant đối soát trên 3 tháng, có trường hợp đã hủy rồi lại được xác nhận. Nếu sau đó được xác nhận thì xử lý cấp lại.</span></div>
+    </div>
+  </div>
+
+  <h3 class="sec"><span class="ko">1-8. 테스트 환경 대응</span><span class="vi">1-8. Xử lý với môi trường kiểm thử</span></h3>
+  <div class="note">
+    <p><span class="ko">clickbuy는 포스트백이 정상적으로 도는지 확인하기 위한 테스트 머천트로, status 값이 210으로 변경되지 않는다. 구매 익월 2일에 일괄 310으로 변경된다.</span><span class="vi">clickbuy là merchant kiểm thử dùng để kiểm tra postback có hoạt động bình thường hay không, giá trị status không đổi thành 210. Đến ngày 2 của tháng kế tiếp tháng mua sẽ đồng loạt đổi thành 310.</span></p>
+    <p><span class="ko">따라서 확정되었다고 가정한 값으로 먼저 구현하고, 실제 검증은 실 머천트 연동 이후에 진행한다.</span><span class="vi">Do đó triển khai trước với giá trị giả định là đã xác nhận, còn kiểm chứng thực tế sẽ tiến hành sau khi kết nối merchant thật.</span></p>
+  </div>
+
+  <!-- ============ 2. 회의록 ============ -->
+  <h2><span class="ko">2. 회의록</span><span class="vi">2. Biên bản trao đổi</span></h2>
+  <p class="h2-desc"><span class="ko">MS Teams 「PricePick 개발 그룹」에서 오간 논의를 날짜순으로 정리했다.</span><span class="vi">Tổng hợp các trao đổi trong MS Teams "PricePick 개발 그룹" theo thứ tự thời gian.</span></p>
+
+  <!-- 8/14 -->
+  <div class="tlday">
+    <div class="tlday-head">
+      <span class="tldate">2026-08-14</span>
+      <span class="tlday-title"><span class="ko">주문 상태 확인 질문에서 「적립 확정 정책」 수립까지</span><span class="vi">Từ câu hỏi về kiểm tra trạng thái đơn hàng đến việc lập "Chính sách xác nhận tích lũy"</span></span>
+    </div>
+
+    <div class="tlitem">
+      <div class="tlwho"><span class="ko">Huynh Huy — 링크프라이스 주문 상태 질문</span><span class="vi">Huynh Huy — Câu hỏi về trạng thái đơn hàng Linkprice</span><span class="tltime">10:41</span></div>
+      <div class="tlbody">
+        <p><span class="ko">링크프라이스 문서(<code>AffiliateSetup/docs/자주묻는_질문.md</code>)에 정리된 주문 상태 5종을 근거로 세 가지를 물었다.</span><span class="vi">Dựa trên 5 loại trạng thái đơn hàng nêu trong tài liệu Linkprice (<code>AffiliateSetup/docs/자주묻는_질문.md</code>), đã hỏi ba điểm.</span></p>
+        <ul>
+          <li><span class="ko">주문 상태를 확인하려면 하루에 크론을 몇 번 돌려야 하는가</span><span class="vi">Mỗi ngày phải chạy cron bao nhiêu lần để kiểm tra trạng thái đơn hàng</span></li>
+          <li><span class="ko">상태가 210이 되면 사용자에게 티켓을 잠금 해제하는 것이 맞는가</span><span class="vi">Khi trạng thái thành 210 thì mở khóa vé cho người dùng có đúng không</span></li>
+          <li><span class="ko">210이 된 뒤 300이나 310으로 다시 바뀔 수 있는가 — 이미 티켓을 지급했는데 사용자가 주문을 취소하는 경우</span><span class="vi">Sau khi thành 210 có thể đổi lại thành 300 hoặc 310 không — trường hợp đã cấp vé nhưng người dùng hủy đơn</span></li>
+        </ul>
+        <details class="fold">
+          <summary><span class="ko">링크프라이스 주문 상태 5종</span><span class="vi">5 loại trạng thái đơn hàng Linkprice</span></summary>
+          <table style="margin-top:9px;">
+            <thead><tr>
+              <th style="width:14%"><span class="ko">상태</span><span class="vi">Trạng thái</span></th>
+              <th style="width:24%"><span class="ko">이름</span><span class="vi">Tên</span></th>
+              <th><span class="ko">설명</span><span class="vi">Mô tả</span></th>
+            </tr></thead>
+            <tbody>
+              <tr><td class="code">100</td><td class="fn"><span class="ko">일반 상태</span><span class="vi">Trạng thái thường</span></td><td><span class="ko">실적이 발생하면 부여</span><span class="vi">Được gán khi phát sinh doanh số</span></td></tr>
+              <tr><td class="code">200</td><td class="fn"><span class="ko">정산 대기</span><span class="vi">Chờ đối soát</span></td><td><span class="ko">내부 정산 과정에서 관리되는 상태로 구매 확정이 아님</span><span class="vi">Trạng thái được quản lý trong quá trình đối soát nội bộ, chưa phải xác nhận mua</span></td></tr>
+              <tr><td class="code">210</td><td class="fn"><span class="ko">정산 완료</span><span class="vi">Đối soát hoàn tất</span></td><td><span class="ko">커미션 지급이 확정된 상태이며 이후 상태가 변경되지 않음</span><span class="vi">Trạng thái đã xác nhận chi trả hoa hồng, sau đó không thay đổi trạng thái nữa</span></td></tr>
+              <tr><td class="code">300</td><td class="fn"><span class="ko">취소 대기</span><span class="vi">Chờ hủy</span></td><td><span class="ko">내부 관리 상태로 취소 확정이 아님</span><span class="vi">Trạng thái quản lý nội bộ, chưa phải hủy đã xác nhận</span></td></tr>
+              <tr><td class="code">310</td><td class="fn"><span class="ko">취소 확정</span><span class="vi">Hủy đã xác nhận</span></td><td><span class="ko">이후 상태가 변경되지 않음</span><span class="vi">Sau đó không thay đổi trạng thái nữa</span></td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+    </div>
+
+    <div class="tlitem">
+      <div class="tlwho"><span class="ko">이동영 부장님 — 답변</span><span class="vi">Trưởng phòng Lee — Trả lời</span><span class="tltime">10:52</span></div>
+      <div class="tlbody">
+        <p><span class="ko">세 가지 모두 링크프라이스 FAQ 문서에 답이 있어 문서를 공유했다.</span><span class="vi">Cả ba điểm đều có lời giải trong tài liệu FAQ của Linkprice nên đã chia sẻ tài liệu.</span></p>
+        <ul>
+          <li><span class="ko">크론 주기 — 「API 호출 제한」 항목 참고</span><span class="vi">Chu kỳ cron — tham khảo mục "Giới hạn gọi API"</span></li>
+          <li><span class="ko">상태 재변경 — 「구매/취소 확정 처리 시점」·「응답 데이터」 항목 참고. 확정 실적은 매월 6일에 갱신되는 구조라 크론 주기를 정할 때 함께 고려해야 한다.</span><span class="vi">Việc đổi lại trạng thái — tham khảo mục "Thời điểm xử lý xác nhận mua/hủy" · "Dữ liệu phản hồi". Doanh số đã xác nhận được cập nhật vào ngày 6 hằng tháng nên cần cân nhắc khi định chu kỳ cron.</span></li>
+          <li><span class="ko">티켓 잠금 해제 — 정책 사항. 실적이 들어오면 「적립 예정」으로 표시만 하고, 상태가 210(정산 완료)으로 확정되면 사용 가능한 티켓으로 전환한다. 확정 전에는 사용과 룰렛 모두 불가하다.</span><span class="vi">Mở khóa vé — thuộc phạm vi chính sách. Khi doanh số về thì chỉ hiển thị "Dự kiến tích lũy", đến khi trạng thái được xác nhận là 210 (đối soát hoàn tất) mới chuyển thành vé sử dụng được. Trước khi xác nhận thì không thể sử dụng lẫn quay vòng quay.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tlitem">
+      <div class="tlwho"><span class="ko">김반장님 ↔ 이동영 부장님 — 쿠팡 기준의 적용 범위</span><span class="vi">Mr Mark ↔ Trưởng phòng Lee — Phạm vi áp dụng chuẩn của Coupang</span></div>
+      <div class="tlbody">
+        <div class="quote"><span class="ko">김반장님 — 「그게 대기일을 잡아둔 7일 아니예요? 카카오톡 연동시」 「7일이 지나도 210 정산 완료로 바뀌지 않으면 사용 못하게 제한을 걸어 둬야 할까요?」</span><span class="vi">Mr Mark — "Đó không phải là 7 ngày chờ đã định sao? Khi liên kết KakaoTalk" "Nếu quá 7 ngày mà không chuyển thành 210 đối soát hoàn tất thì có phải chặn không cho sử dụng không?"</span></div>
+        <div class="quote"><span class="ko">이동영 부장님 — 「쿠팡파트너스 기준정책이었고 링크프라이스 연동된 머천트는 정책을 따로 줘야 되지 않나 생각합니다. 이부분은 제가 타사 앱도 한번 다시 확인해보겠습니다.」</span><span class="vi">Trưởng phòng Lee — "Đó là chính sách chuẩn theo Coupang Partners, còn merchant kết nối qua Linkprice thì tôi nghĩ nên đưa ra chính sách riêng. Phần này tôi sẽ kiểm tra lại cả ứng dụng của công ty khác."</span></div>
+        <div class="quote"><span class="ko">김반장님 — 「생각보다 복잡해 지네요」 / 이동영 부장님 — 「정책기준은 똑같이 가도 될것같은데 변수 상황을 좀 찾아봐야될것같아서요」</span><span class="vi">Mr Mark — "Phức tạp hơn tôi nghĩ" / Trưởng phòng Lee — "Chuẩn chính sách thì có thể đi giống nhau, nhưng cần tìm hiểu thêm các tình huống biến số."</span></div>
+      </div>
+    </div>
+
+    <div class="tlitem">
+      <div class="tlwho"><span class="ko">Huynh Huy — 확정까지 걸리는 시간에 대한 우려</span><span class="vi">Huynh Huy — Lo ngại về thời gian đến khi xác nhận</span></div>
+      <div class="tlbody">
+        <p><span class="ko">API 호출 한도를 확인했는데 문서에 매달 6일에 조정한다고 되어 있는지 궁금하다고 했다. 가장 최근 달이 지금으로부터 2개월 전인 것으로 보이며, 주문이 100에서 210으로 전환되는 데 얼마나 걸리는지, 너무 오래 걸리면 문제가 되지 않을지 걱정된다고 밝혔다.</span><span class="vi">Đã kiểm tra hạn mức gọi API và thắc mắc liệu tài liệu có ghi là điều chỉnh vào ngày 6 hằng tháng không. Tháng gần nhất có vẻ cách hiện tại 2 tháng, và bày tỏ lo ngại rằng đơn hàng mất bao lâu để chuyển từ 100 sang 210, nếu quá lâu thì có thành vấn đề không.</span></p>
+        <div class="quote"><span class="ko">김반장님 — 「링크프라이스는 한달에 한번 정산은 맞을것 같고, 그러니까 210으로 넘어가는 게 매달 6일 한번인것 같습니다. 정산과 실적은 다를텐데 이 주기에 사용할수 있는 범위를 맞추면 안될것 같습니다.」 「부장님이 이건 정책적인 부분이니 확인 한번 해서 결정해주시면 좋을것 같아요.」</span><span class="vi">Mr Mark — "Linkprice đối soát mỗi tháng một lần thì đúng, tức là việc chuyển sang 210 mỗi tháng chỉ có một lần vào ngày 6. Đối soát và doanh số là khác nhau, nên không thể lấy chu kỳ này làm phạm vi sử dụng được." "Đây là phần thuộc chính sách nên mong Trưởng phòng kiểm tra và quyết định giúp."</span></div>
+      </div>
+    </div>
+
+    <div class="tlitem">
+      <div class="tlwho"><span class="ko">이동영 부장님 — 「적립 확정 정책」 제시</span><span class="vi">Trưởng phòng Lee — Đưa ra "Chính sách xác nhận tích lũy"</span><span class="tltime">13:56</span></div>
+      <div class="tlbody">
+        <p><span class="ko">티켓 사용 가능 시점, 머천트별 기간 차이의 근거, CMS 조정 항목, 적립 기준, 화면 표시를 담은 정책안을 공유했다. 이 문서가 이후 논의의 기준이 되었다.</span><span class="vi">Đã chia sẻ dự thảo chính sách gồm thời điểm có thể sử dụng vé, căn cứ khác biệt thời hạn theo merchant, các mục điều chỉnh trên CMS, căn cứ tích lũy và hiển thị màn hình. Tài liệu này trở thành chuẩn cho các trao đổi sau đó.</span></p>
+        <details class="fold">
+          <summary><span class="ko">정책안 원문 요지</span><span class="vi">Nội dung chính của dự thảo chính sách</span></summary>
+          <div class="tlbody">
+            <p><span class="ko">티켓 사용 가능 시점 — 쿠팡은 카카오 연동 구매 7일, 미연동 구매 30일로 기존 유지. 링크프라이스 머천트는 정산이 확정된 후 사용 가능하며, 확정 기간은 머천트마다 다르다. 일반 머천트는 약 2개월, 정산이 오래 걸리는 머천트는 그보다 길다. 사용자 안내는 「최대 2개월」로 표시하고, 90일이 지나도 확정되지 않는 건은 별도 안내로 처리한다.</span><span class="vi">Thời điểm có thể sử dụng vé — Coupang giữ nguyên 7 ngày với giao dịch có liên kết Kakao, 30 ngày với giao dịch không liên kết. Merchant Linkprice chỉ dùng được sau khi đối soát được xác nhận, thời hạn xác nhận khác nhau theo từng merchant. Merchant thông thường khoảng 2 tháng, merchant đối soát lâu thì dài hơn. Thông báo cho người dùng hiển thị "tối đa 2 tháng", còn trường hợp quá 90 ngày chưa xác nhận thì xử lý bằng thông báo riêng.</span></p>
+            <p><span class="ko">공통 — 확정 전에는 「적립 예정」 상태로 사용 · 룰렛 · 교환이 모두 불가하다. 연동을 나중에 해도 이전 구매 건의 대기 기간은 줄지 않으며, 취소가 확인되면 미사용분을 회수한다.</span><span class="vi">Chung — Trước khi xác nhận là trạng thái "Dự kiến tích lũy", không thể sử dụng · quay vòng quay · đổi. Dù liên kết muộn thì thời gian chờ của giao dịch trước đó cũng không giảm, và khi xác nhận hủy thì thu hồi phần chưa sử dụng.</span></p>
+            <p><span class="ko">머천트별로 기간이 다른 이유 — 반품 신청 기간이 몰마다 다르기 때문이다. 알리처럼 반품 기간이 긴 몰은 대기 기간도 그만큼 길어야 하며, 초기에는 적립에서 제외할 예정이다.</span><span class="vi">Lý do thời hạn khác nhau theo merchant — vì thời hạn yêu cầu đổi trả khác nhau ở mỗi sàn. Các sàn có thời hạn đổi trả dài như Ali thì thời gian chờ cũng phải dài tương ứng, và dự kiến loại khỏi tích lũy trong giai đoạn đầu.</span></p>
+            <p><span class="ko">적립 기준 — 실제 결제 금액 기준이며 쿠폰 · 할인 · 적립금은 제외한다.</span><span class="vi">Căn cứ tích lũy — theo số tiền thanh toán thực tế, loại trừ coupon · giảm giá · điểm tích lũy.</span></p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="tlitem">
+      <div class="tlwho"><span class="ko">김반장님 — 요약과 합의</span><span class="vi">Mr Mark — Tóm tắt và thống nhất</span></div>
+      <div class="tlbody">
+        <div class="quote"><span class="ko">「요약하면 쿠팡은 기존 정책 그대로 가고, 링크프라이스는 머천트별로 최대 기간을 부여한 뒤 정산 확정(210) 확인 후 지급하는 구조로 가야 할 것 같습니다. 추가로 해당 기간은 CMS에서 수정할 수 있도록 반영 부탁드립니다.」 「우선 설계를 하겠습니다. 머천트별 대기기간 설정 다르게 하도록이요.」</span><span class="vi">"Tóm lại, Coupang giữ nguyên chính sách hiện hành, còn Linkprice thì nên đi theo cấu trúc gán thời hạn tối đa theo từng merchant rồi cấp sau khi xác nhận đối soát (210). Ngoài ra mong phản ánh để thời hạn đó sửa được trên CMS." "Trước hết tôi sẽ tiến hành thiết kế. Theo hướng thiết lập thời gian chờ khác nhau theo từng merchant."</span></div>
+        <p><span class="ko">이동영 부장님이 이에 동의했다.</span><span class="vi">Trưởng phòng Lee đã đồng ý với nội dung này.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8/18 -->
+  <div class="tlday">
+    <div class="tlday-head">
+      <span class="tldate">2026-08-18</span>
+      <span class="tlday-title"><span class="ko">테스트가 진행되지 않음 — 상태가 100에서 움직이지 않는다</span><span class="vi">Kiểm thử không tiến triển — trạng thái không rời khỏi 100</span></span>
+    </div>
+
+    <div class="tlitem">
+      <div class="tlwho"><span class="ko">Huynh Huy — 테스트 결과 보고</span><span class="vi">Huynh Huy — Báo cáo kết quả kiểm thử</span><span class="tltime">09:09</span></div>
+      <div class="tlbody">
+        <p><span class="ko">8월 13일부터 테스트 주문을 확인했으나 status가 여전히 100이고 변화가 없다고 보고했다. clickbuy 테스트 환경이 210으로 바뀌는지, 바뀐다면 얼마나 걸리는지, 실제 환경처럼 매월 6일에만 바뀌는 것인지 링크프라이스 지원팀에 문의해 달라고 요청했다.</span><span class="vi">Đã báo cáo rằng kiểm tra đơn hàng thử nghiệm từ ngày 13/08 nhưng status vẫn là 100 và không thay đổi. Đề nghị liên hệ bộ phận hỗ trợ Linkprice để hỏi môi trường kiểm thử clickbuy có đổi thành 210 không, nếu có thì mất bao lâu, và có phải chỉ đổi vào ngày 6 hằng tháng như môi trường thật không.</span></p>
+        <p><span class="ko">7일 대신 「주문 완료」를 확인해서 티켓 잠금을 해제하는 코드를 써야 하므로, 완료 시점을 알아야 정확한 테스트가 가능하다는 점을 함께 밝혔다.</span><span class="vi">Đồng thời nêu rõ rằng vì phải viết mã mở khóa vé dựa trên việc kiểm tra "đơn hàng hoàn tất" thay vì 7 ngày, nên cần biết thời điểm hoàn tất mới kiểm thử chính xác được.</span></p>
+        <p><span class="ko">이동영 부장님이 링크프라이스에 문의하겠다고 회신했다.</span><span class="vi">Trưởng phòng Lee phản hồi sẽ liên hệ hỏi Linkprice.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8/19 -->
+  <div class="tlday">
+    <div class="tlday-head">
+      <span class="tldate">2026-08-19</span>
+      <span class="tlday-title"><span class="ko">링크프라이스 회신과 최종 확정</span><span class="vi">Phản hồi từ Linkprice và chốt phương án cuối</span></span>
+    </div>
+
+    <div class="tlitem">
+      <div class="tlwho"><span class="ko">이동영 부장님 — 링크프라이스 회신 공유</span><span class="vi">Trưởng phòng Lee — Chia sẻ phản hồi của Linkprice</span><span class="tltime">08:06</span></div>
+      <div class="tlbody">
+        <p><span class="ko">clickbuy는 포스트백 정상 유무를 확인하기 위한 테스트 머천트로 status 값이 210으로 변경되지 않으며, 구매 익월 2일에 일괄 310으로 변경된다는 회신을 공유했다.</span><span class="vi">Chia sẻ phản hồi rằng clickbuy là merchant kiểm thử dùng để kiểm tra postback có hoạt động bình thường không, giá trị status không đổi thành 210, và sẽ đồng loạt đổi thành 310 vào ngày 2 của tháng kế tiếp tháng mua.</span></p>
+      </div>
+    </div>
+
+    <div class="tlitem">
+      <div class="tlwho"><span class="ko">Huynh Huy — 구현 현황과 3단계 요구사항 요청</span><span class="vi">Huynh Huy — Hiện trạng triển khai và đề nghị làm rõ yêu cầu bước 3</span></div>
+      <div class="tlbody">
+        <p><span class="ko">clickbuy에서 테스트 주문을 완료한 구매 흐름은 1단계와 2단계라고 정리했다.</span><span class="vi">Đã tổng hợp rằng luồng mua đã hoàn tất đơn kiểm thử tại clickbuy là bước 1 và bước 2.</span></p>
+        <ul>
+          <li><span class="ko">1단계 — 클릭바이에서 주문할 때 포스트백 데이터가 프라이스픽으로 반환된다.</span><span class="vi">Bước 1 — Khi đặt hàng tại clickbuy, dữ liệu postback được trả về PricePick.</span></li>
+          <li><span class="ko">2단계 — 프라이스픽이 포스트백 데이터를 수신해 논리적 처리로 데이터를 삽입하고 랜덤 티켓을 만든다. 등급 티켓이지만 잠금 해제되지 않은 상태다.</span><span class="vi">Bước 2 — PricePick nhận dữ liệu postback, chèn dữ liệu bằng xử lý logic và tạo vé ngẫu nhiên. Là vé hạng nhưng ở trạng thái chưa mở khóa.</span></li>
+          <li><span class="ko">3단계 — 사용자 등급 티켓의 잠금 해제 날짜를 결정한다.</span><span class="vi">Bước 3 — Quyết định ngày mở khóa vé hạng của người dùng.</span></li>
+        </ul>
+        <p><span class="ko">3단계는 링크프라이스에서 주문 완료일이 정해지지 않아 로직을 작성하지 않았으며, 3단계 요구사항을 확인해 알려 달라고 요청했다.</span><span class="vi">Bước 3 chưa viết logic vì Linkprice chưa xác định ngày hoàn tất đơn hàng, và đề nghị xác nhận rồi thông báo yêu cầu của bước 3.</span></p>
+      </div>
+    </div>
+
+    <div class="tlitem">
+      <div class="tlwho"><span class="ko">이동영 부장님 — 3단계 요구사항 회신</span><span class="vi">Trưởng phòng Lee — Trả lời yêu cầu bước 3</span></div>
+      <div class="tlbody">
+        <p><span class="ko">1번과 2번은 확인했고, 3번은 기존 정책서(적립 확정 정책)를 기준으로 답변했다.</span><span class="vi">Đã xác nhận mục 1 và 2, còn mục 3 thì trả lời dựa trên tài liệu chính sách hiện có (Chính sách xác nhận tích lũy).</span></p>
+        <ul>
+          <li><span class="ko">링크프라이스 머천트는 정산이 확정되면 그 시점에 지급하고, 기간을 채울 때까지 기다리지 않는다.</span><span class="vi">Với merchant Linkprice, cấp ngay tại thời điểm đối soát được xác nhận, không chờ cho đủ thời hạn.</span></li>
+          <li><span class="ko">확정되지 않은 건은 지급하지 않으며, 기간이 지났다고 자동 지급하지 않는다. 취소가 확정된 건도 지급하지 않는다.</span><span class="vi">Trường hợp chưa xác nhận thì không cấp, và không tự động cấp chỉ vì đã quá thời hạn. Trường hợp hủy đã xác nhận cũng không cấp.</span></li>
+          <li><span class="ko">쿠팡은 기존대로 카카오 연동 7일, 미연동 30일을 유지한다.</span><span class="vi">Coupang giữ nguyên như hiện tại: liên kết Kakao 7 ngày, không liên kết 30 ngày.</span></li>
+          <li><span class="ko">취소가 확정되면 티켓을 삭제한다. 다만 정산이 3개월 이상 걸리는 머천트는 취소되었다가 다시 확정되는 경우가 있으므로, 이후 확정되면 재지급되도록 처리한다.</span><span class="vi">Khi hủy được xác nhận thì xóa vé. Tuy nhiên merchant đối soát trên 3 tháng có trường hợp đã hủy rồi lại được xác nhận, nên nếu sau đó được xác nhận thì xử lý cấp lại.</span></li>
+          <li><span class="ko">「최대 2개월」 안내 문구는 지급 조건이 아니라 안내용이며, CMS에서 머천트별로 수정 가능하게 한다. 정책서의 「90일 초과 미확정 건 별도 안내」는 「제휴사 정산 지연」 상태 표시로 처리한다.</span><span class="vi">Câu thông báo "tối đa 2 tháng" chỉ để thông báo chứ không phải điều kiện cấp, và cho phép sửa theo từng merchant trên CMS. Mục "thông báo riêng cho trường hợp quá 90 ngày chưa xác nhận" trong tài liệu chính sách sẽ xử lý bằng hiển thị trạng thái "Đối tác chậm đối soát".</span></li>
+          <li><span class="ko">clickbuy는 확정 상태를 볼 수 없는 테스트 머천트이므로, 확정되었다고 가정한 값으로 먼저 구현하고 실제 검증은 실 머천트 연동 후에 진행한다.</span><span class="vi">clickbuy là merchant kiểm thử không xem được trạng thái xác nhận, nên triển khai trước với giá trị giả định đã xác nhận và kiểm chứng thực tế sau khi kết nối merchant thật.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tlitem">
+      <div class="tlwho"><span class="ko">김반장님 — 전환 구조 결정</span><span class="vi">Mr Mark — Quyết định cấu trúc chuyển đổi</span></div>
+      <div class="tlbody">
+        <p><span class="ko">현재 7일 · 30일에 랜덤 티켓이 등급 티켓으로 전환되는 규칙은 쿠팡에 대해서 적용하는 규칙으로 명시하고, 나머지 몰은 관리자가 개별적으로 전환 시점을 설정할 수 있도록 개발하기로 했다.</span><span class="vi">Quyết định ghi rõ quy tắc chuyển vé ngẫu nhiên thành vé hạng sau 7 ngày · 30 ngày hiện nay là quy tắc áp dụng cho Coupang, còn các sàn khác thì phát triển để quản trị viên thiết lập riêng thời điểm chuyển đổi.</span></p>
+        <div class="quote"><span class="ko">「카카오톡 로그인과 관계없이 설정한 시점에 랜덤티켓 한 장에서 등급티켓으로 전환시키는 것이 가장 좋은 방법이다. 전환해주고 또 거기에 사용 가능일을 표기하는 것은 사용자에게 더 불편하다.」</span><span class="vi">"Cách tốt nhất là chuyển một vé ngẫu nhiên thành vé hạng tại thời điểm đã thiết lập, không phụ thuộc đăng nhập KakaoTalk. Chuyển đổi rồi lại ghi thêm ngày có thể sử dụng thì bất tiện hơn cho người dùng."</span></div>
+        <div class="quote"><span class="ko">「각 몰마다 그 시점을 어떻게 계산할 수 있을까? 현재 프로세스에서는 몰별로 언제가 가능 시점인지가 나오지 않는다.」</span><span class="vi">"Làm sao tính được thời điểm đó cho từng sàn? Quy trình hiện tại không cho biết thời điểm khả dụng theo từng sàn."</span></div>
+        <p><span class="ko">이에 대해 이동영 부장님은 몰별 가능 시점이 나오지 않아 반품 기간을 기준으로 정했다고 답했다.</span><span class="vi">Về điều này, Trưởng phòng Lee trả lời rằng vì không có thời điểm khả dụng theo từng sàn nên đã tạm căn cứ theo thời hạn đổi trả hàng.</span></p>
+        <p><span class="ko">랜덤 티켓은 구매 확인 시 즉시 지급하고 전환 시점을 「지급」으로 보기로 했다.</span><span class="vi">Thống nhất cấp vé ngẫu nhiên ngay khi xác nhận mua và coi thời điểm chuyển đổi là thời điểm "cấp".</span></p>
+        <div class="quote"><span class="ko">김반장님 — 「그럼 각 몰들은 랜덤티켓에서 "구매 확정 대기" 상태였다가 210 상태로 전환되면 등급티켓으로 전환」 / 이동영 부장님 — 「넵 맞습니다」 / 김반장님 — 「이 프로세스로 하면 될것 같습니다.」</span><span class="vi">Mr Mark — "Vậy các sàn sẽ ở trạng thái vé ngẫu nhiên 'Chờ xác nhận mua', khi chuyển sang trạng thái 210 thì chuyển thành vé hạng" / Trưởng phòng Lee — "Vâng đúng vậy" / Mr Mark — "Tôi nghĩ làm theo quy trình này là được."</span></div>
+        <p><span class="ko"><span class="badge b-fix">확정</span> 이 구조로 최종 합의되었다.</span><span class="vi"><span class="badge b-fix">Đã chốt</span> Đã thống nhất cuối cùng theo cấu trúc này.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3. 아직 확정되지 않은 것 ============ -->
+  <h2><span class="ko">3. 아직 확정되지 않은 것</span><span class="vi">3. Nội dung chưa được chốt</span></h2>
+  <p class="h2-desc"><span class="ko">취소 처리 중 한 가지 경우가 남아 있다.</span><span class="vi">Còn lại một trường hợp trong xử lý hủy.</span></p>
+
+  <div class="warn">
+    <h3><span class="ko">취소된 티켓을 이미 사용했고, 차감할 티켓도 없는 경우</span><span class="vi">Trường hợp vé bị hủy đã được sử dụng và cũng không còn vé để trừ</span></h3>
+    <p><span class="ko">상태 310으로 전환되면 지급된 적립 티켓을 회수한다. 이미 사용한 경우에는 동급의 다른 티켓에서 차감한다. 문제는 차감할 티켓이 남아 있지 않은 경우다.</span><span class="vi">Khi chuyển sang trạng thái 310 thì thu hồi vé tích lũy đã cấp. Nếu đã sử dụng thì trừ vào vé khác cùng hạng. Vấn đề là trường hợp không còn vé nào để trừ.</span></p>
+    <p><span class="ko">김반장님은 그때는 loss로 두고, 새로 적립이 될 경우 선차감시키는 방향을 제시했다. 극히 드문 경우이지만 처리 방식은 만들어 두어야 한다는 의견이다.</span><span class="vi">Mr Mark đề xuất hướng để đó là loss, và khi có tích lũy mới thì trừ trước. Ý kiến là trường hợp này cực kỳ hiếm nhưng vẫn cần chuẩn bị cách xử lý.</span></p>
+    <p><span class="ko">이동영 부장님은 이 부분을 확인해 보겠다고 했으며, 취소 관련 처리는 정책 확정 이후에 별도로 회신하기로 했다. 김반장님도 취소 부분은 더 면밀하게 확인한 뒤 적용하기로 했다.</span><span class="vi">Trưởng phòng Lee cho biết sẽ kiểm tra phần này, và phần xử lý liên quan đến hủy sẽ phản hồi riêng sau khi chốt chính sách. Mr Mark cũng thống nhất sẽ kiểm tra kỹ hơn phần hủy rồi mới áp dụng.</span></p>
+    <p><span class="ko"><span class="badge b-hold">확정 대기</span> 이 항목을 제외한 나머지는 본 보고서 1항으로 확정되었다.</span><span class="vi"><span class="badge b-hold">Chờ chốt</span> Ngoài mục này, các nội dung còn lại đã được chốt theo mục 1 của báo cáo này.</span></p>
+  </div>
+
+</div>
+<div class="last-update">Last Update 2026.08.19</div>
+
+<script>
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang === 'vi' ? 'vi' : 'ko');
+  document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+  document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+}
+</script>
+</body>
+</html>
