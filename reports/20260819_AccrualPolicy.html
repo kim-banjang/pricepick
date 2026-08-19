@@ -193,7 +193,7 @@
     </div>
     <div class="dl-row">
       <div class="dl-k"><span class="ko">취소 확정 건 (상태 310)</span><span class="vi">Đơn đã xác nhận hủy (trạng thái 310)</span></div>
-      <div class="dl-v"><span class="ko">아직 지급하지 않은 건은 지급하지 않는다. 이미 지급된 적립 티켓은 회수한다. 회수 방법은 1-7에 정리했다.</span><span class="vi">Đơn chưa cấp vé thì không cấp. Vé tích lũy đã cấp thì thu hồi. Cách thu hồi được nêu ở mục 1-7.</span></div>
+      <div class="dl-v"><span class="ko">미지급분(랜덤 티켓)은 회수하고, 이미 랜덤 티켓에서 등급 티켓으로 전환되어 지급된 등급 티켓도 회수한다. 회수 방법은 1-7에 정리했다.</span><span class="vi">Phần chưa cấp (vé ngẫu nhiên) thì thu hồi, và vé hạng đã chuyển từ vé ngẫu nhiên rồi cấp cho người dùng cũng thu hồi. Cách thu hồi được nêu ở mục 1-7.</span></div>
     </div>
     <div class="dl-row">
       <div class="dl-k"><span class="ko">머천트별 전환 시점</span><span class="vi">Thời điểm chuyển đổi của từng merchant</span></div>
@@ -253,7 +253,7 @@
   <div class="dl">
     <div class="dl-row">
       <div class="dl-k"><span class="ko">취소 확정 시 (상태 310)</span><span class="vi">Khi hủy được xác nhận (trạng thái 310)</span></div>
-      <div class="dl-v"><span class="ko">아직 지급하지 않은 건은 지급하지 않고, 이미 지급된 적립 티켓은 회수한다. 랜덤 티켓이든 210을 지나 전환된 등급 티켓이든 이미 나간 것은 모두 회수 대상이다.</span><span class="vi">Đơn chưa cấp vé thì không cấp, còn vé tích lũy đã cấp thì thu hồi. Dù là vé ngẫu nhiên hay vé hạng đã chuyển đổi sau khi qua 210, mọi vé đã cấp đều thuộc diện thu hồi.</span></div>
+      <div class="dl-v"><span class="ko">미지급분(랜덤 티켓)은 회수하고, 이미 랜덤 티켓에서 등급 티켓으로 전환되어 지급된 등급 티켓도 회수한다. 210을 지나 전환된 뒤에 취소가 확정되는 경우도 회수 대상이다.</span><span class="vi">Phần chưa cấp (vé ngẫu nhiên) thì thu hồi, và vé hạng đã chuyển từ vé ngẫu nhiên rồi cấp cho người dùng cũng thu hồi. Trường hợp đơn bị hủy sau khi đã qua 210 và chuyển đổi cũng thuộc diện thu hồi.</span></div>
     </div>
     <div class="dl-row">
       <div class="dl-k"><span class="ko">미사용분</span><span class="vi">Phần chưa sử dụng</span></div>
@@ -445,7 +445,7 @@
       <div class="tlwho"><span class="ko">김반장님 — 취소 처리 결정</span><span class="vi">Mr Mark — Quyết định về xử lý hủy đơn</span></div>
       <div class="tlbody">
         <div class="quote"><span class="ko">「취소상태인 310으로 전환 될경우 지급된 적립 티켓은 회수 한다. but. 지급된 티켓을 이미 사용했을경우 동급의 다른티켓이 있을경우 차감을 하는데 문제는 차감할 티켓이 없을 경우 입니다.」 「그때는 loss 로 두고 새로 적립(지급) 이 될경우 선차감을 시키도록 하겠습니다.」</span><span class="vi">「Khi chuyển sang trạng thái hủy 310 thì thu hồi vé tích lũy đã cấp. Nhưng nếu vé đã cấp mà người dùng đã sử dụng rồi thì trừ vào vé khác cùng hạng nếu còn; vấn đề là khi không còn vé nào để trừ.」 「Khi đó sẽ ghi nhận là loss, và trừ trước vào lần tích lũy (cấp vé) mới.」</span></div>
-        <p><span class="ko">이미 지급된 적립 티켓을 회수한다는 원칙은 이 자리에서 확정되었다. 이동영 부장님은 차감할 티켓이 없는 경우에 대해 확인해 보겠다고 답했다.</span><span class="vi">Nguyên tắc thu hồi vé tích lũy đã cấp được chốt ngay tại đây. Trưởng phòng Lee trả lời sẽ xem lại trường hợp không còn vé để trừ.</span></p>
+        <p><span class="ko">미지급분인 랜덤 티켓과 이미 전환되어 지급된 등급 티켓을 모두 회수한다는 원칙은 이 자리에서 확정되었다. 이동영 부장님은 차감할 티켓이 없는 경우에 대해 확인해 보겠다고 답했다.</span><span class="vi">Nguyên tắc thu hồi cả vé ngẫu nhiên chưa cấp lẫn vé hạng đã chuyển đổi và cấp cho người dùng được chốt ngay tại đây. Trưởng phòng Lee trả lời sẽ xem lại trường hợp không còn vé để trừ.</span></p>
         <p><span class="ko"><span class="badge b-fix">확정</span> 회수 원칙은 확정되었고, 차감할 티켓이 없는 경우의 처리만 3항으로 넘겼다.</span><span class="vi"><span class="badge b-fix">Đã chốt</span> Nguyên tắc thu hồi đã được chốt, chỉ chuyển trường hợp không còn vé để trừ sang mục 3.</span></p>
       </div>
     </div>
@@ -457,7 +457,7 @@
 
   <div class="warn">
     <h3><span class="ko">취소된 티켓을 이미 사용했고, 차감할 티켓도 없는 경우</span><span class="vi">Khi vé của đơn bị hủy đã được sử dụng và cũng không còn vé nào để trừ</span></h3>
-    <p><span class="ko">취소가 확정되면 이미 지급된 적립 티켓을 회수한다는 원칙은 1-7로 확정되었다. 이미 사용한 경우에는 동급의 다른 티켓에서 차감한다. 남은 문제는 차감할 티켓이 하나도 없는 경우다.</span><span class="vi">Nguyên tắc thu hồi vé tích lũy đã cấp khi hủy được xác nhận đã được chốt ở mục 1-7. Nếu vé đã được sử dụng thì trừ vào vé khác cùng hạng. Vấn đề còn lại là khi không còn vé nào để trừ.</span></p>
+    <p><span class="ko">취소가 확정되면 미지급분인 랜덤 티켓과 이미 전환되어 지급된 등급 티켓을 모두 회수한다는 원칙은 1-7로 확정되었다. 이미 사용한 경우에는 동급의 다른 티켓에서 차감한다. 남은 문제는 차감할 티켓이 하나도 없는 경우다.</span><span class="vi">Nguyên tắc thu hồi cả vé ngẫu nhiên chưa cấp lẫn vé hạng đã chuyển đổi và cấp cho người dùng khi hủy được xác nhận đã được chốt ở mục 1-7. Nếu vé đã được sử dụng thì trừ vào vé khác cùng hạng. Vấn đề còn lại là khi không còn vé nào để trừ.</span></p>
     <p><span class="ko">김반장님은 그때는 loss로 두고, 새로 적립이 될 경우 선차감시키는 방향을 제시했다. 극히 드문 경우이지만 처리 방식은 만들어 두어야 한다는 의견이다.</span><span class="vi">Mr Mark đề xuất trong trường hợp đó thì ghi nhận là loss, và khi có tích lũy mới thì trừ trước vào đó. Đây là tình huống rất hiếm nhưng vẫn cần chuẩn bị sẵn cách xử lý.</span></p>
     <p><span class="ko">이동영 부장님은 이 경우의 처리를 확인해 보겠다고 했으며, 정책 확정 이후에 별도로 회신하기로 했다. 김반장님도 이 부분은 더 면밀하게 확인한 뒤 적용하기로 했다.</span><span class="vi">Trưởng phòng Lee cho biết sẽ xem lại cách xử lý cho trường hợp này và sẽ phản hồi riêng sau khi chính sách được chốt. Mr Mark cũng thống nhất kiểm tra kỹ phần này rồi mới áp dụng.</span></p>
     <p><span class="ko"><span class="badge b-hold">확정 대기</span> 확정 대기 대상은 이 경우의 처리 방식뿐이다. 회수 원칙을 포함한 나머지는 본 보고서 1항으로 확정되었다.</span><span class="vi"><span class="badge b-hold">Chờ chốt</span> Chỉ còn cách xử lý cho trường hợp này là đang chờ chốt. Phần còn lại, gồm cả nguyên tắc thu hồi, đã được chốt như mục 1 của báo cáo này.</span></p>
