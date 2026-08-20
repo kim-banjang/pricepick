@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱 답변 · Kelvin · 2026-08-20</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.qorig{font-size:12px;font-style:italic;color:var(--ink3);background:var(--bg);border-left:3px solid var(--line);border-radius:6px;padding:8px 10px;margin-bottom:9px;white-space:pre-wrap}
+.qorig b{font-style:normal;font-weight:800;color:var(--ink3);display:block;margin-bottom:3px;font-size:10.5px;letter-spacing:.02em}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.atxt a{color:var(--pp-d);font-weight:700;text-decoration:underline}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:230px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+th{text-align:left;padding:8px 10px;border:1px solid var(--line);font-weight:800;color:var(--ink2);background:var(--bg)}
+td{padding:8px 10px;border:1px solid var(--line);color:var(--ink2);vertical-align:top}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱 답변 · Kelvin · 2026-08-20</span><span class="vi">Trả lời App PricePick · Kelvin · 20/08/2026</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">등급 티켓이 마이너스가 될 때의 화면 표시 · 홈과 목록의 적립 가능 쇼핑몰</span><span class="vi">Cách hiển thị khi vé hạng bị âm · Cửa hàng tích lũy ở trang Home và trang danh sách</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 2건</span><span class="vi">2 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 2</span><span class="vi">Đã chốt 2</span></span></span><span class="chip"><span class="i18n"><span class="ko">출처: Notion 「PricePick Q&amp;A Mobile 20/08」</span><span class="vi">Nguồn: Notion "PricePick Q&amp;A Mobile 20/08"</span></span></span></div>
+
+<!-- ==================== Q1 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 등급 티켓이 마이너스가 될 때</span><span class="vi">1. Khi vé hạng bị âm</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt">
+<div class="qorig"><b>원문(베트남어, Notion 그대로)</b>Khi hệ thống thu hồi vé (hủy đơn / hoàn tiền / thu hồi do bất thường) mà người dùng đã tiêu hết vé hạng đó rồi, số dư vé hạng có thể xuống dưới 0 (VD: 브론즈 đang có 2, thu hồi 5 → -3) thì app hiển thị như thế nào?
+
+Chi tiết cần xác nhận theo từng màn hình: trang chủ, tab ưu đãi, vé và điểm của tôi, đổi vé, lịch sử vé và các trang có hiển thị số lượng vé hạng.</div>
+<span class="i18n"><span class="ko">티켓을 회수할 때 사용자가 그 등급을 이미 다 써버렸으면 잔액이 0 미만으로 갑니다. 화면마다 어떻게 보여줍니까?</span><span class="vi">Khi thu hồi vé mà người dùng đã tiêu hết hạng đó thì số dư xuống dưới 0. Từng màn hình hiển thị thế nào?</span></span>
+</div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>앱에서는 어느 화면에서도 음수를 쓰지 않습니다. 잔액은 0으로 보여주고, 돌려받아야 할 몫은 「회수 예정」 수량으로 따로 보여줍니다.</b>
+「-3」을 그대로 띄우면 사용자가 놀랍니다. 적립 서비스에서 마이너스 잔액은 낯섭니다.
+그렇다고 0으로만 두면, 다음에 적립을 받아도 숫자가 안 늘어나는 이유를 몰라 문의가 들어옵니다.
+음수 값은 내부 계산에만 두고, 화면에는 <b>0 + 회수 예정 수량</b>을 같이 보여주면 둘 다 풀립니다.</span><span class="vi"><b>Trên app không dùng số âm ở bất kỳ màn hình nào. Số dư hiển thị 0, còn phần phải hoàn lại thì hiển thị riêng bằng số lượng "sẽ bị thu hồi".</b>
+Hiển thị thẳng "-3" sẽ làm người dùng hoảng. Số dư âm rất lạ với một dịch vụ tích lũy.
+Nhưng nếu chỉ để 0 thì lần sau tích lũy mà số không tăng, người dùng không hiểu và sẽ hỏi.
+Giữ giá trị âm ở tính toán nội bộ, còn trên màn hình hiển thị <b>0 + số lượng sẽ bị thu hồi</b> là giải quyết được cả hai.</span></span></div></div>
+
+<table>
+<thead><tr><th><span class="i18n"><span class="ko">등급</span><span class="vi">Hạng</span></span></th><th><span class="i18n"><span class="ko">내부 값</span><span class="vi">Giá trị nội bộ</span></span></th><th><span class="i18n"><span class="ko">앱 화면</span><span class="vi">Hiển thị trên App</span></span></th></tr></thead>
+<tbody>
+<tr><td>Bronze</td><td>-3</td><td><b>0</b> &nbsp; <span class="i18n"><span class="ko">회수 예정 3장</span><span class="vi">sẽ thu hồi 3 vé</span></span></td></tr>
+<tr><td>Silver</td><td>-10</td><td><b>0</b> &nbsp; <span class="i18n"><span class="ko">회수 예정 10장</span><span class="vi">sẽ thu hồi 10 vé</span></span></td></tr>
+<tr><td>Gold</td><td>2</td><td><b>2</b></td></tr>
+</tbody></table>
+</div>
+
+<div class="qa"><div class="qrow"><span class="qno">1-1</span><div class="qtxt"><span class="i18n"><span class="ko">화면별로 무엇을 어떻게 보여주는지</span><span class="vi">Từng màn hình hiển thị cái gì, hiển thị thế nào</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<table>
+<thead><tr><th style="width:24%"><span class="i18n"><span class="ko">화면</span><span class="vi">Màn hình</span></span></th><th style="width:30%"><span class="i18n"><span class="ko">수량이 나오는 자리</span><span class="vi">Chỗ hiển thị số lượng</span></span></th><th><span class="i18n"><span class="ko">이렇게 보여줍니다</span><span class="vi">Hiển thị như sau</span></span></th></tr></thead>
+<tbody>
+<tr><td><b><span class="i18n"><span class="ko">홈</span><span class="vi">Trang chủ</span></span></b></td><td><span class="i18n"><span class="ko">「내 보유 티켓」 카드 — 총 보유 장수, 브론즈·실버·골드</span><span class="vi">Thẻ 「Vé tôi đang có」 — tổng số vé, Bronze·Silver·Gold</span></span></td><td><span class="i18n"><span class="ko"><b>0</b>으로 씁니다. 회수 예정은 여기에 쓰지 않습니다 — 요약 자리라 숫자만 둡니다. 「자세히」로 들어가면 사유가 보입니다.</span><span class="vi">Ghi <b>0</b>. Không ghi phần sẽ thu hồi ở đây — đây là khu vực tóm tắt nên chỉ để số. Vào 「Chi tiết」 sẽ thấy lý do.</span></span></td></tr>
+<tr><td><b><span class="i18n"><span class="ko">혜택 탭</span><span class="vi">Tab Ưu đãi</span></span></b></td><td><span class="i18n"><span class="ko">「내 티켓」 — 랜덤 티켓(대기중), 사용 가능 티켓 브론즈·실버·골드, 이벤트 티켓</span><span class="vi">「Vé của tôi」 — vé ngẫu nhiên (đang chờ), vé dùng được Bronze·Silver·Gold, vé sự kiện</span></span></td><td><span class="i18n"><span class="ko"><b>0</b>으로 씁니다. 여기도 숫자만 둡니다.</span><span class="vi">Ghi <b>0</b>. Ở đây cũng chỉ để số.</span></span></td></tr>
+<tr><td><b><span class="i18n"><span class="ko">내 티켓 &amp; 포인트</span><span class="vi">Vé &amp; Điểm của tôi</span></span></b></td><td><span class="i18n"><span class="ko">「티켓 보유 현황」 — 브론즈·실버·골드·이벤트·포인트</span><span class="vi">「Tình trạng vé đang có」 — Bronze·Silver·Gold·Sự kiện·Điểm</span></span></td><td><span class="i18n"><span class="ko"><b>0</b>을 쓰고, 그 등급 아래에 <b>「회수 예정 3장」</b>을 함께 둡니다. 회수 예정 수량이 보이는 자리는 이 화면 하나입니다.</span><span class="vi">Ghi <b>0</b>, và ngay dưới hạng đó ghi kèm <b>「Sẽ thu hồi 3 vé」</b>. Chỉ duy nhất màn này hiển thị số lượng sẽ bị thu hồi.</span></span></td></tr>
+<tr><td><b><span class="i18n"><span class="ko">티켓 &amp; 포인트 교환소</span><span class="vi">Điểm đổi Vé &amp; Điểm</span></span></b></td><td><span class="i18n"><span class="ko">상단 보유 요약, 「사용 브론즈 · 보유 0장」, 「최대」</span><span class="vi">Tóm tắt số dư ở trên, 「Dùng Bronze · đang có 0 vé」, 「Tối đa」</span></span></td><td><span class="i18n"><span class="ko"><b>0</b>으로 씁니다. 보유가 0장인 경우와 똑같이 동작합니다 — 「최대」를 눌러도 0장이고 교환하기는 눌리지 않습니다. 회수 예정이 있다고 해서 따로 막거나 경고를 띄우지 않습니다.</span><span class="vi">Ghi <b>0</b>. Hoạt động y hệt trường hợp đang có 0 vé — bấm 「Tối đa」 vẫn ra 0 và nút đổi không bấm được. Không chặn riêng hay hiện cảnh báo chỉ vì có phần sẽ bị thu hồi.</span></span></td></tr>
+<tr><td><b><span class="i18n"><span class="ko">활동 내역</span><span class="vi">Lịch sử hoạt động</span></span></b></td><td><span class="i18n"><span class="ko">적립 · 사용 · 교환 · 환수 · 만료 필터</span><span class="vi">Bộ lọc Tích lũy · Sử dụng · Đổi · Thu hồi · Hết hạn</span></span></td><td><span class="i18n"><span class="ko">회수된 사실을 <b>「환수」</b>로 한 줄 남깁니다. 「○○ 주문 취소로 브론즈 30장 회수」처럼 사유가 보이게 씁니다. 회수 예정이 왜 생겼는지는 여기서 확인합니다.</span><span class="vi">Ghi lại một dòng ở mục <b>「Thu hồi」</b>. Viết sao cho thấy được lý do, ví dụ "Thu hồi 30 vé Bronze do hủy đơn ○○". Người dùng xem ở đây để biết vì sao có phần sẽ bị thu hồi.</span></span></td></tr>
+<tr><td><b><span class="i18n"><span class="ko">그 밖에 등급 티켓 수량이 나오는 모든 화면</span><span class="vi">Mọi màn khác có hiển thị số lượng vé hạng</span></span></b></td><td>—</td><td><span class="i18n"><span class="ko">같은 규칙입니다. 숫자 자리에는 음수를 쓰지 않고 <b>0</b>으로 씁니다.</span><span class="vi">Cùng một quy tắc. Chỗ hiển thị số thì không dùng số âm mà ghi <b>0</b>.</span></span></td></tr>
+</tbody></table>
+</div>
+
+<div class="qa"><div class="qrow"><span class="qno">1-2</span><div class="qtxt"><span class="i18n"><span class="ko">회수 예정은 다음 적립 때 저절로 없어집니다</span><span class="vi">Phần sẽ bị thu hồi tự hết ở lần tích lũy kế tiếp</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">상계</span><span class="vi">Bù trừ</span></span></span><div class="atxt"><span class="i18n"><span class="ko">브론즈 회수 예정이 3장 있는 사용자가 브론즈 3장을 새로 받으면, 회수 예정이 0이 되고 잔액도 0이 됩니다. 그다음부터 쌓입니다.
+사용자가 따로 할 일은 없습니다. 화면에서 회수 예정 줄이 사라지는 것으로 끝납니다.</span><span class="vi">Người dùng đang có 3 vé Bronze sẽ bị thu hồi, khi nhận mới 3 vé Bronze thì phần sẽ thu hồi về 0 và số dư cũng về 0. Từ đó mới bắt đầu tích lũy.
+Người dùng không phải làm gì thêm. Dòng "sẽ bị thu hồi" biến mất khỏi màn hình là xong.</span></span></div></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno">1-3</span><div class="qtxt"><span class="i18n"><span class="ko">마이너스가 생기는 경우는 하나뿐입니다</span><span class="vi">Chỉ có một trường hợp làm phát sinh số âm</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">범위</span><span class="vi">Phạm vi</span></span></span><div class="atxt"><span class="i18n"><span class="ko">세 가지를 물어주셨는데, 마이너스가 실제로 생기는 것은 첫 번째뿐입니다.</span><span class="vi">Bạn hỏi ba trường hợp, nhưng thực tế chỉ trường hợp đầu tiên mới phát sinh số âm.</span></span></div></div>
+<table>
+<thead><tr><th style="width:28%"><span class="i18n"><span class="ko">경우</span><span class="vi">Trường hợp</span></span></th><th><span class="i18n"><span class="ko">처리</span><span class="vi">Xử lý</span></span></th></tr></thead>
+<tbody>
+<tr><td><b><span class="i18n"><span class="ko">주문 취소 확정</span><span class="vi">Xác nhận hủy đơn</span></span></b></td><td><span class="i18n"><span class="ko">이미 지급된 등급 티켓도 회수합니다. 사용자가 그 등급을 이미 썼으면 <b>여기서 마이너스가 생깁니다.</b></span><span class="vi">Vé hạng đã cấp cũng bị thu hồi. Nếu người dùng đã tiêu hạng đó thì <b>số âm phát sinh ở đây.</b></span></span></td></tr>
+<tr><td><b><span class="i18n"><span class="ko">확정 전 환불</span><span class="vi">Hoàn tiền trước khi xác nhận</span></span></b></td><td><span class="i18n"><span class="ko">아직 「적립 예정」인 보상이 자동 취소됩니다. 잔액에 손대지 않으므로 마이너스가 없습니다.</span><span class="vi">Phần thưởng còn ở trạng thái "Dự kiến tích lũy" tự động hủy. Không đụng tới số dư nên không có số âm.</span></span></td></tr>
+<tr><td><b><span class="i18n"><span class="ko">이벤트 티켓</span><span class="vi">Vé sự kiện</span></span></b></td><td><span class="i18n"><span class="ko">환불이 나도 회수하지 않습니다. 마이너스가 없습니다.</span><span class="vi">Dù có hoàn tiền cũng không thu hồi. Không có số âm.</span></span></td></tr>
+<tr><td><b><span class="i18n"><span class="ko">이상 감지</span><span class="vi">Phát hiện bất thường</span></span></b></td><td><span class="i18n"><span class="ko">자동 회수가 아닙니다. 플래그가 서면 운영자가 직접 검토합니다. 약관 위반이 확인되면 <b>보유 티켓 전액 회수</b>라 0이 되지 마이너스가 되지 않습니다.</span><span class="vi">Không phải thu hồi tự động. Khi bị gắn cờ thì quản trị viên xem xét trực tiếp. Nếu xác nhận vi phạm điều khoản thì <b>thu hồi toàn bộ vé đang có</b>, tức về 0 chứ không xuống âm.</span></span></td></tr>
+</tbody></table>
+<div class="arow"><span class="alabel">[<span class="i18n"><span class="ko">참조</span><span class="vi">Tham khảo</span></span>]</span><div class="atxt"><span class="i18n"><span class="ko">회수 원칙은 <b><a href="/reports/20260819_AccrualPolicy.html">적립 확정 정책 보고서</a></b> 1-7에 있습니다 — 취소 확정(상태 310) 시 미사용분은 그대로 회수, 이미 쓴 경우는 같은 등급의 다른 티켓에서 차감.
+등급별로만 차감하고 다른 등급으로 넘어가지 않는 것은 <b><a href="/devqa/backend-harry-20260819.html">Harry 답변(2026-08-19)</a></b>에 정리돼 있습니다.
+회수한 주문이 나중에 다시 확정되면 재지급합니다 — 정산이 3개월 이상 걸리는 머천트에서 생깁니다.</span><span class="vi">Nguyên tắc thu hồi nằm ở mục 1-7 của <b><a href="/reports/20260819_AccrualPolicy.html">Báo cáo chính sách xác nhận tích lũy</a></b> — khi xác nhận hủy (trạng thái 310), phần chưa dùng thì thu hồi nguyên, phần đã dùng thì trừ vào vé khác cùng hạng.
+Việc chỉ trừ trong đúng hạng, không lấn sang hạng khác, được nêu ở <b><a href="/devqa/backend-harry-20260819.html">Trả lời cho Harry (19/08/2026)</a></b>.
+Nếu đơn đã thu hồi sau đó được xác nhận lại thì cấp lại — xảy ra với merchant quyết toán trên 3 tháng.</span></span></div></div>
+</div>
+
+<!-- ==================== Q2 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 홈과 목록의 적립 가능 쇼핑몰</span><span class="vi">2. Cửa hàng tích lũy ở trang Home và trang danh sách</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt">
+<div class="qorig"><b>원문(베트남어, Notion 그대로)</b>Trang chủ — khu vực cửa hàng tích lũy (적립 가능 쇼핑몰) trong app demo đang hiển thị danh sách cố định, chưa lấy theo danh sách đã cài đặt trên CMS (thứ tự, bật/tắt hiển thị, số lượng hiển thị).
+
+Trang danh sách cửa hàng có thể tích lũy — danh sách đang để phẳng, chưa nhóm theo danh mục (카테고리) như thiết kế.
+
+Vui lòng cập nhật app demo để đồng bộ với thiết kế/CMS.</div>
+<span class="i18n"><span class="ko">홈의 적립 쇼핑몰 영역이 고정 목록이고, 목록 페이지가 카테고리로 묶여 있지 않습니다. 데모를 설계·CMS와 맞춰 주세요.</span><span class="vi">Khu vực cửa hàng tích lũy ở Home đang là danh sách cố định, và trang danh sách chưa nhóm theo danh mục. Xin cập nhật demo cho khớp thiết kế·CMS.</span></span>
+</div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260820-kelvin/kelvin-q2-home-fixed.png','지금 이렇다 — 홈 「구매하고 티켓받기」가 쿠팡·알리익스프레스 2개 고정')"><img src="/devqa/assets/20260820-kelvin/kelvin-q2-home-fixed.png" alt="홈 화면, 구매하고 티켓받기 영역에 쿠팡과 알리익스프레스 2개만 고정 노출" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">지금 이렇다 — 홈 「구매하고 티켓받기」가 2개 고정</span><span class="vi">Hiện tại — 「Mua hàng nhận vé」 ở Home cố định 2 cửa hàng</span></span></span></button><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260820-kelvin/kelvin-q2-mall-list.png','첨부하신 목록 화면 — 종합 쇼핑몰 4개 · 해외직구 2개로 이미 묶여 있음')"><img src="/devqa/assets/20260820-kelvin/kelvin-q2-mall-list.png" alt="적립 가능 쇼핑몰 목록, 종합 쇼핑몰 4개와 해외직구 2개로 묶인 화면" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">첨부하신 목록 화면 — 지금 데모에 있는 그 화면입니다</span><span class="vi">Màn danh sách bạn đính kèm — chính là màn đang có trong demo</span></span></span></button></div>
+
+<div class="arow"><span class="alabel">①&nbsp;<span class="i18n"><span class="ko">홈</span><span class="vi">Home</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>맞습니다. 지금 홈은 고정 목록입니다. 데모를 고칩니다.</b>
+데모를 열어 확인했습니다 — 홈 「구매하고 티켓받기」에 쿠팡·알리익스프레스 2개만 박혀 있고, 「구매 시 티켓 적립 실시간」·「해외직구 · 누적 후 정산」 같은 설명 문구가 아직 붙어 있습니다.
+바뀐 뒤의 모습은 이렇습니다.
+ · 「적용」이 켜진 몰을 <b>전부</b> 보여줍니다. 개수를 자르지 않습니다.
+ · <b>쿠팡을 최상단에 고정</b>하고 「BEST」를 붙입니다.
+ · 나머지는 <b>적립률이 높은 순</b>으로 나열하고, 쿠팡을 뺀 상위 3개에 「HOT」을 붙입니다.
+ · 뱃지는 운영자가 지정하지 않습니다. 적립률 값으로 자동 판정됩니다.
+ · 몰별 설명 문구는 쓰지 않습니다. 뱃지만 붙습니다.</span><span class="vi"><b>Đúng. Hiện tại Home đang là danh sách cố định. Sẽ sửa lại demo.</b>
+Đã mở demo kiểm tra — ở 「Mua hàng nhận vé」 trên Home chỉ gắn cứng 2 cửa hàng Coupang·AliExpress, và vẫn còn các câu mô tả như 「Tích vé thời gian thực khi mua」·「Mua hàng xách tay · quyết toán sau khi tích lũy」.
+Sau khi sửa sẽ như sau.
+ · Hiển thị <b>toàn bộ</b> cửa hàng đang bật 「Áp dụng」. Không cắt bớt số lượng.
+ · <b>Coupang cố định trên cùng</b> và gắn nhãn 「BEST」.
+ · Các cửa hàng còn lại xếp theo <b>tỷ lệ tích lũy từ cao xuống thấp</b>, 3 cửa hàng cao nhất (không tính Coupang) gắn nhãn 「HOT」.
+ · Nhãn không do quản trị viên chỉ định mà tự phán định theo giá trị tỷ lệ tích lũy.
+ · Không dùng câu mô tả riêng cho từng cửa hàng. Chỉ gắn nhãn.</span></span></div></div>
+
+<div class="arow"><span class="alabel">②&nbsp;<span class="i18n"><span class="ko">목록</span><span class="vi">Danh sách</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>목록은 이미 카테고리로 묶여 있습니다. 남은 문제는 그 분류가 앱에 박힌 값이라는 점입니다.</b>
+첨부해 주신 화면이 바로 지금 데모에 있는 화면입니다 — 「🛒 종합 쇼핑몰 4개 / ✈️ 해외직구 2개」로 묶여 나옵니다. 평평한 목록이 아닙니다.
+다만 이 2분류는 앱이 들고 있는 값이라 CMS와 무관하게 움직입니다. <b>카테고리는 CMS 분류를 그대로 읽어 씁니다.</b> 앱에서 따로 묶지 않습니다.
+ · 「적용」이 켜진 몰이 하나도 없는 카테고리는 화면에 아예 표시하지 않습니다.
+ · 카테고리 안에서는 <b>적립률이 높은 순</b>으로 나열합니다. 홈과 같은 기준입니다.</span><span class="vi"><b>Trang danh sách đã nhóm theo danh mục rồi. Vấn đề còn lại là bộ phân loại đó đang gắn cứng trong app.</b>
+Màn bạn đính kèm chính là màn đang có trong demo — hiển thị theo nhóm 「🛒 Mua sắm tổng hợp 4 / ✈️ Hàng ngoại 2」. Không phải danh sách phẳng.
+Nhưng 2 nhóm này là giá trị app tự giữ nên chạy độc lập với CMS. <b>Danh mục phải đọc thẳng từ phân loại trên CMS.</b> App không tự gom nhóm riêng.
+ · Danh mục không có cửa hàng nào bật 「Áp dụng」 thì không hiển thị lên màn hình.
+ · Trong mỗi danh mục xếp theo <b>tỷ lệ tích lũy từ cao xuống thấp</b>. Cùng tiêu chí với Home.</span></span></div></div>
+</div>
+
+<div class="qa"><div class="qrow"><span class="qno">2-1</span><div class="qtxt"><span class="i18n"><span class="ko">CMS에 실제로 있는 설정과 없는 설정</span><span class="vi">Thiết lập nào thực sự có trên CMS, thiết lập nào không</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">확인함</span><span class="vi">Đã kiểm tra</span></span></span><div class="atxt"><span class="i18n"><span class="ko">CMS 「티켓 · 보상 &gt; 티켓 적립 설정」을 열어 확인했습니다. 물어보신 네 가지 중 둘은 있고 둘은 없습니다.</span><span class="vi">Đã mở CMS 「Vé · Thưởng &gt; Cài đặt tích lũy vé」 kiểm tra. Trong bốn thứ bạn hỏi thì hai thứ có, hai thứ không.</span></span></div></div>
+<table>
+<thead><tr><th style="width:20%"><span class="i18n"><span class="ko">설정</span><span class="vi">Thiết lập</span></span></th><th style="width:13%"><span class="i18n"><span class="ko">CMS에 있나</span><span class="vi">Có trên CMS?</span></span></th><th><span class="i18n"><span class="ko">실제</span><span class="vi">Thực tế</span></span></th></tr></thead>
+<tbody>
+<tr><td><b><span class="i18n"><span class="ko">표시 켜기/끄기</span><span class="vi">Bật/tắt hiển thị</span></span></b></td><td><b><span class="i18n"><span class="ko">있습니다</span><span class="vi">Có</span></span></b></td><td><span class="i18n"><span class="ko">제휴몰마다 「적용」 토글이 있습니다. 켠 몰만 앱에 나옵니다. 링크프라이스 승인 상태와는 별개입니다 — 승인이 났어도 적용이 꺼져 있을 수 있습니다.</span><span class="vi">Mỗi cửa hàng có toggle 「Áp dụng」. Chỉ cửa hàng đang bật mới hiện trên app. Tách biệt với trạng thái duyệt của Linkprice — đã duyệt vẫn có thể đang tắt áp dụng.</span></span></td></tr>
+<tr><td><b><span class="i18n"><span class="ko">카테고리</span><span class="vi">Danh mục</span></span></b></td><td><b><span class="i18n"><span class="ko">있습니다</span><span class="vi">Có</span></span></b></td><td><span class="i18n"><span class="ko">몰마다 카테고리 값이 있습니다. 링크프라이스가 주는 분류를 그대로 씁니다. 13종 — 가전/디지털/IT · 건강 · 교육 · 금융 · 도서/문화 · 뷰티 · 생활/인테리어 · 식품 · 여행/티켓 · 유아/아동 · 종합쇼핑몰 · 패션 · 기타.</span><span class="vi">Mỗi cửa hàng đều có giá trị danh mục, lấy nguyên theo phân loại Linkprice cung cấp. Có 13 loại — Điện máy/Digital/IT · Sức khỏe · Giáo dục · Tài chính · Sách/Văn hóa · Làm đẹp · Đời sống/Nội thất · Thực phẩm · Du lịch/Vé · Mẹ&amp;bé · Mua sắm tổng hợp · Thời trang · Khác.</span></span></td></tr>
+<tr><td><b><span class="i18n"><span class="ko">노출 순서</span><span class="vi">Thứ tự hiển thị</span></span></b></td><td><b><span class="i18n"><span class="ko">없습니다</span><span class="vi">Không</span></span></b></td><td><span class="i18n"><span class="ko">운영자가 순서를 지정하지 않습니다. 쿠팡 최상단 고정, 나머지는 적립률 높은 순으로 자동 정렬됩니다. 적립률 값을 바꾸면 순서가 따라 바뀝니다. <b>순서 설정을 새로 만들지 않습니다.</b></span><span class="vi">Quản trị viên không chỉ định thứ tự. Coupang cố định trên cùng, phần còn lại tự sắp theo tỷ lệ tích lũy cao đến thấp. Đổi giá trị tỷ lệ tích lũy thì thứ tự đổi theo. <b>Không tạo thêm thiết lập thứ tự.</b></span></span></td></tr>
+<tr><td><b><span class="i18n"><span class="ko">노출 개수</span><span class="vi">Số lượng hiển thị</span></span></b></td><td><b><span class="i18n"><span class="ko">없습니다</span><span class="vi">Không</span></span></b></td><td><span class="i18n"><span class="ko">개수를 자르지 않습니다. 홈과 목록 모두 「적용」이 켜진 몰을 전부 보여줍니다. <b>개수 설정을 새로 만들지 않습니다.</b></span><span class="vi">Không cắt bớt số lượng. Cả Home lẫn trang danh sách đều hiển thị toàn bộ cửa hàng đang bật 「Áp dụng」. <b>Không tạo thêm thiết lập số lượng.</b></span></span></td></tr>
+</tbody></table>
+<div class="arow"><span class="alabel">[<span class="i18n"><span class="ko">참조</span><span class="vi">Tham khảo</span></span>]</span><div class="atxt"><span class="i18n"><span class="ko">CMS 「티켓 적립 설정」에 링크프라이스 제휴몰 110개가 등록돼 있습니다. 카테고리 분포는 패션 33 · 종합쇼핑몰 21 · 여행/티켓 19 · 가전/디지털/IT 11 순입니다.
+쿠팡은 링크프라이스를 거치지 않는 직접 제휴라 「대표 제휴몰」로 CMS에서 따로 관리됩니다.
+지금 CMS 화면에는 카테고리가 필터로만 있고 제휴몰 목록 행에는 카테고리 열이 없습니다. 값 자체는 링크프라이스 제휴몰 자료에 몰마다 들어 있습니다 — <b><a href="/devqa/linkprice-merchants-20260811.html">제휴몰 목록 자료</a></b>에서 확인하실 수 있습니다.
+홈과 목록은 같은 CMS 데이터를 쓰는 두 개의 화면입니다 — 소스는 하나, 노출 위치만 다릅니다.</span><span class="vi">Trong CMS 「Cài đặt tích lũy vé」 đã đăng ký 110 cửa hàng liên kết Linkprice. Phân bố danh mục: Thời trang 33 · Mua sắm tổng hợp 21 · Du lịch/Vé 19 · Điện máy/Digital/IT 11.
+Coupang là liên kết trực tiếp không qua Linkprice nên được CMS quản lý riêng là 「cửa hàng liên kết đại diện」.
+Trên màn CMS hiện nay, danh mục chỉ có ở bộ lọc, còn hàng trong bảng cửa hàng thì chưa có cột danh mục. Bản thân giá trị này đã có sẵn theo từng cửa hàng trong dữ liệu cửa hàng liên kết Linkprice — xem ở <b><a href="/devqa/linkprice-merchants-20260811.html">tài liệu danh sách cửa hàng liên kết</a></b>.
+Home và trang danh sách là hai màn dùng chung một nguồn dữ liệu CMS — một nguồn duy nhất, chỉ khác vị trí hiển thị.</span></span></div></div>
+</div>
+
+<div class="qa"><div class="qrow"><span class="qno">2-2</span><div class="qtxt"><span class="i18n"><span class="ko">지금 데모의 「해외직구」는 CMS에 없는 분류입니다</span><span class="vi">Nhóm 「Hàng ngoại」 trong demo hiện tại không tồn tại trên CMS</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">주의</span><span class="vi">Lưu ý</span></span></span><div class="atxt"><span class="i18n"><span class="ko">CMS 분류 13종에 「해외직구」가 없습니다. 그래서 CMS 분류로 바꾸면 지금 화면과 묶이는 결과가 달라집니다.
+첨부해 주신 화면의 6개 몰을 CMS 분류로 다시 세우면 이렇게 됩니다.</span><span class="vi">Trong 13 danh mục của CMS không có 「Hàng ngoại」. Vì vậy khi chuyển sang phân loại CMS thì kết quả nhóm sẽ khác màn hiện tại.
+Xếp lại 6 cửa hàng trong màn bạn đính kèm theo phân loại CMS thì như sau.</span></span></div></div>
+<table>
+<thead><tr><th style="width:30%"><span class="i18n"><span class="ko">몰</span><span class="vi">Cửa hàng</span></span></th><th style="width:32%"><span class="i18n"><span class="ko">지금 데모 분류</span><span class="vi">Nhóm trong demo hiện tại</span></span></th><th><span class="i18n"><span class="ko">CMS 분류</span><span class="vi">Danh mục trên CMS</span></span></th></tr></thead>
+<tbody>
+<tr><td><span class="i18n"><span class="ko">쿠팡</span><span class="vi">Coupang</span></span></td><td><span class="i18n"><span class="ko">종합 쇼핑몰</span><span class="vi">Mua sắm tổng hợp</span></span></td><td><b><span class="i18n"><span class="ko">종합쇼핑몰</span><span class="vi">Mua sắm tổng hợp</span></span></b></td></tr>
+<tr><td><span class="i18n"><span class="ko">11번가</span><span class="vi">11st</span></span></td><td><span class="i18n"><span class="ko">종합 쇼핑몰</span><span class="vi">Mua sắm tổng hợp</span></span></td><td><b><span class="i18n"><span class="ko">종합쇼핑몰</span><span class="vi">Mua sắm tổng hợp</span></span></b></td></tr>
+<tr><td><span class="i18n"><span class="ko">G마켓</span><span class="vi">Gmarket</span></span></td><td><span class="i18n"><span class="ko">종합 쇼핑몰</span><span class="vi">Mua sắm tổng hợp</span></span></td><td><b><span class="i18n"><span class="ko">종합쇼핑몰</span><span class="vi">Mua sắm tổng hợp</span></span></b></td></tr>
+<tr><td><span class="i18n"><span class="ko">옥션</span><span class="vi">Auction</span></span></td><td><span class="i18n"><span class="ko">종합 쇼핑몰</span><span class="vi">Mua sắm tổng hợp</span></span></td><td><b><span class="i18n"><span class="ko">종합쇼핑몰</span><span class="vi">Mua sắm tổng hợp</span></span></b></td></tr>
+<tr><td><span class="i18n"><span class="ko">알리익스프레스</span><span class="vi">AliExpress</span></span></td><td><span class="i18n"><span class="ko">해외직구</span><span class="vi">Hàng ngoại</span></span></td><td><b><span class="i18n"><span class="ko">종합쇼핑몰</span><span class="vi">Mua sắm tổng hợp</span></span></b></td></tr>
+<tr><td><span class="i18n"><span class="ko">아이허브</span><span class="vi">iHerb</span></span></td><td><span class="i18n"><span class="ko">해외직구</span><span class="vi">Hàng ngoại</span></span></td><td><b><span class="i18n"><span class="ko">건강</span><span class="vi">Sức khỏe</span></span></b></td></tr>
+</tbody></table>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">정리</span><span class="vi">Tóm lại</span></span></span><div class="atxt"><span class="i18n"><span class="ko">「해외직구」 묶음은 없어집니다. 알리익스프레스는 종합쇼핑몰로, 아이허브는 건강으로 들어갑니다.
+카테고리 이름·순서·개수는 앱이 정하지 않습니다. CMS에 켜져 있는 몰이 어느 카테고리를 달고 있느냐에 따라 화면이 그때그때 만들어집니다.</span><span class="vi">Nhóm 「Hàng ngoại」 sẽ không còn. AliExpress vào Mua sắm tổng hợp, iHerb vào Sức khỏe.
+Tên danh mục·thứ tự·số lượng không do app quyết định. Màn hình được dựng theo từng thời điểm, tùy cửa hàng đang bật trên CMS mang danh mục nào.</span></span></div></div>
+</div>
+
+<div class="qa" style="background:var(--pp-l);border-color:#d9cdfa"><div class="atxt"><span class="i18n"><span class="ko">질문 2는 <b><a href="/devqa/qa-mobile-20260814.html">2026-08-14 답변</a></b>에서 이미 정한 내용입니다. 데모가 아직 그때 정한 대로 되어 있지 않아 생긴 차이입니다 — 규칙이 바뀐 것이 아닙니다. 데모를 그 답변에 맞춰 고칩니다.</span><span class="vi">Câu hỏi 2 là nội dung đã chốt ở <b><a href="/devqa/qa-mobile-20260814.html">Trả lời ngày 14/08/2026</a></b>. Khác biệt phát sinh do demo chưa được sửa theo nội dung đã chốt hôm đó — không phải quy tắc thay đổi. Sẽ sửa demo cho khớp với trả lời đó.</span></span></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱 답변 · Kelvin · 2026-08-20 · 확정 2 / 확인 필요 0</span><span class="vi">PricePick · Trả lời App · Kelvin · 20/08/2026 · Đã chốt 2 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
