@@ -1,5 +1,7 @@
 # DevQA 작성 규칙
 
+⚠️ **답변 문서의 틀(제목·절 구조·질문 싣는 방식·[참조]·표·허브 등록)은 [`_format.md`](_format.md)를 따를 것.** 기준은 2026-08-17 이전 문서다. 최근 파일을 보고 따라 하지 말 것 — 8/17 이후 몇 건이 틀에서 벗어나 있었다.
+
 ## 파일명
 `{scope}-{developer}-{YYYYMMDD}[-{n}].html` (예: `cms-vin-20260722.html`, `cms-harry-20260803.html`)
 - scope: `app` / `cms` / `backend` / `api` 등
