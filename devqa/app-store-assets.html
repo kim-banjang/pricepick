@@ -117,6 +117,7 @@ details.dcard .dright{display:flex;align-items:center;gap:8px}
 <div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">애플 앱스토어 등록 자료</span><span class="vi">Tài liệu đăng ký Apple App Store</span></span></div>
 <div class="hsub"><span class="i18n"><span class="ko">1단계 TestFlight 외부 테스트 · 2단계 정식 출시 · 캡처 원본 · 개인정보 수집 항목 안내</span><span class="vi">Giai đoạn 1 TestFlight · Giai đoạn 2 Ra mắt chính thức · Ảnh gốc · Hướng dẫn thu thập dữ liệu cá nhân</span></span></div></div></header>
 <div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">현재 단계: TestFlight 준비</span><span class="vi">Giai đoạn hiện tại: Chuẩn bị TestFlight</span></span></span><span class="chip"><span class="i18n"><span class="ko">스크린샷(정식) 1320×2868 (6.9형)</span><span class="vi">Ảnh chụp (chính thức) 1320×2868 (màn 6.9")</span></span></span><span class="chip"><span class="i18n"><span class="ko">규격 출처: Apple 공식 문서</span><span class="vi">Nguồn quy cách: Tài liệu chính thức Apple</span></span></span></div>
+<div style="background:#FFF8E8;border:1.5px solid #F0CE7E;border-left:4px solid #E8943A;border-radius:13px;padding:14px 17px;margin:18px 0 4px;font-size:12.8px;color:#7A5313;line-height:1.6"><span class="i18n"><span class="ko"><b>2026-08-24 · 1차 재등록 기준으로 문구를 바꿔 두었습니다.</b> Google Play가 build 6을 App Content: Gambling 사유로 거절해, 돌림판 화면을 걷어내고 <b>「매일 행운 선물 상자」</b>로 바꿨습니다. <b>「티켓 상자」(구 잭팟 룰렛)는 1차에서 숨깁니다</b> — 기능은 남기고 노출만 끕니다. 앱 화면: <a href="/interactive.html">앱 데모</a> · 시안: <a href="/20260824_NewDesign_giftbox.html">대체 화면 시안</a> · 경위: <a href="/devqa/app-kelvin-20260824.html">2026-08-24 Kelvin 답변</a>.<br><b>캡처는 아직 옛 화면입니다.</b> 아래 「교체 필요」 표시가 붙은 이미지를 다시 뽑기 전에는 등재하지 마십시오.</span><span class="vi"><b>24-08-2026 · Chữ trên trang này đã đổi theo tiêu chuẩn của lần đăng ký lại thứ nhất.</b> Google Play từ chối build 6 với lý do App Content: Gambling, nên đã bỏ màn hình bánh xe quay và đổi thành <b>「매일 행운 선물 상자」 (Hộp quà mỗi ngày)</b>. <b>「티켓 상자」 (Hộp quà vé, tức Jackpot cũ) sẽ bị ẩn ở lần thứ nhất</b> — giữ chức năng, chỉ tắt hiển thị. Màn hình app: <a href="/interactive.html">Demo app</a> · Bản thiết kế: <a href="/20260824_NewDesign_giftbox.html">Bản thay thế màn hình</a> · Diễn biến: <a href="/devqa/app-kelvin-20260824.html">Trả lời Kelvin 24-08-2026</a>.<br><b>Ảnh chụp vẫn là màn hình cũ.</b> Chưa xuất lại các ảnh được đánh dấu "cần thay" bên dưới thì đừng đăng.</span></span></div>
 
 <div class="warnbox"><b><span class="i18n"><span class="ko">정식 출시는 아직 못 합니다.</span><span class="vi">Chưa thể ra mắt chính thức.</span></span></b> <span class="i18n"><span class="ko">쿠팡 파트너스 API 연동과 실 구매→적립 처리가 아직 실서비스로 동작하지 않습니다. 개발자(켈빈)와 합의된 방향은 <b>TestFlight 외부 테스트(공개 링크)로 먼저 배포</b>하는 것입니다. 안드로이드도 같은 상황입니다 — 구글 플레이 콘솔 확인 결과 프로덕션이 비활성 상태이고, 패키지명이 <code>com.inetkr.pricepick.stg</code>(스테이징)이며 비공개 테스트 1/5단계입니다.</span><span class="vi">Việc tích hợp API Coupang Partners và xử lý mua hàng thật → tích điểm chưa hoạt động ở môi trường thật. Hướng đã thống nhất với lập trình viên (Kelvin) là <b>ra mắt trước bằng TestFlight external testing (link công khai)</b>. Android cũng ở tình trạng tương tự — kiểm tra Google Play Console cho thấy Production đang tắt, package name là <code>com.inetkr.pricepick.stg</code> (staging), và đang ở bước 1/5 của Closed testing.</span></span>
 <table class="spec stage-table" style="margin-top:12px;background:#fff;border-radius:10px;overflow:hidden">
@@ -147,7 +148,7 @@ details.dcard .dright{display:flex;align-items:center;gap:8px}
 <pre id="tester-guide-ko">[PricePick 베타 테스트 안내]
 1. 받으신 초대 링크(또는 코드)로 TestFlight 앱에 참여해 주세요. TestFlight 앱이 없다면 App Store에서 먼저 설치해 주세요.
 2. TestFlight에서 PricePick을 설치 후 실행하면 별도 회원가입 없이 닉네임만 입력하면 바로 이용할 수 있습니다.
-3. 홈 · 경유 쇼핑 · 매일 행운 룰렛 · 잭팟 룰렛 · 출석체크 · 혜택(내 티켓&amp;포인트 · 티켓 교환소 · 기프티콘) 화면을 자유롭게 둘러봐 주세요.
+3. 홈 · 경유 쇼핑 · 행운 선물 상자 · 티켓 상자 · 출석체크 · 혜택(내 티켓&amp;포인트 · 티켓 교환소 · 기프티콘) 화면을 자유롭게 둘러봐 주세요.
 4. 지금은 스테이징(테스트) 서버라 실제 쇼핑몰 구매로 적립되는 흐름은 아직 확인할 수 없습니다. 앱에 미리 채워진 데모 데이터로 화면 동작을 확인해 주시면 됩니다.
 5. 오류나 이상한 점을 발견하면 스크린샷을 찍은 뒤 TestFlight 앱의 "피드백 보내기"로 알려 주세요.</pre>
 </div>
@@ -156,7 +157,7 @@ details.dcard .dright{display:flex;align-items:center;gap:8px}
 <pre style="color:var(--ink3);font-size:12.3px">[Hướng dẫn beta test PricePick]
 1. Tham gia app TestFlight bằng link (hoặc mã) mời bạn nhận được. Nếu chưa có app TestFlight, hãy cài đặt từ App Store trước.
 2. Sau khi cài PricePick từ TestFlight và mở app, bạn có thể dùng ngay chỉ bằng cách nhập biệt danh, không cần đăng ký thành viên riêng.
-3. Hãy tự do khám phá màn hình Trang chủ · Mua sắm chuyển tiếp · Vòng quay hằng ngày · Vòng quay Jackpot · Điểm danh · Ưu đãi (Vé&amp;Điểm của tôi · Quầy đổi vé · Gifticon).
+3. Hãy tự do khám phá màn hình Trang chủ · Mua sắm chuyển tiếp · Hộp quà mỗi ngày · Hộp quà vé · Điểm danh · Ưu đãi (Vé&amp;Điểm của tôi · Quầy đổi vé · Gifticon).
 4. Hiện tại đang dùng server staging (thử nghiệm) nên chưa thể kiểm tra luồng tích điểm từ mua hàng thật ở sàn thương mại. Vui lòng kiểm tra hoạt động màn hình bằng dữ liệu demo đã có sẵn trong app.
 5. Nếu phát hiện lỗi hoặc điều bất thường, hãy chụp màn hình rồi gửi qua nút "Send Beta Feedback" trong app TestFlight.</pre>
 </div>
@@ -170,7 +171,7 @@ details.dcard .dright{display:flex;align-items:center;gap:8px}
 · 온보딩부터 닉네임 입력까지 첫 실행 흐름이 자연스러운지
 · 홈 화면 진입 및 하단 탭(홈/혜택/마이) 이동
 · 쇼핑몰 경유 화면(쿠팡 등) 진입 및 복귀
-· 매일 행운 룰렛 · 잭팟 룰렛 애니메이션과 결과 표시
+· 행운 선물 상자 · 티켓 상자 애니메이션과 결과 표시
 · 출석체크 화면 동작
 · 혜택 탭 — 내 티켓&amp;포인트 · 티켓 교환소 · 기프티콘 화면
 · 마이 화면 및 설정 메뉴
@@ -182,7 +183,7 @@ details.dcard .dright{display:flex;align-items:center;gap:8px}
 · Luồng chạy đầu tiên từ onboarding đến nhập biệt danh có tự nhiên không
 · Vào màn hình Trang chủ và di chuyển giữa các tab dưới (Trang chủ/Ưu đãi/Của tôi)
 · Vào và quay lại từ màn hình chuyển tiếp sàn mua sắm (Coupang...)
-· Hoạt ảnh và hiển thị kết quả của Vòng quay hằng ngày · Vòng quay Jackpot
+· Hoạt ảnh và hiển thị kết quả của Hộp quà mỗi ngày · Hộp quà vé
 · Hoạt động màn hình Điểm danh
 · Tab Ưu đãi — màn hình Vé&amp;Điểm của tôi · Quầy đổi vé · Gifticon
 · Màn hình Của tôi và menu Cài đặt
@@ -196,7 +197,7 @@ details.dcard .dright{display:flex;align-items:center;gap:8px}
 <button class="copybtn" type="button" onclick="copyText(this,'betadesc-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
 <pre id="betadesc-ko">프라이스픽 베타 – 쇼핑이 곧 리워드가 되는 경유 쇼핑 앱테크
 
-이 빌드는 정식 출시 전 베타 테스트 버전입니다. 현재 스테이징 서버로 동작하며, 실제 쇼핑몰 구매에 따른 적립은 아직 실시간으로 반영되지 않습니다. 홈 · 룰렛 · 출석체크 · 혜택(티켓/포인트/기프티콘) 등 화면 구성과 흐름을 확인해 주세요.
+이 빌드는 정식 출시 전 베타 테스트 버전입니다. 현재 스테이징 서버로 동작하며, 실제 쇼핑몰 구매에 따른 적립은 아직 실시간으로 반영되지 않습니다. 홈 · 행운 선물 상자 · 출석체크 · 혜택(티켓/포인트/기프티콘) 등 화면 구성과 흐름을 확인해 주세요.
 
 닉네임만으로 바로 시작할 수 있으며, 오류나 개선 의견은 TestFlight 피드백으로 보내 주시면 감사하겠습니다.</pre>
 </div>
@@ -204,7 +205,7 @@ details.dcard .dright{display:flex;align-items:center;gap:8px}
 <div class="copybox vi-only" style="margin-top:8px">
 <pre style="color:var(--ink3);font-size:12.3px">PricePick Beta – Ứng dụng mua sắm chuyển tiếp biến việc mua sắm thành phần thưởng
 
-Đây là bản beta test trước khi ra mắt chính thức. Hiện đang chạy trên server staging, việc tích điểm theo mua hàng thật ở sàn thương mại chưa được phản ánh theo thời gian thực. Vui lòng kiểm tra cấu trúc và luồng màn hình Trang chủ · Vòng quay · Điểm danh · Ưu đãi (Vé/Điểm/Gifticon).
+Đây là bản beta test trước khi ra mắt chính thức. Hiện đang chạy trên server staging, việc tích điểm theo mua hàng thật ở sàn thương mại chưa được phản ánh theo thời gian thực. Vui lòng kiểm tra cấu trúc và luồng màn hình Trang chủ · Hộp quà mỗi ngày · Điểm danh · Ưu đãi (Vé/Điểm/Gifticon).
 
 Bạn có thể bắt đầu ngay chỉ bằng biệt danh, và rất mong nhận được phản hồi lỗi hoặc góp ý cải thiện qua tính năng feedback của TestFlight.</pre>
 </div>
@@ -232,7 +233,7 @@ Bạn có thể bắt đầu ngay chỉ bằng biệt danh, và rất mong nhậ
 PricePick은 "경유 쇼핑" 리워드 앱입니다. 흐름: 앱에서 쇼핑몰로 이동 → 구매 → 티켓 적립. 이용자가 앱 안에서 쿠팡 등 제휴 쇼핑몰 링크를 눌러 외부 쇼핑몰로 이동한 뒤 그곳에서 구매를 완료하면, 제휴사가 구매 확정 신호(포스트백)를 저희 서버로 보내고, 앱은 이를 근거로 등급 티켓(브론즈·실버·골드)을 지급합니다. 앱 내에서 자체적으로 결제나 실물 상품 판매를 하지 않습니다.
 
 [리워드 사용처]
-쌓은 티켓은 앱 내 "잭팟 룰렛"에 사용해 더 큰 보상에 도전하거나 "경품 응모"에 사용할 수 있습니다. 등급 티켓 간 교환(브론즈↔실버↔골드)도 가능하며, 포인트를 티켓으로 교환할 수도 있습니다. 실물 배송이나 앱 내 결제는 없습니다.
+쌓은 티켓은 앱 내 "티켓 상자"에 사용해 더 큰 보상에 도전하거나 "경품 응모"에 사용할 수 있습니다. 등급 티켓 간 교환(브론즈↔실버↔골드)도 가능하며, 포인트를 티켓으로 교환할 수도 있습니다. 실물 배송이나 앱 내 결제는 없습니다.
 
 [현재 빌드 상태 — 스테이징]
 이번 빌드는 스테이징(테스트) 서버를 사용합니다. 쿠팡 파트너스 API 실연동이 아직 완료되지 않아 실제 구매를 하더라도 실시간으로 적립되지 않습니다. 화면 동작 확인용으로 티켓·포인트가 미리 채워진 데모 데이터 기준으로 심사해 주시면 됩니다.
@@ -240,11 +241,11 @@ PricePick은 "경유 쇼핑" 리워드 앱입니다. 흐름: 앱에서 쇼핑몰
 [로그인 관련]
 별도 회원가입·로그인이 없습니다. 앱 실행 후 닉네임만 입력하면 바로 이용 가능합니다(이메일·비밀번호 불필요). 원하는 경우 카카오 계정으로 추가 연동할 수 있습니다.
 
-[룰렛 기능 안내]
-"행운 룰렛"은 매일 무료로 1회 참여 가능하며, 포인트·이벤트 티켓 등 앱 내 리워드를 확률에 따라 지급하는 기능입니다. 실제 금전을 걸거나 환전하는 기능이 아니며, 참여에 별도 결제가 필요하지 않습니다.
+[선물 기능 안내]
+"행운 선물 상자"은 매일 무료로 1회 참여 가능하며, 포인트·이벤트 티켓 등 앱 내 리워드를 확률에 따라 지급하는 기능입니다. 실제 금전을 걸거나 환전하는 기능이 아니며, 참여에 별도 결제가 필요하지 않습니다.
 
 [심사 시 확인 방법]
-앱 실행 → 닉네임 입력 → 홈 화면에서 "쿠팡 구경" · "행운 룰렛" · "혜택(내 티켓&amp;포인트 · 티켓 교환소)" 등 주요 기능을 바로 확인하실 수 있습니다.</pre>
+앱 실행 → 닉네임 입력 → 홈 화면에서 "쿠팡 구경" · "행운 선물 상자" · "혜택(내 티켓&amp;포인트 · 티켓 교환소)" 등 주요 기능을 바로 확인하실 수 있습니다.</pre>
 </div>
 <div class="vi-full-t vi-only">번역 참고용 · Bản dịch tham khảo</div>
 <div class="copybox vi-only" style="margin-top:8px">
@@ -252,7 +253,7 @@ PricePick은 "경유 쇼핑" 리워드 앱입니다. 흐름: 앱에서 쇼핑몰
 PricePick là ứng dụng thưởng theo hình thức "mua sắm chuyển tiếp". Luồng: chuyển từ app sang sàn mua sắm → mua hàng → tích vé. Người dùng nhấn vào link sàn liên kết như Coupang trong app để chuyển sang sàn mua sắm bên ngoài, hoàn tất mua hàng tại đó, sau đó đối tác gửi tín hiệu xác nhận mua hàng (postback) về server của chúng tôi, và app cấp vé theo hạng (Đồng·Bạc·Vàng) dựa trên đó. App không tự bán hàng hay thanh toán.
 
 [Nơi sử dụng phần thưởng]
-Vé tích được có thể dùng để tham gia "Vòng quay Jackpot" nhằm thử vận may với phần thưởng lớn hơn, hoặc dùng để "dự thưởng". Cũng có thể đổi vé giữa các hạng (Đồng↔Bạc↔Vàng), và đổi điểm thành vé. Không có giao hàng vật lý hay thanh toán trong app.
+Vé tích được có thể dùng để tham gia "Hộp quà vé" nhằm thử vận may với phần thưởng lớn hơn, hoặc dùng để "dự thưởng". Cũng có thể đổi vé giữa các hạng (Đồng↔Bạc↔Vàng), và đổi điểm thành vé. Không có giao hàng vật lý hay thanh toán trong app.
 
 [Trạng thái build hiện tại — Staging]
 Build này dùng server staging (thử nghiệm). Việc tích hợp API Coupang Partners thực tế chưa hoàn tất nên dù mua hàng thật cũng không được tích điểm theo thời gian thực. Vui lòng xét duyệt dựa trên dữ liệu demo đã được điền sẵn vé·điểm để kiểm tra hoạt động màn hình.
@@ -260,11 +261,11 @@ Build này dùng server staging (thử nghiệm). Việc tích hợp API Coupang
 [Về đăng nhập]
 Không có đăng ký thành viên·đăng nhập riêng. Chỉ cần nhập biệt danh sau khi mở app là dùng được ngay (không cần email·mật khẩu). Có thể liên kết thêm tài khoản Kakao nếu muốn.
 
-[Giới thiệu tính năng Vòng quay]
-"Vòng quay may mắn" cho phép tham gia miễn phí 1 lần/ngày, cấp thưởng trong app (điểm·vé sự kiện...) theo xác suất. Đây không phải là tính năng đặt cược hay đổi tiền thật, và không cần thanh toán riêng để tham gia.
+[Giới thiệu tính năng Quà tặng]
+"Hộp quà mỗi ngày" cho phép tham gia miễn phí 1 lần/ngày, cấp thưởng trong app (điểm·vé sự kiện...) theo xác suất. Đây không phải là tính năng đặt cược hay đổi tiền thật, và không cần thanh toán riêng để tham gia.
 
 [Cách kiểm tra khi xét duyệt]
-Mở app → Nhập biệt danh → Có thể kiểm tra ngay các tính năng chính như "Xem Coupang" · "Vòng quay may mắn" · "Ưu đãi (Vé&amp;Điểm của tôi · Quầy đổi vé)" ở màn hình chính.</pre>
+Mở app → Nhập biệt danh → Có thể kiểm tra ngay các tính năng chính như "Xem Coupang" · "Hộp quà mỗi ngày" · "Ưu đãi (Vé&amp;Điểm của tôi · Quầy đổi vé)" ở màn hình chính.</pre>
 </div>
 </div>
 </details>
@@ -339,20 +340,20 @@ Mở app → Nhập biệt danh → Có thể kiểm tra ngay các tính năng c
 <div class="card-t"><span class="i18n"><span class="ko">부제 (Subtitle) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Phụ đề (Subtitle) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">30자 이내 · 현재 20자</span><span class="vi">Trong 30 ký tự · Hiện tại 20</span></span></div>
 <div class="copybox inline">
 <button class="copybtn" type="button" onclick="copyText(this,'subtitle-launch-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
-<div class="txt-ko" id="subtitle-launch-ko">쇼핑하고 룰렛 돌려 티켓·포인트 받기</div>
+<div class="txt-ko" id="subtitle-launch-ko">쇼핑하고 선물 상자 열어 티켓·포인트 받기</div>
 </div>
-<div class="txt-vi-sub vi-only">Mua sắm, quay vòng quay nhận vé·điểm <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
-<div class="srcnote">기프티콘 교환 언급을 빼고 룰렛 참여로 대체</div>
+<div class="txt-vi-sub vi-only">Mua sắm, mở hộp quà nhận vé·điểm <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="srcnote">기프티콘 교환 언급을 빼고 티켓 상자 참여로 대체</div>
 </div>
 
 <div class="card launch">
 <div class="card-t"><span class="i18n"><span class="ko">프로모션 텍스트 (Promotional Text) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Văn bản quảng cáo (Promotional Text) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">170자 이내 · 현재 71자</span><span class="vi">Trong 170 ký tự · Hiện tại 71</span></span></div>
 <div class="copybox inline">
 <button class="copybtn" type="button" onclick="copyText(this,'promo-launch-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
-<div class="txt-ko" id="promo-launch-ko">출석하면 포인트, 매일 룰렛 돌리면 티켓까지! 쿠팡 등 경유 쇼핑으로 쌓은 티켓으로 잭팟 룰렛에 도전하고 경품에도 응모해보세요.</div>
+<div class="txt-ko" id="promo-launch-ko">출석하면 포인트, 매일 선물 열면 티켓까지! 쿠팡 등 경유 쇼핑으로 쌓은 티켓으로 티켓 상자에 도전하고 경품에도 응모해보세요.</div>
 </div>
-<div class="txt-vi-sub vi-only">Điểm danh nhận điểm, quay vòng quay mỗi ngày nhận vé! Dùng vé tích được từ mua sắm chuyển tiếp (Coupang…) để thử vận may ở Vòng quay Jackpot và dự thưởng. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
-<div class="srcnote">기프티콘 교환 문장을 빼고 잭팟 룰렛·경품 응모로 티켓 용처를 설명</div>
+<div class="txt-vi-sub vi-only">Điểm danh nhận điểm, mở quà mỗi ngày nhận vé! Dùng vé tích được từ mua sắm chuyển tiếp (Coupang…) để thử ở Hộp quà vé và dự thưởng. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="srcnote">기프티콘 교환 문장을 빼고 티켓 상자·경품 응모로 티켓 용처를 설명</div>
 </div>
 
 <details class="dcard">
@@ -368,12 +369,12 @@ Mở app → Nhập biệt danh → Có thể kiểm tra ngay các tính năng c
 · 프라이스픽에서 쇼핑몰로 이동해 구매하면 티켓 자동 적립
 · 구매 금액에 따라 브론즈·실버·골드 등급 티켓
 
-■ 매일 쌓는 재미 – 출석·룰렛·이벤트 티켓
+■ 매일 쌓는 재미 – 출석·행운 선물 상자·이벤트 티켓
 · 매일 출석만 해도 포인트
-· 행운 룰렛으로 포인트·이벤트 티켓
+· 행운 선물 상자으로 포인트·이벤트 티켓
 
-■ 잭팟 룰렛 – 이벤트 티켓으로 더 큰 도전
-· 모은 이벤트 티켓으로 잭팟 룰렛 참여
+■ 티켓 상자 – 이벤트 티켓으로 더 큰 도전
+· 모은 이벤트 티켓으로 티켓 상자 참여
 · 골드 티켓 등 더 큰 보상에 도전
 
 ■ 경품 응모
@@ -394,12 +395,12 @@ Vẫn là mua sắm trực tuyến như thường ngày, chỉ cần vào qua Pr
 · Chuyển từ PricePick sang sàn mua sắm để mua thì tự động tích vé
 · Vé hạng Đồng·Bạc·Vàng theo số tiền mua
 
-■ Niềm vui tích lũy mỗi ngày – Điểm danh·Vòng quay·Vé sự kiện
+■ Niềm vui tích lũy mỗi ngày – Điểm danh·Hộp quà mỗi ngày·Vé sự kiện
 · Chỉ cần điểm danh mỗi ngày là có điểm
-· Vòng quay may mắn nhận điểm·vé sự kiện
+· Hộp quà mỗi ngày nhận điểm·vé sự kiện
 
-■ Vòng quay Jackpot – Thử thách lớn hơn với vé sự kiện
-· Dùng vé sự kiện đã tích để tham gia Vòng quay Jackpot
+■ Hộp quà vé – Thử thách lớn hơn với vé sự kiện
+· Dùng vé sự kiện đã tích để tham gia Hộp quà vé
 · Thử vận may với phần thưởng lớn hơn như vé Vàng
 
 ■ Dự thưởng
@@ -410,7 +411,7 @@ Vẫn là mua sắm trực tuyến như thường ngày, chỉ cần vào qua Pr
 
 Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay và bắt đầu nhận thưởng từ việc mua sắm!</pre>
 </div>
-<div class="srcnote">「■ 기프티콘 교환」 항목을 빼고 「■ 잭팟 룰렛」·「■ 경품 응모」로 티켓 용처를 다시 설명 — 안 그러면 "모아서 뭘 하는지"가 사라짐</div>
+<div class="srcnote">「■ 기프티콘 교환」 항목을 빼고 「■ 티켓 상자」·「■ 경품 응모」로 티켓 용처를 다시 설명 — 안 그러면 "모아서 뭘 하는지"가 사라짐</div>
 </div>
 </details>
 
@@ -418,10 +419,10 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 <div class="card-t"><span class="i18n"><span class="ko">키워드 (Keywords) <span style="color:var(--pp-d)">— 애플만 있음</span></span><span class="vi">Từ khóa (Keywords) <span style="color:var(--pp-d)">— Chỉ có ở Apple</span></span></span><span class="charcount i18n"><span class="ko">100자 이내(쉼표 구분, 공백 없이) · 현재 64자</span><span class="vi">Trong 100 ký tự (phân cách bằng dấu phẩy, không khoảng trắng) · Hiện tại 64</span></span></div>
 <div class="copybox inline">
 <button class="copybtn" type="button" onclick="copyText(this,'keywords-launch-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
-<div class="txt-ko" id="keywords-launch-ko" style="font-size:13.5px;font-weight:600">리워드앱,적립,쿠팡,앱테크,포인트적립,캐시백,쇼핑리워드,룰렛,출석체크,경유쇼핑,친구초대,경품응모,잭팟룰렛,모바일쿠폰</div>
+<div class="txt-ko" id="keywords-launch-ko" style="font-size:13.5px;font-weight:600">리워드앱,적립,쿠팡,앱테크,포인트적립,캐시백,쇼핑리워드,선물상자,출석체크,경유쇼핑,친구초대,경품응모,티켓상자,모바일쿠폰</div>
 </div>
 <div class="txt-vi-sub vi-only">한국 앱스토어 검색용 한국어 키워드라 베트남어로 옮기지 않음 (검색 노출 목적) <span style="color:var(--ink3)">— Từ khóa tìm kiếm tiếng Hàn dành riêng cho App Store Hàn Quốc nên không dịch sang tiếng Việt</span></div>
-<div class="srcnote">「기프티콘·기프티콘교환」을 빼고 「경품응모·잭팟룰렛」으로 대체</div>
+<div class="srcnote">「기프티콘·기프티콘교환」을 빼고 「경품응모·티켓상자」으로 대체</div>
 </div>
 </div>
 
@@ -440,9 +441,9 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 <div class="card-t"><span class="i18n"><span class="ko">프로모션 텍스트 (Promotional Text)</span><span class="vi">Văn bản quảng cáo (Promotional Text)</span></span><span class="charcount i18n"><span class="ko">170자 이내 · 현재 81자</span><span class="vi">Trong 170 ký tự · Hiện tại 81</span></span></div>
 <div class="copybox inline">
 <button class="copybtn" type="button" onclick="copyText(this,'promo-full-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
-<div class="txt-ko" id="promo-full-ko">출석하면 포인트, 매일 룰렛 돌리면 티켓까지! 쿠팡 등 경유 쇼핑으로 쌓은 티켓·포인트를 스타벅스·이디야 등 인기 기프티콘으로 바로 교환해보세요.</div>
+<div class="txt-ko" id="promo-full-ko">출석하면 포인트, 매일 선물 열면 티켓까지! 쿠팡 등 경유 쇼핑으로 쌓은 티켓·포인트를 스타벅스·이디야 등 인기 기프티콘으로 바로 교환해보세요.</div>
 </div>
-<div class="txt-vi-sub vi-only">Điểm danh nhận điểm, quay vòng quay mỗi ngày nhận vé! Đổi ngay vé·điểm tích được từ mua sắm chuyển tiếp (Coupang…) thành Gifticon Starbucks·Ediya và các thương hiệu nổi tiếng khác. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="txt-vi-sub vi-only">Điểm danh nhận điểm, mở quà mỗi ngày nhận vé! Đổi ngay vé·điểm tích được từ mua sắm chuyển tiếp (Coupang…) thành Gifticon Starbucks·Ediya và các thương hiệu nổi tiếng khác. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
 <div class="srcnote">기프티콘 기능 출시 후 사용할 예비 문구</div>
 </div>
 
@@ -459,9 +460,9 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 · 프라이스픽에서 쇼핑몰로 이동해 구매하면 티켓 자동 적립
 · 구매 금액에 따라 브론즈·실버·골드 등급 티켓
 
-■ 매일 쌓는 재미 – 출석·룰렛·이벤트 티켓
+■ 매일 쌓는 재미 – 출석·행운 선물 상자·이벤트 티켓
 · 매일 출석만 해도 포인트
-· 행운 룰렛으로 포인트·이벤트 티켓
+· 행운 선물 상자으로 포인트·이벤트 티켓
 · 이벤트 티켓으로 경품 응모
 
 ■ 기프티콘 교환
@@ -482,9 +483,9 @@ Vẫn là mua sắm trực tuyến như thường ngày, chỉ cần vào qua Pr
 · Chuyển từ PricePick sang sàn mua sắm để mua thì tự động tích vé
 · Vé hạng Đồng·Bạc·Vàng theo số tiền mua
 
-■ Niềm vui tích lũy mỗi ngày – Điểm danh·Vòng quay·Vé sự kiện
+■ Niềm vui tích lũy mỗi ngày – Điểm danh·Hộp quà mỗi ngày·Vé sự kiện
 · Chỉ cần điểm danh mỗi ngày là có điểm
-· Vòng quay may mắn nhận điểm·vé sự kiện
+· Hộp quà mỗi ngày nhận điểm·vé sự kiện
 · Dùng vé sự kiện dự thưởng
 
 ■ Đổi Gifticon
@@ -503,7 +504,7 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 <div class="card-t"><span class="i18n"><span class="ko">키워드 (Keywords)</span><span class="vi">Từ khóa (Keywords)</span></span><span class="charcount i18n"><span class="ko">100자 이내(쉼표 구분, 공백 없이) · 현재 66자</span><span class="vi">Trong 100 ký tự (phân cách bằng dấu phẩy, không khoảng trắng) · Hiện tại 66</span></span></div>
 <div class="copybox inline">
 <button class="copybtn" type="button" onclick="copyText(this,'keywords-full-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
-<div class="txt-ko" id="keywords-full-ko" style="font-size:13.5px;font-weight:600">리워드앱,적립,쿠팡,기프티콘,앱테크,포인트적립,캐시백,쇼핑리워드,룰렛,출석체크,경유쇼핑,기프티콘교환,친구초대,모바일쿠폰</div>
+<div class="txt-ko" id="keywords-full-ko" style="font-size:13.5px;font-weight:600">리워드앱,적립,쿠팡,기프티콘,앱테크,포인트적립,캐시백,쇼핑리워드,선물상자,출석체크,경유쇼핑,기프티콘교환,친구초대,모바일쿠폰</div>
 </div>
 <div class="txt-vi-sub vi-only">한국 앱스토어 검색용 한국어 키워드라 베트남어로 옮기지 않음 (검색 노출 목적) <span style="color:var(--ink3)">— Từ khóa tìm kiếm tiếng Hàn dành riêng cho App Store Hàn Quốc nên không dịch sang tiếng Việt</span></div>
 <div class="srcnote">기프티콘 기능 출시 후 사용할 예비 문구</div>
@@ -514,9 +515,9 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 <div class="card-t"><span class="i18n"><span class="ko">간단한 설명 (구글 플레이용 · 참고) <span style="color:var(--ink3)">— 두 버전 공통</span></span><span class="vi">Mô tả ngắn (dùng cho Google Play · tham khảo) <span style="color:var(--ink3)">— chung cho cả 2 bản</span></span></span></div>
 <div class="copybox inline">
 <button class="copybtn" type="button" onclick="copyText(this,'shortdesc-ko')"><span class="i18n"><span class="ko">복사</span><span class="vi">Copy</span></span></button>
-<div class="txt-ko" id="shortdesc-ko">경유 쇼핑만 해도 티켓·포인트가 쌓여요! 출석·룰렛으로 더 모아 기프티콘으로 교환하세요.</div>
+<div class="txt-ko" id="shortdesc-ko">경유 쇼핑만 해도 티켓·포인트가 쌓여요! 출석·행운 선물 상자로 더 모아 기프티콘으로 교환하세요.</div>
 </div>
-<div class="txt-vi-sub vi-only">Chỉ cần mua sắm qua link là tích vé·điểm! Tích thêm bằng điểm danh·vòng quay rồi đổi gifticon. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
+<div class="txt-vi-sub vi-only">Chỉ cần mua sắm qua link là tích vé·điểm! Tích thêm bằng điểm danh·hộp quà mỗi ngày rồi đổi gifticon. <span style="color:var(--ink3)">(dịch để tham khảo, không phải bản đăng ký)</span></div>
 <div class="srcnote">애플 앱스토어엔 「간단한 설명」 필드가 없음(부제·프로모션 텍스트가 그 역할). 이건 구글 플레이용 참고 문구라 탭으로 안 나눔 — 구글 플레이도 기프티콘 뺄지는 별도 확인 필요</div>
 </div>
 
@@ -540,7 +541,7 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 <tr><td style="font-weight:700;color:var(--ink1)"><span class="i18n"><span class="ko">그 외 허용 규격</span><span class="vi">Quy cách khác được chấp nhận</span></span></td><td>1290×2796px · 1260×2736px</td></tr>
 <tr><td style="font-weight:700;color:var(--ink1)"><span class="i18n"><span class="ko">형식·투명도</span><span class="vi">Định dạng·độ trong suốt</span></span></td><td>PNG/JPEG, <span class="i18n"><span class="ko">알파 채널·투명도 금지</span><span class="vi">không kênh alpha·trong suốt</span></span></td></tr>
 <tr><td style="font-weight:700;color:var(--ink1)"><span class="i18n"><span class="ko">장수</span><span class="vi">Số lượng</span></span></td><td>1~10<span class="i18n"><span class="ko">장</span><span class="vi"> ảnh</span></span></td></tr>
-<tr><td style="font-weight:700;color:var(--ink1)"><span class="i18n"><span class="ko">화면 구성</span><span class="vi">Thành phần màn hình</span></span></td><td><span class="i18n"><span class="ko">구글 플레이와 동일 5개(홈·룰렛·출석·혜택·기프티콘) — 단, <b>출시 버전에는 기프티콘 화면을 넣지 않습니다.</b> 「자료 · 참고」 탭의 다른 화면(내 티켓&amp;포인트·티켓교환소 등)으로 대체 검토</span><span class="vi">Giống Google Play, 5 màn (Trang chủ·Vòng quay·Điểm danh·Ưu đãi·Gifticon) — nhưng <b>phiên bản ra mắt sẽ không đưa màn hình Gifticon vào.</b> Cân nhắc thay bằng màn hình khác ở tab "Tài liệu · Tham khảo" (Vé&amp;Điểm của tôi·Quầy đổi vé...)</span></span></td></tr>
+<tr><td style="font-weight:700;color:var(--ink1)"><span class="i18n"><span class="ko">화면 구성</span><span class="vi">Thành phần màn hình</span></span></td><td><span class="i18n"><span class="ko">구글 플레이와 동일 5개(홈·행운 선물 상자·출석·혜택·기프티콘) — 단, <b>출시 버전에는 기프티콘 화면을 넣지 않습니다.</b> 「자료 · 참고」 탭의 다른 화면(내 티켓&amp;포인트·티켓교환소 등)으로 대체 검토</span><span class="vi">Giống Google Play, 5 màn (Trang chủ·Hộp quà mỗi ngày·Điểm danh·Ưu đãi·Gifticon) — nhưng <b>phiên bản ra mắt sẽ không đưa màn hình Gifticon vào.</b> Cân nhắc thay bằng màn hình khác ở tab "Tài liệu · Tham khảo" (Vé&amp;Điểm của tôi·Quầy đổi vé...)</span></span></td></tr>
 </tbody>
 </table>
 <div class="srcnote" style="margin-top:10px">출처: <a href="https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications/" target="_blank" rel="noopener">Apple Developer — Screenshot Specifications</a> (6.9형 디스플레이 항목, 직접 확인)</div>
@@ -575,7 +576,7 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 <div class="card">
 <div class="reviewnote-box">
 <div class="qa-row"><div class="qa-q i18n"><span class="ko">확인 방법</span><span class="vi">Cách xác nhận</span></div><div class="qa-a i18n"><span class="ko">App Store Connect의 「연령 등급」 설문에 직접 답변해야 산정됩니다(자동 계산). 여기서는 해당될 만한 항목만 안내합니다.</span><span class="vi">Phải tự trả lời khảo sát "Age Rating" trong App Store Connect thì hệ thống mới tự tính (tự động). Ở đây chỉ hướng dẫn các mục có khả năng liên quan.</span></div></div>
-<div class="qa-row"><div class="qa-q i18n"><span class="ko">확률형 보상</span><span class="vi">Thưởng theo xác suất</span></div><div class="qa-a i18n"><span class="ko">"행운 룰렛"이 확률로 포인트·티켓을 주는 기능이라 설문의 <b>"모의 도박(Simulated Gambling)"</b> 항목에서 "예"로 답해야 할 가능성이 있습니다. 실제 금전 베팅·환전은 없지만 확률형 보상 자체가 해당 여부의 판단 기준이라 개발팀·정책 담당자 확인이 필요합니다.</span><span class="vi">Vì "Vòng quay may mắn" cấp điểm·vé theo xác suất nên có khả năng phải trả lời "Có" ở mục <b>"Cờ bạc mô phỏng (Simulated Gambling)"</b> trong khảo sát. Tuy không có đặt cược·đổi tiền thật nhưng bản thân phần thưởng theo xác suất là tiêu chí đánh giá nên cần đội phát triển·phụ trách chính sách xác nhận.</span></div></div>
+<div class="qa-row"><div class="qa-q i18n"><span class="ko">확률형 보상</span><span class="vi">Thưởng theo xác suất</span></div><div class="qa-a i18n"><span class="ko">"행운 선물 상자"이 확률로 포인트·티켓을 주는 기능이라 설문의 <b>"모의 도박(Simulated Gambling)"</b> 항목에서 "예"로 답해야 할 가능성이 있습니다. 실제 금전 베팅·환전은 없지만 확률형 보상 자체가 해당 여부의 판단 기준이라 개발팀·정책 담당자 확인이 필요합니다.</span><span class="vi">Vì "Hộp quà mỗi ngày" cấp điểm·vé theo xác suất nên có khả năng phải trả lời "Có" ở mục <b>"Cờ bạc mô phỏng (Simulated Gambling)"</b> trong khảo sát. Tuy không có đặt cược·đổi tiền thật nhưng bản thân phần thưởng theo xác suất là tiêu chí đánh giá nên cần đội phát triển·phụ trách chính sách xác nhận.</span></div></div>
 <div class="qa-row"><div class="qa-q i18n"><span class="ko">기타 항목</span><span class="vi">Mục khác</span></div><div class="qa-a i18n"><span class="ko">폭력·선정성·공포·약물 등 다른 항목은 해당 사항 없어 보임(전부 "없음"으로 답변 가능할 것으로 예상)</span><span class="vi">Các mục khác như bạo lực·khiêu dâm·kinh dị·chất kích thích có vẻ không liên quan (dự kiến có thể trả lời "Không" cho tất cả)</span></div></div>
 </div>
 </div>
@@ -618,8 +619,9 @@ Chỉ cần biệt danh là bắt đầu dễ dàng. Cài đặt PricePick ngay 
 <div class="warnbox" style="margin-bottom:12px"><b><span class="i18n"><span class="ko">규격 미가공 원본 — 스토어 제출용으로 리사이즈 필요.</span><span class="vi">Ảnh gốc chưa qua xử lý quy cách — cần resize trước khi nộp lên store.</span></span></b> <span class="i18n"><span class="ko">애플 규격(1320×2868)에 맞추지 않고 앱 화면을 있는 그대로 캡처했습니다. TestFlight 스크린샷이나 ChatGPT 등으로 규격에 맞게 제작할 때 원본으로 사용하세요.</span><span class="vi">Chưa chỉnh theo quy cách Apple (1320×2868) mà chụp nguyên trạng màn hình app. Dùng làm ảnh gốc cho ảnh TestFlight hoặc khi tạo lại đúng quy cách bằng ChatGPT hoặc công cụ khác.</span></span></div>
 <div class="raw-grid">
 <div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-01-home.png" alt="홈" onclick="lbOpen('/devqa/assets/appstore/raw/raw-01-home.png','홈')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">1. 홈</span><span class="vi">1. Trang chủ</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-01-home.png" download="pricepick-raw-01-home.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
-<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-02-daily-roulette.png" alt="매일 행운 룰렛" onclick="lbOpen('/devqa/assets/appstore/raw/raw-02-daily-roulette.png','매일 행운 룰렛')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">2. 매일 행운 룰렛</span><span class="vi">2. Vòng quay hằng ngày</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-02-daily-roulette.png" download="pricepick-raw-02-daily-roulette.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
-<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-03-jackpot-roulette.png" alt="잭팟 룰렛" onclick="lbOpen('/devqa/assets/appstore/raw/raw-03-jackpot-roulette.png','잭팟 룰렛')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">3. 잭팟 룰렛</span><span class="vi">3. Vòng quay Jackpot</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-03-jackpot-roulette.png" download="pricepick-raw-03-jackpot-roulette.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="icon-note" style="margin:10px 0 4px;border-left:3px solid #e5484d;background:#fff4f2;color:#8f2420"><span class="i18n"><span class="ko"><b>교체 필요 2건 (아래 캡처 원본).</b> <b>raw-02</b>(구 행운 룰렛) — 돌림판이 찍혀 있어 새 「매일 행운 선물 상자」 화면으로 다시 뽑아야 합니다. <b>raw-03</b>(구 잭팟 룰렛) — 1차 재등록에서 숨기는 화면이므로 <b>등재에서 제외</b>합니다. 자리는 교환소나 혜택 화면으로 채우십시오. 두 장 모두 캡처 도구가 없어 제가 만들 수 없습니다 — 목록으로만 남깁니다.</span><span class="vi"><b>2 ảnh cần xử lý (ảnh gốc bên dưới).</b> <b>raw-02</b> (Vòng quay may mắn cũ) — có bánh xe quay trong ảnh nên phải xuất lại theo màn 「매일 행운 선물 상자」 mới. <b>raw-03</b> (Jackpot cũ) — là màn bị ẩn ở lần đăng ký lại thứ nhất nên <b>loại khỏi phần đăng ký</b>. Hãy thay chỗ đó bằng màn Đổi điểm hoặc Ưu đãi. Cả hai ảnh tôi không tạo được vì không có công cụ chụp — chỉ ghi vào danh sách.</span></span></div>
+<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-02-daily-roulette.png" alt="행운 선물 상자" onclick="lbOpen('/devqa/assets/appstore/raw/raw-02-daily-roulette.png','행운 선물 상자')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">2. 매일 행운 선물 상자</span><span class="vi">2. Hộp quà mỗi ngày</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-02-daily-roulette.png" download="pricepick-raw-02-daily-roulette.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
+<div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-03-jackpot-roulette.png" alt="티켓 상자" onclick="lbOpen('/devqa/assets/appstore/raw/raw-03-jackpot-roulette.png','티켓 상자')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">3. 티켓 상자</span><span class="vi">3. Hộp quà vé</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-03-jackpot-roulette.png" download="pricepick-raw-03-jackpot-roulette.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
 <div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-04-attendance.png" alt="출석체크" onclick="lbOpen('/devqa/assets/appstore/raw/raw-04-attendance.png','출석체크')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">4. 출석체크</span><span class="vi">4. Điểm danh</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-04-attendance.png" download="pricepick-raw-04-attendance.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
 <div class="raw-item"><img src="/devqa/assets/appstore/raw/raw-05-benefit.png" alt="혜택" onclick="lbOpen('/devqa/assets/appstore/raw/raw-05-benefit.png','혜택')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">5. 혜택</span><span class="vi">5. Ưu đãi</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-05-benefit.png" download="pricepick-raw-05-benefit.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>
 <div class="raw-item excluded"><img src="/devqa/assets/appstore/raw/raw-06-gifticon.png" alt="기프티콘" onclick="lbOpen('/devqa/assets/appstore/raw/raw-06-gifticon.png','기프티콘')" onerror="this.closest('.raw-item').style.display='none'"><span class="raw-cap"><span class="i18n"><span class="ko">6. 기프티콘</span><span class="vi">6. Gifticon</span></span></span><span class="badge-exclude"><span class="i18n"><span class="ko">출시 버전 제외</span><span class="vi">Loại khỏi bản ra mắt</span></span></span><span class="raw-res">390×844 <span class="i18n"><span class="ko">(파일 780×1688)</span><span class="vi">(file 780×1688)</span></span></span><a class="shot-dl" href="/devqa/assets/appstore/raw/raw-06-gifticon.png" download="pricepick-raw-06-gifticon.png"><span class="i18n"><span class="ko">다운로드</span><span class="vi">Tải xuống</span></span></a></div>

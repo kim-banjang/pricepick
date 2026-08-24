@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PricePick · 돌림판 대체 화면 시안 (2026-08-24)</title>
+<style>
+:root{--pp:#845EEE;--pp-d:#6C4AB6;--pp-l:#EFE9FD;--ink1:#1A1130;--ink2:#4A4160;--ink3:#8B84A3;--line:#E7E3F2;--bg:#F2F0F7;--gold:#FFC24B;--pink:#FF6FA8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--ink1);line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800}
+.hsub{font-size:13px;opacity:.88;margin-top:6px}
+.hnote{display:inline-block;margin-top:12px;font-size:12.5px;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;font-weight:600}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko,#langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi,#langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+
+.banner{background:#FFF4F2;border:1.5px solid #F7B7AB;border-left:4px solid #E5484D;border-radius:13px;padding:14px 17px;margin:22px 0 6px;font-size:13px;color:#8F2420}
+.banner b{font-weight:800}
+
+h2.grp{font-size:14px;color:var(--pp-d);margin:26px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.row{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}
+.col{flex:1 1 330px;min-width:320px}
+.cardlab{font-size:13px;font-weight:800;color:var(--pp-d);margin-bottom:8px}
+.cardlab span.tag{font-size:10.5px;font-weight:800;background:var(--pp-l);color:var(--pp-d);border-radius:20px;padding:3px 9px;margin-left:6px}
+.cardlab span.tag.alt{background:#EDEBF3;color:#6B7280}
+
+.phone{width:330px;max-width:100%;background:#fff;border-radius:30px;box-shadow:0 12px 34px rgba(26,17,48,.16);overflow:hidden;border:1px solid var(--line)}
+.status{display:flex;justify-content:space-between;padding:10px 18px 2px;font-size:11.5px;color:var(--ink3);font-weight:700}
+.nav{display:flex;align-items:center;gap:10px;padding:6px 16px 12px;font-size:15px;font-weight:800}
+.nav .back{color:var(--ink3);font-weight:400;font-size:19px}
+.hero{margin:0 14px;background:linear-gradient(135deg,#7C5BE0,#6C4AB6);border-radius:18px;padding:16px 16px 14px;color:#fff;text-align:center}
+.hero h3{font-size:16px;font-weight:800}
+.hero p{font-size:12px;opacity:.9;margin-top:4px}
+.hero .chip{display:inline-block;margin-top:9px;background:rgba(255,255,255,.22);border-radius:20px;padding:4px 12px;font-size:11.5px;font-weight:700}
+.stage{padding:22px 14px 8px;display:flex;flex-direction:column;align-items:center;min-height:250px;justify-content:center}
+.cta{margin:6px 14px 8px;height:52px;border:none;border-radius:14px;background:var(--pp);color:#fff;font-size:15px;font-weight:800;width:calc(100% - 28px);cursor:pointer;font-family:inherit}
+.cta:active{transform:scale(.985);background:var(--pp-d)}
+.cta:disabled{background:#D8D3E6;color:#fff;cursor:default}
+.foot-note{padding:4px 16px 16px;font-size:10.8px;color:var(--ink3);text-align:center}
+.probl{display:block;margin:0 auto 14px;background:none;border:none;color:var(--pp-d);font-size:11.8px;font-weight:700;text-decoration:underline;cursor:pointer;font-family:inherit}
+
+/* ---- 안 1 : 선물 상자 ---- */
+.boxwrap{position:relative;width:190px;height:190px;display:flex;align-items:flex-end;justify-content:center}
+.box-lid{position:absolute;left:50%;top:34px;margin-left:-64px;width:128px;transition:transform .55s cubic-bezier(.34,1.4,.5,1),opacity .45s}
+.box-body{position:absolute;left:50%;bottom:18px;margin-left:-56px;width:112px}
+.boxwrap.open .box-lid{transform:translateY(-58px) rotate(-13deg)}
+.burst{position:absolute;left:50%;top:52%;width:0;height:0;opacity:0}
+.boxwrap.open .burst{animation:burst .6s ease-out .12s both}
+@keyframes burst{from{opacity:.9;transform:scale(.3)}to{opacity:0;transform:scale(1)}}
+.burst i{position:absolute;width:9px;height:9px;border-radius:2px;background:var(--gold)}
+.reward{position:absolute;left:50%;top:14px;margin-left:-72px;width:144px;background:#fff;border:2px solid var(--pp-l);border-radius:16px;padding:13px 8px;text-align:center;box-shadow:0 10px 26px rgba(108,74,182,.24);opacity:0;transform:translateY(14px) scale(.9);transition:.45s cubic-bezier(.34,1.3,.5,1);pointer-events:none}
+.boxwrap.open .reward{opacity:1;transform:translateY(0) scale(1);transition-delay:.28s}
+.reward .rt{font-size:11px;font-weight:800;color:var(--ink3)}
+.reward .rv{font-size:17px;font-weight:800;color:var(--pp-d);margin-top:3px}
+
+/* ---- 안 2 : 카드 뒤집기 ---- */
+.cards{display:flex;gap:11px;justify-content:center;perspective:900px}
+.card{width:82px;height:118px;position:relative;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,.9,.3,1);cursor:pointer}
+.card.flipped{transform:rotateY(180deg)}
+.card.dimmed{opacity:.42}
+.face{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.face.front{background:linear-gradient(150deg,#7C5BE0,#6C4AB6);box-shadow:0 6px 16px rgba(108,74,182,.28)}
+.face.back{background:#fff;border:2px solid var(--pp-l);transform:rotateY(180deg);box-shadow:0 6px 16px rgba(108,74,182,.16)}
+.face.back .bt{font-size:10px;font-weight:800;color:var(--ink3)}
+.face.back .bv{font-size:14px;font-weight:800;color:var(--pp-d);text-align:center;line-height:1.25}
+
+/* ---- 확률표 ---- */
+.sheet{margin:0 14px 14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:none}
+.sheet.show{display:block}
+.sheet .sh{background:var(--pp-l);color:var(--pp-d);font-size:11.5px;font-weight:800;padding:8px 12px}
+.sheet table{width:100%;border-collapse:collapse;font-size:11.5px}
+.sheet td{padding:6px 12px;border-top:1px solid var(--line);color:var(--ink2)}
+.sheet td:last-child{text-align:right;font-weight:700;color:var(--ink1)}
+
+.cmp{margin-top:18px}
+.tblwrap{overflow-x:auto}
+table.tbl{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff}
+table.tbl th,table.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+table.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+td.old{color:#B4453F;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.6px}
+td.new{color:#1F7A7A;font-weight:700}
+.note{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin-top:12px;font-size:12.6px;color:var(--ink2)}
+.note b{color:var(--ink1)}
+.foot{margin-top:26px;font-size:11.5px;color:var(--ink3)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div style="max-width:1040px;margin:0 auto;padding:0 22px">
+<div class="htitle"><span class="i18n"><span class="ko">돌림판 대체 화면 시안 · 2026-08-24</span><span class="vi">Bản thiết kế thay thế màn hình vòng quay · 24-08-2026</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Google Play 거절(App Content: Gambling) 대응 — B안 화면 시안 KO/VI</span><span class="vi">Xử lý việc Google Play từ chối (App Content: Gambling) — Bản thiết kế phương án B, KO/VI</span></span></div>
+<div class="hnote"><span class="i18n"><span class="ko">잠정안 — 이부장 상의 후 김반장이 확정합니다</span><span class="vi">Bản tạm — Người quản lý chốt sau khi trao đổi với Trưởng phòng Lee</span></span></div>
+</div></header>
+
+<div class="wrap">
+
+<div class="banner"><span class="i18n"><span class="ko"><b>지금 화면이 왜 문제인가.</b> 바늘 달린 원판이 돌아가고, 테두리에 전구 12개가 교차로 깜빡입니다. IARC 기준으로는 돈이 진짜인지와 무관하게 <b>시뮬레이션 도박</b>입니다. 낱말만 바꿔서는 이 판정이 그대로 남습니다 — <b>화면 자체를 바꿔야 합니다.</b></span><span class="vi"><b>Vì sao màn hình hiện tại có vấn đề.</b> Một bánh xe có kim chỉ quay tròn, viền ngoài có 12 bóng đèn nhấp nháy xen kẽ. Theo tiêu chí IARC thì bất kể tiền có thật hay không, đây là <b>cờ bạc mô phỏng</b>. Chỉ đổi từ ngữ thì kết luận đó vẫn giữ nguyên — <b>phải đổi chính màn hình.</b></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">화면 시안 — 눌러 보십시오</span><span class="vi">Bản thiết kế màn hình — hãy bấm thử</span></span></h2>
+
+<div class="row">
+
+<!-- ===== 안 1 : 선물 상자 ===== -->
+<div class="col">
+<div class="cardlab"><span class="i18n"><span class="ko">안 1 · 선물 상자 열기</span><span class="vi">Phương án 1 · Mở hộp quà</span></span><span class="tag"><span class="i18n"><span class="ko">권장</span><span class="vi">Đề xuất</span></span></span></div>
+<div class="phone">
+  <div class="status"><span>9:41</span><span>▮▮▮ ●</span></div>
+  <div class="nav"><span class="back">‹</span><span class="i18n"><span class="ko">오늘의 선물</span><span class="vi">Quà mỗi ngày</span></span></div>
+  <div class="hero">
+    <h3><span class="i18n"><span class="ko">매일 한 번, 오늘의 선물</span><span class="vi">Mỗi ngày một lần, quà hôm nay</span></span></h3>
+    <p><span class="i18n"><span class="ko">상자를 열어 포인트와 티켓을 받아보세요</span><span class="vi">Mở hộp để nhận điểm và vé</span></span></p>
+    <span class="chip"><span class="i18n"><span class="ko">오늘 남은 기회 1회</span><span class="vi">Còn 1 lần hôm nay</span></span></span>
+  </div>
+  <div class="stage">
+    <div class="boxwrap" id="bw">
+      <div class="burst" id="burst"></div>
+      <svg class="box-body" viewBox="0 0 112 84"><rect x="0" y="0" width="112" height="84" rx="9" fill="#7C5BE0"/><rect x="46" y="0" width="20" height="84" fill="#FFC24B"/></svg>
+      <svg class="box-lid" viewBox="0 0 128 46"><rect x="0" y="14" width="128" height="32" rx="8" fill="#6C4AB6"/><rect x="54" y="14" width="20" height="32" fill="#FFC24B"/><path d="M64 14C64 4 52 0 48 6c-3 5 6 8 16 8Zm0 0c0-10 12-14 16-8 3 5-6 8-16 8Z" fill="#FFC24B"/></svg>
+      <div class="reward" id="rw"><div class="rt"><span class="i18n"><span class="ko">오늘의 선물</span><span class="vi">Quà hôm nay</span></span></div><div class="rv" id="rwv">100P</div></div>
+    </div>
+  </div>
+  <button class="cta" id="btn1" onclick="openBox()"><span class="i18n"><span class="ko">선물 열기</span><span class="vi">Mở quà</span></span></button>
+  <button class="probl" onclick="toggleSheet('sheet1')"><span class="i18n"><span class="ko">받을 수 있는 선물과 확률 보기</span><span class="vi">Xem các phần quà và tỷ lệ nhận</span></span></button>
+  <div class="sheet" id="sheet1">
+    <div class="sh"><span class="i18n"><span class="ko">받을 수 있는 선물 · 확률</span><span class="vi">Phần quà có thể nhận · Tỷ lệ</span></span></div>
+    <table><tbody>
+      <tr><td><span class="i18n"><span class="ko">실버 티켓 10장</span><span class="vi">10 vé Bạc</span></span></td><td>0.2%</td></tr>
+      <tr><td><span class="i18n"><span class="ko">이벤트 티켓 1장</span><span class="vi">1 vé sự kiện</span></span></td><td>5%</td></tr>
+      <tr><td><span class="i18n"><span class="ko">브론즈 티켓 10장</span><span class="vi">10 vé Đồng</span></span></td><td>2%</td></tr>
+      <tr><td>100P</td><td>35%</td></tr>
+      <tr><td>10P</td><td>40%</td></tr>
+      <tr><td><span class="i18n"><span class="ko">다음 기회에</span><span class="vi">Lần sau nhé</span></span></td><td>17.8%</td></tr>
+    </tbody></table>
+  </div>
+  <div class="foot-note"><span class="i18n"><span class="ko">선물은 매일 자정 초기화 · 받은 티켓은 자동 지급</span><span class="vi">Quà đặt lại vào 0h mỗi ngày · Vé nhận được cấp tự động</span></span></div>
+</div>
+</div>
+
+<!-- ===== 안 2 : 카드 뒤집기 ===== -->
+<div class="col">
+<div class="cardlab"><span class="i18n"><span class="ko">안 2 · 카드 뒤집기</span><span class="vi">Phương án 2 · Lật thẻ</span></span><span class="tag alt"><span class="i18n"><span class="ko">대안</span><span class="vi">Phương án dự phòng</span></span></span></div>
+<div class="phone">
+  <div class="status"><span>9:41</span><span>▮▮▮ ●</span></div>
+  <div class="nav"><span class="back">‹</span><span class="i18n"><span class="ko">티켓 상자</span><span class="vi">Hộp quà vé</span></span></div>
+  <div class="hero">
+    <h3><span class="i18n"><span class="ko">이벤트 티켓 1장으로 한 번</span><span class="vi">1 vé sự kiện đổi 1 lượt</span></span></h3>
+    <p><span class="i18n"><span class="ko">카드 한 장을 골라 뒤집어 보세요</span><span class="vi">Chọn một thẻ và lật lên</span></span></p>
+    <span class="chip"><span class="i18n"><span class="ko">오늘 남은 기회 10회</span><span class="vi">Còn 10 lần hôm nay</span></span></span>
+  </div>
+  <div class="stage">
+    <div class="cards" id="cards">
+      <div class="card" onclick="flip(this,0)"><div class="face front"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 7v14M12 7S9 2 6.5 3.5 9 7 12 7zm0 0s3-5 5.5-3.5S15 7 12 7z"/></svg></div><div class="face back"><span class="bt"><span class="i18n"><span class="ko">받았어요</span><span class="vi">Đã nhận</span></span></span><span class="bv" id="c0">100P</span></div></div>
+      <div class="card" onclick="flip(this,1)"><div class="face front"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 7v14M12 7S9 2 6.5 3.5 9 7 12 7zm0 0s3-5 5.5-3.5S15 7 12 7z"/></svg></div><div class="face back"><span class="bt"><span class="i18n"><span class="ko">받았어요</span><span class="vi">Đã nhận</span></span></span><span class="bv" id="c1">100P</span></div></div>
+      <div class="card" onclick="flip(this,2)"><div class="face front"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 7v14M12 7S9 2 6.5 3.5 9 7 12 7zm0 0s3-5 5.5-3.5S15 7 12 7z"/></svg></div><div class="face back"><span class="bt"><span class="i18n"><span class="ko">받았어요</span><span class="vi">Đã nhận</span></span></span><span class="bv" id="c2">100P</span></div></div>
+    </div>
+  </div>
+  <button class="cta" id="btn2" onclick="resetCards()"><span class="i18n"><span class="ko">다시 해보기</span><span class="vi">Thử lại</span></span></button>
+  <button class="probl" onclick="toggleSheet('sheet2')"><span class="i18n"><span class="ko">받을 수 있는 선물과 확률 보기</span><span class="vi">Xem các phần quà và tỷ lệ nhận</span></span></button>
+  <div class="sheet" id="sheet2">
+    <div class="sh"><span class="i18n"><span class="ko">받을 수 있는 선물 · 확률</span><span class="vi">Phần quà có thể nhận · Tỷ lệ</span></span></div>
+    <table><tbody>
+      <tr><td><span class="i18n"><span class="ko">골드 티켓 10장</span><span class="vi">10 vé Vàng</span></span></td><td>0.4%</td></tr>
+      <tr><td><span class="i18n"><span class="ko">실버 티켓 10장</span><span class="vi">10 vé Bạc</span></span></td><td>1%</td></tr>
+      <tr><td>1,000P</td><td>5%</td></tr>
+      <tr><td><span class="i18n"><span class="ko">브론즈 티켓 10장</span><span class="vi">10 vé Đồng</span></span></td><td>12%</td></tr>
+      <tr><td>100P</td><td>50%</td></tr>
+      <tr><td><span class="i18n"><span class="ko">다음 기회에</span><span class="vi">Lần sau nhé</span></span></td><td>31.6%</td></tr>
+    </tbody></table>
+  </div>
+  <div class="foot-note"><span class="i18n"><span class="ko">보상칸 6개 고정 · 확률은 CMS에서 운영</span><span class="vi">Cố định 6 ô thưởng · Tỷ lệ do CMS vận hành</span></span></div>
+</div>
+</div>
+
+</div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">지금 화면과 무엇이 달라지는가</span><span class="vi">Khác gì so với màn hình hiện tại</span></span></h2>
+<div class="tblwrap"><table class="tbl">
+<thead><tr>
+<th><span class="i18n"><span class="ko">요소</span><span class="vi">Yếu tố</span></span></th>
+<th><span class="i18n"><span class="ko">지금 (거절된 화면)</span><span class="vi">Hiện tại (màn hình bị từ chối)</span></span></th>
+<th><span class="i18n"><span class="ko">바꾼 뒤</span><span class="vi">Sau khi đổi</span></span></th>
+</tr></thead>
+<tbody>
+<tr><td><span class="i18n"><span class="ko">중심 인터랙션</span><span class="vi">Tương tác chính</span></span></td><td class="old"><span class="i18n"><span class="ko">원판이 4.2초 회전</span><span class="vi">Bánh xe quay 4,2 giây</span></span></td><td class="new"><span class="i18n"><span class="ko">상자 뚜껑이 열림 / 카드가 뒤집힘</span><span class="vi">Nắp hộp bật mở / thẻ lật lên</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">바늘(포인터)</span><span class="vi">Kim chỉ</span></span></td><td class="old"><span class="i18n"><span class="ko">상단 고정 핀 — 멈춘 칸을 가리킴</span><span class="vi">Kim cố định phía trên — chỉ vào ô dừng</span></span></td><td class="new"><span class="i18n"><span class="ko">없음</span><span class="vi">Không có</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">테두리 전구</span><span class="vi">Bóng đèn viền</span></span></td><td class="old"><span class="i18n"><span class="ko">12개 교차 점멸</span><span class="vi">12 bóng nhấp nháy xen kẽ</span></span></td><td class="new"><span class="i18n"><span class="ko">없음 — 1회성 반짝임으로 대체</span><span class="vi">Không có — thay bằng hiệu ứng lóe một lần</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">버튼</span><span class="vi">Nút</span></span></td><td class="old"><span class="i18n"><span class="ko">돌리기</span><span class="vi">"Quay"</span></span></td><td class="new"><span class="i18n"><span class="ko">선물 열기 / 카드 고르기</span><span class="vi">Mở quà / Chọn thẻ</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">확률 공시</span><span class="vi">Công bố tỷ lệ</span></span></td><td class="old"><span class="i18n"><span class="ko">당첨 확률 · 꽝 표기</span><span class="vi">"Tỷ lệ trúng" · "Trượt"</span></span></td><td class="new"><span class="i18n"><span class="ko">받을 확률 · 다음 기회에 — 공시는 그대로 유지</span><span class="vi">"Tỷ lệ nhận" · "Lần sau nhé" — vẫn giữ việc công bố</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">보상 구성·확률</span><span class="vi">Cơ cấu thưởng·xác suất</span></span></td><td class="old"><span class="i18n"><span class="ko">슬롯 6칸 고정</span><span class="vi">Cố định 6 ô slot</span></span></td><td class="new"><span class="i18n"><span class="ko">그대로 — 보상칸 6개, 합계 100% 검증도 그대로</span><span class="vi">Giữ nguyên — 6 ô thưởng, vẫn kiểm tra tổng 100%</span></span></td></tr>
+</tbody></table></div>
+
+<div class="note"><span class="i18n"><span class="ko"><b>보상 정책은 하나도 건드리지 않습니다.</b> 무료 1일 1회, 이벤트 티켓 1장으로 참여, 보상칸 6개, 확률 합계 100% 검증, 확률표 앱 내 공시 — 전부 지금 정책 그대로입니다. 바뀌는 것은 <b>보여주는 방식과 부르는 이름</b>뿐입니다.</span><span class="vi"><b>Chính sách thưởng không đụng tới một chút nào.</b> Miễn phí 1 lần/ngày, tham gia bằng 1 vé sự kiện, 6 ô thưởng, kiểm tra tổng xác suất 100%, công bố bảng tỷ lệ trong app — tất cả giữ đúng như chính sách hiện tại. Chỉ đổi <b>cách hiển thị và tên gọi</b>.</span></span></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 돌림판 대체 화면 시안 · 2026-08-24 · 잠정안 (확정 전)</span><span class="vi">PricePick · Bản thiết kế thay thế màn hình vòng quay · 24-08-2026 · Bản tạm (chưa chốt)</span></span></div>
+</div>
+
+<script>
+var P1=[{k:'실버 티켓 10장',v:'10 vé Bạc'},{k:'이벤트 티켓 1장',v:'1 vé sự kiện'},{k:'브론즈 티켓 10장',v:'10 vé Đồng'},{k:'100P',v:'100P'},{k:'10P',v:'10P'},{k:'다음 기회에',v:'Lần sau nhé'}];
+var P2=[{k:'골드 티켓 10장',v:'10 vé Vàng'},{k:'실버 티켓 10장',v:'10 vé Bạc'},{k:'1,000P',v:'1,000P'},{k:'브론즈 티켓 10장',v:'10 vé Đồng'},{k:'100P',v:'100P'},{k:'다음 기회에',v:'Lần sau nhé'}];
+function lab(o){return '<span class="i18n"><span class="ko">'+o.k+'</span><span class="vi">'+o.v+'</span></span>';}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+
+var burstBuilt=false;
+function buildBurst(){if(burstBuilt)return;var b=document.getElementById('burst');for(var i=0;i<10;i++){var s=document.createElement('i');var ang=i*36*Math.PI/180;s.style.left=(Math.cos(ang)*56-4)+'px';s.style.top=(Math.sin(ang)*56-4)+'px';s.style.background=i%2?'#FFC24B':'#FF6FA8';b.appendChild(s);}burstBuilt=true;}
+
+function openBox(){
+  buildBurst();
+  var bw=document.getElementById('bw'),btn=document.getElementById('btn1');
+  if(bw.classList.contains('open')){bw.classList.remove('open');btn.disabled=false;return;}
+  document.getElementById('rwv').innerHTML=lab(pick(P1));
+  bw.classList.add('open');btn.disabled=true;
+  setTimeout(function(){btn.disabled=false;btn.querySelector('.ko').textContent='다시 해보기';btn.querySelector('.vi').textContent='Thử lại';},900);
+}
+function flip(el,i){
+  if(el.classList.contains('flipped'))return;
+  var all=document.querySelectorAll('#cards .card');
+  for(var j=0;j<all.length;j++){if(all[j].classList.contains('flipped'))return;}
+  document.getElementById('c'+i).innerHTML=lab(pick(P2));
+  el.classList.add('flipped');
+  for(var j=0;j<all.length;j++){if(all[j]!==el)all[j].classList.add('dimmed');}
+}
+function resetCards(){var all=document.querySelectorAll('#cards .card');for(var j=0;j<all.length;j++){all[j].classList.remove('flipped');all[j].classList.remove('dimmed');}}
+function toggleSheet(id){document.getElementById(id).classList.toggle('show');}
+</script>
+</body></html>
