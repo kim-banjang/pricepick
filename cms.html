@@ -960,6 +960,10 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             <span class="sb-item-lbl" id="nav-label-tickets">티켓 내역</span>
             
           </button>
+          <button class="sb-item" id="nav-ticket-accrual" data-label="티켓 적립 설정" onclick="go('ticket-accrual',this)">
+            <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h18"/><path d="M3 12h12"/><path d="M3 18h7"/><circle cx="18" cy="17" r="4"/><path d="M18 15.4V17l1.1.9"/></svg></span>
+            <span class="sb-item-lbl" id="nav-label-ticket-accrual">티켓 적립 설정</span>
+          </button>
           <button class="sb-item" id="nav-weekly-draws" data-label="주간 이벤트 추첨 관리" onclick="go('weekly-draws',this)">
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg></span>
             <span class="sb-item-lbl" id="nav-label-weekly-draws">주간 이벤트 추첨 관리</span>
@@ -1209,7 +1213,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
           <div class="card-header"><div class="card-title">스케줄러 현황</div></div>
           <div>
             <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">포스트백 수신 처리</div><div class="scheduler-desc">실시간</div></div></div><div class="scheduler-stat"><div class="scheduler-last">방금 전</div><div class="scheduler-next" style="color:var(--success)">정상</div></div></div>
-            <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 확정 처리 (연동 D+7 / 미연동 D+30)</div><div class="scheduler-desc">매일 자정</div></div></div><div class="scheduler-stat"><div class="scheduler-last">어제 00:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div></div>
+            <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 확정 처리 (제휴몰별 전환 일수 · 기본 30일)</div><div class="scheduler-desc">매일 자정</div></div></div><div class="scheduler-stat"><div class="scheduler-last">어제 00:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div></div>
             <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">알림 발송</div><div class="scheduler-desc">매 5분</div></div></div><div class="scheduler-stat"><div class="scheduler-last">2분 전</div><div class="scheduler-next" style="color:var(--success)">정상</div></div></div>
             <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">주간 추첨 티켓 집계</div><div class="scheduler-desc">매주 월요일 자정</div></div></div><div class="scheduler-stat"><div class="scheduler-last">지난 월요일</div><div class="scheduler-next" style="color:var(--success)">정상</div></div></div>
             <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot stopped"></div><div><div class="scheduler-name">DB 백업</div><div class="scheduler-desc">매일 새벽 3시</div></div></div><div class="scheduler-stat"><div class="scheduler-last">2일 전</div><div class="scheduler-next" style="color:var(--danger)">오류</div></div></div>
@@ -1266,9 +1270,9 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       </div>
       <div class="info-box">
         <strong>회원 가입 안내</strong><br>
-        카카오 연동 회원과 미연동(게스트) 회원이 모두 존재(로그인 정책 변경). 미연동 회원은 적립 확정 대기 <strong>D+30</strong> 적용.<br>
+        카카오 연동 회원과 미연동(게스트) 회원이 모두 존재(로그인 정책 변경). 적립 확정 대기는 연동 여부와 무관하게 <strong>제휴몰별 전환 일수</strong> 적용.<br>
         계정 모델: <strong>게스트(닉네임)로 시작</strong> → 앱 내 <strong>카카오 연동</strong> (애플·구글 로그인 폐지). 게스트는 적립만 누적, 사용·교환은 연동 후 가능.<br>
-        구매 즉시 <strong>가지급 티켓(랜덤)</strong> 지급 → 포스트백 수신 후 <strong>연동 D+7 / 미연동 D+30 확정</strong> 시 등급 티켓(브론즈/실버/골드)으로 전환
+        구매 즉시 <strong>가지급 티켓(랜덤)</strong> 지급 → 포스트백 수신 후 <strong>제휴몰별 전환 일수 경과 시 확정</strong> 시 등급 티켓(브론즈/실버/골드)으로 전환
       </div>
       <div class="toolbar">
         <input class="search-box" placeholder="닉네임 검색...">
@@ -1375,6 +1379,68 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
         </div>
     </div>
 
+
+    <!-- ── 티켓 적립 설정 (신규 · 제휴몰별 전환 일수) ── -->
+    <div class="section" id="sec-ticket-accrual">
+      <div class="info-box"><strong>전환 일수 = 랜덤 티켓이 등급 티켓으로 바뀌기까지의 대기 일수</strong> — 구매 시점에 등급은 이미 내부 확정되지만 앱에는 랜덤 티켓으로만 보이고, 이 일수가 지나야 등급이 공개되고 사용 가능해집니다. 제휴몰마다 다르게 설정할 수 있으며 기본값은 30일입니다.</div>
+      <div class="info-box"><strong>카카오 연동 여부와 무관합니다</strong> — 예전의 연동 D+7 / 미연동 D+30 이원 기준은 폐지되었습니다. 연동 회원이든 미연동 회원이든 그 구매가 발생한 제휴몰의 전환 일수 하나로만 정해집니다. (카카오 연동은 데이터 보존·온보딩 보상 지급 조건으로만 남습니다.)</div>
+      <div class="warn-box"><strong>줄이면 이미 발급된 랜덤 티켓도 앞당겨 전환됩니다</strong> — 새로 적립되는 티켓만이 아니라 현재 대기 중인 랜덤 티켓 전부에 소급 적용됩니다. 새 기준으로 이미 기간이 지난 티켓은 저장 즉시 등급이 공개됩니다. 늘리는 경우 이미 공개된 티켓을 다시 숨기지는 않습니다.</div>
+
+      <!-- 대표 제휴몰 -->
+      <div class="card">
+        <div class="card-header"><div class="card-title">대표 제휴몰</div><span style="font-size:11px;color:var(--text-3)">쿠팡 직접 제휴 · 저장 코드 coupang_direct</span></div>
+        <table>
+          <thead><tr><th style="text-align:center;width:64px">로고</th><th>제휴몰</th><th style="text-align:center">제휴 방식</th><th style="text-align:center">수수료</th><th style="text-align:center">적립률</th><th style="text-align:center">수익</th><th style="text-align:center;width:150px">전환 일수</th><th style="text-align:center;width:96px">시뮬레이터</th></tr></thead>
+          <tbody id="ta-coupang-body"></tbody>
+        </table>
+      </div>
+
+      <!-- 링크프라이스 제휴몰 -->
+      <div class="card" style="margin-top:18px">
+        <div class="card-header">
+          <div class="card-title">제휴몰(링크프라이스)</div>
+          <span style="font-size:11px;color:var(--text-3)">저장 코드 lp: 접두사 · 링크프라이스 카탈로그</span>
+        </div>
+        <div class="toolbar" style="padding:0 18px 12px">
+          <select class="filter-sel" id="ta-f-cat" onchange="taRender()"><option value="">카테고리 전체</option><option>패션</option><option>식품</option><option>종합몰</option><option>홈쇼핑</option><option>명품</option><option>건강식품</option><option>뷰티</option><option>여행/티켓</option></select>
+          <select class="filter-sel" id="ta-f-lp" onchange="taRender()"><option value="">LP상태 전체</option><option>승인</option><option>승인대기</option><option>거부</option><option>미신청</option></select>
+          <select class="filter-sel" id="ta-f-ap" onchange="taRender()"><option value="">적용 전체</option><option value="y">적용</option><option value="n">미적용</option></select>
+          <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+            <span style="font-size:11px;color:var(--text-2)">선택한 몰 전환 일수 일괄</span>
+            <input class="search-box" id="ta-bulk-days" type="number" min="1" max="365" value="30" style="width:78px;text-align:center">
+            <button class="btn btn-ghost btn-sm" onclick="taBulkDays()">일괄 적용</button>
+            <button class="btn btn-ghost btn-sm" onclick="toast('링크프라이스 카탈로그 외 제휴몰을 직접 추가합니다.')">제휴몰 추가</button>
+          </div>
+        </div>
+        <table>
+          <thead><tr>
+            <th style="text-align:center;width:44px"><input type="checkbox" id="ta-all" onchange="taToggleAll(this)"></th>
+            <th style="text-align:center;width:64px">로고</th><th>제휴몰</th>
+            <th style="text-align:center">링크프라이스 상태</th>
+            <th style="text-align:center">수수료</th><th style="text-align:center">적립률</th><th style="text-align:center">수익</th>
+            <th style="text-align:center;width:150px">전환 일수</th>
+            <th style="text-align:center;width:96px">시뮬레이터</th>
+            <th style="text-align:center;width:70px">적용</th>
+          </tr></thead>
+          <tbody id="ta-body"></tbody>
+        </table>
+        <div style="display:flex;gap:8px;align-items:center;padding:14px 18px;border-top:1px solid var(--border)">
+          <span id="ta-dirty" style="font-size:11.5px;color:var(--amber);font-weight:600;display:none">저장하지 않은 변경이 있습니다.</span>
+          <div style="margin-left:auto;display:flex;gap:8px">
+            <button class="btn btn-ghost btn-sm" onclick="taReset()">기본값(30일)으로 되돌리기</button>
+            <button class="btn btn-primary" onclick="taSave()">저장</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 저장 결과 — 앞당겨 전환된 티켓 -->
+      <div class="card" id="ta-effect-card" style="margin-top:18px;display:none">
+        <div class="card-header"><div class="card-title">저장 반영 결과 — 앞당겨 전환된 랜덤 티켓</div><span style="font-size:11px;color:var(--text-3)">이미 발급되어 대기 중이던 티켓에 소급 적용된 결과</span></div>
+        <div id="ta-effect-body" style="padding:16px 18px"></div>
+      </div>
+
+      <div class="info-box" style="margin-top:18px;font-family:inherit"><strong>저장 위치</strong> — settings/ticket_accrual.convertDays (map&lt;code, number&gt;). 대표 제휴몰은 coupang_direct, 링크프라이스 몰은 lp: 접두사 코드로 저장됩니다. 서버가 이 값을 읽어 확정 스케줄러를 돌립니다 — 앱(클라이언트)은 이 문서를 읽지 않습니다.</div>
+    </div>
     <!-- ── 티켓 등급 설정 (신규) ── -->
     <!-- ── 추첨 관리 ── -->
     <!-- ── 주간 이벤트 추첨 관리 ── -->
@@ -1598,7 +1664,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             <div style="display:flex;align-items:center;gap:8px"><input class="form-input" type="number" min="1" step="1" id="jkr-daily-cap" value="10" style="max-width:120px"><span style="color:var(--text-2);font-size:13px">회 / 1일</span></div>
             <div style="font-size:12px;color:var(--text-3);margin-top:4px">매크로로 무제한 돌리는 것을 막는 상한입니다.</div>
           </div>
-          <div class="info-box" style="margin-bottom:16px">구매로 발급된 티켓은 등급 티켓·이벤트 티켓 모두 승인 대기 상태로 발급되고, 카카오 연동 D+7 / 미연동 D+30 경과 또는 쿠팡 구매 확정 시 승인됩니다. 승인 전에는 잭팟 룰렛에 쓸 수 없으므로 "돌리고 환불" 악용은 티켓 단계에서 이미 차단됩니다. 별도 설정 항목을 두지 않습니다.</div>
+          <div class="info-box" style="margin-bottom:16px">구매로 발급된 티켓은 등급 티켓·이벤트 티켓 모두 승인 대기 상태로 발급되고, 제휴몰별 전환 일수(기본 30일) 경과 또는 쿠팡 구매 확정 시 승인됩니다. 승인 전에는 잭팟 룰렛에 쓸 수 없으므로 "돌리고 환불" 악용은 티켓 단계에서 이미 차단됩니다. 별도 설정 항목을 두지 않습니다.</div>
           <div class="form-group"><label class="form-label">이벤트 티켓 일 획득 상한</label>
             <div style="display:flex;align-items:center;gap:8px"><input class="form-input" type="number" min="1" step="1" id="jkr-daily-ticket-cap" value="5" style="max-width:120px"><span style="color:var(--text-2);font-size:13px">장 / 1일</span></div>
             <div style="font-size:12px;color:var(--text-3);margin-top:4px">회원 1명이 하루에 받을 수 있는 이벤트 티켓 총량입니다. 적립 정책의 하루 5건 한도와 같은 기준입니다.</div>
@@ -2268,12 +2334,12 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
                 <div class="policy-item">
                   <div class="policy-label">포스트백 수신 즉시</div>
                   <div class="policy-value">가지급 랜덤 티켓 1장 <span style="font-size:11px;color:var(--text-3)">(유저 화면: 등급 미정)</span> → <span style="color:var(--amber)">적립예정</span></div>
-                  <div class="policy-desc">등급은 구매 금액 기준으로 <strong>내부 확정</strong> — 위 등급별 적립 기준(큰 등급 우선) 적용. 적립률 비공개 정책에 따라 유저 앱에는 확정(연동 D+7 / 미연동 D+30) 전까지 '랜덤(미정)'으로 표시해 기대감 부여. 운영자는 회원 목록의 '전환예정' 컬럼에서 확정 등급을 미리 확인. 확정 시 등급 티켓으로 전환되어 기프티콘 교환에 사용. <span style="color:var(--text-3)">(경품 응모는 별도 이벤트 티켓 전용)</span></div>
+                  <div class="policy-desc">등급은 구매 금액 기준으로 <strong>내부 확정</strong> — 위 등급별 적립 기준(큰 등급 우선) 적용. 적립률 비공개 정책에 따라 유저 앱에는 확정(제휴몰별 전환 일수) 전까지 '랜덤(미정)'으로 표시해 기대감 부여. 운영자는 회원 목록의 '전환예정' 컬럼에서 확정 등급을 미리 확인. 확정 시 등급 티켓으로 전환되어 기프티콘 교환에 사용. <span style="color:var(--text-3)">(경품 응모는 별도 이벤트 티켓 전용)</span></div>
                 </div>
                 <div class="policy-item">
-                  <div class="policy-label">구매확정 후 — 연동 D+7 / 미연동 D+30</div>
+                  <div class="policy-label">구매확정 후 — 제휴몰별 전환 일수 (기본 30일)</div>
                   <div class="policy-value" style="color:var(--success)">사용 가능 전환 + 구매 금액 기준 등급 티켓 지급</div>
-                  <div class="policy-desc">적립 확정 대기 = 카카오 연동 회원 D+7 / 미연동 회원 D+30. 로그인 정책 변경으로 미연동 유저가 부활하여 미연동은 30일 대기 적용. 해당 기간 내 취소 없으면 자동 처리되어 가지급 랜덤 티켓이 구매 금액 기준 등급 티켓으로 전환.</div>
+                  <div class="policy-desc">적립 확정 대기 = CMS 「티켓 적립 설정」의 제휴몰별 전환 일수(기본 30일). 카카오 연동 여부와 무관하게 이 값 하나로 정해진다. 해당 기간 내 취소 없으면 자동 처리되어 가지급 랜덤 티켓이 구매 금액 기준 등급 티켓으로 전환.</div>
                 </div>
                 <div class="policy-item">
                   <div class="policy-label">취소 / 반품 처리</div>
@@ -2293,7 +2359,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
                 <div class="policy-item">
                   <div class="policy-label">등급 티켓 유효기간</div>
                   <div class="policy-value">적립일(랜덤 티켓 받은 날)로부터 1년</div>
-                  <div class="policy-desc">기산일 = 구매로 랜덤 티켓을 받은 적립일. 적립일 기준 1년 경과 시 만료(등급 확정 D+7 시점 아님). 만료 30일·7일 전 알림 유지, 기한 경과 시 자동 소멸(복구 불가). 이벤트 티켓은 발급일+30일 고정 소멸 만료로 별도 처리.</div>
+                  <div class="policy-desc">기산일 = 구매로 랜덤 티켓을 받은 적립일. 적립일 기준 1년 경과 시 만료(등급 확정 시점 아님). 만료 30일·7일 전 알림 유지, 기한 경과 시 자동 소멸(복구 불가). 이벤트 티켓은 발급일+30일 고정 소멸 만료로 별도 처리.</div>
                 </div>
               </div>
             </div>
@@ -2466,7 +2532,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
               <div class="policy-item"><div class="policy-label">가입 즉시</div><div class="policy-value">이벤트 티켓 1장 + 200P</div><div class="policy-desc">어뷰징 방지 — 이벤트 티켓·브론즈 보너스는 카카오 연동 후 지급.</div></div>
               <div class="policy-item"><div class="policy-label">첫 쿠팡 구경하기</div><div class="policy-value">100P</div><div class="policy-desc">최초 쿠팡 경유 방문 시 지급.</div></div>
-              <div class="policy-item"><div class="policy-label">첫 경유 구매 (가입 7일 내)</div><div class="policy-value">브론즈 티켓 1장</div><div class="policy-desc">구매 확정 후 지급 (연동 D+7 / 미연동 D+30, 취소 먹튀 방지).</div></div>
+              <div class="policy-item"><div class="policy-label">첫 경유 구매 (가입 7일 내)</div><div class="policy-value">브론즈 티켓 1장</div><div class="policy-desc">구매 확정 후 지급 (제휴몰별 전환 일수 경과 후 · 취소 먹튀 방지).</div></div>
               <div class="policy-item"><div class="policy-label">친구초대</div><div class="policy-value">양쪽 각 500P</div><div class="policy-desc">피초대자 첫 구매 성사 시 양쪽 지급.</div></div>
             </div>
             <div class="card-header" style="margin-top:18px"><div class="card-title">경품 응모 규칙</div></div>
@@ -2772,7 +2838,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
         <span class="ds-tag coupang">제휴몰 포스트백 (쿠팡·11번가·G마켓·알리·아이허브) · 구매 완료 시 콜백</span>
         <span class="ds-tag ours">우리 DB · 포스트백 수신 기록 (추가만 가능 · 수정·삭제 불가)</span>
       </div>
-      <div class="info-box"><strong>포스트백</strong> — 회원이 PricePick 경유 링크로 제휴몰에서 구매하면 해당 제휴몰이 우리 서버에 콜백을 보냅니다. 이 데이터로 가지급(적립예정) 처리와 <strong>제휴 수수료(매출)</strong>를 집계하며, 수수료율은 제휴몰·카테고리별로 다릅니다. 등급 티켓은 구매확정(연동 D+7 / 미연동 D+30) 후 지급됩니다. <strong>예외 처리</strong> — ① 확정 후 환불은 미사용분만 회수 ② 포스트백 미수신 24h 후 영수증 인증으로 수동 지급 ③ 중복 포스트백은 주문번호 UNIQUE로 차단.</div>
+      <div class="info-box"><strong>포스트백</strong> — 회원이 PricePick 경유 링크로 제휴몰에서 구매하면 해당 제휴몰이 우리 서버에 콜백을 보냅니다. 이 데이터로 가지급(적립예정) 처리와 <strong>제휴 수수료(매출)</strong>를 집계하며, 수수료율은 제휴몰·카테고리별로 다릅니다. 등급 티켓은 구매확정(제휴몰별 전환 일수) 후 지급됩니다. <strong>예외 처리</strong> — ① 확정 후 환불은 미사용분만 회수 ② 포스트백 미수신 24h 후 영수증 인증으로 수동 지급 ③ 중복 포스트백은 주문번호 UNIQUE로 차단.</div>
       <div class="toolbar">
         <input class="search-box" placeholder="식별번호, 주문번호 검색...">
         <select class="filter-sel"><option>전체 제휴몰</option><option>쿠팡</option><option>11번가</option><option>G마켓</option><option>알리익스프레스</option><option>아이허브</option></select>
@@ -2885,7 +2951,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
         <div>
           <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">알림 발송</div><div class="scheduler-desc">매 5분 · 예약·이벤트 알림 큐 처리</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">2분 전</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
           <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">주간 추첨 집계</div><div class="scheduler-desc">매주 월요일 자정 · 빈 등수 슬롯 자동 추첨</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">지난 월요일</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
-          <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 확정 배치</div><div class="scheduler-desc">매일 오전 3시 · 대기 티켓 자동 확정 (연동 D+7 / 미연동 D+30)</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">어제 03:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div><div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 만료 배치</div><div class="scheduler-desc">매일 새벽 4시 · 등급 티켓 만료 소멸 + D-30/D-7 임박 알림</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">오늘 04:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
+          <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 확정 배치</div><div class="scheduler-desc">매일 오전 3시 · 대기 티켓 자동 확정 (제휴몰별 전환 일수 · 기본 30일)</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">어제 03:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div><div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot running"></div><div><div class="scheduler-name">티켓 만료 배치</div><div class="scheduler-desc">매일 새벽 4시 · 등급 티켓 만료 소멸 + D-30/D-7 임박 알림</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">오늘 04:00</div><div class="scheduler-next" style="color:var(--success)">정상</div></div><button class="btn btn-ghost btn-sm" onclick="toast('일시정지 처리')">일시정지</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
           <div class="scheduler-item"><div class="scheduler-info"><div class="scheduler-dot stopped"></div><div><div class="scheduler-name">DB 백업</div><div class="scheduler-desc">매일 새벽 3시 · S3 자동 업로드</div></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="scheduler-stat"><div class="scheduler-last">2일 전</div><div class="scheduler-next" style="color:var(--danger)">오류</div></div><button class="btn btn-primary btn-sm" onclick="toast('재시작 처리')">재시작</button><button class="btn btn-success btn-sm" onclick="toast('즉시 실행 완료')">즉시 실행</button></div></div>
         </div>
       </div>
@@ -3094,7 +3160,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             <span id="m-event-count" style="font-size:15px;font-weight:800;color:#c084fc"></span>
           </div>
         </div>
-        <div style="margin-top:6px;font-size:11px;color:var(--text3)">랜덤 티켓: 구매 후 연동 D+7 / 미연동 D+30 확정 시 등급 티켓으로 전환. 취소 시 자동 환수.</div>
+        <div style="margin-top:6px;font-size:11px;color:var(--text3)">랜덤 티켓: 구매 후 제휴몰별 전환 일수가 지나면 등급 티켓으로 전환. 취소 시 자동 환수.</div>
       </div>
       <div class="form-group" id="m-ticket-section">
         <label class="form-label">티켓 수동 지급</label>
@@ -3488,6 +3554,15 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 </div>
 
 
+
+<!-- ── 모달: 적립 시뮬레이터 (티켓 적립 설정) ── -->
+<div class="modal-overlay" id="m-ta-sim">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">적립 시뮬레이터</div><button class="modal-close" onclick="closeModal('m-ta-sim')">&times;</button></div>
+    <div class="modal-body" id="ta-sim-body"></div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('m-ta-sim')">닫기</button></div>
+  </div>
+</div>
 <!-- ── 모달: 포인트 정책 수정 ── -->
 <div class="modal-overlay" id="m-point-policy-edit">
   <div class="modal">
@@ -3796,6 +3871,7 @@ const I18N = {
     'nav.members': '회원 목록',
     'nav.group.ticket': '티켓 · 보상',
     'nav.tickets': '티켓 내역',
+    'nav.ticket-accrual': '티켓 적립 설정',
     'nav.weekly-draws': '주간 이벤트 추첨 관리',
     'nav.roulette-settings': '매일 행운 룰렛',
     'nav.jackpot-roulette': '잭팟 룰렛',
@@ -3830,6 +3906,7 @@ const I18N = {
     'page.dashboard.title': '대시보드', 'page.dashboard.bc': '개요',
     'page.members.title': '회원 목록', 'page.members.bc': '회원 관리',
     'page.tickets.title': '티켓 내역', 'page.tickets.bc': '티켓 · 보상',
+    'page.ticket-accrual.title': '티켓 적립 설정', 'page.ticket-accrual.bc': '티켓 · 보상',
     'page.weekly-draws.title': '주간 이벤트 추첨 관리', 'page.weekly-draws.bc': '티켓 · 보상',
     'page.roulette-settings.title': '매일 행운 룰렛', 'page.roulette-settings.bc': '티켓 · 보상',
     'page.jackpot-roulette.title': '잭팟 룰렛', 'page.jackpot-roulette.bc': '티켓 · 보상',
@@ -3903,6 +3980,7 @@ function applyLang() {
     'nav-label-members': 'nav.members',
     'nav-group-label-ticket': 'nav.group.ticket',
     'nav-label-tickets': 'nav.tickets',
+    'nav-label-ticket-accrual': 'nav.ticket-accrual',
     'nav-label-weekly-draws': 'nav.weekly-draws',
     'nav-label-roulette-settings': 'nav.roulette-settings',
     'nav-label-jackpot-roulette': 'nav.jackpot-roulette',
@@ -4088,6 +4166,7 @@ const PAGE_META = {
   dashboard:     { title:'대시보드',           bc:'개요' },
   members:       { title:'회원 목록',           bc:'회원 관리' },
   tickets:       { title:'티켓 내역',           bc:'티켓 · 보상' },
+  'ticket-accrual': { title:'티켓 적립 설정',   bc:'티켓 · 보상' },
   draws:         { title:'추첨 관리',           bc:'티켓 · 보상' },
   prizes:        { title:'경품/응모 관리',        bc:'티켓 · 보상' },
   gifticons:     { title:'구매/사용 내역',        bc:'티켓 · 보상' },
@@ -5922,13 +6001,13 @@ function rltRenderAll() {
     "데이터 출처":"Nguồn dữ liệu","우리 DB · 회원 정보 (개인정보 포함, 보안 1순위)":"DB nội bộ · Thông tin hội viên (có thông tin cá nhân, ưu tiên bảo mật)",
     "집계 · 티켓 보유량, 가입일, 마지막 접속":"Thống kê · Số vé, ngày tham gia, lần truy cập cuối",
     "회원 가입 안내":"Hướng dẫn đăng ký thành viên",
-    "카카오 연동 회원과 미연동 회원이 모두 존재(로그인 정책 변경). 미연동 회원은 적립 확정 대기 D+30 적용.":"Cả hội viên liên kết và chưa liên kết Kakao đều tồn tại. Hội viên chưa liên kết áp dụng thời gian chờ xác nhận D+30.",
+    "카카오 연동 회원과 미연동 회원이 모두 존재(로그인 정책 변경). 적립 확정 대기는 연동 여부와 무관하게 제휴몰별 전환 일수 적용.":"Cả hội viên liên kết và chưa liên kết Kakao đều tồn tại. Thời gian chờ xác nhận áp dụng theo số ngày chuyển đổi của từng sàn, không phụ thuộc việc có liên kết hay không.",
     "가입 경로:":"Đường dẫn đăng ký:",
     "카카오 직접":"Kakao trực tiếp","Apple → 카카오":"Apple → Kakao","Google → 카카오":"Google → Kakao",
     "모든 경로 동일하게 적용":"Áp dụng giống nhau cho mọi đường dẫn",
     "구매 즉시":"Ngay khi mua","가지급 티켓(랜덤)":"Vé tạm cấp (ngẫu nhiên)",
     "지급 → 포스트백 수신 후":"Cấp → sau khi nhận Postback",
-    "연동 D+7 / 미연동 D+30 확정":"Liên kết D+7 / Chưa LK D+30 xác nhận",
+    "제휴몰별 전환 일수 경과 시 확정":"Xác nhận khi hết số ngày chuyển đổi của sàn",
     "시 등급 티켓(브론즈/실버/골드)으로 전환":"chuyển sang vé hạng (Đồng/Bạc/Vàng)",
     "닉네임 검색...":"Tìm biệt danh...","전체 유형":"Tất cả loại","전체 상태":"Tất cả trạng thái",
     "전체 마케팅":"Tất cả marketing","Apple+카카오":"Apple+Kakao","Google+카카오":"Google+Kakao",
@@ -6053,7 +6132,7 @@ function rltRenderAll() {
     "가입 즉시 이벤트 티켓 1장 + 200P 지급. (어뷰징 방지: 카카오 연동 후 지급)":"Tặng 1 vé sự kiện + 200P ngay khi đăng ký. (Chống lạm dụng: cấp sau khi liên kết Kakao)",
     "첫 경유 구매 보너스":"Thưởng mua hàng qua liên kết lần đầu",
     "신규 가입 7일 내":"Trong 7 ngày đăng ký mới",
-    "첫 경유 구매(가입 7일 내) 시 브론즈 티켓 1장 지급. 구매 확정 후 지급(연동 D+7 / 미연동 D+30).":"Tặng 1 vé Đồng khi mua qua liên kết lần đầu (trong 7 ngày đăng ký). Cấp sau khi xác nhận mua (LK D+7 / Chưa LK D+30).",
+    "첫 경유 구매(가입 7일 내) 시 브론즈 티켓 1장 지급. 구매 확정 후 지급(제휴몰별 전환 일수 · 기본 30일).":"Tặng 1 vé Đồng khi mua qua liên kết lần đầu (trong 7 ngày đăng ký). Cấp sau khi xác nhận mua (số ngày chuyển đổi theo từng sàn).",
     "진행 중":"Đang tiến hành","상시 &nbsp;·&nbsp; 신규 가입자":"Thường xuyên &nbsp;·&nbsp; Người mới",
     "출석 이벤트":"Sự kiện điểm danh","가입 보너스":"Thưởng đăng ký","등급 달성":"Đạt hạng","직접 지급":"Cấp trực tiếp",
     "지급 티켓 수":"Số vé cấp","대상":"Đối tượng","시작일":"Ngày bắt đầu","종료일":"Ngày kết thúc",
@@ -6114,7 +6193,7 @@ function rltRenderAll() {
     "티켓 지급 정책":"Chính sách cấp vé","조회 전용 — 포스트백 수신부터 등급 티켓 확정까지의 흐름":"Chỉ xem — Quy trình từ nhận Postback đến xác nhận vé hạng",
     "포스트백 수신 즉시":"Ngay khi nhận Postback",
     "가지급 랜덤 티켓 1장":"1 vé ngẫu nhiên tạm cấp","적립예정":"Dự kiến tích lũy",
-    "구매확정 후 — 연동 D+7 / 미연동 D+30":"Sau xác nhận mua — LK D+7 / Chưa LK D+30",
+    "구매확정 후 — 제휴몰별 전환 일수 (기본 30일)":"Sau xác nhận mua — số ngày chuyển đổi theo từng sàn",
     "사용 가능 전환 + 구매 금액 기준 등급 티켓 지급":"Chuyển sang khả dụng + cấp vé hạng theo số tiền mua",
     "취소 / 반품 처리":"Xử lý hủy / trả hàng","적립예정 티켓 즉시 회수 + 등급 티켓 미지급":"Thu hồi ngay vé dự kiến + không cấp vé hạng",
     "1일 적립 한도":"Giới hạn tích lũy ngày","5장 / 일 (적립예정 기준)":"5 vé/ngày (theo dự kiến tích lũy)",
@@ -6167,7 +6246,7 @@ function rltRenderAll() {
     "첫 쿠팡 구경하기":"Ghé thăm Coupang lần đầu","300P":"300P",
     "최초 쿠팡 경유 방문 시 지급.":"Cấp khi ghé thăm qua Coupang lần đầu.",
     "첫 경유 구매 (가입 7일 내)":"Mua qua LK lần đầu (trong 7 ngày đăng ký)","브론즈 티켓 1장":"1 vé Đồng",
-    "구매 확정 후 지급 (연동 D+7 / 미연동 D+30, 취소 먹튀 방지).":"Cấp sau xác nhận mua (LK D+7 / Chưa LK D+30, chống hủy gian lận).",
+    "구매 확정 후 지급 (제휴몰별 전환 일수 경과 후 · 취소 먹튀 방지).":"Cấp sau xác nhận mua (số ngày chuyển đổi theo từng sàn, chống hủy gian lận).",
     "친구초대":"Mời bạn","양쪽 각 500P":"Mỗi bên 500P",
     "피초대자 첫 구매 성사 시 양쪽 지급.":"Cấp cho cả hai khi người được mời hoàn thành lần mua đầu tiên.",
     "경품 응모 규칙":"Quy tắc tham dự giải thưởng",
@@ -6214,7 +6293,7 @@ function rltRenderAll() {
     /* Scheduler section */
     "포스트백 수신 처리":"Xử lý nhận Postback","실시간":"Thời gian thực",
     "방금 전":"Vừa xong","정상":"Bình thường",
-    "티켓 확정 처리 (연동 D+7 / 미연동 D+30)":"Xử lý xác nhận vé (LK D+7 / Chưa LK D+30)",
+    "티켓 확정 처리 (제휴몰별 전환 일수 · 기본 30일)":"Xử lý xác nhận vé (số ngày chuyển đổi theo từng sàn)",
     "매일 자정":"Mỗi ngày nửa đêm","어제 00:00":"Hôm qua 00:00",
     "알림 발송":"Gửi thông báo","매 5분":"Mỗi 5 phút","2분 전":"2 phút trước",
     "주간 추첨 티켓 집계":"Tổng hợp vé rút thăm tuần","격주(월 2회) 자정":"Nửa đêm thứ Hai hàng tuần",
@@ -6835,7 +6914,7 @@ function rltRenderAll() {
   "브론즈 = ⌊잔여 / 5,000⌋ → 5,000원 미만 잔돈은 지급 안 함":"Đồng = ⌊còn lại / 5.000⌋ → Tiền lẻ dưới 5.000 won không cấp",
   "골드 = ⌊금액 / 100,000⌋ → 잔여 = 금액 mod 100,000":"Vàng = ⌊số tiền / 100.000⌋ → Còn lại = số tiền mod 100.000",
   "— 티켓 환산가치(브론즈 100원·실버 1,000원·골드 2,000원)에 약":"— Vào khoảng giá trị quy đổi vé (Đồng 100 won·Bạc 1.000 won·Vàng 2.000 won)",
-  "매일 오전 3시 · 대기 티켓 자동 확정 (연동 D+7 / 미연동 D+30)":"3 giờ sáng hàng ngày · Tự động xác nhận vé chờ (Liên kết D+7 / Chưa LK D+30)",
+  "매일 오전 3시 · 대기 티켓 자동 확정 (제휴몰별 전환 일수 · 기본 30일)":"3 giờ sáng hàng ngày · Tự động xác nhận vé chờ (số ngày chuyển đổi theo từng sàn)",
   "— 이벤트 티켓 1장 소모 · 1회 추첨 최대 10장 · 추첨 회차 기준 응모":"— Tiêu 1 vé sự kiện · Tối đa 10 vé mỗi lần rút thăm · Tham dự theo vòng rút thăm",
   "을 더해 책정. 마진은 기프티콘 도매가 + 운영비를 커버하는 정상 범위입니다.":"được cộng thêm để định giá. Biên lợi nhuận trong phạm vi bình thường, bao gồm giá bán buôn Gifticon + chi phí vận hành.",
   "제휴몰 포스트백 (쿠팡·11번가·G마켓·알리·아이허브) · 구매 완료 시 콜백":"Postback cửa hàng LK (Coupang·11번가·Gmarket·AliExpress·iHerb) · Callback khi mua hoàn tất",
@@ -6853,7 +6932,7 @@ function rltRenderAll() {
   "— 약관 변경 시 법적 요건을 반드시 확인하고, 변경 30일 전 회원에게 사전 공지 후 적용하세요.":"— Khi thay đổi điều khoản, bắt buộc xác nhận yêu cầu pháp lý và thông báo trước cho thành viên 30 ngày trước khi áp dụng.",
   "· 성사 기준 피초대자 첫 구매 완료(성사 시점 양쪽 지급) · 초대자 월 최대 50명. 상세 정책은":"· Tiêu chuẩn thành công: người được mời hoàn thành lần mua đầu tiên (cấp cả hai khi thành công) · Người mời tối đa 50 người/tháng. Chính sách chi tiết xem",
   "제외 대상 카테고리·상품은 적립 계산에서 제외되며, 앱 10e 화면에 \"적립 제외 상품\"으로 안내됩니다.":"Danh mục·sản phẩm loại trừ không tính vào tích lũy, được thông báo là \"Sản phẩm loại trừ tích lũy\" trên màn hình 10e của ứng dụng.",
-  "랜덤 티켓: 구매 후 연동 D+7 / 미연동 D+30 확정 시 등급 티켓으로 전환. 취소 시 자동 환수.":"Vé ngẫu nhiên: Sau mua, khi xác nhận liên kết D+7 / chưa LK D+30 chuyển thành vé hạng. Tự động thu hồi khi hủy.",
+  "랜덤 티켓: 구매 후 제휴몰별 전환 일수가 지나면 등급 티켓으로 전환. 취소 시 자동 환수.":"Vé ngẫu nhiên: Sau khi mua, hết số ngày chuyển đổi của sàn thì chuyển thành vé hạng. Tự động thu hồi khi hủy.",
   "— 친구초대 보상 = 양쪽 각 500P(포인트), 초대자 월 최대 50명. (이벤트 티켓 → 포인트 변경)":"— Thưởng mời bạn = mỗi bên 500P (điểm), người mời tối đa 50 người/tháng. (Vé sự kiện → đổi thành Điểm)",
   "동안 철회 가능, 이후 개인정보 영구 삭제. 처리 누락 시 개인정보보호법 위반 + Apple 심사 거절 사유.":"Có thể thu hồi trong thời gian đó, sau đó xóa vĩnh viễn thông tin cá nhân. Nếu bỏ sót: vi phạm Luật bảo vệ TTCN + lý do từ chối kiểm duyệt Apple.",
   "— 회계/세무/부정거래 추적의 근거. 회수 시에도 음수 레코드로 추가, 원본 보존. (추가만 가능 · 수정·삭제 불가)":"— Cơ sở theo dõi kế toán/thuế/gian lận. Khi thu hồi cũng thêm bản ghi âm, bảo tồn bản gốc. (chỉ thêm mới · không sửa/xóa)",
@@ -6862,7 +6941,7 @@ function rltRenderAll() {
   "2건 · -38,000원 (제휴몰은 차감, 우리 시스템 미반영 → 포스트백 재처리 필요) &nbsp;/&nbsp;":"2 tr.hợp · -38.000 won (cửa hàng LK đã trừ, hệ thống chưa phản ánh → Cần xử lý lại postback) &nbsp;/&nbsp;",
   "— 적립·사용·만료·교환 모두 레코드로 누적되며 삭제 금지. 회수도 음수 레코드로 추가합니다. (10P = 1원)":"— Tích lũy·dùng·hết hạn·đổi đều tích lũy bản ghi và không được xóa. Thu hồi cũng thêm bản ghi âm. (10P = 1 won)",
   "활성화된 티켓이 사용된 후 취소·반품 발생 시 즉시 회수 불가. 부채(음수 잔액)로 기록 후 다음 적립 시 자동 상계.":"Sau khi vé đã được kích hoạt và dùng, xảy ra hủy·trả thì không thể thu hồi ngay. Ghi dưới dạng nợ (số dư âm) và tự động bù trừ ở lần tích lũy tiếp.",
-  "를 집계하며, 수수료율은 제휴몰·카테고리별로 다릅니다. 등급 티켓은 구매확정(연동 D+7 / 미연동 D+30) 후 지급됩니다.":"được tổng hợp, tỷ lệ hoa hồng khác nhau theo cửa hàng LK·danh mục. Vé hạng được cấp sau xác nhận mua (Liên kết D+7 / Chưa LK D+30).",
+  "를 집계하며, 수수료율은 제휴몰·카테고리별로 다릅니다. 등급 티켓은 구매확정(제휴몰별 전환 일수) 후 지급됩니다.":"được tổng hợp, tỷ lệ hoa hồng khác nhau theo cửa hàng LK·danh mục. Vé hạng được cấp sau xác nhận mua (số ngày chuyển đổi theo từng sàn).",
   "(회원이 티켓을 기프티콘으로 교환할 때 발생하는 마진). 두 수익에서 회원에게 적립해준 티켓의 환산가치(적립 비용)를 차감한 것이":"(Biên phát sinh khi thành viên đổi vé lấy Gifticon). Từ hai nguồn doanh thu trừ giá trị quy đổi (chi phí tích lũy) của vé đã tích lũy cho thành viên thì",
   "— API 키는 마스킹 처리됩니다. 키 노출 시 즉시 재발급 후 교체하세요. 키 교체 시 해당 제휴몰의 적립 추적이 일시 중단됩니다.":"— Khóa API được ẩn. Khi khóa bị lộ, cấp lại ngay và thay thế. Khi thay khóa, theo dõi tích lũy của cửa hàng LK đó tạm dừng.",
   "을 지급합니다. 추첨이 이벤트 티켓을 새로 발급하지 않습니다. (이벤트 티켓 획득 경로는 출석 5연속·매일 행운 룰렛·이부장 패키지 5종 등 별도 경로)":"được cấp. Rút thăm không phát hành vé sự kiện mới. (Đường dẫn nhận vé sự kiện: điểm danh 5 lần liên tiếp·vòng quay·gói Trưởng phòng Lee 5 loại, v.v.)",
@@ -6873,9 +6952,9 @@ function rltRenderAll() {
   "방식입니다 — 이월은 없으며 미응모해도 다음 회차로 넘어가지 않고 만료됩니다. 추첨 응모 마감 후 획득분은 다음 회차가 당회.":"là phương thức — không có rollover, dù chưa dự thưởng cũng không chuyển sang vòng sau mà hết hạn. Phần nhận sau khi đóng dự thưởng thì vòng sau là vòng hiện tại.",
   "은 구매 취소·반품에 의한 회수 및 등급 티켓 유효기간 만료 소멸 내역입니다. TicketTransaction 테이블의 type='CLAWBACK'·'EXPIRE' 레코드를 조회합니다.":"là chi tiết thu hồi do hủy·trả hàng và hủy hết hiệu lực vé hạng. Truy vấn bản ghi type='CLAWBACK'·'EXPIRE' của bảng TicketTransaction.",
   "— 앱·서비스 운영의 핵심 정책 기준을 한곳에서 확인하는 페이지입니다. 정책 수치·기준 변경은 별도 승인 절차를 거쳐 반영되며, 이 화면에서 직접 수정하지 않습니다. (이용약관·개인정보처리방침 등 앱 노출용 약관은":"— Đây là trang xác nhận các tiêu chuẩn chính sách cốt lõi vận hành ứng dụng·dịch vụ tại một nơi. Thay đổi số liệu·tiêu chuẩn chính sách được phản ánh qua quy trình phê duyệt riêng, không chỉnh sửa trực tiếp trên màn hình này. (Điều khoản sử dụng·chính sách bảo mật v.v. dùng để hiển thị trên ứng dụng thì",
-  "기산일 = 구매로 랜덤 티켓을 받은 적립일. 적립일 기준 1년 경과 시 만료(등급 확정 D+7 시점 아님). 만료 30일·7일 전 알림 유지, 기한 경과 시 자동 소멸(복구 불가). 이벤트 티켓은 발급일+30일 고정 소멸 만료로 별도 처리.":"Ngày tính = ngày tích lũy nhận vé ngẫu nhiên khi mua. Hết hạn khi qua 1 năm tính từ ngày tích lũy (không phải thời điểm D+7 xác nhận hạng). Giữ thông báo trước hết hạn 30·7 ngày, qua hạn thì tự tiêu hủy (không khôi phục). Vé sự kiện xử lý riêng bằng tiêu hủy cố định ngày phát hành+30 ngày (không rollover).",
-  "적립 확정 대기 = 카카오 연동 회원 D+7 / 미연동 회원 D+30. 로그인 정책 변경으로 미연동 유저가 부활하여 미연동은 30일 대기 적용. 해당 기간 내 취소 없으면 자동 처리되어 가지급 랜덤 티켓이 구매 금액 기준 등급 티켓으로 전환.":"Chờ xác nhận tích lũy = Thành viên liên kết Kakao D+7 / Chưa LK D+30. Do thay đổi chính sách đăng nhập, người dùng chưa LK được phục hồi nên áp dụng chờ 30 ngày. Nếu không có hủy trong thời gian đó, tự động xử lý và vé ngẫu nhiên tạm cấp chuyển thành vé hạng theo số tiền mua.",
-  "— 위 등급별 적립 기준(큰 등급 우선) 적용. 적립률 비공개 정책에 따라 유저 앱에는 확정(연동 D+7 / 미연동 D+30) 전까지 '랜덤(미정)'으로 표시해 기대감 부여. 운영자는 회원 목록의 '전환예정' 컬럼에서 확정 등급을 미리 확인. 확정 시 등급 티켓으로 전환되어 기프티콘 교환에 사용.":"— Áp dụng tiêu chuẩn tích lũy theo hạng (ưu tiên hạng lớn) trên. Theo chính sách không công khai tỷ lệ, ứng dụng người dùng hiển thị 'Ngẫu nhiên (chưa xác định)' cho đến khi xác nhận (Liên kết D+7 / Chưa LK D+30). Quản trị viên xem trước hạng xác nhận trong cột 'Dự kiến chuyển đổi'. Khi xác nhận, chuyển thành vé hạng để đổi Gifticon.",
+  "기산일 = 구매로 랜덤 티켓을 받은 적립일. 적립일 기준 1년 경과 시 만료(등급 확정 시점 아님). 만료 30일·7일 전 알림 유지, 기한 경과 시 자동 소멸(복구 불가). 이벤트 티켓은 발급일+30일 고정 소멸 만료로 별도 처리.":"Ngày tính = ngày tích lũy nhận vé ngẫu nhiên khi mua. Hết hạn khi qua 1 năm tính từ ngày tích lũy (không phải thời điểm xác nhận hạng). Giữ thông báo trước hết hạn 30·7 ngày, qua hạn thì tự tiêu hủy (không khôi phục). Vé sự kiện xử lý riêng bằng tiêu hủy cố định ngày phát hành+30 ngày (không rollover).",
+  "적립 확정 대기 = CMS 「티켓 적립 설정」의 제휴몰별 전환 일수(기본 30일). 카카오 연동 여부와 무관하게 이 값 하나로 정해진다. 해당 기간 내 취소 없으면 자동 처리되어 가지급 랜덤 티켓이 구매 금액 기준 등급 티켓으로 전환.":"Chờ xác nhận tích lũy = số ngày chuyển đổi theo từng sàn trong CMS 「Thiết lập tích lũy vé」 (mặc định 30 ngày). Không phụ thuộc việc có liên kết Kakao hay không, chỉ một giá trị này quyết định. Nếu không có hủy trong thời gian đó, tự động xử lý và vé ngẫu nhiên tạm cấp chuyển thành vé hạng theo số tiền mua.",
+  "— 위 등급별 적립 기준(큰 등급 우선) 적용. 적립률 비공개 정책에 따라 유저 앱에는 확정(제휴몰별 전환 일수) 전까지 '랜덤(미정)'으로 표시해 기대감 부여. 운영자는 회원 목록의 '전환예정' 컬럼에서 확정 등급을 미리 확인. 확정 시 등급 티켓으로 전환되어 기프티콘 교환에 사용.":"— Áp dụng tiêu chuẩn tích lũy theo hạng (ưu tiên hạng lớn) trên. Theo chính sách không công khai tỷ lệ, ứng dụng người dùng hiển thị 'Ngẫu nhiên (chưa xác định)' cho đến khi xác nhận (số ngày chuyển đổi theo từng sàn). Quản trị viên xem trước hạng xác nhận trong cột 'Dự kiến chuyển đổi'. Khi xác nhận, chuyển thành vé hạng để đổi Gifticon.",
   "이번달 순수익":"Lợi nhuận ròng tháng này",
   "제휴 수수료 매출":"Doanh thu hoa hồng LK",
   "기프티콘 판매 수익":"Doanh thu Gifticon",
@@ -6978,11 +7057,11 @@ function rltRenderAll() {
   "상품코드가 일치하는 기존 데이터는 덮어쓰기됩니다. 등록 전 백업을 권장합니다.":"Dữ liệu hiện có trùng mã sản phẩm sẽ bị ghi đè. Khuyến nghị sao lưu trước khi đăng ký.",
   "배송비, 쿠폰, 캐시, 적립 제외 상품가는 계산 대상에서 제외 후 알고리즘 적용.":"Phí vận chuyển, coupon, tiền mặt, giá sản phẩm loại trừ được trừ khỏi đối tượng tính trước khi áp dụng thuật toán.",
   "마케팅성 알림은 수신 동의 회원에게만 발송됩니다. 서비스 필수 알림(티켓 지급·기프티콘 발송·경품 당첨)은 동의 여부와 무관하게 발송됩니다.":"Thông báo marketing chỉ gửi cho thành viên đã đồng ý nhận. Thông báo dịch vụ bắt buộc (cấp vé·gửi Gifticon·trúng giải) được gửi bất kể có đồng ý hay không.",
-  "첫 경유 구매(가입 7일 내) 시 브론즈 티켓 1장 지급. 구매 확정 후 지급(연동 D+7 / 미연동 D+30).":"Cấp 1 vé Đồng khi mua qua lần đầu (trong 7 ngày đăng ký). Cấp sau xác nhận mua (Liên kết D+7 / Chưa LK D+30).",
+  "첫 경유 구매(가입 7일 내) 시 브론즈 티켓 1장 지급. 구매 확정 후 지급(제휴몰별 전환 일수 · 기본 30일).":"Cấp 1 vé Đồng khi mua qua lần đầu (trong 7 ngày đăng ký). Cấp sau xác nhận mua (số ngày chuyển đổi theo từng sàn).",
   "적립 기준 변경은 이후 확정되는 구매부터 적용됩니다. 기존 대기 중인 티켓은 영향 없음.":"Thay đổi tiêu chuẩn tích lũy áp dụng từ các mua hàng xác nhận sau đó. Vé đang chờ hiện tại không bị ảnh hưởng.",
   "기프티콘 연동 상품 목록입니다. 교환 티켓은 보상정책 기준으로 자동 계산됩니다. 교환 티켓 칩을 클릭하면 수량을 수정할 수 있습니다.":"Đây là danh sách sản phẩm Gifticon đã liên kết. Vé đổi được tính tự động theo chính sách thưởng. Nhấp vào chip vé đổi để chỉnh sửa số lượng.",
   "추첨 회차 기준. 추첨 주기(월1/격주)는 미정 — 운영 회의 후 확정.":"Theo vòng rút thăm. Chu kỳ (tháng 1/cách tuần) chưa xác định — xác nhận sau họp vận hành.",
-  "구매 확정 후 지급 (연동 D+7 / 미연동 D+30, 취소 먹튀 방지).":"Cấp sau xác nhận mua (Liên kết D+7 / Chưa LK D+30, phòng hủy gian lận).",
+  "구매 확정 후 지급 (제휴몰별 전환 일수 경과 후 · 취소 먹튀 방지).":"Cấp sau xác nhận mua (số ngày chuyển đổi theo từng sàn, phòng hủy gian lận).",
   "이벤트 티켓 신규 상한. (구매 적립 랜덤 티켓 1일 5/월 50과 별도)":"Hạn mức mới vé sự kiện. (Riêng với vé ngẫu nhiên tích lũy mua: 5/ngày và 50/tháng)",
   "제휴 수수료 (매출)":"Hoa hồng LK (doanh thu)",
   "앱 진입만으로 인정":"Công nhận chỉ khi vào ứng dụng",
@@ -7138,6 +7217,76 @@ Object.assign(KO2VI,{
 });
 
 Object.assign(KO2VI,{"저장된 구성 기준":"Theo cấu hình đã lưu","저장 전 미리보기":"Xem trước khi lưu","미저장":"Chưa lưu","변경사항 저장":"Lưu thay đổi"});
+
+/* ── 티켓 적립 설정 — 제휴몰별 전환 일수 (2026-08-24) ──
+   프픽 베트남어는 개발자가 읽는 용도다. 화려한 표현 대신 뜻이 그대로 전달되게 쓴다. */
+Object.assign(KO2VI,{
+  "티켓 적립 설정":"Thiết lập tích lũy vé",
+  "수수료":"Hoa hồng",
+  "적립률":"Tỷ lệ tích lũy",
+  "전환 일수":"Số ngày chuyển đổi",
+  "전환 일수 = 랜덤 티켓이 등급 티켓으로 바뀌기까지의 대기 일수":"Số ngày chuyển đổi = số ngày chờ để vé ngẫu nhiên trở thành vé hạng",
+  "— 구매 시점에 등급은 이미 내부 확정되지만 앱에는 랜덤 티켓으로만 보이고, 이 일수가 지나야 등급이 공개되고 사용 가능해집니다. 제휴몰마다 다르게 설정할 수 있으며 기본값은 30일입니다.":"— Tại thời điểm mua, hạng đã được xác định nội bộ, nhưng app chỉ hiển thị là vé ngẫu nhiên. Sau số ngày này thì hạng mới được công khai và dùng được. Có thể đặt khác nhau cho từng sàn liên kết, mặc định là 30 ngày.",
+  "카카오 연동 여부와 무관합니다":"Không liên quan đến việc có liên kết Kakao hay không",
+  "— 예전의 연동 D+7 / 미연동 D+30 이원 기준은 폐지되었습니다. 연동 회원이든 미연동 회원이든 그 구매가 발생한 제휴몰의 전환 일수 하나로만 정해집니다. (카카오 연동은 데이터 보존·온보딩 보상 지급 조건으로만 남습니다.)":"— Tiêu chuẩn hai nhánh cũ (đã liên kết D+7 / chưa liên kết D+30) đã bị bãi bỏ. Dù thành viên đã liên kết hay chưa, thời điểm chuyển đổi chỉ do một giá trị duy nhất quyết định: số ngày chuyển đổi của sàn liên kết phát sinh giao dịch đó. (Liên kết Kakao chỉ còn là điều kiện lưu giữ dữ liệu và cấp thưởng onboarding.)",
+  "줄이면 이미 발급된 랜덤 티켓도 앞당겨 전환됩니다":"Nếu giảm số ngày thì vé ngẫu nhiên đã phát hành cũng được chuyển đổi sớm hơn",
+  "— 새로 적립되는 티켓만이 아니라 현재 대기 중인 랜덤 티켓 전부에 소급 적용됩니다. 새 기준으로 이미 기간이 지난 티켓은 저장 즉시 등급이 공개됩니다. 늘리는 경우 이미 공개된 티켓을 다시 숨기지는 않습니다.":"— Không chỉ áp dụng cho vé tích lũy mới mà áp dụng hồi tố cho toàn bộ vé ngẫu nhiên đang chờ. Vé đã quá hạn theo tiêu chuẩn mới sẽ được công khai hạng ngay khi lưu. Nếu tăng số ngày thì vé đã công khai không bị ẩn lại.",
+  "대표 제휴몰":"Sàn liên kết đại diện",
+  "쿠팡 직접 제휴 · 저장 코드 coupang_direct":"Coupang liên kết trực tiếp · mã lưu trữ coupang_direct",
+  "제휴 방식":"Hình thức liên kết",
+  "직접 제휴":"Liên kết trực tiếp",
+  "로고":"Logo",
+  "수익":"Lợi nhuận",
+  "시뮬레이터":"Bộ mô phỏng",
+  "제휴몰(링크프라이스)":"Sàn liên kết (Linkprice)",
+  "저장 코드 lp: 접두사 · 링크프라이스 카탈로그":"Mã lưu trữ có tiền tố lp: · danh mục Linkprice",
+  "링크프라이스 상태":"Trạng thái Linkprice",
+  "카테고리 전체":"Tất cả danh mục",
+  "LP상태 전체":"Tất cả trạng thái LP",
+  "적용 전체":"Tất cả trạng thái áp dụng",
+  "미적용":"Chưa áp dụng",
+  "패션":"Thời trang",
+  "식품":"Thực phẩm",
+  "종합몰":"Sàn tổng hợp",
+  "홈쇼핑":"Home shopping",
+  "명품":"Hàng hiệu",
+  "건강식품":"Thực phẩm chức năng",
+  "뷰티":"Làm đẹp",
+  "여행/티켓":"Du lịch/Vé",
+  "승인":"Đã duyệt",
+  "승인대기":"Chờ duyệt",
+  "거부":"Từ chối",
+  "미신청":"Chưa đăng ký",
+  "선택한 몰 전환 일수 일괄":"Đặt hàng loạt số ngày chuyển đổi cho các sàn đã chọn",
+  "일괄 적용":"Áp dụng hàng loạt",
+  "기본값(30일)으로 되돌리기":"Khôi phục về mặc định (30 ngày)",
+  "저장하지 않은 변경이 있습니다.":"Có thay đổi chưa được lưu.",
+  "저장 반영 결과 — 앞당겨 전환된 랜덤 티켓":"Kết quả sau khi lưu — vé ngẫu nhiên được chuyển đổi sớm",
+  "이미 발급되어 대기 중이던 티켓에 소급 적용된 결과":"Kết quả áp dụng hồi tố cho các vé đã phát hành và đang chờ",
+  "전환 일수를 줄인 제휴몰입니다. 새 기준으로 이미 기간이 지난 대기 중 랜덤 티켓은 저장 즉시 등급이 공개되어 사용 가능해집니다.":"Đây là các sàn đã giảm số ngày chuyển đổi. Vé ngẫu nhiên đang chờ mà đã quá hạn theo tiêu chuẩn mới sẽ được công khai hạng và dùng được ngay khi lưu.",
+  "즉시 전환":"chuyển đổi ngay",
+  "합계":"Tổng cộng",
+  "전환 일수를 늘린 제휴몰":"Sàn đã tăng số ngày chuyển đổi",
+  "이미 공개된 티켓을 다시 숨기지는 않습니다 — 아직 대기 중인 티켓에만 새 기준이 적용됩니다.":"Vé đã công khai sẽ không bị ẩn lại — tiêu chuẩn mới chỉ áp dụng cho vé còn đang chờ.",
+  "변경 전":"Trước khi đổi",
+  "변경 후":"Sau khi đổi",
+  "앞당겨 전환된 랜덤 티켓":"Vé ngẫu nhiên được chuyển đổi sớm",
+  "해당 없음":"Không có",
+  "이 즉시 등급 티켓으로 전환됐습니다. 아직 새 기준에 못 미친 티켓은 적립일 + 새 전환 일수에 자동 확정됩니다.":"đã được chuyển đổi ngay thành vé hạng. Vé chưa đạt tiêu chuẩn mới sẽ tự động xác nhận vào ngày tích lũy + số ngày chuyển đổi mới.",
+  "저장 위치":"Nơi lưu trữ",
+  "— settings/ticket_accrual.convertDays (map<code, number>). 대표 제휴몰은 coupang_direct, 링크프라이스 몰은 lp: 접두사 코드로 저장됩니다. 서버가 이 값을 읽어 확정 스케줄러를 돌립니다 — 앱(클라이언트)은 이 문서를 읽지 않습니다.":"— settings/ticket_accrual.convertDays (map<code, number>). Sàn đại diện lưu bằng mã coupang_direct, sàn Linkprice lưu bằng mã có tiền tố lp:. Server đọc giá trị này để chạy scheduler xác nhận — app (client) không đọc tài liệu này.",
+  "적립 시뮬레이터":"Bộ mô phỏng tích lũy",
+  "적립액":"Số tiền tích lũy",
+  "잔여 (무지급)":"Số dư (không cấp vé)",
+  "등급 공개 시점":"Thời điểm công khai hạng",
+  "구매 확정가 (원)":"Giá xác nhận mua (won)",
+  "조건에 맞는 제휴몰이 없습니다.":"Không có sàn liên kết nào khớp điều kiện.",
+  "전환 일수는 1~365 사이로 입력하십시오.":"Vui lòng nhập số ngày chuyển đổi trong khoảng 1~365.",
+  "일괄 적용할 제휴몰을 먼저 선택하십시오.":"Hãy chọn sàn liên kết trước khi áp dụng hàng loạt.",
+  "모든 제휴몰의 전환 일수를 기본값 30일로 되돌렸습니다. 저장해야 반영됩니다.":"Đã khôi phục số ngày chuyển đổi của tất cả sàn về mặc định 30 ngày. Phải lưu thì mới có hiệu lực.",
+  "저장했습니다.":"Đã lưu.",
+  "링크프라이스 카탈로그 외 제휴몰을 직접 추가합니다.":"Thêm trực tiếp sàn liên kết ngoài danh mục Linkprice."
+});
   var _orig=new Map(), _tracked=new Set(), _applying=false;
   function hasKo(s){ return /[가-힯ᄀ-ᇿ㄰-㆏]/.test(s); }
   function tcore(s){
@@ -7348,6 +7497,287 @@ function mtInjectStatusTags() {
 function mtInit() { mtLoad(); mtInjectStatusTags(); }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mtInit);
 else mtInit();
+})();
+</script>
+<!-- ── 티켓 적립 설정 — 제휴몰별 전환 일수 (김반장 확정 2026-08-24) ── -->
+<script id="ip-ticket-accrual">
+(function(){
+  var LS_KEY = 'pp_ticket_accrual_v1';
+  var DEFAULT_DAYS = 30;
+
+  /* 대기 중인 랜덤 티켓의 경과일 분포 — 앞당겨 전환 효과를 계산하는 데 쓴다.
+     실서버에서는 tickets 컬렉션을 경과일로 집계한 값이 들어온다. */
+  var AGES = [2, 5, 9, 14, 20, 27];
+
+  var SEED = [
+    { code:'coupang_direct', name:'쿠팡', cat:'종합몰', logo:'CP', lp:null, fee:3.0, rate:2.0, applied:true, pend:[420,381,264,193,120,86] },
+    { code:'lp:andotherstories', name:'&Otherstories', cat:'패션', logo:'&O', lp:'승인', fee:2.8, rate:1.68, applied:false, pend:[12,9,7,5,3,2] },
+    { code:'lp:pulmuone', name:'#풀무원', cat:'식품', logo:'#P', lp:'승인', fee:3.5, rate:2.1, applied:false, pend:[18,14,11,8,6,4] },
+    { code:'lp:11st', name:'11번가', cat:'종합몰', logo:'11', lp:'승인', fee:0.7, rate:0.4, applied:true, pend:[96,74,58,41,27,19] },
+    { code:'lp:gongyoung', name:'공영홈쇼핑', cat:'홈쇼핑', logo:'GY', lp:'승인', fee:2.0, rate:1.2, applied:false, pend:[9,7,5,4,3,1] },
+    { code:'lp:netaporte', name:'네타포르테', cat:'명품', logo:'NP', lp:'승인대기', fee:5.0, rate:3.0, applied:false, pend:[0,0,0,0,0,0] },
+    { code:'lp:daesang', name:'대상웰라이프', cat:'건강식품', logo:'DS', lp:'승인', fee:7.0, rate:4.2, applied:false, pend:[22,17,13,10,7,5] },
+    { code:'lp:wconcept', name:'더블유컨셉코리아', cat:'패션', logo:'WC', lp:'승인', fee:4.0, rate:2.4, applied:false, pend:[15,12,9,6,4,3] },
+    { code:'lp:oliveyoung', name:'올리브영', cat:'뷰티', logo:'OY', lp:'승인', fee:3.0, rate:1.8, applied:true, pend:[64,51,39,28,18,12] },
+    { code:'lp:interpark', name:'인터파크', cat:'여행/티켓', logo:'IP', lp:'미신청', fee:1.5, rate:0.9, applied:false, pend:[0,0,0,0,0,0] },
+    { code:'lp:gmarket', name:'G마켓', cat:'종합몰', logo:'GM', lp:'거부', fee:1.0, rate:0.6, applied:false, pend:[0,0,0,0,0,0] }
+  ];
+
+  var malls = [];      // 현재 화면 상태
+  var savedDays = {};  // 마지막으로 저장된 전환 일수 (소급 계산 기준)
+
+  function load(){
+    malls = SEED.map(function(m){ return JSON.parse(JSON.stringify(m)); });
+    var raw = null;
+    try { raw = localStorage.getItem(LS_KEY); } catch(e){}
+    var saved = null;
+    if (raw) { try { saved = JSON.parse(raw); } catch(e){ saved = null; } }
+    malls.forEach(function(m){
+      var d = (saved && saved.convertDays) ? saved.convertDays[m.code] : null;
+      m.days = (typeof d === 'number' && d > 0) ? d : DEFAULT_DAYS;
+      if (saved && saved.applied && typeof saved.applied[m.code] === 'boolean') m.applied = saved.applied[m.code];
+      savedDays[m.code] = m.days;
+    });
+  }
+
+  function persist(){
+    var doc = { convertDays:{}, applied:{}, updated_at:new Date().toISOString() };
+    malls.forEach(function(m){ doc.convertDays[m.code] = m.days; doc.applied[m.code] = m.applied; });
+    try { localStorage.setItem(LS_KEY, JSON.stringify(doc)); } catch(e){}
+    return doc;
+  }
+
+  /* 경과일이 d일 이상인 대기 티켓 수 = 전환 일수를 d로 잡았을 때 즉시 확정되는 장수 */
+  function dueAt(m, d){
+    var n = 0;
+    for (var i = 0; i < AGES.length; i++) if (AGES[i] >= d) n += (m.pend[i] || 0);
+    return n;
+  }
+
+  function markDirty(){
+    var el = document.getElementById('ta-dirty');
+    if (el) el.style.display = '';
+  }
+
+  function daysCell(m){
+    var warn = (m.days < DEFAULT_DAYS) ? 'var(--amber)' : 'var(--text-3)';
+    return '<div style="display:flex;align-items:center;gap:6px;justify-content:center">' +
+      '<input class="search-box ta-days" data-code="' + m.code + '" type="number" min="1" max="365" value="' + m.days + '" style="width:66px;text-align:center;padding:6px 8px">' +
+      '<span style="font-size:11px;color:' + warn + ';white-space:nowrap">일</span></div>';
+  }
+
+  function logoCell(m){
+    return '<div style="width:34px;height:34px;margin:0 auto;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--text-2)">' + m.logo + '</div>';
+  }
+
+  function lpBadge(s){
+    var cls = s === '승인' ? 'badge-green' : s === '승인대기' ? 'badge-amber' : s === '거부' ? 'badge-red' : 'badge-gray';
+    return '<span class="badge ' + cls + '">' + s + '</span>';
+  }
+
+  function pct(v){ return v.toFixed(v % 1 === 0 ? 1 : 2) + '%'; }
+
+  function simBtn(code){
+    return '<td style="text-align:center"><button class="btn btn-ghost btn-sm" onclick="taSim(&quot;' + code + '&quot;)">계산</button></td>';
+  }
+
+  function renderCoupang(){
+    var tb = document.getElementById('ta-coupang-body');
+    if (!tb) return;
+    var m = malls[0];
+    tb.innerHTML = '<tr>' +
+      '<td>' + logoCell(m) + '</td>' +
+      '<td><div style="font-weight:600">' + m.name + '</div><div style="font-size:11px;color:var(--text-3);font-family:monospace">' + m.code + '</div></td>' +
+      '<td style="text-align:center"><span class="badge badge-purple">직접 제휴</span></td>' +
+      '<td style="text-align:center">' + pct(m.fee) + '</td>' +
+      '<td style="text-align:center">' + pct(m.rate) + '</td>' +
+      '<td style="text-align:center;color:var(--success);font-weight:700">' + (m.fee - m.rate).toFixed(2) + '%p</td>' +
+      '<td>' + daysCell(m) + '</td>' +
+      simBtn(m.code) +
+      '</tr>';
+    bindDays(tb);
+  }
+
+  function taRender(){
+    renderCoupang();
+    var tb = document.getElementById('ta-body');
+    if (!tb) return;
+    var fc = (document.getElementById('ta-f-cat') || {}).value || '';
+    var fl = (document.getElementById('ta-f-lp') || {}).value || '';
+    var fa = (document.getElementById('ta-f-ap') || {}).value || '';
+    var rows = malls.slice(1).filter(function(m){
+      if (fc && m.cat !== fc) return false;
+      if (fl && m.lp !== fl) return false;
+      if (fa === 'y' && !m.applied) return false;
+      if (fa === 'n' && m.applied) return false;
+      return true;
+    });
+    if (!rows.length) { tb.innerHTML = '<tr><td colspan="10" style="text-align:center;color:var(--text-3);padding:26px">조건에 맞는 제휴몰이 없습니다.</td></tr>'; return; }
+    tb.innerHTML = rows.map(function(m){
+      return '<tr>' +
+        '<td style="text-align:center"><input type="checkbox" class="ta-pick" data-code="' + m.code + '"></td>' +
+        '<td>' + logoCell(m) + '</td>' +
+        '<td><div style="font-weight:600">' + m.name + '</div><div style="font-size:11px;color:var(--text-3)"><span>' + m.cat + '</span> · <span style="font-family:monospace">' + m.code + '</span></div></td>' +
+        '<td style="text-align:center">' + lpBadge(m.lp) + '</td>' +
+        '<td style="text-align:center">' + pct(m.fee) + '</td>' +
+        '<td style="text-align:center">' + pct(m.rate) + '</td>' +
+        '<td style="text-align:center;color:var(--success);font-weight:700">' + (m.fee - m.rate).toFixed(2) + '%p</td>' +
+        '<td>' + daysCell(m) + '</td>' +
+        simBtn(m.code) +
+        '<td style="text-align:center"><input type="checkbox" class="ta-apply" data-code="' + m.code + '"' + (m.applied ? ' checked' : '') + '></td>' +
+        '</tr>';
+    }).join('');
+    bindDays(tb);
+    tb.querySelectorAll('.ta-apply').forEach(function(cb){
+      cb.addEventListener('change', function(){
+        var m = find(cb.getAttribute('data-code'));
+        if (m) { m.applied = cb.checked; markDirty(); }
+      });
+    });
+  }
+
+  function bindDays(scope){
+    scope.querySelectorAll('.ta-days').forEach(function(inp){
+      inp.addEventListener('input', function(){
+        var m = find(inp.getAttribute('data-code'));
+        if (!m) return;
+        var v = parseInt(inp.value, 10);
+        if (!isFinite(v) || v < 1) return;
+        m.days = v; markDirty();
+      });
+    });
+  }
+
+  function find(code){ for (var i = 0; i < malls.length; i++) if (malls[i].code === code) return malls[i]; return null; }
+
+  function taBulkDays(){
+    var v = parseInt((document.getElementById('ta-bulk-days') || {}).value, 10);
+    if (!isFinite(v) || v < 1 || v > 365) { toast('전환 일수는 1~365 사이로 입력하십시오.'); return; }
+    var picked = Array.prototype.slice.call(document.querySelectorAll('.ta-pick:checked')).map(function(c){ return c.getAttribute('data-code'); });
+    if (!picked.length) { toast('일괄 적용할 제휴몰을 먼저 선택하십시오.'); return; }
+    picked.forEach(function(code){ var m = find(code); if (m) m.days = v; });
+    markDirty(); taRender();
+    toast(picked.length + '개 제휴몰의 전환 일수를 ' + v + '일로 맞췄습니다. 저장해야 반영됩니다.');
+  }
+
+  function taToggleAll(el){
+    document.querySelectorAll('.ta-pick').forEach(function(c){ c.checked = el.checked; });
+  }
+
+  function taReset(){
+    malls.forEach(function(m){ m.days = DEFAULT_DAYS; });
+    markDirty(); taRender();
+    toast('모든 제휴몰의 전환 일수를 기본값 30일로 되돌렸습니다. 저장해야 반영됩니다.');
+  }
+
+  function taSave(){
+    var pulled = [];   // 일수를 줄인 몰 — 이미 발급된 랜덤 티켓이 앞당겨 전환된다
+    var pushed = [];   // 일수를 늘린 몰
+    var total = 0;
+    malls.forEach(function(m){
+      var before = savedDays[m.code];
+      if (m.days < before) {
+        var n = dueAt(m, m.days) - dueAt(m, before);
+        if (n < 0) n = 0;
+        pulled.push({ m:m, before:before, after:m.days, n:n });
+        total += n;
+      } else if (m.days > before) {
+        pushed.push({ m:m, before:before, after:m.days });
+      }
+    });
+
+    persist();
+    malls.forEach(function(m){ savedDays[m.code] = m.days; });
+    var d = document.getElementById('ta-dirty'); if (d) d.style.display = 'none';
+
+    renderEffect(pulled, pushed, total);
+    toast(total > 0
+      ? '저장했습니다. 대기 중이던 랜덤 티켓 ' + total.toLocaleString() + '장이 앞당겨 전환됐습니다.'
+      : '저장했습니다.');
+  }
+
+  function renderEffect(pulled, pushed, total){
+    var card = document.getElementById('ta-effect-card');
+    var body = document.getElementById('ta-effect-body');
+    if (!card || !body) return;
+    if (!pulled.length && !pushed.length) { card.style.display = 'none'; return; }
+    var h = '';
+    if (pulled.length) {
+      h += '<div style="font-size:12px;color:var(--text-2);margin-bottom:10px">전환 일수를 줄인 제휴몰입니다. 새 기준으로 이미 기간이 지난 대기 중 랜덤 티켓은 저장 즉시 등급이 공개되어 사용 가능해집니다.</div>';
+      h += '<table><thead><tr><th>제휴몰</th><th style="text-align:center">변경 전</th><th style="text-align:center">변경 후</th><th style="text-align:center">앞당겨 전환된 랜덤 티켓</th></tr></thead><tbody>';
+      pulled.forEach(function(p){
+        h += '<tr><td style="font-weight:600">' + p.m.name + '</td>' +
+             '<td style="text-align:center;color:var(--text-2)">' + p.before + '<span>일</span></td>' +
+             '<td style="text-align:center;font-weight:700;color:var(--amber)">' + p.after + '<span>일</span></td>' +
+             '<td style="text-align:center;font-weight:700;color:' + (p.n ? 'var(--success)' : 'var(--text-3)') + '">' +
+             (p.n ? p.n.toLocaleString() + '<span>장</span> <span>즉시 전환</span>' : '<span>해당 없음</span>') + '</td></tr>';
+      });
+      h += '</tbody></table>';
+      h += '<div style="margin-top:12px;padding:12px;background:var(--success-soft);border-radius:8px;font-size:12px">' +
+           '<strong><span>합계</span> ' + total.toLocaleString() + '<span>장</span></strong> ' +
+           '<span>이 즉시 등급 티켓으로 전환됐습니다. 아직 새 기준에 못 미친 티켓은 적립일 + 새 전환 일수에 자동 확정됩니다.</span></div>';
+    }
+    if (pushed.length) {
+      h += '<div style="margin-top:14px;padding:12px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--text-2)">' +
+           '<span>전환 일수를 늘린 제휴몰</span>: ' +
+           pushed.map(function(p){ return p.m.name + ' (' + p.before + '<span>일</span> → ' + p.after + '<span>일</span>)'; }).join(', ') +
+           '. <span>이미 공개된 티켓을 다시 숨기지는 않습니다 — 아직 대기 중인 티켓에만 새 기준이 적용됩니다.</span></div>';
+    }
+    body.innerHTML = h;
+    card.style.display = '';
+  }
+
+  function taSim(code){
+    var m = find(code); if (!m) return;
+    var el = document.getElementById('ta-sim-body');
+    if (!el) return;
+    el.innerHTML =
+      '<div style="font-size:12px;color:var(--text-2);margin-bottom:10px">' + m.name + ' · 적립률 ' + pct(m.rate) + ' · 전환 일수 ' + m.days + '일</div>' +
+      '<div style="margin-bottom:14px"><label style="font-size:11px;color:var(--text-2);font-weight:600;display:block;margin-bottom:4px">구매 확정가 (원)</label>' +
+      '<input id="ta-sim-amt" class="search-box" type="number" value="154000" style="width:100%" data-code="' + code + '" oninput="taSimCalc()"></div>' +
+      '<div id="ta-sim-out"></div>';
+    openModal('m-ta-sim');
+    taSimCalc();
+  }
+
+  function taSimCalc(){
+    var inp = document.getElementById('ta-sim-amt');
+    if (!inp) return;
+    var m = find(inp.getAttribute('data-code')); if (!m) return;
+    var amt = parseInt(inp.value, 10) || 0;
+    var accrual = Math.floor(amt * m.rate / 100);
+    var rest = accrual;
+    var gold = Math.floor(rest / 200); rest -= gold * 200;
+    var silver = Math.floor(rest / 100); rest -= silver * 100;
+    var bronze = Math.floor(rest / 10); rest -= bronze * 10;
+    var chips = '';
+    if (gold)   chips += '<span class="tk-chip gold bare" style="margin-right:6px">골드 ' + gold + '장</span>';
+    if (silver) chips += '<span class="tk-chip silver bare" style="margin-right:6px">실버 ' + silver + '장</span>';
+    if (bronze) chips += '<span class="tk-chip bronze bare" style="margin-right:6px">브론즈 ' + bronze + '장</span>';
+    if (!chips) chips = '<span style="color:var(--text-2)">지급 티켓 없음 (적립액이 브론즈 단가 10원 미만)</span>';
+    var out = document.getElementById('ta-sim-out');
+    if (!out) return;
+    out.innerHTML =
+      '<div style="margin-bottom:10px">' + chips + '</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding-top:10px;border-top:1px solid var(--border);font-size:11px">' +
+        '<div><div style="color:var(--text-2);margin-bottom:2px">적립액</div><div style="font-weight:700;font-size:14px;color:var(--success)">' + accrual.toLocaleString() + '원</div></div>' +
+        '<div><div style="color:var(--text-2);margin-bottom:2px">잔여 (무지급)</div><div style="font-weight:700;font-size:14px;color:var(--text-2)">' + rest.toLocaleString() + '원</div></div>' +
+        '<div><div style="color:var(--text-2);margin-bottom:2px">등급 공개 시점</div><div style="font-weight:700;font-size:14px;color:var(--main)">구매 확정 + ' + m.days + '일</div></div>' +
+      '</div>' +
+      '<div style="margin-top:12px;padding:10px;background:var(--surface-2);border-radius:8px;font-size:11.5px;color:var(--text-2)">앱에는 이 기간 동안 <strong>랜덤 티켓</strong>으로만 보이고, ' + m.days + '일이 지나면 위 등급이 공개됩니다. <strong>카카오 연동 여부와 무관합니다.</strong></div>';
+  }
+
+  window.taRender = taRender;
+  window.taBulkDays = taBulkDays;
+  window.taToggleAll = taToggleAll;
+  window.taReset = taReset;
+  window.taSave = taSave;
+  window.taSim = taSim;
+  window.taSimCalc = taSimCalc;
+
+  function init(){ load(); taRender(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 </script>
 </body>
