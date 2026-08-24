@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱 답변 · Kelvin · 2026-08-24</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box a{color:var(--pp-d);font-weight:700}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.tbl td.old{color:#b4453f;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.4px}
+.tbl td.new{color:#1f7a7a;font-weight:700}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:220px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+.note-box a{color:var(--pp-d);font-weight:700}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱 답변 · Kelvin · 2026-08-24</span><span class="vi">Trả lời App PricePick · Kelvin · 24-08-2026</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Kelvin · App · Google Play 거절(App Content: Gambling) 대응 — 답변 KO/VI</span><span class="vi">Kelvin · App · Xử lý việc Google Play từ chối (App Content: Gambling) — Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://quixotic-vase-a61.notion.site/PricePick-B-n-build-6-b-Google-Play-t-ch-i-App-Content-Gambling-3c37c275399180b5a07bc42a6384b344" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 3건</span><span class="vi">3 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 2 · 확정 대기 1</span><span class="vi">Đã chốt 2 · Chờ chốt 1</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장 결정 · Google Play 실측 · 앱 코드 실측</span><span class="vi">Căn cứ: Người quản lý quyết định · khảo sát Google Play · khảo sát mã app</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi ở đây là bản tóm tắt · nguyên văn xem link Notion</span></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">0. 먼저 — 왜 거절됐는가</span><span class="vi">0. Trước hết — Vì sao bị từ chối</span></span></h2>
+<div class="qa"><div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260824-kelvin/kelvin-q-gplay-reject.png','Google Play 거절 통보문')"><img src="/devqa/assets/20260824-kelvin/kelvin-q-gplay-reject.png" alt="Google Play 거절 통보문" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">Google Play 거절 통보문 (Kelvin 첨부)</span><span class="vi">Thông báo từ chối của Google Play (Kelvin đính kèm)</span></span></span></button></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>Kelvin 진단이 맞습니다. 구글은 프라이스픽의 기능이 위반이라고 하지 않았습니다.</b> 우리가 Play Console에 적어 낸 신고 내용이 앱과 맞지 않는다고 한 것입니다.
+
+두 가지입니다.
+
+<b>하나.</b> 콘텐츠 등급 설문지에 시뮬레이션 도박을 신고하지 않았습니다. 바늘 달린 원판이 돌고 확률로 보상이 갈리면, 걸린 것이 진짜 돈이 아니어도 IARC는 시뮬레이션 도박으로 봅니다. 우리 앱에는 그런 화면이 둘 있는데 설문에서는 그 항목을 비워 뒀습니다.
+
+<b>둘.</b> Play Console 타겟 연령에 13세 미만이 들어가 있습니다. 그래서 가족 정책(Families Policy)이 걸렸고, 그 정책은 카지노 색을 띤 내용을 허용하지 않습니다.
+
+그러니 고칠 것은 신고 내용과 화면이지, 보상 정책이 아닙니다. 보상 구성·확률·한도는 이번에 하나도 바꾸지 않았습니다.</span><span class="vi"><b>Chẩn đoán của Kelvin là đúng. Google không nói tính năng của PricePick là vi phạm.</b> Google nói phần mình khai trên Play Console không khớp với app.
+
+Có hai điểm.
+
+<b>Một.</b> Bảng câu hỏi Content Rating chưa khai mục cờ bạc mô phỏng. Khi có bánh xe kim chỉ quay và phần thưởng chia theo xác suất thì dù thứ đặt cược không phải tiền thật, IARC vẫn xếp là cờ bạc mô phỏng. App mình có hai màn như vậy mà mục đó lại để trống.
+
+<b>Hai.</b> Target audience trên Play Console đang bao gồm nhóm dưới 13 tuổi. Vì vậy Families Policy được áp dụng, và chính sách đó không cho phép nội dung mang màu casino.
+
+Nên thứ phải sửa là phần khai báo và màn hình, không phải chính sách thưởng. Cơ cấu thưởng, xác suất và hạn mức lần này không đổi một chút nào.</span></span></div></div><div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">거절 통보문 원문(위 첨부): 「개발자님의 앱 콘텐츠 등급에는 앱에 등장하는 도박(실제 도박 또는 시뮬레이션 도박)에 대한 내용이 반영되어 있지 않습니다」 · 버전 코드 6 · 가족 정책 요구사항. 해결 단계에 「앱과 메타데이터 내에서 칩, 룰렛, 카드, 슬롯, 내기, 베팅과 같은 카지노 설정 및 테마를 언급하지 마세요」가 함께 적혀 있습니다.
+막힌 릴리스: 버전 6 (1.0.0) · 공개 테스트 · 「승인되지 않은 출시」 · 2026-08-18 13:08. 같은 build 6이 내부 테스트에서는 통과했지만, 내부 테스트는 심사를 거의 거치지 않는 트랙이라 통과가 안전의 근거가 되지 못합니다.
+콘텐츠 등급·타겟 연령은 트랙별이 아니라 패키지 단위 설정입니다. 운영 패키지가 stg와 따로 등록돼 있으면 그쪽도 같은 값을 봐야 합니다.</span><span class="vi">Nguyên văn thông báo từ chối (ảnh trên): "Content Rating của app chưa phản ánh nội dung cờ bạc (thật hoặc mô phỏng) xuất hiện trong app" · Version code 6 · Yêu cầu Families Policy. Phần hướng dẫn khắc phục ghi kèm: "Không nhắc tới bối cảnh và chủ đề casino như chip, roulette, bài, slot, cược, đặt cược trong app và trong metadata".
+Bản bị chặn: version 6 (1.0.0) · Open testing · "Bản phát hành chưa được duyệt" · 18-08-2026 13:08. Cùng build 6 qua được Internal testing, nhưng track đó gần như không xét duyệt nên không phải căn cứ an toàn.
+Content Rating và target audience là thiết lập theo package chứ không theo track. Nếu package chính thức đăng ký tách khỏi stg thì bên đó cũng phải xem cùng giá trị.</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. A안·B안 중 어느 쪽으로 갑니까?</span><span class="vi">1. Chọn phương án A hay phương án B?</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">Play Console 신고만 고치는 A안(타겟 18세 이상 + 콘텐츠 등급 설문 재작성, 코드 수정 없음)과, 앱에서 카지노 테마를 걷어내는 B안을 올렸습니다. 어느 쪽으로 갑니까?</span><span class="vi">Em đưa ra phương án A (chỉ sửa khai báo trên Play Console: target 18+ và làm lại bảng Content Rating, không sửa code) và phương án B (bỏ chủ đề casino trong app). Chọn phương án nào?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>등급은 지킵니다. 앱을 고치는 쪽입니다.</b>
+
+A안이 싸고 빠른 것은 맞습니다. 그런데 타겟 연령을 18세 이상으로 올리는 것이 우리에게는 작은 값이 아닙니다.
+
+<b>같은 자리에서 경쟁하는 앱이 전부 만 3세 이상입니다.</b> 아래 표를 보십시오. 5,000만 다운로드의 샵백도, 100만의 스탬플리도, 50만의 칩스도, 우리와 똑같은 경유 쇼핑 적립 앱인 참새마트도 그렇습니다. 프라이스픽도 지금 이미 만 3세 이상으로 등재돼 있습니다.
+
+여기서 우리만 18세 이상으로 올리면 노출과 광고에서 스스로 불리해집니다. 앱테크는 사용자 수가 곧 사업입니다. 등급을 올리는 것은 사업을 좁히는 일이라 택하지 않습니다.
+
+표에서 하나 더 볼 것이 있습니다. <b>칩스는 앱 이름에 「칩」이 들어 있는데도 만 3세 이상으로 멀쩡히 서비스 중입니다.</b> 「칩」은 구글이 통보문에서 직접 든 낱말입니다. 그런데도 걸리지 않았습니다 — 그 앱에는 돌림판이 없기 때문입니다.
+
+<b>낱말 하나로 걸리는 것이 아니라 「돌아가는 판 + 확률로 갈리는 보상」이라는 짜임이 걸립니다.</b> 그래서 이번 작업의 무게는 낱말이 아니라 화면에 있습니다.</span><span class="vi"><b>Giữ nguyên mức độ tuổi. Sửa ở phía app.</b>
+
+Đúng là phương án A rẻ và nhanh. Nhưng việc nâng target audience lên 18+ với mình không phải cái giá nhỏ.
+
+<b>Các app đang cạnh tranh cùng chỗ đều là "Từ 3 tuổi".</b> Xem bảng dưới: 샵백 50 triệu lượt tải, 스탬플리 1 triệu, 칩스 500 nghìn, và 참새마트 — app mua sắm chuyển tiếp y hệt mình. PricePick hiện cũng đang ở mức "Từ 3 tuổi".
+
+Ở tình thế đó mà chỉ mình nâng lên 18+ thì tự làm mình bất lợi ở khâu hiển thị và quảng cáo. Với app tích điểm thì số người dùng chính là việc kinh doanh. Nâng độ tuổi là thu hẹp việc kinh doanh nên không chọn.
+
+Trong bảng còn một điểm nữa. <b>칩스 có chữ "칩" (chip) ngay trong tên app mà vẫn chạy bình thường ở mức "Từ 3 tuổi".</b> "Chip" đúng là từ Google nêu đích danh trong thông báo. Vậy mà không bị vướng — vì app đó không có bánh xe quay.
+
+<b>Không phải một từ đơn lẻ làm mình vướng, mà là cấu trúc "bánh xe quay + phần thưởng chia theo xác suất".</b> Nên trọng tâm lần này nằm ở màn hình chứ không phải từ ngữ.</span></span></div></div><div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">아래 등급은 2026-08-24 Google Play 한국어 페이지에서 직접 확인한 값입니다. 확인하지 못한 앱은 적지 않았습니다.
+칩스(today.chips · NBT Inc. · 광고 포함) 스토어 설명에는 룰렛 계열 낱말이 없고 「칩」은 앱 이름에만 쓰입니다 — 낱말이 카지노 맥락 없이 쓰이면 걸리지 않는다는 실례입니다.
+프라이스픽 현재 등재 상태(같은 날 확인): com.inetkr.pricepick.stg · 만 3세 이상 · 다운로드 10+.</span><span class="vi">Các mức độ tuổi dưới đây xem trực tiếp trên trang Google Play tiếng Hàn ngày 24-08-2026. App nào không kiểm tra được thì không ghi.
+Mô tả trên store của 칩스 (today.chips · NBT Inc. · có quảng cáo) không có từ nào thuộc nhóm vòng quay, chữ "칩" chỉ xuất hiện ở tên app — ví dụ thật cho việc một từ dùng ngoài ngữ cảnh casino thì không bị vướng.
+Tình trạng đăng ký hiện tại của PricePick (xem cùng ngày): com.inetkr.pricepick.stg · Từ 3 tuổi · 10+ lượt tải.</span></span></div></div>
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">경쟁 앱 콘텐츠 등급 — 2026-08-24 Google Play 직접 확인</span><span class="vi">Mức độ tuổi của app cạnh tranh — xem trực tiếp trên Google Play 24-08-2026</span></span></h3>
+<div class="tblwrap"><table class="tbl"><thead><tr><th><span class="i18n"><span class="ko">앱</span><span class="vi">App</span></span></th><th><span class="i18n"><span class="ko">개발사</span><span class="vi">Nhà phát triển</span></span></th><th><span class="i18n"><span class="ko">다운로드</span><span class="vi">Lượt tải</span></span></th><th><span class="i18n"><span class="ko">콘텐츠 등급</span><span class="vi">Mức độ tuổi</span></span></th></tr></thead><tbody><tr><td><span class="i18n"><span class="ko">샵백 ShopBack</span><span class="vi">샵백 ShopBack</span></span></td><td><span class="i18n"><span class="ko">ShopBack</span><span class="vi">ShopBack</span></span></td><td><span class="i18n"><span class="ko">5,000만+</span><span class="vi">50 triệu+</span></span></td><td class="new"><span class="i18n"><span class="ko">만 3세 이상</span><span class="vi">Từ 3 tuổi</span></span></td></tr><tr><td><span class="i18n"><span class="ko">스탬플리 — 혜택받는 경유 쇼핑</span><span class="vi">스탬플리</span></span></td><td><span class="i18n"><span class="ko">notiplus</span><span class="vi">notiplus</span></span></td><td><span class="i18n"><span class="ko">100만+</span><span class="vi">1 triệu+</span></span></td><td class="new"><span class="i18n"><span class="ko">만 3세 이상</span><span class="vi">Từ 3 tuổi</span></span></td></tr><tr><td><span class="i18n"><span class="ko">칩스 — 최저가 알림 · 경유 쇼핑으로 추가 적립</span><span class="vi">칩스</span></span></td><td><span class="i18n"><span class="ko">NBT Inc.</span><span class="vi">NBT Inc.</span></span></td><td><span class="i18n"><span class="ko">50만+</span><span class="vi">500 nghìn+</span></span></td><td class="new"><span class="i18n"><span class="ko">만 3세 이상</span><span class="vi">Từ 3 tuổi</span></span></td></tr><tr><td><span class="i18n"><span class="ko">참새마트 — 똑똑한 경유쇼핑</span><span class="vi">참새마트</span></span></td><td><span class="i18n"><span class="ko">(주)에이베러</span><span class="vi">A Better Co., Ltd.</span></span></td><td><span class="i18n"><span class="ko">10만+</span><span class="vi">100 nghìn+</span></span></td><td class="new"><span class="i18n"><span class="ko">만 3세 이상</span><span class="vi">Từ 3 tuổi</span></span></td></tr><tr><td><span class="i18n"><span class="ko">캐시나무 — 앱테크, 쇼핑 경유 플랫폼</span><span class="vi">캐시나무</span></span></td><td><span class="i18n"><span class="ko">캐시나무</span><span class="vi">캐시나무</span></span></td><td><span class="i18n"><span class="ko">1천+</span><span class="vi">1 nghìn+</span></span></td><td class="new"><span class="i18n"><span class="ko">만 3세 이상</span><span class="vi">Từ 3 tuổi</span></span></td></tr><tr><td><span class="i18n"><span class="ko">캐시큐브 — 돈버는 앱테크·쇼핑경유</span><span class="vi">캐시큐브</span></span></td><td><span class="i18n"><span class="ko">큐브샛</span><span class="vi">Cubesat</span></span></td><td><span class="i18n"><span class="ko">100+</span><span class="vi">100+</span></span></td><td class="new"><span class="i18n"><span class="ko">만 3세 이상</span><span class="vi">Từ 3 tuổi</span></span></td></tr><tr><td><span class="i18n"><span class="ko"><b>프라이스픽 (현재)</b></span><span class="vi"><b>PricePick (hiện tại)</b></span></span></td><td><span class="i18n"><span class="ko">pricepick</span><span class="vi">pricepick</span></span></td><td><span class="i18n"><span class="ko">10+</span><span class="vi">10+</span></span></td><td class="new"><span class="i18n"><span class="ko"><b>만 3세 이상</b></span><span class="vi"><b>Từ 3 tuổi</b></span></span></td></tr></tbody></table></div>
+<div class="note-box"><span class="i18n"><span class="ko">A안을 택하면 이 표에서 <b>프라이스픽만 18세 이상</b>이 됩니다. 그것이 등급을 지키기로 한 이유입니다.</span><span class="vi">Chọn phương án A thì trong bảng này <b>chỉ mình PricePick thành 18+</b>. Đó là lý do quyết định giữ nguyên mức độ tuổi.</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 그래서 지금 무엇을 하고 있습니까?</span><span class="vi">2. Vậy hiện đang làm gì?</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">앱에서 카지노 테마를 걷어낸다면 기존 룰렛 두 개는 어떻게 됩니까? 무엇을 바꿨습니까?</span><span class="vi">Nếu bỏ chủ đề casino trong app thì hai vòng quay hiện có sẽ thế nào? Đã đổi những gì?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>기존 「행운 룰렛」·「잭팟 룰렛」은 그대로 둡니다. 지우지도 숨기지도 않았습니다.</b> 대신 선물 상자 메뉴 두 개를 새로 만들었습니다.
+
+「매일 선물 상자 열기」가 행운 룰렛에, 「랜덤 선물 상자 열기」가 잭팟 룰렛에 대응합니다. 앱과 CMS 양쪽에 신설했습니다.
+
+화면은 이렇습니다. 상자가 하나 있고 조금씩 흔들립니다. 「선물 열기」를 누르면 펑 하고 열리면서 꽃가루가 날리고, 받은 선물이 뜹니다. <b>돌아가는 것도, 바늘도, 깜빡이는 전구도 없습니다.</b>
+
+<b>무엇이 들어 있는지 미리 보여주지 않습니다.</b> 안내는 한 줄뿐입니다 — 「이벤트티켓, 포인트, 등급티켓 등 다양한 선물이 쏟아집니다.」 룰렛처럼 칸마다 무엇이 걸리는지 늘어놓지 않습니다.
+
+<b>보상 구성과 값은 대응하는 룰렛과 똑같습니다.</b> 매일 선물 상자는 행운 룰렛 설정을, 랜덤 선물 상자는 잭팟 룰렛 설정을 그대로 읽습니다. 정책을 바꾸는 일이 아닙니다.
+
+CMS도 기존 룰렛 CMS 방식을 그대로 채택했습니다. 보상칸 6개 고정, 확률 합계 100% 검증, 기본값 복원, 실행 기록 표까지 같습니다.
+
+아래 주소에서 직접 눌러 보십시오. <b>지금은 초안이고 디자인은 별도로 진행됩니다.</b> 짜임과 흐름을 봐 주시면 됩니다.</span><span class="vi"><b>Hai vòng quay hiện có 「Vòng quay may mắn」·「Vòng quay Jackpot」 giữ nguyên. Không xóa, cũng không ẩn.</b> Thay vào đó đã làm mới hai menu hộp quà.
+
+「매일 선물 상자 열기」 (Mở hộp quà mỗi ngày) tương ứng với Vòng quay may mắn, 「랜덤 선물 상자 열기」 (Mở hộp quà ngẫu nhiên) tương ứng với Vòng quay Jackpot. Đã thêm mới ở cả app lẫn CMS.
+
+Màn hình như sau: có một hộp quà, hơi lắc lư. Bấm 「선물 열기」 (Mở quà) thì hộp bật mở, hoa giấy bay ra và phần quà nhận được hiện lên. <b>Không có gì quay, không kim chỉ, không đèn nhấp nháy.</b>
+
+<b>Không cho xem trước bên trong có gì.</b> Chỉ có một dòng hướng dẫn — "Vé sự kiện, điểm, vé hạng và nhiều phần quà khác đang chờ bạn." Không liệt kê từng ô trúng gì như vòng quay.
+
+<b>Cơ cấu thưởng và giá trị giống hệt vòng quay tương ứng.</b> Hộp quà mỗi ngày đọc thẳng cấu hình của Vòng quay may mắn, Hộp quà ngẫu nhiên đọc cấu hình của Vòng quay Jackpot. Không phải thay đổi chính sách.
+
+CMS cũng lấy nguyên cách làm của CMS vòng quay hiện có: cố định 6 ô thưởng, kiểm tra tổng xác suất 100%, khôi phục mặc định, bảng nhật ký — giống hệt.
+
+Anh bấm thử trực tiếp ở các địa chỉ bên dưới. <b>Hiện là bản nháp, phần thiết kế sẽ làm riêng.</b> Anh xem giúp cấu trúc và luồng là được.</span></span></div></div><div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">앱 화면(해시로 바로 열립니다): <a href="/interactive.html#pw-gb1">매일 선물 상자 열기</a> · <a href="/interactive.html#pw-gb2">랜덤 선물 상자 열기</a>. 가상 데이터 버전은 <a href="/interactive_sample.html#pw-gb1">interactive_sample.html</a>에 같이 넣었습니다.
+CMS 초안: <a href="/cms-storyboard/giftbox-settings.html">선물 상자 CMS 설정</a>. cms.html 의 룰렛 2종 화면(스타일·마크업·저장 로직)을 원본 그대로 떠 와서 이름과 id만 바꿨습니다. cms.html 자체는 다른 작업이 진행 중이라 아직 건드리지 않았고, 디자인 확정 후 합칩니다.
+기존 룰렛 코드는 한 줄도 고치지 않았습니다. 새 화면은 <code>gb-</code> 접두사만 쓰고, 하루 1회 판정도 룰렛의 서버 문서를 쓰지 않고 별도 키를 둬서 룰렛 상태가 바뀌지 않게 했습니다.
+보상 출처: 매일 ← <code>settings/roulette</code> · 랜덤 ← <code>settings/jackpot_roulette</code>. 보상칸 6개 고정과 확률 합계 100% 검증은 마스터 정책서 참여 2·3번 그대로입니다.</span><span class="vi">Màn hình app (mở thẳng bằng hash): <a href="/interactive.html#pw-gb1">Mở hộp quà mỗi ngày</a> · <a href="/interactive.html#pw-gb2">Mở hộp quà ngẫu nhiên</a>. Bản dữ liệu giả cũng đã thêm ở <a href="/interactive_sample.html#pw-gb1">interactive_sample.html</a>.
+Bản nháp CMS: <a href="/cms-storyboard/giftbox-settings.html">Cấu hình CMS hộp quà</a>. Đã sao nguyên style·markup·logic lưu của 2 màn vòng quay trong cms.html rồi chỉ đổi tên và id. Bản thân cms.html đang có việc khác nên chưa đụng, sẽ gộp sau khi chốt thiết kế.
+Mã của vòng quay cũ không sửa một dòng nào. Màn mới chỉ dùng tiền tố <code>gb-</code>, và phán định 1 lần/ngày cũng không dùng document phía server của vòng quay mà đặt khóa riêng để trạng thái vòng quay không bị đổi.
+Nguồn thưởng: hằng ngày ← <code>settings/roulette</code> · ngẫu nhiên ← <code>settings/jackpot_roulette</code>. Cố định 6 ô thưởng và kiểm tra tổng xác suất 100% giữ đúng mục Tham gia 2·3 của chính sách gốc.</span></span></div></div>
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">신설 메뉴 — 무엇에 대응하는가</span><span class="vi">Menu mới — tương ứng với cái gì</span></span></h3>
+<div class="tblwrap"><table class="tbl"><thead><tr><th><span class="i18n"><span class="ko">신설 메뉴</span><span class="vi">Menu mới</span></span></th><th><span class="i18n"><span class="ko">대응하는 기존 화면 (그대로 둠)</span><span class="vi">Màn cũ tương ứng (giữ nguyên)</span></span></th><th><span class="i18n"><span class="ko">참여 조건 · 보상</span><span class="vi">Điều kiện · phần thưởng</span></span></th></tr></thead><tbody><tr><td class="new"><span class="i18n"><span class="ko">매일 선물 상자 열기</span><span class="vi">Mở hộp quà mỗi ngày</span></span></td><td class="old"><span class="i18n"><span class="ko">매일 행운 룰렛</span><span class="vi">Vòng quay may mắn hằng ngày</span></span></td><td><span class="i18n"><span class="ko">무료 · 하루 1회 · 보상 구성 동일</span><span class="vi">Miễn phí · 1 lần/ngày · cơ cấu thưởng giống hệt</span></span></td></tr><tr><td class="new"><span class="i18n"><span class="ko">랜덤 선물 상자 열기</span><span class="vi">Mở hộp quà ngẫu nhiên</span></span></td><td class="old"><span class="i18n"><span class="ko">잭팟 룰렛</span><span class="vi">Vòng quay Jackpot</span></span></td><td><span class="i18n"><span class="ko">이벤트 티켓 1장 · 하루 10회 · 보상 구성 동일</span><span class="vi">1 vé sự kiện · 10 lần/ngày · cơ cấu thưởng giống hệt</span></span></td></tr></tbody></table></div>
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">화면에서 뺀 것과 넣은 것</span><span class="vi">Bỏ gì và thêm gì trên màn hình</span></span></h3>
+<div class="tblwrap"><table class="tbl"><thead><tr><th><span class="i18n"><span class="ko">요소</span><span class="vi">Yếu tố</span></span></th><th><span class="i18n"><span class="ko">기존 룰렛 화면</span><span class="vi">Màn vòng quay cũ</span></span></th><th><span class="i18n"><span class="ko">선물 상자 화면</span><span class="vi">Màn hộp quà</span></span></th></tr></thead><tbody><tr><td><span class="i18n"><span class="ko">중심 동작</span><span class="vi">Thao tác chính</span></span></td><td class="old"><span class="i18n"><span class="ko">원판이 여러 바퀴 회전</span><span class="vi">Bánh xe quay nhiều vòng</span></span></td><td class="new"><span class="i18n"><span class="ko">상자가 한 번 열림</span><span class="vi">Hộp mở một lần</span></span></td></tr><tr><td><span class="i18n"><span class="ko">바늘(포인터)</span><span class="vi">Kim chỉ</span></span></td><td class="old"><span class="i18n"><span class="ko">있음 — 멈춘 칸을 가리킴</span><span class="vi">Có — chỉ vào ô dừng</span></span></td><td class="new"><span class="i18n"><span class="ko">없음</span><span class="vi">Không có</span></span></td></tr><tr><td><span class="i18n"><span class="ko">테두리 점멸 전구</span><span class="vi">Đèn nhấp nháy ở viền</span></span></td><td class="old"><span class="i18n"><span class="ko">있음</span><span class="vi">Có</span></span></td><td class="new"><span class="i18n"><span class="ko">없음</span><span class="vi">Không có</span></span></td></tr><tr><td><span class="i18n"><span class="ko">보상 목록·확률표</span><span class="vi">Danh sách thưởng·bảng tỷ lệ</span></span></td><td class="old"><span class="i18n"><span class="ko">칸마다 무엇이 걸리는지 표시</span><span class="vi">Hiện từng ô trúng gì</span></span></td><td class="new"><span class="i18n"><span class="ko">보여주지 않음 — 안내 한 줄만</span><span class="vi">Không hiện — chỉ một dòng hướng dẫn</span></span></td></tr><tr><td><span class="i18n"><span class="ko">열고 난 뒤</span><span class="vi">Sau khi mở</span></span></td><td class="old"><span class="i18n"><span class="ko">결과 카드</span><span class="vi">Thẻ kết quả</span></span></td><td class="new"><span class="i18n"><span class="ko">꽃가루 + 받은 선물 표기</span><span class="vi">Hoa giấy + hiện phần quà nhận được</span></span></td></tr><tr><td><span class="i18n"><span class="ko">보상 구성·확률·한도</span><span class="vi">Cơ cấu·xác suất·hạn mức</span></span></td><td class="old"><span class="i18n"><span class="ko">지금 정책</span><span class="vi">Chính sách hiện tại</span></span></td><td class="new"><span class="i18n"><span class="ko"><b>그대로</b></span><span class="vi"><b>Giữ nguyên</b></span></span></td></tr></tbody></table></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. 재등록은 언제, 어떻게 합니까?</span><span class="vi">3. Đăng ký lại khi nào và như thế nào?</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">3</span><div class="qtxt"><span class="i18n"><span class="ko">콘텐츠 등급 설문지도 다시 내야 합니다. 재등록은 언제 합니까? 그때 기존 룰렛은 어떻게 됩니까?</span><span class="vi">Bảng câu hỏi Content Rating cũng phải nộp lại. Khi nào đăng ký lại? Lúc đó hai vòng quay cũ sẽ thế nào?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확정 대기</span><span class="vi">Chờ chốt</span></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>아직 정해지지 않았습니다. 정해지면 알려 드리겠습니다.</b>
+
+재등록 시점과, 재등록할 때 기존 룰렛 두 개를 어떻게 할지는 이동영 부장과 상의한 뒤 확정합니다. 지금은 선물 상자 초안을 만들어 두는 단계입니다.
+
+다만 순서 하나는 미리 말씀드립니다. <b>콘텐츠 등급 설문지는 화면이 실제로 바뀐 빌드를 올린 뒤에 냅니다.</b> 화면이 아직 그대로인 상태에서 신고만 고치면, 이번에 거절당한 것과 똑같이 신고와 앱이 안 맞는 상태가 됩니다. 방향만 반대일 뿐 같은 사유로 다시 걸립니다.
+
+그리고 <b>Kelvin이 확인해 주셔야 할 것이 세 가지</b> 있습니다. 아래 표에 적어 두었습니다. Play Console 안의 값이라 코드로는 볼 수 없습니다.
+
+확정되기 전까지 앱 빌드는 지금 상태로 두시면 됩니다. 선물 상자는 코드에 들어가 있지만 기존 룰렛과 나란히 있는 상태이고, 어느 쪽을 내보낼지는 확정 후에 정합니다.</span><span class="vi"><b>Chưa chốt. Chốt xong sẽ báo lại.</b>
+
+Thời điểm đăng ký lại, và lúc đó xử lý hai vòng quay cũ ra sao, sẽ chốt sau khi trao đổi với Trưởng phòng Lee Dong-young. Hiện đang ở bước dựng bản nháp hộp quà.
+
+Nhưng có một điều về thứ tự xin nói trước. <b>Bảng câu hỏi Content Rating chỉ nộp sau khi đã lên build có màn hình thật sự thay đổi.</b> Nếu màn hình còn nguyên mà chỉ sửa khai báo thì lại rơi vào đúng tình trạng vừa bị từ chối — khai một đằng app một nẻo, chỉ ngược chiều thôi.
+
+Và <b>có ba thứ cần Kelvin xác nhận giúp</b>, đã ghi ở bảng dưới. Đó là giá trị nằm trong Play Console nên không xem được từ code.
+
+Trước khi chốt thì cứ để build app như hiện tại. Hộp quà đã có trong code nhưng đang nằm song song với vòng quay cũ, phát hành bên nào thì quyết sau khi chốt.</span></span></div></div><div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">설문 위치: Play Console → 정책 → 앱 콘텐츠 → 「콘텐츠 등급」 및 「타겟층 및 콘텐츠」.
+타겟 연령은 지금대로 두는 것이 목표입니다 — 만 3세 이상을 지키는 것이 이번 작업의 목적입니다. 대신 가족 정책이 계속 적용되므로 앱과 스토어 메타데이터 양쪽에서 카지노 계열 낱말이 남지 않아야 합니다.
+스토어 스크린샷 중 룰렛 화면이 찍힌 장(구글 2번, 애플 raw-02·raw-03)은 그림 안에 글자가 박혀 있어 코드로 고칠 수 없습니다. 재등록 방향이 확정되면 다시 뽑아야 합니다.
+베트남어 문구는 개발자용이라 심사 대상이 아닙니다 — 심사는 한국어와 스토어 등재 문구만 봅니다.</span><span class="vi">Vị trí bảng câu hỏi: Play Console → Chính sách → Nội dung ứng dụng → "Content rating" và "Target audience and content".
+Mục tiêu là giữ nguyên target audience như hiện tại — giữ mức "Từ 3 tuổi" chính là mục đích của việc này. Đổi lại, Families Policy vẫn áp dụng nên trong app và metadata trên store không được sót từ nào thuộc chủ đề casino.
+Các ảnh chụp màn hình có vòng quay (ảnh số 2 của Google, raw-02·raw-03 của Apple) có chữ in thẳng vào hình nên không sửa bằng code được. Chốt hướng đăng ký lại rồi thì phải chụp lại.
+Chữ tiếng Việt là để anh em dev đọc nên không thuộc phạm vi xét duyệt — xét duyệt chỉ nhìn tiếng Hàn và chữ trên thông tin đăng ký store.</span></span></div></div>
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">Kelvin이 확인해 주실 것 — Play Console 안의 값</span><span class="vi">Nhờ Kelvin xác nhận — giá trị nằm trong Play Console</span></span></h3>
+<div class="tblwrap"><table class="tbl"><thead><tr><th><span class="i18n"><span class="ko">항목</span><span class="vi">Mục</span></span></th><th><span class="i18n"><span class="ko">무엇을 봅니까</span><span class="vi">Xem cái gì</span></span></th><th><span class="i18n"><span class="ko">왜 필요합니까</span><span class="vi">Vì sao cần</span></span></th></tr></thead><tbody><tr><td><span class="i18n"><span class="ko">콘텐츠 등급 설문 현재 답안</span><span class="vi">Đáp án hiện tại của Content Rating</span></span></td><td><span class="i18n"><span class="ko">도박 관련 항목을 무엇으로 답했는지</span><span class="vi">Các mục về cờ bạc đang trả lời thế nào</span></span></td><td><span class="i18n"><span class="ko">재작성할 때 어디를 고치는지 알아야 합니다</span><span class="vi">Để biết phải sửa chỗ nào khi làm lại</span></span></td></tr><tr><td><span class="i18n"><span class="ko">타겟층 현재 연령 설정</span><span class="vi">Thiết lập độ tuổi hiện tại</span></span></td><td><span class="i18n"><span class="ko">13세 미만이 포함돼 있는지</span><span class="vi">Có bao gồm nhóm dưới 13 tuổi không</span></span></td><td><span class="i18n"><span class="ko">가족 정책이 걸린 원인입니다</span><span class="vi">Đây là nguyên nhân bị áp Families Policy</span></span></td></tr><tr><td><span class="i18n"><span class="ko">빌드의 결제 모듈 유무</span><span class="vi">Build có module thanh toán không</span></span></td><td><span class="i18n"><span class="ko">앱 안에서 돈 받고 파는 상품이 있는지</span><span class="vi">Trong app có bán sản phẩm lấy tiền không</span></span></td><td><span class="i18n"><span class="ko">설문의 인앱 구매 항목 답이 「없음」인지 확인</span><span class="vi">Xác nhận mục mua hàng trong app trả lời "Không"</span></span></td></tr></tbody></table></div>
+<div class="note-box"><span class="i18n"><span class="ko"><b>아직 정해지지 않은 것을 그대로 적었습니다.</b> 재등록 시점과 기존 룰렛 처리 방향은 확정되는 대로 다시 알려 드리겠습니다. 그때까지 Kelvin은 위 세 가지 확인만 부탁드립니다.</span><span class="vi"><b>Những gì chưa chốt thì ghi đúng là chưa chốt.</b> Thời điểm đăng ký lại và hướng xử lý vòng quay cũ, chốt xong sẽ báo lại. Từ giờ đến lúc đó nhờ Kelvin xác nhận giúp ba mục ở trên.</span></span></div>
+<div class="foot"><span class="i18n"><span class="ko">PricePick · App 답변 · Kelvin · 2026-08-24 · 확정 2 / 확인 필요 1</span><span class="vi">PricePick · Trả lời App · Kelvin · 24-08-2026 · Đã chốt 2 / Cần xác nhận 1</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
