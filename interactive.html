@@ -16163,6 +16163,20 @@ window.addEventListener('DOMContentLoaded', function() {
   bindFortuneRoulette();
   bindJackpotRoulette();
   bindGiftBoxes();
+  /* pp-deeplink-hash — 주소 뒤에 #pw-gb1 처럼 붙이면 그 화면으로 바로 연다.
+     런처·문서에서 특정 화면을 바로 가리키려고 넣었다(없으면 무시). */
+  try {
+    var _openHash = function () {
+      var h = (location.hash || '').replace('#', '');
+      if (h && document.getElementById(h)) showScreen(h, false);
+    };
+    /* 첫 진입은 부팅(스플래시 → 첫 화면)이 끝난 뒤에 열어야 덮이지 않는다 */
+    window.addEventListener('load', function () { setTimeout(_openHash, 60); });
+    window.addEventListener('hashchange', function () {
+      var h = (location.hash || '').replace('#', '');
+      if (h && document.getElementById(h)) showScreen(h, false);
+    });
+  } catch (e) {}
   bindLoginScreen();
   bindSocialLogin();
   bindExistingAccountScreen();
