@@ -1,0 +1,1350 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CMS 초안 · 선물 상자 메뉴 2종 · PricePick</title>
+<style>
+:root {
+  --main:#845EEE;
+  --main-dark:#6C4AB6;
+  --main-hover:#6C4AB6;
+  --main-soft:rgba(132,94,238,.08);
+  --main-line:rgba(132,94,238,.22);
+  --amber:#D97706;
+  --amber-soft:rgba(217,119,6,.1);
+
+  --bg:#F4F1FB;
+  --surface:#FFFFFF;
+  --surface-2:#F8F7FC;
+  --surface-3:#EEE9F8;
+  --border:#E4DFF0;
+  --border-soft:rgba(0,0,0,.05);
+
+  --text:#1A1130;
+  --text-2:#5A5370;
+  --text-3:#9B93B0;
+
+  --success:#16A34A;
+  --success-soft:rgba(22,163,74,.1);
+  --danger:#DC2626;
+  --danger-soft:rgba(220,38,38,.1);
+  --warning:#D97706;
+  --warning-soft:rgba(217,119,6,.1);
+  --info:#2563EB;
+  --info-soft:rgba(37,99,235,.1);
+
+  --bronze:#A0622A;
+  --silver:#7A7A8C;
+  --gold:#A07800;
+
+  --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:18px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:0 4px 14px rgba(0,0,0,.1);
+  --shadow-lg:0 12px 36px rgba(0,0,0,.14);
+
+  --sidebar-w:240px;
+  --font:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
+
+/* ── 로그인 ── */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 60% 30%,rgba(132,94,238,.1),transparent 60%),#EDE8F8;}
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px;width:400px;box-shadow:var(--shadow-lg);}
+.login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+.login-logo-mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--main),#9B78FF);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(132,94,238,.4);}
+.login-logo-text{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-.3px;}
+.login-logo-sub{font-size:11px;color:var(--text-3);margin-top:2px;}
+.login-title{font-size:22px;font-weight:800;margin-bottom:6px;letter-spacing:-.4px;}
+.login-sub{font-size:13px;color:var(--text-2);margin-bottom:24px;}
+.role-select-label{font-size:11px;font-weight:700;color:var(--text-2);margin-bottom:8px;display:block;text-transform:uppercase;letter-spacing:.5px;}
+.role-btns{display:flex;gap:8px;margin-bottom:20px;}
+.role-btn{flex:1;border:1.5px solid var(--border);background:white;
+  border-radius:var(--r-md);padding:9px 6px;font-size:11px;font-weight:600;
+  color:var(--text-2);cursor:pointer;font-family:var(--font);text-align:center;transition:all .15s;}
+.role-btn span{display:block;font-size:9px;font-weight:500;margin-top:2px;opacity:.6;}
+.role-btn.active{border-color:var(--main);background:var(--main-soft);color:var(--main-hover);}
+.login-input{width:100%;background:var(--surface-2);border:1.5px solid var(--border);border-radius:var(--r-md);
+  padding:11px 14px;color:var(--text);font-size:13px;outline:none;margin-bottom:12px;font-family:var(--font);transition:border-color .15s;}
+.login-input:focus{border-color:var(--main);}
+.login-btn{width:100%;background:var(--main);color:white;border:none;border-radius:var(--r-md);
+  padding:13px;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;font-family:var(--font);margin-top:4px;}
+.login-btn:hover{background:var(--main-dark);}
+
+/* ── 레이아웃 ── */
+.app{display:flex;min-height:100vh;}
+
+/* ── 사이드바 (포인츠허브 스타일) ── */
+:root{--sb-active:#6366f1;--sb-active-dk:#4f46e5;--sb-hover:#F5F3FF;--sb-text:#374151;
+  --sb-sub:#9CA3AF;--sb-bdr:#E5E7EB;--sb-mini-w:60px;}
+
+.sidebar{width:var(--sidebar-w);background:#ffffff;border-right:1.5px solid var(--sb-bdr);
+  display:flex;flex-direction:column;position:fixed;height:100vh;z-index:300;
+  overflow:hidden;transition:width .22s cubic-bezier(.4,0,.2,1);}
+.sidebar.sb-mini{width:var(--sb-mini-w);}
+.sidebar.sb-mini+.main{margin-left:var(--sb-mini-w)!important;}
+
+/* 접기 토글 — position:fixed로 overflow:hidden 클리핑 우회 */
+.sb-toggle{position:fixed;top:50vh;left:calc(var(--sidebar-w) - 14px);transform:translateY(-50%);
+  width:28px;height:28px;border-radius:50%;background:#fff;border:1.5px solid #E5E7EB;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:310;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);color:#9CA3AF;padding:0;font-family:var(--font);
+  transition:left .22s cubic-bezier(.4,0,.2,1),border-color .15s,color .15s;}
+.sidebar.sb-mini .sb-toggle{left:calc(var(--sb-mini-w) - 14px);}
+.sb-toggle:hover{border-color:var(--sb-active);color:var(--sb-active);}
+.sb-toggle svg{width:12px;height:12px;transition:transform .22s;}
+.sidebar.sb-mini .sb-toggle svg{transform:rotate(180deg);}
+
+/* 로고 */
+.sb-logo{padding:14px 16px 12px;border-bottom:1.5px solid var(--sb-bdr);
+  display:flex;align-items:center;gap:10px;flex-shrink:0;min-height:58px;overflow:hidden;}
+.sb-logo-mark{width:34px;height:34px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,#845EEE,#6366f1);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 3px 10px rgba(99,102,241,.3);}
+.sb-logo-txt{overflow:hidden;white-space:nowrap;transition:opacity .15s,width .2s;}
+.sb-logo-name{font-size:15px;font-weight:800;color:#111827;letter-spacing:-.3px;}
+.sb-logo-sub{font-size:10px;color:#9CA3AF;margin-top:2px;}
+.sidebar.sb-mini .sb-logo-txt{opacity:0;width:0;}
+
+/* 네비 스크롤 영역 */
+.sb-nav{flex:1;overflow-y:auto;overflow-x:hidden;padding:8px 0 16px;}
+.sb-nav::-webkit-scrollbar{width:3px;}
+.sb-nav::-webkit-scrollbar-thumb{background:#E5E7EB;border-radius:2px;}
+
+/* 그룹 */
+.sb-grp{margin-bottom:2px;}
+.sb-grp-hd{display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px 4px;cursor:pointer;user-select:none;overflow:hidden;
+  transition:opacity .15s;white-space:nowrap;}
+.sb-grp-hd:hover{opacity:.7;}
+.sb-grp-lbl{font-size:10px;font-weight:700;color:#9CA3AF;letter-spacing:.9px;text-transform:uppercase;}
+.sb-chev{flex-shrink:0;color:#D1D5DB;transition:transform .2s;}
+.sb-chev svg{width:13px;height:13px;}
+.sb-grp.collapsed .sb-chev{transform:rotate(-90deg);}
+.sb-grp-items{overflow:hidden;max-height:600px;opacity:1;
+  transition:max-height .25s ease,opacity .2s ease;}
+.sb-grp.collapsed .sb-grp-items{max-height:0;opacity:0;}
+.sidebar.sb-mini .sb-grp-hd{display:none;}
+.sidebar.sb-mini .sb-grp-items{max-height:600px!important;opacity:1!important;}
+/* 구분선 (mini 모드에서 그룹 경계) */
+.sidebar.sb-mini .sb-grp{border-bottom:1px solid #F3F4F6;padding-bottom:2px;margin-bottom:2px;}
+
+/* 메뉴 항목 */
+.sb-item{display:flex;align-items:center;gap:10px;padding:8px 12px 8px 18px;
+  color:#374151;cursor:pointer;font-size:13px;font-weight:500;
+  transition:all .12s;border:none;background:none;width:100%;
+  text-align:left;font-family:var(--font);position:relative;white-space:nowrap;}
+.sb-item:hover{background:var(--sb-hover);color:var(--sb-active);}
+.sb-item.active{background:var(--sb-active);color:#ffffff;font-weight:600;}
+.sb-item.active:hover{background:var(--sb-active-dk);}
+.sb-item-ico{width:18px;height:18px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;}
+.sb-item-ico svg{width:18px;height:18px;}
+.sb-item.active .sb-item-ico svg{stroke:rgba(255,255,255,.9);}
+.sb-item-lbl{flex:1;overflow:hidden;}
+.sb-item-badge{margin-left:auto;background:#EF4444;color:white;font-size:10px;font-weight:700;
+  border-radius:10px;padding:1px 7px;min-width:18px;text-align:center;flex-shrink:0;}
+.sb-item.active .sb-item-badge{background:rgba(255,255,255,.25);}
+/* 메뉴 상태 태그 (확인중/확정/숨김) — 운영자가 클릭해서 전환 */
+.sb-status-tag{margin-left:auto;flex-shrink:0;font-size:10px;font-weight:700;
+  border-radius:10px;padding:2px 8px;cursor:pointer;white-space:nowrap;
+  transition:filter .12s;}
+.sb-status-tag:hover{filter:brightness(0.96);}
+.sb-status-tag.confirmed{background:#DCFCE7;color:#15803D;}
+.sb-status-tag.checking{background:#FEF3C7;color:#92400E;}
+.sb-status-tag.st-hidden{background:#E5E7EB;color:#6B7280;}
+.sb-item.active .sb-status-tag{box-shadow:0 0 0 1px rgba(255,255,255,.5) inset;}
+.sidebar.sb-mini .sb-status-tag{display:none;}
+/* 숨김 상태 — 아이콘·라벨만 흐리게, 메뉴 진입 차단(태그는 계속 클릭 가능) */
+.sb-item.sb-item-off{pointer-events:none;}
+.sb-item.sb-item-off .sb-item-ico,
+.sb-item.sb-item-off .sb-item-lbl,
+.sb-item.sb-item-off .sb-item-badge{opacity:.38;}
+.sb-item.sb-item-off .sb-status-tag{pointer-events:auto;}
+
+/* mini 모드 항목 */
+.sidebar.sb-mini .sb-item{padding:10px;justify-content:center;}
+.sidebar.sb-mini .sb-item-lbl{display:none;}
+.sidebar.sb-mini .sb-item-badge{display:none;}
+.sidebar.sb-mini .sb-item-ico{width:20px;height:20px;}
+.sidebar.sb-mini .sb-item-ico svg{width:20px;height:20px;}
+/* tooltip */
+.sidebar.sb-mini .sb-item::after{content:attr(data-label);position:absolute;
+  left:calc(100% + 10px);top:50%;transform:translateY(-50%);
+  background:#1F2937;color:#fff;padding:5px 10px;border-radius:6px;
+  font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;
+  transition:opacity .15s;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.sidebar.sb-mini .sb-item:hover::after{opacity:1;}
+
+/* 하단 사용자 영역 */
+.sb-footer{padding:12px 14px;border-top:1.5px solid var(--sb-bdr);flex-shrink:0;overflow:hidden;}
+.sb-user{display:flex;align-items:center;gap:10px;margin-bottom:10px;overflow:hidden;}
+.sb-avatar{width:32px;height:32px;border-radius:50%;background:var(--sb-active);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:white;flex-shrink:0;}
+.sb-user-info{overflow:hidden;white-space:nowrap;}
+.sb-user-name{font-size:12px;font-weight:700;color:#111827;}
+.sb-user-email{font-size:10px;color:#9CA3AF;margin-top:1px;}
+.sb-footer-btns{display:flex;gap:6px;}
+.sb-fbtn{flex:1;background:transparent;color:#6B7280;border:1px solid #E5E7EB;
+  border-radius:8px;padding:7px 8px;font-size:11px;cursor:pointer;
+  font-family:var(--font);font-weight:600;transition:all .15s;
+  display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;}
+.sb-fbtn:hover{color:#111827;border-color:#9CA3AF;}
+.sb-fbtn.sb-fbtn-del:hover{color:#EF4444;border-color:#EF4444;background:#FEF2F2;}
+.sb-fbtn svg{width:13px;height:13px;flex-shrink:0;}
+/* mini 모드 footer */
+.sidebar.sb-mini .sb-user{justify-content:center;margin-bottom:8px;}
+.sidebar.sb-mini .sb-user-info{display:none;}
+.sidebar.sb-mini .sb-footer{padding:10px 8px;}
+.sidebar.sb-mini .sb-footer-btns{flex-direction:column;}
+.sidebar.sb-mini .sb-fbtn span{display:none;}
+
+/* ── 메인 ── */
+.main{margin-left:var(--sidebar-w);flex:1;min-width:0;transition:margin-left .22s cubic-bezier(.4,0,.2,1);}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;height:58px;
+  display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+.topbar-left{display:flex;align-items:center;gap:10px;}
+.topbar-bc{font-size:12px;color:var(--text-3);}
+.topbar-bc svg{width:12px;height:12px;vertical-align:middle;margin:0 2px;}
+.topbar-title{font-size:15px;font-weight:700;letter-spacing:-.3px;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.topbar-date{font-size:12px;color:var(--text-2);font-weight:500;font-variant-numeric:tabular-nums;}
+.topbar-icon{width:34px;height:34px;border-radius:var(--r-md);background:var(--surface-2);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;color:var(--text-2);cursor:pointer;
+  transition:all .15s;position:relative;}
+.topbar-icon:hover{color:var(--text);border-color:var(--text-3);}
+.topbar-icon svg{width:16px;height:16px;}
+.topbar-icon .dot{position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--danger);border:2px solid var(--surface);}
+
+#ip-lang-toggle{display:inline-flex;align-items:center;gap:0;background:#ffffff;border:1px solid #E3E0EC;border-radius:999px;padding:3px;cursor:pointer;font-family:inherit;box-shadow:0 2px 10px rgba(90,60,150,0.12);}
+#ip-lang-toggle span{font-size:12px;font-weight:700;letter-spacing:.4px;color:#9890ad;padding:3px 12px;border-radius:999px;line-height:1.4;transition:background .15s,color .15s;}
+#ip-lang-toggle span.on{background:#845EEE;color:#fff;}
+#ip-lang-toggle:hover{border-color:#845EEE;}
+
+.role-chip{background:var(--main-soft);color:var(--main-hover);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;
+  display:inline-flex;align-items:center;gap:6px;border:1px solid var(--main-line);}
+.role-chip::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--main);}
+
+/* ── 섹션 ── */
+.section{display:none;padding:26px;}
+.section.active{display:block;animation:fadeIn .2s ease-out;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── 카드 ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:16px;}
+.card-header{padding:15px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.card-title{font-size:14px;font-weight:700;}
+.card-sub{font-size:11px;color:var(--text-2);margin-top:2px;}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+
+/* ── 통계 카드 ── */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 22px;
+  position:relative;overflow:hidden;transition:all .2s;}
+.stat-card:hover{border-color:var(--text-3);transform:translateY(-1px);box-shadow:var(--shadow-md);}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.stat-card.purple::before{background:linear-gradient(90deg,var(--main),var(--main-hover));}
+.stat-card.green::before{background:linear-gradient(90deg,var(--success),#06B6D4);}
+.stat-card.amber::before{background:linear-gradient(90deg,var(--amber),#FBBF24);}
+.stat-card.red::before{background:linear-gradient(90deg,var(--danger),#F97316);}
+.stat-card.blue::before{background:linear-gradient(90deg,var(--info),#7C3AED);}
+.stat-label{font-size:11px;color:var(--text-2);margin-bottom:10px;font-weight:600;letter-spacing:-.1px;}
+.stat-value{font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1.1;font-variant-numeric:tabular-nums;}
+.stat-change{font-size:11px;color:var(--success);margin-top:6px;font-weight:600;}
+.stat-change.down{color:var(--danger);}
+.stat-change.neutral{color:var(--text-2);}
+
+/* ── 테이블 ── */
+table{width:100%;border-collapse:collapse;}
+th{text-align:center;padding:10px 18px;font-size:11px;color:var(--text-2);font-weight:600;
+  text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border);
+  background:var(--surface-2);white-space:nowrap;position:relative;}
+th:not(:last-child)::after{content:"";position:absolute;right:0;top:30%;height:40%;width:1px;background:rgba(0,0,0,0.13);}
+td{padding:12px 18px;font-size:13px;border-bottom:1px solid var(--border);white-space:nowrap;font-variant-numeric:tabular-nums;text-align:center!important;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--surface-2);}
+
+/* ── 배지 ── */
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;}
+.badge-purple{background:var(--main-soft);color:var(--main-hover);}
+.badge-green{background:var(--success-soft);color:var(--success);}
+.badge-red{background:var(--danger-soft);color:var(--danger);}
+.badge-amber{background:var(--amber-soft);color:var(--amber);}
+.badge-gray{background:rgba(155,147,176,.12);color:var(--text-2);}
+.badge-blue{background:var(--info-soft);color:var(--info);}
+
+.role-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;}
+.role-tag.superadmin{background:var(--main-soft);color:var(--main-hover);border:1px solid var(--main-line);}
+.role-tag.operator{background:var(--success-soft);color:var(--success);}
+.role-tag.cs{background:var(--info-soft);color:var(--info);}
+
+.tk-bronze{background:rgba(205,127,50,.15);color:var(--bronze);border:1px solid rgba(205,127,50,.3);font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;display:inline-flex;align-items:center;gap:3px;}
+.tk-silver{background:rgba(192,192,192,.15);color:var(--silver);border:1px solid rgba(192,192,192,.25);font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;display:inline-flex;align-items:center;gap:3px;}
+.tk-gold{background:rgba(255,215,0,.15);color:var(--gold);border:1px solid rgba(255,215,0,.3);font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;display:inline-flex;align-items:center;gap:3px;}
+.tk-event{background:rgba(168,85,247,.15);color:#c084fc;border:1px solid rgba(168,85,247,.3);font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;display:inline-flex;align-items:center;gap:3px;}
+
+/* ── 버튼 ── */
+.btn{padding:7px 14px;border-radius:var(--r-md);font-size:12px;font-weight:600;cursor:pointer;border:none;
+  transition:all .15s;font-family:var(--font);white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:5px;}
+.btn-primary{background:var(--main);color:white;}
+.btn-primary:hover{background:var(--main-dark);}
+.btn-ghost{background:transparent;color:var(--text-2);border:1px solid var(--border);}
+.btn-ghost:hover{color:var(--text);border-color:var(--text-2);}
+.btn-danger{background:var(--danger-soft);color:var(--danger);}
+.btn-danger:hover{background:rgba(239,68,68,.25);}
+.btn-success{background:var(--success-soft);color:var(--success);}
+.btn-warning{background:var(--amber-soft);color:var(--amber);}
+.btn-sm{padding:5px 10px;font-size:11px;border-radius:var(--r-sm);}
+.btn-disabled{opacity:.3;cursor:not-allowed;pointer-events:none;}
+
+/* ── 툴바/필터 ── */
+.toolbar{display:flex;gap:10px;margin-bottom:16px;align-items:center;flex-wrap:wrap;}
+.search-box{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:8px 14px;color:var(--text);font-size:13px;outline:none;font-family:var(--font);min-width:200px;transition:border-color .15s;}
+.search-box:focus{border-color:var(--main);}
+.search-box::placeholder{color:var(--text-3);}
+.filter-sel{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:8px 12px;color:var(--text-2);font-size:13px;outline:none;cursor:pointer;font-family:var(--font);}
+
+/* ── 정보 박스 ── */
+.info-box{background:var(--main-soft);border:1px solid var(--main-line);border-radius:var(--r-md);
+  padding:12px 16px;font-size:12px;color:var(--text-2);margin-bottom:14px;line-height:1.6;}
+.info-box strong{color:var(--main-hover);}
+.warn-box{background:var(--danger-soft);border:1px solid rgba(239,68,68,.28);border-radius:var(--r-md);
+  padding:12px 16px;font-size:12px;color:var(--text-2);margin-bottom:14px;line-height:1.6;}
+.warn-box strong{color:var(--danger);}
+.amber-box{background:var(--amber-soft);border:1px solid rgba(245,158,11,.25);border-radius:var(--r-md);
+  padding:12px 16px;font-size:12px;color:var(--text-2);margin-bottom:14px;line-height:1.6;}
+.amber-box strong{color:var(--amber);}
+
+.data-source-bar{display:flex;flex-wrap:wrap;gap:8px;padding:11px 16px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:14px;align-items:center;font-size:12px;}
+.ds-label{color:var(--text-3);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.5px;margin-right:4px;}
+.ds-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid;}
+.ds-tag::before{content:'';width:6px;height:6px;border-radius:50%;}
+.ds-tag.ours{color:var(--success);border-color:rgba(16,185,129,.3);background:var(--success-soft);}
+.ds-tag.ours::before{background:var(--success);}
+.ds-tag.coupang{color:var(--amber);border-color:rgba(245,158,11,.3);background:var(--amber-soft);}
+.ds-tag.coupang::before{background:var(--amber);}
+.ds-tag.calc{color:var(--info);border-color:rgba(59,130,246,.3);background:var(--info-soft);}
+.ds-tag.calc::before{background:var(--info);}
+.ds-tag.policy{color:var(--main-hover);border-color:var(--main-line);background:var(--main-soft);}
+.ds-tag.policy::before{background:var(--main);}
+
+/* ── 차트 바 ── */
+.chart-bar-wrap{display:flex;align-items:flex-end;gap:8px;height:120px;padding:4px 0 0;}
+.chart-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;height:100%;justify-content:flex-end;}
+.chart-bar{width:100%;border-radius:5px 5px 0 0;background:linear-gradient(180deg,#845EEE,#6C4AB6);
+  transition:all .2s;cursor:pointer;min-height:5px;}
+.chart-bar:hover{filter:brightness(1.2);}
+.chart-bar.today{background:linear-gradient(180deg,var(--amber),#D97706);box-shadow:0 0 14px rgba(245,158,11,.35);}
+.chart-value{font-size:10px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;}
+.chart-label{font-size:10px;color:var(--text-2);}
+
+/* ── 스케줄러 ── */
+.scheduler-item{padding:13px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.scheduler-item:last-child{border-bottom:none;}
+.scheduler-info{display:flex;align-items:center;gap:12px;}
+.scheduler-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.scheduler-dot.running{background:var(--success);box-shadow:0 0 5px rgba(22,163,74,.4);animation:pulse 1.5s infinite;}
+.scheduler-dot.stopped{background:var(--danger);}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.scheduler-name{font-size:13px;font-weight:600;}
+.scheduler-desc{font-size:11px;color:var(--text-2);margin-top:1px;}
+.scheduler-stat{text-align:right;}
+.scheduler-last{font-size:11px;color:var(--text-2);}
+.scheduler-next{font-size:12px;font-weight:600;margin-top:2px;}
+
+/* ── 배너 ── */
+.banner-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px;}
+.banner-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;}
+.banner-preview{height:72px;display:flex;align-items:center;padding:0 18px;font-size:13px;font-weight:700;color:white;}
+.banner-info{padding:12px 14px;}
+.banner-name{font-size:13px;font-weight:600;margin-bottom:4px;}
+.banner-meta{font-size:11px;color:var(--text-2);}
+.banner-actions{display:flex;gap:6px;margin-top:10px;}
+
+/* ── 이벤트 카드 ── */
+.event-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);padding:16px;margin-bottom:12px;}
+.event-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.event-title{font-size:14px;font-weight:700;}
+.event-period{font-size:11px;color:var(--text-2);margin-bottom:5px;}
+.event-desc{font-size:12px;color:var(--text-2);line-height:1.6;}
+.event-actions{display:flex;gap:8px;margin-top:10px;}
+
+/* ── 정책 ── */
+.policy-item{padding:14px 18px;border-bottom:1px solid var(--border);}
+.policy-item:last-child{border-bottom:none;}
+.policy-label{font-size:11px;font-weight:700;color:var(--text-2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px;}
+.policy-value{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;}
+.policy-desc{font-size:11px;color:var(--text-2);margin-top:3px;}
+
+/* ── 모달 ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,17,48,.35);z-index:200;
+  align-items:center;justify-content:center;backdrop-filter:blur(2px);}
+.modal-overlay.open{display:flex;animation:overlayIn .18s ease-out;}
+/* ── 모달 오버레이 공통(주간 이벤트 추첨 관리 등 인라인으로 만들어진 모달용) ──
+   .modal-overlay를 쓰는 모달들과 똑같이 브라우저 화면 기준 가로·세로 정중앙에 띄운다.
+   모달마다 margin/max-height를 따로 박지 않고 여기 한 곳에서만 관리한다.
+   화면보다 길어지면 카드가 잘리지 않고 카드 안에서만 스크롤된다. */
+.pp-modal-ov{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.45);
+  align-items:center;justify-content:center;overflow:auto;padding:12px;}
+.pp-modal-ov.open{display:flex;}
+.pp-modal-ov > .card{width:100%;margin:auto;max-height:calc(100vh - 24px);overflow:auto;}
+@keyframes overlayIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);
+  width:500px;max-width:95vw;max-height:88vh;overflow-y:auto;box-shadow:var(--shadow-lg);
+  animation:modalIn .22s cubic-bezier(.22,1,.36,1);}
+@keyframes modalIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.modal-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;
+  justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:1;}
+.modal-title{font-size:15px;font-weight:700;letter-spacing:-.2px;}
+.modal-close{cursor:pointer;background:transparent;border:none;color:var(--text-2);
+  width:30px;height:30px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.modal-close:hover{color:var(--text);background:var(--surface-2);}
+.modal-body{padding:20px 22px;}
+.modal-footer{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;}
+.push-preview{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px 16px;box-shadow:var(--shadow-md);max-width:360px;margin:0 auto;}
+.push-preview-app{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.push-preview-icon{width:20px;height:20px;border-radius:6px;background:var(--main);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.push-preview-appname{font-size:12px;font-weight:700;color:var(--text-2);text-transform:uppercase;letter-spacing:.3px;}
+.push-preview-time{font-size:11px;color:var(--text-3);margin-left:auto;}
+.push-preview-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.push-preview-body{font-size:13px;color:var(--text-2);line-height:1.5;white-space:pre-wrap;}
+.form-group{margin-bottom:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-label{font-size:11px;font-weight:700;color:var(--text-2);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.4px;}
+.form-input{width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:10px 13px;color:var(--text);font-size:13px;outline:none;font-family:var(--font);transition:border-color .15s;}
+.form-input:focus{border-color:var(--main);}
+.form-select{width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:10px 13px;color:var(--text);font-size:13px;outline:none;font-family:var(--font);}
+.form-hint{font-size:11px;color:var(--text-3);margin-top:4px;}
+textarea.form-input{resize:vertical;min-height:80px;}
+
+/* ── 회원 검색 선택(자동완성 + 칩) — 수동 지급/회수 대상 회원 선택용 ── */
+.member-pick{position:relative;}
+.member-pick-chip{display:none;align-items:center;gap:6px;background:var(--main-soft);color:var(--main-hover);
+  border-radius:20px;padding:5px 8px 5px 12px;font-size:12.5px;font-weight:700;margin-top:8px;width:fit-content;}
+.member-pick-chip.show{display:inline-flex;}
+.member-pick-chip button{background:none;border:none;color:inherit;cursor:pointer;font-size:14px;line-height:1;
+  padding:2px;display:flex;opacity:.7;}
+.member-pick-chip button:hover{opacity:1;}
+.member-suggest{display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--shadow-md);z-index:20;
+  max-height:190px;overflow-y:auto;}
+.member-suggest.show{display:block;}
+.member-suggest-item{padding:9px 13px;font-size:12.5px;cursor:pointer;display:flex;justify-content:space-between;
+  gap:8px;color:var(--text);}
+.member-suggest-item:hover{background:var(--surface-2);}
+.member-suggest-item small{color:var(--text-3);font-family:monospace;font-size:11px;}
+
+/* ── 페이지네이션 ── */
+.pagination{display:flex;gap:5px;justify-content:center;padding:16px;}
+.page-btn{width:30px;height:30px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;
+  font-size:12px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-2);transition:all .15s;font-family:var(--font);}
+.page-btn:hover,.page-btn.active{background:var(--main);color:white;border-color:var(--main);}
+
+/* ── 회원 유형 배지 ── */
+.member-type-kakao{display:inline-flex;align-items:center;gap:5px;background:var(--main-soft);color:var(--main-hover);
+  border:1px solid var(--main-line);border-radius:20px;font-size:11px;font-weight:700;padding:2px 8px;}
+.member-type-kakao::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--main);flex-shrink:0;}
+.member-type-apple{display:inline-flex;align-items:center;gap:5px;background:rgba(31,31,31,.07);color:#1F1F1F;
+  border:1px solid rgba(31,31,31,.15);border-radius:20px;font-size:11px;font-weight:700;padding:2px 8px;}
+.member-type-apple::before{content:'';width:6px;height:6px;border-radius:50%;background:#1F1F1F;flex-shrink:0;}
+.member-type-google{display:inline-flex;align-items:center;gap:5px;background:rgba(66,133,244,.08);color:#4285F4;
+  border:1px solid rgba(66,133,244,.2);border-radius:20px;font-size:11px;font-weight:700;padding:2px 8px;}
+.member-type-google::before{content:'';width:6px;height:6px;border-radius:50%;background:#4285F4;flex-shrink:0;}
+body.dark .member-type-apple{background:rgba(255,255,255,.08);color:#E5E7EB;border-color:rgba(255,255,255,.15);}
+body.dark .member-type-apple::before{background:#E5E7EB;}
+
+/* ── 티켓 칩 ── */
+.tk-chips{display:flex;gap:5px;align-items:center;justify-content:center;}
+.tk-chip svg{display:block;flex-shrink:0;}
+.tk-chip{display:inline-flex;align-items:center;justify-content:center;min-width:28px;
+  padding:3px 7px;border-radius:6px;font-size:11px;font-weight:800;font-variant-numeric:tabular-nums;}
+.tk-chip.bronze{background:rgba(205,127,50,.2);color:var(--bronze);border:1px solid rgba(205,127,50,.35);}
+.tk-chip.silver{background:rgba(122,122,140,.12);color:var(--silver);border:1px solid rgba(122,122,140,.25);}
+.tk-chip.gold{background:rgba(255,215,0,.18);color:var(--gold);border:1px solid rgba(255,215,0,.35);}
+.tk-chip.event{background:rgba(168,85,247,.18);color:#c084fc;border:1px solid rgba(168,85,247,.35);}
+.tk-chip.dim{opacity:.3;}
+.tk-chip.bare{background:none!important;border:none!important;padding:0 2px!important;}
+/* ── 티켓 이력 증감 표기 — 등급 + 증감수량(색상 부호) ── */
+.tk-delta-wrap{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;}
+.tk-delta{font-size:12px;font-weight:700;white-space:nowrap;}
+.tk-delta.pos{color:var(--info);}
+.tk-delta.neg{color:var(--danger);}
+/* ── 랜덤 → 전환예정 컬럼 ── */
+.rnd-chip-wrap{display:flex;justify-content:center;align-items:center;gap:5px;}
+.conv-arrow{font-size:13px;color:var(--text3);line-height:1;}
+.conv-preview{display:flex;justify-content:center;flex-direction:column;gap:4px;align-items:center;}
+.conv-preview .tk-chip{font-size:10px;padding:2px 6px;min-width:auto;}
+
+/* ── 회원 목록 테이블: 모든 tk-chip 박스 제거 (SVG+숫자만 표시) ── */
+#sec-members table .tk-chip.bronze,
+#sec-members table .tk-chip.silver,
+#sec-members table .tk-chip.gold,
+#sec-members table .tk-chip.event,
+#sec-members table .tk-chip.random{background:transparent!important;border:none!important;padding:2px 4px!important;}
+
+/* ── 회원 목록: 등급 티켓 세로 3행 배치 ── */
+.grade-ticket-stack{display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;}
+
+/* ── 회원 목록 테이블 컬럼 너비 ── */
+#sec-members table{table-layout:fixed;width:100%;}
+#sec-members table th:nth-child(1){width:120px;}  /* 닉네임 */
+#sec-members table th:nth-child(2){width:160px;}  /* 가입 유형 */
+#sec-members table th:nth-child(3){width:90px;}   /* 가입일 */
+#sec-members table th:nth-child(4){width:70px;}   /* 랜덤 티켓 */
+#sec-members table th:nth-child(5){width:90px;}   /* 전환예정 */
+#sec-members table th:nth-child(6){width:160px;}  /* 등급 티켓 */
+#sec-members table th:nth-child(7){width:70px;}   /* 이벤트 티켓 */
+#sec-members table th:nth-child(8){width:90px;}   /* 마케팅 수신 */
+#sec-members table th:nth-child(9){width:60px;}   /* 상태 */
+#sec-members table th:nth-child(10){width:60px;}  /* 관리 */
+#sec-members table td,#sec-members table th{vertical-align:middle;}
+#sec-members table td{white-space:normal;overflow:hidden;text-overflow:ellipsis;}
+
+/* ── 응모자 리스트 모달 — 한 페이지 10건이 모달 내부 스크롤 없이 다 보이도록 행 밀도 압축 ──
+   글자 크기는 그대로 두고 셀 패딩·줄간격·모달 여백만 줄였다. 지급 메모는 뱃지와 같은 줄에
+   한 줄 입력으로 붙여 당첨 행 높이를 미당첨 행과 같게 맞춘다(기존엔 메모칸이 아래로 펼쳐져 2배). */
+/* 종료된 주간 이벤트 — 당첨자 명단이 등수별 여러 줄로 들어가 행이 빠듯해 보이므로 행 높이를 1.5배로.
+   패딩만 1.5배(18px)로는 실측 1.29배밖에 안 됐다(등수 뱃지 박스 높이가 줄 높이를 지배해서).
+   패딩 24px + 당첨자 줄간격 2.3 조합으로 3줄 행이 96px → 143px(약 1.49배)이 되는 값을 실측으로 잡았다.
+   진행중·진행예정 표는 그대로 둔다. */
+#draws-table-past td{padding-top:24px;padding-bottom:24px;}
+/* "지급 현황" 컬럼이 늘어 6칸이 됐다(회차·기간·응모건 수·당첨자·지급 현황·액션).
+   auto 레이아웃이면 늘어난 칸이 당첨자 명단 폭을 잡아먹어 등수별 줄이 접혀 행이 들쭉날쭉해진다.
+   고정 레이아웃 + 비율 지정으로 당첨자에 가장 넓은 폭(38%)을 남기고, 나머지는 KO/VI 양쪽의 실측
+   내용 폭(VI가 더 길다)에 맞춰 배분했다. 좌우 패딩도 18px → 12px로 줄여 6칸 몫을 만들었다. */
+#draws-table-past{table-layout:fixed;width:100%;}
+#draws-table-past th,#draws-table-past td{padding-left:12px;padding-right:12px;}
+/* 기본 th·td는 white-space:nowrap이라 고정 폭에서 VI 문구가 옆 칸을 침범한다.
+   헤더와 회차·액션 칸만 줄바꿈을 허용해(단어 중간은 안 끊기게 keep-all) 넘침을 막는다.
+   기간(날짜)·당첨자(등수별 한 줄)는 접히면 안 되므로 nowrap 유지. */
+#draws-table-past th{white-space:normal;word-break:keep-all;}
+#draws-table-past td:nth-child(1),#draws-table-past td:nth-child(6){white-space:normal;word-break:keep-all;}
+/* VI 버튼 라벨("Xem người dự thưởng")은 한 줄로는 액션 칸에 안 들어간다 — 버튼 안에서 접히게 둔다 */
+#draws-table-past td .btn{white-space:normal;}
+#draws-table-past th:nth-child(1){width:12%;}  /* 회차 */
+#draws-table-past th:nth-child(2){width:16%;}  /* 기간 */
+#draws-table-past th:nth-child(3){width:10%;}  /* 응모건 수 */
+#draws-table-past th:nth-child(4){width:38%;}  /* 당첨자 */
+#draws-table-past th:nth-child(5){width:12%;}  /* 지급 현황 */
+#draws-table-past th:nth-child(6){width:12%;}  /* 액션 */
+/* 지급 현황 칸 — 1행 상태 뱃지 + 2행 "지급 완료 N/M" 카운트 */
+.pd-payout-cell{display:flex;flex-direction:column;align-items:center;gap:5px;line-height:1.3;}
+.pd-payout-cell .pd-payout-count{font-size:12px;color:var(--text-2);white-space:nowrap;}
+#pd-entrants-ov .info-box{padding:6px 12px;margin-bottom:0;line-height:1.45;}
+#pd-ent-table th{padding:6px 8px;}
+#pd-ent-table td{padding:5px 8px;line-height:1.35;vertical-align:middle;}
+/* 행 높이를 못 박아 페이지를 넘겨도, 진행중/종료 회차가 달라도 표 높이가 같게 유지된다 */
+#pd-ent-table tbody tr{height:54px;}
+#pd-ent-fill{flex:none;}
+#pd-ent-table td > div{line-height:1.35;}
+#pd-ent-pager{padding:4px 0 0;min-height:34px;box-sizing:content-box;}
+/* 진행 중 회차의 등수 수동 지정 셀렉트도 행 높이에 맞춰 압축(기본 .form-select는 40px) */
+#pd-ent-table .form-select{height:32px;padding:4px 8px;}
+.pd-pay-line{display:flex;align-items:center;gap:6px;}
+.pd-pay-line .badge{flex:none;}
+.pd-memo-input{flex:1 1 auto;min-width:0;height:26px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:var(--r-sm);padding:4px 8px;font-size:12px;
+  color:var(--text);font-family:var(--font);outline:none;text-align:left;transition:border-color .15s;}
+.pd-memo-input:focus{border-color:var(--main);}
+.pd-memo-input::placeholder{color:var(--text-3);}
+/* 표 안 뱃지는 한 톤 작게 — 등수 옆 경품명이 들어가도 행 높이가 안 커지게 */
+#pd-ent-table .badge{padding:1px 7px;}
+/* 종료 회차 "당첨 등수" 칸 — 2행 구조.
+   1행: 당첨 뱃지(등수) + 경품명 / 2행: 메모 입력 + 지급 상태 뱃지.
+   2행이 되는 만큼 셀 패딩·행 간격·메모 높이를 조여 10건 스크롤 없이를 유지한다. */
+.pd-cell2{display:flex;flex-direction:column;gap:2px;min-width:0;}
+.pd-cell2-row{display:flex;align-items:center;gap:6px;min-width:0;}
+.pd-cell2-row .badge{flex:none;}
+.pd-cell2-row .pd-memo-input{height:24px;font-size:11.5px;padding:2px 8px;}
+#pd-ent-table .badge-purple{margin-right:0;}
+/* 상단 요약의 등수별 남은 자리 표기 — 경품 구성 뒤에 옅게 붙인다 */
+.pd-remain{font-size:11px;color:var(--text-3);}
+.pd-remain-full{color:var(--amber);font-weight:600;}
+/* 등수 옆에 붙는 경품명 — 회차의 등수별 경품 구성에서 읽어온다(하드코딩 아님).
+   칸보다 길면 말줄임 + title로 전체 노출해 행 높이를 한 줄로 고정. */
+.pd-prize-name{flex:0 1 auto;min-width:0;max-width:190px;font-size:11px;color:var(--text-3);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+/* 진행 중 회차 전용 정렬 — 헤더를 각 컬럼의 실제 내용 기준에 맞춘다.
+   이 CMS는 전역 td{text-align:center!important}로 셀을 가운데 정렬하므로 셀 쪽은 건드리지 않고,
+   내용이 좌측으로 붙는 컬럼의 헤더만 좌측으로 내린다 — "당첨 등수" 칸은 flex(.pd-pay-line)라
+   드롭다운·경품명이 왼쪽부터 쌓이는데 헤더만 가운데 떠 있어 어긋나 보였다.
+   닉네임·응모일시는 내용이 가운데라 헤더도 기본값(가운데) 그대로 둔다. */
+#pd-ent-table.is-active th:nth-child(3){text-align:left;}
+/* 진행 중 회차의 등수 수동 지정 드롭다운 — 합쳐진 "당첨 등수" 컬럼 안에서 고정 폭 */
+.pd-rank-select{flex:none;width:104px;font-size:12.5px;}
+/* 상단 툴바의 안내(i) 토글 — 긴 안내 문구를 한 줄 툴바 밖으로 접어둔다 */
+.pd-note-btn{width:20px;height:20px;flex:none;border-radius:50%;border:1px solid var(--border);
+  background:var(--surface-2);color:var(--text-2);font-size:11px;font-weight:700;line-height:1;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;font-family:var(--font);padding:0;}
+.pd-note-btn:hover,.pd-note-btn.on{background:var(--main-soft);border-color:var(--main-line);color:var(--main-hover);}
+
+/* ── 룰렛 슬롯·로그 표 정렬 (2026-07-31 확정) ──
+   숫자 계열 셀은 우측, 헤더는 센터. 이 CMS는 전역 td{text-align:center!important}로 모든 셀을
+   가운데로 밀기 때문에 우측 정렬은 같은 강도(!important)로만 덮을 수 있다 — 인라인 style로는 안 먹는다.
+   슬롯 표 컬럼: 1 슬롯 / 2 보상 유형 / 3 수량 / 4 가치(원) / 5 확률(%) / 6 기대값 기여 / 7 삭제
+   텍스트 계열(슬롯 번호·보상 유형·삭제)은 기존대로 가운데 그대로 둔다. */
+#rlt-table td:nth-child(3),#rlt-table td:nth-child(4),#rlt-table td:nth-child(5),#rlt-table td:nth-child(6),
+#jkr-table td:nth-child(3),#jkr-table td:nth-child(4),#jkr-table td:nth-child(5),#jkr-table td:nth-child(6){text-align:right!important;}
+/* 합계 행 — 확률 합계(2번째 칸)·기대값 합계(3번째 칸)도 같은 기준. "합계" 라벨은 가운데 유지.
+   확률 합계는 본문 행이 단위("%")+간격(22px)만큼 안쪽에서 끝나므로 같은 만큼 밀어야
+   숫자 오른쪽 끝이 위아래로 맞는다(기본 padding 18 + 22 = 40). */
+#rlt-table tfoot td:nth-child(2),#rlt-table tfoot td:nth-child(3),
+#jkr-table tfoot td:nth-child(2),#jkr-table tfoot td:nth-child(3){text-align:right!important;}
+#rlt-table tfoot td:nth-child(2),#jkr-table tfoot td:nth-child(2){padding-right:40px;}
+/* 실행 로그 — 보상 수량이 들어가는 "결과"(4번째 칸)만 우측. 일시·룰렛 종류·지급 상태는 가운데 유지 */
+#rlt-log-table td:nth-child(4),#jkr-log-table td:nth-child(4){text-align:right!important;}
+
+/* 수량·확률 칸 — 입력 박스(스피너 포함)와 단위를 한 덩어리로 셀 우측 끝에 붙인다.
+   .form-input이 width:100%라 flex 안에서 내용만큼 쭈그러들어 행마다 폭이 달라졌다.
+   입력 폭·단위 폭을 둘 다 고정해야 단위 글자 폭이 달라도("장"/"P"/"%")
+   숫자의 오른쪽 끝이 컬럼 안에서 세로로 일직선이 된다. */
+.rlt-dirty-badge{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:4px;background:#F0A830;color:#fff;font-size:9.5px;font-weight:800;letter-spacing:.04em;vertical-align:2px}
+.rlt-jackpot-badge{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:4px;background:#4A2E8F;color:#FFD75E;font-size:9.5px;font-weight:800;letter-spacing:.06em;vertical-align:2px}
+.rlt-numcell{display:flex;align-items:center;justify-content:flex-end;gap:6px;}
+.rlt-numcell .rlt-num{flex:none;width:72px;max-width:none;text-align:right;}
+.rlt-numcell .rlt-unit{flex:none;width:16px;text-align:left;font-size:12px;color:var(--text-2);}
+.rlt-numcell .rlt-none{font-size:12px;color:var(--text-3);}
+
+/* ── 마케팅 수신 배지 ── */
+.mkt-badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;}
+.mkt-badge.all{background:var(--success-soft);color:var(--success);}
+.mkt-badge.sel{background:var(--amber-soft);color:var(--amber);}
+.mkt-badge.none{background:var(--danger-soft);color:var(--danger);}
+
+/* ── 토글 ── */
+.toggle-row{display:flex;align-items:center;gap:10px;}
+.toggle{width:36px;height:20px;border-radius:10px;background:var(--border);position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;}
+.toggle.on{background:var(--main);}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:white;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3);}
+.toggle.on::after{transform:translateX(16px);}
+.toggle-label{font-size:12px;font-weight:600;color:var(--text-2);}
+
+/* ── 색상 프리셋 ── */
+.color-presets{display:flex;gap:8px;margin-top:6px;}
+.color-dot{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .15s;}
+.color-dot:hover,.color-dot.sel{border-color:var(--text);transform:scale(1.12);}
+
+/* ── 토스트 ── */
+.toast{position:fixed;bottom:26px;right:26px;background:#1A1130;color:white;
+  border:1px solid var(--border);border-radius:var(--r-md);padding:11px 16px;font-size:13px;font-weight:600;
+  box-shadow:var(--shadow-lg);z-index:500;opacity:0;transform:translateY(6px);transition:all .22s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+
+/* ── 약관 탭 ── */
+.terms-nav{display:flex;border-bottom:1px solid var(--border);margin-bottom:18px;}
+.terms-tab{padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;}
+.terms-tab:hover{color:var(--text);}
+.terms-tab.active{color:var(--main);border-bottom-color:var(--main);}
+.terms-editor{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:14px;font-size:13px;color:var(--text);line-height:1.9;min-height:360px;
+  outline:none;font-family:var(--font);width:100%;resize:vertical;}
+.terms-editor:focus{border-color:var(--main);}
+
+/* ── 1:1 문의 ── */
+.inquiry-item{padding:14px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s;}
+.inquiry-item:hover{background:var(--surface-2);}
+.inquiry-item:last-child{border-bottom:none;}
+.inquiry-title{font-size:13px;font-weight:600;margin-bottom:4px;}
+.inquiry-meta{font-size:11px;color:var(--text-2);display:flex;gap:12px;}
+
+/* ── 티켓 등급 카드 ── */
+.ticket-grade-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);padding:16px;display:flex;gap:14px;align-items:center;margin-bottom:12px;}
+.ticket-grade-icon{width:60px;height:60px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.ticket-grade-icon.bronze{background:rgba(205,127,50,.15);}
+.ticket-grade-icon.silver{background:rgba(192,192,192,.15);}
+.ticket-grade-icon.gold{background:rgba(255,215,0,.15);}
+.tk-svg-large{width:40px;height:60px;flex-shrink:0;display:block;}
+.tk-svg-small{width:18px;height:26px;flex-shrink:0;display:inline-block;vertical-align:middle;}
+.ticket-grade-icon svg{display:block;}
+.ticket-grade-info{flex:1;}
+.ticket-grade-name{font-size:14px;font-weight:700;margin-bottom:3px;}
+.ticket-grade-range{font-size:12px;color:var(--text-2);}
+.ticket-grade-benefit{font-size:11px;margin-top:3px;}
+
+/* ── 친구초대 ── */
+.invite-stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+.invite-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;text-align:center;}
+.invite-card-value{font-size:24px;font-weight:800;margin-bottom:4px;font-variant-numeric:tabular-nums;}
+.invite-card-label{font-size:11px;color:var(--text-2);}
+
+/* ── 기프티콘 ── */
+.gifticon-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);padding:16px;margin-bottom:12px;display:flex;align-items:center;gap:16px;}
+.gifticon-icon{width:48px;height:48px;border-radius:var(--r-md);background:var(--main-soft);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.gifticon-info{flex:1;}
+.gifticon-name{font-size:14px;font-weight:700;margin-bottom:4px;}
+.gifticon-meta{font-size:11px;color:var(--text-2);}
+.gifticon-actions{display:flex;gap:6px;}
+
+/* ── 다크 테마 ── */
+body.dark {
+  --bg:#0B0C12;
+  --surface:#111318;
+  --surface-2:#181B24;
+  --surface-3:#20232E;
+  --border:#252836;
+  --text:#E5E7EB;
+  --text-2:#9CA3AF;
+  --text-3:#6B7280;
+  --main-hover:#9B78FF;
+  --main-soft:rgba(132,94,238,.12);
+  --main-line:rgba(132,94,238,.28);
+  --success:#10B981;
+  --success-soft:rgba(16,185,129,.14);
+  --danger:#EF4444;
+  --danger-soft:rgba(239,68,68,.14);
+  --amber:#F59E0B;
+  --amber-soft:rgba(245,158,11,.14);
+  --info:#3B82F6;
+  --info-soft:rgba(59,130,246,.14);
+  --bronze:#CD7F32;
+  --silver:#A0A0B0;
+  --gold:#D4A800;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --shadow-md:0 4px 14px rgba(0,0,0,.35);
+  --shadow-lg:0 12px 36px rgba(0,0,0,.45);
+}
+body.dark .chart-bar{background:linear-gradient(180deg,#845EEE,#6C4AB6);}
+body.dark tr:hover td{background:rgba(255,255,255,.02);}
+body.dark th{background:rgba(255,255,255,.02);}
+body.dark .login-wrap{background:radial-gradient(ellipse at 60% 30%,rgba(132,94,238,.15),transparent 60%),#0B0C12;}
+
+/* ── 사이드바 다크모드 ── */
+body.dark{--sb-bdr:#252836;--sb-hover:rgba(99,102,241,.12);--sb-text:#D1D5DB;--sb-sub:#6B7280;}
+body.dark .sidebar{background:#111318;border-right-color:#252836;}
+body.dark .sb-logo-name{color:#F9FAFB;}
+body.dark .sb-logo-sub{color:#6B7280;}
+body.dark .sb-nav::-webkit-scrollbar-thumb{background:#252836;}
+body.dark .sb-grp-lbl{color:#4B5563;}
+body.dark .sb-chev{color:#374151;}
+body.dark .sb-item{color:#9CA3AF;}
+body.dark .sb-item:hover{background:var(--sb-hover);color:#A5B4FC;}
+body.dark .sb-grp{border-bottom-color:#1F2937;}
+body.dark .sb-user-name{color:#F9FAFB;}
+body.dark .sb-user-email{color:#4B5563;}
+body.dark .sb-fbtn{color:#6B7280;border-color:#252836;}
+body.dark .sb-fbtn:hover{color:#E5E7EB;border-color:#4B5563;background:#1F2937;}
+body.dark .sb-fbtn.sb-fbtn-del:hover{color:#FCA5A5;border-color:#7F1D1D;background:rgba(127,29,29,.2);}
+body.dark .sb-toggle{background:#111318;border-color:#252836;color:#6B7280;}
+body.dark .sb-toggle:hover{border-color:var(--sb-active);color:var(--sb-active);}
+body.dark .sidebar.sb-mini .sb-item::after{background:#1F2937;}
+
+.yellow-box{background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.2);border-radius:10px;padding:12px 16px;font-size:12px;color:var(--text-2);margin-bottom:14px;line-height:1.6;}
+.yellow-box strong{color:var(--amber);}
+.ticket-bronze{display:inline-flex;align-items:center;gap:4px;background:rgba(205,127,50,.15);color:var(--bronze);font-size:11px;font-weight:800;padding:2px 8px;border-radius:4px;border:1px solid rgba(205,127,50,.3);}
+.ticket-silver{display:inline-flex;align-items:center;gap:4px;background:rgba(192,192,192,.15);color:var(--silver);font-size:11px;font-weight:800;padding:2px 8px;border-radius:4px;border:1px solid rgba(192,192,192,.3);}
+.ticket-gold{display:inline-flex;align-items:center;gap:4px;background:rgba(255,215,0,.15);color:var(--gold);font-size:11px;font-weight:800;padding:2px 8px;border-radius:4px;border:1px solid rgba(255,215,0,.3);}
+.tk-chip.random{background:rgba(255,107,85,.15);color:#C8200A;border:1px solid rgba(255,107,85,.35);}
+.ticket-event{display:inline-flex;align-items:center;gap:4px;background:rgba(168,85,247,.15);color:#c084fc;font-size:11px;font-weight:800;padding:2px 8px;border-radius:4px;border:1px solid rgba(168,85,247,.3);}
+.exclude-tag{display:inline-block;background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;margin:3px;}
+.exclude-tag .remove{color:var(--danger);cursor:pointer;margin-left:6px;}
+
+/* 수동 수정 표시 */
+.manual-badge {
+  display:inline-flex;align-items:center;gap:3px;
+  font-size:10px;background:#FEF3C7;color:#92400E;
+  padding:2px 6px;border-radius:10px;font-weight:600;
+  vertical-align:middle;margin-left:4px;
+}
+.manual-badge svg{width:10px;height:10px;flex-shrink:0;}
+tr.manual-edited td { background:rgba(254,243,199,0.15); }
+
+/* ═══════════════════════════════════════════
+   모바일 반응형  (max-width: 768px)
+   ─ 데스크탑 레이아웃은 건드리지 않음
+   ═══════════════════════════════════════════ */
+
+/* 모바일 백드롭 */
+.mobile-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:290;}
+.mobile-backdrop.open{display:block;animation:fadeIn .2s ease-out;}
+
+/* 햄버거 버튼 (데스크탑에서는 숨김) */
+.mob-hamburger{display:none;width:36px;height:36px;border-radius:var(--r-md);
+  border:1px solid var(--border);background:var(--surface-2);
+  align-items:center;justify-content:center;cursor:pointer;
+  color:var(--text-2);flex-shrink:0;padding:0;font-family:var(--font);transition:all .15s;}
+.mob-hamburger:hover{color:var(--text);border-color:var(--text-2);}
+.mob-hamburger svg{width:18px;height:18px;}
+
+@media(max-width:768px){
+  /* 햄버거 노출 / 데스크탑 접기 토글 숨김 */
+  .mob-hamburger{display:flex;}
+  .sb-toggle{display:none!important;}
+
+  /* 사이드바: 오프-스크린 → 햄버거 탭 시 슬라이드인 */
+  .sidebar{
+    left:calc(-1 * var(--sidebar-w) - 20px);
+    width:var(--sidebar-w)!important;
+    transition:left .25s cubic-bezier(.4,0,.2,1);
+  }
+  .sidebar.sb-mini{left:calc(-1 * var(--sidebar-w) - 20px);width:var(--sidebar-w)!important;}
+  .sidebar.mobile-open{left:0;box-shadow:var(--shadow-lg);}
+
+  /* 메인: 사이드바 마진 제거 → 풀폭 */
+  .main{margin-left:0!important;}
+
+  /* 드로어 열릴 때 body 스크롤 잠금 */
+  body.mob-sb-open{overflow:hidden;}
+
+  /* 탑바 */
+  .topbar{padding:0 12px;height:52px;gap:8px;}
+  .topbar-date{display:none;}
+  .role-chip{display:none;}
+  .topbar-bc{display:none;}
+  .topbar-title{font-size:14px;}
+  .topbar-left{gap:8px;}
+
+  /* 섹션 패딩 */
+  .section{padding:12px;}
+
+  /* 통계 그리드 → 2열 */
+  .stats-grid{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+  .stat-card{padding:14px 14px;}
+  .stat-value{font-size:20px;}
+
+  /* 카드/배너/초대/폼 그리드 → 1열 */
+  .card-grid{grid-template-columns:1fr;}
+  .banner-grid{grid-template-columns:1fr;padding:12px;}
+  .invite-stat-grid{grid-template-columns:1fr 1fr;gap:10px;}
+  .form-row{grid-template-columns:1fr;}
+
+  /* 테이블 가로 스크롤 — card 컨테이너가 스크롤 박스 역할 */
+  .card{overflow-x:auto;}
+
+  /* 검색/필터 */
+  .search-box{min-width:0;flex:1;}
+  .toolbar{flex-wrap:wrap;gap:8px;}
+
+  /* 스케줄러 */
+  .scheduler-item{flex-direction:column;align-items:flex-start;gap:8px;}
+  .scheduler-stat{text-align:left;}
+
+  /* 기프티콘 카드 */
+  .gifticon-card{flex-wrap:wrap;}
+
+  /* 모달 */
+  .modal{width:calc(100vw - 24px)!important;max-width:100%!important;}
+  .modal-body{padding:14px 16px;}
+  .modal-header{padding:14px 16px;}
+  .modal-footer{padding:10px 16px;flex-wrap:wrap;}
+
+  /* 로그인 박스 */
+  .login-box{width:calc(100vw - 32px);max-width:400px;padding:28px 20px;}
+
+  /* 다크모드 사이드바 배경 보정 */
+  body.dark .sidebar.mobile-open{border-right-color:#252836;}
+}
+</style>
+<style>
+body{padding:0;margin:0;background:var(--bg,#F5F6FA)}
+.dr-wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px}
+.dr-head{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:26px 0 22px;margin-bottom:4px}
+.dr-head .in{max-width:1180px;margin:0 auto;padding:0 24px}
+.dr-t{font-size:22px;font-weight:800}
+.dr-s{font-size:13px;opacity:.9;margin-top:6px}
+.dr-note{background:#FFF8E8;border:1.5px solid #F0CE7E;border-left:4px solid #E8943A;border-radius:12px;padding:14px 17px;margin:18px 0 6px;font-size:13px;color:#7A5313;line-height:1.65}
+.dr-sec-t{font-size:15px;font-weight:800;color:#5b39b8;margin:26px 0 10px;padding-bottom:6px;border-bottom:2px solid #EFE9FD}
+.section{display:block!important}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ .dr-head .ko,#langsw:checked ~ .dr-wrap .ko{display:none}
+#langsw:checked ~ .dr-head .vi,#langsw:checked ~ .dr-wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.2);border-radius:20px;padding:3px;gap:2px;cursor:pointer;float:right}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:#5b39b8;opacity:1}
+#langsw:checked ~ .dr-head .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ .dr-head .langtog .sv{background:#fff;color:#5b39b8;opacity:1}
+#dr-toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%);background:#1A1130;color:#fff;padding:12px 20px;border-radius:10px;font-size:13px;opacity:0;transition:.25s;z-index:9999;pointer-events:none}
+#dr-toast.on{opacity:1}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<div class="dr-head"><div class="in">
+  <label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+  <div class="dr-t"><span class="i18n"><span class="ko">CMS 초안 · 선물 상자 메뉴 2종</span><span class="vi">Bản nháp CMS · 2 menu hộp quà</span></span></div>
+  <div class="dr-s"><span class="i18n"><span class="ko">티켓 · 보상 › 매일 선물 상자 열기 / 랜덤 선물 상자 열기 — 2026-08-24</span><span class="vi">Vé · Thưởng › Mở hộp quà mỗi ngày / Mở hộp quà ngẫu nhiên — 24-08-2026</span></span></div>
+</div></div>
+<div class="dr-wrap">
+<div class="dr-note"><span class="i18n"><span class="ko"><b>초안입니다. <code>cms.html</code>에는 아직 넣지 않았습니다.</b>
+화면 구조·항목·저장 방식은 기존 「매일 행운 룰렛」·「잭팟 룰렛」 CMS 화면을 <b>원본 그대로 떠 왔고</b>, 이름과 문구만 선물 상자로 바꿨습니다.
+보상 구성·수량·확률 기본값도 각각 대응하는 룰렛과 동일합니다 — 정책을 바꾸는 일이 아닙니다.
+기존 룰렛 메뉴 둘은 그대로 두었습니다.<br>
+<b>합치는 시점:</b> 김반장이 디자인을 확정한 뒤 <code>cms.html</code> 좌측 메뉴(티켓·보상)에 두 항목을 추가하고 이 섹션을 옮깁니다.
+지금 <code>cms.html</code>은 다른 작업이 진행 중이라 건드리지 않았습니다.</span>
+<span class="vi"><b>Đây là bản nháp. Chưa đưa vào <code>cms.html</code>.</b>
+Cấu trúc màn hình, các mục và cách lưu được <b>sao nguyên bản</b> từ màn CMS 「Vòng quay may mắn hằng ngày」·「Vòng quay Jackpot」 hiện có, chỉ đổi tên và câu chữ sang hộp quà.
+Cơ cấu thưởng, số lượng và xác suất mặc định cũng giống hệt vòng quay tương ứng — không phải thay đổi chính sách.
+Hai menu vòng quay cũ giữ nguyên.<br>
+<b>Thời điểm gộp:</b> sau khi Người quản lý chốt thiết kế thì thêm 2 mục vào menu trái (Vé·Thưởng) của <code>cms.html</code> và chuyển phần này sang.
+Hiện <code>cms.html</code> đang có việc khác nên chưa đụng vào.</span></span></div>
+
+<div class="dr-sec-t"><span class="i18n"><span class="ko">1. 매일 선물 상자 열기 (무료 · 하루 1회)</span><span class="vi">1. Mở hộp quà mỗi ngày (miễn phí · 1 lần/ngày)</span></span></div>
+    <div class="section" id="sec-giftbox-daily">
+      <div class="info-box"><strong>매일 선물 상자 열기 = 출석(쿠팡 구경하기) 시 1일 1회 무료로 여는 선물 상자</strong> — 보상칸별 보상 내용과 받을 확률을 운영자가 직접 수정합니다. 확률 합계가 100%가 아니면 저장되지 않습니다. 보상칸은 6개 고정이며 보상 유형·수량·확률만 수정합니다. 이벤트 티켓을 쓰는 상자는 <strong>랜덤 선물 상자 열기</strong> 메뉴에서 따로 관리합니다.</div>
+      <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-card purple"><div class="stat-label">이번 달 상자 열기</div><div class="stat-value" id="gbd-stat-spins">—</div><div class="stat-change neutral">실제 돌린 횟수 집계</div></div>
+        <div class="stat-card green"><div class="stat-label">이번 달 지급 총액</div><div class="stat-value" id="gbd-stat-payout">—</div><div class="stat-change neutral">받은 보상 원화 환산</div></div>
+        <div class="stat-card amber"><div class="stat-label">1회 기대값</div><div class="stat-value" id="gbd-stat-ev">—</div><div class="stat-change neutral" id="gbd-stat-ev-sub">저장된 구성 기준</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">보상칸 구성 · 받을 확률</div>
+          <div style="display:flex;gap:6px">
+            <button class="btn btn-ghost btn-sm" onclick="rltReset('giftDaily')">기본값 복원</button>
+            <button class="btn btn-primary btn-sm" id="gbd-save-btn" onclick="rltSave('giftDaily')">저장</button>
+          </div>
+        </div>
+        <table id="gbd-table">
+          <thead>
+            <tr>
+              <th style="width:7.4%">보상칸</th>
+              <th style="width:17.5%">보상 유형</th>
+              <th style="width:17.5%">수량</th>
+              <th style="width:17.7%">가치(원)</th>
+              <th style="width:17.5%">확률(%)</th>
+              <th style="width:22.4%">기대값 기여</th>
+            </tr>
+          </thead>
+          <tbody id="gbd-tbody"></tbody>
+          <tfoot>
+            <tr style="background:var(--bg)">
+              <td colspan="4" style="font-weight:700">합계</td>
+              <td style="font-weight:800" id="gbd-sum-prob">—</td>
+              <td style="text-align:right;font-weight:800" id="gbd-sum-ev">—</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+        <div style="padding:12px 16px;font-size:12px;color:var(--text-3);border-top:1px solid var(--border)" id="gbd-status">
+          가치 환산 기준 — 포인트 10P = 1원 · 이벤트 티켓 40원 · 브론즈 티켓 100원 · 실버 티켓 1,000원 · 골드 티켓 2,000원. 기대값 기여 = 가치 × 확률.
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-header">
+          <div class="card-title">상자 열기 기록</div>
+          <span style="font-size:12px;color:var(--text-2)" id="gbd-log-count">—</span>
+        </div>
+        <table id="gbd-log-table">
+          <thead>
+            <tr>
+              <th style="width:150px">일시</th>
+              <th>닉네임 / 카카오톡 ID</th>
+              <th style="width:150px">선물 상자 종류</th>
+              <th style="width:170px">결과</th>
+              <th style="width:110px">지급 상태</th>
+            </tr>
+          </thead>
+          <tbody id="gbd-log-tbody"></tbody>
+        </table>
+        <div class="pagination" id="gbd-log-pager"></div>
+      </div>
+    </div>
+<div class="dr-sec-t"><span class="i18n"><span class="ko">2. 랜덤 선물 상자 열기 (이벤트 티켓 1장 = 1회)</span><span class="vi">2. Mở hộp quà ngẫu nhiên (1 vé sự kiện = 1 lượt)</span></span></div>
+    <div class="section" id="sec-giftbox-random">
+      <div class="info-box"><strong>랜덤 선물 상자 열기 = 이벤트 티켓 1장으로 1회 여는 선물 상자</strong> — 매일 선물 상자 열기와 구조는 같고 보상 구성·확률만 다릅니다. 보상칸은 6개 고정입니다. 보상칸별 보상 내용과 받을 확률을 운영자가 직접 수정하며, 확률 합계가 100%가 아니면 저장되지 않습니다. 악용 방지 제한(하루 참여 상한 · 이벤트 티켓 일/월 획득 상한)도 아래에서 조정합니다.</div>
+      <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-card purple"><div class="stat-label">이번 달 상자 열기</div><div class="stat-value" id="gbr-stat-spins">—</div><div class="stat-change neutral">실제 돌린 횟수 집계</div></div>
+        <div class="stat-card green"><div class="stat-label">이번 달 지급 총액</div><div class="stat-value" id="gbr-stat-payout">—</div><div class="stat-change neutral">받은 보상 원화 환산</div></div>
+        <div class="stat-card amber"><div class="stat-label">1회 기대값</div><div class="stat-value" id="gbr-stat-ev">—</div><div class="stat-change neutral" id="gbr-stat-ev-sub">저장된 구성 기준</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">보상칸 구성 · 받을 확률</div>
+          <div style="display:flex;gap:6px">
+            <button class="btn btn-ghost btn-sm" onclick="rltReset('giftRandom')">기본값 복원</button>
+            <button class="btn btn-primary btn-sm" id="gbr-save-btn" onclick="rltSave('giftRandom')">저장</button>
+          </div>
+        </div>
+        <table id="gbr-table">
+          <thead>
+            <tr>
+              <th style="width:7.4%">보상칸</th>
+              <th style="width:17.5%">보상 유형</th>
+              <th style="width:17.5%">수량</th>
+              <th style="width:17.7%">가치(원)</th>
+              <th style="width:17.5%">확률(%)</th>
+              <th style="width:22.4%">기대값 기여</th>
+            </tr>
+          </thead>
+          <tbody id="gbr-tbody"></tbody>
+          <tfoot>
+            <tr style="background:var(--bg)">
+              <td colspan="4" style="font-weight:700">합계</td>
+              <td style="font-weight:800" id="gbr-sum-prob">—</td>
+              <td style="text-align:right;font-weight:800" id="gbr-sum-ev">—</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+        <div style="padding:12px 16px;font-size:12px;color:var(--text-3);border-top:1px solid var(--border)" id="gbr-status">
+          가치 환산 기준 — 포인트 10P = 1원 · 이벤트 티켓 40원 · 브론즈 티켓 100원 · 실버 티켓 1,000원 · 골드 티켓 2,000원. 기대값 기여 = 가치 × 확률.
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-header">
+          <div class="card-title">참여 제한 정책</div>
+          <button class="btn btn-primary btn-sm" onclick="jkrSaveLimits()">저장</button>
+        </div>
+        <div style="padding:16px">
+          <div class="form-group"><label class="form-label">하루 최대 참여 횟수</label>
+            <div style="display:flex;align-items:center;gap:8px"><input class="form-input" type="number" min="1" step="1" id="gbr-daily-cap" value="10" style="max-width:120px"><span style="color:var(--text-2);font-size:13px">회 / 1일</span></div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:4px">매크로로 무제한 돌리는 것을 막는 상한입니다.</div>
+          </div>
+          <div class="info-box" style="margin-bottom:16px">구매로 발급된 티켓은 등급 티켓·이벤트 티켓 모두 승인 대기 상태로 발급되고, 카카오 연동 D+7 / 미연동 D+30 경과 또는 쿠팡 구매 확정 시 승인됩니다. 승인 전에는 랜덤 선물 상자 열기에 쓸 수 없으므로 "열고 환불" 악용은 티켓 단계에서 이미 차단됩니다. 별도 설정 항목을 두지 않습니다.</div>
+          <div class="form-group"><label class="form-label">이벤트 티켓 일 획득 상한</label>
+            <div style="display:flex;align-items:center;gap:8px"><input class="form-input" type="number" min="1" step="1" id="gbr-daily-ticket-cap" value="5" style="max-width:120px"><span style="color:var(--text-2);font-size:13px">장 / 1일</span></div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:4px">회원 1명이 하루에 받을 수 있는 이벤트 티켓 총량입니다. 적립 정책의 하루 5건 한도와 같은 기준입니다.</div>
+          </div>
+          <div class="form-group" style="margin-bottom:0"><label class="form-label">이벤트 티켓 월 획득 상한</label>
+            <div style="display:flex;align-items:center;gap:8px"><input class="form-input" type="number" min="1" step="1" id="gbr-monthly-cap" value="30" style="max-width:120px"><span style="color:var(--text-2);font-size:13px">장 / 월</span></div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:4px">현행 정책 그대로 30장. 회원 1명이 한 달에 모을 수 있는 이벤트 티켓 총량입니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-header">
+          <div class="card-title">상자 열기 기록</div>
+          <span style="font-size:12px;color:var(--text-2)" id="gbr-log-count">—</span>
+        </div>
+        <table id="gbr-log-table">
+          <thead>
+            <tr>
+              <th style="width:150px">일시</th>
+              <th>닉네임 / 카카오톡 ID</th>
+              <th style="width:150px">선물 상자 종류</th>
+              <th style="width:170px">결과</th>
+              <th style="width:110px">지급 상태</th>
+            </tr>
+          </thead>
+          <tbody id="gbr-log-tbody"></tbody>
+        </table>
+        <div class="pagination" id="gbr-log-pager"></div>
+      </div>
+<div id="dr-toast"></div>
+</div>
+<script>
+/* 초안 단독 실행용 최소 shim — cms.html 안으로 옮길 때는 지운다 */
+function toast(msg){var t=document.getElementById('dr-toast');t.textContent=msg;t.classList.add('on');clearTimeout(window.__tt);window.__tt=setTimeout(function(){t.classList.remove('on');},1800);}
+function renderGifticonTable(){}
+const RLT_REWARD_TYPES = {
+  miss:          { label:'보상 없음',         unit:'',   unitValue:0    },
+  point:         { label:'포인트',      unit:'P',  unitValue:0.1  },  /* 10P = 1원 */
+  event_ticket:  { label:'이벤트 티켓',  unit:'장', unitValue:40   },  /* 랜덤 선물 상자 열기 1회 기대값 기준 */
+  bronze_ticket: { label:'브론즈 티켓',  unit:'장', unitValue:100  },
+  silver_ticket: { label:'실버 티켓',    unit:'장', unitValue:1000 },
+  gold_ticket:   { label:'골드 티켓',    unit:'장', unitValue:2000 },
+};
+const RLT_KINDS = {
+  giftDaily: {
+    p: 'gbd', name: '매일 선물 상자 열기',
+    monthSpins: 28470,                       /* 이번 달 실행 수(데모 운영 수치) */
+    defaults: [                              /* 1회 기대값 9.9원 */
+      { type:'silver_ticket', qty:1,   prob:0.2  },
+      { type:'event_ticket',  qty:1,   prob:5    },
+      { type:'bronze_ticket', qty:1,   prob:2    },
+      { type:'point',         qty:100, prob:35   },
+      { type:'point',         qty:10,  prob:40   },
+      { type:'miss',          qty:0,   prob:17.8 },
+    ],
+  },
+  giftRandom: {
+    p: 'gbr', name: '랜덤 선물 상자 열기',
+    monthSpins: 6120,
+    defaults: [                              /* 1회 기대값 40원 · 이벤트 티켓 1장 = 1회 */
+      { type:'gold_ticket',   qty:1,    prob:0.4  },
+      { type:'silver_ticket', qty:1,    prob:1    },
+      { type:'point',         qty:1000, prob:5    },
+      { type:'bronze_ticket', qty:1,    prob:12   },
+      { type:'point',         qty:100,  prob:50   },
+      { type:'miss',          qty:0,    prob:31.6 },
+    ],
+  },
+};
+const rltState = {
+  giftDaily:   { slots: RLT_KINDS.giftDaily.defaults.map(s => ({ ...s })),   logPage: 1 },
+  giftRandom: { slots: RLT_KINDS.giftRandom.defaults.map(s => ({ ...s })), logPage: 1 },
+};
+
+function rltFmt(n) {
+  return Number(n).toLocaleString('ko-KR', { maximumFractionDigits: 2 });
+}
+function rltSlotValue(s) {
+  const t = RLT_REWARD_TYPES[s.type] || RLT_REWARD_TYPES.miss;
+  return t.unitValue * (s.type === 'miss' ? 0 : (Number(s.qty) || 0));
+}
+function rltSlotEv(s) {
+  return rltSlotValue(s) * (Number(s.prob) || 0) / 100;
+}
+/* 부동소수 오차 방지 — 확률은 소수점 1자리까지만 쓰므로 0.1 단위 정수로 환산해 합산한다 */
+function rltSumProb(k) {
+  return rltState[k].slots.reduce((a, s) => a + Math.round((Number(s.prob) || 0) * 10), 0) / 10;
+}
+function rltTotalEv(k) {
+  return rltState[k].slots.reduce((a, s) => a + rltSlotEv(s), 0);
+}
+function rltRenderSlots(k) {
+  const p = RLT_KINDS[k].p;
+  const tbody = document.getElementById(p + '-tbody');
+  if (!tbody) return;
+  const topIdx = rltTopIdx(k);
+  tbody.innerHTML = rltState[k].slots.map((s, i) => {
+    const meta = RLT_REWARD_TYPES[s.type] || RLT_REWARD_TYPES.miss;
+    const isMiss = s.type === 'miss';
+    const opts = Object.keys(RLT_REWARD_TYPES).map(t =>
+      `<option value="${t}"${t === s.type ? ' selected' : ''}>${RLT_REWARD_TYPES[t].label}</option>`).join('');
+    return `<tr>
+      <td style="font-weight:700;color:var(--text-2)">${i + 1}번</td>
+      <td><select class="form-select" onchange="rltSetType('${k}', ${i}, this.value)">${opts}</select></td>
+      <td><div class="rlt-numcell">${isMiss
+        ? '<span class="rlt-none">보상 없음</span><span class="rlt-unit"></span>'
+        : `<input class="form-input rlt-num" type="number" min="1" step="1" value="${s.qty}" oninput="rltSetQty('${k}', ${i}, this.value)"><span class="rlt-unit">${meta.unit}</span>`}</div></td>
+      <td style="text-align:right;color:var(--text-2)">${isMiss ? '—' : rltFmt(rltSlotValue(s)) + '원' + (topIdx.indexOf(i) >= 0 ? ' <span class="rlt-jackpot-badge">가장 큰 선물</span>' : '')}</td>
+      <td><div class="rlt-numcell"><input class="form-input rlt-num" type="number" min="0" max="100" step="0.1" value="${s.prob}" oninput="rltSetProb('${k}', ${i}, this.value)"><span class="rlt-unit">%</span></div></td>
+      <td style="text-align:right;font-weight:600">${rltFmt(rltSlotEv(s))}원</td>
+    </tr>`;
+  }).join('');
+  rltRenderTotals(k);
+}
+/* 가장 큰 선물 표기 대상 = 원화 환산 가치가 가장 높은 보상칸. 확률이 아니라 가치 기준이다
+   — 운영자가 확률만 바꿔도 "제일 좋은 상"이 엉뚱한 칸으로 옮겨가지 않게 한다.
+   동점이면 함께 표기하되 최대 2칸까지만 붙인다. */
+function rltTopIdx(k) {
+  const slots = rltState[k].slots;
+  let best = 0;
+  slots.forEach(s => { if (s.type !== 'miss') best = Math.max(best, rltSlotValue(s)); });
+  if (best <= 0) return [];
+  const idx = [];
+  slots.forEach((s, i) => { if (s.type !== 'miss' && rltSlotValue(s) === best) idx.push(i); });
+  return idx.slice(0, 2);
+}
+function rltRenderTotals(k) {
+  const p = RLT_KINDS[k].p;
+  const sum = rltSumProb(k);
+  const ok = Math.abs(sum - 100) < 0.001;
+  const sumEl = document.getElementById(p + '-sum-prob');
+  if (sumEl) {
+    sumEl.innerHTML = `<span style="color:${ok ? 'var(--success)' : 'var(--danger)'}">${rltFmt(sum)}%</span>`
+      + (ok ? '' : `<div style="font-size:11px;font-weight:600;color:var(--danger);margin-top:2px">100% ${sum > 100 ? '초과' : '미달'} ${rltFmt(Math.abs(sum - 100))}%p</div>`);
+  }
+  const evEl = document.getElementById(p + '-sum-ev');
+  if (evEl) evEl.textContent = rltFmt(rltTotalEv(k)) + '원';
+  rltRenderStats(k);
+  rltApplyDirty(k);
+}
+/* 저장 전 미리보기 표시 — 값을 바꾸면 기대값이 즉시 재계산되지만 아직 저장 전이다 */
+function rltSetDirty(k, v) { rltState[k].dirty = !!v; rltApplyDirty(k); }
+function rltApplyDirty(k) {
+  const p = RLT_KINDS[k].p;
+  const dirty = !!rltState[k].dirty;
+  const sub = document.getElementById(p + '-stat-ev-sub');
+  if (sub) sub.innerHTML = dirty
+    ? '저장 전 미리보기 <span class="rlt-dirty-badge">미저장</span>'
+    : '저장된 구성 기준';
+  const evEl2 = document.getElementById(p + '-sum-ev');
+  if (evEl2) evEl2.style.color = dirty ? '#B4761A' : '';
+  const btn = document.getElementById(p + '-save-btn');
+  if (btn) btn.textContent = dirty ? '변경사항 저장' : '저장';
+}
+function rltRenderStats(k) {
+  const p = RLT_KINDS[k].p;
+  const ev = rltTotalEv(k);
+  const spins = document.getElementById(p + '-stat-spins');
+  const payout = document.getElementById(p + '-stat-payout');
+  const evEl = document.getElementById(p + '-stat-ev');
+  if (spins) spins.textContent = RLT_KINDS[k].monthSpins.toLocaleString('ko-KR') + '회';
+  if (payout) payout.textContent = Math.round(RLT_KINDS[k].monthSpins * ev).toLocaleString('ko-KR') + '원';
+  if (evEl) evEl.textContent = rltFmt(ev) + '원';
+}
+function rltSetType(k, i, v) {
+  rltState[k].dirty = true;
+  const s = rltState[k].slots[i];
+  s.type = v;
+  if (v === 'miss') s.qty = 0;
+  else if (!s.qty) s.qty = (v === 'point') ? 100 : 1;
+  rltRenderSlots(k);
+}
+function rltSetQty(k, i, v) {
+  rltState[k].dirty = true;
+  const s = rltState[k].slots[i];
+  s.qty = Math.max(0, Number(v) || 0);
+  const row = document.getElementById(RLT_KINDS[k].p + '-tbody').rows[i];
+  if (row) {
+    row.cells[3].textContent = rltFmt(rltSlotValue(s)) + '원';
+    row.cells[5].textContent = rltFmt(rltSlotEv(s)) + '원';
+  }
+  rltRenderTotals(k);
+}
+function rltSetProb(k, i, v) {
+  rltState[k].dirty = true;
+  const s = rltState[k].slots[i];
+  s.prob = Math.min(100, Math.max(0, Number(v) || 0));
+  const row = document.getElementById(RLT_KINDS[k].p + '-tbody').rows[i];
+  if (row) row.cells[5].textContent = rltFmt(rltSlotEv(s)) + '원';
+  rltRenderTotals(k);
+}
+function rltReset(k) {
+  rltState[k].slots = RLT_KINDS[k].defaults.map(s => ({ ...s }));
+  rltState[k].dirty = true;
+  rltRenderSlots(k);
+  toast('확정 기본값(6보상칸)으로 복원했습니다.');
+}
+/* 저장 — 확률 합계 100% 검증을 통과하지 못하면 저장하지 않는다 */
+function rltSave(k) {
+  const kind = RLT_KINDS[k];
+  const sum = rltSumProb(k);
+  const status = document.getElementById(kind.p + '-status');
+  if (Math.abs(sum - 100) > 0.001) {
+    if (status) status.innerHTML = `<span style="color:var(--danger);font-weight:600">저장 차단 — 확률 합계가 ${rltFmt(sum)}%입니다. 100%가 되어야 저장할 수 있습니다 (${sum > 100 ? '초과' : '부족'} ${rltFmt(Math.abs(sum - 100))}%p).</span>`;
+    toast('확률 합계가 100%가 아니라 저장하지 않았습니다.');
+    return;
+  }
+  const badQty = rltState[k].slots.findIndex(s => s.type !== 'miss' && (Number(s.qty) || 0) <= 0);
+  if (badQty >= 0) {
+    if (status) status.innerHTML = `<span style="color:var(--danger);font-weight:600">저장 차단 — ${badQty + 1}번 보상칸의 수량이 0입니다. 보상이 있는 보상칸은 수량이 1 이상이어야 합니다.</span>`;
+    toast('수량이 0인 보상칸이 있어 저장하지 않았습니다.');
+    return;
+  }
+  rltSetDirty(k, false);
+  if (status) status.innerHTML = `저장 완료 — 보상칸 ${rltState[k].slots.length}개 · 확률 합계 100% · 1회 기대값 ${rltFmt(rltTotalEv(k))}원. 앱은 다음 진입 시 이 구성을 읽어 선물 상자를 렌더링합니다.`;
+  toast(kind.name + ' 구성을 저장했습니다.');
+}
+/* 랜덤 선물 상자 열기 참여 제한 정책 — 악용 방지 3종 */
+function jkrSaveLimits() {
+  const cap = Number((document.getElementById('jkr-daily-cap') || {}).value) || 0;
+  const monthly = Number((document.getElementById('jkr-monthly-cap') || {}).value) || 0;
+  const dayTk = Number((document.getElementById('jkr-daily-ticket-cap') || {}).value) || 0;
+  if (cap < 1 || monthly < 1 || dayTk < 1) { toast('참여 상한은 1 이상이어야 합니다.'); return; }
+  if (dayTk > monthly) { toast('일 획득 상한이 월 획득 상한보다 큽니다.'); return; }
+  toast('랜덤 선물 상자 열기 참여 제한 정책을 저장했습니다.');
+}
+
+/* ── 상자 열기 기록 (최신순 · 10건 단위) ──
+   데모 데이터. [일시, 닉네임, 카카오ID(미연동은 빈 값), 결과 유형, 수량, 지급상태]
+   지급상태: paid=지급완료 · none=해당없음(보상 없음) · capped=한도초과 미지급(이벤트 티켓 일 5장·월 30장 상한) */
+const RLT_LOG_ROWS = {
+  giftDaily: [
+    ['2026-07-31 13:04:22', '절약마스터',   'saving_master',  'point',         10,  'paid'],
+    ['2026-07-31 12:58:07', '알뜰한하루',   'thrifty_day',    'miss',          0,   'none'],
+    ['2026-07-31 12:41:55', '쿠폰헌터',     'coupon_hunter',  'point',         100, 'paid'],
+    ['2026-07-31 12:20:13', '최저가사냥꾼', '',               'point',         10,  'paid'],
+    ['2026-07-31 11:57:48', '무지출챌린지', 'nospend_ch',     'event_ticket',  1,   'paid'],
+    ['2026-07-31 11:33:02', '장바구니요정', 'cart_fairy',     'point',         10,  'paid'],
+    ['2026-07-31 11:12:36', '세일알람',     'sale_alarm',     'miss',          0,   'none'],
+    ['2026-07-31 10:49:19', '가성비대장',   'value_boss',     'point',         100, 'paid'],
+    ['2026-07-31 10:27:41', '반값사랑',     '',               'bronze_ticket', 1,   'paid'],
+    ['2026-07-31 10:05:58', '적립왕',       'point_king',     'point',         10,  'paid'],
+    ['2026-07-31 09:44:30', '지갑지킴이',   'wallet_guard',   'point',         10,  'paid'],
+    ['2026-07-31 09:21:07', '똑똑한소비',   'smart_spend',    'miss',          0,   'none'],
+    ['2026-07-31 09:02:52', '핫딜메이트',   'hotdeal_mate',   'point',         100, 'paid'],
+    ['2026-07-31 08:38:14', '새벽배송러',   '',               'point',         10,  'paid'],
+    ['2026-07-31 08:11:26', '생활비절약',   'save_living',    'event_ticket',  1,   'capped'],
+    ['2026-07-30 22:47:03', '체리피커',     'cherry_picker',  'point',         100, 'paid'],
+    ['2026-07-30 22:19:38', '월급방어전',   'salary_def',     'point',         10,  'paid'],
+    ['2026-07-30 21:55:12', '쟁여두기',     '',               'miss',          0,   'none'],
+    ['2026-07-30 21:30:44', '오늘도절약',   'today_save',     'point',         10,  'paid'],
+    ['2026-07-30 21:03:29', '포인트부자',   'point_rich',     'silver_ticket', 1,   'paid'],
+    ['2026-07-30 20:41:16', '알림설정중',   'noti_on',        'point',         100, 'paid'],
+    ['2026-07-30 20:18:53', '카트비우기',   'empty_cart',     'point',         10,  'paid'],
+    ['2026-07-30 19:52:31', '쿠팡순회중',   'cpang_round',    'miss',          0,   'none'],
+    ['2026-07-30 19:27:09', '주말장보기',   '',               'point',         10,  'paid'],
+    ['2026-07-30 19:04:47', '냉장고털이',   'fridge_clean',   'event_ticket',  1,   'paid'],
+    ['2026-07-30 18:39:22', '최저가비교',   'price_cmp',      'point',         100, 'paid'],
+    ['2026-07-30 18:15:58', '티켓모으기',   'ticket_collect', 'point',         10,  'paid'],
+    ['2026-07-30 17:48:33', '첫구매완료',   'first_buy',      'bronze_ticket', 1,   'paid'],
+    ['2026-07-30 17:22:05', '적립러버',     '',               'miss',          0,   'none'],
+    ['2026-07-30 16:57:41', '할인중독',     'sale_addict',    'point',         10,  'paid'],
+    ['2026-07-30 16:31:19', '깜짝세일',     'flash_sale',     'point',         100, 'paid'],
+    ['2026-07-30 16:08:54', '가계부쓰는중', 'ledger_on',      'point',         10,  'paid'],
+    ['2026-07-30 15:44:27', '소소한행복',   'small_joy',      'miss',          0,   'none'],
+    ['2026-07-30 15:19:02', '배송조회중',   'track_ship',     'point',         10,  'paid'],
+  ],
+  giftRandom: [
+    ['2026-07-31 12:51:40', '티켓모으기',   'ticket_collect', 'point',         100,  'paid'],
+    ['2026-07-31 12:33:18', '체리피커',     'cherry_picker',  'miss',          0,    'none'],
+    ['2026-07-31 12:06:55', '가성비대장',   'value_boss',     'bronze_ticket', 1,    'paid'],
+    ['2026-07-31 11:48:02', '포인트부자',   'point_rich',     'point',         100,  'paid'],
+    ['2026-07-31 11:19:37', '무지출챌린지', 'nospend_ch',     'point',         1000, 'paid'],
+    ['2026-07-31 10:52:14', '최저가사냥꾼', '',               'miss',          0,    'none'],
+    ['2026-07-31 10:24:49', '핫딜메이트',   'hotdeal_mate',   'point',         100,  'paid'],
+    ['2026-07-31 09:58:26', '절약마스터',   'saving_master',  'silver_ticket', 1,    'paid'],
+    ['2026-07-31 09:31:03', '쿠폰헌터',     'coupon_hunter',  'bronze_ticket', 1,    'paid'],
+    ['2026-07-31 09:04:51', '알뜰한하루',   'thrifty_day',    'point',         100,  'paid'],
+    ['2026-07-31 08:36:12', '장바구니요정', 'cart_fairy',     'miss',          0,    'none'],
+    ['2026-07-30 22:11:44', '적립왕',       'point_king',     'point',         100,  'paid'],
+    ['2026-07-30 21:44:29', '반값사랑',     '',               'gold_ticket',   1,    'paid'],
+    ['2026-07-30 21:17:06', '지갑지킴이',   'wallet_guard',   'point',         100,  'paid'],
+    ['2026-07-30 20:49:33', '세일알람',     'sale_alarm',     'bronze_ticket', 1,    'paid'],
+    ['2026-07-30 20:22:58', '똑똑한소비',   'smart_spend',    'miss',          0,    'none'],
+    ['2026-07-30 19:55:21', '월급방어전',   'salary_def',     'point',         100,  'paid'],
+    ['2026-07-30 19:28:47', '오늘도절약',   'today_save',     'point',         1000, 'paid'],
+    ['2026-07-30 19:02:15', '새벽배송러',   '',               'point',         100,  'paid'],
+    ['2026-07-30 18:35:52', '냉장고털이',   'fridge_clean',   'miss',          0,    'none'],
+    ['2026-07-30 18:09:30', '깜짝세일',     'flash_sale',     'bronze_ticket', 1,    'paid'],
+    ['2026-07-30 17:41:08', '할인중독',     'sale_addict',    'point',         100,  'paid'],
+    ['2026-07-30 17:14:44', '주말장보기',   '',               'miss',          0,    'none'],
+    ['2026-07-30 16:47:19', '첫구매완료',   'first_buy',      'point',         100,  'paid'],
+    ['2026-07-30 16:20:05', '가계부쓰는중', 'ledger_on',      'point',         100,  'paid'],
+    ['2026-07-30 15:53:41', '쿠팡순회중',   'cpang_round',    'miss',          0,    'none'],
+  ],
+};
+const RLT_LOG_PAGE_SIZE = 10;
+function rltLogResultText(type, qty) {
+  const meta = RLT_REWARD_TYPES[type];
+  if (!meta || type === 'miss') return '<span style="color:var(--text-3)">보상 없음</span>';
+  return `<span style="color:var(--success);font-weight:600">${meta.label} ${rltFmt(qty)}${meta.unit}</span>`;
+}
+function rltLogStatusChip(st) {
+  if (st === 'paid') return '<span style="display:inline-block;font-size:11px;font-weight:700;color:#1f9d57;background:#e6f7ec;border:1px solid #b6e6c8;border-radius:20px;padding:3px 10px;white-space:nowrap">지급완료</span>';
+  if (st === 'capped') return '<span style="display:inline-block;font-size:11px;font-weight:700;color:#b4791a;background:#fdf3e2;border:1px solid #f2ddb4;border-radius:20px;padding:3px 10px;white-space:nowrap">한도초과</span>';
+  return '<span style="display:inline-block;font-size:11px;font-weight:700;color:#8a8a99;background:#f2f2f6;border:1px solid #e0e0e8;border-radius:20px;padding:3px 10px;white-space:nowrap">해당없음</span>';
+}
+function rltLogGoPage(k, p) {
+  const total = Math.max(1, Math.ceil(RLT_LOG_ROWS[k].length / RLT_LOG_PAGE_SIZE));
+  if (p < 1 || p > total || p === rltState[k].logPage) return;
+  rltState[k].logPage = p;
+  rltRenderLog(k);
+}
+function rltRenderLog(k) {
+  const kind = RLT_KINDS[k];
+  const tbody = document.getElementById(kind.p + '-log-tbody');
+  if (!tbody) return;
+  const rows = RLT_LOG_ROWS[k];
+  const total = Math.max(1, Math.ceil(rows.length / RLT_LOG_PAGE_SIZE));
+  if (rltState[k].logPage > total) rltState[k].logPage = total;
+  const cur = rltState[k].logPage;
+  const from = (cur - 1) * RLT_LOG_PAGE_SIZE;
+  tbody.innerHTML = rows.slice(from, from + RLT_LOG_PAGE_SIZE).map(r => {
+    const [ts, nick, kakao, type, qty, st] = r;
+    const [d, t] = ts.split(' ');
+    return `<tr>
+      <td style="white-space:nowrap;font-size:12px"><div style="font-weight:700;color:#333333">${d.replace(/-/g, '/')}</div><div style="color:var(--text-3)">${t}</div></td>
+      <td><div style="font-weight:500">${nick}</div><div style="font-size:11px;color:var(--text-2);font-family:monospace">${kakao ? '(' + kakao + ')' : '카카오 미연동'}</div></td>
+      <td style="color:var(--text-2)">${kind.name}</td>
+      <td>${rltLogResultText(type, qty)}</td>
+      <td style="text-align:center">${rltLogStatusChip(st)}</td>
+    </tr>`;
+  }).join('');
+  const cnt = document.getElementById(kind.p + '-log-count');
+  if (cnt) cnt.textContent = `최근 ${rows.length}건 · ${cur} / ${total} 페이지`;
+  const pager = document.getElementById(kind.p + '-log-pager');
+  if (pager) {
+    const dim = 'opacity:.35;cursor:default';
+    let html = `<button class="page-btn" onclick="rltLogGoPage('${k}', ${cur - 1})"${cur === 1 ? ' disabled style="' + dim + '"' : ''}>‹</button>`;
+    for (let p = 1; p <= total; p++) html += `<button class="page-btn${p === cur ? ' active' : ''}" onclick="rltLogGoPage('${k}', ${p})">${p}</button>`;
+    html += `<button class="page-btn" onclick="rltLogGoPage('${k}', ${cur + 1})"${cur === total ? ' disabled style="' + dim + '"' : ''}>›</button>`;
+    pager.innerHTML = html;
+  }
+}
+function rltRenderAll() {
+  Object.keys(RLT_KINDS).forEach(k => { rltRenderSlots(k); rltRenderLog(k); });
+}
+document.addEventListener('DOMContentLoaded', function(){ rltRenderAll(); });
+</script>
+</body></html>
