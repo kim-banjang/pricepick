@@ -279,6 +279,24 @@
 
     <div class="seclabel" id="seclabel-new">디자인 시안 (최신순)</div>
 
+    <a class="row" href="/20260825_NewDesign_giftbox.html" target="_blank" rel="noopener">
+      <div class="ricon">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="8" width="18" height="4" rx="1"/>
+          <path d="M12 8v13"/>
+          <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/>
+          <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/>
+        </svg>
+      </div>
+      <div class="rmain">
+        <div class="rtitle" id="nd5-title">매일 선물 상자 열기 · 랜덤 선물 상자 열기</div>
+        <div class="rdesc" id="nd5-desc">무료 매일 상자(하루 1회)와 이벤트 티켓 1장으로 여는 랜덤 상자 화면 + 결과 모달 5종 — 포인트 100P, 이벤트·브론즈·실버·골드 티켓.</div>
+      </div>
+      <div class="rmeta">
+        <span class="rdate">2026-08-25</span>
+        <span class="rarrow">&rsaquo;</span>
+      </div>
+    </a>
     <a class="row" href="/20260804_NewDesign_mytickets.html" target="_blank" rel="noopener">
       <div class="ricon">
         <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -363,7 +381,7 @@
   </div>
 
   <footer>
-    <span>Last Update 2026-08-04</span>
+    <span>Last Update 2026-08-25</span>
   </footer>
 <script>
 // ── i18n 언어 시스템 (허브와 동일 방식) ──
@@ -378,6 +396,8 @@ const I18N = {
     'me.desc': '지금까지 나온 모든 New Design 시안을 탭 하나로 모은 통합본. 날짜별 목록은 그 아래.',
     'me.arrow': '열기 →',
     'seclabel.new': '디자인 시안 (최신순)',
+    'nd5.title': '매일 선물 상자 열기 · 랜덤 선물 상자 열기',
+    'nd5.desc': '무료 매일 상자(하루 1회)와 이벤트 티켓 1장으로 여는 랜덤 상자 화면 + 결과 모달 5종 — 포인트 100P, 이벤트·브론즈·실버·골드 티켓.',
     'nd4.title': '내 티켓 & 포인트',
     'nd4.desc': '내 티켓·포인트 보유 현황과 만료 확인 화면.',
     'nd1.title': '친구초대 · 연속구매 미션 · 티켓 교환 (3탭)',
@@ -396,6 +416,8 @@ const I18N = {
     'me.desc': 'Tổng hợp mọi bản thiết kế New Design từ trước đến nay theo dạng tab. Danh sách theo ngày ở bên dưới.',
     'me.arrow': 'Mở →',
     'seclabel.new': 'Bản thiết kế (mới nhất trước)',
+    'nd5.title': 'Mở hộp quà mỗi ngày · Mở hộp quà ngẫu nhiên',
+    'nd5.desc': 'Màn hộp quà miễn phí mỗi ngày (1 lần/ngày) và hộp quà ngẫu nhiên mở bằng 1 vé sự kiện + 5 modal kết quả — 100P, vé sự kiện·Đồng·Bạc·Vàng.',
     'nd4.title': 'Vé & Điểm của tôi',
     'nd4.desc': 'Màn xem hiện trạng vé·điểm sở hữu và kiểm tra hạn sử dụng.',
     'nd1.title': 'Mời bạn · Nhiệm vụ mua liên tiếp · Đổi vé (3 tab)',
@@ -432,6 +454,8 @@ function applyLang() {
   setTxt('me-desc',            t('me.desc'));
   setTxt('me-arrow',           t('me.arrow'));
   setTxt('seclabel-new',       t('seclabel.new'));
+  setTxt('nd5-title',          t('nd5.title'));
+  setTxt('nd5-desc',           t('nd5.desc'));
   setTxt('nd4-title',          t('nd4.title'));
   setTxt('nd4-desc',           t('nd4.desc'));
   setTxt('nd1-title',          t('nd1.title'));
