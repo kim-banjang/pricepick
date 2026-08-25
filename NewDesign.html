@@ -112,6 +112,7 @@
       <button class="tab" data-target="mission">연속구매 미션</button>
       <button class="tab" data-target="ticket">티켓 교환</button>
       <button class="tab" data-target="mytickets">내 티켓 &amp; 포인트</button>
+      <button class="tab" data-target="giftbox">매일선물상자, 랜덤선물상자 열기</button>
     </div>
     <button id="lang-toggle" class="lang-toggle" data-lang="ko" type="button" title="KO / VI" aria-label="KO/VI">
       <span data-l="ko" class="on">KO</span><span data-l="vi">VI</span>
@@ -125,6 +126,7 @@
     <div id="ph-streak" class="placeholder hidden">불러오는 중...</div>
     <div id="ph-ticket" class="placeholder hidden">불러오는 중...</div>
     <div id="ph-mytickets" class="placeholder hidden">불러오는 중...</div>
+    <div id="ph-giftbox" class="placeholder hidden">불러오는 중...</div>
     <iframe id="frame-splash" class="active" src="design-splash-login-20260729.html" title="스플래시·로그인 시안"></iframe>
     <iframe id="frame-lm" title="출석체크 / 행운 룰렛 시안"></iframe>
     <iframe id="frame-jackpot" title="잭팟 룰렛 시안"></iframe>
@@ -132,6 +134,7 @@
     <iframe id="frame-streak" title="연속구매 미션 시안"></iframe>
     <iframe id="frame-ticket" title="티켓 교환 시안"></iframe>
     <iframe id="frame-mytickets" title="내 티켓 & 포인트 시안"></iframe>
+    <iframe id="frame-giftbox" title="매일선물상자, 랜덤선물상자 열기 시안"></iframe>
   </div>
 
   <script>
@@ -141,7 +144,8 @@
       invite: '20260803_NewDesign_invite.html',
       streak: '20260803_NewDesign_streak.html',
       ticket: '20260803_NewDesign_ticket.html',
-      mytickets: '20260804_NewDesign_mytickets.html'
+      mytickets: '20260804_NewDesign_mytickets.html',
+      giftbox: '20260825_NewDesign_giftbox.html'
     };
 
     var FRAME_OF_TAB = {
@@ -152,7 +156,8 @@
       friend: 'frame-invite',
       mission: 'frame-streak',
       ticket: 'frame-ticket',
-      mytickets: 'frame-mytickets'
+      mytickets: 'frame-mytickets',
+      giftbox: 'frame-giftbox'
     };
     var PLACEHOLDER_OF_FRAME = {
       'frame-splash': 'ph-splash',
@@ -161,11 +166,12 @@
       'frame-invite': 'ph-invite',
       'frame-streak': 'ph-streak',
       'frame-ticket': 'ph-ticket',
-      'frame-mytickets': 'ph-mytickets'
+      'frame-mytickets': 'ph-mytickets',
+      'frame-giftbox': 'ph-giftbox'
     };
 
     var frames = {};
-    ['frame-splash', 'frame-lm', 'frame-jackpot', 'frame-invite', 'frame-streak', 'frame-ticket', 'frame-mytickets'].forEach(function (id) {
+    ['frame-splash', 'frame-lm', 'frame-jackpot', 'frame-invite', 'frame-streak', 'frame-ticket', 'frame-mytickets', 'frame-giftbox'].forEach(function (id) {
       frames[id] = document.getElementById(id);
     });
     var placeholders = {};
@@ -269,7 +275,7 @@
       var checkFn = function (doc) {
         // 내 티켓 & 포인트(frame-mytickets)는 아직 자체 언어 토글이 없는 시안이라
         // #langsw를 기다리면 매번 타임아웃까지 헛돌게 된다 — 준비되면 자동으로 반영된다.
-        if (frameId !== 'frame-mytickets' && !doc.getElementById('langsw')) return false;
+        if (frameId !== 'frame-mytickets' && frameId !== 'frame-giftbox' && !doc.getElementById('langsw')) return false;
         if (frameId === 'frame-lm') return !!doc.querySelector(LM_CONTAINER_SELECTOR);
         return true;
       };
@@ -314,6 +320,7 @@
     frames['frame-streak'].addEventListener('load', function () { onFrameLoaded('frame-streak', false); });
     frames['frame-ticket'].addEventListener('load', function () { onFrameLoaded('frame-ticket', false); });
     frames['frame-mytickets'].addEventListener('load', function () { onFrameLoaded('frame-mytickets', false); });
+    frames['frame-giftbox'].addEventListener('load', function () { onFrameLoaded('frame-giftbox', false); });
 
     // ── 언어 토글: 합본 상단 단일 토글이 로드된 모든 iframe의 #langsw checkbox를 구동 ──
     var LANG_KEY = 'pp_0803_lang';
