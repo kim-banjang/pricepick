@@ -605,7 +605,7 @@ body.dark .member-type-apple::before{background:#E5E7EB;}
    입력 폭·단위 폭을 둘 다 고정해야 단위 글자 폭이 달라도("장"/"P"/"%")
    숫자의 오른쪽 끝이 컬럼 안에서 세로로 일직선이 된다. */
 .rlt-dirty-badge{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:4px;background:#F0A830;color:#fff;font-size:9.5px;font-weight:800;letter-spacing:.04em;vertical-align:2px}
-.rlt-jackpot-badge{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:4px;background:#4A2E8F;color:#FFD75E;font-size:9.5px;font-weight:800;letter-spacing:.06em;vertical-align:2px}
+.rlt-top-badge{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:4px;background:#4A2E8F;color:#FFD75E;font-size:9.5px;font-weight:800;letter-spacing:.06em;vertical-align:2px}
 .rlt-numcell{display:flex;align-items:center;justify-content:flex-end;gap:6px;}
 .rlt-numcell .rlt-num{flex:none;width:72px;max-width:none;text-align:right;}
 .rlt-numcell .rlt-unit{flex:none;width:16px;text-align:left;font-size:12px;color:var(--text-2);}
@@ -870,13 +870,13 @@ body{padding:0;margin:0;background:var(--bg,#F5F6FA)}
 </div></div>
 <div class="dr-wrap">
 <div class="dr-note"><span class="i18n"><span class="ko"><b>초안입니다. <code>cms.html</code>에는 아직 넣지 않았습니다.</b>
-화면 구조·항목·저장 방식은 기존 「매일 행운 룰렛」·「잭팟 룰렛」 CMS 화면을 <b>원본 그대로 떠 왔고</b>, 이름과 문구만 선물 상자로 바꿨습니다.
+화면 구조·항목·저장 방식은 기존 룰렛 2종의 CMS 화면을 <b>원본 그대로 떠 왔고</b>, 이름과 문구만 선물 상자로 바꿨습니다.
 보상 구성·수량·확률 기본값도 각각 대응하는 룰렛과 동일합니다 — 정책을 바꾸는 일이 아닙니다.
 기존 룰렛 메뉴 둘은 그대로 두었습니다.<br>
 <b>합치는 시점:</b> 김반장이 디자인을 확정한 뒤 <code>cms.html</code> 좌측 메뉴(티켓·보상)에 두 항목을 추가하고 이 섹션을 옮깁니다.
 지금 <code>cms.html</code>은 다른 작업이 진행 중이라 건드리지 않았습니다.</span>
 <span class="vi"><b>Đây là bản nháp. Chưa đưa vào <code>cms.html</code>.</b>
-Cấu trúc màn hình, các mục và cách lưu được <b>sao nguyên bản</b> từ màn CMS 「Vòng quay may mắn hằng ngày」·「Vòng quay Jackpot」 hiện có, chỉ đổi tên và câu chữ sang hộp quà.
+Cấu trúc màn hình, các mục và cách lưu được <b>sao nguyên bản</b> từ 2 màn CMS vòng quay hiện có, chỉ đổi tên và câu chữ sang hộp quà.
 Cơ cấu thưởng, số lượng và xác suất mặc định cũng giống hệt vòng quay tương ứng — không phải thay đổi chính sách.
 Hai menu vòng quay cũ giữ nguyên.<br>
 <b>Thời điểm gộp:</b> sau khi Người quản lý chốt thiết kế thì thêm 2 mục vào menu trái (Vé·Thưởng) của <code>cms.html</code> và chuyển phần này sang.
@@ -1105,7 +1105,7 @@ function rltRenderSlots(k) {
       <td><div class="rlt-numcell">${isMiss
         ? '<span class="rlt-none">보상 없음</span><span class="rlt-unit"></span>'
         : `<input class="form-input rlt-num" type="number" min="1" step="1" value="${s.qty}" oninput="rltSetQty('${k}', ${i}, this.value)"><span class="rlt-unit">${meta.unit}</span>`}</div></td>
-      <td style="text-align:right;color:var(--text-2)">${isMiss ? '—' : rltFmt(rltSlotValue(s)) + '원' + (topIdx.indexOf(i) >= 0 ? ' <span class="rlt-jackpot-badge">가장 큰 선물</span>' : '')}</td>
+      <td style="text-align:right;color:var(--text-2)">${isMiss ? '—' : rltFmt(rltSlotValue(s)) + '원' + (topIdx.indexOf(i) >= 0 ? ' <span class="rlt-top-badge">가장 큰 선물</span>' : '')}</td>
       <td><div class="rlt-numcell"><input class="form-input rlt-num" type="number" min="0" max="100" step="0.1" value="${s.prob}" oninput="rltSetProb('${k}', ${i}, this.value)"><span class="rlt-unit">%</span></div></td>
       <td style="text-align:right;font-weight:600">${rltFmt(rltSlotEv(s))}원</td>
     </tr>`;
