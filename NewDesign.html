@@ -275,7 +275,7 @@
       var checkFn = function (doc) {
         // 내 티켓 & 포인트(frame-mytickets)는 아직 자체 언어 토글이 없는 시안이라
         // #langsw를 기다리면 매번 타임아웃까지 헛돌게 된다 — 준비되면 자동으로 반영된다.
-        if (frameId !== 'frame-mytickets' && frameId !== 'frame-giftbox' && !doc.getElementById('langsw')) return false;
+        if (frameId !== 'frame-mytickets' && !doc.getElementById('langsw')) return false;
         if (frameId === 'frame-lm') return !!doc.querySelector(LM_CONTAINER_SELECTOR);
         return true;
       };
