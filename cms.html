@@ -1447,6 +1447,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
         <div id="ta-effect-body" style="padding:16px 18px"></div>
       </div>
 
+      <div class="warn-box" style="margin-top:18px"><strong>이 화면은 정책 확인용 프로토타입입니다</strong> — 실제로 Firestore에 저장되고 앱이 그 값을 읽는 <strong>동작 CMS는 데모 쪽</strong>입니다(pricepick-demo.vercel.app/cms/ · 티켓·보상 → 티켓 적립 설정). 전환 일수를 실제로 바꾸실 때는 데모 CMS에서 하십시오. 여기 값은 이 브라우저에만 저장됩니다.</div>
       <div class="info-box" style="margin-top:18px;font-family:inherit"><strong>저장 위치</strong> — settings/ticket_accrual.convertDays (map&lt;code, number&gt;). 대표 제휴몰은 coupang_direct, 링크프라이스 몰은 lp: 접두사 코드로 저장됩니다. 서버가 이 값을 읽어 확정 스케줄러를 돌립니다 — 앱(클라이언트)은 이 문서를 읽지 않습니다.</div>
     </div>
     <!-- ── 티켓 등급 설정 (신규) ── -->
@@ -7500,7 +7501,7 @@ Object.assign(KO2VI,{
   "앞당겨 전환된 랜덤 티켓":"Vé ngẫu nhiên được chuyển đổi sớm",
   "해당 없음":"Không có",
   "이 즉시 등급 티켓으로 전환됐습니다. 아직 새 기준에 못 미친 티켓은 적립일 + 새 전환 일수에 자동 확정됩니다.":"đã được chuyển đổi ngay thành vé hạng. Vé chưa đạt tiêu chuẩn mới sẽ tự động xác nhận vào ngày tích lũy + số ngày chuyển đổi mới.",
-  "저장 위치":"Nơi lưu trữ",
+  "이 화면은 정책 확인용 프로토타입입니다":"Màn hình này là bản prototype để kiểm tra chính sách","— 실제로 Firestore에 저장되고 앱이 그 값을 읽는":"— CMS thực sự lưu vào Firestore và app đọc giá trị đó là","동작 CMS는 데모 쪽":"CMS demo","입니다(pricepick-demo.vercel.app/cms/ · 티켓·보상 → 티켓 적립 설정). 전환 일수를 실제로 바꾸실 때는 데모 CMS에서 하십시오. 여기 값은 이 브라우저에만 저장됩니다.":" (pricepick-demo.vercel.app/cms/ · Vé·Thưởng → Thiết lập tích lũy vé). Khi thực sự đổi số ngày chuyển đổi thì làm ở CMS demo. Giá trị ở đây chỉ lưu trong trình duyệt này.","저장 위치":"Nơi lưu trữ",
   "— settings/ticket_accrual.convertDays (map<code, number>). 대표 제휴몰은 coupang_direct, 링크프라이스 몰은 lp: 접두사 코드로 저장됩니다. 서버가 이 값을 읽어 확정 스케줄러를 돌립니다 — 앱(클라이언트)은 이 문서를 읽지 않습니다.":"— settings/ticket_accrual.convertDays (map<code, number>). Sàn đại diện lưu bằng mã coupang_direct, sàn Linkprice lưu bằng mã có tiền tố lp:. Server đọc giá trị này để chạy scheduler xác nhận — app (client) không đọc tài liệu này.",
   "적립 시뮬레이터":"Bộ mô phỏng tích lũy",
   "적립액":"Số tiền tích lũy",
