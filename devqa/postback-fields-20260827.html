@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 작업 공지 · 포스트백 값 정리 · 정책 문서 반영 · 2026-08-27</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280;--hide:#c58a14;--hide-l:#fffaef;--hide-b:#eddcb4}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+h2.grp.hide{color:#95690c;border-bottom-color:#f3e6c6}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.new{background:#efe9ff;color:#7a55e8}
+.bd.hide{background:#fbf0da;color:#95690c}
+.bd.keep{background:#e7f3ec;color:#3e8e63}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box a{color:var(--pp-d);font-weight:700}
+.keybox{background:#f6f2ff;border:1px solid #ddd0ff;border-left:3px solid var(--pp);border-radius:10px;padding:12px 15px;margin:14px 0 4px;font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.keybox .kt{font-size:11px;font-weight:800;color:var(--pp-d);letter-spacing:.06em;margin-bottom:5px;display:block}
+.keybox b{color:var(--ink1)}
+.warn{border-radius:12px;padding:14px 17px;margin:2px 0 12px;font-size:13.2px;white-space:pre-wrap}
+.warn .wt{font-size:12px;font-weight:800;letter-spacing:.03em;margin-bottom:6px;display:block}
+.warn.hide{background:var(--hide-l);border:1px solid var(--hide-b);border-left:5px solid var(--hide);color:#7a5a11}
+.warn.hide .wt{color:#8a6410} .warn.hide b{color:#5d440c}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.tbl td.new{color:#1f7a7a;font-weight:700}
+.tbl a{color:var(--pp-d);font-weight:700}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+.note-box a{color:var(--pp-d);font-weight:700}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.srclink:hover{background:rgba(255,255,255,.3)}
+@media(max-width:640px){.htitle{font-size:19px}}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">작업 공지 · 포스트백 값 정리 · 정책 문서 반영 · 2026-08-27</span><span class="vi">Thông báo công việc · Tổng hợp giá trị postback · Đã phản ánh vào tài liệu chính sách · 27/08/2026</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">받는 사람: 개발팀 전체 &nbsp;|&nbsp; 해리가 정리해 주신 링크프라이스·쿠팡 포스트백 값을 <b style="color:#fff">정책 문서에 반영했습니다</b> (KO/VI)</span><span class="vi">Người nhận: Toàn bộ đội phát triển &nbsp;|&nbsp; Các giá trị postback LinkPrice·Coupang do Harry tổng hợp <b style="color:#fff">đã được phản ánh vào tài liệu chính sách</b> (KO/VI)</span></span></div>
+<a class="srclink" href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">정책 문서 열기 ↗</span><span class="vi">Mở tài liệu chính sách ↗</span></span></a>
+</div></header>
+
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">링크프라이스 · 쿠팡 포스트백</span><span class="vi">Postback LinkPrice · Coupang</span></span></span><span class="chip"><span class="i18n"><span class="ko">자료: 해리 전달 (2026-08-27)</span><span class="vi">Tài liệu: Harry gửi (27/08/2026)</span></span></span><span class="chip"><span class="i18n"><span class="ko">반영 위치: 정책 문서 「쇼핑 티켓 · 적립」 탭</span><span class="vi">Vị trí phản ánh: tab 「Vé mua sắm · Tích lũy」 của tài liệu chính sách</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 대기 3건</span><span class="vi">3 mục chờ chốt</span></span></span></div>
+
+<div class="keybox"><span class="kt"><span class="i18n"><span class="ko">먼저 결론</span><span class="vi">Kết luận trước</span></span></span><span class="i18n"><span class="ko">해리가 링크프라이스와 쿠팡이 우리에게 보내 주는 값을 정리해 주셨습니다. 그 내용을 <b>정책 문서에 그대로 넣었습니다.</b>
+
+값을 볼 곳은 <b>정책 문서 한 곳입니다.</b> 이 공지에는 값을 옮겨 적지 않습니다 — 두 곳에 두면 언젠가 서로 어긋납니다.
+
+개발하시기 전에 두 가지만 먼저 아셔야 합니다. <b>쿠팡은 주문번호를 보내 주지 않습니다.</b> 그리고 <b>링크프라이스는 취소를 알려 주지 않습니다.</b></span><span class="vi">Harry đã tổng hợp các giá trị mà LinkPrice và Coupang gửi cho chúng ta. Nội dung đó <b>đã được đưa nguyên vào tài liệu chính sách.</b>
+
+Nơi để xem giá trị <b>chỉ có một, là tài liệu chính sách.</b> Thông báo này không chép lại các giá trị đó — để ở hai nơi thì sớm muộn cũng lệch nhau.
+
+Trước khi làm, xin nắm trước hai điều. <b>Coupang không gửi số đơn hàng.</b> Và <b>LinkPrice không báo hủy đơn.</b></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 어디에 넣었습니까</span><span class="vi">1. Đã đưa vào đâu</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">반영</span><span class="vi">Phản ánh</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">포스트백 값은 정책 문서 「쇼핑 티켓 · 적립」 탭 6번 카드에 있습니다.</span><span class="vi">Các giá trị postback nằm ở thẻ số 6, tab 「Vé mua sắm · Tích lũy」 của tài liệu chính sách.</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">반영 완료</span><span class="vi">Đã phản ánh</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">정책 문서를 열고 위쪽 탭에서 <b>「티켓·적립」</b>을 누르면 맨 아래 6번 카드에 있습니다.
+
+거기에 링크프라이스와 쿠팡을 나눠 적었습니다. 어떤 값이 오는지, 그 값을 무엇에 쓰는지 한 줄씩 붙여 두었습니다.
+
+정책 숫자가 바뀐 것은 없습니다. 우리가 무엇을 받아서 적립을 계산하는지를 문서에 분명히 해 둔 것입니다.</span><span class="vi">Mở tài liệu chính sách, bấm tab <b>「Vé·Tích lũy」</b> ở trên, thẻ số 6 nằm dưới cùng.
+
+Ở đó LinkPrice và Coupang được ghi tách riêng. Nhận được giá trị nào, giá trị đó dùng để làm gì đều có ghi từng dòng.
+
+Không có con số chính sách nào thay đổi. Đây là việc ghi rõ trong tài liệu rằng chúng ta nhận gì để tính tích lũy.</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">반영 위치: <code>policyspec.html</code> → 탭 <code>t2</code> 「쇼핑 티켓 · 적립 메커니즘」 6번 카드 「구매·취소 정보 수신 (포스트백)」 · 정책 변경 히스토리에도 2026-08-27 한 줄을 넣었습니다. 원문 자료: 해리 「Postback Data: LinkPrice, Coupang」(Notion, 2026-08-27). 링크프라이스 조회 주소의 <code>auth_key</code>는 열쇠값이라 공개 문서에 싣지 않았습니다 — 값은 해리 원문 자료에 있습니다.</span><span class="vi">Vị trí phản ánh: <code>policyspec.html</code> → tab <code>t2</code> 「Cơ chế Vé mua sắm · Tích lũy」, thẻ số 6 「Nhận thông tin mua·hủy (postback)」 · Lịch sử thay đổi chính sách cũng đã thêm một dòng ngày 27/08/2026. Tài liệu gốc: Harry 「Postback Data: LinkPrice, Coupang」 (Notion, 27/08/2026). <code>auth_key</code> của địa chỉ tra cứu LinkPrice là giá trị khóa nên không đưa vào tài liệu công khai — giá trị đó nằm trong tài liệu gốc của Harry.</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 개발 전에 알고 계셔야 할 것 둘</span><span class="vi">2. Hai điều cần nắm trước khi làm</span></span></h2>
+
+<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">쿠팡은 주문번호가 오지 않습니다</span><span class="vi">Coupang không gửi số đơn hàng</span></span></span><span class="i18n"><span class="ko">쿠팡이 보내 주는 값에 <b>주문번호가 없습니다.</b> 주문과 취소를 이어 주는 값은 <b>클릭 식별자 하나뿐</b>입니다. 주문번호로 맞춰 보는 설계를 하시면 나중에 통째로 다시 짜야 합니다.</span><span class="vi">Trong các giá trị Coupang gửi <b>không có số đơn hàng.</b> Giá trị nối đơn hàng với hủy đơn <b>chỉ có mã định danh lượt nhấp.</b> Nếu thiết kế theo hướng đối chiếu bằng số đơn hàng thì sau này phải làm lại từ đầu.</span></span></div>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">쿠팡</span><span class="vi">Coupang</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">쿠팡은 주문과 취소를 모두 보내 주지만, 주문번호가 없습니다.</span><span class="vi">Coupang gửi cả đơn hàng lẫn hủy đơn, nhưng không có số đơn hàng.</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">주의</span><span class="vi">Lưu ý</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">쿠팡은 주문이 생겼을 때와 취소됐을 때를 모두 알려 줍니다. 그 점은 편합니다.
+
+문제는 주문을 가리키는 이름이 없다는 것입니다. 오는 값은 <b>클릭 한 건을 가리키는 식별자</b>와 주문인지 취소인지, 시각, 금액이 전부입니다. 상품 정보도, 수수료 금액도 오지 않습니다.
+
+그래서 취소가 들어왔을 때 어느 주문의 취소인지는 클릭 식별자로 되짚는 수밖에 없습니다.</span><span class="vi">Coupang báo cả khi phát sinh đơn hàng lẫn khi bị hủy. Điểm đó thì tiện.
+
+Vấn đề là không có tên gọi để chỉ ra đơn hàng. Các giá trị nhận được chỉ gồm <b>mã định danh chỉ một lượt nhấp</b>, là mua hay hủy, thời điểm và số tiền. Thông tin sản phẩm và số tiền hoa hồng đều không được gửi.
+
+Vì vậy khi có hủy đơn thì chỉ còn cách truy ngược bằng mã định danh lượt nhấp để biết đó là hủy của đơn nào.</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">필드 이름·예시 값·형식은 정책 문서 6번 카드의 「쿠팡 필드」 표를 보십시오. 여기에는 옮겨 적지 않습니다.</span><span class="vi">Tên trường·giá trị ví dụ·định dạng xin xem bảng 「Các trường của Coupang」 ở thẻ số 6 trong tài liệu chính sách. Ở đây không chép lại.</span></span></div></div>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">링크프라이스는 주문만 보내 줍니다. 취소는 우리가 찾아내야 합니다.</span><span class="vi">LinkPrice chỉ gửi đơn hàng. Hủy đơn thì chúng ta phải tự tìm ra.</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">주의</span><span class="vi">Lưu ý</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">링크프라이스는 주문이 생기면 알려 주지만, <b>취소는 아무 것도 보내 주지 않습니다.</b>
+
+그래서 하루치 주문 상태를 돌려주는 조회 주소를 <b>매일 한 번씩 돌려서</b> 취소된 주문을 우리가 직접 찾아내야 합니다.
+
+한 가지 더 있습니다. 한 주문에 상품이 여러 개면 <b>포스트백이 상품 수만큼 따로 옵니다.</b> 같은 주문에서 온 것들은 묶어 주는 값이 같으니, 그 값으로 한 주문으로 모아야 합니다.</span><span class="vi">LinkPrice có báo khi phát sinh đơn hàng, nhưng <b>hủy đơn thì không gửi gì cả.</b>
+
+Vì vậy phải <b>gọi mỗi ngày một lần</b> địa chỉ tra cứu trả về trạng thái đơn hàng của ngày đó để tự tìm ra các đơn đã hủy.
+
+Còn một điều nữa. Nếu một đơn có nhiều sản phẩm thì <b>postback được gửi riêng theo số sản phẩm.</b> Những cái đến từ cùng một đơn thì có chung một giá trị gom, nên phải dùng giá trị đó để gộp lại thành một đơn.</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">조회 주소와 필드 이름·예시 값은 정책 문서 6번 카드의 「링크프라이스 필드」 표와 그 아래 안내를 보십시오. 210·310 같은 상태 코드는 이번 자료에 들어 있지 않아 적지 않았습니다.</span><span class="vi">Địa chỉ tra cứu và tên trường·giá trị ví dụ xin xem bảng 「Các trường của LinkPrice」 và phần hướng dẫn ngay dưới, ở thẻ số 6 tài liệu chính sách. Các mã trạng thái như 210·310 không có trong tài liệu lần này nên không ghi.</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. 아직 정해지지 않은 것 3건</span><span class="vi">3. Ba việc chưa được chốt</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">확정 대기</span><span class="vi">Chờ chốt</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">아래 3건은 김반장님 확정 전입니다. 임의로 정해서 만들지 마십시오.</span><span class="vi">Ba mục dưới đây chưa được người quản lý chốt. Xin đừng tự quyết rồi làm.</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">확정 대기</span><span class="vi">Chờ chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">첫째, 적립을 무엇 단위로 계산하는지입니다. 링크프라이스는 상품마다 따로 오는데, 그걸 하나씩 계산하면 자투리 금액이 여러 번 버려져 유저가 손해를 봅니다.
+
+둘째, 구매 적립 한도(일 5건 · 월 50건)의 「1건」이 무엇인지입니다. 포스트백을 세면 한 번 산 것이 여러 건으로 잡힙니다.
+
+셋째, 쿠팡 취소를 원래 주문에 어떻게 잇는지입니다. 한 번 눌러서 두 건 이상 사면 어느 주문의 취소인지 가리기 어렵습니다.
+
+세 가지 모두 정책 문서 6번 카드에 「확인 대기」로 적어 두었습니다. 확정되면 다시 공지하겠습니다.</span><span class="vi">Thứ nhất, tính tích lũy theo đơn vị nào. LinkPrice gửi riêng theo từng sản phẩm, nếu tính từng cái một thì phần tiền lẻ bị bỏ nhiều lần và người dùng bị thiệt.
+
+Thứ hai, 「1 lần」 trong hạn mức tích lũy mua hàng (5 lần/ngày · 50 lần/tháng) là gì. Nếu đếm theo postback thì một lần mua bị tính thành nhiều lần.
+
+Thứ ba, nối hủy đơn Coupang với đơn gốc bằng cách nào. Nếu nhấp một lần rồi mua từ hai đơn trở lên thì khó phân định là hủy của đơn nào.
+
+Cả ba đều đã được ghi là 「Chờ xác nhận」 ở thẻ số 6 tài liệu chính sách. Chốt xong sẽ thông báo lại.</span></span></div></div></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">어디서 봅니까</span><span class="vi">Xem ở đâu</span></span></h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">무엇</span><span class="vi">Cái gì</span></span></th><th><span class="i18n"><span class="ko">어디서 봅니까</span><span class="vi">Xem ở đâu</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">포스트백 값 정본</span><span class="vi">Bản chuẩn của giá trị postback</span></span></td><td class="new"><a href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">정책 문서 → 「티켓·적립」 탭 → 6번 카드 ↗</span><span class="vi">Tài liệu chính sách → tab 「Vé·Tích lũy」 → thẻ số 6 ↗</span></span></a></td></tr>
+<tr><td><span class="i18n"><span class="ko">언제 무엇이 바뀌었나</span><span class="vi">Khi nào đổi cái gì</span></span></td><td><a href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">정책 문서 → 「변경 히스토리」 탭 → 2026-08-27 ↗</span><span class="vi">Tài liệu chính sách → tab 「Lịch sử thay đổi」 → 27/08/2026 ↗</span></span></a></td></tr>
+<tr><td><span class="i18n"><span class="ko">원문 자료</span><span class="vi">Tài liệu gốc</span></span></td><td><span class="i18n"><span class="ko">해리 「Postback Data: LinkPrice, Coupang」 (Notion, 2026-08-27)</span><span class="vi">Harry 「Postback Data: LinkPrice, Coupang」 (Notion, 27/08/2026)</span></span></td></tr>
+</table></div>
+<div class="note-box"><span class="i18n"><span class="ko"><b>값은 정책 문서 한 곳만 고칩니다.</b> 포스트백 값이 바뀌거나 새 제휴몰이 붙으면 정책 문서를 고치고, 이 공지는 건드리지 마십시오. 같은 값을 두 곳에 두면 반드시 어긋납니다.</span><span class="vi"><b>Giá trị chỉ sửa ở một nơi là tài liệu chính sách.</b> Nếu giá trị postback thay đổi hoặc có sàn liên kết mới thì sửa tài liệu chính sách, đừng động vào thông báo này. Để cùng một giá trị ở hai nơi thì chắc chắn sẽ lệch nhau.</span></span></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 개발 전달용 작업 공지 · 2026-08-27 · 자료: 해리 · 반영: 정책 문서 · 확정 대기 3건</span><span class="vi">PricePick · Thông báo công việc bàn giao phát triển · 27/08/2026 · Tài liệu: Harry · Phản ánh: tài liệu chính sách · 3 mục chờ chốt</span></span></div>
+</div>
+</body></html>
