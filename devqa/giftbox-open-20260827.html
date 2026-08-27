@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 작업 공지 · 선물 상자 열기 2종 신설 · 2026-08-27</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280;--hide:#c58a14;--hide-l:#fffaef;--hide-b:#eddcb4}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+h2.grp.hide{color:#95690c;border-bottom-color:#f3e6c6}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.new{background:#efe9ff;color:#7a55e8}
+.bd.hide{background:#fbf0da;color:#95690c}
+.bd.keep{background:#e7f3ec;color:#3e8e63}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box a{color:var(--pp-d);font-weight:700}
+.keybox{background:#f6f2ff;border:1px solid #ddd0ff;border-left:3px solid var(--pp);border-radius:10px;padding:12px 15px;margin:14px 0 4px;font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.keybox .kt{font-size:11px;font-weight:800;color:var(--pp-d);letter-spacing:.06em;margin-bottom:5px;display:block}
+.keybox b{color:var(--ink1)}
+.warn{border-radius:12px;padding:14px 17px;margin:2px 0 12px;font-size:13.2px;white-space:pre-wrap}
+.warn .wt{font-size:12px;font-weight:800;letter-spacing:.03em;margin-bottom:6px;display:block}
+.warn.hide{background:var(--hide-l);border:1px solid var(--hide-b);border-left:5px solid var(--hide);color:#7a5a11}
+.warn.hide .wt{color:#8a6410} .warn.hide b{color:#5d440c}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.tbl td.new{color:#1f7a7a;font-weight:700}
+.tbl a{color:var(--pp-d);font-weight:700}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+.note-box a{color:var(--pp-d);font-weight:700}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.srclink:hover{background:rgba(255,255,255,.3)}
+@media(max-width:640px){.htitle{font-size:19px}}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">작업 공지 · 선물 상자 열기 2종 신설 · 2026-08-27</span><span class="vi">Thông báo công việc · Thêm mới 2 mục Mở hộp quà · 27/08/2026</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">받는 사람: 개발팀 전체 &nbsp;|&nbsp; 2026-08-27 확정 사항입니다. <b style="color:#fff">앱 쪽은 이미 작업이 진행 중입니다</b> (KO/VI)</span><span class="vi">Người nhận: Toàn bộ đội phát triển &nbsp;|&nbsp; Nội dung đã chốt ngày 27/08/2026. <b style="color:#fff">Phía App đã bắt đầu làm rồi</b> (KO/VI)</span></span></div>
+<a class="srclink" href="/20260825_NewDesign_giftbox.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">앱 시안 바로 보기 ↗</span><span class="vi">Xem bản thiết kế App ↗</span></span></a>
+</div></header>
+
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">매일 선물 상자 열기 · 랜덤 선물 상자 열기</span><span class="vi">Mở hộp quà mỗi ngày · Mở hộp quà ngẫu nhiên</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정: 김반장 2026-08-27</span><span class="vi">Chốt: Người quản lý 27/08/2026</span></span></span><span class="chip"><span class="i18n"><span class="ko">범위: 앱 · CMS</span><span class="vi">Phạm vi: App · CMS</span></span></span><span class="chip"><span class="i18n"><span class="ko">앱 작업 진행 중</span><span class="vi">Phía App đang làm</span></span></span></div>
+
+<div class="keybox"><span class="kt"><span class="i18n"><span class="ko">먼저 결론</span><span class="vi">Kết luận trước</span></span></span><span class="i18n"><span class="ko">선물 상자를 여는 화면 두 개를 새로 만듭니다. <b>「매일 선물 상자 열기」</b>는 하루 한 번 무료로 엽니다. <b>「랜덤 선물 상자 열기」</b>는 이벤트 티켓 한 장으로 엽니다.
+
+지금 있는 <b>「잭팟 룰렛」이 「랜덤 선물 상자 열기」로 바뀝니다.</b> 「행운 룰렛」은 그대로 둡니다.
+
+앱과 CMS 양쪽에 새로 들어갑니다. <b>앱 쪽은 이미 작업이 진행 중입니다.</b></span><span class="vi">Chúng ta làm mới hai màn mở hộp quà. <b>"Mở hộp quà mỗi ngày"</b> mở miễn phí một lần mỗi ngày. <b>"Mở hộp quà ngẫu nhiên"</b> mở bằng một vé sự kiện.
+
+<b>"Vòng quay Jackpot" hiện có sẽ đổi thành "Mở hộp quà ngẫu nhiên".</b> "Vòng quay may mắn" thì giữ nguyên.
+
+Thêm mới ở cả App và CMS. <b>Phía App đã bắt đầu làm rồi.</b></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 지금 어디까지 왔습니까</span><span class="vi">1. Hiện đã làm tới đâu</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">진행</span><span class="vi">Tiến độ</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">앱 작업이 이미 들어가 있습니다. 시안이 나와 있고, CMS는 데모 CMS에 이미 올라가 있습니다.</span><span class="vi">Phía App đã bắt tay vào làm. Bản thiết kế đã có, CMS thì đã đưa lên Demo CMS rồi.</span></span></div><span class="bd new"><span class="i18n"><span class="ko">진행 중</span><span class="vi">Đang làm</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">앱은 화면 시안이 나온 상태에서 작업이 진행 중입니다. 아래 「확인 경로」의 주소를 열면 지금 모양을 그대로 보실 수 있습니다.
+
+CMS는 데모 CMS 왼쪽 <b>「티켓 · 보상」</b> 메뉴 안, 잭팟 룰렛 바로 아래에 두 항목이 들어가 있습니다.
+
+디자인은 아직 확정 전입니다. 짜임과 흐름을 먼저 봐 주시면 됩니다.</span><span class="vi">Phía App đang làm dựa trên bản thiết kế màn hình đã có. Mở các địa chỉ ở mục "Đường dẫn kiểm tra" bên dưới là thấy đúng hình dạng hiện tại.
+
+Phía CMS, hai mục đã nằm trong menu <b>"Vé · Phần thưởng"</b> bên trái của Demo CMS, ngay dưới Vòng quay Jackpot.
+
+Thiết kế thì chưa chốt. Mong mọi người xem trước phần cấu trúc và luồng đi.</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">앱 시안 4판: <code>20260825_NewDesign_giftbox.html</code> · 앱 화면: <code>interactive.html</code>의 <code>#pw-gb1</code>(매일) / <code>#pw-gb2</code>(랜덤) · CMS 초안 원본: <code>cms-storyboard/giftbox-settings.html</code> — 2026-08-25에 데모 CMS(<code>cms.html</code>)로 반영 완료, 원본 파일은 이력으로만 남겨 둡니다.</span><span class="vi">Bản thiết kế App (bản 4): <code>20260825_NewDesign_giftbox.html</code> · Màn App: <code>#pw-gb1</code> (mỗi ngày) / <code>#pw-gb2</code> (ngẫu nhiên) trong <code>interactive.html</code> · Bản nháp CMS gốc: <code>cms-storyboard/giftbox-settings.html</code> — đã đưa vào Demo CMS (<code>cms.html</code>) ngày 25/08/2026, file gốc chỉ giữ lại làm lịch sử.</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 새로 생기는 것 둘</span><span class="vi">2. Hai thứ được thêm mới</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">신설</span><span class="vi">Thêm mới</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">「매일 선물 상자 열기」와 「랜덤 선물 상자 열기」 두 개를 앱·CMS 양쪽에 만듭니다.</span><span class="vi">Làm mới hai mục "Mở hộp quà mỗi ngày" và "Mở hộp quà ngẫu nhiên" ở cả App và CMS.</span></span></div><span class="bd new"><span class="i18n"><span class="ko">신설</span><span class="vi">Thêm mới</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>매일 선물 상자 열기</b> — 돈이 들지 않습니다. 하루에 한 번 열 수 있고, 자정이 지나면 다시 열립니다.
+
+<b>랜덤 선물 상자 열기</b> — 이벤트 티켓 한 장을 써서 엽니다. 하루에 열 번까지 열 수 있습니다.
+
+받는 선물의 종류와 확률은 지금 룰렛에 넣어 둔 값을 그대로 씁니다. 정책을 바꾸는 일이 아닙니다.</span><span class="vi"><b>Mở hộp quà mỗi ngày</b> — không tốn gì cả. Mỗi ngày mở được một lần, qua 0h thì mở lại được.
+
+<b>Mở hộp quà ngẫu nhiên</b> — mở bằng một vé sự kiện. Mỗi ngày mở được tối đa mười lần.
+
+Loại phần quà và xác suất thì dùng nguyên các giá trị đang đặt ở vòng quay. Đây không phải việc đổi chính sách.</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">보상 출처 — 매일 ← <code>settings/roulette</code> · 랜덤 ← <code>settings/jackpot_roulette</code>. 보상칸 6개 고정과 확률 합계 100% 검증은 마스터 정책서 참여 2·3번 그대로입니다.</span><span class="vi">Nguồn phần thưởng — mỗi ngày ← <code>settings/roulette</code> · ngẫu nhiên ← <code>settings/jackpot_roulette</code>. Cố định 6 ô phần thưởng và kiểm tra tổng xác suất 100% giữ nguyên như mục Tham gia 2·3 trong tài liệu chính sách gốc.</span></span></div></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">신설 메뉴 둘 — 어떻게 여나</span><span class="vi">Hai menu mới — mở bằng cách nào</span></span></h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">신설 메뉴</span><span class="vi">Menu mới</span></span></th><th><span class="i18n"><span class="ko">여는 값</span><span class="vi">Chi phí mở</span></span></th><th><span class="i18n"><span class="ko">하루 횟수</span><span class="vi">Số lần/ngày</span></span></th><th><span class="i18n"><span class="ko">지금 있는 화면은 어떻게 되나</span><span class="vi">Màn hiện có sẽ ra sao</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">매일 선물 상자 열기</span><span class="vi">Mở hộp quà mỗi ngày</span></span></td><td><span class="i18n"><span class="ko">무료</span><span class="vi">Miễn phí</span></span></td><td>1</td><td class="new"><span class="i18n"><span class="ko">행운 룰렛 — 그대로 둡니다</span><span class="vi">Vòng quay may mắn — giữ nguyên</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">랜덤 선물 상자 열기</span><span class="vi">Mở hộp quà ngẫu nhiên</span></span></td><td><span class="i18n"><span class="ko">이벤트 티켓 1장</span><span class="vi">1 vé sự kiện</span></span></td><td>10</td><td><span class="i18n"><span class="ko">잭팟 룰렛 — 이것으로 바뀝니다</span><span class="vi">Vòng quay Jackpot — đổi thành mục này</span></span></td></tr>
+</table></div>
+
+<h2 class="grp hide"><span class="i18n"><span class="ko">3. 잭팟 룰렛은 숨깁니다 · 행운 룰렛은 그대로</span><span class="vi">3. Ẩn Vòng quay Jackpot · giữ nguyên Vòng quay may mắn</span></span></h2>
+
+<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">숨김이지 삭제가 아닙니다</span><span class="vi">Là ẩn, không phải xóa</span></span></span><span class="i18n"><span class="ko">잭팟 룰렛은 <b>노출만 막습니다.</b> 기능과 데이터는 그대로 두어, 필요해지면 되살릴 수 있게 남겨 둡니다.</span><span class="vi"><b>Chỉ chặn phần hiển thị</b> của Vòng quay Jackpot. Chức năng và dữ liệu vẫn giữ nguyên để khi cần thì khôi phục lại được.</span></span></div>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">이유</span><span class="vi">Lý do</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">왜 잭팟 룰렛을 숨기고, 행운 룰렛은 그대로 둡니까?</span><span class="vi">Vì sao ẩn Vòng quay Jackpot mà giữ nguyên Vòng quay may mắn?</span></span></div><span class="bd hide"><span class="i18n"><span class="ko">잭팟 룰렛 숨김</span><span class="vi">Ẩn Jackpot</span></span></span> <span class="bd keep"><span class="i18n"><span class="ko">행운 룰렛 유지</span><span class="vi">Giữ may mắn</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">구글플레이가 앱 등록을 한 번 거절했습니다. 사유는 <b>App Content: Gambling</b>입니다.
+
+그래서 <b>잭팟 룰렛을 숨기고 다시 등록합니다.</b> 잭팟 룰렛은 이벤트 티켓을 쓰는 자리일 뿐이라, 그 자리를 랜덤 선물 상자가 대신하면 운영에 지장이 없습니다. 앱은 아직 런칭 전이라 지금 손대는 편이 낫습니다.
+
+<b>행운 룰렛은 그대로 둡니다.</b> 하루 한 번 무료라 값을 치르고 돌리는 것이 아니어서, 도박에 해당하지 않습니다.</span><span class="vi">Google Play đã từ chối đăng ký app một lần. Lý do là <b>App Content: Gambling</b>.
+
+Vì vậy <b>ẩn Vòng quay Jackpot rồi nộp lại.</b> Vòng quay Jackpot chỉ là chỗ để tiêu vé sự kiện, nên để Mở hộp quà ngẫu nhiên thay vào chỗ đó thì vận hành không bị ảnh hưởng. App vẫn chưa ra mắt nên sửa ngay bây giờ là hợp lý hơn.
+
+<b>Vòng quay may mắn thì giữ nguyên.</b> Vì miễn phí một lần mỗi ngày, không phải trả gì để quay, nên không bị coi là cờ bạc.</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">거절 건의 경위와 대응은 <a href="/devqa/app-kelvin-20260824-2.html">앱 질문 답변 · Kelvin (2026-08-24)</a>에 정리돼 있습니다. 재등록 시점은 따로 알려 드립니다.</span><span class="vi">Diễn biến và cách xử lý việc bị từ chối đã được tổng hợp ở <a href="/devqa/app-kelvin-20260824-2.html">Giải đáp câu hỏi App · Kelvin (24/08/2026)</a>. Thời điểm nộp lại sẽ thông báo riêng.</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">4. 선물 상자는 이렇게 동작합니다</span><span class="vi">4. Hộp quà hoạt động thế nào</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">동작</span><span class="vi">Cách hoạt động</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">룰렛과 무엇이 다릅니까?</span><span class="vi">Khác vòng quay ở chỗ nào?</span></span></div><span class="bd new"><span class="i18n"><span class="ko">변경</span><span class="vi">Thay đổi</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>무엇이 들어 있는지 미리 보여주지 않습니다.</b> 룰렛은 칸마다 무엇이 걸리는지 늘어놓았지만, 선물 상자는 열어봐야 압니다.
+
+화면에는 안내 한 줄만 둡니다 — 「이벤트티켓, 포인트, 등급티켓 등 다양한 선물이 쏟아집니다.」
+
+상자를 누르면 열리고, 받은 선물이 뜹니다. 돌아가는 판도 바늘도 없습니다.
+
+골드 티켓이 나왔을 때 뜨던 <b>「잭팟!」은 「대박!」으로 바뀌었습니다.</b></span><span class="vi"><b>Không cho biết trước bên trong có gì.</b> Vòng quay bày sẵn từng ô trúng cái gì, còn hộp quà thì mở ra mới biết.
+
+Trên màn chỉ để một dòng hướng dẫn — "Vé sự kiện, điểm, vé hạng và nhiều phần quà khác đang chờ bạn."
+
+Nhấn vào hộp thì hộp mở ra và hiện phần quà nhận được. Không có bàn xoay, cũng không có kim chỉ.
+
+Dòng chữ <b>"Jackpot!" hiện khi nhận vé Gold đã đổi thành "Phần quà lớn nhất!"</b></span></span></div></div>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">결과 모달 5종 — 포인트 / 이벤트 티켓 / 브론즈 / 실버 / 골드. 골드만 「대박! 골드 티켓」이고 나머지는 「🎉 축하해요!」입니다. 베트남어 문구는 「Phần quà lớn nhất! Vé Gold」로 맞췄고, 선물 상자 쪽 베트남어에서는 quay·trúng·may mắn·Jackpot 계열 낱말을 쓰지 않습니다(<code>new-design/nd-dict-giftbox.js</code>).</span><span class="vi">5 loại modal kết quả — điểm / vé sự kiện / Đồng / Bạc / Gold. Chỉ Gold là "Phần quà lớn nhất! Vé Gold", còn lại là "🎉 Chúc mừng!". Phần tiếng Việt của hộp quà không dùng các từ thuộc nhóm quay·trúng·may mắn·Jackpot (<code>new-design/nd-dict-giftbox.js</code>).</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">5. CMS는 룰렛 방식을 그대로 씁니다</span><span class="vi">5. CMS dùng nguyên cách của vòng quay</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">CMS</span><span class="vi">CMS</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">CMS에서는 어떻게 설정합니까?</span><span class="vi">Trên CMS thì cài đặt thế nào?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>행운 룰렛·잭팟 룰렛의 CMS 설정 방식을 그대로 씁니다.</b> 새로 익힐 것이 없습니다.
+
+보상칸 6개 고정, 확률 합계가 100%가 아니면 저장되지 않는 검증, 기본값 복원, 상자를 연 기록 표까지 룰렛 화면과 같습니다.
+
+메뉴 자리는 왼쪽 「티켓 · 보상」 안, 잭팟 룰렛 바로 아래입니다.</span><span class="vi"><b>Dùng nguyên cách cài đặt CMS của Vòng quay may mắn·Vòng quay Jackpot.</b> Không có gì phải học lại.
+
+Cố định 6 ô phần thưởng, kiểm tra không cho lưu khi tổng xác suất khác 100%, khôi phục giá trị mặc định, bảng lịch sử mở hộp — đều giống màn vòng quay.
+
+Vị trí menu nằm trong "Vé · Phần thưởng" bên trái, ngay dưới Vòng quay Jackpot.</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">데모 CMS 섹션 id는 <code>giftbox-daily</code> · <code>giftbox-random</code>입니다. 정본은 데모 CMS이니 고칠 일이 있으면 그쪽을 고치십시오.</span><span class="vi">Id section trên Demo CMS là <code>giftbox-daily</code> · <code>giftbox-random</code>. Bản chuẩn là Demo CMS, nên có gì cần sửa thì sửa ở đó.</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">6. 확인 경로</span><span class="vi">6. Đường dẫn kiểm tra</span></span></h2>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">무엇</span><span class="vi">Cái gì</span></span></th><th><span class="i18n"><span class="ko">어디서 봅니까</span><span class="vi">Xem ở đâu</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">앱 시안 (4판)</span><span class="vi">Bản thiết kế App (bản 4)</span></span></td><td><a href="/20260825_NewDesign_giftbox.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">선물 상자 시안 ↗</span><span class="vi">Bản thiết kế hộp quà ↗</span></span></a></td></tr>
+<tr><td><span class="i18n"><span class="ko">앱 화면 — 매일</span><span class="vi">Màn App — mỗi ngày</span></span></td><td><a href="/interactive.html#pw-gb1" target="_blank" rel="noopener"><span class="i18n"><span class="ko">매일 선물 상자 열기 ↗</span><span class="vi">Mở hộp quà mỗi ngày ↗</span></span></a></td></tr>
+<tr><td><span class="i18n"><span class="ko">앱 화면 — 랜덤</span><span class="vi">Màn App — ngẫu nhiên</span></span></td><td><a href="/interactive.html#pw-gb2" target="_blank" rel="noopener"><span class="i18n"><span class="ko">랜덤 선물 상자 열기 ↗</span><span class="vi">Mở hộp quà ngẫu nhiên ↗</span></span></a></td></tr>
+<tr><td><span class="i18n"><span class="ko">CMS 설정</span><span class="vi">Cài đặt CMS</span></span></td><td><a href="https://pricepick-demo.vercel.app/cms/" target="_blank" rel="noopener"><span class="i18n"><span class="ko">데모 CMS ↗</span><span class="vi">Demo CMS ↗</span></span></a> <span class="i18n"><span class="ko">— 왼쪽 「티켓 · 보상」 → 「매일 선물 상자 열기」 · 「랜덤 선물 상자 열기」</span><span class="vi">— "Vé · Phần thưởng" bên trái → "Mở hộp quà mỗi ngày" · "Mở hộp quà ngẫu nhiên"</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">거절 건 경위</span><span class="vi">Diễn biến việc bị từ chối</span></span></td><td><a href="/devqa/app-kelvin-20260824-2.html"><span class="i18n"><span class="ko">앱 질문 답변 · Kelvin (2026-08-24) ↗</span><span class="vi">Giải đáp câu hỏi App · Kelvin (24/08/2026) ↗</span></span></a></td></tr>
+</table></div>
+<div class="note-box"><span class="i18n"><span class="ko">CMS 초안 원본 <a href="/cms-storyboard/giftbox-settings.html" target="_blank" rel="noopener">선물 상자 CMS 설정 ↗</a>은 만들 당시 모습을 남겨 둔 이력입니다. <b>정본은 데모 CMS</b>이니 고칠 일이 있으면 데모 CMS 쪽을 고치십시오.</span><span class="vi">Bản nháp CMS gốc <a href="/cms-storyboard/giftbox-settings.html" target="_blank" rel="noopener">Cấu hình CMS hộp quà ↗</a> chỉ là lịch sử ghi lại hình dạng lúc mới làm. <b>Bản chuẩn là Demo CMS</b>, nên có gì cần sửa thì sửa ở Demo CMS.</span></span></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 개발 전달용 작업 공지 · 2026-08-27 · 확정: 김반장</span><span class="vi">PricePick · Thông báo công việc bàn giao phát triển · 27/08/2026 · Chốt: Người quản lý</span></span></div>
+</div>
+</body></html>
