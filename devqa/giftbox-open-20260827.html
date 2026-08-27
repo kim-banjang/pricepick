@@ -65,11 +65,11 @@ h2.grp.hide{color:#95690c;border-bottom-color:#f3e6c6}
 
 <div class="keybox"><span class="kt"><span class="i18n"><span class="ko">먼저 결론</span><span class="vi">Kết luận trước</span></span></span><span class="i18n"><span class="ko">선물 상자를 여는 화면 두 개를 새로 만듭니다. <b>「매일 선물 상자 열기」</b>는 하루 한 번 무료로 엽니다. <b>「랜덤 선물 상자 열기」</b>는 이벤트 티켓 한 장으로 엽니다.
 
-지금 있는 <b>「잭팟 룰렛」이 「랜덤 선물 상자 열기」로 바뀝니다.</b> 「행운 룰렛」은 그대로 둡니다.
+지금 있는 룰렛 두 개가 상자 두 개로 바뀝니다. <b>「행운 룰렛」은 「매일 선물 상자 열기」로, 「잭팟 룰렛」은 「랜덤 선물 상자 열기」로 바뀝니다.</b> 룰렛은 둘 다 숨겨져 화면에서 사라집니다.
 
 앱과 CMS 양쪽에 새로 들어갑니다. <b>앱 쪽은 이미 작업이 진행 중입니다.</b></span><span class="vi">Chúng ta làm mới hai màn mở hộp quà. <b>"Mở hộp quà mỗi ngày"</b> mở miễn phí một lần mỗi ngày. <b>"Mở hộp quà ngẫu nhiên"</b> mở bằng một vé sự kiện.
 
-<b>"Vòng quay Jackpot" hiện có sẽ đổi thành "Mở hộp quà ngẫu nhiên".</b> "Vòng quay may mắn" thì giữ nguyên.
+Hai vòng quay hiện có sẽ đổi thành hai hộp quà. <b>"Vòng quay may mắn" đổi thành "Mở hộp quà mỗi ngày", "Vòng quay Jackpot" đổi thành "Mở hộp quà ngẫu nhiên".</b> Cả hai vòng quay đều bị ẩn và biến mất khỏi màn hình.
 
 Thêm mới ở cả App và CMS. <b>Phía App đã bắt đầu làm rồi.</b></span></span></div>
 
@@ -103,25 +103,29 @@ Loại phần quà và xác suất thì dùng nguyên các giá trị đang đ�
 
 <h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">신설 메뉴 둘 — 어떻게 여나</span><span class="vi">Hai menu mới — mở bằng cách nào</span></span></h3>
 <div class="tblwrap"><table class="tbl">
-<tr><th><span class="i18n"><span class="ko">신설 메뉴</span><span class="vi">Menu mới</span></span></th><th><span class="i18n"><span class="ko">여는 값</span><span class="vi">Chi phí mở</span></span></th><th><span class="i18n"><span class="ko">하루 횟수</span><span class="vi">Số lần/ngày</span></span></th><th><span class="i18n"><span class="ko">지금 있는 화면은 어떻게 되나</span><span class="vi">Màn hiện có sẽ ra sao</span></span></th></tr>
-<tr><td><span class="i18n"><span class="ko">매일 선물 상자 열기</span><span class="vi">Mở hộp quà mỗi ngày</span></span></td><td><span class="i18n"><span class="ko">무료</span><span class="vi">Miễn phí</span></span></td><td>1</td><td class="new"><span class="i18n"><span class="ko">행운 룰렛 — 그대로 둡니다</span><span class="vi">Vòng quay may mắn — giữ nguyên</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">랜덤 선물 상자 열기</span><span class="vi">Mở hộp quà ngẫu nhiên</span></span></td><td><span class="i18n"><span class="ko">이벤트 티켓 1장</span><span class="vi">1 vé sự kiện</span></span></td><td>10</td><td><span class="i18n"><span class="ko">잭팟 룰렛 — 이것으로 바뀝니다</span><span class="vi">Vòng quay Jackpot — đổi thành mục này</span></span></td></tr>
+<tr><th><span class="i18n"><span class="ko">신설 메뉴</span><span class="vi">Menu mới</span></span></th><th><span class="i18n"><span class="ko">여는 값</span><span class="vi">Chi phí mở</span></span></th><th><span class="i18n"><span class="ko">하루 횟수</span><span class="vi">Số lần/ngày</span></span></th><th><span class="i18n"><span class="ko">어느 룰렛을 대신하나 (룰렛은 숨김)</span><span class="vi">Thay cho vòng quay nào (vòng quay bị ẩn)</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">매일 선물 상자 열기</span><span class="vi">Mở hộp quà mỗi ngày</span></span></td><td><span class="i18n"><span class="ko">무료</span><span class="vi">Miễn phí</span></span></td><td>1</td><td><span class="i18n"><span class="ko">행운 룰렛 → 매일 선물 상자 열기</span><span class="vi">Vòng quay may mắn → Mở hộp quà mỗi ngày</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">랜덤 선물 상자 열기</span><span class="vi">Mở hộp quà ngẫu nhiên</span></span></td><td><span class="i18n"><span class="ko">이벤트 티켓 1장</span><span class="vi">1 vé sự kiện</span></span></td><td>10</td><td><span class="i18n"><span class="ko">잭팟 룰렛 → 랜덤 선물 상자 열기</span><span class="vi">Vòng quay Jackpot → Mở hộp quà ngẫu nhiên</span></span></td></tr>
 </table></div>
 
-<h2 class="grp hide"><span class="i18n"><span class="ko">3. 잭팟 룰렛은 숨깁니다 · 행운 룰렛은 그대로</span><span class="vi">3. Ẩn Vòng quay Jackpot · giữ nguyên Vòng quay may mắn</span></span></h2>
+<h2 class="grp hide"><span class="i18n"><span class="ko">3. 룰렛 두 개를 다 숨깁니다</span><span class="vi">3. Ẩn cả hai vòng quay</span></span></h2>
 
-<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">숨김이지 삭제가 아닙니다</span><span class="vi">Là ẩn, không phải xóa</span></span></span><span class="i18n"><span class="ko">잭팟 룰렛은 <b>노출만 막습니다.</b> 기능과 데이터는 그대로 두어, 필요해지면 되살릴 수 있게 남겨 둡니다.</span><span class="vi"><b>Chỉ chặn phần hiển thị</b> của Vòng quay Jackpot. Chức năng và dữ liệu vẫn giữ nguyên để khi cần thì khôi phục lại được.</span></span></div>
+<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">숨김이지 삭제가 아닙니다</span><span class="vi">Là ẩn, không phải xóa</span></span></span><span class="i18n"><span class="ko">룰렛 두 개는 <b>노출만 막습니다.</b> 기능과 데이터는 그대로 두어, 필요해지면 되살릴 수 있게 남겨 둡니다.</span><span class="vi"><b>Chỉ chặn phần hiển thị</b> của hai vòng quay. Chức năng và dữ liệu vẫn giữ nguyên để khi cần thì khôi phục lại được.</span></span></div>
 
-<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">이유</span><span class="vi">Lý do</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">왜 잭팟 룰렛을 숨기고, 행운 룰렛은 그대로 둡니까?</span><span class="vi">Vì sao ẩn Vòng quay Jackpot mà giữ nguyên Vòng quay may mắn?</span></span></div><span class="bd hide"><span class="i18n"><span class="ko">잭팟 룰렛 숨김</span><span class="vi">Ẩn Jackpot</span></span></span> <span class="bd keep"><span class="i18n"><span class="ko">행운 룰렛 유지</span><span class="vi">Giữ may mắn</span></span></span></div>
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">이유</span><span class="vi">Lý do</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">왜 룰렛을 다 숨깁니까?</span><span class="vi">Vì sao ẩn hết cả hai vòng quay?</span></span></div><span class="bd hide"><span class="i18n"><span class="ko">룰렛 2종 숨김</span><span class="vi">Ẩn 2 vòng quay</span></span></span></div>
 <div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">구글플레이가 앱 등록을 한 번 거절했습니다. 사유는 <b>App Content: Gambling</b>입니다.
 
-그래서 <b>잭팟 룰렛을 숨기고 다시 등록합니다.</b> 잭팟 룰렛은 이벤트 티켓을 쓰는 자리일 뿐이라, 그 자리를 랜덤 선물 상자가 대신하면 운영에 지장이 없습니다. 앱은 아직 런칭 전이라 지금 손대는 편이 낫습니다.
+그래서 <b>룰렛 두 개를 다 숨기고 다시 등록합니다.</b> 화면에서 룰렛이 완전히 빠지고, 그 자리를 선물 상자 두 개가 대신합니다.
 
-<b>행운 룰렛은 그대로 둡니다.</b> 하루 한 번 무료라 값을 치르고 돌리는 것이 아니어서, 도박에 해당하지 않습니다.</span><span class="vi">Google Play đã từ chối đăng ký app một lần. Lý do là <b>App Content: Gambling</b>.
+<b>행운 룰렛 자리는 매일 선물 상자 열기가 대신합니다.</b> 하루 한 번 무료로 여는 것은 그대로입니다. 룰렛이 상자로 바뀔 뿐, 사용자가 받는 것은 달라지지 않습니다.
 
-Vì vậy <b>ẩn Vòng quay Jackpot rồi nộp lại.</b> Vòng quay Jackpot chỉ là chỗ để tiêu vé sự kiện, nên để Mở hộp quà ngẫu nhiên thay vào chỗ đó thì vận hành không bị ảnh hưởng. App vẫn chưa ra mắt nên sửa ngay bây giờ là hợp lý hơn.
+<b>잭팟 룰렛 자리는 랜덤 선물 상자 열기가 대신합니다.</b> 이벤트 티켓을 쓰는 자리도 그대로 이어집니다. 앱은 아직 런칭 전이라 지금 손대는 편이 낫습니다.</span><span class="vi">Google Play đã từ chối đăng ký app một lần. Lý do là <b>App Content: Gambling</b>.
 
-<b>Vòng quay may mắn thì giữ nguyên.</b> Vì miễn phí một lần mỗi ngày, không phải trả gì để quay, nên không bị coi là cờ bạc.</span></span></div></div>
+Vì vậy <b>ẩn cả hai vòng quay rồi nộp lại.</b> Vòng quay biến mất hẳn khỏi màn hình, và hai hộp quà thay vào chỗ đó.
+
+<b>Chỗ của Vòng quay may mắn do Mở hộp quà mỗi ngày thay thế.</b> Việc mở miễn phí một lần mỗi ngày vẫn giữ nguyên. Chỉ là vòng quay đổi thành hộp quà, còn thứ người dùng nhận được thì không đổi.
+
+<b>Chỗ của Vòng quay Jackpot do Mở hộp quà ngẫu nhiên thay thế.</b> Chỗ tiêu vé sự kiện cũng được nối tiếp như cũ. App vẫn chưa ra mắt nên sửa ngay bây giờ là hợp lý hơn.</span></span></div></div>
 <div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">거절 건의 경위와 대응은 <a href="/devqa/app-kelvin-20260824-2.html">앱 질문 답변 · Kelvin (2026-08-24)</a>에 정리돼 있습니다. 재등록 시점은 따로 알려 드립니다.</span><span class="vi">Diễn biến và cách xử lý việc bị từ chối đã được tổng hợp ở <a href="/devqa/app-kelvin-20260824-2.html">Giải đáp câu hỏi App · Kelvin (24/08/2026)</a>. Thời điểm nộp lại sẽ thông báo riêng.</span></span></div></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">4. 선물 상자는 이렇게 동작합니다</span><span class="vi">4. Hộp quà hoạt động thế nào</span></span></h2>
