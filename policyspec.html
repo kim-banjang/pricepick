@@ -408,7 +408,7 @@
   <div class="panel" data-tab="t5">
     <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.5-7 10-7 10z"/></svg>참여 — 출석 · 선물 상자 · 친구초대 · 온보딩</div>
     <div class="pdesc">구매하지 않아도 보상을 얻는 데일리·바이럴 장치들.</div>
-    <div class="note">2026-08-27 확정 — 매일 행운 룰렛과 잭팟 룰렛을 <b>둘 다 숨김 처리</b>하고, <b>매일 선물 상자 열기</b>·<b>랜덤 선물 상자 열기</b>가 그 자리를 대신합니다. 구글플레이가 App Content: Gambling으로 거절해 돌아가는 판을 화면에서 걷어낸 것입니다. 기능과 코드는 그대로 두고 노출만 차단하므로 되살릴 수 있고, 보상 구성·확률·한도는 아래 표 그대로입니다.</div>
+    <div class="note"><b>2026-08-27 확정 — 룰렛 2종을 둘 다 숨기고 선물 상자 2종이 그 자리를 대신합니다.</b> 매일 행운 룰렛은 매일 선물 상자 열기로, 잭팟 룰렛은 랜덤 선물 상자 열기로 바뀝니다. 구글플레이가 App Content: Gambling으로 거절해 돌아가는 판을 화면에서 걷어낸 것입니다. 기능과 코드는 그대로 두고 노출만 차단하므로 되살릴 수 있고, 보상 구성·확률·한도는 아래 표 그대로입니다.</div>
     <div class="card">
       <h4><span class="n">1</span>출석 — "쿠팡 구경하기"</h4>
       <div class="rule"><span class="lead">기본</span>기존 출석체크를 <b>"쿠팡 구경하기"로 대체.</b> 매일 앱을 거쳐 쿠팡에 방문하고 <b>30초 이상 머문 게 확인되면 100P</b> 지급.</div>
@@ -1076,6 +1076,11 @@ Object.assign(KO2VI,{"구매·취소 정보 수신 (포스트백)": "Nhận thô
   "룰렛 2종 숨김 · 선물 상자 2종 대체": "Ẩn 2 vòng quay · thay bằng 2 hộp quà",
   "매일 선물 상자 열기": "Mở hộp quà mỗi ngày",
   "김반장님 확정(2026-08-27) — 구글플레이가 App Content: Gambling으로 거절해, 돌아가는 판을 화면에서 걷어내고 재등록한다. 앱은 아직 런칭 전이라 지금 바꾸는 편이 낫다.": "Người quản lý chốt (27/08/2026) — Google Play từ chối với lý do App Content: Gambling nên gỡ bàn xoay khỏi màn hình rồi nộp lại. App vẫn chưa ra mắt nên sửa ngay bây giờ là hợp lý hơn."
+});
+
+  Object.assign(KO2VI, {
+  "2026-08-27 확정 — 룰렛 2종을 둘 다 숨기고 선물 상자 2종이 그 자리를 대신합니다.": "Chốt 27/08/2026 — Ẩn cả 2 vòng quay và 2 hộp quà thay vào chỗ đó.",
+  "매일 행운 룰렛은 매일 선물 상자 열기로, 잭팟 룰렛은 랜덤 선물 상자 열기로 바뀝니다. 구글플레이가 App Content: Gambling으로 거절해 돌아가는 판을 화면에서 걷어낸 것입니다. 기능과 코드는 그대로 두고 노출만 차단하므로 되살릴 수 있고, 보상 구성·확률·한도는 아래 표 그대로입니다.": "Vòng quay may mắn hằng ngày đổi thành Mở hộp quà mỗi ngày, Vòng quay Jackpot đổi thành Mở hộp quà ngẫu nhiên. Google Play đã từ chối với lý do App Content: Gambling nên ta gỡ bàn xoay khỏi màn hình. Chức năng và mã nguồn vẫn giữ nguyên, chỉ chặn hiển thị nên khôi phục lại được; cấu hình phần thưởng·xác suất·hạn mức vẫn đúng như bảng bên dưới."
 });
   function hasKo(s){return KO_RE.test(s);}
   function tcore(raw){
