@@ -58,7 +58,7 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
 <div class="wraphdr"><div class="crumb"><a href="/cms-storyboard/index.html"><span class="i18n"><span class="ko">&larr; CMS 설명서 전체 목록</span><span class="vi">&larr; Danh sách toàn bộ tài liệu CMS</span></span></a></div>
-<div class="htitle"><span class="i18n"><span class="ko">제휴몰 API 관리</span><span class="vi">Quản lý API đối tác</span></span></div>
+<div class="htitle"><span class="i18n"><span class="ko">제휴몰 API 관리</span><span class="vi">Quản lý API merchant</span></span></div>
 <div class="hsub"><span class="i18n"><span class="ko">제휴몰 API 키·연동 상태를 모아보는 관제판 — 지금은 쿠팡 파트너스 연동을 준비 중인 단계</span><span class="vi">Bảng điều khiển tổng hợp key API·trạng thái kết nối cửa hàng liên kết — hiện đang chuẩn bị kết nối Coupang Partners</span></span></div>
 </div></header>
 <div class="wrap">
@@ -72,12 +72,12 @@ code{font-family:'SF Mono',Menlo,monospace;font-size:11.5px;background:var(--bg)
 </div>
 
 <h2 class="sec"><span class="i18n"><span class="ko">1. 한 줄 정의</span><span class="vi">1. Định nghĩa một dòng</span></span></h2>
-<p><span class="i18n"><span class="ko">제휴몰 API 관리 = 제휴몰마다 발급받은 API 키(Access Key)의 상태와, 하루에 몇 번까지 호출할 수 있는지(일일 호출 한도)를 한곳에서 관제하는 화면. 포스트백이 "결제 끝났다"는 통보를 받는 창구라면, 이 화면은 그 통보를 받을 자격(키)이 살아있는지·막히지 않았는지를 지키는 관제탑이다. 키가 만료되거나 막히면 포스트백 자체가 끊긴다.</span><span class="vi">Quản lý API đối tác = màn quản lý tập trung trạng thái key API (Access Key) được cấp cho từng cửa hàng liên kết, và giới hạn số lần gọi API mỗi ngày. Nếu postback là cửa nhận thông báo "đã thanh toán xong", thì màn này là đài kiểm soát canh xem tư cách nhận thông báo đó (key) còn sống hay bị chặn. Nếu key hết hạn hoặc bị chặn, bản thân postback cũng bị đứt theo.</span></span></p>
+<p><span class="i18n"><span class="ko">제휴몰 API 관리 = 제휴몰마다 발급받은 API 키(Access Key)의 상태와, 하루에 몇 번까지 호출할 수 있는지(일일 호출 한도)를 한곳에서 관제하는 화면. 포스트백이 "결제 끝났다"는 통보를 받는 창구라면, 이 화면은 그 통보를 받을 자격(키)이 살아있는지·막히지 않았는지를 지키는 관제탑이다. 키가 만료되거나 막히면 포스트백 자체가 끊긴다.</span><span class="vi">Quản lý API merchant = màn quản lý tập trung trạng thái key API (Access Key) được cấp cho từng cửa hàng liên kết, và giới hạn số lần gọi API mỗi ngày. Nếu postback là cửa nhận thông báo "đã thanh toán xong", thì màn này là đài kiểm soát canh xem tư cách nhận thông báo đó (key) còn sống hay bị chặn. Nếu key hết hạn hoặc bị chặn, bản thân postback cũng bị đứt theo.</span></span></p>
 
 <h2 class="sec"><span class="i18n"><span class="ko">2. CMS 화면 구성</span><span class="vi">2. Cấu trúc màn hình CMS</span></span></h2>
 <img class="shot kob" src="/cms-storyboard/img/apikeys-01-overview.png" alt="제휴몰 API 관리 화면 실캡처">
 <img class="shot vib" src="/cms-storyboard/img/apikeys-01-overview-vi.png" alt="제휴몰 API 관리 화면 실캡처">
-<div class="shotcap"><span class="i18n"><span class="ko">실제 CMS 데모(pricepick-demo.vercel.app) · 시스템 &gt; 제휴몰 API 관리 · 2026-07-22 캡처</span><span class="vi">CMS demo thực tế (pricepick-demo.vercel.app) · Hệ thống &gt; Quản lý API đối tác · Chụp 2026-07-22</span></span></div>
+<div class="shotcap"><span class="i18n"><span class="ko">실제 CMS 데모(pricepick-demo.vercel.app) · 시스템 &gt; 제휴몰 API 관리 · 2026-07-22 캡처</span><span class="vi">CMS demo thực tế (pricepick-demo.vercel.app) · Hệ thống &gt; Quản lý API merchant · Chụp 2026-07-22</span></span></div>
 <table>
   <tr><th style="width:170px"><span class="i18n"><span class="ko">요소</span><span class="vi">Thành phần</span></span></th><th><span class="i18n"><span class="ko">의미</span><span class="vi">Ý nghĩa</span></span></th><th><span class="i18n"><span class="ko">바꾸면 생기는 일</span><span class="vi">Điều gì xảy ra khi thay đổi</span></span></th></tr>
   <tr><td><b>ACCESS KEY</b></td><td><span class="i18n"><span class="ko">제휴몰이 발급한 인증키. 화면엔 마스킹돼 보임</span><span class="vi">Key xác thực do cửa hàng liên kết cấp. Trên màn hiển thị dạng che (mask)</span></span></td><td><span class="i18n"><span class="ko">'키/상태 수정'으로 등록. 지금은 5개 제휴몰 모두 <b>미등록</b></span><span class="vi">Đăng ký qua 'Sửa key/trạng thái'. Hiện cả 5 cửa hàng đều <b>Chưa đăng ký</b></span></span></td></tr>

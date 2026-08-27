@@ -91,7 +91,7 @@ Ví dụ tính toán ở mục đổi Điểm và chuẩn tích lũy theo hạng
 
 두 구획은 이제 <b>각자 자기 것만 저장</b>합니다 — 대표 제휴몰(쿠팡) 저장 버튼은 대표 몰 값만, 링크프라이스 저장 버튼은 110개 몰 값만 Firestore에 씁니다. 확인해 보니 원래는 저장 버튼이 하나뿐이었는데 그 버튼이 두 구획을 합쳐서 같이 저장하고 있었습니다 — 그래서 링크프라이스만 고치고 저장해도 실제로는 저장이 됐지만, 버튼이 안 보이니 저장이 안 되는 것처럼 느껴졌던 것입니다.
 
-변경 표시("저장하지 않은 변경 N건" 배너)도 구획별로 나눴습니다. 이제 대표 제휴몰을 고치면 대표 쪽 배너만, 링크프라이스를 고치면 링크프라이스 쪽 배너만 뜹니다.</span><span class="vi">Đã thêm theo yêu cầu. Đã gắn nút Lưu mới ở bên phải tiêu đề của mục 「Cửa hàng liên kết (Linkprice)」, <b>cùng vị trí·cùng kiểu dáng</b> với mục 「Cửa hàng đối tác đại diện」.
+변경 표시("저장하지 않은 변경 N건" 배너)도 구획별로 나눴습니다. 이제 대표 제휴몰을 고치면 대표 쪽 배너만, 링크프라이스를 고치면 링크프라이스 쪽 배너만 뜹니다.</span><span class="vi">Đã thêm theo yêu cầu. Đã gắn nút Lưu mới ở bên phải tiêu đề của mục 「Cửa hàng liên kết (Linkprice)」, <b>cùng vị trí·cùng kiểu dáng</b> với mục 「Cửa hàng merchant đại diện」.
 
 Từ giờ 2 mục <b>tự lưu riêng của mình</b> — nút Lưu của cửa hàng đại diện (Coupang) chỉ ghi giá trị của cửa hàng đại diện, nút Lưu của Linkprice chỉ ghi giá trị của 110 cửa hàng vào Firestore. Kiểm tra thì thấy trước đây chỉ có 1 nút Lưu duy nhất, và nút đó đang lưu gộp cả 2 mục cùng lúc — nên dù chỉnh riêng Linkprice và bấm nút (ở mục kia) thì thực ra vẫn được lưu, nhưng vì không thấy nút ở đây nên cảm giác như không lưu được.
 
@@ -118,7 +118,7 @@ Thông báo thay đổi (banner "N thay đổi chưa lưu") cũng đã tách the
 
 Màn "Cài đặt giá trị vé" — Thẻ 「Giá trị quy đổi theo hạng」 giữ nguyên nút Lưu ở vị trí cũ, chỉ lưu <b>Đồng·Bạc·Vàng</b>. Thẻ 「Giá trị vé Sự kiện」 được gắn thêm nút Lưu mới, chỉ lưu <b>giá trị vé Sự kiện</b>. Khu vực Lưu chung ở phía dưới (nút + khung câu thông báo) đã bị xóa hẳn — giờ mỗi nút Lưu có banner báo thay đổi riêng ("N thay đổi chưa lưu") ngay bên thẻ đó, đảm nhiệm luôn vai trò thông báo.
 
-Màn "Cài đặt tích lũy vé" cũng theo đúng nguyên tắc này — nút Lưu của 「Cửa hàng đối tác đại diện」 chỉ lưu <b>giá trị Coupang</b>, nút Lưu của 「Cửa hàng liên kết (Linkprice)」 chỉ lưu <b>giá trị của 110 cửa hàng</b> (giống nguyên tắc đã áp dụng ở câu hỏi số 3).
+Màn "Cài đặt tích lũy vé" cũng theo đúng nguyên tắc này — nút Lưu của 「Cửa hàng merchant đại diện」 chỉ lưu <b>giá trị Coupang</b>, nút Lưu của 「Cửa hàng liên kết (Linkprice)」 chỉ lưu <b>giá trị của 110 cửa hàng</b> (giống nguyên tắc đã áp dụng ở câu hỏi số 3).
 
 <b>Lưu giá trị hạng thì giá trị Sự kiện không đổi, lưu giá trị Sự kiện thì giá trị hạng không đổi. Lưu Coupang thì Linkprice không đổi, và ngược lại</b> — đã thực sự đổi giá trị và bấm thử cả 4 trường hợp để xác nhận. Cũng đã xác nhận trường hợp một bên còn giá trị chưa lưu, lưu bên kia thì giá trị chưa lưu đó không bị mất (nếu tải lại toàn bộ màn hình sau khi lưu sẽ gặp lỗi này, nên giờ chỉ cập nhật đúng giá trị vừa lưu để tránh).
 
