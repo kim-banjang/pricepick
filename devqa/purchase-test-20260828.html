@@ -1,10 +1,11 @@
 <!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick · 실구매 테스트 · 2026-08-28</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--bad:#c0392b;--bad-l:#fdecea}
 *{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
-.wrap{max-width:1240px;margin:0 auto;padding:0 22px 80px}
+.wrap{max-width:1460px;margin:0 auto;padding:0 22px 80px}
 header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
 .htitle{font-size:22px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
 .meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 14px;font-size:12.5px}
 .chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+.uid{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:var(--pp-d)}
 .dl{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px}
 .dl a{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--pp-d);background:var(--pp-l);border:1px solid #ddd0ff;padding:7px 13px;border-radius:8px;text-decoration:none}
 .dl a:hover{background:#e2d7fd}
@@ -17,10 +18,9 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28p
 .btn.danger{background:#fff;border-color:#f3c8c3;color:var(--bad)} .btn.danger:hover{background:var(--bad-l)}
 .tools .tcount{font-size:12px;color:var(--ink3);margin-left:auto}
 .hint{font-size:11.8px;color:var(--ink3);margin:0 0 14px}
-.uid{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:var(--pp-d)}
 /* ── 표 ── */
 .tblwrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:14px}
-table.tbl{width:100%;border-collapse:collapse;font-size:12.8px;min-width:1000px}
+table.tbl{width:100%;border-collapse:collapse;font-size:12.8px;min-width:1330px}
 table.tbl th,table.tbl td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
 table.tbl thead th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.2px;white-space:nowrap;vertical-align:middle;position:sticky;top:0;z-index:2}
 table.tbl tbody tr:last-child td{border-bottom:none}
@@ -28,11 +28,11 @@ table.tbl th.r,table.tbl td.r{text-align:right}
 table.tbl td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 table.tbl td.pay{font-weight:800;color:var(--ink1)}
 td.c-date,td.c-mall,td.c-ono,td.c-cdate,td.c-cno,td.c-st{white-space:nowrap}
-td.c-item{width:46%;color:var(--ink2);line-height:1.5}
+td.c-item{width:26%;min-width:250px;color:var(--ink2);line-height:1.5}
+td.c-total{vertical-align:middle}
 td.c-adm{text-align:center;width:34px}
 .mall{font-weight:800;color:var(--pp-d)}
 .ono{font-variant-numeric:tabular-nums;font-size:12px;color:var(--ink2)}
-.gbadge{display:block;margin-top:5px;font-size:10px;font-weight:800;color:var(--pp-d);background:var(--pp-l);border:1px solid #ddd0fb;border-radius:20px;padding:2px 8px;width:max-content;letter-spacing:.02em}
 tbody tr:hover > td{background:#faf9fe}
 .bd{font-size:10.3px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap;display:inline-block}
 .bd.ok{background:#e6f5f5;color:var(--ok)}
@@ -49,13 +49,13 @@ tbody tr:hover > td{background:#faf9fe}
 /* ── 모달 ── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(31,35,48,.6);z-index:300;align-items:flex-start;justify-content:center;padding:4vh 16px;overflow-y:auto}
 .modal-overlay.open{display:flex}
-.modal{background:#fff;border-radius:16px;max-width:720px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+.modal{background:#fff;border-radius:16px;max-width:760px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.35)}
 .modal-hd{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
 .modal-hd .mtitle{font-size:16px;font-weight:800}
 .modal-hd .msub{font-size:11.5px;color:var(--ink3);margin-top:2px;line-height:1.5}
 .modal-x{background:var(--bg);border:1px solid var(--line);width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;flex-shrink:0}
 .modal-bd{padding:18px 20px;max-height:70vh;overflow-y:auto}
-.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:11px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:11px}
 .fld{display:flex;flex-direction:column;gap:4px}
 .fld.wide{grid-column:1/-1}
 .fld label{font-size:10.5px;font-weight:800;color:var(--ink3);letter-spacing:.03em}
@@ -87,7 +87,7 @@ tbody tr:hover > td{background:#faf9fe}
 <input type="checkbox" id="langsw">
 
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
-<div style="max-width:1240px;margin:0 auto;padding:0 22px">
+<div style="max-width:1460px;margin:0 auto;padding:0 22px">
 <div class="htitle"><span class="i18n"><span class="ko">실구매 테스트</span><span class="vi">Kiểm thử mua thực tế</span></span></div>
 <div class="hsub"><span class="i18n"><span class="ko">제휴몰에서 실제로 주문하고 취소해 본 기록 — 포스트백 대조용 기초 자료</span><span class="vi">Ghi chép đặt hàng và hủy thực tế tại các sàn liên kết — dữ liệu nền để đối chiếu postback</span></span></div>
 </div></header>
@@ -95,7 +95,7 @@ tbody tr:hover > td{background:#faf9fe}
 <div class="wrap">
 <div class="meta">
 <span class="chip"><span class="i18n"><span class="ko">테스트일</span><span class="vi">Ngày kiểm thử</span></span>: 2026-08-28 · 2026-09-03</span>
-<span class="chip"><span class="i18n"><span class="ko">출처</span><span class="vi">Nguồn</span></span>: <span class="i18n"><span class="ko">김반장 구글시트 「26.08.28 실구매 테스트」 · 쿠팡 주문상세 화면(09-03)</span><span class="vi">Google Sheet của Kim Ban-jang 「26.08.28 실구매 테스트」 · màn hình chi tiết đơn hàng Coupang (09-03)</span></span></span>
+<span class="chip"><span class="i18n"><span class="ko">출처</span><span class="vi">Nguồn</span></span>: <span class="i18n"><span class="ko">김반장 구글시트 「26.08.28 실구매 테스트」 · 쿠팡 주문상세 화면</span><span class="vi">Google Sheet của Kim Ban-jang 「26.08.28 실구매 테스트」 · màn hình chi tiết đơn hàng Coupang</span></span></span>
 <span class="chip"><span class="i18n"><span class="ko">받는 사람</span><span class="vi">Người nhận</span></span>: Harry · Kelvin</span>
 <span class="chip"><span class="i18n"><span class="ko">테스트 계정</span><span class="vi">Tài khoản kiểm thử</span></span>: 김반장아이폰 <span class="uid">(JEJJA6vlvqz3)</span></span>
 </div>
@@ -122,6 +122,8 @@ tbody tr:hover > td{background:#faf9fe}
 <th><span class="i18n"><span class="ko">주문 상품 정보</span><span class="vi">Thông tin sản phẩm</span></span></th>
 <th class="r"><span class="i18n"><span class="ko">상품금액(수량)</span><span class="vi">Giá SP (SL)</span></span></th>
 <th class="r"><span class="i18n"><span class="ko">총상품가격</span><span class="vi">Tổng giá SP</span></span></th>
+<th class="r"><span class="i18n"><span class="ko">상품가격</span><span class="vi">Giá sản phẩm</span></span></th>
+<th class="r"><span class="i18n"><span class="ko">즉시할인</span><span class="vi">Giảm ngay</span></span></th>
 <th class="r"><span class="i18n"><span class="ko">결제금액</span><span class="vi">Số tiền thanh toán</span></span></th>
 <th><span class="i18n"><span class="ko">취소날짜</span><span class="vi">Ngày hủy</span></span></th>
 <th><span class="i18n"><span class="ko">취소접수번호</span><span class="vi">Mã tiếp nhận hủy</span></span></th>
@@ -132,9 +134,11 @@ tbody tr:hover > td{background:#faf9fe}
 </table>
 </div>
 
-<div class="note-box"><b><span class="i18n"><span class="ko">「상품 2건」 표가 붙은 주문은 한 주문에 상품이 여럿 담긴 것입니다.</span><span class="vi">Đơn có nhãn 「2 sản phẩm」 là đơn chứa nhiều sản phẩm.</span></span></b> <span class="i18n"><span class="ko">주문번호가 같은 상품끼리 한 줄로 이어지고, 구매날짜 · 구매몰 · 주문번호 · 총상품가격 · 취소날짜 · 확인/취소는 그 주문 전체에 걸쳐 한 번만 적힙니다. 상품명 · 상품금액 · 결제금액 · 취소접수번호는 상품마다 따로입니다 — 취소접수번호는 한 주문이어도 상품별로 따로 접수되어 값이 다릅니다. 기본 자료에서는 11st 2건 · Coupang 2건이 여기에 해당합니다.</span><span class="vi">Các sản phẩm cùng mã đơn được nối liền nhau; Ngày mua · Sàn mua · Mã đơn · Tổng giá SP · Ngày hủy · Xác nhận/Hủy chỉ ghi một lần cho cả đơn. Tên SP · giá SP · số tiền thanh toán · mã tiếp nhận hủy thì riêng theo từng sản phẩm — mã tiếp nhận hủy được tiếp nhận riêng cho từng sản phẩm nên khác nhau ngay trong cùng một đơn. Trong dữ liệu gốc có 2 đơn 11st · 2 đơn Coupang như vậy.</span></span></div>
+<div class="note-box"><b><span class="i18n"><span class="ko">주문번호가 같은 줄이 한 주문입니다.</span><span class="vi">Các dòng cùng mã đơn hàng là một đơn.</span></span></b> <span class="i18n"><span class="ko">구매날짜 · 구매몰 · 주문번호는 줄마다 다 적었습니다. 주문 단위 값인 총상품가격만 그 주문의 줄들에 걸쳐 가운데 한 번 적힙니다. 상품 이름 · 상품가격 · 즉시할인 · 결제금액 · 취소접수번호는 상품마다 따로입니다 — 취소접수번호는 한 주문이어도 상품별로 따로 접수되어 값이 다릅니다.</span><span class="vi">Ngày mua · Sàn mua · Mã đơn hàng được ghi ở mọi dòng. Chỉ Tổng giá SP — giá trị theo đơn — được ghi một lần, gộp giữa các dòng của đơn đó. Tên SP · giá sản phẩm · giảm ngay · số tiền thanh toán · mã tiếp nhận hủy thì riêng theo từng sản phẩm — mã tiếp nhận hủy được tiếp nhận riêng cho từng sản phẩm nên khác nhau ngay trong cùng một đơn.</span></span></div>
 
-<div class="note-box"><b><span class="i18n"><span class="ko">빈 칸은 원자료에 값이 없던 자리입니다.</span><span class="vi">Ô trống là chỗ dữ liệu gốc không có giá trị.</span></span></b> <span class="i18n"><span class="ko">상품금액 · 총상품가격 · 취소접수번호가 비어 있는 줄은 원자료에 그 값이 없었던 것이며, 결제금액으로 대신 채우지 않았습니다. 9월 3일 세 건은 상품금액이 할인 전, 결제금액이 할인 후 금액이라 두 값의 차이가 즉시할인액입니다.</span><span class="vi">Các dòng trống ở giá SP · tổng giá SP · mã tiếp nhận hủy là do dữ liệu gốc không có giá trị đó, và không được thay bằng số tiền thanh toán. Ba mục ngày 3/9 có giá SP là giá trước giảm, số tiền thanh toán là sau giảm — chênh lệch chính là mức giảm ngay.</span></span></div>
+<div class="note-box"><b><span class="i18n"><span class="ko">상품가격 − 즉시할인 = 결제금액입니다.</span><span class="vi">Giá sản phẩm − Giảm ngay = Số tiền thanh toán.</span></span></b> <span class="i18n"><span class="ko">즉시할인은 주문이 아니라 상품마다 붙습니다. 그래서 할인액 칸을 따로 두지 않아도 두 값의 차이로 드러납니다. 한 주문의 상품가격을 다 더하면 총상품가격이 됩니다 — 1102582477244는 34,800 + 27,900 = 62,700, 1102710753517은 23,500 + 7,900 = 31,400입니다.</span><span class="vi">Giảm ngay áp theo từng sản phẩm, không theo đơn. Vì vậy không cần cột riêng cho mức giảm — nó hiện ra từ chênh lệch hai giá trị. Cộng giá sản phẩm trong một đơn sẽ ra Tổng giá SP — 1102582477244 là 34,800 + 27,900 = 62,700, 1102710753517 là 23,500 + 7,900 = 31,400.</span></span></div>
+
+<div class="note-box"><b><span class="i18n"><span class="ko">빈 칸은 원자료에 값이 없던 자리입니다.</span><span class="vi">Ô trống là chỗ dữ liệu gốc không có giá trị.</span></span></b> <span class="i18n"><span class="ko">상품가격 · 즉시할인 · 취소접수번호를 받지 못한 건은 비워 뒀고, 결제금액이나 총상품가격으로 대신 채우지 않았습니다. 「상품금액(수량)」은 구글시트에 있던 칸인데 아직 값을 하나도 받지 못해 전부 비어 있습니다.</span><span class="vi">Những mục chưa nhận được giá sản phẩm · giảm ngay · mã tiếp nhận hủy đều để trống, không thay bằng số tiền thanh toán hay Tổng giá SP. Cột 「Giá SP (SL)」 có trong Google Sheet nhưng chưa nhận được giá trị nào nên đang trống hoàn toàn.</span></span></div>
 
 <div class="foot">PricePick · <span class="i18n"><span class="ko">실구매 테스트 기록</span><span class="vi">Ghi chép kiểm thử mua thực tế</span></span> · 2026-08-28 · <span class="i18n"><span class="ko">주문 11건 / 상품 15건</span><span class="vi">11 đơn hàng / 15 sản phẩm</span></span> · <span class="i18n"><span class="ko">자료: 김반장</span><span class="vi">Tài liệu: Kim Ban-jang</span></span></div>
 </div>
@@ -148,14 +152,16 @@ tbody tr:hover > td{background:#faf9fe}
 </div><button class="modal-x" type="button" id="add-x">&times;</button></div>
 <div class="modal-bd">
 <div class="fgrid">
-<div class="fld"><label><span class="i18n"><span class="ko">구매날짜</span><span class="vi">Ngày mua</span></span></label><input id="f-date" placeholder="2026.08.28"></div>
+<div class="fld"><label><span class="i18n"><span class="ko">구매날짜</span><span class="vi">Ngày mua</span></span></label><input id="f-date" placeholder="2026.09.03"></div>
 <div class="fld"><label><span class="i18n"><span class="ko">구매몰</span><span class="vi">Sàn mua</span></span></label><input id="f-mall" list="dl-mall" placeholder="Coupang"><datalist id="dl-mall"><option value="Coupang"></option><option value="11st"></option><option value="Gmarket"></option><option value="emart mall"></option></datalist></div>
-<div class="fld"><label><span class="i18n"><span class="ko">주문번호</span><span class="vi">Mã đơn hàng</span></span></label><input id="f-ono" placeholder="1102581534213"></div>
+<div class="fld"><label><span class="i18n"><span class="ko">주문번호</span><span class="vi">Mã đơn hàng</span></span></label><input id="f-ono" placeholder="1102710753517"></div>
 <div class="fld wide"><label><span class="i18n"><span class="ko">주문 상품 정보</span><span class="vi">Thông tin sản phẩm</span></span></label><input id="f-item" placeholder="상품명"></div>
-<div class="fld"><label><span class="i18n"><span class="ko">상품금액(수량)</span><span class="vi">Giá SP (SL)</span></span></label><input id="f-price" placeholder="22,900"></div>
-<div class="fld"><label><span class="i18n"><span class="ko">총상품가격</span><span class="vi">Tổng giá SP</span></span></label><input id="f-total"></div>
-<div class="fld"><label><span class="i18n"><span class="ko">결제금액</span><span class="vi">Số tiền thanh toán</span></span></label><input id="f-pay" placeholder="10,900"></div>
-<div class="fld"><label><span class="i18n"><span class="ko">취소날짜</span><span class="vi">Ngày hủy</span></span></label><input id="f-cdate" placeholder="2026.08.28"></div>
+<div class="fld"><label><span class="i18n"><span class="ko">상품금액(수량)</span><span class="vi">Giá SP (SL)</span></span></label><input id="f-qty"></div>
+<div class="fld"><label><span class="i18n"><span class="ko">총상품가격</span><span class="vi">Tổng giá SP</span></span></label><input id="f-total" placeholder="31,400"></div>
+<div class="fld"><label><span class="i18n"><span class="ko">상품가격</span><span class="vi">Giá sản phẩm</span></span></label><input id="f-price" placeholder="23,500"></div>
+<div class="fld"><label><span class="i18n"><span class="ko">즉시할인</span><span class="vi">Giảm ngay</span></span></label><input id="f-disc" placeholder="-1,180"></div>
+<div class="fld"><label><span class="i18n"><span class="ko">결제금액</span><span class="vi">Số tiền thanh toán</span></span></label><input id="f-pay" placeholder="22,320"></div>
+<div class="fld"><label><span class="i18n"><span class="ko">취소날짜</span><span class="vi">Ngày hủy</span></span></label><input id="f-cdate" placeholder="2026.09.03"></div>
 <div class="fld"><label><span class="i18n"><span class="ko">취소접수번호</span><span class="vi">Mã tiếp nhận hủy</span></span></label><input id="f-cno" placeholder="1868445805"></div>
 <div class="fld"><label><span class="i18n"><span class="ko">확인/취소</span><span class="vi">Xác nhận/Hủy</span></span></label><input id="f-status" list="dl-status" placeholder="취소완료"><datalist id="dl-status"><option value="취소완료"></option><option value="배송완료"></option></datalist></div>
 </div>
@@ -169,27 +175,30 @@ tbody tr:hover > td{background:#faf9fe}
 (function(){
 'use strict';
 
-/* ── 기본 자료: 김반장 구글시트 「26.08.28 실구매 테스트」 (주문 9건 · 상품 12건) ── */
+/* ── 기본 자료 ──────────────────────────────────────────────────────────────
+   08-28: 김반장 구글시트 「26.08.28 실구매 테스트」 · 09-03: 쿠팡 주문상세·취소상세 화면.
+   칸 뜻 — qty 상품금액(수량) / total 총상품가격(주문 단위) / price 상품가격(할인 전) /
+   disc 즉시할인(마이너스) / pay 결제금액(할인 후).
+   「상품가격 - 즉시할인 = 결제금액」이 상품마다, 「상품가격 합 = 총상품가격」이 주문마다 성립한다.
+   시트에서 「상품가」로 옮겨 적었던 62,700·55,000·43,800·22,900은 주문 단위 값이었다 —
+   1102582477244가 34,800+27,900=62,700으로 드러나 전부 total(총상품가격) 칸으로 옮겼다.
+   상품가격·즉시할인·취소접수번호를 받지 못한 건은 비워 둔다. 지어내지 않는다. */
 var BASE = [
- {id:'b01',date:'2026.08.28',mall:'emart mall',ono:'20260828-649B23',item:'[농할 20% 할인쿠폰 다운로드]샤인머스캣 1.5kg 박스',price:'',total:'',pay:'15,664',cdate:'',status:'배송완료'},
- {id:'b02',date:'2026.08.28',mall:'Gmarket',ono:'4484125255',item:'(신선집중) 샤인머스캣 망고포도 득템특가(송이작음.알작음.일부 알빠짐) 에어셀 안전포장 실중량2kg 3-6수',price:'',total:'',pay:'9,480',cdate:'2026.08.28',status:'취소완료'},
- {id:'b03',date:'2026.08.28',mall:'11st',ono:'20260828096159797',item:'無첨가/최고의맛 햇 백찰 /햇 찰옥수수 얼룩이 20개 (옥수수선택:얼룩이20개)',price:'',total:'',pay:'16,900',cdate:'2026.08.28',status:'취소완료'},
- {id:'b04',date:'2026.08.28',mall:'11st',ono:'20260828096159797',item:'코지푸드 국산 수미감자 햇감자 특품 5kg(중)',price:'',total:'',pay:'13,900',cdate:'2026.08.28',status:'취소완료'},
- {id:'b05',date:'2026.08.28',mall:'11st',ono:'20260828096158272',item:'[농협중도매인]황금열매 햇 떡딱이 복숭아 대과 4kg(13-16과)',price:'',total:'',pay:'35,000',cdate:'2026.08.28',status:'취소완료'},
- {id:'b06',date:'2026.08.28',mall:'11st',ono:'20260828096158272',item:'달콤한 샤인머스캣 에어셀 안전포장 2kg 2-6수',price:'',total:'',pay:'12,500',cdate:'2026.08.28',status:'취소완료'},
- {id:'b07',date:'2026.08.28',mall:'11st',ono:'20260828096138500',item:'N 맥심 모카골드 커피믹스 12gx210T',price:'',total:'',pay:'42,400',cdate:'2026.08.28',status:'취소완료'},
- {id:'b08',date:'2026.08.28',mall:'Coupang',ono:'1102582477244',item:'[1일20박스한정] 초고당도 A급 떡딱이 복숭아, 1개, 5kg(특상품)',price:'62,700',total:'',pay:'29,800',cdate:'2026.08.28',status:'취소완료'},
- {id:'b09',date:'2026.08.28',mall:'Coupang',ono:'1102582477244',item:'[당일배송] 햇 홍로10kg 37900원 산지직송 제철 꿀홍로 사과, 1박스, 5kg',price:'',total:'',pay:'22,900',cdate:'2026.08.28',status:'취소완료'},
- {id:'b10',date:'2026.08.28',mall:'Coupang',ono:'1102581893412',item:'[선물용제격] 고당도 특/대과 햇사레복숭아, 1박스, 2kg(특대과)',price:'55,000',total:'',pay:'46,000',cdate:'2026.08.28',status:'취소완료'},
- {id:'b11',date:'2026.08.28',mall:'Coupang',ono:'1102581885926',item:'[타임특가] 정읍 씨없는 줄무늬 수박, 1개, 씨없는 수박 6kg',price:'43,800',total:'',pay:'24,280',cdate:'2026.08.28',status:'취소완료'},
- {id:'b12',date:'2026.08.28',mall:'Coupang',ono:'1102581534213',item:'[타임초특가] 18brix 제철 초고당도 샤인머스켓, 1박스, 1kg',price:'22,900',total:'',pay:'10,900',cdate:'2026.08.28',status:'취소완료'},
- /* 2026-09-03 추가분 — 쿠팡 주문상세·취소상세 화면에서 옮김. 주문 ①은 상품 2건.
-    즉시할인은 주문이 아니라 상품마다 붙는다 — 「상품금액 - 즉시할인 = 결제금액」이 상품마다
-    성립하므로 할인액 칸은 따로 두지 않는다(두 값의 차이로 드러남).
-    취소접수번호도 상품마다 다르다. 한 주문이어도 상품별로 따로 접수된다. */
- {id:'b13',date:'2026.09.03',mall:'Coupang',ono:'1102710753517',item:'메디힐 데일리 솔루션 마스크팩 3종 세트, 30개입, 1개',price:'23,500',total:'31,400',pay:'22,320',cdate:'2026.09.03',cno:'1868445805',status:'취소완료'},
- {id:'b14',date:'2026.09.03',mall:'Coupang',ono:'1102710753517',item:'밀크바오밥 베이비 여행용 3종 키트, 베이비 워시 70ml + 로션 70ml + 수딩 젤 로션 70ml, 1세트',price:'7,900',total:'31,400',pay:'7,110',cdate:'2026.09.03',cno:'1868452130',status:'취소완료'},
- {id:'b15',date:'2026.09.03',mall:'Coupang',ono:'1102711044256',item:'메디힐 티트리 에센셜 마스크 진정 수분, 10개입, 2개',price:'19,700',total:'19,700',pay:'19,700',cdate:'2026.09.03',cno:'1868463050',status:'취소완료'}
+ {id:'b01',date:'2026.08.28',mall:'emart mall',ono:'20260828-649B23',item:'[농할 20% 할인쿠폰 다운로드]샤인머스캣 1.5kg 박스',qty:'',total:'',price:'',disc:'',pay:'15,664',cdate:'',cno:'',status:'배송완료'},
+ {id:'b02',date:'2026.08.28',mall:'Gmarket',ono:'4484125255',item:'(신선집중) 샤인머스캣 망고포도 득템특가(송이작음.알작음.일부 알빠짐) 에어셀 안전포장 실중량2kg 3-6수',qty:'',total:'',price:'',disc:'',pay:'9,480',cdate:'2026.08.28',cno:'',status:'취소완료'},
+ {id:'b03',date:'2026.08.28',mall:'11st',ono:'20260828096159797',item:'無첨가/최고의맛 햇 백찰 /햇 찰옥수수 얼룩이 20개 (옥수수선택:얼룩이20개)',qty:'',total:'',price:'',disc:'',pay:'16,900',cdate:'2026.08.28',cno:'',status:'취소완료'},
+ {id:'b04',date:'2026.08.28',mall:'11st',ono:'20260828096159797',item:'코지푸드 국산 수미감자 햇감자 특품 5kg(중)',qty:'',total:'',price:'',disc:'',pay:'13,900',cdate:'2026.08.28',cno:'',status:'취소완료'},
+ {id:'b05',date:'2026.08.28',mall:'11st',ono:'20260828096158272',item:'[농협중도매인]황금열매 햇 떡딱이 복숭아 대과 4kg(13-16과)',qty:'',total:'',price:'',disc:'',pay:'35,000',cdate:'2026.08.28',cno:'',status:'취소완료'},
+ {id:'b06',date:'2026.08.28',mall:'11st',ono:'20260828096158272',item:'달콤한 샤인머스캣 에어셀 안전포장 2kg 2-6수',qty:'',total:'',price:'',disc:'',pay:'12,500',cdate:'2026.08.28',cno:'',status:'취소완료'},
+ {id:'b07',date:'2026.08.28',mall:'11st',ono:'20260828096138500',item:'N 맥심 모카골드 커피믹스 12gx210T',qty:'',total:'',price:'',disc:'',pay:'42,400',cdate:'2026.08.28',cno:'',status:'취소완료'},
+ {id:'b08',date:'2026.08.28',mall:'Coupang',ono:'1102582477244',item:'[1일20박스한정] 초고당도 A급 떡딱이 복숭아, 1개, 5kg(특상품)',qty:'',total:'62,700',price:'34,800',disc:'-5,000',pay:'29,800',cdate:'2026.08.28',cno:'',status:'취소완료'},
+ {id:'b09',date:'2026.08.28',mall:'Coupang',ono:'1102582477244',item:'[당일배송] 햇 홍로10kg 37900원 산지직송 제철 꿀홍로 사과, 1박스, 5kg',qty:'',total:'62,700',price:'27,900',disc:'-5,000',pay:'22,900',cdate:'2026.08.28',cno:'',status:'취소완료'},
+ {id:'b10',date:'2026.08.28',mall:'Coupang',ono:'1102581893412',item:'[선물용제격] 고당도 특/대과 햇사레복숭아, 1박스, 2kg(특대과)',qty:'',total:'55,000',price:'',disc:'',pay:'46,000',cdate:'2026.08.28',cno:'',status:'취소완료'},
+ {id:'b11',date:'2026.08.28',mall:'Coupang',ono:'1102581885926',item:'[타임특가] 정읍 씨없는 줄무늬 수박, 1개, 씨없는 수박 6kg',qty:'',total:'43,800',price:'',disc:'',pay:'24,280',cdate:'2026.08.28',cno:'',status:'취소완료'},
+ {id:'b12',date:'2026.08.28',mall:'Coupang',ono:'1102581534213',item:'[타임초특가] 18brix 제철 초고당도 샤인머스켓, 1박스, 1kg',qty:'',total:'22,900',price:'',disc:'',pay:'10,900',cdate:'2026.08.28',cno:'',status:'취소완료'},
+ {id:'b13',date:'2026.09.03',mall:'Coupang',ono:'1102710753517',item:'메디힐 데일리 솔루션 마스크팩 3종 세트, 30개입, 1개',qty:'',total:'31,400',price:'23,500',disc:'-1,180',pay:'22,320',cdate:'2026.09.03',cno:'1868445805',status:'취소완료'},
+ {id:'b14',date:'2026.09.03',mall:'Coupang',ono:'1102710753517',item:'밀크바오밥 베이비 여행용 3종 키트, 베이비 워시 70ml + 로션 70ml + 수딩 젤 로션 70ml, 1세트',qty:'',total:'31,400',price:'7,900',disc:'-790',pay:'7,110',cdate:'2026.09.03',cno:'1868452130',status:'취소완료'},
+ {id:'b15',date:'2026.09.03',mall:'Coupang',ono:'1102711044256',item:'메디힐 티트리 에센셜 마스크 진정 수분, 10개입, 2개',qty:'',total:'19,700',price:'19,700',disc:'',pay:'19,700',cdate:'2026.09.03',cno:'1868463050',status:'취소완료'}
 ];
 
 var LS = 'pp-buytest-v1';
@@ -212,7 +221,7 @@ function esc(s){
   });
 }
 function i18n(ko, vi){ return '<span class="i18n"><span class="ko">'+esc(ko)+'</span><span class="vi">'+esc(vi)+'</span></span>'; }
-/* 값이 없으면 그냥 빈 칸으로 둔다 — 「—」를 넣지 않는다 */
+/* 값이 없으면 그냥 빈 칸으로 둔다 */
 function val(v){ return (v == null || String(v).trim() === '') ? '' : esc(v); }
 
 var STATUS_VI = {'배송완료':'Đã giao hàng','취소완료':'Đã hủy','취소요청':'Đã yêu cầu hủy','확인':'Đã xác nhận'};
@@ -272,23 +281,26 @@ function sortGroups(gs){
 function render(){
   var list = rows(), gs = sortGroups(groups(list)), html = '';
   gs.forEach(function(g){
-    var n = g.length, h = g[0];
+    var n = g.length;
+    /* 총상품가격은 주문 단위 — 그 주문 줄들에 걸쳐 가운데 한 번만 적는다 */
+    var total = '';
+    for(var t = 0; t < n; t++){
+      if(g[t].total && String(g[t].total).trim()){ total = g[t].total; break; }
+    }
     g.forEach(function(r, i){
       html += '<tr>';
-      if(i === 0){
-        html += '<td rowspan="'+n+'" class="c-date">'+val(h.date)+'</td>';
-        html += '<td rowspan="'+n+'" class="c-mall"><span class="mall">'+val(h.mall)+'</span></td>';
-        html += '<td rowspan="'+n+'" class="c-ono ono">'+val(h.ono)
-              + (n > 1 ? '<span class="gbadge">'+i18n('상품 '+n+'건', n+' sản phẩm')+'</span>' : '')+'</td>';
-      }
+      html += '<td class="c-date">'+val(r.date)+'</td>';
+      html += '<td class="c-mall"><span class="mall">'+val(r.mall)+'</span></td>';
+      html += '<td class="c-ono ono">'+val(r.ono)+'</td>';
       html += '<td class="c-item">'+val(r.item)+(r.base ? '' : '<span class="addtag">'+i18n('추가', 'Thêm')+'</span>')+'</td>';
+      html += '<td class="r num">'+val(r.qty)+'</td>';
+      if(i === 0) html += '<td rowspan="'+n+'" class="r num c-total">'+val(total)+'</td>';
       html += '<td class="r num">'+val(r.price)+'</td>';
-      if(i === 0) html += '<td rowspan="'+n+'" class="r num">'+val(h.total)+'</td>';
+      html += '<td class="r num">'+val(r.disc)+'</td>';
       html += '<td class="r num pay">'+val(r.pay)+'</td>';
-      if(i === 0) html += '<td rowspan="'+n+'" class="c-cdate">'+val(h.cdate)+'</td>';
-      /* 취소접수번호는 상품마다 다르다 — 한 주문이어도 상품별로 따로 접수된다 */
+      html += '<td class="c-cdate">'+val(r.cdate)+'</td>';
       html += '<td class="c-cno ono">'+val(r.cno)+'</td>';
-      if(i === 0) html += '<td rowspan="'+n+'" class="c-st">'+statusCell(h.status)+'</td>';
+      html += '<td class="c-st">'+statusCell(r.status)+'</td>';
       html += '<td class="c-adm">'+(r.base ? '' : '<button type="button" class="del" data-del="'+esc(r.id)+'">&times;</button>')+'</td>';
       html += '</tr>';
     });
@@ -310,13 +322,12 @@ document.getElementById('tbody').addEventListener('click', function(e){
 
 /* ── 행 추가 ── */
 var modal = document.getElementById('add-modal');
-var FLDS = ['date','mall','ono','item','price','total','pay','cdate','cno','status'];
+var FLDS = ['date','mall','ono','item','qty','total','price','disc','pay','cdate','cno','status'];
 function openAdd(){
   FLDS.forEach(function(k){ document.getElementById('f-'+k).value = ''; });
-  document.getElementById('f-date').value = '2026.08.28';
   document.getElementById('f-err').textContent = '';
   modal.classList.add('open');
-  document.getElementById('f-mall').focus();
+  document.getElementById('f-date').focus();
 }
 function closeAdd(){ modal.classList.remove('open'); }
 document.getElementById('btn-add').addEventListener('click', openAdd);
@@ -335,19 +346,16 @@ document.getElementById('add-save').addEventListener('click', function(){
       : '구매몰 · 주문번호 · 주문 상품 정보는 채워야 합니다.';
     return;
   }
-  added.push({
-    id: 'a' + Date.now() + '-' + Math.floor(Math.random() * 1000),
-    date: g('date'), mall: g('mall'), ono: g('ono'), item: g('item'),
-    price: g('price'), total: g('total'), pay: g('pay'),
-    cdate: g('cdate'), cno: g('cno'), status: g('status')
-  });
+  var row = { id: 'a' + Date.now() + '-' + Math.floor(Math.random() * 1000) };
+  FLDS.forEach(function(k){ row[k] = g(k); });
+  added.push(row);
   persist(); closeAdd(); render();
 });
 
 /* ── 더한 행 전체 지우기 ── */
 document.getElementById('btn-clear').addEventListener('click', function(){
   if(!added.length) return;
-  if(!confirm('손으로 더한 행을 모두 지웁니다. 기본 12건은 남습니다.\n/ Xóa toàn bộ dòng thêm thủ công. 12 mục gốc vẫn giữ nguyên.')) return;
+  if(!confirm('손으로 더한 행을 모두 지웁니다. 기본 자료는 남습니다.\n/ Xóa toàn bộ dòng thêm thủ công. Dữ liệu gốc vẫn giữ nguyên.')) return;
   added = [];
   try { localStorage.removeItem(LS); } catch(e){}
   render();
