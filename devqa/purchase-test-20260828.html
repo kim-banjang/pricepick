@@ -8,16 +8,6 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28p
 .dl{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px}
 .dl a{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--pp-d);background:var(--pp-l);border:1px solid #ddd0ff;padding:7px 13px;border-radius:8px;text-decoration:none}
 .dl a:hover{background:#e2d7fd}
-/* ── 요약 ── */
-.summary{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
-.sum-total{font-size:20px;font-weight:800;color:var(--pp-d)}
-.sum-total .slash{color:var(--ink3);font-weight:600;margin:0 7px}
-.sumrow{margin-top:12px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
-.sumlabel{font-size:11px;font-weight:800;color:var(--ink3);letter-spacing:.03em;min-width:58px}
-.catchips{display:flex;gap:7px;flex-wrap:wrap}
-.catchip{font-size:11.3px;font-weight:700;color:var(--ink2);background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:4px 11px;white-space:nowrap}
-.catchip b{color:var(--pp-d)}
-.catchip.s-ok b{color:var(--ok)} .catchip.s-cx b{color:var(--bad)}
 /* ── 도구 ── */
 .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
 .btn{font-family:inherit;font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:8px;cursor:pointer;border:1px solid #ddd0ff;background:var(--pp-l);color:var(--pp-d)}
@@ -112,12 +102,6 @@ tbody tr:hover > td{background:#faf9fe}
 <a href="/devqa/">← <span class="i18n"><span class="ko">DevQA 목록으로</span><span class="vi">Về danh sách DevQA</span></span></a>
 <a href="/devqa/postback-fields-20260827.html"><span class="i18n"><span class="ko">포스트백 값 정리 문서</span><span class="vi">Tài liệu tổng hợp giá trị postback</span></span> →</a>
 <a href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">마스터 정책서</span><span class="vi">Tài liệu chính sách</span></span> ↗</a>
-</div>
-
-<div class="summary">
-<div class="sum-total"><span id="s-orders">0</span><span class="i18n"><span class="ko">건 주문</span><span class="vi"> đơn hàng</span></span><span class="slash">/</span><span id="s-items">0</span><span class="i18n"><span class="ko">건 상품</span><span class="vi"> sản phẩm</span></span></div>
-<div class="sumrow"><span class="sumlabel i18n"><span class="ko">몰별</span><span class="vi">THEO SÀN</span></span><span class="catchips" id="s-malls"></span></div>
-<div class="sumrow"><span class="sumlabel i18n"><span class="ko">상태별</span><span class="vi">TRẠNG THÁI</span></span><span class="catchips" id="s-status"></span></div>
 </div>
 
 <div class="tools">
@@ -270,36 +254,8 @@ function render(){
     });
   });
   document.getElementById('tbody').innerHTML = html;
-  summarize(list, gs);
-}
-
-function summarize(list, gs){
-  document.getElementById('s-orders').textContent = gs.length;
-  document.getElementById('s-items').textContent  = list.length;
-  document.getElementById('c-base').textContent   = BASE.length;
-  document.getElementById('c-add').textContent    = added.length;
-
-  var mo = {}, mi = {}, morder = [];
-  gs.forEach(function(g){
-    var m = g[0].mall || '';
-    if(!(m in mo)){ mo[m] = 0; mi[m] = 0; morder.push(m); }
-    mo[m]++; mi[m] += g.length;
-  });
-  document.getElementById('s-malls').innerHTML = morder.map(function(m){
-    return '<span class="catchip">'+esc(m)+' <b>'+mo[m]+'</b>'+i18n('주문', ' đơn')+' · <b>'+mi[m]+'</b>'+i18n('상품', ' SP')+'</span>';
-  }).join('');
-
-  var st = {}, sorder = [];
-  list.forEach(function(r){
-    var s = ((r.status || '').trim());
-    if(!s) return;
-    if(!(s in st)){ st[s] = 0; sorder.push(s); }
-    st[s]++;
-  });
-  document.getElementById('s-status').innerHTML = sorder.map(function(s){
-    var cls = s === '배송완료' ? ' s-ok' : (s.indexOf('취소') > -1 ? ' s-cx' : '');
-    return '<span class="catchip'+cls+'">'+i18n(s, STATUS_VI[s] || s)+' <b>'+st[s]+'</b>'+i18n('건', '')+'</span>';
-  }).join('');
+  document.getElementById('c-base').textContent = BASE.length;
+  document.getElementById('c-add').textContent  = added.length;
 }
 
 /* ── 더한 행 삭제 ── */
