@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick · 실구매 테스트 · 2026-08-28</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--bad:#c0392b;--bad-l:#fdecea}
 *{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
-.wrap{max-width:1400px;margin:0 auto;padding:0 22px 80px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 22px 80px}
 header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
 .htitle{font-size:22px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
 .meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 14px;font-size:12.5px}
@@ -19,52 +19,41 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28p
 .catchip b{color:var(--pp-d)}
 .catchip.s-ok b{color:var(--ok)} .catchip.s-cx b{color:var(--bad)}
 /* ── 도구 ── */
-.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
 .btn{font-family:inherit;font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:8px;cursor:pointer;border:1px solid #ddd0ff;background:var(--pp-l);color:var(--pp-d)}
 .btn:hover{background:#e2d7fd}
 .btn.primary{background:var(--pp);border-color:var(--pp);color:#fff} .btn.primary:hover{background:#7550e0}
 .btn.ghost{background:#fff;border-color:var(--line);color:var(--ink2)} .btn.ghost:hover{background:var(--bg)}
 .btn.danger{background:#fff;border-color:#f3c8c3;color:var(--bad)} .btn.danger:hover{background:var(--bad-l)}
 .tools .tcount{font-size:12px;color:var(--ink3);margin-left:auto}
+.hint{font-size:11.8px;color:var(--ink3);margin:0 0 14px}
 /* ── 표 ── */
 .tblwrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:14px}
-table.tbl{width:100%;border-collapse:collapse;font-size:12.8px;min-width:1240px}
-table.tbl th,table.tbl td{border-bottom:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
-table.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.2px;white-space:nowrap;vertical-align:middle;position:sticky;top:0;z-index:2}
-table.tbl td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.tbl{width:100%;border-collapse:collapse;font-size:12.8px;min-width:1000px}
+table.tbl th,table.tbl td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+table.tbl thead th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.2px;white-space:nowrap;vertical-align:middle;position:sticky;top:0;z-index:2}
+table.tbl tbody tr:last-child td{border-bottom:none}
+table.tbl th.r,table.tbl td.r{text-align:right}
+table.tbl td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 table.tbl td.pay{font-weight:800;color:var(--ink1)}
-td.c-ord{background:#fcfbff;white-space:nowrap}
-td.c-item{min-width:300px;max-width:430px;color:var(--ink2);line-height:1.5}
-td.c-adm{text-align:center}
+td.c-date,td.c-mall,td.c-ono,td.c-cdate,td.c-st{white-space:nowrap}
+td.c-item{width:46%;color:var(--ink2);line-height:1.5}
+td.c-adm{text-align:center;width:34px}
 .mall{font-weight:800;color:var(--pp-d)}
 .ono{font-variant-numeric:tabular-nums;font-size:12px;color:var(--ink2)}
-.gbadge{display:block;margin-top:5px;font-size:10px;font-weight:800;color:#fff;background:var(--pp);border-radius:20px;padding:2px 8px;width:max-content;letter-spacing:.02em}
-.mt{color:#cfd3de}
-/* 한 주문 묶음 = 굵은 테두리 */
-tr.g-first > td{border-top:2.5px solid var(--pp-d)}
-tr.g-multi > td{background:#fbf9ff}
-tr.g-multi > td.c-ord{background:#f6f1ff;box-shadow:inset 3px 0 0 var(--pp)}
-tr.g-multi > td.c-item{border-left:1px dashed #ddd0fb}
-tbody tr:hover > td{background:#f4f1fd}
+.gbadge{display:block;margin-top:5px;font-size:10px;font-weight:800;color:var(--pp-d);background:var(--pp-l);border:1px solid #ddd0fb;border-radius:20px;padding:2px 8px;width:max-content;letter-spacing:.02em}
+tbody tr:hover > td{background:#faf9fe}
 .bd{font-size:10.3px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap;display:inline-block}
 .bd.ok{background:#e6f5f5;color:var(--ok)}
 .bd.cx{background:#fdecea;color:var(--bad)}
 .bd.gray{background:#eef0f4;color:#6b7280}
 .addtag{display:inline-block;font-size:9.5px;font-weight:800;color:var(--ck);background:#fdf1e3;border-radius:20px;padding:2px 7px;margin-left:6px;vertical-align:1px}
-/* 포스트백 입력 칸 */
-.pbcell{font-family:inherit;font-size:12px;width:100%;min-width:112px;text-align:left;background:#fffdf7;border:1px dashed #e6d9b8;border-radius:7px;padding:5px 8px;cursor:text;color:var(--ink2)}
-.pbcell:hover{background:#fff8e8;border-color:var(--ck)}
-.pbcell.filled{background:#e6f5f5;border:1px solid #b8e0e0;color:var(--ok);font-weight:700}
-.pbcell .ph{color:#c9b98d;font-weight:700}
-input.pbinput{font-family:inherit;font-size:12px;width:100%;min-width:112px;padding:5px 8px;border:1.5px solid var(--pp);border-radius:7px;background:#fff;color:var(--ink1)}
 .del{background:#fff;border:1px solid #f3c8c3;color:var(--bad);width:24px;height:24px;border-radius:6px;font-size:13px;line-height:1;cursor:pointer}
 .del:hover{background:var(--bad-l)}
 /* ── 안내 상자 ── */
 .note-box{background:#fff;border:1px solid var(--line);border-left:4px solid var(--pp);border-radius:12px;padding:13px 16px;margin:14px 0 0;font-size:12.4px;color:var(--ink2);line-height:1.7}
 .note-box + .note-box{margin-top:9px}
 .note-box b{color:var(--pp-d)}
-.note-box.warn{border-left-color:var(--ck);background:#fffdf7}
-.note-box.warn b{color:#a9691f}
 .foot{margin-top:26px;font-size:11.5px;color:var(--ink3)}
 /* ── 모달 ── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(31,35,48,.6);z-index:300;align-items:flex-start;justify-content:center;padding:4vh 16px;overflow-y:auto}
@@ -107,9 +96,9 @@ input.pbinput{font-family:inherit;font-size:12px;width:100%;min-width:112px;padd
 <input type="checkbox" id="langsw">
 
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
-<div style="max-width:1400px;margin:0 auto;padding:0 22px">
+<div style="max-width:1240px;margin:0 auto;padding:0 22px">
 <div class="htitle"><span class="i18n"><span class="ko">실구매 테스트</span><span class="vi">Kiểm thử mua thực tế</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">제휴몰에서 실제로 주문하고 취소해 본 기록 — 포스트백 확인용 기초 자료</span><span class="vi">Ghi chép đặt hàng và hủy thực tế tại các sàn liên kết — dữ liệu nền để kiểm tra postback</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">제휴몰에서 실제로 주문하고 취소해 본 기록 — 포스트백 대조용 기초 자료</span><span class="vi">Ghi chép đặt hàng và hủy thực tế tại các sàn liên kết — dữ liệu nền để đối chiếu postback</span></span></div>
 </div></header>
 
 <div class="wrap">
@@ -117,7 +106,6 @@ input.pbinput{font-family:inherit;font-size:12px;width:100%;min-width:112px;padd
 <span class="chip"><span class="i18n"><span class="ko">테스트일</span><span class="vi">Ngày kiểm thử</span></span>: 2026-08-28</span>
 <span class="chip"><span class="i18n"><span class="ko">출처</span><span class="vi">Nguồn</span></span>: <span class="i18n"><span class="ko">김반장 구글시트 「26.08.28 실구매 테스트」</span><span class="vi">Google Sheet của Kim Ban-jang 「26.08.28 실구매 테스트」</span></span></span>
 <span class="chip"><span class="i18n"><span class="ko">받는 사람</span><span class="vi">Người nhận</span></span>: Harry · Kelvin</span>
-<span class="chip"><span class="i18n"><span class="ko">포스트백 기록: 미기입</span><span class="vi">Ghi nhận postback: chưa nhập</span></span></span>
 </div>
 
 <div class="dl">
@@ -130,17 +118,14 @@ input.pbinput{font-family:inherit;font-size:12px;width:100%;min-width:112px;padd
 <div class="sum-total"><span id="s-orders">0</span><span class="i18n"><span class="ko">건 주문</span><span class="vi"> đơn hàng</span></span><span class="slash">/</span><span id="s-items">0</span><span class="i18n"><span class="ko">건 상품</span><span class="vi"> sản phẩm</span></span></div>
 <div class="sumrow"><span class="sumlabel i18n"><span class="ko">몰별</span><span class="vi">THEO SÀN</span></span><span class="catchips" id="s-malls"></span></div>
 <div class="sumrow"><span class="sumlabel i18n"><span class="ko">상태별</span><span class="vi">TRẠNG THÁI</span></span><span class="catchips" id="s-status"></span></div>
-<div class="sumrow"><span class="sumlabel i18n"><span class="ko">포스트백</span><span class="vi">POSTBACK</span></span><span class="catchips" id="s-pb"></span></div>
 </div>
 
 <div class="tools">
 <button class="btn primary" type="button" id="btn-add">+ <span class="i18n"><span class="ko">행 추가</span><span class="vi">Thêm dòng</span></span></button>
-<button class="btn" type="button" id="btn-export">⬇️ <span class="i18n"><span class="ko">파일로 내보내기</span><span class="vi">Xuất ra file</span></span></button>
-<button class="btn" type="button" id="btn-import">⬆️ <span class="i18n"><span class="ko">불러오기</span><span class="vi">Nhập file</span></span></button>
-<button class="btn danger" type="button" id="btn-clear">🗑 <span class="i18n"><span class="ko">저장분 전체 지우기</span><span class="vi">Xóa toàn bộ dữ liệu đã lưu</span></span></button>
-<input type="file" id="file-import" accept="application/json,.json" style="display:none">
+<button class="btn danger" type="button" id="btn-clear">🗑 <span class="i18n"><span class="ko">더한 행 지우기</span><span class="vi">Xóa dòng đã thêm</span></span></button>
 <span class="tcount"><span class="i18n"><span class="ko">기본</span><span class="vi">Gốc</span></span> <b id="c-base">0</b> · <span class="i18n"><span class="ko">손으로 더한 것</span><span class="vi">Thêm thủ công</span></span> <b id="c-add">0</b></span>
 </div>
+<div class="hint"><span class="i18n"><span class="ko">더한 행이 아직 이 브라우저에만 남습니다 — 모두가 같이 보는 서버 저장(DB)은 준비 중입니다.</span><span class="vi">Dòng thêm hiện vẫn chỉ nằm trong trình duyệt này — lưu trữ trên máy chủ (DB) để mọi người cùng xem đang được chuẩn bị.</span></span></div>
 
 <div class="tblwrap">
 <table class="tbl">
@@ -149,28 +134,22 @@ input.pbinput{font-family:inherit;font-size:12px;width:100%;min-width:112px;padd
 <th><span class="i18n"><span class="ko">구매몰</span><span class="vi">Sàn mua</span></span></th>
 <th><span class="i18n"><span class="ko">주문번호</span><span class="vi">Mã đơn hàng</span></span></th>
 <th><span class="i18n"><span class="ko">주문 상품 정보</span><span class="vi">Thông tin sản phẩm</span></span></th>
-<th><span class="i18n"><span class="ko">상품금액(수량)</span><span class="vi">Giá SP (SL)</span></span></th>
-<th><span class="i18n"><span class="ko">총상품가격</span><span class="vi">Tổng giá SP</span></span></th>
-<th><span class="i18n"><span class="ko">결제금액</span><span class="vi">Số tiền thanh toán</span></span></th>
+<th class="r"><span class="i18n"><span class="ko">상품금액(수량)</span><span class="vi">Giá SP (SL)</span></span></th>
+<th class="r"><span class="i18n"><span class="ko">총상품가격</span><span class="vi">Tổng giá SP</span></span></th>
+<th class="r"><span class="i18n"><span class="ko">결제금액</span><span class="vi">Số tiền thanh toán</span></span></th>
 <th><span class="i18n"><span class="ko">취소날짜</span><span class="vi">Ngày hủy</span></span></th>
 <th><span class="i18n"><span class="ko">확인/취소</span><span class="vi">Xác nhận/Hủy</span></span></th>
-<th><span class="i18n"><span class="ko">포스트백(구매)</span><span class="vi">Postback (mua)</span></span></th>
-<th><span class="i18n"><span class="ko">포스트백(취소)</span><span class="vi">Postback (hủy)</span></span></th>
 <th></th>
 </tr></thead>
 <tbody id="tbody"></tbody>
 </table>
 </div>
 
-<div class="note-box"><b><span class="i18n"><span class="ko">굵은 선으로 묶인 줄이 한 주문입니다.</span><span class="vi">Các dòng nhóm bằng viền đậm là cùng một đơn hàng.</span></span></b> <span class="i18n"><span class="ko">주문번호가 같은 상품끼리 묶이고, 묶음에는 「상품 2건」 표가 붙습니다. 기본 자료에서는 11st 2건 · Coupang 1건이 한 주문에 상품을 2개씩 담고 있습니다. 구매날짜 · 구매몰 · 주문번호 · 총상품가격 · 취소날짜 · 확인/취소는 주문 단위이고, 상품명 · 상품금액 · 결제금액 · 포스트백은 상품 단위입니다.</span><span class="vi">Các sản phẩm cùng mã đơn được nhóm lại và có nhãn 「2 sản phẩm」. Trong dữ liệu gốc, 2 đơn 11st · 1 đơn Coupang mỗi đơn chứa 2 sản phẩm. Ngày mua · Sàn mua · Mã đơn · Tổng giá SP · Ngày hủy · Xác nhận/Hủy là theo đơn hàng; tên SP · giá SP · số tiền thanh toán · postback là theo sản phẩm.</span></span></div>
-
-<div class="note-box warn"><b><span class="i18n"><span class="ko">포스트백 두 칸은 지금 전부 비어 있습니다.</span><span class="vi">Hai cột postback hiện đang để trống hoàn toàn.</span></span></b> <span class="i18n"><span class="ko">「샀을 때 포스트백이 왔는지」 · 「취소했을 때 취소 신호가 왔는지」는 이 자료에 아직 기록돼 있지 않습니다. 칸을 눌러 직접 채울 수 있고, 채운 값은 이 브라우저에 저장됩니다. 비어 있는 것은 「안 왔다」가 아니라 「아직 확인하지 않았다」는 뜻입니다.</span><span class="vi">Việc 「có postback khi mua hay không」 · 「có tín hiệu hủy khi hủy hay không」 vẫn chưa được ghi trong dữ liệu này. Có thể bấm vào ô để tự điền, giá trị đã điền được lưu trong trình duyệt này. Ô trống nghĩa là 「chưa kiểm tra」, không phải 「không có」.</span></span></div>
+<div class="note-box"><b><span class="i18n"><span class="ko">「상품 2건」 표가 붙은 주문은 한 주문에 상품이 여럿 담긴 것입니다.</span><span class="vi">Đơn có nhãn 「2 sản phẩm」 là đơn chứa nhiều sản phẩm.</span></span></b> <span class="i18n"><span class="ko">주문번호가 같은 상품끼리 한 줄로 이어지고, 구매날짜 · 구매몰 · 주문번호 · 총상품가격 · 취소날짜 · 확인/취소는 그 주문 전체에 걸쳐 한 번만 적힙니다. 상품명 · 상품금액 · 결제금액은 상품마다 따로입니다. 기본 자료에서는 11st 2건 · Coupang 1건이 여기에 해당합니다.</span><span class="vi">Các sản phẩm cùng mã đơn được nối liền nhau; Ngày mua · Sàn mua · Mã đơn · Tổng giá SP · Ngày hủy · Xác nhận/Hủy chỉ ghi một lần cho cả đơn. Tên SP · giá SP · số tiền thanh toán thì riêng theo từng sản phẩm. Trong dữ liệu gốc có 2 đơn 11st · 1 đơn Coupang như vậy.</span></span></div>
 
 <div class="note-box"><b><span class="i18n"><span class="ko">빈 칸은 원자료에 값이 없던 자리입니다.</span><span class="vi">Ô trống là chỗ dữ liệu gốc không có giá trị.</span></span></b> <span class="i18n"><span class="ko">상품금액 · 총상품가격이 비어 있는 줄은 원자료에 그 값이 없었던 것이며, 결제금액으로 대신 채우지 않았습니다.</span><span class="vi">Các dòng trống ở giá SP · tổng giá SP là do dữ liệu gốc không có giá trị đó, và không được thay bằng số tiền thanh toán.</span></span></div>
 
-<div class="note-box"><b><span class="i18n"><span class="ko">더한 자료는 이 브라우저에만 남습니다.</span><span class="vi">Dữ liệu thêm vào chỉ nằm trong trình duyệt này.</span></span></b> <span class="i18n"><span class="ko">기본 12건은 페이지 안에 들어 있고, 손으로 더한 행과 포스트백 입력값만 브라우저 저장소(localStorage)에 쌓입니다. 다른 기기로 옮기거나 개발자에게 넘기려면 「파일로 내보내기」로 JSON을 받아 그쪽에서 「불러오기」 하십시오.</span><span class="vi">12 mục gốc nằm sẵn trong trang; chỉ các dòng thêm thủ công và giá trị postback đã nhập mới được lưu vào localStorage của trình duyệt. Để chuyển sang máy khác hoặc gửi cho developer, hãy 「Xuất ra file」 JSON rồi 「Nhập file」 ở phía kia.</span></span></div>
-
-<div class="foot">PricePick · <span class="i18n"><span class="ko">실구매 테스트 기록</span><span class="vi">Ghi chép kiểm thử mua thực tế</span></span> · 2026-08-28 · <span class="i18n"><span class="ko">주문 9건 / 상품 12건 · 포스트백 기록 0건</span><span class="vi">9 đơn hàng / 12 sản phẩm · 0 ghi nhận postback</span></span> · <span class="i18n"><span class="ko">자료: 김반장</span><span class="vi">Tài liệu: Kim Ban-jang</span></span></div>
+<div class="foot">PricePick · <span class="i18n"><span class="ko">실구매 테스트 기록</span><span class="vi">Ghi chép kiểm thử mua thực tế</span></span> · 2026-08-28 · <span class="i18n"><span class="ko">주문 9건 / 상품 12건</span><span class="vi">9 đơn hàng / 12 sản phẩm</span></span> · <span class="i18n"><span class="ko">자료: 김반장</span><span class="vi">Tài liệu: Kim Ban-jang</span></span></div>
 </div>
 
 <!-- 행 추가 모달 -->
@@ -191,8 +170,6 @@ input.pbinput{font-family:inherit;font-size:12px;width:100%;min-width:112px;padd
 <div class="fld"><label><span class="i18n"><span class="ko">결제금액</span><span class="vi">Số tiền thanh toán</span></span></label><input id="f-pay" placeholder="10,900"></div>
 <div class="fld"><label><span class="i18n"><span class="ko">취소날짜</span><span class="vi">Ngày hủy</span></span></label><input id="f-cdate" placeholder="2026.08.28"></div>
 <div class="fld"><label><span class="i18n"><span class="ko">확인/취소</span><span class="vi">Xác nhận/Hủy</span></span></label><input id="f-status" list="dl-status" placeholder="취소완료"><datalist id="dl-status"><option value="취소완료"></option><option value="배송완료"></option></datalist></div>
-<div class="fld"><label><span class="i18n"><span class="ko">포스트백(구매)</span><span class="vi">Postback (mua)</span></span></label><input id="f-pbbuy"></div>
-<div class="fld"><label><span class="i18n"><span class="ko">포스트백(취소)</span><span class="vi">Postback (hủy)</span></span></label><input id="f-pbcancel"></div>
 </div>
 </div>
 <div class="modal-ft"><span class="ferr" id="f-err"></span>
@@ -221,19 +198,16 @@ var BASE = [
 ];
 
 var LS = 'pp-buytest-v1';
-var store = {added:[], pb:{}};
+var added = [];
 try {
   var raw = localStorage.getItem(LS);
   if(raw){
     var p = JSON.parse(raw);
-    if(p && typeof p === 'object'){
-      store.added = Array.isArray(p.added) ? p.added : [];
-      store.pb = (p.pb && typeof p.pb === 'object') ? p.pb : {};
-    }
+    if(p && Array.isArray(p.added)) added = p.added;
   }
 } catch(e){}
 function persist(){
-  try { localStorage.setItem(LS, JSON.stringify({added:store.added, pb:store.pb})); }
+  try { localStorage.setItem(LS, JSON.stringify({added: added})); }
   catch(e){ alert('브라우저 저장에 실패했습니다. / Lưu vào trình duyệt thất bại.'); }
 }
 
@@ -243,11 +217,12 @@ function esc(s){
   });
 }
 function i18n(ko, vi){ return '<span class="i18n"><span class="ko">'+esc(ko)+'</span><span class="vi">'+esc(vi)+'</span></span>'; }
-function blank(v){ return (v == null || String(v).trim() === '') ? '<span class="mt">—</span>' : esc(v); }
+/* 값이 없으면 그냥 빈 칸으로 둔다 — 「—」를 넣지 않는다 */
+function val(v){ return (v == null || String(v).trim() === '') ? '' : esc(v); }
 
 var STATUS_VI = {'배송완료':'Đã giao hàng','취소완료':'Đã hủy','취소요청':'Đã yêu cầu hủy','확인':'Đã xác nhận'};
 function statusCell(s){
-  if(!s || !String(s).trim()) return '<span class="mt">—</span>';
+  if(!s || !String(s).trim()) return '';
   var k = String(s).trim();
   var cls = k === '배송완료' ? 'ok' : (k.indexOf('취소') > -1 ? 'cx' : 'gray');
   return '<span class="bd '+cls+'">'+i18n(k, STATUS_VI[k] || k)+'</span>';
@@ -256,12 +231,7 @@ function statusCell(s){
 /* ── 행 모으기 · 주문 단위로 묶기 ── */
 function rows(){
   var out = BASE.map(function(r){ var c = {}; for(var k in r) c[k] = r[k]; c.base = true; return c; });
-  store.added.forEach(function(r){ var c = {}; for(var k in r) c[k] = r[k]; c.base = false; out.push(c); });
-  out.forEach(function(r){
-    var o = store.pb[r.id];
-    r.pbBuy    = (o && o.buy    != null) ? o.buy    : (r.pbBuy    || '');
-    r.pbCancel = (o && o.cancel != null) ? o.cancel : (r.pbCancel || '');
-  });
+  added.forEach(function(r){ var c = {}; for(var k in r) c[k] = r[k]; c.base = false; out.push(c); });
   return out;
 }
 function groups(list){
@@ -275,34 +245,26 @@ function groups(list){
 }
 
 /* ── 그리기 ── */
-function pbBtn(r, field){
-  var v = field === 'buy' ? r.pbBuy : r.pbCancel;
-  var has = v && String(v).trim() !== '';
-  var lbl = has ? esc(v) : '<span class="ph">'+i18n('입력', 'Nhập')+'</span>';
-  return '<button type="button" class="pbcell'+(has ? ' filled' : '')+'" data-pb="'+field+'" data-id="'+esc(r.id)+'">'+lbl+'</button>';
-}
-
 function render(){
   var list = rows(), gs = groups(list), html = '';
   gs.forEach(function(g){
-    var n = g.length, h = g[0], multi = n > 1 ? ' g-multi' : '';
+    var n = g.length, h = g[0];
     g.forEach(function(r, i){
-      html += '<tr class="'+(i === 0 ? 'g-first' : '')+multi+'">';
+      html += '<tr>';
       if(i === 0){
-        html += '<td rowspan="'+n+'" class="c-ord">'+blank(h.date)+'</td>';
-        html += '<td rowspan="'+n+'" class="c-ord"><span class="mall">'+blank(h.mall)+'</span></td>';
-        html += '<td rowspan="'+n+'" class="c-ord ono">'+blank(h.ono)
+        html += '<td rowspan="'+n+'" class="c-date">'+val(h.date)+'</td>';
+        html += '<td rowspan="'+n+'" class="c-mall"><span class="mall">'+val(h.mall)+'</span></td>';
+        html += '<td rowspan="'+n+'" class="c-ono ono">'+val(h.ono)
               + (n > 1 ? '<span class="gbadge">'+i18n('상품 '+n+'건', n+' sản phẩm')+'</span>' : '')+'</td>';
       }
-      html += '<td class="c-item">'+blank(r.item)+(r.base ? '' : '<span class="addtag">'+i18n('추가', 'Thêm')+'</span>')+'</td>';
-      html += '<td class="num">'+blank(r.price)+'</td>';
-      if(i === 0) html += '<td rowspan="'+n+'" class="num c-ord">'+blank(h.total)+'</td>';
-      html += '<td class="num pay">'+blank(r.pay)+'</td>';
+      html += '<td class="c-item">'+val(r.item)+(r.base ? '' : '<span class="addtag">'+i18n('추가', 'Thêm')+'</span>')+'</td>';
+      html += '<td class="r num">'+val(r.price)+'</td>';
+      if(i === 0) html += '<td rowspan="'+n+'" class="r num">'+val(h.total)+'</td>';
+      html += '<td class="r num pay">'+val(r.pay)+'</td>';
       if(i === 0){
-        html += '<td rowspan="'+n+'" class="c-ord">'+blank(h.cdate)+'</td>';
-        html += '<td rowspan="'+n+'" class="c-ord">'+statusCell(h.status)+'</td>';
+        html += '<td rowspan="'+n+'" class="c-cdate">'+val(h.cdate)+'</td>';
+        html += '<td rowspan="'+n+'" class="c-st">'+statusCell(h.status)+'</td>';
       }
-      html += '<td>'+pbBtn(r, 'buy')+'</td><td>'+pbBtn(r, 'cancel')+'</td>';
       html += '<td class="c-adm">'+(r.base ? '' : '<button type="button" class="del" data-del="'+esc(r.id)+'">&times;</button>')+'</td>';
       html += '</tr>';
     });
@@ -315,11 +277,11 @@ function summarize(list, gs){
   document.getElementById('s-orders').textContent = gs.length;
   document.getElementById('s-items').textContent  = list.length;
   document.getElementById('c-base').textContent   = BASE.length;
-  document.getElementById('c-add').textContent    = store.added.length;
+  document.getElementById('c-add').textContent    = added.length;
 
   var mo = {}, mi = {}, morder = [];
   gs.forEach(function(g){
-    var m = g[0].mall || '—';
+    var m = g[0].mall || '';
     if(!(m in mo)){ mo[m] = 0; mi[m] = 0; morder.push(m); }
     mo[m]++; mi[m] += g.length;
   });
@@ -329,7 +291,8 @@ function summarize(list, gs){
 
   var st = {}, sorder = [];
   list.forEach(function(r){
-    var s = ((r.status || '').trim()) || '—';
+    var s = ((r.status || '').trim());
+    if(!s) return;
     if(!(s in st)){ st[s] = 0; sorder.push(s); }
     st[s]++;
   });
@@ -337,64 +300,21 @@ function summarize(list, gs){
     var cls = s === '배송완료' ? ' s-ok' : (s.indexOf('취소') > -1 ? ' s-cx' : '');
     return '<span class="catchip'+cls+'">'+i18n(s, STATUS_VI[s] || s)+' <b>'+st[s]+'</b>'+i18n('건', '')+'</span>';
   }).join('');
-
-  var nb = 0, nc = 0;
-  list.forEach(function(r){
-    if(r.pbBuy && String(r.pbBuy).trim()) nb++;
-    if(r.pbCancel && String(r.pbCancel).trim()) nc++;
-  });
-  document.getElementById('s-pb').innerHTML =
-      '<span class="catchip">'+i18n('구매 기록', 'Ghi nhận mua')+' <b>'+nb+'</b> / '+list.length+'</span>'
-    + '<span class="catchip">'+i18n('취소 기록', 'Ghi nhận hủy')+' <b>'+nc+'</b> / '+list.length+'</span>';
 }
 
-/* ── 포스트백 칸 직접 입력 · 추가 행 삭제 ── */
+/* ── 더한 행 삭제 ── */
 document.getElementById('tbody').addEventListener('click', function(e){
   var del = e.target.closest('[data-del]');
-  if(del){
-    var did = del.getAttribute('data-del');
-    if(!confirm('이 행을 지웁니다.\n/ Xóa dòng này.')) return;
-    store.added = store.added.filter(function(r){ return r.id !== did; });
-    delete store.pb[did];
-    persist(); render();
-    return;
-  }
-  var btn = e.target.closest('.pbcell');
-  if(!btn) return;
-  var id = btn.getAttribute('data-id'), field = btn.getAttribute('data-pb');
-  var cur = '';
-  rows().forEach(function(r){ if(r.id === id) cur = (field === 'buy' ? r.pbBuy : r.pbCancel) || ''; });
-
-  var input = document.createElement('input');
-  input.type = 'text';
-  input.className = 'pbinput';
-  input.value = cur;
-  input.placeholder = document.getElementById('langsw').checked ? 'VD: 08-28 14:02 đã về' : '예: 08-28 14:02 수신';
-  btn.replaceWith(input);
-  input.focus(); input.select();
-
-  var done = false;
-  function commit(ok){
-    if(done) return;
-    done = true;
-    if(ok){
-      if(!store.pb[id]) store.pb[id] = {};
-      store.pb[id][field] = input.value.trim();
-      if(!store.pb[id].buy && !store.pb[id].cancel) delete store.pb[id];
-      persist();
-    }
-    render();
-  }
-  input.addEventListener('blur', function(){ commit(true); });
-  input.addEventListener('keydown', function(ev){
-    if(ev.key === 'Enter'){ ev.preventDefault(); commit(true); }
-    if(ev.key === 'Escape'){ ev.preventDefault(); commit(false); }
-  });
+  if(!del) return;
+  var did = del.getAttribute('data-del');
+  if(!confirm('이 행을 지웁니다.\n/ Xóa dòng này.')) return;
+  added = added.filter(function(r){ return r.id !== did; });
+  persist(); render();
 });
 
 /* ── 행 추가 ── */
 var modal = document.getElementById('add-modal');
-var FLDS = ['date','mall','ono','item','price','total','pay','cdate','status','pbbuy','pbcancel'];
+var FLDS = ['date','mall','ono','item','price','total','pay','cdate','status'];
 function openAdd(){
   FLDS.forEach(function(k){ document.getElementById('f-'+k).value = ''; });
   document.getElementById('f-date').value = '2026.08.28';
@@ -419,61 +339,20 @@ document.getElementById('add-save').addEventListener('click', function(){
       : '구매몰 · 주문번호 · 주문 상품 정보는 채워야 합니다.';
     return;
   }
-  store.added.push({
+  added.push({
     id: 'a' + Date.now() + '-' + Math.floor(Math.random() * 1000),
     date: g('date'), mall: g('mall'), ono: g('ono'), item: g('item'),
     price: g('price'), total: g('total'), pay: g('pay'),
-    cdate: g('cdate'), status: g('status'),
-    pbBuy: g('pbbuy'), pbCancel: g('pbcancel')
+    cdate: g('cdate'), status: g('status')
   });
   persist(); closeAdd(); render();
 });
 
-/* ── 내보내기 · 불러오기 · 지우기 ── */
-document.getElementById('btn-export').addEventListener('click', function(){
-  var payload = {
-    app: 'pricepick-purchase-test', version: 1,
-    savedAt: new Date().toISOString(),
-    added: store.added, pb: store.pb
-  };
-  var blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = 'pricepick-purchase-test.json';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
-});
-document.getElementById('btn-import').addEventListener('click', function(){
-  document.getElementById('file-import').click();
-});
-document.getElementById('file-import').addEventListener('change', function(e){
-  var f = e.target.files && e.target.files[0];
-  e.target.value = '';
-  if(!f) return;
-  var fr = new FileReader();
-  fr.onload = function(){
-    try {
-      var p = JSON.parse(fr.result);
-      if(!p || typeof p !== 'object') throw new Error('bad');
-      var added = Array.isArray(p.added) ? p.added : [];
-      var pb = (p.pb && typeof p.pb === 'object') ? p.pb : {};
-      if(!confirm('불러온 내용으로 바꿉니다 (더한 행 ' + added.length + '건). 지금 저장분은 사라집니다.\n/ Thay bằng nội dung đã nhập (' + added.length + ' dòng thêm). Dữ liệu hiện tại sẽ mất.')) return;
-      store.added = added;
-      store.pb = pb;
-      persist(); render();
-    } catch(err){
-      alert('JSON을 읽지 못했습니다. / Không đọc được file JSON.');
-    }
-  };
-  fr.readAsText(f);
-});
+/* ── 더한 행 전체 지우기 ── */
 document.getElementById('btn-clear').addEventListener('click', function(){
-  if(!confirm('손으로 더한 행과 포스트백 입력값을 모두 지웁니다. 기본 12건은 남습니다.\n/ Xóa toàn bộ dòng thêm thủ công và giá trị postback. 12 mục gốc vẫn giữ nguyên.')) return;
-  store.added = [];
-  store.pb = {};
+  if(!added.length) return;
+  if(!confirm('손으로 더한 행을 모두 지웁니다. 기본 12건은 남습니다.\n/ Xóa toàn bộ dòng thêm thủ công. 12 mục gốc vẫn giữ nguyên.')) return;
+  added = [];
   try { localStorage.removeItem(LS); } catch(e){}
   render();
 });
