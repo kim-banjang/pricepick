@@ -228,9 +228,38 @@ function groups(list){
   return keys.map(function(k){ return map[k]; });
 }
 
+/* 구매날짜 내림차순 — 최신이 맨 위. 주문 통째로 옮기므로 한 주문에 묶인 상품은
+   갈라지지 않고, 한 주문 안의 상품 순서도 그대로다.
+   날짜가 같으면 손으로 더한 주문을 위로(그중에서도 나중에 더한 것이 먼저),
+   기본 자료끼리는 구글시트 순서를 그대로 지킨다. 날짜가 없는 주문은 맨 아래. */
+function dkey(d){
+  var m = String(d == null ? '' : d).match(/(\d{4})\D*(\d{1,2})\D*(\d{1,2})/);
+  return m ? m[1] + ('0' + m[2]).slice(-2) + ('0' + m[3]).slice(-2) : '';
+}
+function sortGroups(gs){
+  gs.forEach(function(g, i){
+    g._ord = i;
+    g._d = dkey(g[0].date);
+    g._added = g[0].base ? 0 : 1;
+    g._ts = 0;
+    g.forEach(function(r){
+      if(r.base) return;
+      var m = String(r.id).match(/^a(\d+)/);
+      if(m && +m[1] > g._ts) g._ts = +m[1];
+    });
+  });
+  gs.sort(function(a, b){
+    if(a._d !== b._d) return a._d < b._d ? 1 : -1;
+    if(a._added !== b._added) return b._added - a._added;
+    if(a._added) return b._ts - a._ts;
+    return a._ord - b._ord;
+  });
+  return gs;
+}
+
 /* ── 그리기 ── */
 function render(){
-  var list = rows(), gs = groups(list), html = '';
+  var list = rows(), gs = sortGroups(groups(list)), html = '';
   gs.forEach(function(g){
     var n = g.length, h = g[0];
     g.forEach(function(r, i){
