@@ -59,21 +59,25 @@ h2.grp.hide{color:#95690c;border-bottom-color:#f3e6c6}
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
 <div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">작업 공지 · 취소 처리 · 티켓 회수 · 2026-09-03</span><span class="vi">Thông báo công việc · Xử lý hủy đơn · Thu hồi vé · 03/09/2026</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">받는 사람: 개발팀 전체 &nbsp;|&nbsp; 포스트백으로 구매 취소가 들어왔을 때 티켓을 어떻게 하는지 <b style="color:#fff">4건 모두 확정</b> (KO/VI)</span><span class="vi">Người nhận: Toàn bộ đội phát triển &nbsp;|&nbsp; Khi nhận hủy đơn qua postback thì xử lý vé thế nào — <b style="color:#fff">đã chốt cả 4 mục</b> (KO/VI)</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">받는 사람: 개발팀 전체 &nbsp;|&nbsp; 구매 취소가 들어왔을 때 티켓을 어떻게 하는지 · 주문 상태와 티켓 상태 <b style="color:#fff">확정 6건</b> (KO/VI)</span><span class="vi">Người nhận: Toàn bộ đội phát triển &nbsp;|&nbsp; Khi có hủy đơn thì xử lý vé thế nào · Trạng thái đơn hàng và trạng thái vé — <b style="color:#fff">đã chốt 6 mục</b> (KO/VI)</span></span></div>
 <a class="srclink" href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">정책 문서 열기 ↗</span><span class="vi">Mở tài liệu chính sách ↗</span></span></a>
 </div></header>
 
-<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 4건</span><span class="vi">4 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 4 · 미정 3</span><span class="vi">Đã chốt 4 · Chưa chốt 3</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장 확정 2026-09-03 · 마스터 정책서</span><span class="vi">Căn cứ: Người quản lý chốt 03/09/2026 · Tài liệu chính sách chuẩn</span></span></span><span class="chip"><span class="i18n"><span class="ko">원문 질문: Notion 아님 — DEVQA 문의로 전달</span><span class="vi">Câu hỏi gốc: Không phải Notion — gửi qua mục hỏi đáp DEVQA</span></span></span></div>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 6건 (DEVQA 4 · Harry 2)</span><span class="vi">6 câu hỏi (DEVQA 4 · Harry 2)</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 6 · 미정 3</span><span class="vi">Đã chốt 6 · Chưa chốt 3</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장 확정 2026-09-03 · 마스터 정책서</span><span class="vi">Căn cứ: Người quản lý chốt 03/09/2026 · Tài liệu chính sách chuẩn</span></span></span><span class="chip"><span class="i18n"><span class="ko">원문: DEVQA 문의 · Harry 「PricePick: Câu hỏi 2026-09-03」(Notion, 링크 미확보)</span><span class="vi">Gốc: Hỏi đáp DEVQA · Harry 「PricePick: Câu hỏi 2026-09-03」 (Notion, chưa có liên kết)</span></span></span></div>
 
 <div class="keybox"><span class="kt"><span class="i18n"><span class="ko">먼저 결론</span><span class="vi">Kết luận trước</span></span></span><span class="i18n"><span class="ko">네 가지 중 1·2·4번은 <b>이미 정책서에 있는 규칙</b>입니다. 새로 정한 것은 3번 부분 취소뿐입니다.
 
 부분 취소는 <b>남은 금액으로 티켓을 다시 계산해, 이미 준 것과의 차이만큼 회수합니다.</b>
 
-다만 쿠팡은 그렇게 할 수 없습니다. <b>쿠팡은 주문번호를 보내 주지 않아 어느 주문의 취소인지 알 수 없습니다.</b> 쿠팡은 다르게 처리합니다 — 3번을 보십시오.</span><span class="vi">Trong bốn mục thì mục 1·2·4 là <b>quy tắc đã có sẵn trong tài liệu chính sách.</b> Mục mới chốt lần này chỉ là mục 3 — hủy một phần.
+다만 쿠팡은 그렇게 할 수 없습니다. <b>쿠팡은 주문번호를 보내 주지 않아 어느 주문의 취소인지 알 수 없습니다.</b> 쿠팡은 다르게 처리합니다 — 3번을 보십시오.
+
+Harry가 물어온 상태 얘기는 6·7번에 있습니다. <b>파트너 주문 상태와 우리 티켓 상태는 다른 것입니다.</b> DB에는 파트너 값을 그대로 두고, CMS 화면에는 티켓 상태만 보여줍니다.</span><span class="vi">Trong bốn mục thì mục 1·2·4 là <b>quy tắc đã có sẵn trong tài liệu chính sách.</b> Mục mới chốt lần này chỉ là mục 3 — hủy một phần.
 
 Hủy một phần thì <b>tính lại vé theo số tiền còn lại, và thu hồi đúng phần chênh so với số đã cấp.</b>
 
-Nhưng với Coupang thì không làm được như vậy. <b>Coupang không gửi số đơn hàng nên không biết đó là hủy của đơn nào.</b> Coupang xử lý theo cách khác — xin xem mục 3.</span></span></div>
+Nhưng với Coupang thì không làm được như vậy. <b>Coupang không gửi số đơn hàng nên không biết đó là hủy của đơn nào.</b> Coupang xử lý theo cách khác — xin xem mục 3.
+
+Phần trạng thái mà Harry hỏi nằm ở mục 6·7. <b>Trạng thái đơn hàng của đối tác và trạng thái vé của chúng ta là hai thứ khác nhau.</b> Trong DB giữ nguyên giá trị của đối tác, còn trên màn hình CMS chỉ hiển thị trạng thái vé.</span></span></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">0. 먼저 — 몰마다 오는 것이 다릅니다</span><span class="vi">0. Trước hết — mỗi sàn gửi về khác nhau</span></span></h2>
 
@@ -218,6 +222,86 @@ Dù có hủy một phần khi đang chờ thì huy hiệu vẫn giữ nguyên l
 <tr><td class="new"><span class="i18n"><span class="ko">부분 환수</span><span class="vi">Thu hồi một phần</span></span></td><td><span class="i18n"><span class="ko">지급 후 일부만 회수, 남은 티켓이 있음</span><span class="vi">Sau khi cấp chỉ thu hồi một phần, vẫn còn vé</span></span></td></tr>
 </table></div>
 
+<h2 class="grp"><span class="i18n"><span class="ko">6. 파트너 주문 상태와 우리 티켓 상태 — Harry 질문</span><span class="vi">6. Trạng thái đơn hàng của đối tác và trạng thái vé của chúng ta — câu hỏi của Harry</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">Harry</span><div class="qtxt"><span class="i18n"><span class="ko">CMS 상태는 파트너사 상태를 따라야 한다고 생각합니다. DB는 파트너사 상태 기준으로 설계했습니다. 그런데 지금 UI 상태(지급 대기 · 지급 완료 · 취소 · 취소(환수))는 파트너사가 정한 상태와 다릅니다.</span><span class="vi">Tôi nghĩ trạng thái trên CMS nên theo trạng thái của bên đối tác. Tôi đã thiết kế DB theo chuẩn trạng thái của đối tác. Nhưng trạng thái UI hiện tại (Chờ cấp · Đã cấp · Hủy · Hủy (thu hồi)) lại khác với trạng thái do đối tác quy định.</span></span></div><span class="bd new"><span class="i18n"><span class="ko">이번 확정</span><span class="vi">Chốt lần này</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>두 상태는 다른 것입니다. 섞지 않습니다.</b>
+
+주문 상태는 파트너가 주는 것으로, 주문이 어떻게 됐나입니다. 티켓 상태는 우리 규칙으로, 유저에게 티켓을 줬나입니다.
+
+링크프라이스가 <b>210 CONFIRMED</b>를 줘도 우리가 티켓을 준 것은 아닙니다. 카카오 연동 D+7, 미연동 D+30을 기다려야 합니다. 두 상태는 따로 움직입니다.
+
+<b>DB에는 파트너 상태를 그대로 저장하십시오.</b> Harry가 한 대로가 맞습니다. 우리 말로 바꿔 저장하지 마십시오 — 그대로 남겨야 나중에 대조할 수 있습니다.
+
+<b>CMS 화면에는 티켓 상태만 보여줍니다.</b> 상태 칸은 지금 그대로 넷입니다. 파트너 상태는 개발자가 DB에서 보면 됩니다.</span><span class="vi"><b>Hai trạng thái này là hai thứ khác nhau. Không trộn lẫn.</b>
+
+Trạng thái đơn hàng là thứ đối tác gửi cho ta, nói lên đơn hàng đã ra sao. Trạng thái vé là quy tắc của ta, nói lên đã cấp vé cho người dùng hay chưa.
+
+Dù LinkPrice gửi <b>210 CONFIRMED</b> thì cũng không có nghĩa là ta đã cấp vé. Phải chờ D+7 nếu có liên kết Kakao, D+30 nếu chưa liên kết. Hai trạng thái vận hành tách rời nhau.
+
+<b>Trong DB xin lưu nguyên trạng thái của đối tác.</b> Harry làm như vậy là đúng. Đừng đổi sang cách gọi của ta rồi mới lưu — phải giữ nguyên thì sau này mới đối chiếu được.
+
+<b>Trên màn hình CMS chỉ hiển thị trạng thái vé.</b> Cột trạng thái giữ nguyên bốn giá trị như hiện nay. Trạng thái của đối tác thì lập trình viên xem trong DB là được.</span></span></div></div>
+<div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">상태 칸이 있는 화면은 CMS 「매출·수익 → 제휴 수수료 매출」입니다. 화면 정의는 <a href="/devqa/revenue-fee-guide-20260903.html">「제휴 수수료 매출 개발 가이드」(2026-09-03)</a>를 보십시오. 지급일 D+7 / D+30 규칙은 정책 문서 「어뷰징·환불」 탭 2번 카드 「승인 대기로 통제」에 있습니다.</span><span class="vi">Màn hình có cột trạng thái là CMS 「Doanh thu·Lợi nhuận → Doanh thu hoa hồng liên kết」. Định nghĩa màn hình xin xem <a href="/devqa/revenue-fee-guide-20260903.html">「Hướng dẫn phát triển Doanh thu hoa hồng liên kết」 (03/09/2026)</a>. Quy tắc ngày cấp D+7 / D+30 nằm ở thẻ số 2 「Kiểm soát bằng trạng thái chờ duyệt」, tab 「Gian lận·Hoàn tiền」 của tài liệu chính sách.</span></span></div></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">두 상태를 나란히 놓으면</span><span class="vi">Đặt hai trạng thái cạnh nhau</span></span></h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th></th><th><span class="i18n"><span class="ko">주문 상태</span><span class="vi">Trạng thái đơn hàng</span></span></th><th><span class="i18n"><span class="ko">티켓 상태</span><span class="vi">Trạng thái vé</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">누가 정합니까</span><span class="vi">Ai quy định</span></span></td><td><span class="i18n"><span class="ko">파트너 (쿠팡 · 링크프라이스)</span><span class="vi">Đối tác (Coupang · LinkPrice)</span></span></td><td><span class="i18n"><span class="ko">우리 규칙</span><span class="vi">Quy tắc của chúng ta</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">무엇을 가리킵니까</span><span class="vi">Chỉ điều gì</span></span></td><td><span class="i18n"><span class="ko">주문이 어떻게 됐나</span><span class="vi">Đơn hàng đã ra sao</span></span></td><td><span class="i18n"><span class="ko">유저에게 티켓을 줬나</span><span class="vi">Đã cấp vé cho người dùng hay chưa</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">값</span><span class="vi">Giá trị</span></span></td><td><span class="i18n"><span class="ko">쿠팡 2개 · 링크프라이스 5개 (아래 표)</span><span class="vi">Coupang 2 · LinkPrice 5 (bảng dưới)</span></span></td><td class="new"><span class="i18n"><span class="ko">지급 대기 · 지급 완료 · 취소 · 취소(환수)</span><span class="vi">Chờ cấp · Đã cấp · Hủy · Hủy (thu hồi)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">어디에 둡니까</span><span class="vi">Để ở đâu</span></span></td><td><span class="i18n"><span class="ko">DB에 파트너가 준 값 그대로</span><span class="vi">Lưu nguyên giá trị đối tác gửi vào DB</span></span></td><td class="new"><span class="i18n"><span class="ko">CMS 「제휴 수수료 매출」 상태 칸</span><span class="vi">Cột trạng thái của CMS 「Doanh thu hoa hồng liên kết」</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">언제 바뀝니까</span><span class="vi">Khi nào thay đổi</span></span></td><td><span class="i18n"><span class="ko">파트너가 알려줄 때</span><span class="vi">Khi đối tác báo về</span></span></td><td><span class="i18n"><span class="ko">지급일(D+7 / D+30)이 지날 때, 회수할 때</span><span class="vi">Khi qua ngày cấp (D+7 / D+30), khi thu hồi</span></span></td></tr>
+</table></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">파트너가 주는 주문 상태</span><span class="vi">Trạng thái đơn hàng do đối tác gửi</span></span></h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">몰</span><span class="vi">Sàn</span></span></th><th><span class="i18n"><span class="ko">코드</span><span class="vi">Mã</span></span></th><th><span class="i18n"><span class="ko">이름</span><span class="vi">Tên</span></span></th><th><span class="i18n"><span class="ko">뜻</span><span class="vi">Ý nghĩa</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">쿠팡</span><span class="vi">Coupang</span></span></td><td>—</td><td class="old">CONFIRMED</td><td><span class="i18n"><span class="ko">주문함</span><span class="vi">Đã đặt hàng</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">쿠팡</span><span class="vi">Coupang</span></span></td><td>—</td><td class="old">CANCELLED</td><td><span class="i18n"><span class="ko">취소함</span><span class="vi">Đã hủy</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td>100</td><td class="old">PENDING</td><td><span class="i18n"><span class="ko">막 주문함</span><span class="vi">Vừa đặt hàng</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td>200</td><td class="old">SETTLING</td><td><span class="i18n"><span class="ko">대사 기간 중</span><span class="vi">Đang trong kỳ đối chiếu</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td>210</td><td class="old">CONFIRMED</td><td><span class="i18n"><span class="ko">결제 확인, 마감됨</span><span class="vi">Đã xác nhận thanh toán, đã chốt</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td>300</td><td class="old">CANCEL_REQUESTED</td><td><span class="i18n"><span class="ko">파트너가 취소 요청, 취소 대기</span><span class="vi">Đối tác yêu cầu hủy, đang chờ hủy</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td>310</td><td class="old">CANCELLED</td><td><span class="i18n"><span class="ko">취소 완료</span><span class="vi">Đã hủy xong</span></span></td></tr>
+</table></div>
+<div class="note-box"><span class="i18n"><span class="ko">쿠팡은 주문할 때와 취소할 때만 포스트백이 오므로 두 상태뿐입니다.
+
+<b>210 CONFIRMED가 와도 티켓 상태는 아직 「지급 대기」입니다.</b> 지급일이 지나야 「지급 완료」가 됩니다.</span><span class="vi">Coupang chỉ gửi postback khi đặt hàng và khi hủy, nên chỉ có hai trạng thái.
+
+<b>Dù nhận 210 CONFIRMED thì trạng thái vé vẫn là 「Chờ cấp」.</b> Phải qua ngày cấp thì mới thành 「Đã cấp」.</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">7. 부분 취소일 때 무엇을 저장합니까 — Harry 질문</span><span class="vi">7. Khi hủy một phần thì lưu cái gì — câu hỏi của Harry</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">Harry</span><div class="qtxt"><span class="i18n"><span class="ko">부분 취소(전부 취소가 아닌 경우) 주문 상태는 어떻게 됩니까? 남은 부분만 저장하면 됩니까?</span><span class="vi">Khi hủy một phần (không phải hủy toàn bộ) thì trạng thái đơn hàng thế nào? Chỉ lưu phần còn lại là được phải không?</span></span></div><span class="bd new"><span class="i18n"><span class="ko">이번 확정</span><span class="vi">Chốt lần này</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>남은 부분만 저장하면 안 됩니다. 원래 금액을 남기고, 취소 금액을 따로 기록하십시오.</b>
+
+29,430원을 7,110원으로 덮어쓰면 얼마를 샀는지 알 수 없게 됩니다.
+
+취소가 여러 번 나뉘어 오면 취소 금액을 누적합니다. 남은 금액은 저장하지 말고 계산해서 씁니다.
+
+화면에도 둘 다 보입니다 — 「29,430원 구매 · 22,320원 부분 취소」.
+
+주문 상태는 파트너가 준 값을 그대로 씁니다. 티켓 상태는 3번 규칙대로 다시 계산해서 정합니다.</span><span class="vi"><b>Chỉ lưu phần còn lại là không được. Hãy giữ lại số tiền gốc và ghi số tiền hủy riêng.</b>
+
+Nếu ghi đè 29.430₩ thành 7.110₩ thì sẽ không còn biết được đã mua bao nhiêu.
+
+Nếu hủy đến nhiều lần thì cộng dồn số tiền hủy. Số tiền còn lại thì không lưu mà tính ra khi cần dùng.
+
+Trên màn hình cũng hiển thị cả hai — 「Mua 29.430₩ · Hủy một phần 22.320₩」.
+
+Trạng thái đơn hàng thì dùng nguyên giá trị đối tác gửi. Trạng thái vé thì tính lại theo quy tắc ở mục 3 rồi quyết định.</span></span></div></div></div>
+
+<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">구매 금액을 덮어쓰지 마십시오</span><span class="vi">Đừng ghi đè số tiền mua</span></span></span><span class="i18n"><span class="ko">처음 받은 구매 금액은 <b>그대로 둡니다.</b> 취소가 와도 고치지 않습니다. 부분 취소가 여러 번 와도 고치지 않습니다.</span><span class="vi">Số tiền mua nhận được lần đầu <b>giữ nguyên.</b> Có hủy đơn cũng không sửa. Hủy một phần đến nhiều lần cũng không sửa.</span></span></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">부분 취소일 때 무엇을 남깁니까</span><span class="vi">Khi hủy một phần thì giữ lại cái gì</span></span></h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">무엇</span><span class="vi">Cái gì</span></span></th><th><span class="i18n"><span class="ko">값</span><span class="vi">Giá trị</span></span></th><th><span class="i18n"><span class="ko">어떻게 다룹니까</span><span class="vi">Xử lý thế nào</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">구매 금액</span><span class="vi">Số tiền mua</span></span></td><td><span class="i18n"><span class="ko">29,430원</span><span class="vi">29.430₩</span></span></td><td class="new"><span class="i18n"><span class="ko">처음 받은 값 그대로 · 덮어쓰지 않음</span><span class="vi">Giữ nguyên giá trị nhận lần đầu · không ghi đè</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">취소 금액</span><span class="vi">Số tiền hủy</span></span></td><td><span class="i18n"><span class="ko">22,320원</span><span class="vi">22.320₩</span></span></td><td class="new"><span class="i18n"><span class="ko">따로 기록 · 여러 번 오면 누적</span><span class="vi">Ghi riêng · đến nhiều lần thì cộng dồn</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">남은 금액</span><span class="vi">Số tiền còn lại</span></span></td><td><span class="i18n"><span class="ko">7,110원</span><span class="vi">7.110₩</span></span></td><td><span class="i18n"><span class="ko">저장하지 않음 · 계산해서 씀</span><span class="vi">Không lưu · tính ra khi dùng</span></span></td></tr>
+</table></div>
+
 <h2 class="grp hide"><span class="i18n"><span class="ko">아직 정하지 않은 것 3건</span><span class="vi">3 mục chưa chốt</span></span></h2>
 
 <div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">임의로 정해서 만들지 마십시오</span><span class="vi">Xin đừng tự quyết rồi làm</span></span></span><span class="i18n"><span class="ko">아래 3건은 아직 확정 전입니다. 여기까지 오면 만들지 말고 <b>먼저 물어보십시오.</b></span><span class="vi">3 mục dưới đây vẫn chưa được chốt. Khi làm đến đây thì đừng làm tiếp mà <b>hãy hỏi trước.</b></span></span></div>
@@ -234,9 +318,10 @@ Dù có hủy một phần khi đang chờ thì huy hiệu vẫn giữ nguyên l
 <tr><th><span class="i18n"><span class="ko">무엇</span><span class="vi">Cái gì</span></span></th><th><span class="i18n"><span class="ko">어디서 봅니까</span><span class="vi">Xem ở đâu</span></span></th></tr>
 <tr><td><span class="i18n"><span class="ko">1·2·4번 규칙의 정본</span><span class="vi">Bản chuẩn của quy tắc mục 1·2·4</span></span></td><td class="new"><a href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">정책 문서 → 「어뷰징·환불」 탭 → 2번 카드 ↗</span><span class="vi">Tài liệu chính sách → tab 「Gian lận·Hoàn tiền」 → thẻ số 2 ↗</span></span></a></td></tr>
 <tr><td><span class="i18n"><span class="ko">몰이 보내 주는 값</span><span class="vi">Giá trị sàn gửi về</span></span></td><td><a href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">정책 문서 → 「티켓·적립」 탭 → 6번 카드 ↗</span><span class="vi">Tài liệu chính sách → tab 「Vé·Tích lũy」 → thẻ số 6 ↗</span></span></a></td></tr>
+<tr><td><span class="i18n"><span class="ko">상태 칸이 있는 CMS 화면</span><span class="vi">Màn hình CMS có cột trạng thái</span></span></td><td><a href="/devqa/revenue-fee-guide-20260903.html"><span class="i18n"><span class="ko">제휴 수수료 매출 개발 가이드 (2026-09-03) ↗</span><span class="vi">Hướng dẫn phát triển Doanh thu hoa hồng liên kết (03/09/2026) ↗</span></span></a></td></tr>
 <tr><td><span class="i18n"><span class="ko">앞선 공지</span><span class="vi">Thông báo trước đó</span></span></td><td><a href="/devqa/postback-fields-20260827.html"><span class="i18n"><span class="ko">링크프라이스·쿠팡 포스트백 값 정리 (2026-08-27) ↗</span><span class="vi">Tổng hợp giá trị postback LinkPrice·Coupang (27/08/2026) ↗</span></span></a></td></tr>
 </table></div>
 
-<div class="foot"><span class="i18n"><span class="ko">PricePick · 개발 전달용 작업 공지 · 2026-09-03 · 취소 처리 · 티켓 회수 · 확정 4 / 미정 3</span><span class="vi">PricePick · Thông báo công việc bàn giao phát triển · 03/09/2026 · Xử lý hủy đơn · Thu hồi vé · Đã chốt 4 / Chưa chốt 3</span></span></div>
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 개발 전달용 작업 공지 · 2026-09-03 · 취소 처리 · 티켓 회수 · 상태 체계 · 확정 6 / 미정 3</span><span class="vi">PricePick · Thông báo công việc bàn giao phát triển · 03/09/2026 · Xử lý hủy đơn · Thu hồi vé · Hệ trạng thái · Đã chốt 6 / Chưa chốt 3</span></span></div>
 </div>
 </body></html>
