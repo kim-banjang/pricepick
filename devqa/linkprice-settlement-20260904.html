@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 공지 · 링크프라이스 정산 기준 확정 · 2026-09-04</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280;--hide:#c58a14;--hide-l:#fffaef;--hide-b:#eddcb4}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+h2.grp.hide{color:#95690c;border-bottom-color:#f3e6c6}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.new{background:#efe9ff;color:#7a55e8}
+.bd.hide{background:#fbf0da;color:#95690c}
+.bd.keep{background:#e7f3ec;color:#3e8e63}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box a{color:var(--pp-d);font-weight:700}
+.keybox{background:#f6f2ff;border:1px solid #ddd0ff;border-left:3px solid var(--pp);border-radius:10px;padding:12px 15px;margin:14px 0 4px;font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.keybox .kt{font-size:11px;font-weight:800;color:var(--pp-d);letter-spacing:.06em;margin-bottom:5px;display:block}
+.keybox b{color:var(--ink1)}
+.warn{border-radius:12px;padding:14px 17px;margin:2px 0 12px;font-size:13.2px;white-space:pre-wrap}
+.warn .wt{font-size:12px;font-weight:800;letter-spacing:.03em;margin-bottom:6px;display:block}
+.warn.hide{background:var(--hide-l);border:1px solid var(--hide-b);border-left:5px solid var(--hide);color:#7a5a11}
+.warn.hide .wt{color:#8a6410} .warn.hide b{color:#5d440c}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.tbl td.new{color:#1f7a7a;font-weight:700}
+.tbl td.old{color:#b4453f;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.4px}
+.tbl a{color:var(--pp-d);font-weight:700}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+.note-box a{color:var(--pp-d);font-weight:700}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.srclink:hover{background:rgba(255,255,255,.3)}
+@media(max-width:640px){.htitle{font-size:19px}}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">공지 · 링크프라이스 정산 기준 확정 · 2026-09-04</span><span class="vi">Thông báo · Xác định tiêu chuẩn đối soát LinkPrice · 04/09/2026</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">받는 사람: 해리 &nbsp;|&nbsp; 확정 후 status 불변 · 정산 기간 조회 금지 · uid 기준 지급 대상 식별 (KO/VI)</span><span class="vi">Người nhận: Harry &nbsp;|&nbsp; Sau khi chốt status không đổi · cấm tra cứu trong kỳ đối soát · nhận diện đối tượng cấp theo uid (KO/VI)</span></span></div>
+<a class="srclink" href="https://github.com/linkprice/AffiliateSetup/blob/master/docs/%EC%9E%90%EC%A3%BC%EB%AC%BB%EB%8A%94_%EC%A7%88%EB%AC%B8.md" target="_blank" rel="noopener"><span class="i18n"><span class="ko">링크프라이스 공식 문서 ↗</span><span class="vi">Tài liệu chính thức LinkPrice ↗</span></span></a>
+</div></header>
+
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">출처: 링크프라이스 공식 확인 2026-09-04</span><span class="vi">Nguồn: LinkPrice xác nhận chính thức 04/09/2026</span></span></span><span class="chip"><span class="i18n"><span class="ko">확인 항목 5건</span><span class="vi">5 hạng mục xác nhận</span></span></span><span class="chip"><span class="i18n"><span class="ko">링크프라이스 전달 내용 그대로</span><span class="vi">Nguyên văn nội dung LinkPrice cung cấp</span></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 확정 후 status 불변</span><span class="vi">1. Sau khi chốt, status không đổi</span></span></h2>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">내용</span><span class="vi">Nội dung</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">확정 시점</span><span class="vi">Thời điểm chốt</span></span></td><td><span class="i18n"><span class="ko">매월 6일 커미션 확정</span><span class="vi">Chốt hoa hồng ngày 6 hằng tháng</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">확정 이후 status</span><span class="vi">status sau khi chốt</span></span></td><td class="new"><span class="i18n"><span class="ko">변경 없음</span><span class="vi">Không thay đổi</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">210 → 310</span><span class="vi">210 → 310</span></span></td><td class="old"><span class="i18n"><span class="ko">발생하지 않음</span><span class="vi">Không xảy ra</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">310 → 210</span><span class="vi">310 → 210</span></span></td><td class="old"><span class="i18n"><span class="ko">발생하지 않음</span><span class="vi">Không xảy ra</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">이전 안내</span><span class="vi">Hướng dẫn trước đây</span></span></td><td class="old"><span class="i18n"><span class="ko">「310이 이후 210으로 재생성될 수 있다」 — 취소</span><span class="vi">「310 có thể được tạo lại thành 210」 — đã hủy</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">재생성 발생 구간</span><span class="vi">Giai đoạn phát sinh tạo lại</span></span></td><td><span class="i18n"><span class="ko">확정 전 정산 과정에서만</span><span class="vi">Chỉ trong quá trình đối soát trước khi chốt</span></span></td></tr>
+</table></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 정산 기간 조회 금지</span><span class="vi">2. Cấm tra cứu trong kỳ đối soát</span></span></h2>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">내용</span><span class="vi">Nội dung</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">정산 기간</span><span class="vi">Kỳ đối soát</span></span></td><td class="old"><span class="i18n"><span class="ko">익월 21일 ~ 익익월 5일</span><span class="vi">Ngày 21 tháng sau ~ ngày 5 tháng sau nữa</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">예시</span><span class="vi">Ví dụ</span></span></td><td><span class="i18n"><span class="ko">8월 구매 건 → 9/21 ~ 10/5</span><span class="vi">Đơn mua tháng 8 → 21/9 ~ 5/10</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">사유</span><span class="vi">Lý do</span></span></td><td><span class="i18n"><span class="ko">이 기간에는 확정 실적도 취소 상태로 조회됨</span><span class="vi">Trong thời gian này doanh số đã chốt cũng hiển thị ở trạng thái hủy</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">조치</span><span class="vi">Biện pháp</span></span></td><td class="new"><span class="i18n"><span class="ko">매월 6일 이후 데이터 기준으로 지급</span><span class="vi">Cấp dựa trên dữ liệu sau ngày 6 hằng tháng</span></span></td></tr>
+</table></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. 지급 대상 식별</span><span class="vi">3. Nhận diện đối tượng cấp</span></span></h2>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">내용</span><span class="vi">Nội dung</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">조회 시점</span><span class="vi">Thời điểm tra cứu</span></span></td><td class="new"><span class="i18n"><span class="ko">매월 6일 이후</span><span class="vi">Sau ngày 6 hằng tháng</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">조회 조건</span><span class="vi">Điều kiện tra cứu</span></span></td><td class="new">status = 210</td></tr>
+<tr><td><span class="i18n"><span class="ko">식별 기준</span><span class="vi">Tiêu chí nhận diện</span></span></td><td class="new">uid</td></tr>
+<tr><td><span class="i18n"><span class="ko">개별 주문 건 단위 매칭</span><span class="vi">Đối chiếu theo từng đơn hàng</span></span></td><td class="old"><span class="i18n"><span class="ko">불필요</span><span class="vi">Không cần</span></span></td></tr>
+</table></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">trlog_id 개수 — 머천트 정산 방식에 따라 상이</span><span class="vi">Số lượng trlog_id — khác nhau tùy cách đối soát của merchant</span></span></h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">머천트 정산 방식</span><span class="vi">Cách đối soát của merchant</span></span></th><th>trlog_id</th></tr>
+<tr><td><span class="i18n"><span class="ko">확정 건만 남기고 취소하는 방식</span><span class="vi">Cách chỉ giữ đơn đã chốt và hủy phần còn lại</span></span></td><td class="new">1</td></tr>
+<tr><td><span class="i18n"><span class="ko">실시간 전체 취소 후 확정 실적 재생성하는 방식</span><span class="vi">Cách hủy toàn bộ theo thời gian thực rồi tạo lại doanh số đã chốt</span></span></td><td class="new">2</td></tr>
+</table></div>
+<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">단순 매칭 방식 사용 금지 (링크프라이스 권고)</span><span class="vi">Cấm dùng cách đối chiếu đơn giản (khuyến nghị của LinkPrice)</span></span></span><span class="i18n"><span class="ko">한 주문에서 복수 주문번호에 상품코드를 달리하여 전송하는 머천트 존재.
+⇒ <b>trlog_id · 주문번호 단위 단순 매칭 방식 사용 금지.</b></span><span class="vi">Có merchant gửi một đơn với nhiều số đơn hàng và mã sản phẩm khác nhau.
+⇒ <b>Cấm dùng cách đối chiếu đơn giản theo trlog_id · số đơn hàng.</b></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">4. 재생성 시 실적 발생일자 변경</span><span class="vi">4. Ngày phát sinh doanh số thay đổi khi tạo lại</span></span></h2>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">내용</span><span class="vi">Nội dung</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">현상</span><span class="vi">Hiện tượng</span></span></td><td class="old"><span class="i18n"><span class="ko">재생성 시 실적 발생일자 변경</span><span class="vi">Khi tạo lại, ngày phát sinh doanh số thay đổi</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">대응</span><span class="vi">Ứng phó</span></span></td><td class="new"><span class="i18n"><span class="ko">주문번호 기준으로 이전 월 또는 해당 월 데이터까지 조회하여 매칭</span><span class="vi">Dùng số đơn hàng tra cứu đến dữ liệu tháng trước hoặc tháng đó để đối chiếu</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">주의</span><span class="vi">Lưu ý</span></span></td><td><span class="i18n"><span class="ko">월 단위 조회 시 발생일자 변경 주의</span><span class="vi">Khi tra cứu theo tháng, lưu ý ngày phát sinh thay đổi</span></span></td></tr>
+</table></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">5. 머천트별 정산 방식 확인</span><span class="vi">5. Kiểm tra cách đối soát theo merchant</span></span></h2>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">확인 경로</span><span class="vi">Đường dẫn kiểm tra</span></span></th><th><span class="i18n"><span class="ko">값</span><span class="vi">Giá trị</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">광고주 조회 API</span><span class="vi">API tra cứu nhà quảng cáo</span></span></td><td class="new">when_trans<br>trans_reposition<br>commission_payment_standard</td></tr>
+</table></div>
+
+<div class="keybox"><span class="kt"><span class="i18n"><span class="ko">개발 로직 결론</span><span class="vi">Kết luận logic phát triển</span></span></span><span class="i18n"><span class="ko">매월 6일 이후 status=210 + uid 기준으로 지급 대상 확정
+개별 주문 · trlog_id 매칭 불필요
+재생성으로 발생일자 변경 시 주문번호 기준 이전 월 데이터까지 확인</span><span class="vi">Xác định đối tượng cấp theo status=210 + uid sau ngày 6 hằng tháng
+Không cần đối chiếu từng đơn · trlog_id
+Khi tạo lại làm đổi ngày phát sinh thì kiểm tra đến dữ liệu tháng trước theo số đơn hàng</span></span></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">관련 문서</span><span class="vi">Tài liệu liên quan</span></span></h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">위치</span><span class="vi">Vị trí</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">우리 처리 규칙</span><span class="vi">Quy tắc xử lý của chúng ta</span></span></td><td class="new"><a href="/devqa/cancel-ticket-recovery-20260903.html"><span class="i18n"><span class="ko">취소 처리 · 티켓 환수 (2026-09-04 개정) ↗</span><span class="vi">Xử lý hủy đơn · thu hồi vé (sửa đổi 04/09/2026) ↗</span></span></a></td></tr>
+<tr><td><span class="i18n"><span class="ko">해리 질문 답변</span><span class="vi">Trả lời câu hỏi của Harry</span></span></td><td><a href="/devqa/backend-harry-20260827.html"><span class="i18n"><span class="ko">백엔드 질문 답변 #14 ↗</span><span class="vi">Trả lời câu hỏi Backend #14 ↗</span></span></a></td></tr>
+<tr><td><span class="i18n"><span class="ko">참고 문서</span><span class="vi">Tài liệu tham khảo</span></span></td><td><a href="https://github.com/linkprice/AffiliateSetup/blob/master/docs/%EC%9E%90%EC%A3%BC%EB%AC%BB%EB%8A%94_%EC%A7%88%EB%AC%B8.md" target="_blank" rel="noopener">GitHub · linkprice/AffiliateSetup ↗</a></td></tr>
+</table></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 공지 · 링크프라이스 정산 기준 확정 · 2026-09-04 · 출처: 링크프라이스 공식 확인</span><span class="vi">PricePick · Thông báo · Xác định tiêu chuẩn đối soát LinkPrice · 04/09/2026 · Nguồn: LinkPrice xác nhận chính thức</span></span></div>
+</div>
+</body></html>
