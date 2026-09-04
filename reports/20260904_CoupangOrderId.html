@@ -69,6 +69,13 @@
   .scen.ok .scen-tag { background:#E4F5EF; color:#1E7A62; }
   .scen.ok .scen-k { color:#66A895; }
   .scen.ok .scen-b { background:#F6FBF9; border-color:#E4F1EC; }
+  .scen table { margin-top:8px; }
+  .scen thead th { font-size:11.5px; }
+  .scen tbody td { padding:10px 14px; font-size:13px; }
+  .scen tbody td.t { width:92px; font-weight:700; color:#6C4FD1; font-variant-numeric:tabular-nums; }
+  .scen.ok tbody td.t { color:#1E7A62; }
+  .scen code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:11.5px; background:#F5F2FE; padding:1px 5px; border-radius:4px; color:#5B3FBF; }
+  .scen.ok code { background:#EAF6F2; color:#1E7A62; }
 
   .last-update { position:fixed; bottom:24px; left:24px; background:#fff; border:1px solid #E4DEF9; border-radius:8px; padding:6px 12px; font-size:11.5px; color:#999; box-shadow:0 2px 8px rgba(132,94,238,.08); }
 
@@ -234,71 +241,71 @@
   </div>
 
   <div class="mainpanel" data-tab="t2">
-  <div class="scen">
-  <div class="scen-h"><span class="ko">시나리오 1 · 1회 클릭 후 다수 주문</span><span class="vi">Kịch bản 1 · Nhấp 1 lần rồi đặt nhiều đơn</span><span class="scen-tag"><span class="ko">불성립</span><span class="vi">Không thành lập</span></span></div>
-  <div class="scen-k"><span class="ko">상황</span><span class="vi">Tình huống</span></div>
-  <div class="scen-t"><span class="ko">회원이 링크 1회 클릭 후 3건 분할 결제</span><span class="vi">Thành viên nhấp link 1 lần rồi thanh toán tách thành 3 đơn</span></div>
-  <div class="scen-k"><span class="ko">주문</span><span class="vi">Đơn hàng</span></div>
-  <div class="scen-b"><span class="ko">주문 ①   24,280원   subid: R-8842
-주문 ②   43,800원   subid: R-8842
-주문 ③   12,000원   subid: R-8842</span><span class="vi">Đơn ①   24,280₩   subid: R-8842
-Đơn ②   43,800₩   subid: R-8842
-Đơn ③   12,000₩   subid: R-8842</span></div>
-  <div class="scen-k"><span class="ko">취소 발생 — 43,800원 취소</span><span class="vi">Phát sinh hủy — hủy 43,800₩</span></div>
-  <div class="scen-b"><span class="ko">수신   subid: R-8842 · order_price: 43,800</span><span class="vi">Nhận   subid: R-8842 · order_price: 43,800</span></div>
-  <div class="scen-k"><span class="ko">결과</span><span class="vi">Kết quả</span></div>
-  <div class="scen-r"><span class="ko">난수로 주문 특정 불가. 금액 탐색 → 현행과 동일</span><span class="vi">Không xác định được đơn bằng số ngẫu nhiên. Dò theo số tiền → giống hiện hành</span></div>
-</div>
-  <div class="scen">
-  <div class="scen-h"><span class="ko">시나리오 2 · 동일 금액 다건</span><span class="vi">Kịch bản 2 · Nhiều đơn cùng số tiền</span><span class="scen-tag"><span class="ko">불성립</span><span class="vi">Không thành lập</span></span></div>
-  <div class="scen-k"><span class="ko">상황</span><span class="vi">Tình huống</span></div>
-  <div class="scen-t"><span class="ko">1회 클릭 후 24,280원 주문 2건</span><span class="vi">Nhấp 1 lần rồi đặt 2 đơn 24,280₩</span></div>
-  <div class="scen-k"><span class="ko">주문</span><span class="vi">Đơn hàng</span></div>
-  <div class="scen-b"><span class="ko">주문 ①   24,280원   subid: R-5000
-주문 ②   24,280원   subid: R-5000</span><span class="vi">Đơn ①   24,280₩   subid: R-5000
-Đơn ②   24,280₩   subid: R-5000</span></div>
-  <div class="scen-k"><span class="ko">취소 발생 — 24,280원 1건 취소</span><span class="vi">Phát sinh hủy — hủy 1 đơn 24,280₩</span></div>
-  <div class="scen-b"><span class="ko">수신   subid: R-5000 · order_price: 24,280</span><span class="vi">Nhận   subid: R-5000 · order_price: 24,280</span></div>
-  <div class="scen-k"><span class="ko">결과</span><span class="vi">Kết quả</span></div>
-  <div class="scen-r"><span class="ko">난수 · 금액 모두 동일. 대상 특정 불가</span><span class="vi">Số ngẫu nhiên · số tiền đều giống nhau. Không xác định được đối tượng</span></div>
-</div>
-  <div class="scen">
-  <div class="scen-h"><span class="ko">시나리오 3 · 미구매 클릭 누적</span><span class="vi">Kịch bản 3 · Tích lũy lượt nhấp không mua</span><span class="scen-tag"><span class="ko">부수 비용</span><span class="vi">Chi phí phát sinh kèm</span></span></div>
-  <div class="scen-k"><span class="ko">상황</span><span class="vi">Tình huống</span></div>
-  <div class="scen-t"><span class="ko">클릭 3회 후 1회 구매</span><span class="vi">Nhấp 3 lần rồi mua 1 lần</span></div>
-  <div class="scen-k"><span class="ko">클릭 이력</span><span class="vi">Lịch sử nhấp</span></div>
-  <div class="scen-b"><span class="ko">월요일   R-2001   구매 없음
-화요일   R-2002   구매 없음
-수요일   R-2003   구매 발생</span><span class="vi">Thứ hai   R-2001   Không mua
-Thứ ba    R-2002   Không mua
-Thứ tư    R-2003   Phát sinh mua</span></div>
-  <div class="scen-k"><span class="ko">결과</span><span class="vi">Kết quả</span></div>
-  <div class="scen-r"><span class="ko">최종 클릭에만 실적 귀속. R-2001 · R-2002 무효 · 미사용 값 98% 축적 (전환율 1~2%)</span><span class="vi">Doanh số chỉ quy về lượt nhấp cuối. R-2001 · R-2002 vô hiệu · tích lũy 98% giá trị không dùng (tỷ lệ chuyển đổi 1~2%)</span></div>
-</div>
-  <div class="scen ok">
-  <div class="scen-h"><span class="ko">시나리오 4 · 1회 클릭 후 1건 주문</span><span class="vi">Kịch bản 4 · Nhấp 1 lần rồi đặt 1 đơn</span><span class="scen-tag"><span class="ko">성립</span><span class="vi">Thành lập</span></span></div>
-  <div class="scen-k"><span class="ko">상황</span><span class="vi">Tình huống</span></div>
-  <div class="scen-t"><span class="ko">링크 1회 클릭 후 묶음 상품 1건 결제</span><span class="vi">Nhấp link 1 lần rồi thanh toán 1 đơn gộp nhiều sản phẩm</span></div>
-  <div class="scen-k"><span class="ko">주문</span><span class="vi">Đơn hàng</span></div>
-  <div class="scen-b"><span class="ko">주문   70,000원   subid: R-7700</span><span class="vi">Đơn   70,000₩   subid: R-7700</span></div>
-  <div class="scen-k"><span class="ko">부분 취소 발생 — 22,320원 취소</span><span class="vi">Phát sinh hủy một phần — hủy 22,320₩</span></div>
-  <div class="scen-b"><span class="ko">수신     subid: R-7700 · order_price: 22,320
-재계산   70,000 − 22,320 = 47,680원</span><span class="vi">Nhận       subid: R-7700 · order_price: 22,320
-Tính lại   70,000 − 22,320 = 47,680₩</span></div>
-  <div class="scen-k"><span class="ko">결과</span><span class="vi">Kết quả</span></div>
-  <div class="scen-r"><span class="ko">주문 특정 가능. 잔여 금액 산출 가능</span><span class="vi">Xác định được đơn. Tính được số tiền còn lại</span></div>
-</div>
+    <div class="scen">
+      <div class="scen-h"><span class="ko">시나리오 1 · 1회 방문 · 3건 분할 결제</span><span class="vi">Kịch bản 1 · 1 lần truy cập · thanh toán tách 3 đơn</span><span class="scen-tag"><span class="ko">빈번</span><span class="vi">Thường xuyên</span></span></div>
+      <table><thead><tr><th><span class="ko">시각</span><span class="vi">Thời điểm</span></th><th><span class="ko">회원 행동</span><span class="vi">Hành động của thành viên</span></th><th><span class="ko">시스템 수신</span><span class="vi">Hệ thống nhận được</span></th></tr></thead><tbody>
+        <tr><td class="t"><span class="ko">19:02</span><span class="vi">19:02</span></td><td><span class="ko">프라이스픽에서 쿠팡 링크 클릭</span><span class="vi">Nhấp link Coupang trong PricePick</span></td><td><span class="ko">subid <code>R-8842</code> 발급</span><span class="vi">Cấp subid <code>R-8842</code></span></td></tr>
+        <tr><td class="t"><span class="ko">19:15</span><span class="vi">19:15</span></td><td><span class="ko">생수 24,280원 결제</span><span class="vi">Thanh toán nước uống 24,280₩</span></td><td><span class="ko">구매 · <code>R-8842</code> · 24,280</span><span class="vi">Mua · <code>R-8842</code> · 24,280</span></td></tr>
+        <tr><td class="t"><span class="ko">19:40</span><span class="vi">19:40</span></td><td><span class="ko">세제 43,800원 결제</span><span class="vi">Thanh toán nước giặt 43,800₩</span></td><td><span class="ko">구매 · <code>R-8842</code> · 43,800</span><span class="vi">Mua · <code>R-8842</code> · 43,800</span></td></tr>
+        <tr><td class="t"><span class="ko">20:10</span><span class="vi">20:10</span></td><td><span class="ko">간식 12,000원 결제</span><span class="vi">Thanh toán đồ ăn vặt 12,000₩</span></td><td><span class="ko">구매 · <code>R-8842</code> · 12,000</span><span class="vi">Mua · <code>R-8842</code> · 12,000</span></td></tr>
+        <tr><td class="t"><span class="ko">익일</span><span class="vi">Hôm sau</span></td><td><span class="ko">세제 취소</span><span class="vi">Hủy nước giặt</span></td><td><span class="ko">취소 · <code>R-8842</code> · 43,800</span><span class="vi">Hủy · <code>R-8842</code> · 43,800</span></td></tr>
+      </tbody></table>
+      <div class="scen-k"><span class="ko">문제</span><span class="vi">Vấn đề</span></div>
+      <div class="scen-t"><span class="ko">난수 1개에 주문 3건 귀속. 취소 대상 특정 불가</span><span class="vi">3 đơn quy về 1 số ngẫu nhiên. Không xác định được đối tượng hủy</span></div>
+      <div class="scen-k"><span class="ko">영향</span><span class="vi">Ảnh hưởng</span></div>
+      <div class="scen-t"><span class="ko">금액 대조로 탐색. 현행 방식과 동일</span><span class="vi">Dò bằng cách đối chiếu số tiền. Giống cách hiện hành</span></div>
+    </div>
+    <div class="scen">
+      <div class="scen-h"><span class="ko">시나리오 2 · 동일 금액 다건 주문</span><span class="vi">Kịch bản 2 · Nhiều đơn cùng số tiền</span><span class="scen-tag"><span class="ko">보통</span><span class="vi">Trung bình</span></span></div>
+      <table><thead><tr><th><span class="ko">시각</span><span class="vi">Thời điểm</span></th><th><span class="ko">회원 행동</span><span class="vi">Hành động của thành viên</span></th><th><span class="ko">시스템 수신</span><span class="vi">Hệ thống nhận được</span></th></tr></thead><tbody>
+        <tr><td class="t"><span class="ko">14:20</span><span class="vi">14:20</span></td><td><span class="ko">프라이스픽에서 쿠팡 링크 클릭</span><span class="vi">Nhấp link Coupang trong PricePick</span></td><td><span class="ko">subid <code>R-5000</code> 발급</span><span class="vi">Cấp subid <code>R-5000</code></span></td></tr>
+        <tr><td class="t"><span class="ko">14:35</span><span class="vi">14:35</span></td><td><span class="ko">커피 24,280원 결제</span><span class="vi">Thanh toán cà phê 24,280₩</span></td><td><span class="ko">구매 · <code>R-5000</code> · 24,280</span><span class="vi">Mua · <code>R-5000</code> · 24,280</span></td></tr>
+        <tr><td class="t"><span class="ko">14:52</span><span class="vi">14:52</span></td><td><span class="ko">커피 24,280원 추가 결제</span><span class="vi">Thanh toán thêm cà phê 24,280₩</span></td><td><span class="ko">구매 · <code>R-5000</code> · 24,280</span><span class="vi">Mua · <code>R-5000</code> · 24,280</span></td></tr>
+        <tr><td class="t"><span class="ko">익일</span><span class="vi">Hôm sau</span></td><td><span class="ko">1건 취소</span><span class="vi">Hủy 1 đơn</span></td><td><span class="ko">취소 · <code>R-5000</code> · 24,280</span><span class="vi">Hủy · <code>R-5000</code> · 24,280</span></td></tr>
+      </tbody></table>
+      <div class="scen-k"><span class="ko">문제</span><span class="vi">Vấn đề</span></div>
+      <div class="scen-t"><span class="ko">난수 · 금액 모두 동일. 대상 구분 불가</span><span class="vi">Số ngẫu nhiên · số tiền đều giống nhau. Không phân biệt được đối tượng</span></div>
+      <div class="scen-k"><span class="ko">영향</span><span class="vi">Ảnh hưởng</span></div>
+      <div class="scen-t"><span class="ko">임의 선택 후 회수. 회원 손실 발생 가능</span><span class="vi">Chọn tùy ý rồi thu hồi. Có thể phát sinh thiệt hại cho thành viên</span></div>
+    </div>
+    <div class="scen">
+      <div class="scen-h"><span class="ko">시나리오 3 · 미구매 클릭 누적</span><span class="vi">Kịch bản 3 · Tích lũy lượt nhấp không mua</span><span class="scen-tag"><span class="ko">빈번</span><span class="vi">Thường xuyên</span></span></div>
+      <table><thead><tr><th><span class="ko">시각</span><span class="vi">Thời điểm</span></th><th><span class="ko">회원 행동</span><span class="vi">Hành động của thành viên</span></th><th><span class="ko">시스템 수신</span><span class="vi">Hệ thống nhận được</span></th></tr></thead><tbody>
+        <tr><td class="t"><span class="ko">월 21:10</span><span class="vi">T2 21:10</span></td><td><span class="ko">링크 클릭 후 미구매</span><span class="vi">Nhấp link rồi không mua</span></td><td><span class="ko">subid <code>R-2001</code> 발급</span><span class="vi">Cấp subid <code>R-2001</code></span></td></tr>
+        <tr><td class="t"><span class="ko">화 12:30</span><span class="vi">T3 12:30</span></td><td><span class="ko">링크 클릭 후 미구매</span><span class="vi">Nhấp link rồi không mua</span></td><td><span class="ko">subid <code>R-2002</code> 발급</span><span class="vi">Cấp subid <code>R-2002</code></span></td></tr>
+        <tr><td class="t"><span class="ko">수 19:45</span><span class="vi">T4 19:45</span></td><td><span class="ko">링크 클릭 후 세제 43,800원 결제</span><span class="vi">Nhấp link rồi thanh toán nước giặt 43,800₩</span></td><td><span class="ko">subid <code>R-2003</code> 발급 · 구매 · <code>R-2003</code></span><span class="vi">Cấp subid <code>R-2003</code> · Mua · <code>R-2003</code></span></td></tr>
+      </tbody></table>
+      <div class="scen-k"><span class="ko">문제</span><span class="vi">Vấn đề</span></div>
+      <div class="scen-t"><span class="ko">최종 클릭에만 실적 귀속. <code>R-2001</code> · <code>R-2002</code> 무효</span><span class="vi">Doanh số chỉ quy về lượt nhấp cuối. <code>R-2001</code> · <code>R-2002</code> vô hiệu</span></div>
+      <div class="scen-k"><span class="ko">영향</span><span class="vi">Ảnh hưởng</span></div>
+      <div class="scen-t"><span class="ko">클릭 대비 구매 전환율 1~2%. 미사용 값 98% 축적</span><span class="vi">Tỷ lệ chuyển đổi mua trên lượt nhấp 1~2%. Tích lũy 98% giá trị không dùng</span></div>
+    </div>
+    <div class="scen ok">
+      <div class="scen-h"><span class="ko">시나리오 4 · 1회 방문 · 1건 결제</span><span class="vi">Kịch bản 4 · 1 lần truy cập · thanh toán 1 đơn</span><span class="scen-tag"><span class="ko">보통</span><span class="vi">Trung bình</span></span><span class="scen-tag"><span class="ko">성립</span><span class="vi">Thành lập</span></span></div>
+      <table><thead><tr><th><span class="ko">시각</span><span class="vi">Thời điểm</span></th><th><span class="ko">회원 행동</span><span class="vi">Hành động của thành viên</span></th><th><span class="ko">시스템 수신</span><span class="vi">Hệ thống nhận được</span></th></tr></thead><tbody>
+        <tr><td class="t"><span class="ko">10:05</span><span class="vi">10:05</span></td><td><span class="ko">프라이스픽에서 쿠팡 링크 클릭</span><span class="vi">Nhấp link Coupang trong PricePick</span></td><td><span class="ko">subid <code>R-7700</code> 발급</span><span class="vi">Cấp subid <code>R-7700</code></span></td></tr>
+        <tr><td class="t"><span class="ko">10:22</span><span class="vi">10:22</span></td><td><span class="ko">생필품 3종 묶음 70,000원 결제</span><span class="vi">Thanh toán combo 3 loại nhu yếu phẩm 70,000₩</span></td><td><span class="ko">구매 · <code>R-7700</code> · 70,000</span><span class="vi">Mua · <code>R-7700</code> · 70,000</span></td></tr>
+        <tr><td class="t"><span class="ko">익일</span><span class="vi">Hôm sau</span></td><td><span class="ko">3종 중 1종 22,320원 취소</span><span class="vi">Hủy 1 trong 3 loại, 22,320₩</span></td><td><span class="ko">취소 · <code>R-7700</code> · 22,320</span><span class="vi">Hủy · <code>R-7700</code> · 22,320</span></td></tr>
+      </tbody></table>
+      <div class="scen-k"><span class="ko">처리</span><span class="vi">Xử lý</span></div>
+      <div class="scen-b"><span class="ko">원 주문 70,000원 − 취소 22,320원 = 잔여 47,680원
+잔여 금액 기준으로 티켓 재산출</span><span class="vi">Đơn gốc 70,000₩ − hủy 22,320₩ = còn lại 47,680₩
+Tính lại vé theo số tiền còn lại</span></div>
+      <div class="scen-k"><span class="ko">결과</span><span class="vi">Kết quả</span></div>
+      <div class="scen-t"><span class="ko">주문 특정 가능. 잔여 금액 산출 가능</span><span class="vi">Xác định được đơn. Tính được số tiền còn lại</span></div>
+    </div>
 
-  <h2><span class="no">·</span><span class="ko">성립 조건</span><span class="vi">Điều kiện thành lập</span></h2>
-  <table>
-    <thead><tr><th><span class="ko">조건</span><span class="vi">Điều kiện</span></th><th><span class="ko">성립 여부</span><span class="vi">Thành lập hay không</span></th></tr></thead>
-    <tbody>
-      <tr><td class="fn"><span class="ko">클릭 1회 · 주문 1건</span><span class="vi">Nhấp 1 lần · 1 đơn hàng</span></td><td class="em"><span class="ko">성립. 주문번호 대체 가능</span><span class="vi">Thành lập. Có thể thay thế số đơn hàng</span></td></tr>
-      <tr><td class="fn"><span class="ko">클릭 1회 · 주문 다건</span><span class="vi">Nhấp 1 lần · nhiều đơn hàng</span></td><td><span class="ko">불성립</span><span class="vi">Không thành lập</span></td></tr>
-      <tr><td class="fn"><span class="ko">동일 금액 다건</span><span class="vi">Nhiều đơn cùng số tiền</span></td><td><span class="ko">불성립</span><span class="vi">Không thành lập</span></td></tr>
-    </tbody>
-  </table>
-  <p class="tnote"><span class="ko">쿠팡 이용 행태상 1회 방문 다건 구매 빈도가 관건</span><span class="vi">Điểm mấu chốt là tần suất mua nhiều đơn trong một lần truy cập theo thói quen dùng Coupang</span></p>
+    <h2><span class="no">·</span><span class="ko">성립 조건</span><span class="vi">Điều kiện thành lập</span></h2>
+    <table>
+      <thead><tr><th><span class="ko">조건</span><span class="vi">Điều kiện</span></th><th><span class="ko">성립 여부</span><span class="vi">Thành lập hay không</span></th></tr></thead>
+      <tbody>
+        <tr><td class="fn"><span class="ko">클릭 1회 · 주문 1건</span><span class="vi">Nhấp 1 lần · 1 đơn hàng</span></td><td class="em"><span class="ko">성립. 주문번호 대체 가능</span><span class="vi">Thành lập. Có thể thay thế số đơn hàng</span></td></tr>
+        <tr><td class="fn"><span class="ko">클릭 1회 · 주문 다건</span><span class="vi">Nhấp 1 lần · nhiều đơn hàng</span></td><td><span class="ko">불성립</span><span class="vi">Không thành lập</span></td></tr>
+        <tr><td class="fn"><span class="ko">동일 금액 다건</span><span class="vi">Nhiều đơn cùng số tiền</span></td><td><span class="ko">불성립</span><span class="vi">Không thành lập</span></td></tr>
+        <tr><td class="fn"><span class="ko">미구매 클릭</span><span class="vi">Nhấp không mua</span></td><td><span class="ko">값만 누적</span><span class="vi">Chỉ tích lũy giá trị</span></td></tr>
+      </tbody>
+    </table>
+    <p class="tnote"><span class="ko">쿠팡 이용 행태상 1회 방문 다건 구매 빈도가 관건</span><span class="vi">Điểm mấu chốt là tần suất mua nhiều đơn trong một lần truy cập theo thói quen dùng Coupang</span></p>
   </div>
 
 </div>
