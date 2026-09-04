@@ -34,6 +34,8 @@
   tbody td.em { font-weight:700; color:#5B3FBF; }
 
   .verdict + table { margin-top:14px; }
+  .code-h { font-size:12.5px; font-weight:700; color:#6C4FD1; margin:16px 0 6px 2px; }
+  .code { background:#fff; border:1px solid #E4DEF9; border-radius:12px; padding:14px 16px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px; line-height:1.6; color:#444; white-space:pre-wrap; word-break:break-word; overflow-wrap:anywhere; }
   .tnote { font-size:13px; color:#666; margin:10px 0 0 2px; }
   .tnote b { color:#5B3FBF; font-weight:700; }
 
@@ -52,6 +54,8 @@
     .last-update { display:none; }
     .cover, .verdict, table { break-inside:avoid; page-break-inside:avoid; }
     .tnote { break-before:avoid; page-break-before:avoid; }
+    .code { break-inside:avoid; page-break-inside:avoid; }
+    .code-h { break-after:avoid; page-break-after:avoid; }
     h2 { break-after:avoid; page-break-after:avoid; }
     tr { break-inside:avoid; page-break-inside:avoid; }
     thead th { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
@@ -88,7 +92,48 @@
     </tbody>
   </table>
 
-  <h2><span class="no">2</span>목적 미달성</h2>
+  <h2><span class="no">2</span>포스트백 수신 형식</h2>
+  <p class="h2-desc">형식 예시. 값은 실측 아님</p>
+
+  <div class="code-h">구매</div>
+  <div class="code">[coupang.postback] payload: {
+  afcode: 'AF7751406',
+  subid: 'androidTEST',
+  os: 'IOS',
+  adid: '4FDDCF6D-1583-4C37-95BB-56F7639623BB',
+  click_id: '91c9bb20-84b5-11f1-b820-d3b05b507cd4',
+  purchase_cancel: 'purchase',
+  order_time: '1787889273',
+  order_price: '24280'
+}</div>
+
+  <div class="code-h">취소</div>
+  <div class="code">[coupang.postback] payload: {
+  afcode: 'AF7751406',
+  subid: 'androidTEST',
+  os: 'IOS',
+  adid: '4FDDCF6D-1583-4C37-95BB-56F7639623BB',
+  click_id: '91c9bb20-84b5-11f1-b820-d3b05b507cd4',
+  purchase_cancel: 'cancel',
+  order_time: '1787889475',
+  order_price: '43800'
+}</div>
+
+  <table style="margin-top:16px">
+    <thead><tr><th>필드</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">afcode</td><td>제휴 코드</td></tr>
+      <tr><td class="fn">subid</td><td>당사 전송 값</td></tr>
+      <tr><td class="fn">os · adid</td><td>기기 정보</td></tr>
+      <tr><td class="fn">click_id</td><td>클릭 식별자</td></tr>
+      <tr><td class="fn">purchase_cancel</td><td>purchase / cancel</td></tr>
+      <tr><td class="fn">order_time</td><td>유닉스 시각</td></tr>
+      <tr><td class="fn">order_price</td><td>금액</td></tr>
+    </tbody>
+  </table>
+  <p class="tnote"><b>주문번호 미제공</b></p>
+
+  <h2><span class="no">3</span>목적 미달성</h2>
   <table>
     <tbody>
       <tr><td class="k">목적</td><td>부분 취소 시 대상 주문 특정</td></tr>
@@ -98,7 +143,7 @@
     </tbody>
   </table>
 
-  <h2><span class="no">3</span>발생 가능 문제</h2>
+  <h2><span class="no">4</span>발생 가능 문제</h2>
   <table>
     <thead><tr><th>상황</th><th>결과</th></tr></thead>
     <tbody>
@@ -109,7 +154,7 @@
     </tbody>
   </table>
 
-  <h2><span class="no">4</span>부수 비용</h2>
+  <h2><span class="no">5</span>부수 비용</h2>
   <table>
     <tbody>
       <tr><td class="k">클릭 대비 구매 전환율</td><td>통상 1~2%</td></tr>
@@ -118,7 +163,7 @@
     </tbody>
   </table>
 
-  <h2><span class="no">5</span>기대 효과</h2>
+  <h2><span class="no">6</span>기대 효과</h2>
   <p class="h2-desc">주문 특정은 불완전. 후보 범위 축소는 가능.</p>
   <table>
     <tbody>
@@ -128,7 +173,7 @@
     </tbody>
   </table>
 
-  <h2><span class="no">6</span>검증 계획</h2>
+  <h2><span class="no">7</span>검증 계획</h2>
   <p class="h2-desc">실구매 · 실취소 필요. 소액 상품으로 진행</p>
   <table>
     <thead><tr><th>확인 항목</th><th>방법</th><th>판정 기준</th></tr></thead>
