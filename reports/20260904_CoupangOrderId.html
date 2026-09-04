@@ -33,6 +33,10 @@
   tbody td.fn { font-weight:600; color:#333; width:44%; }
   tbody td.em { font-weight:700; color:#5B3FBF; }
 
+  .verdict + table { margin-top:14px; }
+  .tnote { font-size:13px; color:#666; margin:10px 0 0 2px; }
+  .tnote b { color:#5B3FBF; font-weight:700; }
+
   .last-update { position:fixed; bottom:24px; left:24px; background:#fff; border:1px solid #E4DEF9; border-radius:8px; padding:6px 12px; font-size:11.5px; color:#999; box-shadow:0 2px 8px rgba(132,94,238,.08); }
 
   @media (max-width:720px){
@@ -47,6 +51,7 @@
     .wrap { max-width:none; padding:0; }
     .last-update { display:none; }
     .cover, .verdict, table { break-inside:avoid; page-break-inside:avoid; }
+    .tnote { break-before:avoid; page-break-before:avoid; }
     h2 { break-after:avoid; page-break-after:avoid; }
     tr { break-inside:avoid; page-break-inside:avoid; }
     thead th { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
@@ -70,12 +75,18 @@
   <h2><span class="no">1</span>검토 결과</h2>
   <div class="verdict">
     <div class="line">서브 파라미터는 클릭 식별자이며 주문 식별자 불성립</div>
-    <div class="line">주문번호 대체 불가</div>
     <div class="basis">
       <span class="k">근거</span>
       <span>난수 발급 시점 = 링크 클릭 시점. 주문 발생 시점 = 결제 시점. 양자 간 1:1 대응 불성립.</span>
     </div>
   </div>
+  <table>
+    <tbody>
+      <tr><td class="k">현 시점 판단</td><td class="em">주문번호 대체 불가</td></tr>
+      <tr><td class="k">확정 시점</td><td>검증 완료 후</td></tr>
+      <tr><td class="k">적용 여부</td><td>검증 결과에 따라 결정</td></tr>
+    </tbody>
+  </table>
 
   <h2><span class="no">2</span>목적 미달성</h2>
   <table>
@@ -117,15 +128,20 @@
     </tbody>
   </table>
 
-  <h2><span class="no">6</span>검토 진행 사항</h2>
+  <h2><span class="no">6</span>검증 계획</h2>
+  <p class="h2-desc">실구매 · 실취소 필요. 소액 상품으로 진행</p>
   <table>
-    <thead><tr><th>구분</th><th>내용</th></tr></thead>
+    <thead><tr><th>확인 항목</th><th>방법</th><th>판정 기준</th></tr></thead>
     <tbody>
-      <tr><td class="fn">확인 중</td><td>쿠팡 파트너스 서브 파라미터의 길이 · 허용 문자 제한</td></tr>
-      <tr><td class="fn">확인 중</td><td>해당 값의 취소 postback 포함 여부</td></tr>
-      <tr><td class="fn">전제</td><td class="em">클릭 리포트 한정 노출 · 취소 데이터 미포함 시 본 방안 자체가 불성립</td></tr>
+      <tr><td class="fn">서브 파라미터 전달</td><td>난수를 실은 링크로 실구매 1건</td><td>구매 포스트백에 해당 값 포함 여부</td></tr>
+      <tr><td class="fn">취소 시 값 수신</td><td>위 주문 전액 취소</td><td class="em">취소 포스트백에 동일 값 수신 여부</td></tr>
+      <tr><td class="fn">부분 취소 시 수신 내용</td><td>다건 주문 후 1건만 취소</td><td>취소 금액 외 식별 가능 정보 유무</td></tr>
+      <tr><td class="fn">길이 · 문자 제한</td><td>길이를 달리한 값 전송</td><td>잘림 · 거부 발생 지점</td></tr>
+      <tr><td class="fn">앱 딥링크 유지</td><td>링크 클릭 후 앱으로 이동하여 구매</td><td>값 유지 여부</td></tr>
+      <tr><td class="fn">다중 클릭 귀속</td><td>서로 다른 난수로 2회 클릭 후 1회 구매</td><td>최종 수신되는 값</td></tr>
     </tbody>
   </table>
+  <p class="tnote">2행 <b>「취소 시 값 수신」</b>이 본 방안의 성립 여부를 결정. 미수신 시 방안 불성립</p>
 
 </div>
 <div class="last-update">Last Update 2026.09.04 14:15</div>
