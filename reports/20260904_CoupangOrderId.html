@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쿠팡 주문 식별 방안 검토 (2026.09.04)</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#F7F7FB; color:#333; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:900px; margin:0 auto; padding:48px 24px 96px; }
+
+  .cover { background:#fff; border:1px solid #E4DEF9; border-radius:16px; padding:40px 44px; margin-bottom:32px; }
+  .cover .label { display:inline-block; background:#F1EBFF; color:#845EEE; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; letter-spacing:.5px; margin-bottom:14px; }
+  .cover h1 { font-size:26px; font-weight:800; color:#222; margin-bottom:8px; letter-spacing:-.3px; }
+  .cover .sub { font-size:14px; color:#888; }
+  .cover .meta { margin-top:18px; padding-top:18px; border-top:1px solid #F0EDFA; font-size:13px; color:#777; display:flex; gap:28px; flex-wrap:wrap; }
+  .cover .meta b { color:#555; font-weight:600; }
+
+  h2 { font-size:18px; font-weight:800; color:#222; margin:40px 0 6px; padding-left:12px; border-left:4px solid #845EEE; }
+  h2 .no { color:#B9A8F2; margin-right:8px; }
+  .h2-desc { font-size:13px; color:#888; margin:0 0 14px 16px; }
+
+  .verdict { background:#fff; border:1px solid #D9CCFA; border-radius:14px; padding:26px 30px; }
+  .verdict .line { font-size:17px; font-weight:800; color:#5B3FBF; letter-spacing:-.2px; }
+  .verdict .line + .line { margin-top:8px; }
+  .verdict .basis { margin-top:18px; padding-top:16px; border-top:1px solid #F0EDFA; font-size:13.5px; color:#666; display:flex; gap:14px; }
+  .verdict .basis .k { flex:0 0 44px; color:#9A8CD6; font-weight:700; font-size:12.5px; padding-top:1px; }
+
+  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid #E4DEF9; border-radius:12px; overflow:hidden; font-size:13.5px; }
+  thead th { background:#F5F2FE; color:#6C4FD1; font-weight:700; text-align:left; padding:11px 16px; font-size:12.5px; }
+  tbody td { padding:12px 16px; border-top:1px solid #F3F1FB; vertical-align:top; color:#555; }
+  tbody td.k { width:170px; font-weight:700; color:#6C4FD1; font-size:12.5px; letter-spacing:-.2px; }
+  tbody td.fn { font-weight:600; color:#333; width:44%; }
+  tbody td.em { font-weight:700; color:#5B3FBF; }
+
+  .last-update { position:fixed; bottom:24px; left:24px; background:#fff; border:1px solid #E4DEF9; border-radius:8px; padding:6px 12px; font-size:11.5px; color:#999; box-shadow:0 2px 8px rgba(132,94,238,.08); }
+
+  @media (max-width:720px){
+    .wrap { padding:28px 16px 72px; }
+    .cover { padding:28px; }
+    tbody td.k { width:110px; }
+    .last-update { display:none; }
+  }
+
+  @media print {
+    body { background:#fff; }
+    .wrap { max-width:none; padding:0; }
+    .last-update { display:none; }
+    .cover, .verdict, table { break-inside:avoid; page-break-inside:avoid; }
+    h2 { break-after:avoid; page-break-after:avoid; }
+    tr { break-inside:avoid; page-break-inside:avoid; }
+    thead th { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="cover">
+    <span class="label">REVIEW</span>
+    <h1>쿠팡 주문 식별 방안 검토</h1>
+    <div class="sub">쿠팡 링크 서브 파라미터의 주문번호 대체 가능성</div>
+    <div class="meta">
+      <span><b>작성일</b> 2026-09-04</span>
+      <span><b>대상</b> 쿠팡 파트너스 서브 파라미터</span>
+      <span><b>구분</b> 검토 보고</span>
+    </div>
+  </div>
+
+  <h2><span class="no">1</span>검토 결과</h2>
+  <div class="verdict">
+    <div class="line">서브 파라미터는 클릭 식별자이며 주문 식별자 불성립</div>
+    <div class="line">주문번호 대체 불가</div>
+    <div class="basis">
+      <span class="k">근거</span>
+      <span>난수 발급 시점 = 링크 클릭 시점. 주문 발생 시점 = 결제 시점. 양자 간 1:1 대응 불성립.</span>
+    </div>
+  </div>
+
+  <h2><span class="no">2</span>목적 미달성</h2>
+  <table>
+    <tbody>
+      <tr><td class="k">목적</td><td>부분 취소 시 대상 주문 특정</td></tr>
+      <tr><td class="k">결과</td><td class="em">미해결</td></tr>
+      <tr><td class="k">한계</td><td>서브 파라미터로 주문 특정 시에도, 1회 클릭 후 다수 상품을 1건으로 결제하면 해당 주문 내 취소 대상 식별 불가</td></tr>
+      <tr><td class="k">수신 항목</td><td>쿠팡 수신 항목은 취소 금액에 한정</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="no">3</span>발생 가능 문제</h2>
+  <table>
+    <thead><tr><th>상황</th><th>결과</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">1회 클릭 후 다수 주문</td><td>동일 난수에 주문 다건 귀속. 1:N 구조 유지</td></tr>
+      <tr><td class="fn">다수 클릭 후 1회 주문</td><td>최종 클릭에만 귀속. 이전 난수 무효화</td></tr>
+      <tr><td class="fn">클릭일과 구매일 상이</td><td>쿠키 만료로 귀속 불가</td></tr>
+      <tr><td class="fn">앱 딥링크 이동</td><td>앱 세션의 기존 귀속이 우선 적용될 수 있음</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="no">4</span>부수 비용</h2>
+  <table>
+    <tbody>
+      <tr><td class="k">클릭 대비 구매 전환율</td><td>통상 1~2%</td></tr>
+      <tr><td class="k">결과</td><td>미사용 로그 98% 축적</td></tr>
+      <tr><td class="k">추가 요건</td><td>회원 단위 집계를 위한 회원 ID 병행 전송</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="no">5</span>기대 효과</h2>
+  <p class="h2-desc">주문 특정은 불완전. 후보 범위 축소는 가능.</p>
+  <table>
+    <tbody>
+      <tr><td class="k">현행</td><td>회원의 대기 건 전체에서 금액으로 추정</td></tr>
+      <tr><td class="k">적용 시</td><td>해당 클릭에서 발생한 건으로 범위 축소</td></tr>
+      <tr><td class="k">효과</td><td class="em">오식별 감소</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="no">6</span>검토 진행 사항</h2>
+  <table>
+    <thead><tr><th>구분</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">확인 중</td><td>쿠팡 파트너스 서브 파라미터의 길이 · 허용 문자 제한</td></tr>
+      <tr><td class="fn">확인 중</td><td>해당 값의 취소 postback 포함 여부</td></tr>
+      <tr><td class="fn">전제</td><td class="em">클릭 리포트 한정 노출 · 취소 데이터 미포함 시 본 방안 자체가 불성립</td></tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="last-update">Last Update 2026.09.04 14:15</div>
+</body>
+</html>
