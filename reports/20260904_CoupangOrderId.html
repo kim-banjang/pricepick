@@ -39,6 +39,17 @@
   .tnote { font-size:13px; color:#666; margin:10px 0 0 2px; }
   .tnote b { color:#5B3FBF; font-weight:700; }
 
+  .vi { display:none; }
+  #langsw { position:absolute; opacity:0; pointer-events:none; }
+  #langsw:checked ~ .wrap .ko { display:none; }
+  #langsw:checked ~ .wrap .vi { display:inline; }
+  .langbar { display:flex; justify-content:flex-end; margin-bottom:14px; }
+  .langtog { display:inline-flex; background:#F1EBFF; border:1px solid #E4DEF9; border-radius:20px; padding:3px; gap:2px; cursor:pointer; }
+  .langtog .seg { font-size:12px; font-weight:700; color:#845EEE; padding:4px 14px; border-radius:16px; opacity:.7; }
+  .langtog .sk { background:#845EEE; color:#fff; opacity:1; }
+  #langsw:checked ~ .wrap .langtog .sk { background:none; color:#845EEE; opacity:.7; }
+  #langsw:checked ~ .wrap .langtog .sv { background:#845EEE; color:#fff; opacity:1; }
+
   .last-update { position:fixed; bottom:24px; left:24px; background:#fff; border:1px solid #E4DEF9; border-radius:8px; padding:6px 12px; font-size:11.5px; color:#999; box-shadow:0 2px 8px rgba(132,94,238,.08); }
 
   @media (max-width:720px){
@@ -51,7 +62,7 @@
   @media print {
     body { background:#fff; }
     .wrap { max-width:none; padding:0; }
-    .last-update { display:none; }
+    .last-update, .langbar { display:none; }
     .cover, .verdict, table { break-inside:avoid; page-break-inside:avoid; }
     .tnote { break-before:avoid; page-break-before:avoid; }
     .code { break-inside:avoid; page-break-inside:avoid; }
@@ -63,39 +74,42 @@
 </style>
 </head>
 <body>
+<input type="checkbox" id="langsw">
 <div class="wrap">
+
+  <div class="langbar"><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label></div>
 
   <div class="cover">
     <span class="label">REVIEW</span>
-    <h1>쿠팡 주문 식별 방안 검토</h1>
-    <div class="sub">쿠팡 링크 서브 파라미터의 주문번호 대체 가능성</div>
+    <h1><span class="ko">쿠팡 주문 식별 방안 검토</span><span class="vi">Xem xét phương án nhận diện đơn hàng Coupang</span></h1>
+    <div class="sub"><span class="ko">쿠팡 링크 서브 파라미터의 주문번호 대체 가능성</span><span class="vi">Khả năng thay thế số đơn hàng bằng sub parameter của link Coupang</span></div>
     <div class="meta">
-      <span><b>작성일</b> 2026-09-04</span>
-      <span><b>대상</b> 쿠팡 파트너스 서브 파라미터</span>
-      <span><b>구분</b> 검토 보고</span>
+      <span><b><span class="ko">작성일</span><span class="vi">Ngày lập</span></b> 2026-09-04</span>
+      <span><b><span class="ko">대상</span><span class="vi">Đối tượng</span></b> <span class="ko">쿠팡 파트너스 서브 파라미터</span><span class="vi">Sub parameter của Coupang Partners</span></span>
+      <span><b><span class="ko">구분</span><span class="vi">Phân loại</span></b> <span class="ko">검토 보고</span><span class="vi">Báo cáo xem xét</span></span>
     </div>
   </div>
 
-  <h2><span class="no">1</span>검토 결과</h2>
+  <h2><span class="no">1</span><span class="ko">검토 결과</span><span class="vi">Kết quả xem xét</span></h2>
   <div class="verdict">
-    <div class="line">서브 파라미터는 클릭 식별자이며 주문 식별자 불성립</div>
+    <div class="line"><span class="ko">서브 파라미터는 클릭 식별자이며 주문 식별자 불성립</span><span class="vi">Sub parameter là mã định danh lượt nhấp, không thành lập mã định danh đơn hàng</span></div>
     <div class="basis">
-      <span class="k">근거</span>
-      <span>난수 발급 시점 = 링크 클릭 시점. 주문 발생 시점 = 결제 시점. 양자 간 1:1 대응 불성립.</span>
+      <span class="k"><span class="ko">근거</span><span class="vi">Căn cứ</span></span>
+      <span><span class="ko">난수 발급 시점 = 링크 클릭 시점. 주문 발생 시점 = 결제 시점. 양자 간 1:1 대응 불성립.</span><span class="vi">Thời điểm cấp số ngẫu nhiên = thời điểm nhấp link. Thời điểm phát sinh đơn = thời điểm thanh toán. Hai bên không tương ứng 1:1.</span></span>
     </div>
   </div>
   <table>
     <tbody>
-      <tr><td class="k">현 시점 판단</td><td class="em">주문번호 대체 불가</td></tr>
-      <tr><td class="k">확정 시점</td><td>검증 완료 후</td></tr>
-      <tr><td class="k">적용 여부</td><td>검증 결과에 따라 결정</td></tr>
+      <tr><td class="k"><span class="ko">현 시점 판단</span><span class="vi">Nhận định hiện tại</span></td><td class="em"><span class="ko">주문번호 대체 불가</span><span class="vi">Không thể thay thế số đơn hàng</span></td></tr>
+      <tr><td class="k"><span class="ko">확정 시점</span><span class="vi">Thời điểm chốt</span></td><td><span class="ko">검증 완료 후</span><span class="vi">Sau khi hoàn tất kiểm chứng</span></td></tr>
+      <tr><td class="k"><span class="ko">적용 여부</span><span class="vi">Có áp dụng hay không</span></td><td><span class="ko">검증 결과에 따라 결정</span><span class="vi">Quyết định theo kết quả kiểm chứng</span></td></tr>
     </tbody>
   </table>
 
-  <h2><span class="no">2</span>포스트백 수신 형식</h2>
-  <p class="h2-desc">형식 예시. 값은 실측 아님</p>
+  <h2><span class="no">2</span><span class="ko">포스트백 수신 형식</span><span class="vi">Định dạng postback nhận được</span></h2>
+  <p class="h2-desc"><span class="ko">형식 예시. 값은 실측 아님</span><span class="vi">Ví dụ định dạng. Giá trị không phải số đo thực tế</span></p>
 
-  <div class="code-h">구매</div>
+  <div class="code-h"><span class="ko">구매</span><span class="vi">Mua hàng</span></div>
   <div class="code">[coupang.postback] payload: {
   afcode: 'AF7751406',
   subid: 'androidTEST',
@@ -107,7 +121,7 @@
   order_price: '24280'
 }</div>
 
-  <div class="code-h">취소</div>
+  <div class="code-h"><span class="ko">취소</span><span class="vi">Hủy đơn</span></div>
   <div class="code">[coupang.postback] payload: {
   afcode: 'AF7751406',
   subid: 'androidTEST',
@@ -120,73 +134,73 @@
 }</div>
 
   <table style="margin-top:16px">
-    <thead><tr><th>필드</th><th>내용</th></tr></thead>
+    <thead><tr><th><span class="ko">필드</span><span class="vi">Trường</span></th><th><span class="ko">내용</span><span class="vi">Nội dung</span></th></tr></thead>
     <tbody>
-      <tr><td class="fn">afcode</td><td>제휴 코드</td></tr>
-      <tr><td class="fn">subid</td><td>당사 전송 값</td></tr>
-      <tr><td class="fn">os · adid</td><td>기기 정보</td></tr>
-      <tr><td class="fn">click_id</td><td>클릭 식별자</td></tr>
+      <tr><td class="fn">afcode</td><td><span class="ko">제휴 코드</span><span class="vi">Mã liên kết</span></td></tr>
+      <tr><td class="fn">subid</td><td><span class="ko">당사 전송 값</span><span class="vi">Giá trị bên ta gửi</span></td></tr>
+      <tr><td class="fn">os · adid</td><td><span class="ko">기기 정보</span><span class="vi">Thông tin thiết bị</span></td></tr>
+      <tr><td class="fn">click_id</td><td><span class="ko">클릭 식별자</span><span class="vi">Mã định danh lượt nhấp</span></td></tr>
       <tr><td class="fn">purchase_cancel</td><td>purchase / cancel</td></tr>
-      <tr><td class="fn">order_time</td><td>유닉스 시각</td></tr>
-      <tr><td class="fn">order_price</td><td>금액</td></tr>
+      <tr><td class="fn">order_time</td><td><span class="ko">유닉스 시각</span><span class="vi">Thời gian Unix</span></td></tr>
+      <tr><td class="fn">order_price</td><td><span class="ko">금액</span><span class="vi">Số tiền</span></td></tr>
     </tbody>
   </table>
-  <p class="tnote"><b>주문번호 미제공</b></p>
+  <p class="tnote"><b><span class="ko">주문번호 미제공</span><span class="vi">Không cung cấp số đơn hàng</span></b></p>
 
-  <h2><span class="no">3</span>목적 미달성</h2>
+  <h2><span class="no">3</span><span class="ko">목적 미달성</span><span class="vi">Mục tiêu chưa đạt</span></h2>
   <table>
     <tbody>
-      <tr><td class="k">목적</td><td>부분 취소 시 대상 주문 특정</td></tr>
-      <tr><td class="k">결과</td><td class="em">미해결</td></tr>
-      <tr><td class="k">한계</td><td>서브 파라미터로 주문 특정 시에도, 1회 클릭 후 다수 상품을 1건으로 결제하면 해당 주문 내 취소 대상 식별 불가</td></tr>
-      <tr><td class="k">수신 항목</td><td>쿠팡 수신 항목은 취소 금액에 한정</td></tr>
-    </tbody>
-  </table>
-
-  <h2><span class="no">4</span>발생 가능 문제</h2>
-  <table>
-    <thead><tr><th>상황</th><th>결과</th></tr></thead>
-    <tbody>
-      <tr><td class="fn">1회 클릭 후 다수 주문</td><td>동일 난수에 주문 다건 귀속. 1:N 구조 유지</td></tr>
-      <tr><td class="fn">다수 클릭 후 1회 주문</td><td>최종 클릭에만 귀속. 이전 난수 무효화</td></tr>
-      <tr><td class="fn">클릭일과 구매일 상이</td><td>쿠키 만료로 귀속 불가</td></tr>
-      <tr><td class="fn">앱 딥링크 이동</td><td>앱 세션의 기존 귀속이 우선 적용될 수 있음</td></tr>
+      <tr><td class="k"><span class="ko">목적</span><span class="vi">Mục tiêu</span></td><td><span class="ko">부분 취소 시 대상 주문 특정</span><span class="vi">Xác định đơn hàng cần xử lý khi hủy một phần</span></td></tr>
+      <tr><td class="k"><span class="ko">결과</span><span class="vi">Kết quả</span></td><td class="em"><span class="ko">미해결</span><span class="vi">Chưa giải quyết</span></td></tr>
+      <tr><td class="k"><span class="ko">한계</span><span class="vi">Giới hạn</span></td><td><span class="ko">서브 파라미터로 주문 특정 시에도, 1회 클릭 후 다수 상품을 1건으로 결제하면 해당 주문 내 취소 대상 식별 불가</span><span class="vi">Ngay cả khi xác định được đơn bằng sub parameter, nếu nhấp 1 lần rồi thanh toán nhiều sản phẩm thành 1 đơn thì không xác định được đối tượng hủy bên trong đơn đó</span></td></tr>
+      <tr><td class="k"><span class="ko">수신 항목</span><span class="vi">Hạng mục nhận được</span></td><td><span class="ko">쿠팡 수신 항목은 취소 금액에 한정</span><span class="vi">Hạng mục nhận từ Coupang chỉ giới hạn ở số tiền hủy</span></td></tr>
     </tbody>
   </table>
 
-  <h2><span class="no">5</span>부수 비용</h2>
+  <h2><span class="no">4</span><span class="ko">발생 가능 문제</span><span class="vi">Vấn đề có thể phát sinh</span></h2>
   <table>
+    <thead><tr><th><span class="ko">상황</span><span class="vi">Tình huống</span></th><th><span class="ko">결과</span><span class="vi">Kết quả</span></th></tr></thead>
     <tbody>
-      <tr><td class="k">클릭 대비 구매 전환율</td><td>통상 1~2%</td></tr>
-      <tr><td class="k">결과</td><td>미사용 로그 98% 축적</td></tr>
-      <tr><td class="k">추가 요건</td><td>회원 단위 집계를 위한 회원 ID 병행 전송</td></tr>
+      <tr><td class="fn"><span class="ko">1회 클릭 후 다수 주문</span><span class="vi">Nhấp 1 lần rồi đặt nhiều đơn</span></td><td><span class="ko">동일 난수에 주문 다건 귀속. 1:N 구조 유지</span><span class="vi">Nhiều đơn quy về cùng một số ngẫu nhiên. Vẫn giữ cấu trúc 1:N</span></td></tr>
+      <tr><td class="fn"><span class="ko">다수 클릭 후 1회 주문</span><span class="vi">Nhấp nhiều lần rồi đặt 1 đơn</span></td><td><span class="ko">최종 클릭에만 귀속. 이전 난수 무효화</span><span class="vi">Chỉ quy về lượt nhấp cuối. Các số ngẫu nhiên trước bị vô hiệu</span></td></tr>
+      <tr><td class="fn"><span class="ko">클릭일과 구매일 상이</span><span class="vi">Ngày nhấp khác ngày mua</span></td><td><span class="ko">쿠키 만료로 귀속 불가</span><span class="vi">Không quy kết được do cookie hết hạn</span></td></tr>
+      <tr><td class="fn"><span class="ko">앱 딥링크 이동</span><span class="vi">Chuyển qua deep link của app</span></td><td><span class="ko">앱 세션의 기존 귀속이 우선 적용될 수 있음</span><span class="vi">Quy kết sẵn có của phiên app có thể được ưu tiên áp dụng</span></td></tr>
     </tbody>
   </table>
 
-  <h2><span class="no">6</span>기대 효과</h2>
-  <p class="h2-desc">주문 특정은 불완전. 후보 범위 축소는 가능.</p>
+  <h2><span class="no">5</span><span class="ko">부수 비용</span><span class="vi">Chi phí phát sinh kèm</span></h2>
   <table>
     <tbody>
-      <tr><td class="k">현행</td><td>회원의 대기 건 전체에서 금액으로 추정</td></tr>
-      <tr><td class="k">적용 시</td><td>해당 클릭에서 발생한 건으로 범위 축소</td></tr>
-      <tr><td class="k">효과</td><td class="em">오식별 감소</td></tr>
+      <tr><td class="k"><span class="ko">클릭 대비 구매 전환율</span><span class="vi">Tỷ lệ chuyển đổi mua trên lượt nhấp</span></td><td><span class="ko">통상 1~2%</span><span class="vi">Thông thường 1~2%</span></td></tr>
+      <tr><td class="k"><span class="ko">결과</span><span class="vi">Kết quả</span></td><td><span class="ko">미사용 로그 98% 축적</span><span class="vi">Tích lũy 98% log không dùng đến</span></td></tr>
+      <tr><td class="k"><span class="ko">추가 요건</span><span class="vi">Yêu cầu bổ sung</span></td><td><span class="ko">회원 단위 집계를 위한 회원 ID 병행 전송</span><span class="vi">Gửi kèm ID thành viên để tổng hợp theo thành viên</span></td></tr>
     </tbody>
   </table>
 
-  <h2><span class="no">7</span>검증 계획</h2>
-  <p class="h2-desc">실구매 · 실취소 필요. 소액 상품으로 진행</p>
+  <h2><span class="no">6</span><span class="ko">기대 효과</span><span class="vi">Hiệu quả kỳ vọng</span></h2>
+  <p class="h2-desc"><span class="ko">주문 특정은 불완전. 후보 범위 축소는 가능.</span><span class="vi">Việc xác định đơn không hoàn chỉnh. Có thể thu hẹp phạm vi ứng viên.</span></p>
   <table>
-    <thead><tr><th>확인 항목</th><th>방법</th><th>판정 기준</th></tr></thead>
     <tbody>
-      <tr><td class="fn">서브 파라미터 전달</td><td>난수를 실은 링크로 실구매 1건</td><td>구매 포스트백에 해당 값 포함 여부</td></tr>
-      <tr><td class="fn">취소 시 값 수신</td><td>위 주문 전액 취소</td><td class="em">취소 포스트백에 동일 값 수신 여부</td></tr>
-      <tr><td class="fn">부분 취소 시 수신 내용</td><td>다건 주문 후 1건만 취소</td><td>취소 금액 외 식별 가능 정보 유무</td></tr>
-      <tr><td class="fn">길이 · 문자 제한</td><td>길이를 달리한 값 전송</td><td>잘림 · 거부 발생 지점</td></tr>
-      <tr><td class="fn">앱 딥링크 유지</td><td>링크 클릭 후 앱으로 이동하여 구매</td><td>값 유지 여부</td></tr>
-      <tr><td class="fn">다중 클릭 귀속</td><td>서로 다른 난수로 2회 클릭 후 1회 구매</td><td>최종 수신되는 값</td></tr>
+      <tr><td class="k"><span class="ko">현행</span><span class="vi">Hiện hành</span></td><td><span class="ko">회원의 대기 건 전체에서 금액으로 추정</span><span class="vi">Ước đoán theo số tiền trong toàn bộ mục đang chờ của thành viên</span></td></tr>
+      <tr><td class="k"><span class="ko">적용 시</span><span class="vi">Khi áp dụng</span></td><td><span class="ko">해당 클릭에서 발생한 건으로 범위 축소</span><span class="vi">Thu hẹp phạm vi về các mục phát sinh từ lượt nhấp đó</span></td></tr>
+      <tr><td class="k"><span class="ko">효과</span><span class="vi">Hiệu quả</span></td><td class="em"><span class="ko">오식별 감소</span><span class="vi">Giảm nhận diện sai</span></td></tr>
     </tbody>
   </table>
-  <p class="tnote">2행 <b>「취소 시 값 수신」</b>이 본 방안의 성립 여부를 결정. 미수신 시 방안 불성립</p>
+
+  <h2><span class="no">7</span><span class="ko">검증 계획</span><span class="vi">Kế hoạch kiểm chứng</span></h2>
+  <p class="h2-desc"><span class="ko">실구매 · 실취소 필요. 소액 상품으로 진행</span><span class="vi">Cần mua thật · hủy thật. Tiến hành với sản phẩm giá thấp</span></p>
+  <table>
+    <thead><tr><th><span class="ko">확인 항목</span><span class="vi">Hạng mục kiểm tra</span></th><th><span class="ko">방법</span><span class="vi">Cách thực hiện</span></th><th><span class="ko">판정 기준</span><span class="vi">Tiêu chí đánh giá</span></th></tr></thead>
+    <tbody>
+      <tr><td class="fn"><span class="ko">서브 파라미터 전달</span><span class="vi">Truyền sub parameter</span></td><td><span class="ko">난수를 실은 링크로 실구매 1건</span><span class="vi">1 đơn mua thật bằng link có gắn số ngẫu nhiên</span></td><td><span class="ko">구매 포스트백에 해당 값 포함 여부</span><span class="vi">Postback mua hàng có chứa giá trị đó hay không</span></td></tr>
+      <tr><td class="fn"><span class="ko">취소 시 값 수신</span><span class="vi">Nhận giá trị khi hủy</span></td><td><span class="ko">위 주문 전액 취소</span><span class="vi">Hủy toàn bộ đơn nêu trên</span></td><td class="em"><span class="ko">취소 포스트백에 동일 값 수신 여부</span><span class="vi">Postback hủy có nhận cùng giá trị đó hay không</span></td></tr>
+      <tr><td class="fn"><span class="ko">부분 취소 시 수신 내용</span><span class="vi">Nội dung nhận được khi hủy một phần</span></td><td><span class="ko">다건 주문 후 1건만 취소</span><span class="vi">Đặt nhiều đơn rồi chỉ hủy 1 đơn</span></td><td><span class="ko">취소 금액 외 식별 가능 정보 유무</span><span class="vi">Có thông tin nhận diện nào ngoài số tiền hủy hay không</span></td></tr>
+      <tr><td class="fn"><span class="ko">길이 · 문자 제한</span><span class="vi">Giới hạn độ dài · ký tự</span></td><td><span class="ko">길이를 달리한 값 전송</span><span class="vi">Gửi các giá trị có độ dài khác nhau</span></td><td><span class="ko">잘림 · 거부 발생 지점</span><span class="vi">Điểm phát sinh cắt bớt · từ chối</span></td></tr>
+      <tr><td class="fn"><span class="ko">앱 딥링크 유지</span><span class="vi">Duy trì qua deep link app</span></td><td><span class="ko">링크 클릭 후 앱으로 이동하여 구매</span><span class="vi">Nhấp link rồi chuyển sang app để mua</span></td><td><span class="ko">값 유지 여부</span><span class="vi">Giá trị có được giữ hay không</span></td></tr>
+      <tr><td class="fn"><span class="ko">다중 클릭 귀속</span><span class="vi">Quy kết khi nhấp nhiều lần</span></td><td><span class="ko">서로 다른 난수로 2회 클릭 후 1회 구매</span><span class="vi">Nhấp 2 lần với 2 số ngẫu nhiên khác nhau rồi mua 1 lần</span></td><td><span class="ko">최종 수신되는 값</span><span class="vi">Giá trị cuối cùng nhận được</span></td></tr>
+    </tbody>
+  </table>
+  <p class="tnote"><span class="ko">2행 <b>「취소 시 값 수신」</b>이 본 방안의 성립 여부를 결정. 미수신 시 방안 불성립</span><span class="vi">Dòng 2 <b>「Nhận giá trị khi hủy」</b> quyết định phương án này có thành lập hay không. Không nhận được thì phương án không thành lập</span></p>
 
 </div>
 <div class="last-update">Last Update 2026.09.04 14:15</div>
