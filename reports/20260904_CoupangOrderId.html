@@ -50,6 +50,26 @@
   #langsw:checked ~ .wrap .langtog .sk { background:none; color:#845EEE; opacity:.7; }
   #langsw:checked ~ .wrap .langtog .sv { background:#845EEE; color:#fff; opacity:1; }
 
+  .maintab-nav { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 26px; }
+  .maintab { font-size:13px; font-weight:700; color:#666; background:#fff; border:1px solid #E4DEF9; border-radius:20px; padding:8px 18px; cursor:pointer; transition:.12s; font-family:inherit; }
+  .maintab:hover { background:#FAF8FF; border-color:#D9CCFA; }
+  .maintab.active { background:#845EEE; border-color:#845EEE; color:#fff; }
+  .mainpanel { display:none; }
+  .mainpanel.active { display:block; }
+
+  .scen { background:#fff; border:1px solid #E4DEF9; border-radius:14px; padding:22px 26px; margin-bottom:14px; }
+  .scen-h { font-size:15px; font-weight:800; color:#5B3FBF; }
+  .scen-tag { display:inline-block; font-size:10.5px; font-weight:800; padding:3px 9px; border-radius:20px; background:#F1EBFF; color:#845EEE; margin-left:8px; vertical-align:2px; }
+  .scen-k { font-size:12px; font-weight:700; color:#9A8CD6; margin:15px 0 5px; }
+  .scen-t { font-size:13.5px; color:#555; }
+  .scen-b { background:#FAF9FE; border:1px solid #F0EDFA; border-radius:10px; padding:11px 14px; margin-top:6px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px; line-height:1.7; color:#444; white-space:pre-wrap; overflow-wrap:anywhere; }
+  .scen-r { font-size:13.5px; font-weight:700; color:#5B3FBF; }
+  .scen.ok { border-color:#BFE3D5; }
+  .scen.ok .scen-h, .scen.ok .scen-r { color:#1E7A62; }
+  .scen.ok .scen-tag { background:#E4F5EF; color:#1E7A62; }
+  .scen.ok .scen-k { color:#66A895; }
+  .scen.ok .scen-b { background:#F6FBF9; border-color:#E4F1EC; }
+
   .last-update { position:fixed; bottom:24px; left:24px; background:#fff; border:1px solid #E4DEF9; border-radius:8px; padding:6px 12px; font-size:11.5px; color:#999; box-shadow:0 2px 8px rgba(132,94,238,.08); }
 
   @media (max-width:720px){
@@ -62,7 +82,9 @@
   @media print {
     body { background:#fff; }
     .wrap { max-width:none; padding:0; }
-    .last-update, .langbar { display:none; }
+    .last-update, .langbar, .maintab-nav { display:none; }
+    .mainpanel { display:block !important; }
+    .scen { break-inside:avoid; page-break-inside:avoid; }
     .cover, .verdict, table { break-inside:avoid; page-break-inside:avoid; }
     .tnote { break-before:avoid; page-break-before:avoid; }
     .code { break-inside:avoid; page-break-inside:avoid; }
@@ -90,6 +112,12 @@
     </div>
   </div>
 
+  <div class="maintab-nav">
+    <button class="maintab active" type="button" role="tab" aria-selected="true" onclick="switchMainTab(this,'t1')"><span class="ko">검토 결과</span><span class="vi">Kết quả xem xét</span></button>
+    <button class="maintab" type="button" role="tab" aria-selected="false" onclick="switchMainTab(this,'t2')"><span class="ko">시나리오</span><span class="vi">Kịch bản</span></button>
+  </div>
+
+  <div class="mainpanel active" data-tab="t1">
   <h2><span class="no">1</span><span class="ko">검토 결과</span><span class="vi">Kết quả xem xét</span></h2>
   <div class="verdict">
     <div class="line"><span class="ko">서브 파라미터는 클릭 식별자이며 주문 식별자 불성립</span><span class="vi">Sub parameter là mã định danh lượt nhấp, không thành lập mã định danh đơn hàng</span></div>
@@ -167,6 +195,7 @@
       <tr><td class="fn"><span class="ko">앱 딥링크 이동</span><span class="vi">Chuyển qua deep link của app</span></td><td><span class="ko">앱 세션의 기존 귀속이 우선 적용될 수 있음</span><span class="vi">Quy kết sẵn có của phiên app có thể được ưu tiên áp dụng</span></td></tr>
     </tbody>
   </table>
+  <p class="tnote"><span class="ko">사례별 상세는 「시나리오」 탭 참조</span><span class="vi">Chi tiết theo từng trường hợp: xem tab 「Kịch bản」</span></p>
 
   <h2><span class="no">5</span><span class="ko">부수 비용</span><span class="vi">Chi phí phát sinh kèm</span></h2>
   <table>
@@ -202,7 +231,86 @@
   </table>
   <p class="tnote"><span class="ko">2행 <b>「취소 시 값 수신」</b>이 본 방안의 성립 여부를 결정. 미수신 시 방안 불성립</span><span class="vi">Dòng 2 <b>「Nhận giá trị khi hủy」</b> quyết định phương án này có thành lập hay không. Không nhận được thì phương án không thành lập</span></p>
 
+  </div>
+
+  <div class="mainpanel" data-tab="t2">
+  <div class="scen">
+  <div class="scen-h"><span class="ko">시나리오 1 · 1회 클릭 후 다수 주문</span><span class="vi">Kịch bản 1 · Nhấp 1 lần rồi đặt nhiều đơn</span><span class="scen-tag"><span class="ko">불성립</span><span class="vi">Không thành lập</span></span></div>
+  <div class="scen-k"><span class="ko">상황</span><span class="vi">Tình huống</span></div>
+  <div class="scen-t"><span class="ko">회원이 링크 1회 클릭 후 3건 분할 결제</span><span class="vi">Thành viên nhấp link 1 lần rồi thanh toán tách thành 3 đơn</span></div>
+  <div class="scen-k"><span class="ko">주문</span><span class="vi">Đơn hàng</span></div>
+  <div class="scen-b"><span class="ko">주문 ①   24,280원   subid: R-8842
+주문 ②   43,800원   subid: R-8842
+주문 ③   12,000원   subid: R-8842</span><span class="vi">Đơn ①   24,280₩   subid: R-8842
+Đơn ②   43,800₩   subid: R-8842
+Đơn ③   12,000₩   subid: R-8842</span></div>
+  <div class="scen-k"><span class="ko">취소 발생 — 43,800원 취소</span><span class="vi">Phát sinh hủy — hủy 43,800₩</span></div>
+  <div class="scen-b"><span class="ko">수신   subid: R-8842 · order_price: 43,800</span><span class="vi">Nhận   subid: R-8842 · order_price: 43,800</span></div>
+  <div class="scen-k"><span class="ko">결과</span><span class="vi">Kết quả</span></div>
+  <div class="scen-r"><span class="ko">난수로 주문 특정 불가. 금액 탐색 → 현행과 동일</span><span class="vi">Không xác định được đơn bằng số ngẫu nhiên. Dò theo số tiền → giống hiện hành</span></div>
+</div>
+  <div class="scen">
+  <div class="scen-h"><span class="ko">시나리오 2 · 동일 금액 다건</span><span class="vi">Kịch bản 2 · Nhiều đơn cùng số tiền</span><span class="scen-tag"><span class="ko">불성립</span><span class="vi">Không thành lập</span></span></div>
+  <div class="scen-k"><span class="ko">상황</span><span class="vi">Tình huống</span></div>
+  <div class="scen-t"><span class="ko">1회 클릭 후 24,280원 주문 2건</span><span class="vi">Nhấp 1 lần rồi đặt 2 đơn 24,280₩</span></div>
+  <div class="scen-k"><span class="ko">주문</span><span class="vi">Đơn hàng</span></div>
+  <div class="scen-b"><span class="ko">주문 ①   24,280원   subid: R-5000
+주문 ②   24,280원   subid: R-5000</span><span class="vi">Đơn ①   24,280₩   subid: R-5000
+Đơn ②   24,280₩   subid: R-5000</span></div>
+  <div class="scen-k"><span class="ko">취소 발생 — 24,280원 1건 취소</span><span class="vi">Phát sinh hủy — hủy 1 đơn 24,280₩</span></div>
+  <div class="scen-b"><span class="ko">수신   subid: R-5000 · order_price: 24,280</span><span class="vi">Nhận   subid: R-5000 · order_price: 24,280</span></div>
+  <div class="scen-k"><span class="ko">결과</span><span class="vi">Kết quả</span></div>
+  <div class="scen-r"><span class="ko">난수 · 금액 모두 동일. 대상 특정 불가</span><span class="vi">Số ngẫu nhiên · số tiền đều giống nhau. Không xác định được đối tượng</span></div>
+</div>
+  <div class="scen">
+  <div class="scen-h"><span class="ko">시나리오 3 · 미구매 클릭 누적</span><span class="vi">Kịch bản 3 · Tích lũy lượt nhấp không mua</span><span class="scen-tag"><span class="ko">부수 비용</span><span class="vi">Chi phí phát sinh kèm</span></span></div>
+  <div class="scen-k"><span class="ko">상황</span><span class="vi">Tình huống</span></div>
+  <div class="scen-t"><span class="ko">클릭 3회 후 1회 구매</span><span class="vi">Nhấp 3 lần rồi mua 1 lần</span></div>
+  <div class="scen-k"><span class="ko">클릭 이력</span><span class="vi">Lịch sử nhấp</span></div>
+  <div class="scen-b"><span class="ko">월요일   R-2001   구매 없음
+화요일   R-2002   구매 없음
+수요일   R-2003   구매 발생</span><span class="vi">Thứ hai   R-2001   Không mua
+Thứ ba    R-2002   Không mua
+Thứ tư    R-2003   Phát sinh mua</span></div>
+  <div class="scen-k"><span class="ko">결과</span><span class="vi">Kết quả</span></div>
+  <div class="scen-r"><span class="ko">최종 클릭에만 실적 귀속. R-2001 · R-2002 무효 · 미사용 값 98% 축적 (전환율 1~2%)</span><span class="vi">Doanh số chỉ quy về lượt nhấp cuối. R-2001 · R-2002 vô hiệu · tích lũy 98% giá trị không dùng (tỷ lệ chuyển đổi 1~2%)</span></div>
+</div>
+  <div class="scen ok">
+  <div class="scen-h"><span class="ko">시나리오 4 · 1회 클릭 후 1건 주문</span><span class="vi">Kịch bản 4 · Nhấp 1 lần rồi đặt 1 đơn</span><span class="scen-tag"><span class="ko">성립</span><span class="vi">Thành lập</span></span></div>
+  <div class="scen-k"><span class="ko">상황</span><span class="vi">Tình huống</span></div>
+  <div class="scen-t"><span class="ko">링크 1회 클릭 후 묶음 상품 1건 결제</span><span class="vi">Nhấp link 1 lần rồi thanh toán 1 đơn gộp nhiều sản phẩm</span></div>
+  <div class="scen-k"><span class="ko">주문</span><span class="vi">Đơn hàng</span></div>
+  <div class="scen-b"><span class="ko">주문   70,000원   subid: R-7700</span><span class="vi">Đơn   70,000₩   subid: R-7700</span></div>
+  <div class="scen-k"><span class="ko">부분 취소 발생 — 22,320원 취소</span><span class="vi">Phát sinh hủy một phần — hủy 22,320₩</span></div>
+  <div class="scen-b"><span class="ko">수신     subid: R-7700 · order_price: 22,320
+재계산   70,000 − 22,320 = 47,680원</span><span class="vi">Nhận       subid: R-7700 · order_price: 22,320
+Tính lại   70,000 − 22,320 = 47,680₩</span></div>
+  <div class="scen-k"><span class="ko">결과</span><span class="vi">Kết quả</span></div>
+  <div class="scen-r"><span class="ko">주문 특정 가능. 잔여 금액 산출 가능</span><span class="vi">Xác định được đơn. Tính được số tiền còn lại</span></div>
+</div>
+
+  <h2><span class="no">·</span><span class="ko">성립 조건</span><span class="vi">Điều kiện thành lập</span></h2>
+  <table>
+    <thead><tr><th><span class="ko">조건</span><span class="vi">Điều kiện</span></th><th><span class="ko">성립 여부</span><span class="vi">Thành lập hay không</span></th></tr></thead>
+    <tbody>
+      <tr><td class="fn"><span class="ko">클릭 1회 · 주문 1건</span><span class="vi">Nhấp 1 lần · 1 đơn hàng</span></td><td class="em"><span class="ko">성립. 주문번호 대체 가능</span><span class="vi">Thành lập. Có thể thay thế số đơn hàng</span></td></tr>
+      <tr><td class="fn"><span class="ko">클릭 1회 · 주문 다건</span><span class="vi">Nhấp 1 lần · nhiều đơn hàng</span></td><td><span class="ko">불성립</span><span class="vi">Không thành lập</span></td></tr>
+      <tr><td class="fn"><span class="ko">동일 금액 다건</span><span class="vi">Nhiều đơn cùng số tiền</span></td><td><span class="ko">불성립</span><span class="vi">Không thành lập</span></td></tr>
+    </tbody>
+  </table>
+  <p class="tnote"><span class="ko">쿠팡 이용 행태상 1회 방문 다건 구매 빈도가 관건</span><span class="vi">Điểm mấu chốt là tần suất mua nhiều đơn trong một lần truy cập theo thói quen dùng Coupang</span></p>
+  </div>
+
 </div>
 <div class="last-update">Last Update 2026.09.04 14:15</div>
+<script>
+function switchMainTab(el, tab) {
+  document.querySelectorAll('.maintab').forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+  el.classList.add('active');
+  el.setAttribute('aria-selected','true');
+  document.querySelectorAll('.mainpanel').forEach(function(p){ p.classList.toggle('active', p.dataset.tab === tab); });
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+</script>
 </body>
 </html>
