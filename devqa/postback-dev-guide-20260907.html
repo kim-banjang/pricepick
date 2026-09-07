@@ -92,9 +92,9 @@ Màn hình Nhật ký Postback chỉ lưu giá trị nhận được. Không th�
 
 Nếu một đơn có nhiều sản phẩm thì danh sách sản phẩm sẽ có nhiều dòng. Dù là mua hay hủy thì cấu trúc giống nhau, <b>chỉ khác giá trị purchase_cancel.</b>
 
-Số tiền trong danh sách sản phẩm là giá trị đến cho sản phẩm đó. Không có riêng một giá trị tổng của cả đơn.</span></span></div>
+Số tiền trong danh sách sản phẩm là giá trị đến cho sản phẩm đó. Không có riêng một giá trị tổng của cả đơn.</span></span>
 <div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">2026-09-07 수신 로그 실측. 상품 목록은 order_detail 배열로 옵니다. purchase_time 은 「2026-09-07 10:40:58」 꼴로 왔습니다. orderId 는 16자리 숫자 문자열이었습니다. 종전 문서(2026-08-27)에 「쿠팡은 주문번호가 오지 않는다」고 적힌 것은 이 수신분으로 바뀌었습니다.</span><span class="vi">Đo trên log nhận ngày 07/09/2026. Danh sách sản phẩm đến dưới dạng mảng order_detail. purchase_time đến ở dạng 「2026-09-07 10:40:58」. orderId là chuỗi số 16 chữ số. Nội dung ghi ở tài liệu trước (27/08/2026) rằng 「Coupang không gửi số đơn hàng」 đã được thay bằng bản nhận này.</span></span></div></div></div>
-
+</div>
 <h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">쿠팡 — 공통 값</span><span class="vi">Coupang — giá trị chung</span></span></h3>
 <div class="tblwrap"><table class="tbl"><thead><tr><th style="width:24%"><span class="i18n"><span class="ko">필드</span><span class="vi">Trường</span></span></th><th style="width:32%"><span class="i18n"><span class="ko">실제로 온 값</span><span class="vi">Giá trị thực nhận</span></span></th><th><span class="i18n"><span class="ko">무엇에 쓰나</span><span class="vi">Dùng để làm gì</span></span></th></tr></thead><tbody>
 <tr><td class="new">afcode</td><td>AF6898452</td><td><span class="i18n"><span class="ko">프라이스픽의 쿠팡 파트너스 계정 코드 · 전 건 같습니다</span><span class="vi">Mã tài khoản Coupang Partners của PricePick · giống nhau ở mọi bản ghi</span></span></td></tr>
@@ -141,9 +141,9 @@ Khi đọc, nếu lưu lại luôn là đã nhận theo cách viết nào thì s
 
 Hoa hồng <b>đến trực tiếp bằng số tiền.</b> Ta không cần nhân tỷ lệ để tạo ra.
 
-Ngày và giờ đến riêng. Mã định danh thành viên cùng dạng với subparam của Coupang, và khi đo thực tế hai giá trị này trùng nhau.</span></span></div>
+Ngày và giờ đến riêng. Mã định danh thành viên cùng dạng với subparam của Coupang, và khi đo thực tế hai giá trị này trùng nhau.</span></span>
 <div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">2026-08-28 수신 로그 실측([linkprice.postback] Received data). 마스터 정책서 v8.3 과 다른 곳이 둘 있어 실측을 정본으로 잡았습니다 — affiliate_id 는 정책서 A100706012 가 아니라 A100706907 이고, category_code 는 정책서에 「빈 값으로 온다」고 적혀 있으나 실제로는 값이 옵니다(300007874). 정책서 쪽도 고쳐야 합니다.</span><span class="vi">Đo trên log nhận ngày 28/08/2026 ([linkprice.postback] Received data). Có hai chỗ khác với tài liệu chính sách v8.3 nên lấy số đo thực tế làm chuẩn — affiliate_id là A100706907 chứ không phải A100706012 như tài liệu, và category_code tuy tài liệu ghi 「đến với giá trị rỗng」 nhưng thực tế có giá trị (300007874). Cần sửa cả tài liệu chính sách.</span></span></div></div>
-
+</div></div>
 <h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">링크프라이스 — 16개 필드</span><span class="vi">LinkPrice — 16 trường</span></span></h3>
 <div class="tblwrap"><table class="tbl"><thead><tr><th style="width:24%"><span class="i18n"><span class="ko">필드</span><span class="vi">Trường</span></span></th><th style="width:32%"><span class="i18n"><span class="ko">실제로 온 값</span><span class="vi">Giá trị thực nhận</span></span></th><th><span class="i18n"><span class="ko">무엇에 쓰나</span><span class="vi">Dùng để làm gì</span></span></th></tr></thead><tbody>
 <tr><td class="new">day</td><td>20260828</td><td><span class="i18n"><span class="ko">주문 날짜</span><span class="vi">Ngày đặt đơn</span></span></td></tr>
@@ -182,9 +182,9 @@ Số tiền đến theo đơn hủy là giá sản phẩm chính. Nếu người
 
 <b>Trường hợp chỉ một trong ba sản phẩm bị hủy</b> thì cũng chỉ thu hồi sản phẩm đó. Không được coi cả đơn hàng là đã hủy.
 
-Nếu không tìm được đơn mua gốc thì không thu hồi mà để nguyên. Không xử lý theo phỏng đoán.</span></span></div>
+Nếu không tìm được đơn mua gốc thì không thu hồi mà để nguyên. Không xử lý theo phỏng đoán.</span></span>
 <div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">실측 사례: 2026-09-07 10:40:58 구매(orderId 8354194650158105, 상품번호 8942873592)의 payment 는 26,910. 같은 날 10:44:37 에 온 취소는 같은 orderId·같은 상품번호이나 payment 가 29,900 이었습니다. 환수 기준은 26,910 입니다. 티켓 환수 규칙은 별도 문서 「취소 처리 · 티켓 환수」(2026-09-03)에 있습니다.</span><span class="vi">Ví dụ thực đo: đơn mua 10:40:58 ngày 07/09/2026 (orderId 8354194650158105, số sản phẩm 8942873592) có payment là 26.910. Đơn hủy đến lúc 10:44:37 cùng ngày có cùng orderId·cùng số sản phẩm nhưng payment là 29.900. Cơ sở thu hồi là 26.910. Quy tắc thu hồi vé xem ở tài liệu riêng 「Xử lý hủy đơn · Thu hồi vé」(03/09/2026).</span></span></div></div>
-
+</div></div>
 <h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">취소가 왔을 때 무엇을 쓰나</span><span class="vi">Khi đơn hủy đến thì dùng giá trị nào</span></span></h3>
 <div class="tblwrap"><table class="tbl"><thead><tr><th style="width:34%"><span class="i18n"><span class="ko">쓰임</span><span class="vi">Mục đích</span></span></th><th style="width:33%"><span class="i18n"><span class="ko">쓰지 않는 값</span><span class="vi">Giá trị không dùng</span></span></th><th><span class="i18n"><span class="ko">쓰는 값</span><span class="vi">Giá trị dùng</span></span></th></tr></thead><tbody>
 <tr><td><span class="i18n"><span class="ko">어느 주문인지</span><span class="vi">Là đơn nào</span></span></td><td class="old">subparam</td><td class="new">orderId</td></tr>
@@ -215,9 +215,8 @@ Quy tắc thu hồi ghi ở mục 4 là <b>chuyện của phần xử lý logic<
 
 Trong các log LinkPrice nhận được đến nay không có giá trị nào liên quan đến hủy đơn. Chưa xác nhận được là có postback hủy riêng hay không, và nếu có thì kèm những trường nào.
 
-Nếu bắt được dù chỉ một bản ghi log hủy, hãy gửi nguyên văn bản ghi đó. Khi đó sẽ chốt định dạng và bổ sung vào tài liệu này. Trước lúc ấy chưa làm phần xử lý hủy đơn của LinkPrice.</span></span></div>
+Nếu bắt được dù chỉ một bản ghi log hủy, hãy gửi nguyên văn bản ghi đó. Khi đó sẽ chốt định dạng và bổ sung vào tài liệu này. Trước lúc ấy chưa làm phần xử lý hủy đơn của LinkPrice.</span></span>
 <div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">마스터 정책서 v8.3 에는 「링크프라이스는 취소 포스트백이 없고 translist 조회 주소를 매일 돌려 확인한다」고 적혀 있습니다. 다만 이는 수신 로그로 확인된 사실이 아니라 정책서 서술이므로, 확정으로 잡지 않고 확인 필요로 둡니다.</span><span class="vi">Tài liệu chính sách v8.3 ghi rằng 「LinkPrice không có postback hủy, phải gọi địa chỉ tra cứu translist mỗi ngày để kiểm tra」. Tuy nhiên đây là nội dung mô tả trong tài liệu chứ không phải sự thật đã xác nhận qua log nhận, nên không coi là đã chốt mà để ở trạng thái cần xác nhận.</span></span></div></div>
-
+</div></div>
 <div class="foot"><span class="i18n"><span class="ko">PricePick · 개발 가이드 · 포스트백 처리 · 2026-09-07 · 확정 5 / 확인 필요 1</span><span class="vi">PricePick · Hướng dẫn phát triển · Xử lý postback · 07/09/2026 · Đã chốt 5 / Cần xác nhận 1</span></span></div></div>
-
 </body></html>
