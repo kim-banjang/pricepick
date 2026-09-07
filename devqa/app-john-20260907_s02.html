@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱 답변 · John · 2026-09-07</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+h3.sub{font-size:13px;color:var(--ink1);margin:16px 0 6px}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box a{color:var(--pp-d);font-weight:700}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px;border:1px solid rgba(0,0,0,.06)}
+.chipbadge{display:inline-block;padding:3px 8px;border-radius:7px;font-size:12px;font-weight:400;white-space:nowrap}
+.hex{font-variant-numeric:tabular-nums;font-size:11.6px;color:var(--ink2);white-space:nowrap}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+.prop{background:#fff;border:1px solid var(--line);border-left:3px solid var(--pp);border-radius:10px;padding:11px 14px;margin-top:10px;font-size:12.8px;color:var(--ink2)}
+.prop .pt{font-size:12px;font-weight:800;color:var(--pp-d);display:block;margin-bottom:4px}
+.prop b{color:var(--ink1)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱 답변 · John · 2026-09-07</span><span class="vi">Trả lời App PricePick · John · 07/09/2026</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">John · 앱 · 티켓 상태 배지 색 · 한 주문을 나눠 취소할 때의 표시 — 질문 2건 — 답변 KO/VI</span><span class="vi">John · App · Màu huy hiệu trạng thái vé · Cách hiển thị khi hủy nhiều lần trong một đơn — 2 câu hỏi — Trả lời KO/VI</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 2건</span><span class="vi">2 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 1</span><span class="vi">Đã chốt 1</span></span></span><span class="chip"><span class="i18n"><span class="ko">일부 미정 1 — 제안 2안</span><span class="vi">1 mục chưa chốt — 2 phương án đề xuất</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장 확정 2026-09-07</span><span class="vi">Căn cứ: Mr Mark chốt ngày 07/09/2026</span></span></span></div>
+
+<!-- ==================== Q1 : 상태 배지 색 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 「부분 취소」·「부분 환수」 상태 글자 색</span><span class="vi">1. Màu chữ trạng thái 「Hủy một phần」·「Thu hồi một phần」</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">「부분 취소」와 「부분 환수」 상태 텍스트의 표시 색을 지정해 주십시오. 지금은 회색으로 나와서 오해하기 쉽습니다.
+
+(원문) Cho tôi màu hiển thị của text trạng thái huỷ một phần và thu hồi một phần? hiện tại đang hiển thị màu xám dễ bị hiểu lầm</span><span class="vi">Cho tôi màu hiển thị của text trạng thái huỷ một phần và thu hồi một phần? hiện tại đang hiển thị màu xám dễ bị hiểu lầm</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>「부분 환수」는 주황을 씁니다. 나머지 배지 색은 바뀌지 않습니다.</b>
+
+먼저 하나 정리해 둡니다. <b>「부분 취소」는 앱에 뜨는 이름이 아닙니다.</b> 주문 상태는 제휴몰이 주는 값이라 저장만 하고 화면에는 내보내지 않습니다. 부분 취소된 주문이 앱과 CMS에 보이는 이름은 <b>「부분 환수」</b> 하나입니다. 그래서 색을 새로 정할 대상도 「부분 환수」 하나입니다.
+
+다크 모드는 쓰지 않으므로 값은 한 벌뿐입니다.</span><span class="vi"><b>「Thu hồi một phần」 dùng màu cam. Màu của các huy hiệu còn lại không thay đổi.</b>
+
+Xin làm rõ trước một điểm. <b>「Hủy một phần」 không phải là tên hiện trên app.</b> Trạng thái đơn hàng là giá trị do sàn liên kết gửi, chỉ lưu lại chứ không đưa ra màn hình. Tên mà đơn bị hủy một phần hiển thị trên app và CMS chỉ có một: <b>「Thu hồi một phần」</b>. Vì vậy đối tượng cần chỉ định màu mới cũng chỉ là 「Thu hồi một phần」.
+
+Không dùng chế độ tối nên chỉ có một bộ giá trị.</span></span></div></div>
+
+<div class="tblwrap"><table class="tbl"><thead><tr><th style="width:32%"><span class="i18n"><span class="ko">경우</span><span class="vi">Trường hợp</span></span></th><th style="width:20%"><span class="i18n"><span class="ko">배지</span><span class="vi">Huy hiệu</span></span></th><th style="width:16%"><span class="i18n"><span class="ko">색</span><span class="vi">Màu</span></span></th><th><span class="i18n"><span class="ko">색상값</span><span class="vi">Giá trị màu</span></span></th></tr></thead><tbody>
+<tr><td><span class="i18n"><span class="ko">전환 후 일부 회수 · 잔여 있음</span><span class="vi">Thu hồi một phần sau chuyển đổi · vẫn còn vé</span></span></td><td><span class="chipbadge" style="background:#FDF2E6;color:#D97706">부분 환수</span></td><td><span class="sw" style="background:#D97706"></span><span class="i18n"><span class="ko">주황</span><span class="vi">Cam</span></span></td><td class="hex"><span class="i18n"><span class="ko">글자 #D97706 · 바탕 #FDF2E6</span><span class="vi">Chữ #D97706 · Nền #FDF2E6</span></span></td></tr>
+</tbody></table></div>
+
+<div class="note-box"><span class="i18n"><span class="ko">「대기중」·「지급 완료」·「미전환 환수」·「전환 후 환수」는 <b>지금 쓰는 색 그대로</b>입니다. 바꾸지 마십시오.</span><span class="vi">「Đang chờ」·「Đã cấp」·「Thu hồi khi chưa chuyển đổi」·「Thu hồi sau chuyển đổi」 <b>giữ nguyên màu đang dùng</b>. Xin đừng đổi.</span></span></div>
+
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">배지 모양은 지금 쓰는 것을 그대로 둡니다 — 「부분 환수」만 위 색값을 따릅니다. 앱은 안쪽 여백 3px 8px · 모서리 7px · 글자 13px(var(--fs-caption)) · 굵기 400. CMS는 .badge 규격(모서리 20px · 글자 11px · 굵기 600)을 그대로 씁니다.
+화면 두 곳 — 앱 「마이 → 내 티켓 &amp; 포인트」 → 티켓 적립 내역 / CMS 「매출 · 수익 &gt; 제휴 수수료 매출」 → 「건별 내역」 탭의 상태 칸. 두 화면은 같은 색값을 씁니다.
+데모 — 앱 데모와 CMS 데모에 같이 반영합니다.</span><span class="vi">Hình dạng huy hiệu giữ nguyên như hiện tại — chỉ 「Thu hồi một phần」 theo giá trị màu ở trên. App: padding 3px 8px · bo góc 7px · chữ 13px (var(--fs-caption)) · độ đậm 400. CMS: giữ nguyên quy cách .badge (bo góc 20px · chữ 11px · độ đậm 600).
+Hai màn hình — App 「Của tôi → Vé &amp; Điểm của tôi」 → Lịch sử tích lũy vé / CMS 「Doanh thu · Lợi nhuận &gt; Doanh thu hoa hồng LK」 → cột trạng thái ở tab 「Chi tiết từng đơn」. Hai màn hình dùng chung một bộ giá trị màu.
+Demo — sẽ áp dụng đồng thời trên bản demo app và demo CMS.</span></span></div></div>
+
+<!-- ==================== Q2 : 나눠 취소 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 한 주문의 상품을 두 번 이상 나눠 취소할 때</span><span class="vi">2. Khi hủy sản phẩm trong một đơn nhiều lần</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">부분 취소인데 사용자가 한 주문 안의 상품을 두 번 이상 나눠서 취소하면 화면에 어떻게 표시됩니까?
+
+(원문) Trường hợp huỷ một phần mà user ấn hủy các sản phẩm trong đơn trên 1 lần thì sẽ hiển thị như thế nào?</span><span class="vi">Trường hợp huỷ một phần mà user ấn hủy các sản phẩm trong đơn trên 1 lần thì sẽ hiển thị như thế nào?</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">일부 미정</span><span class="vi">Một phần chưa chốt</span></span></span></div>
+
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>줄은 늘 한 줄입니다. 제목 행의 수량이 취소가 들어올 때마다 다시 줄고, 잔여가 0이 되는 순간 배지가 「부분 환수」에서 「전환 후 환수」로 바뀝니다.</b>
+
+여기까지는 이미 정해져 있습니다. 다만 <b>취소 이력을 몇 줄로 적을지는 아직 정해진 것이 없습니다.</b> 아래에 정해진 것과 정해지지 않은 것을 갈라 적었습니다. 정해지지 않은 쪽은 김반장님 결정 전까지 확정으로 쓰지 마십시오.</span><span class="vi"><b>Vẫn luôn là một dòng. Số lượng ở dòng tiêu đề giảm lại mỗi khi có lệnh hủy, và ngay khi số còn lại về 0 thì huy hiệu đổi từ 「Thu hồi một phần」 sang 「Thu hồi sau chuyển đổi」.</b>
+
+Đến đây là phần đã được chốt. Tuy nhiên <b>việc ghi lịch sử hủy thành mấy dòng thì vẫn chưa có quy định.</b> Dưới đây tách riêng phần đã chốt và phần chưa chốt. Phần chưa chốt xin đừng coi là đã quyết cho tới khi Mr Mark quyết định.</span></span></div></div>
+
+<h3 class="sub"><span class="i18n"><span class="ko">가. 정해져 있는 것 — 근거 있음</span><span class="vi">A. Phần đã chốt — có căn cứ</span></span></h3>
+<div class="tblwrap"><table class="tbl"><thead><tr><th style="width:30%"><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">두 번 이상 나눠 취소될 때</span><span class="vi">Khi bị hủy nhiều lần</span></span></th></tr></thead><tbody>
+<tr><td><span class="i18n"><span class="ko">구매 금액 줄</span><span class="vi">Dòng số tiền mua</span></span></td><td><span class="i18n"><span class="ko">안 바뀝니다. 원본을 그대로 둡니다 — 덮어쓰지 않습니다</span><span class="vi">Không đổi. Giữ nguyên bản gốc — không ghi đè</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">취소 금액</span><span class="vi">Số tiền hủy</span></span></td><td><span class="i18n"><span class="ko">회차마다 쌓입니다(누적)</span><span class="vi">Cộng dồn theo từng lần</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">제목 행</span><span class="vi">Dòng tiêu đề</span></span></td><td><span class="i18n"><span class="ko">늘 <b>현재 잔여 수량</b>입니다. 취소가 한 번 더 들어오면 그만큼 다시 줄어듭니다</span><span class="vi">Luôn là <b>số lượng còn lại hiện tại</b>. Có thêm một lần hủy thì giảm tiếp bấy nhiêu</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">배지</span><span class="vi">Huy hiệu</span></span></td><td><span class="i18n"><span class="ko">잔여가 남아 있으면 「부분 환수」, 잔여가 0이 되면 「전환 후 환수」</span><span class="vi">Còn vé thì 「Thu hồi một phần」, còn lại 0 thì 「Thu hồi sau chuyển đổi」</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">이미 쓴 티켓</span><span class="vi">Vé đã sử dụng</span></span></td><td><span class="i18n"><span class="ko">회수하지 않습니다. 화면에는 「N장 사용분 제외」로 같이 적습니다</span><span class="vi">Không thu hồi. Trên màn ghi kèm 「Trừ N vé đã dùng」</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">줄 자체</span><span class="vi">Bản thân dòng</span></span></td><td><span class="i18n"><span class="ko">늘어나지 않습니다. 같은 구매는 한 줄입니다</span><span class="vi">Không tăng thêm. Cùng một đơn mua là một dòng</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">쿠팡에서 어느 주문인지 못 짚을 때</span><span class="vi">Khi Coupang không xác định được là đơn nào</span></span></td><td><span class="i18n"><span class="ko">줄을 따로 붙입니다. 원 주문 줄은 건드리지 않습니다</span><span class="vi">Thêm dòng riêng. Không đụng vào dòng đơn hàng gốc</span></span></td></tr>
+</tbody></table></div>
+
+<div class="note-box"><span class="i18n"><span class="ko"><b>보기.</b> 쿠팡에서 사고 브론즈 5장을 받은 뒤, 8/15에 2장어치가 취소되고 8/20에 1장어치가 또 취소된 경우입니다.
+· 전환 직후 — 제목 행 「브론즈 5장」 · 배지 「지급 완료」
+· 8/15 뒤 — 제목 행 「브론즈 3장」 · 배지 「부분 환수」
+· 8/20 뒤 — 제목 행 「브론즈 2장」 · 배지 「부분 환수」
+· 남은 것까지 다 취소되면 — 배지 「전환 후 환수」
+사용분이 섞여 있으면 그 장수만큼 회수하지 않고, 같은 줄에 「N장 사용분 제외」를 붙입니다.</span><span class="vi"><b>Ví dụ.</b> Mua ở Coupang và nhận 5 vé Bronze, sau đó ngày 15/8 bị hủy phần tương ứng 2 vé và ngày 20/8 lại bị hủy phần tương ứng 1 vé.
+· Ngay sau chuyển đổi — dòng tiêu đề 「5 vé Bronze」 · huy hiệu 「Đã cấp」
+· Sau 15/8 — dòng tiêu đề 「3 vé Bronze」 · huy hiệu 「Thu hồi một phần」
+· Sau 20/8 — dòng tiêu đề 「2 vé Bronze」 · huy hiệu 「Thu hồi một phần」
+· Nếu phần còn lại cũng bị hủy hết — huy hiệu 「Thu hồi sau chuyển đổi」
+Nếu có phần đã dùng thì không thu hồi phần đó, và ghi kèm 「Trừ N vé đã dùng」 trên cùng dòng.</span></span></div>
+
+<h3 class="sub"><span class="i18n"><span class="ko">나. 정해지지 않은 것 — 근거 없음 · 임의로 정하지 마십시오</span><span class="vi">B. Phần chưa chốt — không có căn cứ · xin đừng tự quyết</span></span></h3>
+<div class="atxt" style="font-size:13.3px"><span class="i18n"><span class="ko">취소 이력 줄을 <b>회차마다 남길지, 한 줄로 합칠지</b>는 정책서에도 개발 지시서에도 없습니다. 두 안을 올려 두었고, 김반장님이 고르십니다.</span><span class="vi">Việc ghi dòng lịch sử hủy <b>theo từng lần hay gộp thành một dòng</b> không có trong tài liệu chính sách lẫn chỉ thị phát triển. Đã trình hai phương án, Mr Mark sẽ chọn.</span></span></div>
+
+<div class="prop"><span class="pt"><span class="i18n"><span class="ko">제안 1 (권고)</span><span class="vi">Phương án 1 (đề xuất)</span></span></span><span class="i18n"><span class="ko"><b>취소가 일어난 회차마다 줄을 하나씩 남깁니다.</b>
+　2026.08.15 · 구매 취소 · 2장 환수
+　2026.08.20 · 구매 취소 · 1장 환수
+앱은 이미 「산 날」과 「취소된 날」을 서로 다른 사건으로 보고 줄을 나눠 적고 있습니다. 취소가 두 번이면 사건도 둘입니다. 문의가 들어왔을 때 언제 몇 장이 빠졌는지 화면에서 바로 짚을 수 있습니다.</span><span class="vi"><b>Mỗi lần hủy để lại một dòng.</b>
+　15.08.2026 · Hủy mua · thu hồi 2 vé
+　20.08.2026 · Hủy mua · thu hồi 1 vé
+App vốn đã coi 「ngày mua」 và 「ngày bị hủy」 là hai sự việc khác nhau và ghi tách dòng. Hủy hai lần thì cũng là hai sự việc. Khi có khiếu nại, nhìn màn hình là chỉ ra được ngay lúc nào mất mấy vé.</span></span></div>
+
+<div class="prop"><span class="pt"><span class="i18n"><span class="ko">제안 2</span><span class="vi">Phương án 2</span></span></span><span class="i18n"><span class="ko"><b>마지막 취소일 기준으로 한 줄에 누계만 적습니다.</b>
+　2026.08.20 · 구매 취소 2회 · 누적 3장 환수
+줄이 늘어나지 않아 목록이 짧게 유지됩니다. 대신 회차별로 언제 몇 장이 빠졌는지는 화면에서 볼 수 없습니다.</span><span class="vi"><b>Chỉ ghi lũy kế trên một dòng, lấy mốc là ngày hủy cuối cùng.</b>
+　20.08.2026 · Hủy mua 2 lần · thu hồi lũy kế 3 vé
+Không tăng số dòng nên danh sách vẫn ngắn. Đổi lại, không thể xem trên màn hình từng lần mất mấy vé.</span></span></div>
+
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">「가」의 근거 — <a href="/devqa/cancel-ticket-recovery-20260903.html">취소 처리 · 티켓 환수 개발 지시서 (2026-09-03 / 09-04 개정)</a>의 6번 「쿠팡 부분 취소 시 저장 항목」(구매 금액 원본 유지 · 취소 금액 별도 기록 · 분할 취소 시 누적)과 8번 「앱 화면 표시」(제목 행 = 현재 잔여 수량 · 미회수분 표시 제외 · 쿠팡 주문 특정 불가 시 별도 행)입니다. 배지 5종의 조건표도 같은 문서에 있습니다.
+사용분을 회수하지 않는 근거 — <a href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener">마스터 정책서</a> 「어뷰징 · 환불 · 예외」 탭 2번 카드 「확정 후 환불」.
+「나」가 왜 미정인가 — 위 두 문서 어디에도 취소 이력 줄의 개수를 정한 문장이 없습니다. 없는 것을 있는 것처럼 만들지 않으려고 제안으로 올립니다.
+부분 환수는 쿠팡 전용입니다. 링크프라이스는 2026-09-04 공식 답변에 따라 주문 단위 매칭을 쓰지 않으므로 부분 환수가 생기지 않습니다.</span><span class="vi">Căn cứ của phần 「A」 — mục 6 「Hạng mục lưu khi Coupang hủy một phần」 (giữ nguyên số tiền mua gốc · ghi riêng số tiền hủy · hủy nhiều lần thì cộng dồn) và mục 8 「Hiển thị màn hình app」 (dòng tiêu đề = số lượng còn lại hiện tại · không hiển thị phần chưa thu hồi · Coupang không xác định được đơn thì thêm dòng riêng) trong <a href="/devqa/cancel-ticket-recovery-20260903.html">Chỉ thị phát triển Xử lý hủy đơn · Thu hồi vé (03/09/2026, sửa đổi 04/09/2026)</a>. Bảng điều kiện 5 loại huy hiệu cũng nằm trong tài liệu đó.
+Căn cứ không thu hồi phần đã dùng — thẻ số 2 「Hoàn tiền sau khi xác nhận」 ở tab 「Gian lận · Hoàn tiền · Ngoại lệ」 của <a href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener">Tài liệu chính sách chuẩn</a>.
+Vì sao 「B」 chưa chốt — trong cả hai tài liệu trên không có câu nào quy định số dòng của lịch sử hủy. Để không biến cái không có thành cái có, xin trình dưới dạng đề xuất.
+Thu hồi một phần chỉ áp dụng cho Coupang. Theo trả lời chính thức ngày 04/09/2026, LinkPrice không dùng khớp theo từng đơn nên không phát sinh thu hồi một phần.</span></span></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱 답변 · John · 2026-09-07 · 확정 1 / 일부 미정 1</span><span class="vi">PricePick · Trả lời App · John · 07/09/2026 · Đã chốt 1 / Một phần chưa chốt 1</span></span></div></div>
+</body></html>
