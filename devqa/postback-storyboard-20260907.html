@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 스토리보드 · 포스트백 로그 · 2026-09-07</title>
+<style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280;--hide:#c58a14;--hide-l:#fffaef;--hide-b:#eddcb4}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+h2.grp.hide{color:#95690c;border-bottom-color:#f3e6c6}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.new{background:#efe9ff;color:#7a55e8}
+.bd.hide{background:#fbf0da;color:#95690c}
+.bd.keep{background:#e7f3ec;color:#3e8e63}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box a{color:var(--pp-d);font-weight:700}
+.keybox{background:#f6f2ff;border:1px solid #ddd0ff;border-left:3px solid var(--pp);border-radius:10px;padding:12px 15px;margin:14px 0 4px;font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.keybox .kt{font-size:11px;font-weight:800;color:var(--pp-d);letter-spacing:.06em;margin-bottom:5px;display:block}
+.keybox b{color:var(--ink1)}
+.warn{border-radius:12px;padding:14px 17px;margin:2px 0 12px;font-size:13.2px;white-space:pre-wrap}
+.warn .wt{font-size:12px;font-weight:800;letter-spacing:.03em;margin-bottom:6px;display:block}
+.warn.hide{background:var(--hide-l);border:1px solid var(--hide-b);border-left:5px solid var(--hide);color:#7a5a11}
+.warn.hide .wt{color:#8a6410} .warn.hide b{color:#5d440c}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.tbl td.new{color:#1f7a7a;font-weight:700}
+.tbl a{color:var(--pp-d);font-weight:700}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+.note-box a{color:var(--pp-d);font-weight:700}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.srclink:hover{background:rgba(255,255,255,.3)}
+@media(max-width:640px){.htitle{font-size:19px}}
+
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:200px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}</style></head>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">스토리보드 · 포스트백 로그 · 2026-09-07</span><span class="vi">Storyboard · Nhật ký Postback · 07/09/2026</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">받는 사람: 해리 · 켈빈 &nbsp;|&nbsp; CMS 「포스트백 로그」 화면이 <b style="color:#fff">어떻게 생겼고 어떻게 움직이는지</b> (KO/VI)</span><span class="vi">Người nhận: Harry · Kelvin &nbsp;|&nbsp; Màn hình CMS 「Nhật ký Postback」 <b style="color:#fff">trông thế nào và hoạt động ra sao</b> (KO/VI)</span></span></div>
+<a class="srclink" href="https://pricepick-demo.vercel.app/cms" target="_blank" rel="noopener"><span class="i18n"><span class="ko">CMS 화면 열기 ↗</span><span class="vi">Mở màn hình CMS ↗</span></span></a>
+</div></header>
+
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">화면: 매출·수익 → 포스트백 로그</span><span class="vi">Màn hình: Doanh thu·Lợi nhuận → Nhật ký Postback</span></span></span><span class="chip"><span class="i18n"><span class="ko">받는 사람: 해리 · 켈빈</span><span class="vi">Người nhận: Harry · Kelvin</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장 확정 · 화면 실측 (2026-09-07)</span><span class="vi">Căn cứ: Trưởng phòng Kim chốt · đo trực tiếp trên màn hình (07/09/2026)</span></span></span><span class="chip"><span class="i18n"><span class="ko">필드 정의는 작업 가이드에</span><span class="vi">Định nghĩa trường xem ở Hướng dẫn phát triển</span></span></span></div>
+
+<div class="keybox"><span class="kt"><span class="i18n"><span class="ko">먼저 결론</span><span class="vi">Kết luận trước</span></span></span><span class="i18n"><span class="ko">이 화면은 <b>제휴사가 보내 온 포스트백을 그대로 확인하는 곳</b>입니다.
+
+쿠팡과 링크프라이스는 오는 값이 아예 달라 <b>탭으로 갈라 둡니다.</b> 한 표에 섞지 않습니다.
+
+접으면 찾는 데 필요한 것만 보이고, <b>행을 누르면 받은 값이 전부</b> 펼쳐집니다.
+
+숫자를 만들어 넣지 않습니다. 수수료 매출이나 환수액 같은 계산값은 이 화면에 없습니다.</span><span class="vi">Màn hình này là <b>nơi xem nguyên trạng postback mà đối tác gửi tới</b>.
+
+Coupang và LinkPrice gửi các giá trị hoàn toàn khác nhau nên <b>được tách thành hai tab</b>. Không trộn vào một bảng.
+
+Khi thu gọn chỉ hiện những gì cần để tìm; <b>bấm vào dòng thì toàn bộ giá trị nhận được</b> sẽ mở ra.
+
+Không tự tạo ra con số. Các giá trị tính toán như doanh thu hoa hồng hay số tiền thu hồi không có trên màn hình này.</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 탭 두 개 — 쿠팡 · 링크프라이스</span><span class="vi">1. Hai tab — Coupang · LinkPrice</span></span></h2>
+<div class="qa"><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt" style="flex:1;min-width:0"><span class="i18n"><span class="ko"><b>왼쪽 메뉴 이름은 「포스트백 로그」 하나이고, 그 안에서 탭으로 갈립니다.</b>
+
+두 제휴사는 보내 주는 값이 겹치는 것이 하나도 없습니다. 컬럼도, 찾는 방법도 다릅니다. 그래서 한 화면에 쌓지 않고 탭으로 나눴습니다.
+
+쿠팡이 기본으로 열립니다. 탭을 바꿔도 반대쪽에 걸어 둔 검색 조건은 그대로 남습니다.</span><span class="vi"><b>Tên menu bên trái chỉ có một là 「Nhật ký Postback」, bên trong chia thành các tab.</b>
+
+Hai đối tác không có bất kỳ trường nào trùng nhau. Cột khác nhau, cách tìm cũng khác nhau. Vì vậy không xếp chồng trên một màn hình mà tách thành tab.
+
+Coupang mở mặc định. Khi đổi tab, điều kiện tìm kiếm đã đặt ở tab kia vẫn được giữ nguyên.</span></span></div></div></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">쿠팡 탭 — 접힌 목록</span><span class="vi">Tab Coupang — danh sách thu gọn</span></span></h3>
+<div class="thumbs"><button class="q-thumb" type="button" style="max-width:100%" onclick="lbOpen('/devqa/assets/20260907-postback/postback-a-coupang-list.png','쿠팡 탭 — 접힌 목록')">
+<img src="/devqa/assets/20260907-postback/postback-a-coupang-list.png" alt="쿠팡 탭 접힌 목록" onerror="this.closest('.q-thumb').style.display='none'">
+<span class="q-thumb-cap"><span class="i18n"><span class="ko">쿠팡 탭 · 검색줄 · 접힌 목록 (누르면 크게)</span><span class="vi">Tab Coupang · thanh tìm kiếm · danh sách thu gọn (bấm để phóng to)</span></span></span></button></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 접힌 목록에 무엇을 두는가</span><span class="vi">2. Danh sách thu gọn hiển thị gì</span></span></h2>
+<div class="qa"><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt" style="flex:1;min-width:0"><span class="i18n"><span class="ko"><b>찾는 데 필요한 것만 둡니다. 주문 번호와 상품 번호는 반드시 둡니다.</b>
+
+취소가 어느 구매의 취소인지는 이 두 번호로 맞춥니다. 접힌 화면에서 안 보이면 눈으로 대조할 수가 없습니다.
+
+상품명은 길어서 폭을 다 잡아먹습니다. 펼치면 나오므로 접힌 화면에서는 뺐습니다.
+
+컬럼 머리에는 화면 이름과 <b>포스트백 필드명을 같이</b> 적습니다. 어느 값인지 바로 알 수 있어야 합니다.</span><span class="vi"><b>Chỉ để những gì cần để tìm. Số đơn hàng và số sản phẩm thì bắt buộc phải có.</b>
+
+Việc một đơn hủy thuộc về đơn mua nào được đối chiếu bằng hai số này. Nếu không thấy ở màn hình thu gọn thì không thể đối chiếu bằng mắt.
+
+Tên sản phẩm quá dài, chiếm hết chiều ngang. Vì mở ra là thấy nên đã bỏ khỏi màn hình thu gọn.
+
+Trên đầu cột ghi kèm tên hiển thị <b>và tên trường postback</b>. Phải nhận ra ngay đó là giá trị nào.</span></span></div></div></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">쿠팡 탭 — 컬럼과 그 출처</span><span class="vi">Tab Coupang — cột và nguồn của cột</span></span></h3>
+<div class="tblwrap"><table class="tbl"><thead><tr><th style="width:26%"><span class="i18n"><span class="ko">컬럼</span><span class="vi">Cột</span></span></th><th style="width:30%"><span class="i18n"><span class="ko">포스트백 필드</span><span class="vi">Trường postback</span></span></th><th><span class="i18n"><span class="ko">보이는 값</span><span class="vi">Giá trị hiển thị</span></span></th></tr></thead><tbody>
+<tr><td><span class="i18n"><span class="ko">구매 시각</span><span class="vi">Thời điểm mua</span></span></td><td class="new">purchase_time</td><td><span class="i18n"><span class="ko">받은 값 그대로 · 읽기 쉬운 꼴을 위에 함께</span><span class="vi">Nguyên giá trị nhận được · kèm dạng dễ đọc ở trên</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">구분</span><span class="vi">Phân loại</span></span></td><td class="new">purchase_cancel</td><td>purchase / cancel</td></tr>
+<tr><td><span class="i18n"><span class="ko">회원</span><span class="vi">Thành viên</span></span></td><td class="new">subid</td><td><span class="i18n"><span class="ko">우리가 링크에 실어 보낸 값</span><span class="vi">Giá trị ta gắn vào link</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">주문번호</span><span class="vi">Số đơn hàng</span></span></td><td class="new">orderId</td><td><span class="i18n"><span class="ko">취소를 맞추는 열쇠</span><span class="vi">Khóa để đối chiếu đơn hủy</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">상품번호</span><span class="vi">Số sản phẩm</span></span></td><td class="new">productid</td><td><span class="i18n"><span class="ko">첫 상품 + 「외 N건」 · 어느 키로 왔는지 함께</span><span class="vi">Sản phẩm đầu + 「và N mục」 · kèm khóa đã nhận</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">수량</span><span class="vi">Số lượng</span></span></td><td class="new">quantity</td><td><span class="i18n"><span class="ko">주문 안 상품들의 수량 합</span><span class="vi">Tổng số lượng các sản phẩm trong đơn</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">금액</span><span class="vi">Số tiền</span></span></td><td class="new">payment</td><td><span class="i18n"><span class="ko">주문 안 상품들의 금액 합</span><span class="vi">Tổng số tiền các sản phẩm trong đơn</span></span></td></tr>
+</tbody></table></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">링크프라이스 탭 — 컬럼과 그 출처</span><span class="vi">Tab LinkPrice — cột và nguồn của cột</span></span></h3>
+<div class="tblwrap"><table class="tbl"><thead><tr><th style="width:26%"><span class="i18n"><span class="ko">컬럼</span><span class="vi">Cột</span></span></th><th style="width:30%"><span class="i18n"><span class="ko">포스트백 필드</span><span class="vi">Trường postback</span></span></th><th><span class="i18n"><span class="ko">보이는 값</span><span class="vi">Giá trị hiển thị</span></span></th></tr></thead><tbody>
+<tr><td><span class="i18n"><span class="ko">주문 일시</span><span class="vi">Ngày giờ đơn</span></span></td><td class="new">day · time</td><td><span class="i18n"><span class="ko">두 값이 따로 옵니다</span><span class="vi">Hai giá trị đến riêng</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">머천트</span><span class="vi">Merchant</span></span></td><td class="new">merchant_id</td><td><span class="i18n"><span class="ko">어느 제휴몰인지 · 거르기에 씁니다</span><span class="vi">Là sàn nào · dùng để lọc</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">회원</span><span class="vi">Thành viên</span></span></td><td class="new">affiliate_user_id</td><td><span class="i18n"><span class="ko">쿠팡 subparam 과 같은 꼴</span><span class="vi">Cùng dạng với subparam của Coupang</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">주문코드</span><span class="vi">Mã đơn</span></span></td><td class="new">order_code</td><td><span class="i18n"><span class="ko">제휴몰이 준 주문 코드</span><span class="vi">Mã đơn do sàn cấp</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">상품코드</span><span class="vi">Mã sản phẩm</span></span></td><td class="new">product_code</td><td><span class="i18n"><span class="ko">상품 1건당 1콜백이라 하나만 옵니다</span><span class="vi">Mỗi sản phẩm 1 callback nên chỉ có một</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">수량</span><span class="vi">Số lượng</span></span></td><td class="new">item_count</td><td><span class="i18n"><span class="ko">받은 값 그대로</span><span class="vi">Nguyên giá trị nhận được</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">구매금액</span><span class="vi">Số tiền mua</span></span></td><td class="new">price</td><td><span class="i18n"><span class="ko">받은 값 그대로</span><span class="vi">Nguyên giá trị nhận được</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">수수료</span><span class="vi">Hoa hồng</span></span></td><td class="new">commision</td><td><span class="i18n"><span class="ko">링크프라이스가 금액으로 보내 줍니다 — 우리가 계산한 값이 아닙니다</span><span class="vi">LinkPrice gửi sẵn bằng số tiền — không phải giá trị ta tính</span></span></td></tr>
+</tbody></table></div>
+<div class="note-box"><span class="i18n"><span class="ko">두 표의 컬럼이 하나도 겹치지 않습니다. 쿠팡 표를 그대로 옮겨 쓰면 안 됩니다.</span><span class="vi">Cột của hai bảng không trùng nhau một cột nào. Không được bê nguyên bảng Coupang sang.</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. 행을 누르면 펼쳐집니다</span><span class="vi">3. Bấm vào dòng thì mở ra</span></span></h2>
+<div class="qa"><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt" style="flex:1;min-width:0"><span class="i18n"><span class="ko"><b>목록 행 아무 데나 누르면 펼쳐지고, 다시 누르면 접힙니다.</b> 따로 단추를 두지 않았습니다. 행 오른쪽 끝에 화살표만 있어 지금 접혔는지 펼쳐졌는지 알 수 있습니다.
+
+펼치면 <b>그 건으로 들어온 값이 하나도 빠짐없이</b> 나옵니다. 접힌 화면에 이미 나온 것도 그대로 다시 보입니다 — 펼친 자리가 수신 원문 전체를 보는 자리이기 때문입니다.
+
+쿠팡은 주문에 상품이 여럿일 수 있어, 펼치면 <b>상품별로 한 줄씩</b> 나옵니다. 링크프라이스는 상품 1건당 콜백이 1건이라 상품 줄이 따로 없습니다.
+
+값이 안 온 자리는 비워 둡니다. 없는 값을 채우지 않습니다.</span><span class="vi"><b>Bấm bất kỳ đâu trên dòng thì mở ra, bấm lại thì thu gọn.</b> Không đặt nút riêng. Chỉ có mũi tên ở cuối dòng để biết đang thu gọn hay đang mở.
+
+Khi mở ra sẽ hiện <b>toàn bộ giá trị đã nhận của bản ghi đó, không thiếu một trường nào</b>. Những gì đã có ở màn hình thu gọn vẫn hiện lại — vì chỗ mở ra chính là nơi xem toàn bộ dữ liệu gốc nhận được.
+
+Coupang có thể có nhiều sản phẩm trong một đơn nên khi mở ra sẽ hiện <b>mỗi sản phẩm một dòng</b>. LinkPrice mỗi sản phẩm là một callback nên không có dòng sản phẩm riêng.
+
+Chỗ không nhận được giá trị thì để trống. Không điền thay vào giá trị không có.</span></span></div></div></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">쿠팡 — 펼친 모습 · 취소가 원 구매와 이어진 모습</span><span class="vi">Coupang — khi mở ra · đơn hủy nối với đơn mua gốc</span></span></h3>
+<div class="thumbs"><button class="q-thumb" type="button" style="max-width:100%" onclick="lbOpen('/devqa/assets/20260907-postback/postback-a-coupang-expand.png','쿠팡 — 펼친 모습')">
+<img src="/devqa/assets/20260907-postback/postback-a-coupang-expand.png" alt="쿠팡 펼친 모습" onerror="this.closest('.q-thumb').style.display='none'">
+<span class="q-thumb-cap"><span class="i18n"><span class="ko">수신 값 전부 + 상품별 줄 + 대사 표시 (누르면 크게)</span><span class="vi">Toàn bộ giá trị nhận + dòng theo sản phẩm + đối chiếu (bấm để phóng to)</span></span></span></button></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">4. 취소는 원 구매와 이어 보입니다</span><span class="vi">4. Đơn hủy hiển thị nối với đơn mua gốc</span></span></h2>
+<div class="qa"><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt" style="flex:1;min-width:0"><span class="i18n"><span class="ko"><b>같은 주문번호에 같은 상품번호끼리 짝을 지어 서로 이어 보여 줍니다.</b>
+
+취소 줄에는 「원 구매 있음」과 그 시각이, 구매 줄에는 「취소 포스트백 있음」과 그 시각이 붙습니다. 어느 건과 이어졌는지 눈으로 바로 확인할 수 있습니다.
+
+<b>취소 행에는 원 구매 금액을 같이 보여 줍니다.</b> 취소로 오는 금액은 본상품 가격이라 회원이 실제 낸 돈과 다를 수 있습니다. 두 값이 나란히 있으면 차이가 바로 드러납니다.
+
+상품 셋 중 하나만 취소된 경우에는 <b>그 상품 줄에만</b> 표시가 붙습니다. 주문 전체가 취소로 보이지 않습니다.
+
+이 화면은 이어 보여 주는 데까지만 합니다. 환수 금액을 계산하지 않습니다.</span><span class="vi"><b>Ghép cặp theo cùng số đơn hàng và cùng số sản phẩm rồi hiển thị nối với nhau.</b>
+
+Ở dòng hủy hiện 「Có đơn mua gốc」 kèm thời điểm; ở dòng mua hiện 「Có postback hủy」 kèm thời điểm. Có thể xác nhận ngay bằng mắt là nối với bản ghi nào.
+
+<b>Ở dòng hủy hiển thị kèm số tiền của đơn mua gốc.</b> Số tiền đến theo đơn hủy là giá sản phẩm chính nên có thể khác số tiền người dùng thực trả. Đặt hai giá trị cạnh nhau thì thấy ngay chênh lệch.
+
+Nếu chỉ một trong ba sản phẩm bị hủy thì dấu hiệu <b>chỉ gắn vào đúng dòng sản phẩm đó</b>. Cả đơn hàng không bị coi là đã hủy.
+
+Màn hình này chỉ làm đến mức hiển thị nối. Không tính số tiền thu hồi.</span></span></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">화면 실측 예: 2026-09-07 10:44:37 취소(orderId 8354194650158105, 상품번호 8942873592)가 같은 날 10:40:58 구매와 이어집니다. 취소로 온 금액은 29,900, 원 구매 금액은 26,910입니다. 환수 계산 규칙은 「개발 가이드 · 포스트백 처리」 4절에 있습니다.</span><span class="vi">Ví dụ đo trên màn hình: bản ghi hủy 10:44:37 ngày 07/09/2026 (orderId 8354194650158105, số sản phẩm 8942873592) nối với đơn mua 10:40:58 cùng ngày. Số tiền theo đơn hủy là 29.900, số tiền đơn mua gốc là 26.910. Quy tắc tính thu hồi xem mục 4 của 「Hướng dẫn phát triển · Xử lý postback」.</span></span></div></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">5. 찾기</span><span class="vi">5. Tìm kiếm</span></span></h2>
+<div class="qa"><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt" style="flex:1;min-width:0"><span class="i18n"><span class="ko"><b>탭마다 자기 검색칸과 자기 거르개를 갖습니다.</b> 한쪽에서 거른 것이 다른 쪽에 영향을 주지 않습니다.
+
+쿠팡은 구매·취소로 거릅니다. 링크프라이스는 머천트로 거릅니다. 거르개의 기본값은 「전체」입니다.
+
+찾는 대상은 아래와 같습니다.</span><span class="vi"><b>Mỗi tab có ô tìm kiếm và bộ lọc riêng.</b> Lọc ở bên này không ảnh hưởng đến bên kia.
+
+Coupang lọc theo mua·hủy. LinkPrice lọc theo merchant. Giá trị mặc định của bộ lọc là 「Tất cả」.
+
+Phạm vi tìm kiếm như dưới đây.</span></span></div></div></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">탭별 찾기 대상</span><span class="vi">Phạm vi tìm theo tab</span></span></h3>
+<div class="tblwrap"><table class="tbl"><thead><tr><th style="width:22%"><span class="i18n"><span class="ko">탭</span><span class="vi">Tab</span></span></th><th><span class="i18n"><span class="ko">검색으로 찾는 값</span><span class="vi">Giá trị tìm bằng ô tìm kiếm</span></span></th><th style="width:24%"><span class="i18n"><span class="ko">거르개</span><span class="vi">Bộ lọc</span></span></th></tr></thead><tbody>
+<tr><td><span class="i18n"><span class="ko">쿠팡</span><span class="vi">Coupang</span></span></td><td class="new">orderId · subid · subparam · 상품번호 · productName</td><td class="new">purchase_cancel</td></tr>
+<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td class="new">merchant_id · order_code · product_code · affiliate_user_id · trlog_id · uniq_id</td><td class="new">merchant_id</td></tr>
+</tbody></table></div>
+
+<h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">링크프라이스 탭 — 접힌 목록과 펼친 모습</span><span class="vi">Tab LinkPrice — danh sách thu gọn và khi mở ra</span></span></h3>
+<div class="thumbs"><button class="q-thumb" type="button" style="max-width:100%" onclick="lbOpen('/devqa/assets/20260907-postback/postback-a-linkprice.png','링크프라이스 탭')">
+<img src="/devqa/assets/20260907-postback/postback-a-linkprice.png" alt="링크프라이스 탭" onerror="this.closest('.q-thumb').style.display='none'">
+<span class="q-thumb-cap"><span class="i18n"><span class="ko">링크프라이스 탭 · 펼치면 16개 값이 전부 (누르면 크게)</span><span class="vi">Tab LinkPrice · mở ra là đủ 16 giá trị (bấm để phóng to)</span></span></span></button></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">6. 이 화면에 넣지 않는 것</span><span class="vi">6. Những gì không đưa vào màn hình này</span></span></h2>
+<div class="qa"><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt" style="flex:1;min-width:0"><span class="i18n"><span class="ko"><b>받은 값 말고는 아무것도 넣지 않습니다.</b>
+
+제휴 수수료 매출, 환수 예정액, 적립 예정 포인트, 우리가 판정한 상태 — 전부 이 화면에 두지 않습니다. 그런 숫자는 각자 담당 화면에서 다룹니다.
+
+설명 문구도 두지 않습니다. 화면에 남는 글자는 컬럼 이름, 필드명, 값, 개수뿐입니다. 설명이 필요하면 화면 위 「포스트백 로그 Notice」 안으로 들어갑니다.</span><span class="vi"><b>Ngoài giá trị nhận được thì không đưa gì thêm vào.</b>
+
+Doanh thu hoa hồng, số tiền dự kiến thu hồi, điểm dự kiến tích lũy, trạng thái do ta phán định — tất cả đều không đặt ở màn hình này. Những con số đó được xử lý ở màn hình phụ trách riêng.
+
+Cũng không đặt câu chữ giải thích. Chữ còn lại trên màn hình chỉ là tên cột, tên trường, giá trị và số lượng. Nếu cần giải thích thì đưa vào 「Nhật ký Postback Notice」 ở phía trên màn hình.</span></span></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 스토리보드 · 포스트백 로그 · 2026-09-07 · 화면 실측 기준</span><span class="vi">PricePick · Storyboard · Nhật ký Postback · 07/09/2026 · Theo đo trực tiếp trên màn hình</span></span></div></div>
+
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+
+</script>
+</body></html>
