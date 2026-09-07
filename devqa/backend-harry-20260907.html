@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 백엔드 질문 답변 #15 · Harry · 2026-09-07</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.atxt code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.4px;background:var(--pp-l);color:var(--pp-d);padding:1px 5px;border-radius:4px}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box a{color:var(--pp-d);font-weight:700}
+.ref-box code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.4px;background:#e9eaef;padding:1px 5px;border-radius:4px}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.srclink{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:8px;text-decoration:none;font-weight:600;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.q-thumb{display:inline-flex;flex-direction:column;gap:5px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:zoom-in;max-width:320px;text-align:left}
+.q-thumb img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.q-thumb-cap{font-size:10.5px;color:var(--ink3);font-weight:700}
+.lb{display:none;position:fixed;inset:0;z-index:200}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:rgba(31,35,48,.78)}
+.lb-card{position:relative;max-width:92vw;margin:6vh auto 0;display:flex;flex-direction:column;align-items:center}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
+.lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 백엔드 질문 답변 #15</span><span class="vi">PricePick Trả lời câu hỏi Backend #15</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry · Backend · 포스트백 로그 — 쿠팡 「회원(subid)」 칸의 출처 · 링크프라이스 다중 상품 테스트 시점 · 질문 2건 · 답변 KO/VI</span><span class="vi">Harry · Backend · Nhật ký Postback — nguồn giá trị của cột 「Thành viên (subid)」 ở Coupang · thời điểm test đơn nhiều sản phẩm của LinkPrice · 2 câu hỏi · Trả lời KO/VI</span></span></div>
+<a class="srclink" href="https://app.notion.com/p/PricePick-C-u-h-i-2026-09-07-3d486f66c224803e9224d2f9033039e1" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 질문 보기 (Notion) ↗</span><span class="vi">Xem câu hỏi gốc (Notion) ↗</span></span></a></div></header>
+
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 2건</span><span class="vi">2 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 2</span><span class="vi">2 trả lời đã chốt</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장 확정 2026-09-07</span><span class="vi">Căn cứ: Mr Mark chốt ngày 07/09/2026</span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi là bản tóm tắt · bản gốc ở liên kết Notion</span></span></span></div>
+
+<!-- ==================== Q1 : 쿠팡 탭 회원(subid) 칸 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1.1. 포스트백 로그 — 쿠팡 「회원(subid)」 칸</span><span class="vi">1.1. Nhật ký Postback — cột 「Thành viên (subid)」 ở Coupang</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">쿠팡 API는 <code>https://api.adsplash.net/cou/reco_link.php?code=sleepIfUCanSTG&amp;click_type=2&amp;adid=&amp;click_id=</code> 로 호출되고 있습니다. 위 화면의 「회원」 칸에 찍힌 값은 <code>sleepIfUCanSTG</code>, 즉 쿠팡 API url의 <code>code</code> 값과 같습니다.
+그러면 그 「회원」 칸은 호출할 때 쓴 url의 <code>code</code> 값을 그대로 가져오는 것입니까, 아니면 DB에 있는 회원의 닉네임(또는 식별 아이디)을 가져오는 것입니까?</span><span class="vi">Api Coupang đang được gọi với url: <code>https://api.adsplash.net/cou/reco_link.php?code=sleepIfUCanSTG&amp;click_type=2&amp;adid=&amp;click_id=</code>
+Cột thành viên trong hình trên có dữ liệu là: <code>sleepIfUCanSTG</code>. Đó chính giá trị <code>code</code> trong Coupang API url.
+Câu hỏi: Vậy cột thành viên đó lấy giá trị từ <code>code</code> trong Coupang Api url khi gọi hay là lấy giá trị từ nickname (hoặc identified_id) của user trong database?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="thumbs"><button class="q-thumb" type="button" onclick="lbOpen('/devqa/assets/20260907-harry/harry-q-postback-coupang-subid.png','Harry 첨부 — 포스트백 로그 쿠팡 탭, 「회원(subid)」 칸')"><img src="/devqa/assets/20260907-harry/harry-q-postback-coupang-subid.png" alt="포스트백 로그 쿠팡 탭, 회원(subid) 칸" onerror="this.closest('.q-thumb').style.display='none'"><span class="q-thumb-cap"><span class="i18n"><span class="ko">Harry 첨부 — 포스트백 로그 쿠팡 탭, 「회원(subid)」 칸</span><span class="vi">Harry đính kèm — Nhật ký Postback tab Coupang, cột 「Thành viên (subid)」</span></span></span></button></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>쿠팡 API에 실려 나가는 아이디를 그대로 넣습니다.</b> url의 <code>code</code>(= <code>subid</code>) 값입니다.
+
+DB의 닉네임이나 식별 아이디를 끌어오는 것이 아닙니다.</span><span class="vi"><b>Cột đó lấy đúng ID được gửi đi trong Coupang API.</b> Là giá trị <code>code</code> (= <code>subid</code>) trong url.
+
+Không lấy biệt danh hay ID định danh của user trong database.</span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">칸 머리글이 「회원」이고 그 아래 작은 글씨가 <code>subid</code>인 것이 이 뜻입니다. 줄을 펼치면 나오는 <code>subid</code> 조각도 같은 값입니다.</span><span class="vi">Tiêu đề cột là 「Thành viên」 và dòng chữ nhỏ bên dưới là <code>subid</code> — đó chính là ý này. Mảnh <code>subid</code> hiện ra khi mở rộng dòng cũng là cùng một giá trị.</span></span></div></div>
+
+<!-- ==================== Q2 : 링크프라이스 다중 상품 테스트 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1.2. 링크프라이스 — 단일 · 다중 상품 주문 테스트</span><span class="vi">1.2. LinkPrice — test đơn một sản phẩm · nhiều sản phẩm</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">링크프라이스는 G마켓 단일 상품 주문 한 경우만 테스트했습니다. 단일 상품 주문과 다중 상품 주문 두 경우를 같이 테스트해서 포스트백 데이터가 실제로 어떻게 오는지 확인해야 한다고 봅니다. 정확히 알아야 DB 구조를 정확하게 잡을 수 있습니다.</span><span class="vi">Chúng ta chỉ mới test LinkPrice cho 1 trường hợp Gmarket cho đơn hàng 1 sản phẩm.
+Tôi nghĩ chúng ta cần cùng test lại cho các trường hợp: đặt hàng với đơn hàng 1 sản phẩm, đặt hàng với đơn hàng nhiều sản phẩm.
+Để có thể xem chi tiết postback data trả về như thế nào cho 2 trường hợp trên. Biết chính xác postback data trả về cho các trường hợp để có thể cấu trúc database chính xác.</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>지금 바로 하지 않아도 됩니다. 쿠팡 먼저 합니다.</b>
+
+링크프라이스 다중 상품 주문 테스트는 뒤로 미룹니다.</span><span class="vi"><b>Chưa cần làm ngay. Làm Coupang trước.</b>
+
+Phần test đơn nhiều sản phẩm của LinkPrice để lại sau.</span></span></div></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 백엔드 질문 답변 #15 · Harry · 2026-09-07 · 확정 2 / 확인 필요 0</span><span class="vi">PricePick · Trả lời câu hỏi Backend #15 · Harry · 07/09/2026 · Đã chốt 2 / Cần xác nhận 0</span></span></div></div>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="첨부 이미지"><div class="lb-bg" data-lbclose></div><div class="lb-card"><button class="lb-x" type="button" data-lbclose aria-label="Close">&times;</button><img class="lb-img" id="lb-img" src="" alt=""></div></div>
+<script>
+function lbOpen(src,alt){var lb=document.getElementById('lightbox');var im=document.getElementById('lb-img');im.src=src;im.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose(){var lb=document.getElementById('lightbox');lb.classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target.hasAttribute('data-lbclose'))lbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))lbClose();});
+</script>
+</body></html>
