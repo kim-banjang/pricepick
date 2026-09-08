@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 앱 답변 · John · 2026-09-08</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+h3.sub{font-size:13px;color:var(--ink1);margin:16px 0 6px}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.bd.ck{background:#fdf1e3;color:var(--ck)}
+.bd.hold{background:#eef0f4;color:var(--hold)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box a{color:var(--pp-d);font-weight:700}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px;border:1px solid rgba(0,0,0,.06)}
+.chipbadge{display:inline-block;padding:3px 8px;border-radius:7px;font-size:12px;font-weight:400;white-space:nowrap}
+.hex{font-variant-numeric:tabular-nums;font-size:11.6px;color:var(--ink2);white-space:nowrap}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+.prop{background:#fff;border:1px solid var(--line);border-left:3px solid var(--pp);border-radius:10px;padding:11px 14px;margin-top:10px;font-size:12.8px;color:var(--ink2)}
+.prop .pt{font-size:12px;font-weight:800;color:var(--pp-d);display:block;margin-bottom:4px}
+.prop b{color:var(--ink1)}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="wraphdr" style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 앱 답변 · John · 2026-09-08</span><span class="vi">Trả lời App PricePick · John · 08/09/2026</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">John · 앱 · 나눠 취소된 건의 취소 이력 표시 — 질문 1건 — 답변 KO/VI</span><span class="vi">John · App · Hiển thị lịch sử hủy của đơn bị hủy nhiều lần — 1 câu hỏi — Trả lời KO/VI</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건</span><span class="vi">1 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 1</span><span class="vi">Đã chốt 1</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장 확정 2026-09-08</span><span class="vi">Căn cứ: Mr Mark chốt ngày 08/09/2026</span></span></span></div>
+
+<!-- ==================== Q1 : 취소 이력 표시 ==================== -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 나눠 취소된 건의 취소 이력 표시</span><span class="vi">1. Hiển thị lịch sử hủy của đơn bị hủy nhiều lần</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">앞 답변서 2번(한 주문의 상품을 두 번 이상 나눠 취소할 때)은 아직 표시 방안이 확정되지 않은 것으로 보입니다. 여러 줄로 하면 한 화면에 다 나오지 않고 「더 보기」를 눌러야 관련 줄이 보여서 대조하기 어렵습니다.
+
+(원문) Ở câu 2. 한 주문의 상품을 두 번 이상 나눠 취소할 때 trong QnA https://pricepick.vercel.app/devqa/app-john-20260907.html vẫn chưa chốt phương án hiển thị, ở phương án hiện làm nhiều dòng thì có thể không hiển thị hết được 1 lần mà phải ấn nút xem thêm thì user mới thấy tiếp được dòng liên quan để đối chiếu</span><span class="vi">Ở câu 2. 한 주문의 상품을 두 번 이상 나눠 취소할 때 trong QnA https://pricepick.vercel.app/devqa/app-john-20260907.html vẫn chưa chốt phương án hiển thị, ở phương án hiện làm nhiều dòng thì có thể không hiển thị hết được 1 lần mà phải ấn nút xem thêm thì user mới thấy tiếp được dòng liên quan để đối chiếu</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>표시 방안은 확정됐습니다. 취소가 일어난 회차마다 줄을 하나씩 남깁니다</b>(2026-09-08 확정). 보고 계신 것은 갱신 전 판이니 <a href="/devqa/app-john-20260907.html">앞 답변서</a>를 다시 보십시오.
+
+<b>같은 구매에서 나온 줄은 한 덩어리로 붙입니다.</b> 원 구매 줄 바로 아래에 그 구매의 취소 줄이 따라붙고, 목록이 끊기거나 「더 보기」로 나뉠 때 그 덩어리는 갈라지지 않습니다.</span><span class="vi"><b>Phương án hiển thị đã được chốt. Mỗi lần hủy để lại một dòng</b> (chốt ngày 08/09/2026). Bản anh đang xem là bản trước khi cập nhật, xin xem lại <a href="/devqa/app-john-20260907.html">bản trả lời trước</a>.
+
+<b>Các dòng phát sinh từ cùng một đơn mua được gắn thành một khối.</b> Ngay dưới dòng đơn mua gốc là các dòng hủy của đơn đó, và khi danh sách bị cắt hoặc chia bởi 「Xem thêm」 thì khối đó không bị tách rời.</span></span></div></div>
+
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">확정 근거 — <a href="/devqa/app-john-20260907.html">앱 답변 · John · 2026-09-07</a> 2번 항목. 「나. 정해지지 않은 것」과 제안 두 안은 걷어냈고, 「취소 이력 줄 수」가 확정 항목으로 들어가 있습니다.
+줄 하나에 적는 것 — 날짜 · 구매 취소 · 환수 장수. 보기: 2026.08.15 · 구매 취소 · 2장 환수 / 2026.08.20 · 구매 취소 · 1장 환수.
+화면 — 앱 「마이 → 내 티켓 &amp; 포인트」 → 티켓 적립 내역.</span><span class="vi">Căn cứ chốt — mục 2 của <a href="/devqa/app-john-20260907.html">Trả lời App · John · 07/09/2026</a>. Phần 「B. Chưa chốt」 và hai phương án đề xuất đã được gỡ, và 「Số dòng lịch sử hủy」 đã được đưa vào như một mục đã chốt.
+Nội dung ghi trên một dòng — ngày · hủy mua · số vé thu hồi. Ví dụ: 15.08.2026 · Hủy mua · thu hồi 2 vé / 20.08.2026 · Hủy mua · thu hồi 1 vé.
+Màn hình — App 「Của tôi → Vé &amp; Điểm của tôi」 → Lịch sử tích lũy vé.</span></span></div></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 앱 답변 · John · 2026-09-08 · 확정 1</span><span class="vi">PricePick · Trả lời App · John · 08/09/2026 · Đã chốt 1</span></span></div></div>
+</body></html>
