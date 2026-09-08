@@ -89,16 +89,14 @@ Không có con số chính sách nào thay đổi. Đây là việc ghi rõ tron
 
 <h2 class="grp"><span class="i18n"><span class="ko">2. 개발 전에 알고 계셔야 할 것 둘</span><span class="vi">2. Hai điều cần nắm trước khi làm</span></span></h2>
 
-<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">쿠팡이 주문번호·상품번호를 보내 줍니다 <span style="font-weight:400">(2026-09-08 정정)</span></span><span class="vi">Coupang có gửi số đơn hàng·mã sản phẩm <span style="font-weight:400">(đính chính 08/09/2026)</span></span></span></span><span class="i18n"><span class="ko"><b>2026-09-08 정정 — 이 대목은 「쿠팡은 주문번호가 오지 않습니다」였습니다.</b> 쿠팡이 <b>주문번호(orderId)</b>와 <b>상품 정보(order_detail)</b>를 보내 주는 것을 확인해 걷어냈습니다. 주문과 취소는 <b>orderId</b>로 잇고, 그 주문 안에서 <b>productId</b>로 상품을 가립니다. 수수료 금액이 오지 않는 것은 그대로입니다.</span><span class="vi"><b>Đính chính 08/09/2026 — mục này vốn là 「Coupang không gửi số đơn hàng」.</b> Đã xác nhận Coupang có gửi <b>số đơn hàng (orderId)</b> và <b>thông tin sản phẩm (order_detail)</b> nên đã gỡ bỏ. Nối đơn hàng với hủy đơn bằng <b>orderId</b>, và phân biệt sản phẩm trong đơn đó bằng <b>productId</b>. Việc không gửi số tiền hoa hồng vẫn giữ nguyên.</span></span></div>
+<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">쿠팡은 주문번호가 오지 않습니다</span><span class="vi">Coupang không gửi số đơn hàng</span></span></span><span class="i18n"><span class="ko">쿠팡이 보내 주는 값에 <b>주문번호가 없습니다.</b> 주문과 취소를 이어 주는 값은 <b>클릭 식별자 하나뿐</b>입니다. 주문번호로 맞춰 보는 설계를 하시면 나중에 통째로 다시 짜야 합니다.</span><span class="vi">Trong các giá trị Coupang gửi <b>không có số đơn hàng.</b> Giá trị nối đơn hàng với hủy đơn <b>chỉ có mã định danh lượt nhấp.</b> Nếu thiết kế theo hướng đối chiếu bằng số đơn hàng thì sau này phải làm lại từ đầu.</span></span></div>
 
-<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">쿠팡</span><span class="vi">Coupang</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">쿠팡은 주문과 취소를 모두 보내 주고, 주문번호(orderId)와 상품 정보(order_detail)도 함께 옵니다. <b>(2026-09-08 정정)</b></span><span class="vi">Coupang gửi cả đơn hàng lẫn hủy đơn, và số đơn hàng (orderId) cùng thông tin sản phẩm (order_detail) cũng được gửi kèm. <b>(đính chính 08/09/2026)</b></span></span></div><span class="bd ck"><span class="i18n"><span class="ko">주의</span><span class="vi">Lưu ý</span></span></span></div>
-<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>2026-09-08 정정.</b> 아래는 「쿠팡은 주문을 가리키는 이름이 없다」를 전제로 쓴 대목이었습니다. 쿠팡이 주문번호·상품 정보를 보내 주는 것이 확인되어 그 전제를 걷어냅니다.
+<div class="qa"><div class="qrow"><span class="qno"><span class="i18n"><span class="ko">쿠팡</span><span class="vi">Coupang</span></span></span><div class="qtxt"><span class="i18n"><span class="ko">쿠팡은 주문과 취소를 모두 보내 주지만, 주문번호가 없습니다.</span><span class="vi">Coupang gửi cả đơn hàng lẫn hủy đơn, nhưng không có số đơn hàng.</span></span></div><span class="bd ck"><span class="i18n"><span class="ko">주의</span><span class="vi">Lưu ý</span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">쿠팡은 주문이 생겼을 때와 취소됐을 때를 모두 알려 줍니다. 그 점은 편합니다.
 
-쿠팡은 주문이 생겼을 때와 취소됐을 때를 모두 알려 줍니다. 오는 값에 <b>주문번호(orderId)</b>와 <b>상품 정보(order_detail — 상품번호·상품명·금액·수량)</b>가 함께 들어옵니다. <b>수수료 금액은 오지 않습니다.</b>
+문제는 주문을 가리키는 이름이 없다는 것입니다. 오는 값은 <b>클릭 한 건을 가리키는 식별자</b>와 주문인지 취소인지, 시각, 금액이 전부입니다. 상품 정보도, 수수료 금액도 오지 않습니다.
 
-취소가 들어오면 <b>같은 orderId의 원 구매를 찾고, 그 주문 안에서 productId로 상품을 가립니다.</b></span><span class="vi"><b>Đính chính 08/09/2026.</b> Đoạn dưới vốn viết theo tiền đề 「Coupang không có tên gọi để chỉ ra đơn hàng」. Đã xác nhận Coupang gửi số đơn hàng·thông tin sản phẩm nên gỡ bỏ tiền đề đó.
-
-Coupang báo cả khi phát sinh đơn hàng lẫn khi bị hủy.
+그래서 취소가 들어왔을 때 어느 주문의 취소인지는 클릭 식별자로 되짚는 수밖에 없습니다.</span><span class="vi">Coupang báo cả khi phát sinh đơn hàng lẫn khi bị hủy. Điểm đó thì tiện.
 
 Vấn đề là không có tên gọi để chỉ ra đơn hàng. Các giá trị nhận được chỉ gồm <b>mã định danh chỉ một lượt nhấp</b>, là mua hay hủy, thời điểm và số tiền. Thông tin sản phẩm và số tiền hoa hồng đều không được gửi.
 

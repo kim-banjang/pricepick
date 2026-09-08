@@ -115,27 +115,31 @@ Bên cạnh tiêu đề bảng ghi nhỏ đó là bên nào — Coupang ghi <b>�
 
 Cấu tạo cột và bề rộng cột của hai bảng phải giống nhau. Đây là bảng đặt trên dưới để đọc nối nhau, nếu cột lệch thì không so sánh được.</span></span></div></div>
 
-<h2 class="grp hide"><span class="i18n"><span class="ko">3. 쿠팡이 주문번호·상품번호를 보내 줍니다</span><span class="vi">3. Coupang có gửi số đơn hàng·mã sản phẩm</span></span></h2>
+<h2 class="grp hide"><span class="i18n"><span class="ko">3. 쿠팡은 주문번호가 오지 않습니다</span><span class="vi">3. Coupang không gửi số đơn hàng</span></span></h2>
 
-<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">2026-09-08 정정</span><span class="vi">Đính chính 08/09/2026</span></span></span><span class="i18n"><span class="ko"><b>이 절은 「쿠팡은 주문번호가 오지 않습니다」였습니다.</b> 쿠팡이 <b>주문번호(orderId)</b>와 <b>상품 정보(order_detail)</b>를 보내 주는 것이 확인되어 그 전제를 걷어냅니다. 아래 첫째 항목도 함께 고쳤습니다. 수수료 금액이 오지 않는 것은 그대로입니다.</span><span class="vi"><b>Mục này vốn là 「Coupang không gửi số đơn hàng」.</b> Đã xác nhận Coupang gửi <b>số đơn hàng (orderId)</b> và <b>thông tin sản phẩm (order_detail)</b> nên gỡ bỏ tiền đề đó. Mục thứ nhất bên dưới cũng đã sửa theo. Việc không gửi số tiền hoa hồng vẫn giữ nguyên.</span></span></div>
+<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">먼저 아셔야 할 것</span><span class="vi">Điều cần nắm trước</span></span></span><span class="i18n"><span class="ko">쿠팡이 보내 주는 값에 <b>주문번호가 없습니다.</b> 비어 있는 것도, 아직 안 온 것도 아닙니다 — <b>애초에 받을 수 없는 값</b>입니다. 주문번호가 언젠가 채워질 것을 전제로 화면을 만드시면 안 됩니다.</span><span class="vi">Trong dữ liệu Coupang gửi <b>không có số đơn hàng.</b> Không phải để trống, cũng không phải chưa về — <b>vốn dĩ là giá trị không thể nhận được.</b> Không được dựng màn hình với tiền đề rằng số đơn hàng rồi sẽ được điền vào.</span></span></div>
 
 <div class="qa"><div class="atxt"><span class="i18n"><span class="ko">화면에서는 이렇게 합니다.
 
-<b>첫째, 건별 내역의 주문번호 칸에는 받은 주문번호를 그대로 적습니다.</b> 그 옆에 상품번호 칸을 둡니다 — 쿠팡은 productid, 링크프라이스는 product_code 자리입니다. (2026-09-08 정정 — 전에는 「쿠팡 미제공」이라고 적도록 했습니다.)
+<b>첫째, 건별 내역의 주문번호 칸에는 「쿠팡 미제공」이라고 적습니다.</b> 「—」 한 글자로 두면 자료가 없는 것인지 아직 안 온 것인지 구분이 안 됩니다. 없는 까닭을 그 자리에 적는 것이지, 번호를 지어내 채우는 것이 아닙니다.
 
 <b>둘째, 주문 건수는 결제 건 하나를 주문 한 건으로 셉니다.</b> 김반장 확정입니다. 주문번호가 없는 것과 건수를 셀 수 없는 것은 다른 얘기입니다 — 건수는 셉니다.
 
 <b>셋째, 금액은 그대로 맞습니다.</b> 거래액과 수수료는 총액으로 들어오므로 쿠팡 표의 금액을 의심하실 필요가 없습니다.
 
-건별 내역의 찾기도 이에 맞춥니다. <b>주문번호·상품번호·회원을 한 칸으로 찾고, 쿠팡도 번호로 걸립니다.</b> (2026-09-08 정정 — 전에는 「주문번호로 찾을 때는 쿠팡이 나오지 않습니다」였습니다.)</span><span class="vi">Trên màn hình thì làm như sau.
+건별 내역의 찾기도 이에 맞춥니다. <b>주문번호로 찾을 때는 쿠팡이 나오지 않습니다</b> — 없는 번호에 걸려 나오면 「쿠팡도 번호가 있나 보다」로 잘못 읽힙니다. <b>회원으로 찾을 때는 쿠팡도 나와야 합니다</b> — 대조하실 기준은 쓰는 사람이지 몰이 아닙니다.
 
-<b>Thứ nhất, ở cột số đơn hàng của Chi tiết từng đơn ghi nguyên số đơn hàng nhận được.</b> Bên cạnh đặt thêm cột mã sản phẩm — Coupang là productid, LinkPrice là product_code. (đính chính 08/09/2026 — trước đây ghi 「Coupang không cung cấp」.)
+쿠팡 표 아래에는 이 사정을 한 줄로 적어 둡니다. 표만 보고 「건수가 왜 이러냐」고 되묻지 않도록.</span><span class="vi">Trên màn hình thì làm như sau.
+
+<b>Thứ nhất, ở cột số đơn hàng của Chi tiết từng đơn ghi 「Coupang không cung cấp」.</b> Để một dấu 「—」 thì không phân biệt được là không có dữ liệu hay là chưa về. Đây là ghi lý do vì sao không có, chứ không phải bịa ra số để điền.
 
 <b>Thứ hai, số đơn được đếm theo mỗi giao dịch thanh toán là một đơn.</b> Người quản lý đã chốt. Không có số đơn hàng và không đếm được số đơn là hai chuyện khác nhau — số đơn thì vẫn đếm.
 
 <b>Thứ ba, số tiền thì vẫn đúng nguyên.</b> Giá trị giao dịch và hoa hồng vào theo tổng nên không cần nghi ngờ số tiền ở bảng Coupang.
 
-Tìm kiếm ở Chi tiết từng đơn cũng theo đúng như vậy. <b>Một ô tìm cả số đơn hàng·mã sản phẩm·hội viên, và Coupang cũng khớp khi tìm bằng số.</b> (đính chính 08/09/2026 — trước đây là 「Khi tìm bằng số đơn hàng thì Coupang không hiện ra」.)</span></span></div>
+Tìm kiếm ở Chi tiết từng đơn cũng theo đúng như vậy. <b>Khi tìm bằng số đơn hàng thì Coupang không hiện ra</b> — nếu hiện ra theo một số vốn không tồn tại thì sẽ bị đọc nhầm thành 「hóa ra Coupang cũng có số đơn」. <b>Khi tìm bằng hội viên thì Coupang phải hiện ra</b> — tiêu chí đối chiếu là người dùng chứ không phải sàn.
+
+Dưới bảng Coupang ghi một dòng về tình hình này. Để không phải nhìn bảng rồi hỏi lại 「số đơn sao lại thế này」.</span></span></div>
 <div class="ref-box"><span class="ref-label">[참조]</span><span class="i18n"><span class="ko">쿠팡·링크프라이스가 무엇을 보내 주는지는 <a href="/devqa/postback-fields-20260827.html">포스트백 값 정리</a>와 정책 문서를 보십시오. 값은 그 두 곳에만 두고 여기에는 옮겨 적지 않습니다.</span><span class="vi">Coupang·LinkPrice gửi những gì, xin xem <a href="/devqa/postback-fields-20260827.html">Tổng hợp giá trị postback</a> và tài liệu chính sách. Các giá trị chỉ để ở hai nơi đó, không chép lại vào đây.</span></span></div></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">4. 상태는 넷입니다</span><span class="vi">4. Có bốn trạng thái</span></span></h2>
