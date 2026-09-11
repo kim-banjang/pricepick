@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 티켓 부채(상계) 로직 결정 보고서</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--warn:#e8943a;--bad:#d64545;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px 90px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.kick{font-size:11px;font-weight:800;letter-spacing:.18em;opacity:.75}
+.htitle{font-size:24px;font-weight:800;margin-top:4px} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:26px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+h3.sub{font-size:12.5px;color:var(--ink1);margin:16px 0 6px;font-weight:800}
+.decide{background:#fff;border:2px solid var(--pp);border-radius:14px;padding:16px 18px;margin-top:16px}
+.decide .dl{font-size:11px;font-weight:800;color:var(--pp-d);letter-spacing:.06em;display:block;margin-bottom:8px}
+.decide .dq{font-size:15px;font-weight:800;color:var(--ink1);margin-bottom:10px}
+.opt{border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:8px;font-size:13px;color:var(--ink2)}
+.opt.rec{border-color:var(--ok);background:#f2fbfb}
+.opt .on{font-size:12px;font-weight:800;color:var(--ink1);display:block;margin-bottom:3px}
+.opt.rec .on{color:var(--ok)}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.2px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.3px;white-space:nowrap}
+.tbl td.d{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink3)}
+.q{display:block;background:#fbfbfe;border-left:3px solid var(--pp);border-radius:6px;padding:7px 10px;font-size:12.2px;color:var(--ink1);margin-top:4px}
+.bd{display:inline-block;font-size:10.3px;font-weight:800;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)} .bd.bad{background:#fdecec;color:var(--bad)}
+.bd.hold{background:#eef0f4;color:var(--hold)} .bd.warn{background:#fdf1e3;color:var(--warn)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:10px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.note-box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+.foot{margin-top:26px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+a{color:var(--pp-d);font-weight:700}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div style="max-width:1000px;margin:0 auto;padding:0 22px"><div class="kick">POLICY DECISION</div><div class="htitle"><span class="i18n"><span class="ko">PricePick 티켓 부채(상계) 로직 결정 보고서</span><span class="vi">Báo cáo quyết định logic nợ vé (bù trừ) PricePick</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">사용 완료라 회수하지 못한 티켓을 다음 적립에서 깎는가 — 2026-06-14부터 09-11까지 문서 9건이 엇갈린 자리</span><span class="vi">Có trừ vào lần tích lũy sau phần vé đã dùng không thu hồi được hay không — điểm mâu thuẫn giữa 9 tài liệu từ 14/06/2026 đến 11/09/2026</span></span></div></div></header>
+<div class="wrap">
+<div class="meta"><span class="chip"><span class="i18n"><span class="ko">작성 2026-09-11</span><span class="vi">Lập ngày 11/09/2026</span></span></span><span class="chip"><span class="i18n"><span class="ko">엇갈린 문서 9건 · 화면 3곳</span><span class="vi">9 tài liệu mâu thuẫn · 3 màn hình</span></span></span><span class="chip"><span class="i18n"><span class="ko">발단: Huynh Huy 문의 2026-09-11</span><span class="vi">Khởi phát: Huynh Huy hỏi ngày 11/09/2026</span></span></span></div>
+
+<!-- ═══════ 결정 상자 ═══════ -->
+<div class="decide"><span class="dl"><span class="i18n"><span class="ko">김반장님이 정하실 것 — 이것 하나입니다</span><span class="vi">Điều Mr Mark cần quyết — chỉ một điều này</span></span></span>
+<div class="dq"><span class="i18n"><span class="ko">취소 확정 시, 회원이 이미 써버려서 회수하지 못한 티켓을 어떻게 합니까?</span><span class="vi">Khi xác nhận hủy, phần vé hội viên đã dùng nên không thu hồi được thì xử lý thế nào?</span></span></div>
+
+<div class="opt rec"><span class="on"><span class="i18n"><span class="ko">① 손실로 감수한다 — 추천</span><span class="vi">① Chấp nhận là tổn thất — Đề xuất</span></span></span><span class="i18n"><span class="ko">회수하지 않고 끝냅니다. 잔액은 0에서 멈추고 다음 적립에서 깎지 않습니다. <b>지금 정책서·지시서·배포된 앱 문구가 전부 이 상태이므로 회원에게 나가는 문구를 바꾸지 않아도 됩니다.</b> 개발팀은 부채·상계 코드를 걷어냅니다.</span><span class="vi">Không thu hồi, kết thúc tại đó. Số dư dừng ở 0 và không trừ vào lần tích lũy sau. <b>Tài liệu chính sách·chỉ thị·nội dung app đã phát hành hiện đều đang ở trạng thái này nên không cần đổi nội dung gửi hội viên.</b> Đội phát triển gỡ code nợ·bù trừ.</span></span></div>
+
+<div class="opt"><span class="on"><span class="i18n"><span class="ko">② 부채로 남겨 다음 적립에서 상계한다</span><span class="vi">② Ghi thành nợ và bù trừ vào lần tích lũy sau</span></span></span><span class="i18n"><span class="ko">같은 등급의 다른 티켓에서 먼저 깎고, 모자라면 음수(부채)로 기록했다가 다음 적립 때 자동 상계합니다. 앱에는 「회수 예정 N장」을 띄웁니다. <b>정책서 한 줄과 지시서 두 줄을 뒤집어야 하고, 이미 배포된 알림 문구와 앱·CMS 화면을 함께 고쳐야 합니다.</b> 개발팀 코드는 그대로 둡니다.</span><span class="vi">Trừ trước vào vé khác cùng hạng, thiếu thì ghi số âm (nợ) rồi tự bù trừ ở lần tích lũy sau. Trên app hiển thị 「회수 예정 N장」. <b>Phải lật lại một dòng ở tài liệu chính sách và hai dòng ở chỉ thị, đồng thời sửa nội dung thông báo đã phát hành cùng màn hình app·CMS.</b> Giữ nguyên code của đội phát triển.</span></span></div>
+
+<div class="note-box"><span class="i18n"><span class="ko"><b>정하시면 그다음은 제가 다 합니다.</b> 아래 5절에 어느 문서 어느 줄을 고칠지 목록으로 적어 두었습니다. 개발팀에는 「결정 전까지 코드 지우지 말고 대기」로 이미 회신했습니다.</span><span class="vi"><b>Khi đã quyết, phần còn lại tôi làm hết.</b> Mục 5 bên dưới đã liệt kê sẽ sửa dòng nào ở tài liệu nào. Đã phản hồi đội phát triển 「chưa xóa code, chờ đến khi có quyết định」.</span></span></div>
+</div>
+
+<!-- ═══════ 1. 무슨 일이 있었나 ═══════ -->
+<h2 class="grp"><span class="i18n"><span class="ko">1. 시간 순 — 언제 무엇이 뒤집혔나</span><span class="vi">1. Theo trình tự thời gian — khi nào điều gì bị lật</span></span></h2>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">날짜</span><span class="vi">Ngày</span></span></th><th><span class="i18n"><span class="ko">문서</span><span class="vi">Tài liệu</span></span></th><th><span class="i18n"><span class="ko">원문</span><span class="vi">Nguyên văn</span></span></th><th><span class="i18n"><span class="ko">노선</span><span class="vi">Hướng</span></span></th></tr>
+
+<tr><td class="d">2026-06-14</td><td><a href="/policyspec.html">정책서</a><br><span style="color:var(--ink3)"><span class="i18n"><span class="ko">어뷰징·환불 2번 카드</span><span class="vi">Gian lận·Hoàn tiền, thẻ 2</span></span></span></td><td><span class="q">확정 후 환불 — 아직 안 쓴 티켓만 환수합니다. 이미 쓴 티켓은 환수하지 않습니다 (잔액이 마이너스가 되지 않게 기록만 남김).</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">오늘까지 한 글자도 바뀌지 않았습니다.</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Đến hôm nay chưa sửa một chữ nào.</span></span></td><td><span class="bd ok"><span class="i18n"><span class="ko">손실 감수</span><span class="vi">Chấp nhận tổn thất</span></span></span></td></tr>
+
+<tr><td class="d">2026-06-18</td><td><a href="/devqa/cms-vin-20260618.html">CMS 답변 · Vin</a></td><td><span class="q">환수 부채 추적 = 이미 사용된 티켓에 취소·반품이 생겨 즉시 회수가 불가할 때 음수 잔액(부채)으로 기록하고 '다음 적립 시 자동 상계'를 기다리는 미결 추적입니다.</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">[참조] 필드: 부채 티켓 · 발생일 · 예상 상계일 · 상태</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">[Tham khảo] Trường: vé nợ · ngày phát sinh · ngày bù trừ dự kiến · trạng thái</span></span></td><td><span class="bd bad"><span class="i18n"><span class="ko">부채·상계</span><span class="vi">Nợ·bù trừ</span></span></span></td></tr>
+
+<tr><td class="d">2026-07-16</td><td><a href="/devqa/backend-harry-20260716.html">백엔드 #12</a> Q3</td><td><span class="q">확정입니다. 따로 만들지 않습니다. … 하나의 티켓 이력 화면으로 통합합니다.</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">폐지 대상은 「회수만 보는 페이지」였습니다. 부채 추적은 한마디도 없습니다.</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Đối tượng bỏ là 「trang chỉ xem thu hồi」. Không hề nhắc đến theo dõi nợ.</span></span></td><td><span class="bd hold"><span class="i18n"><span class="ko">무관</span><span class="vi">Không liên quan</span></span></span></td></tr>
+
+<tr><td class="d">2026-07-20</td><td><span class="i18n"><span class="ko">데모 CMS 커밋 35d4bb7</span><span class="vi">Commit demo CMS 35d4bb7</span></span></td><td><span class="q">cms: 환수 이력 별도 페이지 제거 — 해리 답변 #12 Q3 반영(티켓 이력 거래유형 필터로 통합)</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">이때 같은 페이지에 있던 「환수 부채 추적」 표가 <b>딸려 나갔습니다.</b> 없애기로 한 적이 없습니다.</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Lúc này bảng 「환수 부채 추적」 nằm cùng trang <b>bị gỡ theo.</b> Chưa từng có quyết định bỏ nó.</span></span></td><td><span class="bd warn"><span class="i18n"><span class="ko">사고 ①</span><span class="vi">Sự cố ①</span></span></span></td></tr>
+
+<tr><td class="d">2026-08-05</td><td><a href="/devqa/app-harry-20260805-2.html">앱 답변 · Harry (2)</a><br><span style="color:var(--ink3)"><span class="i18n"><span class="ko">이벤트 티켓 건</span><span class="vi">Vé sự kiện</span></span></span></td><td><span class="q">부족분은 회수하지 않고 손실로 감수합니다. … 마이너스 잔액을 만들지 않고, 이후 지급분에서 차감하지도 않습니다. 잔액은 항상 0 이상입니다.</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">이유: 구현 단순 · 빈도 낮음 · 1장 40원 · 반복하려면 실제 구매·반품이라 경제성 없음</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Lý do: triển khai đơn giản · tần suất thấp · 40₩/vé · muốn lặp phải mua·trả thật nên không có lợi</span></span></td><td><span class="bd ok"><span class="i18n"><span class="ko">손실 감수</span><span class="vi">Chấp nhận tổn thất</span></span></span></td></tr>
+
+<tr><td class="d">2026-08-19</td><td><a href="/reports/20260819_AccrualPolicy.html">적립 확정 정책 보고서</a> 1-7</td><td><span class="q">미사용분 — 그대로 회수한다. / 이미 사용한 경우 — 동급의 다른 티켓에서 차감한다. 차감할 티켓이 없는 경우는 3항 참조.</span></td><td><span class="bd bad"><span class="i18n"><span class="ko">부채·상계</span><span class="vi">Nợ·bù trừ</span></span></span></td></tr>
+
+<tr><td class="d">2026-08-19</td><td><span class="i18n"><span class="ko">같은 보고서 <b>3항</b></span><span class="vi">Cũng báo cáo đó, <b>mục 3</b></span></span></td><td><span class="q">김반장님 — 「그때는 loss 로 두고 새로 적립(지급) 이 될경우 선차감을 시키도록 하겠습니다.」<br>이동영 부장님은 이 경우의 처리를 확인해 보겠다고 했으며 … 김반장님도 이 부분은 더 면밀하게 확인한 뒤 적용하기로 했다.</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">보고서가 붙인 표시: <b>「확정 대기」</b> · 「극히 드문 경우」</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Nhãn báo cáo gắn: <b>「Chờ chốt」</b> · 「trường hợp rất hiếm」</span></span></td><td><span class="bd hold"><span class="i18n"><span class="ko">확정 대기</span><span class="vi">Chờ chốt</span></span></span></td></tr>
+
+<tr><td class="d">2026-08-19</td><td><a href="/devqa/backend-harry-20260819.html">백엔드 #13</a><br><span style="color:var(--ink3)"><span class="i18n"><span class="ko">같은 날 개발팀 발송</span><span class="vi">Gửi đội phát triển cùng ngày</span></span></span></td><td><span class="q">음수는 내부에 그대로 두시고, 앱 화면에는 0으로 보여주십시오. 대신 「회수 예정」 수량을 따로 보여주십시오. … <b>다음 적립 때 자동으로 상계해 주십시오.</b></span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">문서 표기: <b>「확정 2 / 확인 필요 0」</b> ← 보고서는 같은 사안을 「확정 대기」로 두었습니다</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Ghi trên tài liệu: <b>「Đã chốt 2 / Cần xác nhận 0」</b> ← báo cáo để cùng vấn đề đó là 「Chờ chốt」</span></span></td><td><span class="bd warn"><span class="i18n"><span class="ko">사고 ②</span><span class="vi">Sự cố ②</span></span></span></td></tr>
+
+<tr><td class="d">2026-08-20</td><td><a href="/devqa/app-kelvin-20260820.html">앱 답변 · Kelvin</a></td><td><span class="q">회수 예정 수량이 보이는 자리는 「내 티켓 &amp; 포인트」 한 곳입니다. … 회수 예정은 다음 적립 때 저절로 없어집니다.</span></td><td><span class="bd bad"><span class="i18n"><span class="ko">부채·상계</span><span class="vi">Nợ·bù trừ</span></span></span></td></tr>
+
+<tr><td class="d">2026-08-27</td><td><a href="/devqa/backend-harry-20260827.html">백엔드 #14</a></td><td><span class="q">사용 완료 티켓 — 회수 제외 / 잔액 음수 — 0 고정 · 미회수분 기록 유지</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">8일 전 #13을 뒤집었는데 <b>폐기 고지도 변경 기록도 없습니다.</b> 개발팀은 #13이 살아 있다고 봅니다.</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Lật lại #13 của 8 ngày trước nhưng <b>không có thông báo hủy bỏ, không có ghi chép thay đổi.</b> Đội phát triển vẫn coi #13 còn hiệu lực.</span></span></td><td><span class="bd warn"><span class="i18n"><span class="ko">사고 ③</span><span class="vi">Sự cố ③</span></span></span></td></tr>
+
+<tr><td class="d">2026-09-03<br>2026-09-04</td><td><a href="/devqa/cancel-ticket-recovery-20260903.html">취소 처리 · 티켓 환수 지시</a></td><td><span class="q">사용 완료 티켓 — 회수 제외 「유지」 / 잔액 음수 — 0 고정 · 미회수분 기록 유지 「유지」 / (8번) 미회수분(사용 완료분) 표시 제외</span></td><td><span class="bd ok"><span class="i18n"><span class="ko">손실 감수</span><span class="vi">Chấp nhận tổn thất</span></span></span></td></tr>
+
+<tr><td class="d">2026-09-11</td><td><a href="/devqa/app-john-20260911.html">앱 답변 · John</a> / <a href="/devqa/app-john-20260911-2.html">(2차)</a></td><td><span class="q">이미 사용하신 N장은 환수되지 않습니다. / (2차) 정책서와 개발 지시서 어디에도 차감 규정이 없습니다.</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">정책서·지시서만 보고 단정했습니다. <b>DevQA 답변서 3건을 뒤지지 않은 것이 이번 사고입니다.</b></span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Chỉ dựa vào tài liệu chính sách·chỉ thị rồi kết luận. <b>Sự cố lần này là đã không rà 3 bản trả lời DevQA.</b></span></span></td><td><span class="bd warn"><span class="i18n"><span class="ko">사고 ④</span><span class="vi">Sự cố ④</span></span></span></td></tr>
+</table></div>
+
+<!-- ═══════ 2. 어긋난 자리 ═══════ -->
+<h2 class="grp"><span class="i18n"><span class="ko">2. 어긋난 자리 — 양쪽 원문을 나란히</span><span class="vi">2. Điểm mâu thuẫn — đặt nguyên văn hai bên cạnh nhau</span></span></h2>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">쟁점</span><span class="vi">Vấn đề</span></span></th><th><span class="i18n"><span class="ko">손실 감수 쪽 원문</span><span class="vi">Nguyên văn phía chấp nhận tổn thất</span></span></th><th><span class="i18n"><span class="ko">부채·상계 쪽 원문</span><span class="vi">Nguyên văn phía nợ·bù trừ</span></span></th></tr>
+
+<tr><td><span class="i18n"><span class="ko"><b>A. 이미 쓴 티켓</b></span><span class="vi"><b>A. Vé đã dùng</b></span></span></td>
+<td><span class="q">이미 쓴 티켓은 환수하지 않습니다</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">정책서 (06-14 ~ 현재)</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Tài liệu chính sách (14/06 ~ nay)</span></span></td>
+<td><span class="q">동급의 다른 티켓에서 차감한다</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">보고서 1-7 · 백엔드 #13 (08-19)</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Báo cáo 1-7 · Backend #13 (19/08)</span></span></td></tr>
+
+<tr><td><span class="i18n"><span class="ko"><b>B. 「기록」이 무엇인가</b></span><span class="vi"><b>B. 「Bản ghi」 là gì</b></span></span></td>
+<td><span class="q">잔액이 마이너스가 되지 않게 기록만 남김 / 미회수분(사용 완료분) 표시 제외</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">= 더 쓰이지 않는 죽은 기록</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">= bản ghi chết, không dùng tiếp</span></span></td>
+<td><span class="q">음수 잔액(부채)으로 기록하고 '다음 적립 시 자동 상계'를 기다리는 미결 추적</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">= 살아 있는 채권. 같은 「기록」이라는 말이 정반대를 가리킵니다</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">= khoản phải thu còn sống. Cùng chữ 「bản ghi」 nhưng chỉ hai nghĩa trái ngược</span></span></td></tr>
+
+<tr><td><span class="i18n"><span class="ko"><b>C. 앱 표시</b></span><span class="vi"><b>C. Hiển thị trên app</b></span></span></td>
+<td><span class="q">2026.08.15 · 구매 취소 · 2장 환수 · 3장 사용분 제외</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">지시서 8번 (09-03) · 데모에 구현돼 있음</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Chỉ thị mục 8 (03/09) · đã có trên demo</span></span></td>
+<td><span class="q">0 회수 예정 10장</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">백엔드 #13 · Kelvin 08-20 · <b>데모에 한 번도 들어간 적 없음</b></span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Backend #13 · Kelvin 20/08 · <b>chưa từng có trên demo</b></span></span></td></tr>
+
+<tr><td><span class="i18n"><span class="ko"><b>D. 확정 상태</b></span><span class="vi"><b>D. Trạng thái chốt</b></span></span></td>
+<td><span class="q">확정 대기 — 이 경우의 처리 방식만 남았고</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">보고서 3항, 08-19</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Báo cáo mục 3, 19/08</span></span></td>
+<td><span class="q">확정 2 / 확인 필요 0</span><span class="i18n"><span class="ko" style="font-size:11.5px;color:var(--ink3)">백엔드 #13, <b>같은 날</b>. 개발팀은 이쪽만 받았습니다</span><span class="vi" style="font-size:11.5px;color:var(--ink3)">Backend #13, <b>cùng ngày</b>. Đội phát triển chỉ nhận bản này</span></span></td></tr>
+</table></div>
+
+<!-- ═══════ 3. 어디에 물려 있나 ═══════ -->
+<h2 class="grp"><span class="i18n"><span class="ko">3. 물려 있는 곳 전부</span><span class="vi">3. Toàn bộ những nơi bị ràng buộc</span></span></h2>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">자리</span><span class="vi">Vị trí</span></span></th><th><span class="i18n"><span class="ko">무엇이 들어 있나</span><span class="vi">Đang chứa gì</span></span></th><th><span class="i18n"><span class="ko">상태</span><span class="vi">Trạng thái</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">정책서 「어뷰징·환불」 2번 카드</span><span class="vi">Tài liệu chính sách, 「Gian lận·Hoàn tiền」 thẻ 2</span></span></td><td><span class="i18n"><span class="ko">「기록만 남김」 한 줄. 「부채」·「상계」라는 말은 정책서 전체에 <b>한 번도 없습니다</b></span><span class="vi">Một dòng 「chỉ lưu bản ghi」. Chữ 「nợ」·「bù trừ」 <b>chưa từng xuất hiện</b> trong toàn bộ tài liệu chính sách</span></span></td><td><span class="bd ok"><span class="i18n"><span class="ko">손실 감수</span><span class="vi">Tổn thất</span></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">DevQA 답변서 3건<br>(06-18 Vin · 08-19 #13 · 08-20 Kelvin)</span><span class="vi">3 bản trả lời DevQA<br>(18/06 Vin · 19/08 #13 · 20/08 Kelvin)</span></span></td><td><span class="i18n"><span class="ko">부채 기록 · 다음 적립 자동 상계 · 「회수 예정」 표시 · 부채 추적 필드 4종. <b>전부 「확정」으로 발송</b></span><span class="vi">Ghi nợ · tự bù trừ lần tích lũy sau · hiển thị 「회수 예정」 · 4 trường theo dõi nợ. <b>Tất cả đều phát đi ở trạng thái 「Đã chốt」</b></span></span></td><td><span class="bd bad"><span class="i18n"><span class="ko">부채·상계</span><span class="vi">Nợ·bù trừ</span></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">DevQA 답변서 3건<br>(08-27 #14 · 09-03 지시서 · 09-11 존 1·2차)</span><span class="vi">3 bản trả lời DevQA<br>(27/08 #14 · 03/09 chỉ thị · 11/09 John lần 1·2)</span></span></td><td><span class="i18n"><span class="ko">회수 제외 · 0 고정 · 「이미 사용하신 N장은 환수되지 않습니다」</span><span class="vi">Không thu hồi · cố định 0 · 「이미 사용하신 N장은 환수되지 않습니다」</span></span></td><td><span class="bd ok"><span class="i18n"><span class="ko">손실 감수</span><span class="vi">Tổn thất</span></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">앱 데모 (정본)</span><span class="vi">Demo app (bản chuẩn)</span></span></td><td><span class="i18n"><span class="ko">「N장 사용분 제외」만 있습니다. <b>「회수 예정」은 저장소 역사 전체에 0건</b> — 한 번도 만든 적이 없습니다</span><span class="vi">Chỉ có 「N장 사용분 제외」. <b>「회수 예정」 xuất hiện 0 lần trong toàn bộ lịch sử repo</b> — chưa từng được làm</span></span></td><td><span class="bd ok"><span class="i18n"><span class="ko">손실 감수</span><span class="vi">Tổn thất</span></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">CMS 데모 (정본)</span><span class="vi">Demo CMS (bản chuẩn)</span></span></td><td><span class="i18n"><span class="ko">부채 화면 <b>없음</b>. <code>loadClawback()</code> 함수만 남아 <code>#sec-clawback</code>을 찾다 실패하고 그냥 끝납니다(죽은 코드). 사전 낱말 4개(환수 부채 추적·부채 티켓·예상 상계일·상계 대기)도 고아로 남음</span><span class="vi"><b>Không có</b> màn hình nợ. Chỉ còn hàm <code>loadClawback()</code>, tìm <code>#sec-clawback</code> không thấy rồi thoát (code chết). 4 từ trong từ điển (환수 부채 추적·부채 티켓·예상 상계일·상계 대기) cũng mồ côi</span></span></td><td><span class="bd warn"><span class="i18n"><span class="ko">죽은 코드</span><span class="vi">Code chết</span></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">CMS 화면 기획안 <code>cms.html</code></span><span class="vi">Bản thiết kế màn hình CMS <code>cms.html</code></span></span></td><td><span class="i18n"><span class="ko">「관련 환수 부채」 항목과 「잔액 부족 시 음수 부채로 기록 후 다음 적립 시 자동 상계」 안내문이 <b>살아 있습니다</b></span><span class="vi">Mục 「관련 환수 부채」 và ghi chú 「잔액 부족 시 음수 부채로 기록 후 다음 적립 시 자동 상계」 <b>vẫn còn</b></span></span></td><td><span class="bd bad"><span class="i18n"><span class="ko">부채·상계</span><span class="vi">Nợ·bù trừ</span></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">개발팀 서버 코드 · DB</span><span class="vi">Code server · DB của đội phát triển</span></span></td><td><span class="i18n"><span class="ko"><b>확인 불가.</b> 우리 저장소가 아닙니다. Huy는 「로직과 DB가 꽤 많다」고만 했습니다 — 무엇이 얼마나 들어가 있는지 <b>목록을 받아야 압니다</b>(오늘 요청해 두었습니다)</span><span class="vi"><b>Không kiểm tra được.</b> Không phải repo của ta. Huy chỉ nói 「logic và DB khá nhiều」 — <b>phải nhận được danh sách mới biết</b> có gì và bao nhiêu (đã yêu cầu hôm nay)</span></span></td><td><span class="bd hold"><span class="i18n"><span class="ko">모름</span><span class="vi">Chưa rõ</span></span></span></td></tr>
+</table></div>
+
+<!-- ═══════ 4. 판단 ═══════ -->
+<h2 class="grp"><span class="i18n"><span class="ko">4. 제 판단 — ① 손실 감수를 추천드립니다</span><span class="vi">4. Nhận định của tôi — Đề xuất ① Chấp nhận tổn thất</span></span></h2>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th style="width:130px"><span class="i18n"><span class="ko">근거</span><span class="vi">Căn cứ</span></span></th><th><span class="i18n"><span class="ko">내용</span><span class="vi">Nội dung</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">① 같은 문제에 이미 답하셨습니다</span><span class="vi">① Đã từng trả lời chính vấn đề này</span></span></td><td><span class="i18n"><span class="ko">08-05 이벤트 티켓 건에서 <b>「손실로 감수 · 마이너스 잔액 안 만듦 · 이후 지급분에서 차감 안 함」</b>을 확정하셨습니다. 등급 티켓도 구조가 같은 문제입니다. 같은 상황에 서로 다른 답이 둘 있을 이유가 없습니다.</span><span class="vi">Ở vụ vé sự kiện ngày 05/08 đã chốt <b>「chấp nhận tổn thất · không tạo số dư âm · không trừ vào lượt cấp sau」</b>. Vé hạng cũng là vấn đề cùng cấu trúc. Không có lý do để cùng một tình huống lại có hai câu trả lời khác nhau.</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">② 확정된 적이 없습니다</span><span class="vi">② Vốn chưa từng được chốt</span></span></td><td><span class="i18n"><span class="ko">08-19 보고서 3항이 이 건을 <b>「확정 대기」</b>로 남기고 「더 면밀하게 확인한 뒤 적용」이라고 적었습니다. 개발팀에 확정으로 나간 것은 답변서 쪽 사고입니다. <b>확정된 적 없는 규정을 지금 정식 채택할 이유가 없습니다.</b></span><span class="vi">Mục 3 báo cáo 19/08 để vụ này ở <b>「Chờ chốt」</b> và ghi 「kiểm tra kỹ rồi mới áp dụng」. Việc phát đi cho đội phát triển như đã chốt là sự cố phía bản trả lời. <b>Không có lý do chính thức áp dụng một quy định vốn chưa từng được chốt.</b></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">③ 회원이 받아들이는 방식</span><span class="vi">③ Cách hội viên tiếp nhận</span></span></td><td><span class="i18n"><span class="ko">다 쓴 티켓을 나중에 깎으면, 회원은 <b>다음에 산 물건의 적립이 0으로 뜹니다.</b> 적립 서비스에서 「받을 게 있는데 안 들어온다」는 문의·이탈로 바로 이어집니다. Kelvin 답변이 그 위험을 알고 「회수 예정」 표시를 붙였지만, <b>표시를 붙여도 안 들어오는 사실 자체는 그대로입니다.</b></span><span class="vi">Nếu trừ sau vào phần vé đã dùng hết, hội viên sẽ thấy <b>tích lũy của đơn mua kế tiếp hiển thị 0.</b> Với một dịch vụ tích lũy, điều này dẫn thẳng tới thắc mắc·rời bỏ. Bản trả lời của Kelvin biết rủi ro đó nên thêm hiển thị 「회수 예정」, nhưng <b>có hiển thị thì việc không nhận được vẫn y nguyên.</b></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">④ 새는 금액이 작습니다</span><span class="vi">④ Khoản thất thoát nhỏ</span></span></td><td><span class="i18n"><span class="ko">티켓 1장 가치는 <b>브론즈 10원 · 실버 100원 · 골드 200원</b>입니다(정책서). 반복하려면 실제로 사고 실제로 반품해야 하는데, 승인 대기(쿠팡 연동 D+7 / 미연동 D+30, 링크프라이스 몰별 기본 30일)를 지나야 티켓을 쓸 수 있어 회전이 느립니다. <b>30일 내 환불 5건 초과 시 어뷰징 플래그</b>도 이미 걸려 있습니다.</span><span class="vi">Giá trị 1 vé là <b>Bronze 10₩ · Silver 100₩ · Gold 200₩</b> (tài liệu chính sách). Muốn lặp lại thì phải mua thật và trả hàng thật, mà phải qua thời gian chờ duyệt (Coupang liên kết D+7 / chưa liên kết D+30, LinkPrice mặc định 30 ngày theo sàn) mới dùng được vé nên vòng quay rất chậm. <b>Quá 5 lần hoàn tiền trong 30 ngày đã có cờ lạm dụng</b> sẵn.</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">⑤ 고칠 것이 적습니다</span><span class="vi">⑤ Ít thứ phải sửa</span></span></td><td><span class="i18n"><span class="ko">무엇보다 <b>회원에게 이미 나간 알림 문구를 한 글자도 바꾸지 않아도 됩니다.</b> 정책서·지시서·앱 데모가 전부 이 노선에 서 있습니다.</span><span class="vi">Quan trọng nhất là <b>không phải đổi một chữ nào trong nội dung thông báo đã gửi tới hội viên.</b> Tài liệu chính sách·chỉ thị·demo app đều đang đứng ở hướng này.</span></span></td></tr>
+</table></div>
+
+<h3 class="sub"><span class="i18n"><span class="ko">반대 근거도 따졌습니다</span><span class="vi">Đã cân nhắc cả căn cứ phản đối</span></span></h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th style="width:220px"><span class="i18n"><span class="ko">부채·상계 쪽 주장</span><span class="vi">Lập luận phía nợ·bù trừ</span></span></th><th><span class="i18n"><span class="ko">따져 보면</span><span class="vi">Xét kỹ thì</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">08-19·08-20 답변이 확정으로 나갔고 개발팀이 그것을 믿고 만들었다. 뒤집으면 신뢰가 깨진다</span><span class="vi">Bản trả lời 19/08·20/08 đã phát đi như đã chốt và đội phát triển tin theo mà làm. Lật lại sẽ mất niềm tin</span></span></td><td><span class="i18n"><span class="ko">확정으로 나간 것 자체가 보고서와 어긋난 <b>우리 쪽 사고</b>입니다. 덮고 가는 것보다 <b>어디서 어긋났는지 밝히고 정정하는 편이 신뢰를 지킵니다.</b> Huy에게 보낸 회신에 그 경위를 그대로 적었습니다.</span><span class="vi">Việc phát đi như đã chốt chính là <b>sự cố phía chúng ta</b>, lệch với báo cáo. So với che đi, <b>nói rõ lệch ở đâu rồi đính chính sẽ giữ được niềm tin hơn.</b> Tôi đã ghi đúng diễn biến đó trong bản phản hồi gửi Huy.</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">어뷰징 여지가 남는다</span><span class="vi">Vẫn còn kẽ hở lạm dụng</span></span></td><td><span class="i18n"><span class="ko">남습니다. 다만 승인 대기와 환불 5건/30일 플래그로 이미 막고 있고, 같은 판단을 08-05에 이미 하셨습니다. <b>실제로 얼마나 새는지는 실서비스 데이터가 없어 모릅니다</b> — 추측으로 채우지 않겠습니다. 운영 뒤 수치가 나오면 그때 근거를 갖고 재도입하는 편이 낫습니다.</span><span class="vi">Vẫn còn. Nhưng đã chặn bằng thời gian chờ duyệt và cờ 5 lần hoàn tiền/30 ngày, và cùng nhận định này đã đưa ra hôm 05/08. <b>Thực tế thất thoát bao nhiêu thì chưa biết vì chưa có dữ liệu vận hành thật</b> — tôi không suy đoán. Khi vận hành có số liệu thì tái áp dụng với căn cứ sẽ tốt hơn.</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">개발팀이 이미 만든 코드가 버려진다</span><span class="vi">Code đội phát triển đã làm sẽ bị bỏ</span></span></td><td><span class="i18n"><span class="ko">이미 쓴 비용이라 <b>판단 근거에서 뺐습니다.</b> 이걸 근거로 삼으면 잘못 나간 규정이 코드가 있다는 이유만으로 굳어집니다.</span><span class="vi">Đó là chi phí đã bỏ ra nên <b>tôi loại khỏi căn cứ quyết định.</b> Lấy nó làm căn cứ thì một quy định phát đi sai sẽ đóng đinh chỉ vì đã có code.</span></span></td></tr>
+</table></div>
+
+<!-- ═══════ 5. 손댈 목록 ═══════ -->
+<h2 class="grp"><span class="i18n"><span class="ko">5. 정하신 뒤 제가 손댈 곳 — 하나도 빠뜨리지 않게</span><span class="vi">5. Những chỗ tôi sẽ sửa sau khi quyết — để không sót mục nào</span></span></h2>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th style="width:50%"><span class="i18n"><span class="ko">① 손실 감수로 정하시면 (추천) — 10곳</span><span class="vi">① Nếu chọn chấp nhận tổn thất (đề xuất) — 10 chỗ</span></span></th><th><span class="i18n"><span class="ko">② 부채·상계로 정하시면 — 13곳</span><span class="vi">② Nếu chọn nợ·bù trừ — 13 chỗ</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">
+<b>문서</b><br>
+1. <code>cms-vin-20260618</code> — 「환수 부채 추적」 항목에 폐기 고지<br>
+2. <code>backend-harry-20260819</code> #13 2번 — 「회수 예정」·자동 상계 폐기 고지<br>
+3. <code>app-kelvin-20260820</code> — 「회수 예정」 전 항목 폐기 고지<br>
+4. <code>reports/20260819_AccrualPolicy</code> 1-7 · 3항 — 결론 기입, 「확정 대기」 해제<br>
+5. <code>policyspec.html</code> — 「기록만 남김」이 부채가 아님을 한 줄로 못박음<br>
+6. <code>devqa/index.html</code> 허브 요약 2줄<br>
+7. <code>app-john-20260911-2</code> — 「규정 없다」 문장을 「폐기 결정」 근거로 정정<br>
+<b>화면 · 코드</b><br>
+8. 데모 CMS — 죽은 <code>loadClawback()</code> 제거 · 고아 사전 낱말 4개 정리<br>
+9. 기획안 <code>cms.html</code> — 「관련 환수 부채」·자동 상계 안내문 삭제<br>
+10. 개발팀 — 부채·상계 코드/DB 제거 (Huy 목록 받은 뒤)<br>
+<br><b>회원 문구: 바꿀 것 없음</b></span><span class="vi">
+<b>Tài liệu</b><br>
+1. <code>cms-vin-20260618</code> — ghi thông báo hủy bỏ ở mục 「환수 부채 추적」<br>
+2. <code>backend-harry-20260819</code> #13 mục 2 — thông báo hủy 「회수 예정」·tự bù trừ<br>
+3. <code>app-kelvin-20260820</code> — thông báo hủy toàn bộ mục 「회수 예정」<br>
+4. <code>reports/20260819_AccrualPolicy</code> 1-7 · mục 3 — ghi kết luận, gỡ 「Chờ chốt」<br>
+5. <code>policyspec.html</code> — chốt một dòng rằng 「chỉ lưu bản ghi」 không phải là nợ<br>
+6. Tóm tắt 2 dòng ở <code>devqa/index.html</code><br>
+7. <code>app-john-20260911-2</code> — sửa câu 「không có quy định」 thành căn cứ 「quyết định hủy bỏ」<br>
+<b>Màn hình · code</b><br>
+8. Demo CMS — gỡ <code>loadClawback()</code> chết · dọn 4 từ điển mồ côi<br>
+9. Bản thiết kế <code>cms.html</code> — xóa 「관련 환수 부채」·ghi chú tự bù trừ<br>
+10. Đội phát triển — gỡ code/DB nợ·bù trừ (sau khi nhận danh sách của Huy)<br>
+<br><b>Nội dung gửi hội viên: không phải đổi</b></span></span></td>
+<td><span class="i18n"><span class="ko">
+<b>문서</b><br>
+1. <code>policyspec.html</code> 「어뷰징·환불」 2번 카드 — <b>정책 변경</b>. 「이미 쓴 티켓은 환수하지 않습니다」를 교체<br>
+2. <code>cancel-ticket-recovery-20260903</code> 1·4·6번 — 「회수 제외」·「0 고정」 개정<br>
+3. 같은 지시서 8번 — 화면 표시에 「회수 예정」 추가<br>
+4. <code>backend-harry-20260827</code> #14 — 같은 두 줄 개정<br>
+5. <code>reports/20260819_AccrualPolicy</code> 3항 — 「확정」으로 전환<br>
+6. <code>app-john-20260911</code> 1차 — <b>알림 문구 교체</b><br>
+7. <code>app-john-20260911-2</code> 2차 — 전면 정정<br>
+8. <code>devqa/index.html</code> 허브 요약<br>
+<b>화면 · 코드</b><br>
+9. 앱 데모 「내 티켓 &amp; 포인트」 — 「회수 예정 N장」 신설<br>
+10. 앱 데모 티켓 적립 내역 — 「N장 사용분 제외」 → 회수 예정 표기로 교체<br>
+11. 앱 데모 알림함 — 사용분 문장 교체<br>
+12. CMS 데모 — 「환수 부채 추적」 표 복원(부채 티켓·발생일·예상 상계일·상태) + <code>loadClawback()</code> 연결 · 알림 문구표 수정<br>
+13. 개발팀 — 코드 유지, 화면만 맞춤<br>
+<br><b>회원 문구: 4종 중 2종 교체</b></span><span class="vi">
+<b>Tài liệu</b><br>
+1. <code>policyspec.html</code> 「Gian lận·Hoàn tiền」 thẻ 2 — <b>thay đổi chính sách</b>. Thay dòng 「이미 쓴 티켓은 환수하지 않습니다」<br>
+2. <code>cancel-ticket-recovery-20260903</code> mục 1·4·6 — sửa 「không thu hồi」·「cố định 0」<br>
+3. Mục 8 cùng chỉ thị — thêm 「회수 예정」 vào hiển thị<br>
+4. <code>backend-harry-20260827</code> #14 — sửa hai dòng tương ứng<br>
+5. <code>reports/20260819_AccrualPolicy</code> mục 3 — chuyển thành 「Đã chốt」<br>
+6. <code>app-john-20260911</code> lần 1 — <b>thay nội dung thông báo</b><br>
+7. <code>app-john-20260911-2</code> lần 2 — đính chính toàn bộ<br>
+8. Tóm tắt ở <code>devqa/index.html</code><br>
+<b>Màn hình · code</b><br>
+9. Demo app 「Vé &amp; Điểm của tôi」 — thêm mới 「회수 예정 N장」<br>
+10. Demo app Lịch sử tích lũy vé — đổi 「N장 사용분 제외」 sang cách ghi số sẽ thu hồi<br>
+11. Demo app hộp thông báo — thay câu về phần đã dùng<br>
+12. Demo CMS — khôi phục bảng 「환수 부채 추적」 (vé nợ·ngày phát sinh·ngày bù trừ dự kiến·trạng thái) + nối <code>loadClawback()</code> · sửa bảng nội dung thông báo<br>
+13. Đội phát triển — giữ code, chỉ khớp lại màn hình<br>
+<br><b>Nội dung gửi hội viên: thay 2 trong 4 loại</b></span></span></td></tr>
+</table></div>
+
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조] — 제가 덧붙이는 것</span><span class="vi">[Tham khảo] — Phần tôi bổ sung</span></span></span><span class="i18n"><span class="ko">이번 사고의 원인 — 저는 정책서와 09-03 지시서만 읽고 「차감 규정 없다」고 단정했고, DevQA에 이미 나간 답변서를 뒤지지 않았습니다. 답을 쓰기 전에 <b>같은 주제로 나간 DevQA 답변서를 먼저 훑는 절차</b>가 없었습니다. 앞으로는 정책 질문에 답하기 전에 DevQA 전수 검색을 먼저 겁니다.
+
+재발 방지로 함께 제안드립니다 — 답변서가 보고서의 「확정 대기」 항목을 「확정」으로 내보낸 것이 사고 ②였습니다. <b>보고서에 「확정 대기」로 적힌 항목은 답변서에 확정으로 쓰지 않는 것</b>을 규칙으로 두는 편이 좋겠습니다.
+
+별건 하나 — 정책서 「이벤트 티켓 → 브론즈 전환」 절의 「브론즈 1장(100원)」은 2026-08-13 티켓 가치 1/10 조정 전 값이 남은 것입니다. 같은 문서 「티켓 1장 가치」 표는 브론즈 10원입니다. 이번 결정과 무관하지만 고쳐야 합니다.
+
+개발팀 서버 코드는 우리 저장소가 아니라 확인하지 못했습니다. 무엇이 얼마나 들어가 있는지는 <b>Huy의 회신을 받아야 알 수 있습니다.</b> 추측으로 채우지 않았습니다.</span><span class="vi">Nguyên nhân sự cố lần này — tôi chỉ đọc tài liệu chính sách và chỉ thị 03/09 rồi kết luận 「không có quy định trừ」, mà không rà các bản trả lời đã phát đi trên DevQA. Đã thiếu <b>bước rà soát trước các bản trả lời DevQA cùng chủ đề</b> trước khi viết câu trả lời. Từ nay trước khi trả lời câu hỏi chính sách, tôi sẽ tìm toàn bộ DevQA trước.
+
+Kèm đề xuất phòng tái diễn — sự cố ② là việc bản trả lời phát đi một mục đang 「Chờ chốt」 ở báo cáo như thể 「Đã chốt」. Nên đặt thành quy tắc: <b>mục nào báo cáo ghi 「Chờ chốt」 thì không được viết là đã chốt trong bản trả lời.</b>
+
+Một việc riêng — trong tài liệu chính sách, mục 「Vé sự kiện → đổi sang Bronze」 ghi 「브론즈 1장(100원)」 là giá trị còn sót từ trước đợt điều chỉnh giá trị vé 1/10 ngày 13/08/2026. Bảng 「Giá trị 1 vé」 cùng tài liệu ghi Bronze 10₩. Không liên quan quyết định lần này nhưng cần sửa.
+
+Code server của đội phát triển không thuộc repo của ta nên tôi chưa kiểm tra được. Có gì và bao nhiêu thì <b>phải nhận phản hồi của Huy mới biết.</b> Tôi không suy đoán để lấp vào.</span></span></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 티켓 부채(상계) 로직 결정 보고서 · 2026-09-11 · 엇갈린 문서 9건 · 결정 대기 1건</span><span class="vi">PricePick · Báo cáo quyết định logic nợ vé (bù trừ) · 11/09/2026 · 9 tài liệu mâu thuẫn · 1 mục chờ quyết định</span></span></div>
+</div>
+</body></html>

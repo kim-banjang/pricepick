@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 백엔드 질문 답변 #16</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--bad:#d64545;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)} .bd.hold{background:#eef0f4;color:var(--hold)}
+.bd.bad{background:#fdecec;color:var(--bad)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box a{color:var(--pp-d);font-weight:700}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.tbl td.d{white-space:nowrap;color:var(--ink3);font-variant-numeric:tabular-nums}
+.q{display:block;background:#fbfbfe;border-left:3px solid var(--pp);border-radius:6px;padding:7px 10px;font-size:12.2px;color:var(--ink1);margin-top:4px}
+.stop{background:#fff;border:2px solid var(--ck);border-radius:14px;padding:15px 18px;margin-top:16px;font-size:13.4px;color:var(--ink2)}
+.stop .st{font-size:12px;font-weight:800;color:var(--ck);letter-spacing:.05em;display:block;margin-bottom:6px}
+.stop b{color:var(--ink1)}
+.sorry{background:#fff;border:1px solid var(--line);border-left:3px solid var(--bad);border-radius:10px;padding:12px 15px;margin-top:14px;font-size:13.2px;color:var(--ink2)}
+.sorry b{color:var(--ink1)}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+a{color:var(--pp-d);font-weight:700}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 백엔드 질문 답변 #16</span><span class="vi">PricePick Trả lời câu hỏi Backend #16</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry · Backend · 티켓 빚(상계) 로직을 적용합니까 — 코드 삭제 보류 요청 · 서버 현황 목록 요청 — 답변 KO/VI</span><span class="vi">Harry · Backend · Có áp dụng logic nợ vé (bù trừ) không — đề nghị tạm dừng xóa code · yêu cầu danh sách hiện trạng server — Trả lời KO/VI</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 1건</span><span class="vi">1 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 0 · 결정 대기 1</span><span class="vi">Đã chốt 0 · chờ quyết định 1</span></span></span><span class="chip"><span class="i18n"><span class="ko">요청 1건 — 서버 현황 목록</span><span class="vi">1 yêu cầu — danh sách hiện trạng server</span></span></span></div>
+
+<div class="stop"><span class="st"><span class="i18n"><span class="ko">먼저 — 코드를 지우지 마십시오</span><span class="vi">Trước hết — xin đừng xóa code</span></span></span><span class="i18n"><span class="ko">티켓 빚 로직 코드와 DB를 <b>지우지 말고 그대로 두십시오.</b> 김반장님 결정 전입니다. 결정이 나오면 이 문서에 이어 바로 알려 드리겠습니다. <b>그때까지 이 부분은 작업하지 마시고 다른 작업을 진행해 주십시오.</b></span><span class="vi">Xin <b>giữ nguyên, đừng xóa</b> code và DB của logic nợ vé. Hiện chưa có quyết định của Mr Mark. Khi có quyết định tôi sẽ báo ngay tiếp theo tài liệu này. <b>Đến lúc đó xin đừng làm phần này, hãy tiến hành các việc khác.</b></span></span></div>
+
+<div class="sorry"><span class="i18n"><span class="ko"><b>그리고 제 앞선 답변이 틀렸습니다.</b> <a href="/devqa/app-john-20260911-2.html">존 2차 답변서</a>에 「정책서와 개발 지시서 어디에도 차감 규정이 없습니다. 지어내서 넣지 마십시오」라고 적었습니다. <b>이 문장은 잘못됐습니다.</b> 차감 규정은 있었고, 아래 답변 3건으로 개발팀에 정식으로 나갔습니다. Harry가 없는 것을 만든 것이 아닙니다 — <b>우리가 보낸 답변서대로 만드신 것이 맞습니다.</b> 제가 그 답변서들을 확인하지 않고 쓴 것이 원인입니다. 바로잡습니다.</span><span class="vi"><b>Và bản trả lời trước của tôi đã sai.</b> Ở <a href="/devqa/app-john-20260911-2.html">bản trả lời John lần 2</a> tôi đã viết 「trong tài liệu chính sách và chỉ thị phát triển không có quy định trừ. Không được tự nghĩ ra và đưa vào」. <b>Câu này là sai.</b> Quy định trừ có tồn tại, và đã được phát chính thức tới đội phát triển qua 3 bản trả lời dưới đây. Harry không hề tự tạo ra thứ không có — <b>anh đã làm đúng theo bản trả lời chúng tôi gửi.</b> Nguyên nhân là tôi viết mà không kiểm tra lại các bản trả lời đó. Tôi xin đính chính.</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 어느 로직을 적용합니까</span><span class="vi">1. Áp dụng logic nào</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">김반장님이 예전에 「티켓 빚」 로직을 말씀하셨습니다(백엔드 답변 #13). 그런데 존의 QnA 답변에서는 「차감 규정 없다」고 합니다. 결국 어느 로직을 적용합니까? 티켓 빚 부분은 로직과 DB가 꽤 많습니다. 없앨 거면 잘 생각해서 알려주십시오. 그 코드를 지우겠습니다.
+
+(원문) Mr Mark đã từng nói về logic 「ghi nợ vé」 — https://pricepick.vercel.app/devqa/backend-harry-20260819.html … Vậy cuối cùng áp dụng logic nào? Phần ghi nợ vé có khá nhiều logic và DB. Nếu bỏ thì cân nhắc kỹ rồi báo lại, tôi sẽ xóa code đó.</span><span class="vi">Mr Mark đã từng nói về logic 「ghi nợ vé」 — https://pricepick.vercel.app/devqa/backend-harry-20260819.html . Nhưng trong bản trả lời QnA của John lại nói 「không có quy định trừ」. Vậy cuối cùng áp dụng logic nào? Phần ghi nợ vé có khá nhiều logic và DB. Nếu bỏ thì cân nhắc kỹ rồi báo lại, tôi sẽ xóa code đó.</span></span></div><span class="bd hold"><span class="i18n"><span class="ko">결정 대기</span><span class="vi">Chờ quyết định</span></span></span></div>
+
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>지적이 맞습니다. 우리 문서 두 갈래가 서로 어긋나 있었습니다.</b> Harry 잘못이 아닙니다.
+
+<b>지금은 어느 쪽도 확정이 아닙니다.</b> 김반장님께 결정을 올렸고, 결정이 나오는 대로 이 문서에 이어 알려 드리겠습니다. <b>그때까지 코드를 지우지 말고 그대로 두십시오.</b>
+
+경위는 아래 표에 그대로 적었습니다. 숨기지 않겠습니다.</span><span class="vi"><b>Anh chỉ ra đúng. Hai nhánh tài liệu của chúng tôi đã mâu thuẫn nhau.</b> Không phải lỗi của Harry.
+
+<b>Hiện tại chưa bên nào được chốt.</b> Tôi đã trình quyết định lên Mr Mark, và sẽ báo ngay tiếp theo tài liệu này khi có kết quả. <b>Đến lúc đó xin giữ nguyên code, đừng xóa.</b>
+
+Diễn biến tôi ghi nguyên trong bảng dưới. Tôi không giấu.</span></span></div></div>
+</div>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">날짜</span><span class="vi">Ngày</span></span></th><th><span class="i18n"><span class="ko">문서</span><span class="vi">Tài liệu</span></span></th><th><span class="i18n"><span class="ko">무엇을 말했나</span><span class="vi">Đã nói gì</span></span></th></tr>
+<tr><td class="d">2026-06-18</td><td><a href="/devqa/cms-vin-20260618.html">CMS · Vin</a></td><td><span class="i18n"><span class="ko">「환수 부채 추적」 = 음수 잔액(부채) 기록 후 다음 적립 시 자동 상계</span><span class="vi">「환수 부채 추적」 = ghi số dư âm (nợ) rồi tự bù trừ ở lần tích lũy sau</span></span></td></tr>
+<tr><td class="d">2026-08-19</td><td><a href="/devqa/backend-harry-20260819.html">백엔드 #13</a></td><td><span class="i18n"><span class="ko">등급별 차감 · 내부 음수 유지 · 앱은 0 + 「회수 예정」 · 다음 적립 때 자동 상계</span><span class="vi">Trừ theo hạng · giữ số âm nội bộ · app hiển thị 0 + 「회수 예정」 · tự bù trừ lần tích lũy sau</span></span></td></tr>
+<tr><td class="d">2026-08-20</td><td><a href="/devqa/app-kelvin-20260820.html">앱 · Kelvin</a></td><td><span class="i18n"><span class="ko">「회수 예정」이 보이는 자리는 「내 티켓 &amp; 포인트」 한 곳</span><span class="vi">Chỉ màn 「Vé &amp; Điểm của tôi」 hiển thị 「회수 예정」</span></span></td></tr>
+<tr><td class="d">2026-08-27</td><td><a href="/devqa/backend-harry-20260827.html">백엔드 #14</a></td><td><span class="i18n"><span class="ko">사용 완료 티켓 — 회수 제외 / 잔액 음수 — 0 고정. <b>위 3건을 뒤집었는데 폐기 고지가 없었습니다</b></span><span class="vi">Vé đã dùng — không thu hồi / số dư âm — cố định 0. <b>Lật lại 3 mục trên nhưng không có thông báo hủy bỏ</b></span></span></td></tr>
+<tr><td class="d">2026-09-03</td><td><a href="/devqa/cancel-ticket-recovery-20260903.html">취소 처리 지시서</a></td><td><span class="i18n"><span class="ko">같은 기준을 「유지」로 표기</span><span class="vi">Ghi cùng tiêu chí là 「Giữ nguyên」</span></span></td></tr>
+<tr><td class="d">2026-09-11</td><td><a href="/devqa/app-john-20260911-2.html">앱 · John (2차)</a></td><td><span class="i18n"><span class="ko"><b>제 잘못.</b> 위 3건을 확인하지 않고 「차감 규정 없다」고 썼습니다</span><span class="vi"><b>Lỗi của tôi.</b> Viết 「không có quy định trừ」 mà không kiểm tra 3 mục trên</span></span></td></tr>
+</table></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 요청 — 서버에 무엇이 얼마나 들어가 있습니까</span><span class="vi">2. Yêu cầu — trên server đang có gì và bao nhiêu</span></span></h2>
+
+<div class="qa"><div class="arow" style="border-top:none;padding-top:0;margin-top:0"><span class="alabel"><span class="i18n"><span class="ko">요청</span><span class="vi">Yêu cầu</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>김반장님이 판단하시려면 서버에 무엇이 들어가 있는지 알아야 합니다.</b> 우리는 서버 코드를 볼 수 없으니 Harry가 알려 주셔야 합니다. 아래 네 가지를 <b>목록으로</b> 주십시오. 자세히 쓰실 필요 없고 <b>이름과 개수면 충분합니다.</b></span><span class="vi"><b>Để Mr Mark quyết định thì cần biết trên server đang có gì.</b> Chúng tôi không xem được code server nên cần Harry cho biết. Xin gửi <b>danh sách</b> 4 mục dưới đây. Không cần viết chi tiết, <b>chỉ cần tên và số lượng là đủ.</b></span></span></div></div></div>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">주실 것</span><span class="vi">Nội dung cần gửi</span></span></th></tr>
+<tr><td><span class="i18n"><span class="ko">① DB</span><span class="vi">① DB</span></span></td><td><span class="i18n"><span class="ko">부채·상계용 컬렉션(테이블)과 필드 이름 · 개수. 기존 컬렉션에 붙인 필드면 그것도</span><span class="vi">Tên và số lượng collection (bảng) và trường dùng cho nợ·bù trừ. Nếu là trường thêm vào collection có sẵn thì ghi cả phần đó</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">② 로직</span><span class="vi">② Logic</span></span></td><td><span class="i18n"><span class="ko">부채 적재 · 상계 · 회수 예정 계산이 들어간 함수(파일) 이름 · 개수</span><span class="vi">Tên file (hàm) và số lượng có phần nạp nợ · bù trừ · tính số sẽ thu hồi</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">③ API</span><span class="vi">③ API</span></span></td><td><span class="i18n"><span class="ko">앱·CMS에 부채 값을 내보내는 API가 있으면 그 목록</span><span class="vi">Nếu có API trả giá trị nợ ra app·CMS thì gửi danh sách đó</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">④ 쌓인 데이터</span><span class="vi">④ Dữ liệu đã tích</span></span></td><td><span class="i18n"><span class="ko">테스트 말고 <b>실제로 부채가 쌓인 건이 있습니까?</b> 있으면 몇 건입니까</span><span class="vi">Ngoài dữ liệu test, <b>đã có phát sinh nợ thật chưa?</b> Nếu có thì bao nhiêu bản ghi</span></span></td></tr>
+</table></div>
+
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">뿌리 문서 — <a href="/reports/20260819_AccrualPolicy.html">적립 확정 정책 보고서</a> 1-7항(취소 처리)과 3항(아직 확정되지 않은 것). 3항에는 「차감할 티켓이 없는 경우」가 <b>「확정 대기」</b>로 남아 있고 「더 면밀하게 확인한 뒤 적용」이라고 적혀 있습니다. 백엔드 #13은 같은 날 이 항목을 「확정」으로 내보냈습니다 — 여기서 갈라졌습니다.
+
+우리 쪽 화면 현황(참고) — 앱 데모에 「회수 예정」은 저장소 역사 전체에 한 번도 들어간 적이 없습니다. CMS 데모의 「환수 부채 추적」 표는 2026-07-20에 <b>다른 이유로</b>(회수 전용 페이지 통합) 페이지가 없어지면서 같이 사라졌고, <code>loadClawback()</code> 함수만 붙을 화면 없이 남아 있습니다.
+
+정리한 전체 경위와 두 갈래 비교는 <a href="/reports/20260911_TicketDebt.html">티켓 부채(상계) 로직 결정 보고서</a>에 있습니다.
+
+⚠️ 확인하지 못한 것 — 서버 코드·DB는 우리 저장소가 아니라 들여다볼 수 없었습니다. 위 ①~④는 <b>Harry의 회신을 받아야 알 수 있습니다.</b> 추측으로 적지 않았습니다.</span><span class="vi">Tài liệu gốc — <a href="/reports/20260819_AccrualPolicy.html">Báo cáo chính sách xác nhận tích lũy</a> mục 1-7 (xử lý hủy đơn) và mục 3 (nội dung chưa được chốt). Ở mục 3, trường hợp 「không còn vé để trừ」 vẫn đang là <b>「Chờ chốt」</b> và ghi 「kiểm tra kỹ rồi mới áp dụng」. Backend #13 cùng ngày lại phát mục này đi ở trạng thái 「Đã chốt」 — chỗ rẽ nhánh là đây.
+
+Hiện trạng màn hình phía chúng tôi (tham khảo) — 「회수 예정」 chưa từng xuất hiện lần nào trong toàn bộ lịch sử repo demo app. Bảng 「환수 부채 추적」 ở demo CMS biến mất kèm theo khi trang bị gỡ ngày 20/07/2026 <b>vì lý do khác</b> (gộp trang chỉ xem thu hồi), và chỉ còn hàm <code>loadClawback()</code> không có màn hình để gắn.
+
+Toàn bộ diễn biến và so sánh hai nhánh nằm ở <a href="/reports/20260911_TicketDebt.html">Báo cáo quyết định logic nợ vé (bù trừ)</a>.
+
+⚠️ Phần chưa kiểm chứng được — code·DB server không thuộc repo của chúng tôi nên không xem được. Các mục ①~④ ở trên <b>phải nhận phản hồi của Harry mới biết.</b> Tôi không viết theo suy đoán.</span></span></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 백엔드 질문 답변 #16 · Harry · 2026-09-11 · 확정 0 / 결정 대기 1 / 요청 1</span><span class="vi">PricePick · Trả lời câu hỏi Backend #16 · Harry · 11/09/2026 · Đã chốt 0 / Chờ quyết định 1 / Yêu cầu 1</span></span></div></div>
+</body></html>
