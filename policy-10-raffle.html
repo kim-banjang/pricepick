@@ -226,12 +226,28 @@ body.policy-sub .panel{display:block}
 .pnav a.home{background:#1f2330;color:#fff;border-color:#1f2330}
 .pnav-sep{display:none}
 .phist-t{table-layout:fixed}
-.phist-t td.hd{width:104px;white-space:nowrap;font-variant-numeric:tabular-nums;color:#7a8093;font-size:11.8px}
-.phist-t td.hi{width:30%;font-weight:700;color:#1f2330;word-break:keep-all;line-height:1.6}
-.phist-t td.hb{color:#4b5163;font-size:11.8px;line-height:1.75;word-break:keep-all}
+.phist-t td.hd{width:88px;white-space:nowrap;font-variant-numeric:tabular-nums;color:#7a8093;font-size:11px;letter-spacing:-.2px;padding-right:6px}
+.phist-t td.hi{width:24%;font-weight:700;color:#1f2330;word-break:keep-all;line-height:1.6}
+.phist-t td.hb{color:#4b5163;font-size:11.9px;line-height:1.8;word-break:keep-all}
+.phist-t th:first-child{width:88px}
 .phist-t th,.phist-t td{padding:8px 10px}
 .phist-t tr:nth-child(even) td{background:#fcfbff}
 @media(max-width:720px){.phist-t{table-layout:auto}.phist-t td.hi{width:auto}}
+/* phist-born-style */
+.phist-t tr.born td{background:#f4f1fe}
+.phist-t tr.born td.hi{color:#5b39b8}
+.phist-t code{font-size:11px;background:#efe9fd;color:#5b39b8;padding:1px 5px;border-radius:4px}
+
+/* phist-col-widths v2 */
+.phist-t{table-layout:fixed;width:100%}
+.phist-t th:nth-child(1),.phist-t td.hd{width:86px}
+.phist-t th:nth-child(2),.phist-t td.hi{width:23%}
+.phist-t th:nth-child(3),.phist-t td.hb{width:auto}
+.phist-t td.hd{font-size:11px;letter-spacing:-.2px;white-space:nowrap;color:#7a8093;font-variant-numeric:tabular-nums;padding-right:6px}
+.phist-t td.hd.nd{white-space:normal;word-break:keep-all;line-height:1.45}
+.phist-t td.hi{font-weight:700;color:#1f2330;word-break:keep-all;line-height:1.6}
+.phist-t td.hb{color:#4b5163;font-size:11.9px;line-height:1.8;word-break:keep-all}
+@media(max-width:720px){.phist-t{table-layout:auto}.phist-t th:nth-child(2),.phist-t td.hi{width:auto}}
 </style>
 </head>
 <body class="policy-sub">
@@ -267,7 +283,7 @@ body.policy-sub .panel{display:block}
 <tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
 <tr><td class="hd">2026-07-31</td><td class="hi">룰렛 개편 · 주간 경품 추첨 중단</td><td class="hb">2026-07-31 이동영 부장 수정 요청. 법적 리스크 검토에 따라 주간 경품 추첨을 중단하고 이벤트 티켓 사용처를 룰렛으로 전환.</td></tr>
 <tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 마스터 수록</td><td class="hb">정책 마스터 초판에 수록 — 이 정책은 그 전부터 결정돼 있었고, 아래 더 오래된 줄이 최초 기록입니다. (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 16 · FunctionalSpec(경품 응모) · CMS 추첨 회차</td></tr>
-<tr><td class="hd">v8 결정(날짜 미상)</td><td class="hi">이벤트 티켓 만료</td><td class="hb">이월 로직 복잡·운영 혼선 정리. 100일 고정으로 단순화 확정.</td></tr>
+<tr><td class="hd nd">v8 결정(날짜 미상)</td><td class="hi">이벤트 티켓 만료</td><td class="hb">이월 로직 복잡·운영 혼선 정리. 100일 고정으로 단순화 확정.</td></tr>
 </table><p class="phist-n">최신이 위, 가장 오래된 줄이 아래입니다. <b>맨 아래 줄이 그 정책의 최초 기록</b>이며, 「정책 마스터 수록」은 정책서 초판(2026-06-14)에 실린 날입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
 </main>
 <script src="/policy-i18n.js"></script>
