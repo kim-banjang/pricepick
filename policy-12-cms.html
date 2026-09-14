@@ -310,15 +310,15 @@ body.policy-sub .panel{display:block}
 
   <!-- 13. 정책 변경 히스토리 -->
   
-<section class="phist"><h3>변경 이력</h3><table class="phist-t"><tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<section class="phist"><h3>변경 이력</h3><table class="phist-t">
+<tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<tr><td class="hd">2026-08-24</td><td class="hi">랜덤 → 등급 전환 시기 <span class="gloss">(링크프라이스 제휴몰만)</span></td><td class="hb">링크프라이스 제휴몰은 CMS 「티켓 적립 설정」 한 곳에서 몰마다 정한다. 일수를 줄이면 이미 발급된 대기 랜덤 티켓도 소급해 앞당겨 전환된다. (김반장 확정)<br><b>2026-08-27 정정</b> — 이 줄에 「카카오 연동 분기 폐지」로 적혀 있었으나 그런 결정은 없었다. 바뀐 것은 링크프라이스 제휴몰뿐이고, <b>쿠팡은 카카오 연동 D+7 / 미연동 D+30 고정이 그대로 살아 있다</b>(CMS에서 수정 불가).</td></tr>
 <tr><td class="hd">2026-08-12</td><td class="hi">적립 규칙에서 고정 수치 제거</td><td class="hb">등급 티켓 환산가치가 1/10로 바뀌면서 「구매액 2% 고정」 전제로 쓰인 예시·문구가 앞뒤가 안 맞게 됐다. 실제로도 적립률은 제휴몰마다 달라 정책서에 특정 비율을 못 박을 수 없다. 등급별 환산가치·분배 방식(큰 단위부터 채우기)·거스름돈 처리 원칙은 그대로 유지.</td></tr>
 <tr><td class="hd">2026-08-03</td><td class="hi">구매 티켓 승인 대기 규칙 · 참여 제한 스위치</td><td class="hb">백엔드 실제 구현 확인(Harry 2026-08-03) — 구매로 발급되는 티켓은 등급·이벤트 모두 승인 대기로 발급되고 D+7/D+30 또는 구매 확정 시 승인된다. 티켓 단계에서 이미 잠기므로 CMS 설정은 중복이며 지급 흐름의 일관성을 해친다.</td></tr>
 <tr><td class="hd">2026-08-03</td><td class="hi">룰렛 슬롯 수 · JACKPOT 표기 기준 · 이벤트 티켓 일 상한</td><td class="hb">개발 3인(Kelvin·John·Harry) 동일 질문 반복의 원인이 슬롯 가변 전제였음. 칸 수 변경 수요가 없어 고정. JACKPOT은 확률이 CMS 운영값이라 가치 기준이 안정적. 일 상한은 적립 정책의 일 5건과 정합.</td></tr>
+<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 마스터 수록</td><td class="hb">정책 마스터 초판에 수록 — 이 정책은 그 전부터 결정돼 있었고, 아래 더 오래된 줄이 최초 기록입니다. (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 17 · CMS 전반 · FunctionalSpec · PolicySpec 18</td></tr>
 <tr><td class="hd">2026-06-09</td><td class="hi">등급 티켓 가치 변경 CMS</td><td class="hb">가치 단독 변경 시 차익거래·역마진 위험 → 정책 변경 마법사(연동 수정·시뮬레이션·역마진 차단·발행분 고정·권한/로그)로만 허용.</td></tr>
-<tr><td class="hd">2026-08-24</td><td class="hi">랜덤 → 등급 전환 시기 <span class="gloss">(링크프라이스 제휴몰만)</span></td><td class="hb">링크프라이스 제휴몰은 CMS 「티켓 적립 설정」 한 곳에서 몰마다 정한다. 일수를 줄이면 이미 발급된 대기 랜덤 티켓도 소급해 앞당겨 전환된다. (김반장 확정)<br><b>2026-08-27 정정</b> — 이 줄에 「카카오 연동 분기 폐지」로 적혀 있었으나 그런 결정은 없었다. 바뀐 것은 링크프라이스 제휴몰뿐이고, <b>쿠팡은 카카오 연동 D+7 / 미연동 D+30 고정이 그대로 살아 있다</b>(CMS에서 수정 불가).</td></tr>
-
-<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 최초 수립</td><td class="hb">정책 마스터 초판에 수록 (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 17 · CMS 전반 · FunctionalSpec · PolicySpec 18</td></tr>
-</table><p class="phist-n">이 정책과 관련된 이력 발췌입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
+</table><p class="phist-n">최신이 위, 가장 오래된 줄이 아래입니다. <b>맨 아래 줄이 그 정책의 최초 기록</b>이며, 「정책 마스터 수록」은 정책서 초판(2026-06-14)에 실린 날입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
 </main>
 <script src="/policy-i18n.js"></script>
 </body></html>

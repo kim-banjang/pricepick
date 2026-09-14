@@ -343,7 +343,8 @@ body.policy-sub .panel{display:block}
 
   <!-- 6. 교환·등급 -->
   
-<section class="phist"><h3>변경 이력</h3><table class="phist-t"><tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<section class="phist"><h3>변경 이력</h3><table class="phist-t">
+<tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
 <tr><td class="hd">2026-08-27</td><td class="hi">룰렛 2종 숨김 · 선물 상자 2종 대체</td><td class="hb">김반장님 확정(2026-08-27) — 구글플레이가 App Content: Gambling으로 거절해, 돌아가는 판을 화면에서 걷어내고 재등록한다. 앱은 아직 런칭 전이라 지금 바꾸는 편이 낫다.</td></tr>
 <tr><td class="hd">2026-08-13</td><td class="hi">룰렛 브론즈 슬롯 정정</td><td class="hb">김반장 확정(2026-08-13) — 브론즈가 룰렛 경품에서 완전히 빠지는 대신, 등급은 유지한 채 수량만 다른 등급 티켓처럼 ×10 해 가치를 맞췄다. 매일 행운 룰렛 2번 슬롯(2%)·잭팟 룰렛 4번 슬롯(12%)이 대상이며 CMS 화면 저장 경로로 반영해 admin_logs에 기록을 남겼다.</td></tr>
 <tr><td class="hd">2026-08-12</td><td class="hi">룰렛 표·포인트 교환 방향 정합</td><td class="hb">룰렛 표는 CMS에 저장된 실제 구성과 맞춘 것— 기대값은 매일 9.9원·잭팟 40원으로 계산상 변동 없음(억지로 맞춘 값 아님). 포인트 교환은 이미 앱에서 단방향으로 운영 중인 상태를 정책서가 못 따라가고 있었다.</td></tr>
@@ -352,12 +353,11 @@ body.policy-sub .panel{display:block}
 <tr><td class="hd">2026-08-03</td><td class="hi">룰렛 슬롯 수 · JACKPOT 표기 기준 · 이벤트 티켓 일 상한</td><td class="hb">개발 3인(Kelvin·John·Harry) 동일 질문 반복의 원인이 슬롯 가변 전제였음. 칸 수 변경 수요가 없어 고정. JACKPOT은 확률이 CMS 운영값이라 가치 기준이 안정적. 일 상한은 적립 정책의 일 5건과 정합.</td></tr>
 <tr><td class="hd">2026-07-31</td><td class="hi">룰렛 개편 · 주간 경품 추첨 중단</td><td class="hb">2026-07-31 이동영 부장 수정 요청. 법적 리스크 검토에 따라 주간 경품 추첨을 중단하고 이벤트 티켓 사용처를 룰렛으로 전환.</td></tr>
 <tr><td class="hd">2026-06-18</td><td class="hi">온보딩 보상 하향 (이부장 협의)</td><td class="hb">이부장 협의 후 김반장 확정. 보상 비용 최적화(과지급 하향).</td></tr>
+<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 마스터 수록</td><td class="hb">정책 마스터 초판에 수록 — 이 정책은 그 전부터 결정돼 있었고, 아래 더 오래된 줄이 최초 기록입니다. (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 7 · FunctionalSpec(홈) · CMS · 2026-08-27 룰렛 숨김 확정</td></tr>
 <tr><td class="hd">2026-06-08</td><td class="hi">출석체크</td><td class="hb">이부장 변경안. 경유 방문 습관화 + 30초 검증으로 어뷰징 방지.</td></tr>
 <tr><td class="hd">2026-06-08</td><td class="hi">친구초대 보상</td><td class="hb">이부장 변경안. 가입 먹튀 차단 위해 성사 기준 지급.</td></tr>
 <tr><td class="hd">2026-06-08</td><td class="hi">온보딩 핵심 보상 지급</td><td class="hb">닉네임 가입 어뷰징(재설치 파밍) 방지 보완책.</td></tr>
-
-<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 최초 수립</td><td class="hb">정책 마스터 초판에 수록 (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 7 · FunctionalSpec(홈) · CMS · 2026-08-27 룰렛 숨김 확정</td></tr>
-</table><p class="phist-n">이 정책과 관련된 이력 발췌입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
+</table><p class="phist-n">최신이 위, 가장 오래된 줄이 아래입니다. <b>맨 아래 줄이 그 정책의 최초 기록</b>이며, 「정책 마스터 수록」은 정책서 초판(2026-06-14)에 실린 날입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
 </main>
 <script src="/policy-i18n.js"></script>
 </body></html>
