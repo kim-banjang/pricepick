@@ -249,8 +249,6 @@ body.policy-sub .panel{display:block}
       <tr class="rw"><td class="rk">추첨 응모 <span class="badge-hidden">숨김</td><td class="rv"></span>1회 추첨에 최대 10장까지 응모. 주간 경품 추첨이 숨김 상태라 현재는 적용되지 않습니다.</td></tr>
       <tr class="rw"><td class="rk">구매 적립</td><td class="rv">구매로 받는 티켓(랜덤/등급)은 <b>1일 5건 / 월 50건.</b> 여기서 <b>1건은 주문 1건</b>이며 포스트백 건수가 아닙니다 — 링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 상품 수만큼 오기 때문입니다. (김반장 확정 2026-08-27)</td></tr>
       <tr class="rw"><td class="rk">환불 패턴</td><td class="rv">30일 내 환불 5건 초과 시 어뷰징 플래그 → 운영자가 직접 검토(자동 환수 아님). 임계치 5건/30일은 운영값.</td></tr>
-
-<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 최초 수립</td><td class="hb">정책 마스터 초판에 수록 (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 10 · FunctionalSpec 정책요약 · CMS 어뷰징 플래그 · PolicySpec 11</td></tr>
 </table>
 <span class="src">출처 PolicySpec 10 / FunctionalSpec 정책요약 / CMS 어뷰징 플래그</span>
     </div>
@@ -283,6 +281,8 @@ body.policy-sub .panel{display:block}
 <tr><td class="hd">2026-09-14</td><td class="hi">사용 완료분 환수 — 부채·상계 방식 확정</td><td class="hb">김반장 확정 2026-09-14 — 원래 결정은 적립 확정 정책 보고서(2026-08-19) 3항의 「loss로 두고 새로 적립이 될 경우 선차감」이며, 백엔드 답변 #13(2026-08-19)·앱 답변 Kelvin(2026-08-20)·CMS 답변 Vin(2026-06-18)으로 개발팀에 나가 있었습니다. 정책서와 09-03 취소 처리 지시서가 그 결정을 반영하지 못한 것을 바로잡습니다. 백엔드 #14(2026-08-27)와 09-03 지시서의 「사용 완료 티켓 회수 제외 · 잔액 음수 0 고정」은 폐기합니다. 정책 수치 변경은 없습니다.</td></tr>
 <tr><td class="hd">2026-09-08</td><td class="hi">쿠팡 주문번호 미제공 전제 폐기</td><td class="hb">김반장 확정 2026-09-08 — 쿠팡 포스트백에 주문아이디·상품아이디가 들어오는 것을 확인. 수수료 금액이 오지 않는 것은 그대로입니다.</td></tr>
 <tr><td class="hd">2026-08-03</td><td class="hi">연속구매 미션 확인 대기 4건 확정</td><td class="hb">김반장 확정(2026-08-03) — 채택 시 남겨둔 확인 대기 4건(금액 하한·취소반품 차감·상한 관계·사이클 시작 기준)을 모두 확정. 구매확정 부스터는 별도 대기 상태 유지.</td></tr>
+
+<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 최초 수립</td><td class="hb">정책 마스터 초판에 수록 (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 10 · FunctionalSpec 정책요약 · CMS 어뷰징 플래그 · PolicySpec 11</td></tr>
 </table><p class="phist-n">이 정책과 관련된 이력 발췌입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
 </main>
 <script src="/policy-i18n.js"></script>

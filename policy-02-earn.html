@@ -249,8 +249,6 @@ body.policy-sub .panel{display:block}
       <tr class="rw"><td class="rk">계산 단위 <span class="gloss">(주문 1건)</td><td class="rv"></span><b>적립액은 주문 1건마다 한 번만 계산합니다.</b> 링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 상품 수만큼 따로 오고 그때 uniq_id가 같은 값으로 옵니다. <b>같은 uniq_id로 온 포스트백은 한 주문으로 묶어 금액을 합친 뒤 적립률을 한 번 적용</b>합니다. 포스트백 건별로 따로 계산하지 않습니다. (김반장 확정 2026-08-27)</td></tr>
       <tr class="rw"><td class="rk">분배 방식 <span class="gloss">(큰 단위부터 채우기)</td><td class="rv"></span>산정된 적립액을 큰 단위(골드)부터 채우고 남은 금액을 실버 → 브론즈 순으로 채웁니다. <b>최하위 등급(브론즈) 단가 미만으로 남는 잔돈은 버립니다("거스름돈" 방식).</b> 이 버림은 <b>주문 1건에 한 번만</b> 일어납니다 — 포스트백 건마다 버리면 같은 주문에서 잔돈이 여러 번 사라져 유저가 손해를 봅니다. (김반장 확정 2026-08-27)</td></tr>
       <tr class="rw"><td class="rk">최소 구매 금액</td><td class="rv">없습니다. <b>구매 금액과 무관하게 모든 경유구매에 해당 제휴몰의 적립률을 적용해 등급 티켓을 지급</b>합니다. 다만 적립률이 낮은 제휴몰에서는 소액 구매 시 적립액이 브론즈 단가(10원) 미만으로 나와 위 거스름돈 규칙에 따라 0장이 될 수 있습니다.</td></tr>
-
-<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 최초 수립</td><td class="hb">정책 마스터 초판에 수록 (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 3 · FunctionalSpec 정책요약 · PolicySpec 4 · FunctionalSpec(혜택 탭)</td></tr>
 </table>
 <span class="src">출처 PolicySpec 3 / FunctionalSpec 정책요약</span>
     </div>
@@ -404,6 +402,8 @@ body.policy-sub .panel{display:block}
 <tr><td class="hd">2026-08-27</td><td class="hi">주문 단위 적립 · 한도의 「1건」 · 링크프라이스 예외 · 「제휴사」 폐기</td><td class="hb">링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 상품 수만큼 온다(uniq_id가 같다). 같은 uniq_id를 한 주문으로 묶어 <b>적립액을 한 번만 계산</b>하고 <b>거스름돈 버림도 한 번만</b> 일어나게 한다. 구매 적립 한도 일 5건 · 월 50건의 「1건」도 <b>주문 1건</b>이며 포스트백 건수가 아니다. 전환 대기일 수를 몰마다 정하는 것은 <b>링크프라이스만의 예외</b>이고 쿠팡은 연동 D+7 / 미연동 D+30 고정이다. 용어도 <b>「제휴사」를 쓰지 않고 링크프라이스 / 제휴몰로 가른다</b>. (김반장 확정)</td></tr>
 <tr><td class="hd">2026-08-24</td><td class="hi">랜덤 → 등급 전환 시기 <span class="gloss">(링크프라이스 제휴몰만)</span></td><td class="hb">링크프라이스 제휴몰은 CMS 「티켓 적립 설정」 한 곳에서 몰마다 정한다. 일수를 줄이면 이미 발급된 대기 랜덤 티켓도 소급해 앞당겨 전환된다. (김반장 확정)<br><b>2026-08-27 정정</b> — 이 줄에 「카카오 연동 분기 폐지」로 적혀 있었으나 그런 결정은 없었다. 바뀐 것은 링크프라이스 제휴몰뿐이고, <b>쿠팡은 카카오 연동 D+7 / 미연동 D+30 고정이 그대로 살아 있다</b>(CMS에서 수정 불가).</td></tr>
 <tr><td class="hd">2026-06-08</td><td class="hi">미연동 적립 확정 대기</td><td class="hb">미연동 계정 리스크 반영. 연동 유도 인센티브.</td></tr>
+
+<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 최초 수립</td><td class="hb">정책 마스터 초판에 수록 (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 3 · FunctionalSpec 정책요약 · PolicySpec 4 · FunctionalSpec(혜택 탭)</td></tr>
 </table><p class="phist-n">이 정책과 관련된 이력 발췌입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
 </main>
 <script src="/policy-i18n.js"></script>

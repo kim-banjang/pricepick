@@ -248,8 +248,6 @@ body.policy-sub .panel{display:block}
       <tr class="rw"><td class="rk">수익 구조</td><td class="rv">수익 = <b>제휴 수수료</b>(쇼핑몰이 우리에게 주는 광고 중개비) + <b>기프티콘 판매 마진</b> − <b>티켓 적립 비용</b>(유저에게 돌려주는 리워드).</td></tr>
       <tr class="rw"><td class="rk">탭 구조</td><td class="rv"><b>홈 · 혜택 · 마이</b> 3탭으로 확정. (관심상품·핫딜 등 추가 탭은 다음 단계)</td></tr>
       <tr class="nt"><td class="rv" colspan="2">관심상품 등록·가격 하락 알림은 <b>다음 단계(STEP2)</b> 기능입니다. 지금 정책 범위가 아닙니다.</td></tr>
-
-<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 최초 수립</td><td class="hb">정책 마스터 초판에 수록 (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 1·2 · FunctionalSpec 정책요약 · PolicySpec 1 · FunctionalSpec(구매 브릿지)</td></tr>
 </table>
 <span class="src">출처 PolicySpec 1·2 / FunctionalSpec 정책요약</span>
     </div>
@@ -272,6 +270,8 @@ body.policy-sub .panel{display:block}
 <tr><td class="hd">2026-08-27</td><td class="hi">주문 단위 적립 · 한도의 「1건」 · 링크프라이스 예외 · 「제휴사」 폐기</td><td class="hb">링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 상품 수만큼 온다(uniq_id가 같다). 같은 uniq_id를 한 주문으로 묶어 <b>적립액을 한 번만 계산</b>하고 <b>거스름돈 버림도 한 번만</b> 일어나게 한다. 구매 적립 한도 일 5건 · 월 50건의 「1건」도 <b>주문 1건</b>이며 포스트백 건수가 아니다. 전환 대기일 수를 몰마다 정하는 것은 <b>링크프라이스만의 예외</b>이고 쿠팡은 연동 D+7 / 미연동 D+30 고정이다. 용어도 <b>「제휴사」를 쓰지 않고 링크프라이스 / 제휴몰로 가른다</b>. (김반장 확정)</td></tr>
 <tr><td class="hd">2026-08-24</td><td class="hi">랜덤 → 등급 전환 시기 <span class="gloss">(링크프라이스 제휴몰만)</span></td><td class="hb">링크프라이스 제휴몰은 CMS 「티켓 적립 설정」 한 곳에서 몰마다 정한다. 일수를 줄이면 이미 발급된 대기 랜덤 티켓도 소급해 앞당겨 전환된다. (김반장 확정)<br><b>2026-08-27 정정</b> — 이 줄에 「카카오 연동 분기 폐지」로 적혀 있었으나 그런 결정은 없었다. 바뀐 것은 링크프라이스 제휴몰뿐이고, <b>쿠팡은 카카오 연동 D+7 / 미연동 D+30 고정이 그대로 살아 있다</b>(CMS에서 수정 불가).</td></tr>
 <tr><td class="hd">2026-06-08</td><td class="hi">제휴몰 범위(STEP1)</td><td class="hb">이부장 변경안. 1단계 집중, 관심상품·가격추적은 STEP2로 분리.</td></tr>
+
+<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 최초 수립</td><td class="hb">정책 마스터 초판에 수록 (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 1·2 · FunctionalSpec 정책요약 · PolicySpec 1 · FunctionalSpec(구매 브릿지)</td></tr>
 </table><p class="phist-n">이 정책과 관련된 이력 발췌입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
 </main>
 <script src="/policy-i18n.js"></script>
