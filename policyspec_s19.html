@@ -373,7 +373,6 @@
       <div class="rule"><span class="lead">적립 산정 단위 <span class="gloss">(주문 1건)</span></span>링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 여러 건 옵니다. <b>uniq_id가 같은 포스트백은 한 주문으로 묶어 적립액을 한 번만 계산</b>합니다. 건별로 계산하면 잔돈 버림이 여러 번 일어나 유저가 손해를 봅니다. (김반장 확정 2026-08-27 · 자세한 규칙은 <b>티켓·적립 1번 카드</b>)</div>
       <div class="rule"><span class="lead">구매 적립 한도의 "1건" <span class="gloss">(주문 1건)</span></span>구매 적립 한도는 일 5건 · 월 50건이고, 여기서 <b>1건은 주문 1건</b>입니다. <b>포스트백 건수가 아닙니다.</b> 포스트백으로 세면 한 번 산 것이 여러 건으로 잡혀 하루 두 번만 사도 한도에 걸립니다. (김반장 확정 2026-08-27)</div>
       <div class="rule"><span class="lead">쿠팡 취소 잇기 <span class="gloss">(2026-09-08 정정)</span></span>쿠팡이 주문번호를 제공하므로 <b>취소의 orderId로 원 구매를 찾고, 그 주문 안에서 productId로 상품을 가립니다.</b> click_id로 되짚던 방식과 「확인 대기」 표시는 걷어냈습니다.</div>
-      <div class="note"><b>제휴몰별 취소 정책</b> — 취소 통보 · 부분 취소 · 반영 기한 · 환수 처리를 쿠팡/링크프라이스로 갈라 정리한 문서입니다. <a href="/devqa/cancel-policy-by-mall.html">제휴몰별 취소 정책 &#8599;</a></div>
       <span class="src">출처 해리 전달 「Postback Data: LinkPrice, Coupang」(Notion, 2026-08-27)</span>
     </div>
   </div>
@@ -611,7 +610,6 @@
       <div class="rule"><span class="lead">확정 전 환불</span>아직 "적립 예정"인 보상은 <b>자동 취소</b>(잔액 영향 없음).</div>
       <div class="rule"><span class="lead">확정 후 환불</span>아직 안 쓴 티켓은 그대로 환수합니다. <b>이미 쓴 티켓은 같은 등급의 다른 티켓에서 차감합니다</b> — 등급을 넘나들지 않습니다. 차감할 티켓도 모자라면 그 몫을 <b>부채로 기록했다가 다음 적립 때 자동 상계</b>합니다. 앱 화면에는 음수를 쓰지 않고 해당 등급 잔액을 0으로 보여주며 「회수 예정」 수량을 따로 표시합니다.</div>
       <div class="rule"><span class="lead">이벤트 티켓</span>환불해도 <b>환수하지 않습니다</b>(부수 보상).</div>
-      <div class="rule"><span class="lead">제휴몰별 차이</span>취소 통보·부분 취소·반영 기한은 제휴몰마다 다릅니다. <a href="/devqa/cancel-policy-by-mall.html">제휴몰별 취소 정책 &#8599;</a></div>
       <div class="rule"><span class="lead">승인 대기로 통제</span>구매로 발급되는 티켓은 등급 티켓·이벤트 티켓 모두 승인 대기 상태로 발급되고, 승인된 뒤에야 사용할 수 있습니다. 승인 조건은 <b>전환 대기일 수</b> 경과 또는 쿠팡 구매 확정입니다 — 쿠팡은 카카오 연동 D+7 / 미연동 D+30, 링크프라이스 제휴몰은 몰별 설정(기본 30일). 승인 전에 환불되면 자연 취소됩니다.</div>
       <div class="note">이 규칙 하나로 "돌리고 환불" 악용이 차단되므로 화면·운영 설정에 별도의 사용 제한 스위치를 두지 않습니다. 출석 2배 포인트 등 다른 부스터성 보상도 같은 기준으로 구매 확정 후 지급합니다.</div>
       <span class="src">출처 PolicySpec 11 / FunctionalSpec(구매)</span>
