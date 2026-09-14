@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PricePick 마스터 정책서 v8.3</title>
+<style>
+  :root{
+    --pp:#845EEE; --pp-d:#6a45d4; --pp-l:#f3efff;
+    --ink:#1f2330; --ink2:#4b5163; --ink3:#7a8093;
+    --line:#e7e3f3; --bg:#f6f5fb; --card:#ffffff;
+    --gold:#d4a017; --gold-bg:#fbf3da;
+    --silver:#8a93a6; --silver-bg:#eef0f5;
+    --bronze:#b5793b; --bronze-bg:#f5e9dc;
+    --ok:#16a34a; --ok-bg:#e7f7ed;
+    --pend:#be185d; --pend-bg:#fdeef4;
+    --note:#92400e; --note-bg:#fff5e6;
+    --new:#0e7490; --new-bg:#e0f5fa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Segoe UI",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 40px}
+
+  header{background:linear-gradient(135deg,var(--pp) 0%,#9b78f0 100%);color:#fff;
+    padding:34px 36px 28px;border-radius:0 0 26px 26px;margin-bottom:8px;box-shadow:0 10px 30px rgba(132,94,238,.25)}
+  header .kicker{font-size:12.5px;letter-spacing:2px;opacity:.85;font-weight:600}
+  header h1{font-size:28px;font-weight:800;margin:8px 0 6px;letter-spacing:-.5px}
+  header .sub{font-size:14px;opacity:.95;font-weight:600}
+  header p{font-size:13px;opacity:.9;max-width:720px;margin-top:8px}
+
+  .sot{max-width:1000px;margin:0 auto 16px;padding:0 20px}
+  .sot-bar{background:#1f2330;color:#fff;border-radius:12px;padding:13px 18px;font-size:13.5px;font-weight:700;
+    display:flex;align-items:center;gap:10px;box-shadow:0 4px 14px rgba(31,35,48,.18)}
+  .sot-bar .dot{width:9px;height:9px;border-radius:50%;background:#845EEE;flex:none;box-shadow:0 0 0 4px rgba(132,94,238,.3)}
+  .sot-bar b{color:#c9b6ff}
+
+  /* ===== ① 대시보드 ===== */
+  .dash{max-width:1000px;margin:0 auto 6px;padding:0 20px}
+  .dash .oneliner{background:var(--pp-l);border:1px solid var(--line);border-radius:14px;padding:15px 20px;margin-bottom:16px;font-size:14.5px;color:var(--ink2)}
+  .dash .oneliner b{color:var(--pp-d);font-weight:800}
+  .quick{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(80,60,140,.05)}
+  .quick h3{font-size:14px;font-weight:800;color:var(--pp-d);margin-bottom:13px;display:flex;align-items:center;gap:8px}
+  .quick h3 svg{width:17px;height:17px;stroke:var(--pp);fill:none;stroke-width:2}
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:10px}
+  .qcell{background:#fafafc;border:1px solid #eee;border-radius:10px;padding:11px 13px}
+  .qcell .k{font-size:10.5px;font-weight:800;letter-spacing:.3px;color:var(--ink3);margin-bottom:4px;text-transform:uppercase}
+  .qcell .v{font-size:13px;font-weight:600;color:var(--ink)}
+  .qcell .v b{font-weight:800;color:var(--pp-d)}
+
+  .pendbox{background:var(--pend-bg);border:2px solid var(--pend);border-radius:14px;padding:15px 20px;margin-bottom:18px}
+  .pendbox h3{font-size:13.5px;font-weight:800;color:var(--pend);margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .pendbox h3 svg{width:15px;height:15px;stroke:var(--pend);fill:none;stroke-width:2}
+  .pendbox p{font-size:12.8px;color:#8a1f54;line-height:1.65;margin:5px 0}
+  .pendbox p b{font-weight:800}
+  .pendbox .rec{color:var(--pp-d);font-weight:700}
+
+  /* ===== ② 탭 네비 ===== */
+  .tabnav{position:sticky;top:0;z-index:40;background:var(--bg);padding:12px 0 8px;margin:6px auto 0;max-width:1000px}
+  .tabnav-inner{max-width:1000px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:7px}
+  .tabnav button{font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;
+    border:1.5px solid var(--line);background:#fff;color:var(--ink2);border-radius:22px;padding:7px 14px;transition:all .14s;white-space:nowrap}
+  .tabnav button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .tabnav button:hover{border-color:var(--pp);color:var(--pp-d)}
+  .tabnav button.on{background:var(--pp);border-color:var(--pp);color:#fff}
+
+  /* ===== ③ 패널 ===== */
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .2s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .ptitle{font-size:19px;font-weight:800;color:var(--ink);margin:6px 0 4px;display:flex;align-items:center;gap:9px}
+  .ptitle svg{width:20px;height:20px;stroke:var(--pp);fill:none;stroke-width:2}
+  .ptitle .badge-new{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:var(--new);padding:3px 9px;border-radius:20px}
+  .badge-hold{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#8a6d3b;padding:3px 9px;border-radius:20px;margin-left:6px}
+.badge-hidden{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#6b7280;padding:3px 9px;border-radius:20px;margin-left:6px}
+.badge-replan{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#c0342a;padding:3px 9px;border-radius:20px;margin-left:6px}
+  .card.replan{border:1.5px solid #f3b7ab;background:#fff8f7}
+  .card.replan .note.warn{border-left-color:#e5484d;background:#fff4f2;color:#8f2420}
+  .pdesc{font-size:13px;color:var(--ink3);margin-bottom:16px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 20px;margin-bottom:13px;box-shadow:0 2px 8px rgba(80,60,140,.04)}
+  .card h4{font-size:15px;font-weight:800;color:var(--pp-d);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .card h4 .n{background:var(--pp);color:#fff;font-weight:800;font-size:12px;min-width:24px;height:24px;padding:0 6px;border-radius:7px;display:grid;place-items:center}
+
+  .rule{font-size:13.8px;line-height:1.72;color:var(--ink2);margin-bottom:9px}
+  .rule:last-child{margin-bottom:0}
+  .rule b{color:var(--ink);font-weight:800}
+  .rule .lead{display:inline-block;font-weight:800;color:var(--pp-d);margin-right:4px}
+  .gloss{color:var(--ink3);font-weight:600;font-size:.92em}
+  ul.r{list-style:none;margin:6px 0 4px}
+  ul.r li{position:relative;padding-left:16px;font-size:13.6px;color:var(--ink2);line-height:1.72;margin:5px 0}
+  ul.r li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--pp)}
+  ul.r li b{color:var(--ink);font-weight:800}
+
+  .chip{display:inline-block;font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:20px;margin:0 2px;white-space:nowrap}
+  .c-gold{background:var(--gold-bg);color:var(--gold)} .c-silver{background:var(--silver-bg);color:var(--silver)} .c-bronze{background:var(--bronze-bg);color:var(--bronze)}
+
+  .ex{background:#f7f5ff;border:1px dashed #d8cef5;border-radius:9px;padding:9px 13px;font-size:12.6px;color:var(--ink2);margin:8px 0}
+  .ex b{color:var(--pp-d)}
+  .note{background:var(--note-bg);border-left:3px solid #f0a830;border-radius:0 8px 8px 0;padding:9px 13px;font-size:12.6px;color:var(--note);margin:8px 0}
+  .src{display:inline-block;font-size:11px;font-weight:700;color:var(--ink3);background:#f1eefb;border-radius:6px;padding:2px 8px;margin-top:6px}
+
+  .pending{background:var(--pend-bg);border:1.5px solid #f4b8d2;border-radius:10px;padding:11px 14px;margin:9px 0;font-size:13px;color:#8a1f54}
+  .pending .pl{display:inline-block;background:var(--pend);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:2px 9px;border-radius:6px;margin-right:7px;vertical-align:middle}
+  .pending b{font-weight:800}
+  .pending .rec{display:block;margin-top:6px;color:var(--pp-d);font-weight:700;font-size:12.6px}
+
+  table.mt{width:100%;border-collapse:collapse;font-size:12.8px;margin-top:4px;background:#fff;border-radius:10px;overflow:hidden}
+  table.mt th{background:var(--pp);color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800;letter-spacing:.3px}
+  table.mt td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.mt tr:last-child td{border-bottom:none}
+  table.mt td b{color:var(--ink);font-weight:800}
+  table.mt .key{font-weight:800;color:var(--pp-d);white-space:nowrap}
+  table.mt .pendval{color:var(--pend);font-weight:800}
+  table.mt tr:nth-child(even) td{background:#fbfaff}
+
+  table.hist{width:100%;border-collapse:collapse;font-size:12.8px;background:#fff;border-radius:10px;overflow:hidden}
+  table.hist th{background:#1f2330;color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800}
+  table.hist td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.hist td.date{white-space:nowrap;font-weight:800;color:var(--pp-d)}
+  table.hist td .arrow{color:var(--ink3)}
+  table.hist td b{color:var(--ink)}
+
+  footer{text-align:center;color:var(--ink3);font-size:11.5px;margin-top:28px;line-height:1.7}
+  .lastupdate{position:fixed;bottom:24px;left:24px;background:rgba(31,35,48,.9);color:#fff;font-size:11px;
+    padding:6px 12px;border-radius:8px;font-weight:600;letter-spacing:.3px;backdrop-filter:blur(4px);z-index:50}
+
+  @media(max-width:680px){
+    .wrap{padding:0 12px 40px}.sot,.dash,.tabnav-inner{padding-left:12px;padding-right:12px}
+    header{padding:24px 18px}header h1{font-size:22px}
+    .qgrid{grid-template-columns:1fr 1fr}
+    .lastupdate{bottom:12px;left:12px}
+  }
+
+  /* ===== KO/VI Toggle ===== */
+  #ps-lang-switch{position:fixed;top:18px;right:22px;z-index:9002;}
+  #ip-lang-toggle{display:inline-flex;align-items:center;gap:0;background:#ffffff;border:1px solid #E3E0EC;border-radius:999px;padding:3px;cursor:pointer;font-family:inherit;box-shadow:0 2px 10px rgba(90,60,150,0.12);}
+  #ip-lang-toggle span{font-size:12px;font-weight:700;letter-spacing:.4px;color:#9890ad;padding:3px 12px;border-radius:999px;line-height:1.4;transition:background .15s,color .15s;}
+  #ip-lang-toggle span.on{background:#845EEE;color:#fff;}
+  #ip-lang-toggle:hover{border-color:#845EEE;}
+  @media (max-width:560px){#ps-lang-switch{top:12px;right:12px;}}
+
+  /* ===== 표준 목차 드로어 (DataModel 기준, 운영지침3 확정) ===== */
+  .toc-fixed{position:fixed;top:0;right:0;bottom:0;width:220px;max-height:100vh;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:0;
+    padding:0 4px 8px;box-shadow:-8px 0 24px rgba(80,60,140,.08);overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:#cfc7e6 transparent;z-index:9000;transition:transform .25s ease}
+  .toc-fixed::-webkit-scrollbar{width:3px}
+  .toc-fixed::-webkit-scrollbar-thumb{background:#cfc7e6;border-radius:99px}
+  .toc-head{font-size:13px;font-weight:800;letter-spacing:.3px;color:var(--ink);padding:10px 10px 8px;
+    text-transform:none;border-bottom:1px solid var(--line);margin-bottom:4px;
+    position:sticky;top:0;background:var(--card);z-index:2}
+  .toc-fixed a{display:block;padding:6px 8px;font-size:12px;color:var(--ink2);text-decoration:none;
+    border-radius:4px;line-height:1.5;transition:background .1s,color .1s;cursor:pointer}
+  .toc-fixed a:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-fixed a.toc-ent{padding-left:16px;font-size:11px;color:var(--ink3)}
+  .toc-fixed a.toc-ent:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-group{padding:11px 8px 5px;font-size:10px;font-weight:800;letter-spacing:.7px;color:var(--pp-d);text-transform:uppercase;
+    display:flex;align-items:center;justify-content:space-between;gap:6px;cursor:pointer;user-select:none;border-radius:4px}
+  .toc-group:hover{background:var(--pp-l)}
+  .toc-caret{flex-shrink:0;font-size:9px;line-height:1;color:var(--pp-d)}
+  .toc-caret::before{content:"\25BE"}
+  .toc-grp-wrap.collapsed .toc-caret::before{content:"\25B8"}
+  .toc-grp-wrap.collapsed .toc-items{display:none}
+  body.toc-collapsed .toc-fixed{transform:translateX(100%)}
+  .toc-handle{position:fixed;top:50%;right:220px;transform:translateY(-50%);z-index:9001;
+    width:22px;height:66px;display:flex;align-items:center;justify-content:center;padding:0;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:8px 0 0 8px;
+    color:var(--pp-d);font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;
+    box-shadow:-4px 0 14px rgba(80,60,140,.10);transition:right .25s ease,background .12s}
+  .toc-handle::before{content:"\203A"}
+  body.toc-collapsed .toc-handle{right:0}
+  body.toc-collapsed .toc-handle::before{content:"\2039"}
+  .toc-handle:hover{background:var(--pp-l)}
+  @media(max-width:900px){.toc-fixed{display:none}.toc-handle{display:none}}
+.ptbl{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:13px}
+.ptbl td{border:1px solid var(--line,#e9e7f2);padding:7px 10px;vertical-align:top;text-align:left}
+.ptbl td.rk{width:150px;white-space:nowrap;font-weight:700;background:#faf9fe;color:#5b39b8}
+.ptbl tr.nt td.rk{color:#8b93a7;font-weight:700}
+.ptbl tr.nt td.rv{color:#3f4658}
+@media(max-width:640px){.ptbl td.rk{width:auto;white-space:normal}}
+.sot-note{margin-top:7px;font-size:12.2px;color:#3f4658;line-height:1.65}
+.sot-note b{color:#1f2330}
+</style>
+</head>
+<body class="policy-sub">
+<header class="ph"><div class="ph-in"><div class="ph-kick">PRICEPICK 정책</div><h1 class="ph-t">계정 생애주기</h1><label class="ip-lang" id="ip-lang-toggle"><input type="checkbox"><span>KO</span><span>VI</span></label></div></header>
+<div class="pnav"><a href="/policyspec.html">← 정책 목차</a> <span class="pnav-sep">|</span> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> · <a href="/policy-02-earn.html">쇼핑 티켓 · 적립 메커니즘</a> · <a href="/policy-03-expiry.html">유효기간 · 만료</a> · <a href="/policy-04-point.html">포인트(P)</a> · <a href="/policy-05-engage.html">참여</a> · <a href="/policy-06-exchange.html">교환 · 등급 전환</a> · <a href="/policy-07-account.html">계정 생애주기</a> · <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> · <a href="/policy-09-push.html">푸시 알림 상한</a> · <a href="/policy-10-raffle.html">추첨 · 경품</a> · <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> · <a href="/policy-12-cms.html">CMS 운영값 마스터표</a></div>
+<main class="psub-wrap">
+<div class="panel active" data-tab="t7">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>계정 생애주기 <span class="badge-new">신설</span></div>
+    <div class="pdesc">가입부터 연동·탈퇴·차단까지 계정이 어떤 단계를 거치고, 각 단계에서 데이터·보상이 어떻게 처리되는지(정책 기준).</div>
+    <div class="card">
+      <h4><span class="n">1</span>계정의 일생 (단계 흐름)</h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rv" colspan="2">계정은 두 가지로 구분됩니다. <b>연동 여부</b> = 미연동(닉네임만) / 연동(카카오), <b>계정 상태</b> = 정상 / 정지 / 탈퇴 요청.</td></tr>
+      <tr class="rw"><td class="rk">흐름</td><td class="rv"><b>설치 → 닉네임 가입(미연동) → (카카오 연동) → 정상 운영.</b> 여기서 <b>정지</b> 또는 <b>탈퇴</b>로 갈라지고, 탈퇴는 <b>즉시 처리</b>(유예·철회 없음)되며 개인정보(PII) 파기로 종료됩니다.</td></tr>
+</table>
+<span class="src">출처 FunctionalSpec / DataModel(상태 정책)</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">2</span>가입 · 카카오 연동</h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">가입</td><td class="rv">설치 후 <b>닉네임만 설정하면 바로 시작</b>(미연동). 진입 단계 소셜 로그인 없음(애플 로그인 정책상의 이유 포함).</td></tr>
+      <tr class="rw"><td class="rk">미연동</td><td class="rv">티켓·포인트 등 데이터를 <b>기기에만 저장</b>. <b>재설치하면 초기화</b>(복구 안 됨). 쿠팡 구매의 적립 확정 대기는 <b>D+30</b>.</td></tr>
+      <tr class="rw"><td class="rk">연동</td><td class="rv">앱을 쓰며 카카오 연동을 유도. 연동하면 데이터가 <b>서버에 보존</b>되고 재설치해도 유지. 보류됐던 핵심 보상(이벤트 티켓·브론즈)이 이때 지급되며, <b>쿠팡 구매의 적립 확정 대기는 D+7로 단축</b>됩니다. 링크프라이스 제휴몰은 연동과 무관하게 몰별 전환 대기일 수를 따릅니다.</td></tr>
+      <tr class="rw"><td class="rk">전환 규칙</td><td class="rv">쿠팡 구매는 <b>카카오 연동 D+7 / 미연동 D+30</b>에 확정된다(고정값, CMS에서 수정 불가). 링크프라이스 제휴몰 구매는 CMS 「티켓 적립 설정」에서 <b>몰마다 정한 전환 대기일 수</b>(기본 30일)에 확정된다. 관리자가 제휴몰 대기일 수를 <b>줄이면 그 몰의 대기 중인 랜덤 티켓 전부에 새 값을 소급 적용</b>한다 — 적립일로부터 새 값이 <b>이미 지난 티켓은 저장 즉시 확정·공개되고</b>, <b>못 미친 티켓은 적립일 + 새 값</b>에 확정된다(예: 30일 → 7일로 줄이면 적립 9일째 티켓은 즉시 오픈, 3일째 티켓은 4일 뒤 오픈). 값을 <b>늘릴 때는 이미 공개된 티켓을 다시 숨기지 않는다</b>. (김반장 확정 2026-08-26)</td></tr>
+      <tr class="rw"><td class="rk">계정 병합(연동 시 선택형)</td><td class="rv">계정 간 자산은 <b>합산하지 않습니다</b>. 연동하는 카카오 계정이 신규인지 연동 이력이 있는지에 따라 아래 두 가지로 나뉩니다.</td></tr>
+</table>
+<table class="mt">
+        <thead><tr><th style="width:230px">시나리오</th><th>처리</th></tr></thead>
+        <tbody>
+          <tr><td class="key">01 · 신규 카카오 계정<br><span style="font-weight:400;color:var(--ink3)">(연동 이력 없음)</span></td><td>현재 닉네임 계정으로 적립된 포인트·티켓을 <b>그대로 유지</b>합니다.</td></tr>
+          <tr><td class="key">02 · 연동 이력이 있는 카카오 계정</td><td>이전 적립 내역을 표시하고 <b>"이전 데이터 사용" 체크박스</b>를 제공합니다(기본값 <b>체크됨</b>). 체크한 채로 연동하면 <b>이전 카카오 계정 데이터를 사용</b>하고 현재 닉네임 계정 데이터는 사라집니다. 체크를 해제하고 연동하면 <b>현재 닉네임 계정 데이터로 대체</b>되고 기존 카카오 계정 데이터는 <b>리셋</b>됩니다. 선택 전 양쪽 계정의 보유 현황을 모두 보여주고 확인을 받습니다.</td></tr>
+        </tbody>
+      </table>
+<table class="ptbl">
+      <tr class="nt"><td class="rv" colspan="2">어떤 경우에도 두 계정의 데이터가 합산되지 않으며, 부분 병합도 없습니다.</td></tr>
+      <tr class="rw"><td class="rk">사용 제한:</td><td class="rv"> <b>모든 티켓(등급·이벤트)·포인트는 카카오 연동 후에만 사용 가능.</b> 미연동(guest) 상태는 적립만 누적, 사용·교환·응모·차감 불가. 닉네임 반복가입 파밍 원천 차단.</td></tr>
+</table>
+<span class="src">출처 PolicySpec 14 / FunctionalSpec(시작·연동) / DataModel(보존 정책)</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">3</span>닉네임 <span class="badge-new">신설</span></h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">중복 허용</td><td class="rv"><b>닉네임 중복을 허용합니다.</b> 같은 닉네임을 여러 회원이 동시에 사용할 수 있습니다. 가입·변경 시 중복 검사를 하지 않습니다.</td></tr>
+      <tr class="rw"><td class="rk">회원 식별</td><td class="rv">회원 식별자는 <b>UID</b>입니다. 닉네임은 표시용일 뿐 식별에 쓰지 않습니다.</td></tr>
+      <tr class="rw"><td class="rk">UID 노출</td><td class="rv">닉네임 중복을 허용하므로 <b>회원 구분을 위해 앱 화면에 UID를 표시</b>합니다. 닉네임 아래 짧게(앞 8자) 노출하고 복사 버튼을 제공해 고객센터 문의 시 그대로 전달할 수 있게 합니다.</td></tr>
+      <tr class="rw"><td class="rk">형식 규칙</td><td class="rv">한글·영문·숫자 조합, <b>2~10자.</b></td></tr>
+</table>
+<span class="src">출처 김반장·이동영 부장 확정(2026-08-03) / 화면 구현(가입·닉네임 변경·마이) 기준</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">4</span>로그아웃 <span class="badge-new">신설</span></h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">확정</td><td class="rv"><b>로그아웃 기능은 제공하지 않습니다.</b> 앱 어디에도 로그아웃 버튼·메뉴·진입점을 두지 않습니다.</td></tr>
+      <tr class="rw"><td class="rk">이유</td><td class="rv">계정은 <b>미연동(닉네임)</b> 또는 <b>카카오 연동</b> 상태로만 존재하며, 사용자가 "로그인/로그아웃"을 오가는 구조가 아닙니다. 설치 후 닉네임만 설정하면 바로 시작되고(진입 단계 소셜 로그인 없음 — 위 2번), 그 상태가 계속 유지됩니다.</td></tr>
+      <tr class="rw"><td class="rk">계정에서 벗어나는 유일한 경로</td><td class="rv"><b>계정 탈퇴</b>(아래 4번)뿐입니다. 로그아웃으로 세션만 끊는 개념은 없습니다.</td></tr>
+      <tr class="rw"><td class="rk">개발 주의</td><td class="rv">데모(<code>/app</code>)·기획 화면 어디에도 로그아웃이 없는 것은 <b>누락이 아니라 의도된 정책</b>입니다. 로그아웃 UI를 새로 만들지 마십시오.</td></tr>
+</table>
+<span class="src">출처 김반장 확정(2026-07-14)</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">5</span>탈퇴</h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">처리</td><td class="rv">설정에서 탈퇴 최종 확인을 마치면 <b>그 자리에서 즉시 처리</b>됩니다. 유예기간·철회 절차는 없습니다.</td></tr>
+</table>
+<ul class="r">
+        <li><b>즉시 탈퇴</b> — <code>user.status = 'withdrawn'</code>로 전환. 재로그인·계정 복구 불가.</li>
+        <li><b>기기 로컬 데이터 삭제</b> — 탈퇴 처리와 함께 해당 기기의 로컬 저장 데이터(localStorage·캐시 등)를 삭제.</li>
+        <li><b>개인정보(PII) 파기</b> — 닉네임·카카오 식별값 등 개인 식별 가능 항목은 탈퇴 즉시 파기합니다. 다만 <b>부정 이용 방지에 필요한 최소한의 식별정보는 탈퇴일로부터 30일간 보관 후 파기</b>합니다(개인정보처리방침). <b>회원 문서(레코드) 자체는 물리 삭제하지 않고 유지</b> — 티켓·결제 등 거래 기록이 회원 문서를 참조하므로 물리 삭제 시 참조 무결성이 깨짐(DB 꼬임 방지).</li>
+        <li><b>거래·정산 기록 존치</b> — 티켓·결제·거래(정산) 기록은 PII가 제거된 상태 그대로 DB에 남김. 전자상거래법상 5년 보존 의무는 이 존치 기록으로 충족(별도 마스킹 배치 불필요 — 애초에 거래 기록엔 PII가 없고 user_id로만 연결).</li>
+        <li><b>잔여 자산 소멸</b> — 보유 티켓·포인트는 탈퇴와 동시에 모두 소멸하며 복구되지 않습니다(이용약관 제13조).</li>
+      </ul>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">재가입 쿨타임</td><td class="rv">기본적으로 <b>제한 없음(즉시 재가입 가능)</b>. 다만 어뷰징(제12조 해당 행위)이 확인된 계정은 회사가 재가입을 일정 기간 제한할 수 있습니다(이용약관 제13조).</td></tr>
+      <tr class="nt"><td class="rv" colspan="2">본 항목은 정책 요약이며, 이용약관·개인정보처리방침 전문은 앱 내 약관 화면(정본)을 따릅니다.</td></tr>
+</table>
+<span class="src">출처 김반장 확정(2026-07-10, 즉시탈퇴 정책) / PricePick 이용약관 제13조·개인정보처리방침 4항 / FunctionalSpec(탈퇴 흐름) / CMS 탈퇴 관리</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">6</span>운영자 차단(정지)</h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">상태</td><td class="rv">운영자가 어뷰징 등으로 계정을 정지하면, 진입 시 <b>"운영자 계정 차단" 안내</b>가 뜨고 정지 해제 전까지 로그인 불가.</td></tr>
+      <tr class="rw"><td class="rk">자산</td><td class="rv">정지 상태에서도 <b>기존 잔액은 유지</b>되지만 <b>신규 적립·교환은 차단</b>됩니다. 이용약관 제12조 위반 시 보유 티켓 전액 환수·영구 정지 조치 가능.</td></tr>
+</table>
+<span class="src">출처 FunctionalSpec(계정 차단·마이) / CMS 약관</span>
+    </div>
+  </div>
+
+  <!-- 8. 어뷰징·환불·예외 -->
+  
+<section class="phist"><h3>변경 이력</h3><table class="phist-t"><tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<tr><td class="hd">2026-08-03</td><td class="hi">닉네임 중복 허용</td><td>김반장·이동영 부장 합의(2026-08-03) — 닉네임은 표시용일 뿐 식별자가 아니므로 중복을 막을 이유가 없다. 화면에만 있던 형식 규칙(한글·영문·숫자 조합, 2~10자)을 정책서에 명문화.</td></tr>
+<tr><td class="hd">2026-08-03</td><td class="hi">계정 병합(연동 시 선택형)</td><td>김반장 확정(2026-08-03) — 계정 간 자산 자동 병합을 폐지하고 연동 시 선택형 방식으로 전환. 구 '충돌 선택' 화면(03-conflict)의 사용자 선택 UI가 이 규칙으로 다시 도입됨.</td></tr>
+<tr><td class="hd">2026-06-09</td><td class="hi">진입 소셜 로그인</td><td>닉네임 시작 결정(18번)에 따라 7종 산출물에서 화면·바인딩까지 전부 제거.</td></tr>
+<tr><td class="hd">2026-06-08</td><td class="hi">로그인 방식</td><td>이부장 변경안 18번. 진입 허들 최소화, 연동은 보상·보존 조건으로 유도.</td></tr>
+</table><p class="phist-n">이 정책과 관련된 이력 발췌입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
+</main>
+<script src="/policy-i18n.js"></script>
+</body></html>

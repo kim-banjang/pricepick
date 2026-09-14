@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PricePick 마스터 정책서 v8.3</title>
+<style>
+  :root{
+    --pp:#845EEE; --pp-d:#6a45d4; --pp-l:#f3efff;
+    --ink:#1f2330; --ink2:#4b5163; --ink3:#7a8093;
+    --line:#e7e3f3; --bg:#f6f5fb; --card:#ffffff;
+    --gold:#d4a017; --gold-bg:#fbf3da;
+    --silver:#8a93a6; --silver-bg:#eef0f5;
+    --bronze:#b5793b; --bronze-bg:#f5e9dc;
+    --ok:#16a34a; --ok-bg:#e7f7ed;
+    --pend:#be185d; --pend-bg:#fdeef4;
+    --note:#92400e; --note-bg:#fff5e6;
+    --new:#0e7490; --new-bg:#e0f5fa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Segoe UI",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 40px}
+
+  header{background:linear-gradient(135deg,var(--pp) 0%,#9b78f0 100%);color:#fff;
+    padding:34px 36px 28px;border-radius:0 0 26px 26px;margin-bottom:8px;box-shadow:0 10px 30px rgba(132,94,238,.25)}
+  header .kicker{font-size:12.5px;letter-spacing:2px;opacity:.85;font-weight:600}
+  header h1{font-size:28px;font-weight:800;margin:8px 0 6px;letter-spacing:-.5px}
+  header .sub{font-size:14px;opacity:.95;font-weight:600}
+  header p{font-size:13px;opacity:.9;max-width:720px;margin-top:8px}
+
+  .sot{max-width:1000px;margin:0 auto 16px;padding:0 20px}
+  .sot-bar{background:#1f2330;color:#fff;border-radius:12px;padding:13px 18px;font-size:13.5px;font-weight:700;
+    display:flex;align-items:center;gap:10px;box-shadow:0 4px 14px rgba(31,35,48,.18)}
+  .sot-bar .dot{width:9px;height:9px;border-radius:50%;background:#845EEE;flex:none;box-shadow:0 0 0 4px rgba(132,94,238,.3)}
+  .sot-bar b{color:#c9b6ff}
+
+  /* ===== ① 대시보드 ===== */
+  .dash{max-width:1000px;margin:0 auto 6px;padding:0 20px}
+  .dash .oneliner{background:var(--pp-l);border:1px solid var(--line);border-radius:14px;padding:15px 20px;margin-bottom:16px;font-size:14.5px;color:var(--ink2)}
+  .dash .oneliner b{color:var(--pp-d);font-weight:800}
+  .quick{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(80,60,140,.05)}
+  .quick h3{font-size:14px;font-weight:800;color:var(--pp-d);margin-bottom:13px;display:flex;align-items:center;gap:8px}
+  .quick h3 svg{width:17px;height:17px;stroke:var(--pp);fill:none;stroke-width:2}
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:10px}
+  .qcell{background:#fafafc;border:1px solid #eee;border-radius:10px;padding:11px 13px}
+  .qcell .k{font-size:10.5px;font-weight:800;letter-spacing:.3px;color:var(--ink3);margin-bottom:4px;text-transform:uppercase}
+  .qcell .v{font-size:13px;font-weight:600;color:var(--ink)}
+  .qcell .v b{font-weight:800;color:var(--pp-d)}
+
+  .pendbox{background:var(--pend-bg);border:2px solid var(--pend);border-radius:14px;padding:15px 20px;margin-bottom:18px}
+  .pendbox h3{font-size:13.5px;font-weight:800;color:var(--pend);margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .pendbox h3 svg{width:15px;height:15px;stroke:var(--pend);fill:none;stroke-width:2}
+  .pendbox p{font-size:12.8px;color:#8a1f54;line-height:1.65;margin:5px 0}
+  .pendbox p b{font-weight:800}
+  .pendbox .rec{color:var(--pp-d);font-weight:700}
+
+  /* ===== ② 탭 네비 ===== */
+  .tabnav{position:sticky;top:0;z-index:40;background:var(--bg);padding:12px 0 8px;margin:6px auto 0;max-width:1000px}
+  .tabnav-inner{max-width:1000px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:7px}
+  .tabnav button{font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;
+    border:1.5px solid var(--line);background:#fff;color:var(--ink2);border-radius:22px;padding:7px 14px;transition:all .14s;white-space:nowrap}
+  .tabnav button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .tabnav button:hover{border-color:var(--pp);color:var(--pp-d)}
+  .tabnav button.on{background:var(--pp);border-color:var(--pp);color:#fff}
+
+  /* ===== ③ 패널 ===== */
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .2s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .ptitle{font-size:19px;font-weight:800;color:var(--ink);margin:6px 0 4px;display:flex;align-items:center;gap:9px}
+  .ptitle svg{width:20px;height:20px;stroke:var(--pp);fill:none;stroke-width:2}
+  .ptitle .badge-new{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:var(--new);padding:3px 9px;border-radius:20px}
+  .badge-hold{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#8a6d3b;padding:3px 9px;border-radius:20px;margin-left:6px}
+.badge-hidden{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#6b7280;padding:3px 9px;border-radius:20px;margin-left:6px}
+.badge-replan{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#c0342a;padding:3px 9px;border-radius:20px;margin-left:6px}
+  .card.replan{border:1.5px solid #f3b7ab;background:#fff8f7}
+  .card.replan .note.warn{border-left-color:#e5484d;background:#fff4f2;color:#8f2420}
+  .pdesc{font-size:13px;color:var(--ink3);margin-bottom:16px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 20px;margin-bottom:13px;box-shadow:0 2px 8px rgba(80,60,140,.04)}
+  .card h4{font-size:15px;font-weight:800;color:var(--pp-d);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .card h4 .n{background:var(--pp);color:#fff;font-weight:800;font-size:12px;min-width:24px;height:24px;padding:0 6px;border-radius:7px;display:grid;place-items:center}
+
+  .rule{font-size:13.8px;line-height:1.72;color:var(--ink2);margin-bottom:9px}
+  .rule:last-child{margin-bottom:0}
+  .rule b{color:var(--ink);font-weight:800}
+  .rule .lead{display:inline-block;font-weight:800;color:var(--pp-d);margin-right:4px}
+  .gloss{color:var(--ink3);font-weight:600;font-size:.92em}
+  ul.r{list-style:none;margin:6px 0 4px}
+  ul.r li{position:relative;padding-left:16px;font-size:13.6px;color:var(--ink2);line-height:1.72;margin:5px 0}
+  ul.r li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--pp)}
+  ul.r li b{color:var(--ink);font-weight:800}
+
+  .chip{display:inline-block;font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:20px;margin:0 2px;white-space:nowrap}
+  .c-gold{background:var(--gold-bg);color:var(--gold)} .c-silver{background:var(--silver-bg);color:var(--silver)} .c-bronze{background:var(--bronze-bg);color:var(--bronze)}
+
+  .ex{background:#f7f5ff;border:1px dashed #d8cef5;border-radius:9px;padding:9px 13px;font-size:12.6px;color:var(--ink2);margin:8px 0}
+  .ex b{color:var(--pp-d)}
+  .note{background:var(--note-bg);border-left:3px solid #f0a830;border-radius:0 8px 8px 0;padding:9px 13px;font-size:12.6px;color:var(--note);margin:8px 0}
+  .src{display:inline-block;font-size:11px;font-weight:700;color:var(--ink3);background:#f1eefb;border-radius:6px;padding:2px 8px;margin-top:6px}
+
+  .pending{background:var(--pend-bg);border:1.5px solid #f4b8d2;border-radius:10px;padding:11px 14px;margin:9px 0;font-size:13px;color:#8a1f54}
+  .pending .pl{display:inline-block;background:var(--pend);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:2px 9px;border-radius:6px;margin-right:7px;vertical-align:middle}
+  .pending b{font-weight:800}
+  .pending .rec{display:block;margin-top:6px;color:var(--pp-d);font-weight:700;font-size:12.6px}
+
+  table.mt{width:100%;border-collapse:collapse;font-size:12.8px;margin-top:4px;background:#fff;border-radius:10px;overflow:hidden}
+  table.mt th{background:var(--pp);color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800;letter-spacing:.3px}
+  table.mt td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.mt tr:last-child td{border-bottom:none}
+  table.mt td b{color:var(--ink);font-weight:800}
+  table.mt .key{font-weight:800;color:var(--pp-d);white-space:nowrap}
+  table.mt .pendval{color:var(--pend);font-weight:800}
+  table.mt tr:nth-child(even) td{background:#fbfaff}
+
+  table.hist{width:100%;border-collapse:collapse;font-size:12.8px;background:#fff;border-radius:10px;overflow:hidden}
+  table.hist th{background:#1f2330;color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800}
+  table.hist td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.hist td.date{white-space:nowrap;font-weight:800;color:var(--pp-d)}
+  table.hist td .arrow{color:var(--ink3)}
+  table.hist td b{color:var(--ink)}
+
+  footer{text-align:center;color:var(--ink3);font-size:11.5px;margin-top:28px;line-height:1.7}
+  .lastupdate{position:fixed;bottom:24px;left:24px;background:rgba(31,35,48,.9);color:#fff;font-size:11px;
+    padding:6px 12px;border-radius:8px;font-weight:600;letter-spacing:.3px;backdrop-filter:blur(4px);z-index:50}
+
+  @media(max-width:680px){
+    .wrap{padding:0 12px 40px}.sot,.dash,.tabnav-inner{padding-left:12px;padding-right:12px}
+    header{padding:24px 18px}header h1{font-size:22px}
+    .qgrid{grid-template-columns:1fr 1fr}
+    .lastupdate{bottom:12px;left:12px}
+  }
+
+  /* ===== KO/VI Toggle ===== */
+  #ps-lang-switch{position:fixed;top:18px;right:22px;z-index:9002;}
+  #ip-lang-toggle{display:inline-flex;align-items:center;gap:0;background:#ffffff;border:1px solid #E3E0EC;border-radius:999px;padding:3px;cursor:pointer;font-family:inherit;box-shadow:0 2px 10px rgba(90,60,150,0.12);}
+  #ip-lang-toggle span{font-size:12px;font-weight:700;letter-spacing:.4px;color:#9890ad;padding:3px 12px;border-radius:999px;line-height:1.4;transition:background .15s,color .15s;}
+  #ip-lang-toggle span.on{background:#845EEE;color:#fff;}
+  #ip-lang-toggle:hover{border-color:#845EEE;}
+  @media (max-width:560px){#ps-lang-switch{top:12px;right:12px;}}
+
+  /* ===== 표준 목차 드로어 (DataModel 기준, 운영지침3 확정) ===== */
+  .toc-fixed{position:fixed;top:0;right:0;bottom:0;width:220px;max-height:100vh;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:0;
+    padding:0 4px 8px;box-shadow:-8px 0 24px rgba(80,60,140,.08);overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:#cfc7e6 transparent;z-index:9000;transition:transform .25s ease}
+  .toc-fixed::-webkit-scrollbar{width:3px}
+  .toc-fixed::-webkit-scrollbar-thumb{background:#cfc7e6;border-radius:99px}
+  .toc-head{font-size:13px;font-weight:800;letter-spacing:.3px;color:var(--ink);padding:10px 10px 8px;
+    text-transform:none;border-bottom:1px solid var(--line);margin-bottom:4px;
+    position:sticky;top:0;background:var(--card);z-index:2}
+  .toc-fixed a{display:block;padding:6px 8px;font-size:12px;color:var(--ink2);text-decoration:none;
+    border-radius:4px;line-height:1.5;transition:background .1s,color .1s;cursor:pointer}
+  .toc-fixed a:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-fixed a.toc-ent{padding-left:16px;font-size:11px;color:var(--ink3)}
+  .toc-fixed a.toc-ent:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-group{padding:11px 8px 5px;font-size:10px;font-weight:800;letter-spacing:.7px;color:var(--pp-d);text-transform:uppercase;
+    display:flex;align-items:center;justify-content:space-between;gap:6px;cursor:pointer;user-select:none;border-radius:4px}
+  .toc-group:hover{background:var(--pp-l)}
+  .toc-caret{flex-shrink:0;font-size:9px;line-height:1;color:var(--pp-d)}
+  .toc-caret::before{content:"\25BE"}
+  .toc-grp-wrap.collapsed .toc-caret::before{content:"\25B8"}
+  .toc-grp-wrap.collapsed .toc-items{display:none}
+  body.toc-collapsed .toc-fixed{transform:translateX(100%)}
+  .toc-handle{position:fixed;top:50%;right:220px;transform:translateY(-50%);z-index:9001;
+    width:22px;height:66px;display:flex;align-items:center;justify-content:center;padding:0;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:8px 0 0 8px;
+    color:var(--pp-d);font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;
+    box-shadow:-4px 0 14px rgba(80,60,140,.10);transition:right .25s ease,background .12s}
+  .toc-handle::before{content:"\203A"}
+  body.toc-collapsed .toc-handle{right:0}
+  body.toc-collapsed .toc-handle::before{content:"\2039"}
+  .toc-handle:hover{background:var(--pp-l)}
+  @media(max-width:900px){.toc-fixed{display:none}.toc-handle{display:none}}
+.ptbl{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:13px}
+.ptbl td{border:1px solid var(--line,#e9e7f2);padding:7px 10px;vertical-align:top;text-align:left}
+.ptbl td.rk{width:150px;white-space:nowrap;font-weight:700;background:#faf9fe;color:#5b39b8}
+.ptbl tr.nt td.rk{color:#8b93a7;font-weight:700}
+.ptbl tr.nt td.rv{color:#3f4658}
+@media(max-width:640px){.ptbl td.rk{width:auto;white-space:normal}}
+.sot-note{margin-top:7px;font-size:12.2px;color:#3f4658;line-height:1.65}
+.sot-note b{color:#1f2330}
+</style>
+</head>
+<body class="policy-sub">
+<header class="ph"><div class="ph-in"><div class="ph-kick">PRICEPICK 정책</div><h1 class="ph-t">추첨 · 경품</h1><label class="ip-lang" id="ip-lang-toggle"><input type="checkbox"><span>KO</span><span>VI</span></label></div></header>
+<div class="pnav"><a href="/policyspec.html">← 정책 목차</a> <span class="pnav-sep">|</span> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> · <a href="/policy-02-earn.html">쇼핑 티켓 · 적립 메커니즘</a> · <a href="/policy-03-expiry.html">유효기간 · 만료</a> · <a href="/policy-04-point.html">포인트(P)</a> · <a href="/policy-05-engage.html">참여</a> · <a href="/policy-06-exchange.html">교환 · 등급 전환</a> · <a href="/policy-07-account.html">계정 생애주기</a> · <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> · <a href="/policy-09-push.html">푸시 알림 상한</a> · <a href="/policy-10-raffle.html">추첨 · 경품</a> · <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> · <a href="/policy-12-cms.html">CMS 운영값 마스터표</a></div>
+<main class="psub-wrap">
+<div class="panel active" data-tab="t10">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/><circle cx="12" cy="12" r="3"/></svg>추첨 · 경품</div>
+    <div class="pdesc">이벤트 티켓으로 응모하는 경품 추첨. 1단계는 관리자가 직접 운영합니다.</div>
+<table class="ptbl">
+    <tr class="nt"><td class="rv" colspan="2">2026-07-31 확정 — 주간 경품 추첨 전체를 숨김 처리했습니다. 응모·당첨자 발표·관련 화면·배너 2종이 대상이며, 기능과 코드는 그대로 유지하고 노출만 차단합니다. 실사용자 1만 명 달성 시 실제 지급으로 부활합니다. 아래 규칙은 부활 시점에 그대로 적용됩니다.</td></tr>
+</table>
+<div class="card">
+      <h4><span class="n">1</span>응모 · 당첨 · 운영 <span class="badge-hidden">숨김</span></h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">응모</td><td class="rv">이벤트 티켓으로 응모합니다. 응모하면 티켓이 바로 소모되고 <b>취소 불가</b>(1단계 기준). 1회 추첨 누적 <b>최대 10장</b> 응모.</td></tr>
+      <tr class="rw"><td class="rk">당첨자 선정</td><td class="rv">등수 슬롯 단위로 결정됩니다. 진행 중인 회차에서는 관리자가 응모자 리스트에서 등수별 슬롯에 당첨자를 직접 지정할 수 있고(마감 전까지 변경·해제 가능), 마감 시점에 비어 있는 슬롯만 남은 응모 건 중 무작위 추첨으로 채워집니다. 이미 수동 지정된 사람은 자동 추첨 대상에서 제외됩니다.</td></tr>
+      <tr class="rw"><td class="rk">당첨 확률</td><td class="rv">자동 추첨분은 응모한 티켓 수에 비례해 확률이 높아집니다(응모 건 단위 무작위 · 한 번 뽑힌 응모는 다시 안 뽑히는 비복원 추첨). 1인 1회 당첨이라 같은 사람의 다른 응모 건은 건너뜁니다. 앱 고지 문구는 "당첨자는 일부 운영 기준에 따라 선정되며, 남은 자리는 응모 건 단위 무작위 추첨으로 결정됩니다."입니다.</td></tr>
+      <tr class="rw"><td class="rk">운영</td><td class="rv">진행 중 회차의 수동 지정과 마감 후 지급 관리는 관리자가 직접 수행합니다. 당첨자에게는 당첨 알림을 보내고, 경품 수령 정보는 1:1 문의로 받아 수동 발송합니다.</td></tr>
+      <tr class="rw"><td class="rk">예산</td><td class="rv">경품 예산은 <b>매출의 일정 비율로 고정</b>(티켓이 아무리 많이 발행돼도 손실 상한 보장).</td></tr>
+      <tr class="rw"><td class="rk">티켓 발급과 무관</td><td class="rv">추첨은 이벤트 티켓을 소비할 뿐, 새로 발급하지 않습니다. 획득 경로는 출석 5일 연속·매일 선물 상자 열기·온보딩 가입입니다.</td></tr>
+      <tr class="rw"><td class="rk">회차 운영</td><td class="rv">추첨 회차는 <b>매주 월요일 0시 시작 ~ 일요일 23:59:59 마감</b>으로 운영됩니다. CMS는 접속 시점 기준 <b>앞으로 4주치 회차가 항상 자동 등록</b>되어 있도록 부족분을 롤링 생성하며(수동 등록 없음), 회차명은 마감일 기준으로 자동 부여됩니다. 관리자는 생성된 회차의 <b>경품 구성 수정</b>과 응모자 리스트에서의 당첨자 선정·지급 관리만 진행합니다.</td></tr>
+</table>
+<div class="pending"><span class="pl">미결</span><b>경품 예산 비율</b>(매출 대비 %) 운영 확정 필요.
+        <span class="rec">추천: 매출의 1~2%.</span></div>
+      <span class="src">출처 PolicySpec 16 / FunctionalSpec(경품 응모) / CMS 추첨 회차</span>
+    </div>
+  </div>
+
+  <!-- 11. 본인인증·정산·데이터보존 -->
+  
+<section class="phist"><h3>변경 이력</h3><table class="phist-t"><tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<tr><td class="hd">2026-07-31</td><td class="hi">룰렛 개편 · 주간 경품 추첨 중단</td><td>2026-07-31 이동영 부장 수정 요청. 법적 리스크 검토에 따라 주간 경품 추첨을 중단하고 이벤트 티켓 사용처를 룰렛으로 전환.</td></tr>
+<tr><td class="hd">v8 결정(날짜 미상)</td><td class="hi">이벤트 티켓 만료</td><td>이월 로직 복잡·운영 혼선 정리. 100일 고정으로 단순화 확정.</td></tr>
+</table><p class="phist-n">이 정책과 관련된 이력 발췌입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
+</main>
+<script src="/policy-i18n.js"></script>
+</body></html>
