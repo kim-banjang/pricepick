@@ -182,11 +182,61 @@
 @media(max-width:640px){.ptbl td.rk{width:auto;white-space:normal}}
 .sot-note{margin-top:7px;font-size:12.2px;color:#3f4658;line-height:1.65}
 .sot-note b{color:#1f2330}
+
+/* 정책 페이지 분리 (2026-09-14) */
+.tocwrap{max-width:1000px;margin:18px auto 6px;padding:0 20px}
+.toc-h{font-size:15px;font-weight:800;color:#1f2330;margin-bottom:4px}
+.toc-r{font-size:12.4px;color:#3f4658;margin-bottom:12px;line-height:1.6}
+.toc-r b{color:#1f2330}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.tcard{display:block;background:#fff;border:1px solid #e9e7f2;border-radius:12px;padding:12px 14px;text-decoration:none;transition:.15s}
+.tcard:hover{border-color:#845EEE;box-shadow:0 3px 12px rgba(132,94,238,.12)}
+.tc-t{font-size:13.4px;font-weight:800;color:#1f2330;margin-bottom:6px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.tc-h{font-size:10px;font-weight:800;padding:1px 7px;border-radius:20px;background:#efe9fd;color:#5b39b8}
+.tc-h.none{background:#fdf1e3;color:#e8943a}
+.tc-l{margin:0;padding-left:16px;font-size:11.9px;color:#3f4658;line-height:1.7}
+.tc-l li{list-style:disc}
+body.policy-sub{background:#faf9fe}
+.ph{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:20px 0 16px}
+.ph-in{max-width:1000px;margin:0 auto;padding:0 20px;position:relative}
+.ph-kick{font-size:10.5px;font-weight:800;letter-spacing:.18em;opacity:.75}
+.ph-t{font-size:21px;font-weight:800;margin-top:3px}
+.pnav{max-width:1000px;margin:12px auto 0;padding:0 20px;font-size:11.8px;color:#8b93a7;line-height:1.9}
+.pnav a{color:#5b39b8;font-weight:700;text-decoration:none}
+.pnav a:hover{text-decoration:underline}
+.pnav-sep{margin:0 4px;color:#c9c4d6}
+.psub-wrap{max-width:1000px;margin:0 auto;padding:0 20px 50px}
+body.policy-sub .panel{display:block}
+.phist{margin-top:22px;background:#fff;border:1px solid #e9e7f2;border-radius:12px;padding:14px 16px}
+.phist h3{font-size:13.5px;font-weight:800;color:#5b39b8;margin-bottom:8px}
+.phist-t{width:100%;border-collapse:collapse;font-size:12.2px}
+.phist-t th,.phist-t td{border:1px solid #e9e7f2;padding:6px 9px;text-align:left;vertical-align:top}
+.phist-t th{background:#efe9fd;color:#5b39b8;font-weight:800;font-size:11.2px;white-space:nowrap}
+.phist-t td.hd{white-space:nowrap;color:#8b93a7;font-variant-numeric:tabular-nums;width:110px}
+.phist-t td.hi{font-weight:700;color:#1f2330}
+.phist-t td.nohist{color:#e8943a;font-weight:700;text-align:center}
+.phist-n{margin-top:8px;font-size:11.4px;color:#8b93a7;line-height:1.6}
+.phist-n a{color:#5b39b8;font-weight:700}
+/* policy-page-table-tidy */
+/* 정책 페이지 표·네비 정리 (2026-09-14) */
+.pnav{max-width:1000px;margin:12px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pnav a{display:inline-block;font-size:11.6px;font-weight:700;color:#5b39b8;text-decoration:none;
+  background:#fff;border:1px solid #e7e3f3;border-radius:999px;padding:4px 11px;line-height:1.4}
+.pnav a:hover{border-color:#845EEE;background:#f6f2ff}
+.pnav a.home{background:#1f2330;color:#fff;border-color:#1f2330}
+.pnav-sep{display:none}
+.phist-t{table-layout:fixed}
+.phist-t td.hd{width:104px;white-space:nowrap;font-variant-numeric:tabular-nums;color:#7a8093;font-size:11.8px}
+.phist-t td.hi{width:30%;font-weight:700;color:#1f2330;word-break:keep-all;line-height:1.6}
+.phist-t td.hb{color:#4b5163;font-size:11.8px;line-height:1.75;word-break:keep-all}
+.phist-t th,.phist-t td{padding:8px 10px}
+.phist-t tr:nth-child(even) td{background:#fcfbff}
+@media(max-width:720px){.phist-t{table-layout:auto}.phist-t td.hi{width:auto}}
 </style>
 </head>
 <body class="policy-sub">
 <header class="ph"><div class="ph-in"><div class="ph-kick">PRICEPICK 정책</div><h1 class="ph-t">푸시 알림 상한</h1><button id="ip-lang-toggle" data-lang="ko" type="button" title="KO / VI" aria-label="KO/VI"><span data-l="ko" class="on">KO</span><span data-l="vi">VI</span></button></div></header>
-<div class="pnav"><a href="/policyspec.html">← 정책 목차</a> <span class="pnav-sep">|</span> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> · <a href="/policy-02-earn.html">쇼핑 티켓 · 적립 메커니즘</a> · <a href="/policy-03-expiry.html">유효기간 · 만료</a> · <a href="/policy-04-point.html">포인트(P)</a> · <a href="/policy-05-engage.html">참여</a> · <a href="/policy-06-exchange.html">교환 · 등급 전환</a> · <a href="/policy-07-account.html">계정 생애주기</a> · <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> · <a href="/policy-09-push.html">푸시 알림 상한</a> · <a href="/policy-10-raffle.html">추첨 · 경품</a> · <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> · <a href="/policy-12-cms.html">CMS 운영값 마스터표</a></div>
+<div class="pnav"><a class="home" href="/policyspec.html">← 정책 목차</a> <span class="pnav-sep">|</span> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> · <a href="/policy-02-earn.html">쇼핑 티켓 · 적립 메커니즘</a> · <a href="/policy-03-expiry.html">유효기간 · 만료</a> · <a href="/policy-04-point.html">포인트(P)</a> · <a href="/policy-05-engage.html">참여</a> · <a href="/policy-06-exchange.html">교환 · 등급 전환</a> · <a href="/policy-07-account.html">계정 생애주기</a> · <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> · <a href="/policy-09-push.html">푸시 알림 상한</a> · <a href="/policy-10-raffle.html">추첨 · 경품</a> · <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> · <a href="/policy-12-cms.html">CMS 운영값 마스터표</a></div>
 <main class="psub-wrap">
 <div class="panel active" data-tab="t9">
     <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>푸시 알림 상한</div>

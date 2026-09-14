@@ -182,11 +182,61 @@
 @media(max-width:640px){.ptbl td.rk{width:auto;white-space:normal}}
 .sot-note{margin-top:7px;font-size:12.2px;color:#3f4658;line-height:1.65}
 .sot-note b{color:#1f2330}
+
+/* 정책 페이지 분리 (2026-09-14) */
+.tocwrap{max-width:1000px;margin:18px auto 6px;padding:0 20px}
+.toc-h{font-size:15px;font-weight:800;color:#1f2330;margin-bottom:4px}
+.toc-r{font-size:12.4px;color:#3f4658;margin-bottom:12px;line-height:1.6}
+.toc-r b{color:#1f2330}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.tcard{display:block;background:#fff;border:1px solid #e9e7f2;border-radius:12px;padding:12px 14px;text-decoration:none;transition:.15s}
+.tcard:hover{border-color:#845EEE;box-shadow:0 3px 12px rgba(132,94,238,.12)}
+.tc-t{font-size:13.4px;font-weight:800;color:#1f2330;margin-bottom:6px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.tc-h{font-size:10px;font-weight:800;padding:1px 7px;border-radius:20px;background:#efe9fd;color:#5b39b8}
+.tc-h.none{background:#fdf1e3;color:#e8943a}
+.tc-l{margin:0;padding-left:16px;font-size:11.9px;color:#3f4658;line-height:1.7}
+.tc-l li{list-style:disc}
+body.policy-sub{background:#faf9fe}
+.ph{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:20px 0 16px}
+.ph-in{max-width:1000px;margin:0 auto;padding:0 20px;position:relative}
+.ph-kick{font-size:10.5px;font-weight:800;letter-spacing:.18em;opacity:.75}
+.ph-t{font-size:21px;font-weight:800;margin-top:3px}
+.pnav{max-width:1000px;margin:12px auto 0;padding:0 20px;font-size:11.8px;color:#8b93a7;line-height:1.9}
+.pnav a{color:#5b39b8;font-weight:700;text-decoration:none}
+.pnav a:hover{text-decoration:underline}
+.pnav-sep{margin:0 4px;color:#c9c4d6}
+.psub-wrap{max-width:1000px;margin:0 auto;padding:0 20px 50px}
+body.policy-sub .panel{display:block}
+.phist{margin-top:22px;background:#fff;border:1px solid #e9e7f2;border-radius:12px;padding:14px 16px}
+.phist h3{font-size:13.5px;font-weight:800;color:#5b39b8;margin-bottom:8px}
+.phist-t{width:100%;border-collapse:collapse;font-size:12.2px}
+.phist-t th,.phist-t td{border:1px solid #e9e7f2;padding:6px 9px;text-align:left;vertical-align:top}
+.phist-t th{background:#efe9fd;color:#5b39b8;font-weight:800;font-size:11.2px;white-space:nowrap}
+.phist-t td.hd{white-space:nowrap;color:#8b93a7;font-variant-numeric:tabular-nums;width:110px}
+.phist-t td.hi{font-weight:700;color:#1f2330}
+.phist-t td.nohist{color:#e8943a;font-weight:700;text-align:center}
+.phist-n{margin-top:8px;font-size:11.4px;color:#8b93a7;line-height:1.6}
+.phist-n a{color:#5b39b8;font-weight:700}
+/* policy-page-table-tidy */
+/* 정책 페이지 표·네비 정리 (2026-09-14) */
+.pnav{max-width:1000px;margin:12px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pnav a{display:inline-block;font-size:11.6px;font-weight:700;color:#5b39b8;text-decoration:none;
+  background:#fff;border:1px solid #e7e3f3;border-radius:999px;padding:4px 11px;line-height:1.4}
+.pnav a:hover{border-color:#845EEE;background:#f6f2ff}
+.pnav a.home{background:#1f2330;color:#fff;border-color:#1f2330}
+.pnav-sep{display:none}
+.phist-t{table-layout:fixed}
+.phist-t td.hd{width:104px;white-space:nowrap;font-variant-numeric:tabular-nums;color:#7a8093;font-size:11.8px}
+.phist-t td.hi{width:30%;font-weight:700;color:#1f2330;word-break:keep-all;line-height:1.6}
+.phist-t td.hb{color:#4b5163;font-size:11.8px;line-height:1.75;word-break:keep-all}
+.phist-t th,.phist-t td{padding:8px 10px}
+.phist-t tr:nth-child(even) td{background:#fcfbff}
+@media(max-width:720px){.phist-t{table-layout:auto}.phist-t td.hi{width:auto}}
 </style>
 </head>
 <body class="policy-sub">
 <header class="ph"><div class="ph-in"><div class="ph-kick">PRICEPICK 정책</div><h1 class="ph-t">서비스 모델 · 제휴몰</h1><button id="ip-lang-toggle" data-lang="ko" type="button" title="KO / VI" aria-label="KO/VI"><span data-l="ko" class="on">KO</span><span data-l="vi">VI</span></button></div></header>
-<div class="pnav"><a href="/policyspec.html">← 정책 목차</a> <span class="pnav-sep">|</span> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> · <a href="/policy-02-earn.html">쇼핑 티켓 · 적립 메커니즘</a> · <a href="/policy-03-expiry.html">유효기간 · 만료</a> · <a href="/policy-04-point.html">포인트(P)</a> · <a href="/policy-05-engage.html">참여</a> · <a href="/policy-06-exchange.html">교환 · 등급 전환</a> · <a href="/policy-07-account.html">계정 생애주기</a> · <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> · <a href="/policy-09-push.html">푸시 알림 상한</a> · <a href="/policy-10-raffle.html">추첨 · 경품</a> · <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> · <a href="/policy-12-cms.html">CMS 운영값 마스터표</a></div>
+<div class="pnav"><a class="home" href="/policyspec.html">← 정책 목차</a> <span class="pnav-sep">|</span> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> · <a href="/policy-02-earn.html">쇼핑 티켓 · 적립 메커니즘</a> · <a href="/policy-03-expiry.html">유효기간 · 만료</a> · <a href="/policy-04-point.html">포인트(P)</a> · <a href="/policy-05-engage.html">참여</a> · <a href="/policy-06-exchange.html">교환 · 등급 전환</a> · <a href="/policy-07-account.html">계정 생애주기</a> · <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> · <a href="/policy-09-push.html">푸시 알림 상한</a> · <a href="/policy-10-raffle.html">추첨 · 경품</a> · <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> · <a href="/policy-12-cms.html">CMS 운영값 마스터표</a></div>
 <main class="psub-wrap">
 <div class="panel active" data-tab="t1">
     <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg>서비스 모델 · 제휴몰</div>
@@ -215,11 +265,11 @@
   <!-- 2. 티켓·적립 -->
   
 <section class="phist"><h3>변경 이력</h3><table class="phist-t"><tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
-<tr><td class="hd">2026-08-13</td><td class="hi">5천원 미만 구매 이벤트 티켓 지급 폐지</td><td>이부장 동의로 김반장 확정(2026-08-13) — 등급 티켓 가치가 1/10로 내려가 소액 구매에도 등급 티켓이 나오게 되면서 이벤트 티켓으로 우회할 이유가 없어졌고, 취소·반품 처리도 단순해진다. 이벤트 티켓 자체·다른 획득 경로(출석·룰렛·온보딩·CS수동)·이벤트 티켓 가치(40원)·한도(일5장·월30장)는 변경 없음.</td></tr>
-<tr><td class="hd">2026-08-12</td><td class="hi">적립 규칙에서 고정 수치 제거</td><td>등급 티켓 환산가치가 1/10로 바뀌면서 「구매액 2% 고정」 전제로 쓰인 예시·문구가 앞뒤가 안 맞게 됐다. 실제로도 적립률은 제휴몰마다 달라 정책서에 특정 비율을 못 박을 수 없다. 등급별 환산가치·분배 방식(큰 단위부터 채우기)·거스름돈 처리 원칙은 그대로 유지.</td></tr>
-<tr><td class="hd">2026-08-27</td><td class="hi">주문 단위 적립 · 한도의 「1건」 · 링크프라이스 예외 · 「제휴사」 폐기</td><td>링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 상품 수만큼 온다(uniq_id가 같다). 같은 uniq_id를 한 주문으로 묶어 <b>적립액을 한 번만 계산</b>하고 <b>거스름돈 버림도 한 번만</b> 일어나게 한다. 구매 적립 한도 일 5건 · 월 50건의 「1건」도 <b>주문 1건</b>이며 포스트백 건수가 아니다. 전환 대기일 수를 몰마다 정하는 것은 <b>링크프라이스만의 예외</b>이고 쿠팡은 연동 D+7 / 미연동 D+30 고정이다. 용어도 <b>「제휴사」를 쓰지 않고 링크프라이스 / 제휴몰로 가른다</b>. (김반장 확정)</td></tr>
-<tr><td class="hd">2026-08-24</td><td class="hi">랜덤 → 등급 전환 시기 <span class="gloss">(링크프라이스 제휴몰만)</span></td><td>링크프라이스 제휴몰은 CMS 「티켓 적립 설정」 한 곳에서 몰마다 정한다. 일수를 줄이면 이미 발급된 대기 랜덤 티켓도 소급해 앞당겨 전환된다. (김반장 확정)<br><b>2026-08-27 정정</b> — 이 줄에 「카카오 연동 분기 폐지」로 적혀 있었으나 그런 결정은 없었다. 바뀐 것은 링크프라이스 제휴몰뿐이고, <b>쿠팡은 카카오 연동 D+7 / 미연동 D+30 고정이 그대로 살아 있다</b>(CMS에서 수정 불가).</td></tr>
-<tr><td class="hd">2026-06-08</td><td class="hi">제휴몰 범위(STEP1)</td><td>이부장 변경안. 1단계 집중, 관심상품·가격추적은 STEP2로 분리.</td></tr>
+<tr><td class="hd">2026-08-13</td><td class="hi">5천원 미만 구매 이벤트 티켓 지급 폐지</td><td class="hb">이부장 동의로 김반장 확정(2026-08-13) — 등급 티켓 가치가 1/10로 내려가 소액 구매에도 등급 티켓이 나오게 되면서 이벤트 티켓으로 우회할 이유가 없어졌고, 취소·반품 처리도 단순해진다. 이벤트 티켓 자체·다른 획득 경로(출석·룰렛·온보딩·CS수동)·이벤트 티켓 가치(40원)·한도(일5장·월30장)는 변경 없음.</td></tr>
+<tr><td class="hd">2026-08-12</td><td class="hi">적립 규칙에서 고정 수치 제거</td><td class="hb">등급 티켓 환산가치가 1/10로 바뀌면서 「구매액 2% 고정」 전제로 쓰인 예시·문구가 앞뒤가 안 맞게 됐다. 실제로도 적립률은 제휴몰마다 달라 정책서에 특정 비율을 못 박을 수 없다. 등급별 환산가치·분배 방식(큰 단위부터 채우기)·거스름돈 처리 원칙은 그대로 유지.</td></tr>
+<tr><td class="hd">2026-08-27</td><td class="hi">주문 단위 적립 · 한도의 「1건」 · 링크프라이스 예외 · 「제휴사」 폐기</td><td class="hb">링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 상품 수만큼 온다(uniq_id가 같다). 같은 uniq_id를 한 주문으로 묶어 <b>적립액을 한 번만 계산</b>하고 <b>거스름돈 버림도 한 번만</b> 일어나게 한다. 구매 적립 한도 일 5건 · 월 50건의 「1건」도 <b>주문 1건</b>이며 포스트백 건수가 아니다. 전환 대기일 수를 몰마다 정하는 것은 <b>링크프라이스만의 예외</b>이고 쿠팡은 연동 D+7 / 미연동 D+30 고정이다. 용어도 <b>「제휴사」를 쓰지 않고 링크프라이스 / 제휴몰로 가른다</b>. (김반장 확정)</td></tr>
+<tr><td class="hd">2026-08-24</td><td class="hi">랜덤 → 등급 전환 시기 <span class="gloss">(링크프라이스 제휴몰만)</span></td><td class="hb">링크프라이스 제휴몰은 CMS 「티켓 적립 설정」 한 곳에서 몰마다 정한다. 일수를 줄이면 이미 발급된 대기 랜덤 티켓도 소급해 앞당겨 전환된다. (김반장 확정)<br><b>2026-08-27 정정</b> — 이 줄에 「카카오 연동 분기 폐지」로 적혀 있었으나 그런 결정은 없었다. 바뀐 것은 링크프라이스 제휴몰뿐이고, <b>쿠팡은 카카오 연동 D+7 / 미연동 D+30 고정이 그대로 살아 있다</b>(CMS에서 수정 불가).</td></tr>
+<tr><td class="hd">2026-06-08</td><td class="hi">제휴몰 범위(STEP1)</td><td class="hb">이부장 변경안. 1단계 집중, 관심상품·가격추적은 STEP2로 분리.</td></tr>
 </table><p class="phist-n">이 정책과 관련된 이력 발췌입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
 </main>
 <script src="/policy-i18n.js"></script>
