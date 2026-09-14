@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 백엔드 질문 답변 #17</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--bad:#d64545;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:10px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.go{background:#fff;border:2px solid var(--ok);border-radius:14px;padding:15px 18px;margin-top:16px;font-size:13.6px;color:var(--ink2)}
+.go .gt{font-size:12px;font-weight:800;color:var(--ok);letter-spacing:.05em;display:block;margin-bottom:6px}
+.go b{color:var(--ink1)}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+a{color:var(--pp-d);font-weight:700}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick 백엔드 질문 답변 #17</span><span class="vi">PricePick Trả lời câu hỏi Backend #17</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry · Backend · 티켓 부채(상계) 로직 — 그대로 갑니다 · 코드 유지 · 보류 해제 — 답변 KO/VI</span><span class="vi">Harry · Backend · Logic nợ vé (bù trừ) — giữ nguyên · giữ code · gỡ tạm dừng — Trả lời KO/VI</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">확정 1</span><span class="vi">Đã chốt 1</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장 확정 2026-09-14</span><span class="vi">Căn cứ: Mr Mark chốt 14/09/2026</span></span></span><span class="chip"><span class="i18n"><span class="ko">앞 문서: <a href="/devqa/backend-harry-20260911.html">#16</a></span><span class="vi">Tài liệu trước: <a href="/devqa/backend-harry-20260911.html">#16</a></span></span></span></div>
+
+<div class="go"><span class="gt"><span class="i18n"><span class="ko">결론 — 그대로 두십시오</span><span class="vi">Kết luận — Xin giữ nguyên</span></span></span><span class="i18n"><span class="ko"><b>제가 틀렸습니다. 2026-08-19 것이 맞으니 그대로 두십시오.</b>
+
+티켓 부채·상계 코드와 DB를 <b>지우지 마십시오.</b> 하던 대로 개발하시면 됩니다. <b>보류를 풉니다.</b>
+
+<b>서버 현황 목록 요청은 거둡니다.</b> 지울 일이 없어졌으니 만들지 마십시오.</span><span class="vi"><b>Tôi đã sai. Bản ngày 19/08/2026 mới đúng, xin giữ nguyên.</b>
+
+Xin <b>đừng xóa</b> code và DB nợ vé·bù trừ. Anh cứ phát triển như đang làm. <b>Gỡ tạm dừng.</b>
+
+<b>Tôi rút lại yêu cầu danh sách hiện trạng server.</b> Không còn việc phải xóa nên xin đừng làm danh sách đó.</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">1. 적용할 기준</span><span class="vi">1. Tiêu chí áp dụng</span></span></h2>
+
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">티켓 부채 로직을 적용합니까, 없앱니까?
+
+(원문 · #16) Vậy cuối cùng áp dụng logic nào? Phần ghi nợ vé có khá nhiều logic và DB.</span><span class="vi">Vậy cuối cùng áp dụng logic nào? Phần ghi nợ vé có khá nhiều logic và DB.</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div>
+
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>적용합니다. 아래 세 건이 살아 있는 기준입니다.</b> 새로 정한 것이 없고, 세 건에 적힌 그대로입니다.</span><span class="vi"><b>Có áp dụng. Ba tài liệu dưới đây là tiêu chí còn hiệu lực.</b> Không có gì mới, đúng như đã ghi trong ba tài liệu đó.</span></span></div></div>
+</div>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">문서</span><span class="vi">Tài liệu</span></span></th><th><span class="i18n"><span class="ko">적용할 내용</span><span class="vi">Nội dung áp dụng</span></span></th></tr>
+<tr><td><a href="/devqa/backend-harry-20260819.html">백엔드 #13</a><br>2026-08-19</td><td><span class="i18n"><span class="ko">등급별로만 차감 · 등급을 넘나들지 않음 · 내부 잔액은 음수 유지 · 앱에는 0 + 「회수 예정」 · <b>다음 적립 때 자동 상계</b> · 사유를 이력에 남김</span><span class="vi">Chỉ trừ trong cùng hạng · không lấn sang hạng khác · số dư nội bộ giữ số âm · app hiển thị 0 + 「회수 예정」 · <b>tự bù trừ ở lần tích lũy sau</b> · ghi lý do vào lịch sử</span></span></td></tr>
+<tr><td><a href="/devqa/app-kelvin-20260820.html">앱 · Kelvin</a><br>2026-08-20</td><td><span class="i18n"><span class="ko">「회수 예정」이 보이는 자리는 앱 「내 티켓 &amp; 포인트」 한 곳 · 홈·혜택 탭은 숫자만 · 기프티샵은 보유 0장과 동일 동작 · 이력은 활동 내역 「환수」</span><span class="vi">Chỉ màn app 「Vé &amp; Điểm của tôi」 hiển thị 「회수 예정」 · tab Home·Ưu đãi chỉ để số · Gifti Shop hoạt động y như đang có 0 vé · lịch sử ghi ở 「Thu hồi」 trong Lịch sử hoạt động</span></span></td></tr>
+<tr><td><a href="/devqa/cms-vin-20260618.html">CMS · Vin</a><br>2026-06-18</td><td><span class="i18n"><span class="ko">CMS 「환수 부채 추적」 — 부채 티켓 · 발생일 · 예상 상계일 · 상태. 「티켓 회수·소멸 이력」(처리된 결과 로그)과 목적이 다른 미결 추적</span><span class="vi">CMS 「Theo dõi nợ thu hồi」 — vé nợ · ngày phát sinh · ngày bù trừ dự kiến · trạng thái. Là theo dõi chưa xử lý, khác mục đích với 「Lịch sử thu hồi·tiêu hủy vé」 (log kết quả đã xử lý)</span></span></td></tr>
+</table></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">2. 폐기되는 것</span><span class="vi">2. Những nội dung bị hủy bỏ</span></span></h2>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">문서</span><span class="vi">Tài liệu</span></span></th><th><span class="i18n"><span class="ko">폐기 범위</span><span class="vi">Phạm vi hủy bỏ</span></span></th></tr>
+<tr><td><a href="/devqa/app-john-20260911-2.html">앱 · John (2차)</a><br>2026-09-11</td><td><span class="i18n"><span class="ko"><b>전체 폐기.</b> 「차감하지 않습니다」·「차감 규정이 없습니다」는 틀린 내용입니다</span><span class="vi"><b>Hủy toàn bộ.</b> 「Không trừ」·「Không có quy định trừ」 là nội dung sai</span></span></td></tr>
+<tr><td><a href="/devqa/backend-harry-20260827.html">백엔드 #14</a><br>2026-08-27</td><td><span class="i18n"><span class="ko">「사용 완료 티켓 — 회수 제외」·「잔액 음수 — 0 고정 · 미회수분 기록 유지」 <b>두 줄만 폐기.</b> 나머지는 유효</span><span class="vi">Chỉ hủy <b>hai dòng</b> 「Vé đã sử dụng — không thu hồi」·「Số dư âm — cố định 0 · lưu bản ghi phần chưa thu hồi」. Phần còn lại vẫn có hiệu lực</span></span></td></tr>
+<tr><td><a href="/devqa/cancel-ticket-recovery-20260903.html">취소 처리 지시서</a><br>2026-09-03</td><td><span class="i18n"><span class="ko">같은 두 줄(1·4·6번)과 8번의 「N장 사용분 제외」 표기 <b>폐기.</b> 표기는 「N장 회수 예정」으로 바뀝니다. 나머지는 유효</span><span class="vi"><b>Hủy</b> hai dòng tương ứng (mục 1·4·6) và cách ghi 「N장 사용분 제외」 ở mục 8. Đổi thành 「N장 회수 예정」. Phần còn lại vẫn có hiệu lực</span></span></td></tr>
+</table></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">3. 이쪽에서 고친 것</span><span class="vi">3. Những gì chúng tôi đã sửa</span></span></h2>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="i18n"><span class="ko">대상</span><span class="vi">Đối tượng</span></span></th><th><span class="i18n"><span class="ko">내용</span><span class="vi">Nội dung</span></span></th></tr>
+<tr><td><a href="/policyspec.html">정책서</a></td><td><span class="i18n"><span class="ko">「어뷰징·환불」 2번 카드 — 「이미 쓴 티켓은 환수하지 않습니다」를 <b>동급 차감 + 부채·상계</b>로 개정. 변경 이력에 2026-09-14 항목 추가</span><span class="vi">Thẻ 2 「Gian lận·Hoàn tiền」 — sửa 「Vé đã dùng không thu hồi」 thành <b>trừ cùng hạng + nợ·bù trừ</b>. Thêm mục 14/09/2026 vào lịch sử thay đổi</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">앱 데모</span><span class="vi">Demo app</span></span></td><td><span class="i18n"><span class="ko">「내 티켓 &amp; 포인트」에 <b>「회수 예정 N장」 복원</b>(해당 등급 잔액은 0 표시) · 티켓 적립 내역의 「N장 사용분 제외」를 <b>「N장 회수 예정」</b>으로 교체 · 취소 알림 문구 개정</span><span class="vi">Khôi phục <b>「회수 예정 N장」</b> ở 「Vé &amp; Điểm của tôi」 (số dư hạng đó hiển thị 0) · đổi 「N장 사용분 제외」 ở Lịch sử tích lũy vé thành <b>「N장 회수 예정」</b> · sửa nội dung thông báo hủy</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">CMS 데모</span><span class="vi">Demo CMS</span></span></td><td><span class="i18n"><span class="ko">「티켓 관리」에 <b>「환수 부채 추적」 표 복원</b> — 부채 티켓 · 발생일 · 예상 상계일 · 상태</span><span class="vi">Khôi phục <b>bảng 「Theo dõi nợ thu hồi」</b> ở 「Quản lý vé」 — vé nợ · ngày phát sinh · ngày bù trừ dự kiến · trạng thái</span></span></td></tr>
+<tr><td><a href="/devqa/app-john-20260914.html">앱 · John</a></td><td><span class="i18n"><span class="ko">취소 알림 문구의 마지막 덧붙임 문장 개정 — 확정 문구 4종 자체는 그대로</span><span class="vi">Sửa câu bổ sung cuối của nội dung thông báo hủy — bốn nội dung đã chốt giữ nguyên</span></span></td></tr>
+</table></div>
+
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham khảo]</span></span></span><span class="i18n"><span class="ko">원래 결정 — <a href="/reports/20260819_AccrualPolicy.html">적립 확정 정책 보고서</a>(2026-08-19) 3항에 김반장님 발언이 그대로 있습니다: 「그때는 loss 로 두고 새로 적립(지급) 이 될경우 선차감을 시키도록 하겠습니다.」 이 결정은 바뀐 적이 없고, 정책서와 09-03 지시서가 그 결정을 따라가지 못한 것입니다.
+
+왜 어긋났는지 — 08-27 백엔드 #14가 08-19 기준을 폐기 고지 없이 뒤집었고, 그 뒤 문서들이 그것을 이어받았습니다. 09-11 존 2차 답변은 앞선 답변서 3건을 확인하지 않고 작성됐습니다. 전체 경위는 <a href="/reports/20260911_TicketDebt.html">티켓 부채(상계) 로직 결정 보고서</a>에 있습니다.
+
+앞으로 — 답변서를 뒤집을 때는 이전 답변서에 폐기 고지를 겁니다. 이번에 08-27·09-03·09-11 세 건에 고지를 걸어 두었습니다.
+
+아직 정하지 않은 것 — 원장(ticket_transactions)에 부채 전용 유형을 따로 둘지, 기존 유형에 필드를 붙일지는 정하지 않았습니다. <b>Harry가 이미 서버에 구현해 둔 방식이 있으면 그것을 기준으로 삼겠습니다.</b> 편하실 때 알려 주시면 CMS 화면을 그 구조에 맞추겠습니다 — 지금 당장은 필요 없습니다.</span><span class="vi">Quyết định gốc — ở mục 3 <a href="/reports/20260819_AccrualPolicy.html">Báo cáo chính sách xác nhận tích lũy</a> (19/08/2026) có nguyên văn lời Mr Mark: 「Khi đó sẽ ghi nhận là loss, và trừ trước vào lần tích lũy (cấp vé) mới.」 Quyết định này chưa từng thay đổi; chính tài liệu chính sách và chỉ thị 03/09 đã không theo kịp quyết định đó.
+
+Vì sao lệch — Backend #14 ngày 27/08 đã lật lại tiêu chí 19/08 mà không có thông báo hủy bỏ, và các tài liệu sau đó kế thừa điều này. Bản trả lời John lần 2 ngày 11/09 được viết mà không kiểm tra 3 bản trả lời trước. Toàn bộ diễn biến xem ở <a href="/reports/20260911_TicketDebt.html">Báo cáo quyết định logic nợ vé (bù trừ)</a>.
+
+Về sau — khi lật lại một bản trả lời, chúng tôi sẽ gắn thông báo hủy bỏ lên bản cũ. Lần này đã gắn cho ba tài liệu 27/08·03/09·11/09.
+
+Điều chưa chốt — chưa quyết định sẽ đặt một loại riêng cho nợ trong sổ cái (ticket_transactions) hay thêm trường vào loại có sẵn. <b>Nếu Harry đã triển khai theo cách nào đó trên server thì chúng tôi lấy cách đó làm chuẩn.</b> Khi nào tiện xin cho biết, chúng tôi sẽ chỉnh màn hình CMS theo cấu trúc đó — hiện tại chưa cần gấp.</span></span></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 백엔드 질문 답변 #17 · Harry · 2026-09-14 · 확정 1 · 보류 해제</span><span class="vi">PricePick · Trả lời câu hỏi Backend #17 · Harry · 14/09/2026 · Đã chốt 1 · Đã gỡ tạm dừng</span></span></div></div>
+</body></html>
