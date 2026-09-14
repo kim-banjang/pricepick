@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PricePick 정책 · 쇼핑 티켓 · 적립 메커니즘</title>
+<style>
+  :root{
+    --pp:#845EEE; --pp-d:#6a45d4; --pp-l:#f3efff;
+    --ink:#1f2330; --ink2:#4b5163; --ink3:#7a8093;
+    --line:#e7e3f3; --bg:#f6f5fb; --card:#ffffff;
+    --gold:#d4a017; --gold-bg:#fbf3da;
+    --silver:#8a93a6; --silver-bg:#eef0f5;
+    --bronze:#b5793b; --bronze-bg:#f5e9dc;
+    --ok:#16a34a; --ok-bg:#e7f7ed;
+    --pend:#be185d; --pend-bg:#fdeef4;
+    --note:#92400e; --note-bg:#fff5e6;
+    --new:#0e7490; --new-bg:#e0f5fa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Segoe UI",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 40px}
+
+  header{background:linear-gradient(135deg,var(--pp) 0%,#9b78f0 100%);color:#fff;
+    padding:34px 36px 28px;border-radius:0 0 26px 26px;margin-bottom:8px;box-shadow:0 10px 30px rgba(132,94,238,.25)}
+  header .kicker{font-size:12.5px;letter-spacing:2px;opacity:.85;font-weight:600}
+  header h1{font-size:28px;font-weight:800;margin:8px 0 6px;letter-spacing:-.5px}
+  header .sub{font-size:14px;opacity:.95;font-weight:600}
+  header p{font-size:13px;opacity:.9;max-width:720px;margin-top:8px}
+
+  .sot{max-width:1000px;margin:0 auto 16px;padding:0 20px}
+  .sot-bar{background:#1f2330;color:#fff;border-radius:12px;padding:13px 18px;font-size:13.5px;font-weight:700;
+    display:flex;align-items:center;gap:10px;box-shadow:0 4px 14px rgba(31,35,48,.18)}
+  .sot-bar .dot{width:9px;height:9px;border-radius:50%;background:#845EEE;flex:none;box-shadow:0 0 0 4px rgba(132,94,238,.3)}
+  .sot-bar b{color:#c9b6ff}
+
+  /* ===== ① 대시보드 ===== */
+  .dash{max-width:1000px;margin:0 auto 6px;padding:0 20px}
+  .dash .oneliner{background:var(--pp-l);border:1px solid var(--line);border-radius:14px;padding:15px 20px;margin-bottom:16px;font-size:14.5px;color:var(--ink2)}
+  .dash .oneliner b{color:var(--pp-d);font-weight:800}
+  .quick{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(80,60,140,.05)}
+  .quick h3{font-size:14px;font-weight:800;color:var(--pp-d);margin-bottom:13px;display:flex;align-items:center;gap:8px}
+  .quick h3 svg{width:17px;height:17px;stroke:var(--pp);fill:none;stroke-width:2}
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:10px}
+  .qcell{background:#fafafc;border:1px solid #eee;border-radius:10px;padding:11px 13px}
+  .qcell .k{font-size:10.5px;font-weight:800;letter-spacing:.3px;color:var(--ink3);margin-bottom:4px;text-transform:uppercase}
+  .qcell .v{font-size:13px;font-weight:600;color:var(--ink)}
+  .qcell .v b{font-weight:800;color:var(--pp-d)}
+
+  .pendbox{background:var(--pend-bg);border:2px solid var(--pend);border-radius:14px;padding:15px 20px;margin-bottom:18px}
+  .pendbox h3{font-size:13.5px;font-weight:800;color:var(--pend);margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .pendbox h3 svg{width:15px;height:15px;stroke:var(--pend);fill:none;stroke-width:2}
+  .pendbox p{font-size:12.8px;color:#8a1f54;line-height:1.65;margin:5px 0}
+  .pendbox p b{font-weight:800}
+  .pendbox .rec{color:var(--pp-d);font-weight:700}
+
+  /* ===== ② 탭 네비 ===== */
+  .tabnav{position:sticky;top:0;z-index:40;background:var(--bg);padding:12px 0 8px;margin:6px auto 0;max-width:1000px}
+  .tabnav-inner{max-width:1000px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:7px}
+  .tabnav button{font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;
+    border:1.5px solid var(--line);background:#fff;color:var(--ink2);border-radius:22px;padding:7px 14px;transition:all .14s;white-space:nowrap}
+  .tabnav button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .tabnav button:hover{border-color:var(--pp);color:var(--pp-d)}
+  .tabnav button.on{background:var(--pp);border-color:var(--pp);color:#fff}
+
+  /* ===== ③ 패널 ===== */
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .2s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .ptitle{font-size:19px;font-weight:800;color:var(--ink);margin:6px 0 4px;display:flex;align-items:center;gap:9px}
+  .ptitle svg{width:20px;height:20px;stroke:var(--pp);fill:none;stroke-width:2}
+  .ptitle .badge-new{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:var(--new);padding:3px 9px;border-radius:20px}
+  .badge-hold{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#8a6d3b;padding:3px 9px;border-radius:20px;margin-left:6px}
+.badge-hidden{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#6b7280;padding:3px 9px;border-radius:20px;margin-left:6px}
+.badge-replan{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#c0342a;padding:3px 9px;border-radius:20px;margin-left:6px}
+  .card.replan{border:1.5px solid #f3b7ab;background:#fff8f7}
+  .card.replan .note.warn{border-left-color:#e5484d;background:#fff4f2;color:#8f2420}
+  .pdesc{font-size:13px;color:var(--ink3);margin-bottom:16px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 20px;margin-bottom:13px;box-shadow:0 2px 8px rgba(80,60,140,.04)}
+  .card h4{font-size:15px;font-weight:800;color:var(--pp-d);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .card h4 .n{background:var(--pp);color:#fff;font-weight:800;font-size:12px;min-width:24px;height:24px;padding:0 6px;border-radius:7px;display:grid;place-items:center}
+
+  .rule{font-size:13.8px;line-height:1.72;color:var(--ink2);margin-bottom:9px}
+  .rule:last-child{margin-bottom:0}
+  .rule b{color:var(--ink);font-weight:800}
+  .rule .lead{display:inline-block;font-weight:800;color:var(--pp-d);margin-right:4px}
+  .gloss{color:var(--ink3);font-weight:600;font-size:.92em}
+  ul.r{list-style:none;margin:6px 0 4px}
+  ul.r li{position:relative;padding-left:16px;font-size:13.6px;color:var(--ink2);line-height:1.72;margin:5px 0}
+  ul.r li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--pp)}
+  ul.r li b{color:var(--ink);font-weight:800}
+
+  .chip{display:inline-block;font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:20px;margin:0 2px;white-space:nowrap}
+  .c-gold{background:var(--gold-bg);color:var(--gold)} .c-silver{background:var(--silver-bg);color:var(--silver)} .c-bronze{background:var(--bronze-bg);color:var(--bronze)}
+
+  .ex{background:#f7f5ff;border:1px dashed #d8cef5;border-radius:9px;padding:9px 13px;font-size:12.6px;color:var(--ink2);margin:8px 0}
+  .ex b{color:var(--pp-d)}
+  .note{background:var(--note-bg);border-left:3px solid #f0a830;border-radius:0 8px 8px 0;padding:9px 13px;font-size:12.6px;color:var(--note);margin:8px 0}
+  .src{display:inline-block;font-size:11px;font-weight:700;color:var(--ink3);background:#f1eefb;border-radius:6px;padding:2px 8px;margin-top:6px}
+
+  .pending{background:var(--pend-bg);border:1.5px solid #f4b8d2;border-radius:10px;padding:11px 14px;margin:9px 0;font-size:13px;color:#8a1f54}
+  .pending .pl{display:inline-block;background:var(--pend);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:2px 9px;border-radius:6px;margin-right:7px;vertical-align:middle}
+  .pending b{font-weight:800}
+  .pending .rec{display:block;margin-top:6px;color:var(--pp-d);font-weight:700;font-size:12.6px}
+
+  table.mt{width:100%;border-collapse:collapse;font-size:12.8px;margin-top:4px;background:#fff;border-radius:10px;overflow:hidden}
+  table.mt th{background:var(--pp);color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800;letter-spacing:.3px}
+  table.mt td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.mt tr:last-child td{border-bottom:none}
+  table.mt td b{color:var(--ink);font-weight:800}
+  table.mt .key{font-weight:800;color:var(--pp-d);white-space:nowrap}
+  table.mt .pendval{color:var(--pend);font-weight:800}
+  table.mt tr:nth-child(even) td{background:#fbfaff}
+
+  table.hist{width:100%;border-collapse:collapse;font-size:12.8px;background:#fff;border-radius:10px;overflow:hidden}
+  table.hist th{background:#1f2330;color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800}
+  table.hist td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.hist td.date{white-space:nowrap;font-weight:800;color:var(--pp-d)}
+  table.hist td .arrow{color:var(--ink3)}
+  table.hist td b{color:var(--ink)}
+
+  footer{text-align:center;color:var(--ink3);font-size:11.5px;margin-top:28px;line-height:1.7}
+  .lastupdate{position:fixed;bottom:24px;left:24px;background:rgba(31,35,48,.9);color:#fff;font-size:11px;
+    padding:6px 12px;border-radius:8px;font-weight:600;letter-spacing:.3px;backdrop-filter:blur(4px);z-index:50}
+
+  @media(max-width:680px){
+    .wrap{padding:0 12px 40px}.sot,.dash,.tabnav-inner{padding-left:12px;padding-right:12px}
+    header{padding:24px 18px}header h1{font-size:22px}
+    .qgrid{grid-template-columns:1fr 1fr}
+    .lastupdate{bottom:12px;left:12px}
+  }
+
+  /* ===== KO/VI Toggle ===== */
+  #ps-lang-switch{position:fixed;top:18px;right:22px;z-index:9002;}
+  #ip-lang-toggle{display:inline-flex;align-items:center;gap:0;background:#ffffff;border:1px solid #E3E0EC;border-radius:999px;padding:3px;cursor:pointer;font-family:inherit;box-shadow:0 2px 10px rgba(90,60,150,0.12);}
+  #ip-lang-toggle span{font-size:12px;font-weight:700;letter-spacing:.4px;color:#9890ad;padding:3px 12px;border-radius:999px;line-height:1.4;transition:background .15s,color .15s;}
+  #ip-lang-toggle span.on{background:#845EEE;color:#fff;}
+  #ip-lang-toggle:hover{border-color:#845EEE;}
+  @media (max-width:560px){#ps-lang-switch{top:12px;right:12px;}}
+
+  /* ===== 표준 목차 드로어 (DataModel 기준, 운영지침3 확정) ===== */
+  .toc-fixed{position:fixed;top:0;right:0;bottom:0;width:220px;max-height:100vh;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:0;
+    padding:0 4px 8px;box-shadow:-8px 0 24px rgba(80,60,140,.08);overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:#cfc7e6 transparent;z-index:9000;transition:transform .25s ease}
+  .toc-fixed::-webkit-scrollbar{width:3px}
+  .toc-fixed::-webkit-scrollbar-thumb{background:#cfc7e6;border-radius:99px}
+  .toc-head{font-size:13px;font-weight:800;letter-spacing:.3px;color:var(--ink);padding:10px 10px 8px;
+    text-transform:none;border-bottom:1px solid var(--line);margin-bottom:4px;
+    position:sticky;top:0;background:var(--card);z-index:2}
+  .toc-fixed a{display:block;padding:6px 8px;font-size:12px;color:var(--ink2);text-decoration:none;
+    border-radius:4px;line-height:1.5;transition:background .1s,color .1s;cursor:pointer}
+  .toc-fixed a:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-fixed a.toc-ent{padding-left:16px;font-size:11px;color:var(--ink3)}
+  .toc-fixed a.toc-ent:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-group{padding:11px 8px 5px;font-size:10px;font-weight:800;letter-spacing:.7px;color:var(--pp-d);text-transform:uppercase;
+    display:flex;align-items:center;justify-content:space-between;gap:6px;cursor:pointer;user-select:none;border-radius:4px}
+  .toc-group:hover{background:var(--pp-l)}
+  .toc-caret{flex-shrink:0;font-size:9px;line-height:1;color:var(--pp-d)}
+  .toc-caret::before{content:"\25BE"}
+  .toc-grp-wrap.collapsed .toc-caret::before{content:"\25B8"}
+  .toc-grp-wrap.collapsed .toc-items{display:none}
+  body.toc-collapsed .toc-fixed{transform:translateX(100%)}
+  .toc-handle{position:fixed;top:50%;right:220px;transform:translateY(-50%);z-index:9001;
+    width:22px;height:66px;display:flex;align-items:center;justify-content:center;padding:0;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:8px 0 0 8px;
+    color:var(--pp-d);font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;
+    box-shadow:-4px 0 14px rgba(80,60,140,.10);transition:right .25s ease,background .12s}
+  .toc-handle::before{content:"\203A"}
+  body.toc-collapsed .toc-handle{right:0}
+  body.toc-collapsed .toc-handle::before{content:"\2039"}
+  .toc-handle:hover{background:var(--pp-l)}
+  @media(max-width:900px){.toc-fixed{display:none}.toc-handle{display:none}}
+.ptbl{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:13px}
+.ptbl td{border:1px solid var(--line,#e9e7f2);padding:7px 10px;vertical-align:top;text-align:left}
+.ptbl td.rk{width:150px;white-space:nowrap;font-weight:700;background:#faf9fe;color:#5b39b8}
+.ptbl tr.nt td.rk{color:#8b93a7;font-weight:700}
+.ptbl tr.nt td.rv{color:#3f4658}
+@media(max-width:640px){.ptbl td.rk{width:auto;white-space:normal}}
+.sot-note{margin-top:7px;font-size:12.2px;color:#3f4658;line-height:1.65}
+.sot-note b{color:#1f2330}
+
+/* 정책 페이지 분리 (2026-09-14) */
+.tocwrap{max-width:1000px;margin:18px auto 6px;padding:0 20px}
+.toc-h{font-size:15px;font-weight:800;color:#1f2330;margin-bottom:4px}
+.toc-r{font-size:12.4px;color:#3f4658;margin-bottom:12px;line-height:1.6}
+.toc-r b{color:#1f2330}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.tcard{display:block;background:#fff;border:1px solid #e9e7f2;border-radius:12px;padding:12px 14px;text-decoration:none;transition:.15s}
+.tcard:hover{border-color:#845EEE;box-shadow:0 3px 12px rgba(132,94,238,.12)}
+.tc-t{font-size:13.4px;font-weight:800;color:#1f2330;margin-bottom:6px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.tc-h{font-size:10px;font-weight:800;padding:1px 7px;border-radius:20px;background:#efe9fd;color:#5b39b8}
+.tc-h.none{background:#fdf1e3;color:#e8943a}
+.tc-l{margin:0;padding-left:16px;font-size:11.9px;color:#3f4658;line-height:1.7}
+.tc-l li{list-style:disc}
+body.policy-sub{background:#faf9fe}
+.ph{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:20px 0 16px}
+.ph-in{max-width:1000px;margin:0 auto;padding:0 20px;position:relative}
+.ph-kick{font-size:10.5px;font-weight:800;letter-spacing:.18em;opacity:.75}
+.ph-t{font-size:21px;font-weight:800;margin-top:3px}
+.pnav{max-width:1000px;margin:12px auto 0;padding:0 20px;font-size:11.8px;color:#8b93a7;line-height:1.9}
+.pnav a{color:#5b39b8;font-weight:700;text-decoration:none}
+.pnav a:hover{text-decoration:underline}
+.pnav-sep{margin:0 4px;color:#c9c4d6}
+.psub-wrap{max-width:1000px;margin:0 auto;padding:0 20px 50px}
+body.policy-sub .panel{display:block}
+.phist{margin-top:22px;background:#fff;border:1px solid #e9e7f2;border-radius:12px;padding:14px 16px}
+.phist h3{font-size:13.5px;font-weight:800;color:#5b39b8;margin-bottom:8px}
+.phist-t{width:100%;border-collapse:collapse;font-size:12.2px}
+.phist-t th,.phist-t td{border:1px solid #e9e7f2;padding:6px 9px;text-align:left;vertical-align:top}
+.phist-t th{background:#efe9fd;color:#5b39b8;font-weight:800;font-size:11.2px;white-space:nowrap}
+.phist-t td.hd{white-space:nowrap;color:#8b93a7;font-variant-numeric:tabular-nums;width:110px}
+.phist-t td.hi{font-weight:700;color:#1f2330}
+.phist-t td.nohist{color:#e8943a;font-weight:700;text-align:center}
+.phist-n{margin-top:8px;font-size:11.4px;color:#8b93a7;line-height:1.6}
+.phist-n a{color:#5b39b8;font-weight:700}
+/* policy-page-table-tidy */
+/* 정책 페이지 표·네비 정리 (2026-09-14) */
+.pnav{max-width:1000px;margin:12px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pnav a{display:inline-block;font-size:11.6px;font-weight:700;color:#5b39b8;text-decoration:none;
+  background:#fff;border:1px solid #e7e3f3;border-radius:999px;padding:4px 11px;line-height:1.4}
+.pnav a:hover{border-color:#845EEE;background:#f6f2ff}
+.pnav a.home{background:#1f2330;color:#fff;border-color:#1f2330}
+.pnav-sep{display:none}
+.phist-t{table-layout:fixed}
+.phist-t td.hd{width:88px;white-space:nowrap;font-variant-numeric:tabular-nums;color:#7a8093;font-size:11px;letter-spacing:-.2px;padding-right:6px}
+.phist-t td.hi{width:24%;font-weight:700;color:#1f2330;word-break:keep-all;line-height:1.6}
+.phist-t td.hb{color:#4b5163;font-size:11.9px;line-height:1.8;word-break:keep-all}
+.phist-t th:first-child{width:88px}
+.phist-t th,.phist-t td{padding:8px 10px}
+.phist-t tr:nth-child(even) td{background:#fcfbff}
+@media(max-width:720px){.phist-t{table-layout:auto}.phist-t td.hi{width:auto}}
+/* phist-born-style */
+.phist-t tr.born td{background:#f4f1fe}
+.phist-t tr.born td.hi{color:#5b39b8}
+.phist-t code{font-size:11px;background:#efe9fd;color:#5b39b8;padding:1px 5px;border-radius:4px}
+
+/* phist-col-widths v2 */
+.phist-t{table-layout:fixed;width:100%}
+.phist-t th:nth-child(1),.phist-t td.hd{width:86px}
+.phist-t th:nth-child(2),.phist-t td.hi{width:23%}
+.phist-t th:nth-child(3),.phist-t td.hb{width:auto}
+.phist-t td.hd{font-size:11px;letter-spacing:-.2px;white-space:nowrap;color:#7a8093;font-variant-numeric:tabular-nums;padding-right:6px}
+.phist-t td.hd.nd{white-space:normal;word-break:keep-all;line-height:1.45}
+.phist-t td.hi{font-weight:700;color:#1f2330;word-break:keep-all;line-height:1.6}
+.phist-t td.hb{color:#4b5163;font-size:11.9px;line-height:1.8;word-break:keep-all}
+@media(max-width:720px){.phist-t{table-layout:auto}.phist-t th:nth-child(2),.phist-t td.hi{width:auto}}
+
+/* dual-lang scoped blocks (cp-scope) */
+html[lang="ko"] .cp-scope .vi{display:none}
+html[lang="vi"] .cp-scope .ko{display:none}
+html[lang="vi"] .cp-scope .vi{display:inline}
+</style>
+</head>
+<body class="policy-sub">
+<header class="ph"><div class="ph-in"><div class="ph-kick">PRICEPICK 정책</div><h1 class="ph-t">쇼핑 티켓 · 적립 메커니즘</h1><button id="ip-lang-toggle" data-lang="ko" type="button" title="KO / VI" aria-label="KO/VI"><span data-l="ko" class="on">KO</span><span data-l="vi">VI</span></button></div></header>
+<div class="pnav"><a class="home" href="/policyspec.html">← 정책 목차</a> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> <a href="/policy-02-earn.html" style="border-color:#845EEE;background:#f6f2ff">쇼핑 티켓 · 적립 메커니즘</a> <a href="/policy-03-expiry.html">유효기간 · 만료</a> <a href="/policy-04-point.html">포인트(P)</a> <a href="/policy-05-engage.html">참여</a> <a href="/policy-06-exchange.html">교환 · 등급 전환</a> <a href="/policy-07-account.html">계정 생애주기</a> <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> <a href="/policy-09-push.html">푸시 알림 상한</a> <a href="/policy-10-raffle.html">추첨 · 경품</a> <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> <a href="/policy-12-cms.html">CMS 운영값 마스터표</a> <a href="/policy-13-cancel.html">제휴몰별 취소 정책</a></div>
+<main class="psub-wrap">
+<div class="panel active" data-tab="t2">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/></svg>쇼핑 티켓 · 적립 메커니즘</div>
+    <div class="pdesc">구매하면 티켓이 어떻게·얼마나 쌓이고, 언제 쓸 수 있게 되는지.</div>
+    <div class="card">
+      <h4><span class="n">1</span>등급 단가 · 적립 단위 · 보상률</h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">티켓 1장 가치</td><td class="rv"><span class="chip c-bronze">브론즈 10원</span> <span class="chip c-silver">실버 100원</span> <span class="chip c-gold">골드 200원</span></td></tr>
+      <tr class="rw"><td class="rk">적립 단위</td><td class="rv"><b>적립액 = 구매확정금액 × 해당 제휴몰의 적립률.</b> 적립률은 제휴몰마다 다르며 CMS(티켓 적립 설정)에서 관리합니다 — 특정 비율을 정책으로 고정하지 않습니다.</td></tr>
+      <tr class="rw"><td class="rk">계산 단위 <span class="gloss">(주문 1건)</td><td class="rv"></span><b>적립액은 주문 1건마다 한 번만 계산합니다.</b> 링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 상품 수만큼 따로 오고 그때 uniq_id가 같은 값으로 옵니다. <b>같은 uniq_id로 온 포스트백은 한 주문으로 묶어 금액을 합친 뒤 적립률을 한 번 적용</b>합니다. 포스트백 건별로 따로 계산하지 않습니다. (김반장 확정 2026-08-27)</td></tr>
+      <tr class="rw"><td class="rk">분배 방식 <span class="gloss">(큰 단위부터 채우기)</td><td class="rv"></span>산정된 적립액을 큰 단위(골드)부터 채우고 남은 금액을 실버 → 브론즈 순으로 채웁니다. <b>최하위 등급(브론즈) 단가 미만으로 남는 잔돈은 버립니다("거스름돈" 방식).</b> 이 버림은 <b>주문 1건에 한 번만</b> 일어납니다 — 포스트백 건마다 버리면 같은 주문에서 잔돈이 여러 번 사라져 유저가 손해를 봅니다. (김반장 확정 2026-08-27)</td></tr>
+      <tr class="rw"><td class="rk">최소 구매 금액</td><td class="rv">없습니다. <b>구매 금액과 무관하게 모든 경유구매에 해당 제휴몰의 적립률을 적용해 등급 티켓을 지급</b>합니다. 다만 적립률이 낮은 제휴몰에서는 소액 구매 시 적립액이 브론즈 단가(10원) 미만으로 나와 위 거스름돈 규칙에 따라 0장이 될 수 있습니다.</td></tr>
+</table>
+<span class="src">출처 PolicySpec 3 / FunctionalSpec 정책요약</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">2</span>등급 확정 · 공개 시점</h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">등급 확정</td><td class="rv">구매하는 순간 <b>등급은 내부에서 바로 정해집니다</b>(큰 단위부터 분배). 다만 화면에는 등급을 숨기고 <b>"랜덤 티켓 1장"으로만 표시</b>했다가 나중에 공개합니다.</td></tr>
+      <tr class="rw"><td class="rk">공개·사용 시점</td><td class="rv"><span>구매 확정 후 전환 대기일 수가 지나면 등급이 공개되고 사용 가능해집니다.</span> <b>쿠팡</b><span>은 카카오 연동 D+7 / 미연동 D+30 고정,</span> <b>링크프라이스 제휴몰</b><span>은 CMS 「티켓 적립 설정」에서 몰마다 설정합니다(기본 30일).</span></td></tr>
+      <tr class="rw"><td class="rk">상태 흐름</td><td class="rv"><b>적립 예정 → (대기 기간 경과) → 사용 가능.</b></td></tr>
+</table>
+<span class="src">출처 PolicySpec 4 / FunctionalSpec(혜택 탭) / CMS 티켓 확정 처리</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">3</span>이벤트 티켓 획득 경로</h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">경로 1 · 출석 5일 연속</td><td class="rv">연속 출석 5일차에 이벤트 티켓 1장. 그날의 100P는 그대로 지급됩니다.</td></tr>
+      <tr class="rw"><td class="rk">경로 2 · 매일 선물 상자 열기</td><td class="rv">이벤트 티켓 보상칸이 나오면 해당 수량 지급. 현재 기본 구성은 1장 · 확률 5%입니다.</td></tr>
+      <tr class="rw"><td class="rk">경로 3 · 온보딩 가입</td><td class="rv">가입 시 이벤트 티켓 1장. 카카오 연동 후 지급합니다.</td></tr>
+      <tr class="rw"><td class="rk">경로 4 · CS 수동 보완 지급</td><td class="rv">포스트백 미수신·영수증 인증 등 운영 보완 시 CS가 수동 지급. 정규 획득 경로가 아니라 운영 예외입니다.</td></tr>
+      <tr class="rw"><td class="rk">승인 대기 규칙</td><td class="rv">구매로 발급되는 티켓은 등급 티켓·이벤트 티켓 모두 <b>승인 대기</b> 상태로 먼저 발급되고, 승인된 뒤에야 사용할 수 있습니다. 승인 조건은 <b>전환 대기일 수</b> 경과 또는 쿠팡 구매 확정입니다 — 쿠팡은 카카오 연동 D+7 / 미연동 D+30, 링크프라이스 제휴몰은 몰별 설정(기본 30일). 구매와 무관한 경로(출석·선물 상자·온보딩)로 받은 티켓은 대기 없이 바로 쓸 수 있습니다.</td></tr>
+      <tr class="rw"><td class="rk">보유 수 표기 기준</td><td class="rv">앱에 표시되는 이벤트 티켓 보유 수는 <b>사용 가능한(승인된) 티켓만</b> 셉니다. 승인 대기 중인 티켓은 보유 수에 넣지 않고, 티켓 화면에 "대기 중"으로 따로 알립니다. 등급 티켓도 같은 기준입니다.</td></tr>
+      <tr class="nt"><td class="rv" colspan="2">공통 한도: 이벤트 티켓 일 5장 / 월 30장. 전 경로 합산이며 초과분은 0장 처리합니다.</td></tr>
+      <tr class="nt"><td class="rv" colspan="2">사용처는 랜덤 선물 상자 열기와 등급 교환입니다. 참여 탭 5번 항목을 함께 보십시오.</td></tr>
+</table>
+<span class="src">출처 2026-07-31 룰렛 개편 확정 / CMS 이벤트 티켓 획득 경로</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">4</span>연속구매 미션 <span class="badge-new">신설</span></h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">정의</td><td class="rv">일정 기간 안에 구매를 반복하면 단계별로 이벤트 티켓을 지급하는 미션입니다. 3단계이며 <b>누적 지급</b>입니다 — 세 단계를 모두 달성하면 1장 + 3장 + 5장 = <b>총 9장</b>을 받습니다. 마지막 단계만 지급하는 방식이 아니라 <b>단계마다 각각</b> 지급됩니다.</td></tr>
+</table>
+<table class="mt">
+        <thead><tr><th style="width:12%">단계</th><th style="width:44%">조건</th><th style="width:44%">지급</th></tr></thead>
+        <tbody>
+          <tr><td class="key">1</td><td>7일 이내 3회 구매</td><td>이벤트 티켓 <b>1장</b></td></tr>
+          <tr><td class="key">2</td><td>14일 이내 5회 구매</td><td>이벤트 티켓 <b>3장</b></td></tr>
+          <tr><td class="key">3</td><td>30일 이내 10회 구매</td><td>이벤트 티켓 <b>5장</b></td></tr>
+        </tbody>
+      </table>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">사이클</td><td class="rv">사이클 시작은 <b>사이클 내 첫 구매일</b>이며, 종료는 <b>10회 달성(3단계 완료)</b> 또는 <b>30일 경과</b> 중 먼저 오는 시점입니다. 종료되면 카운터가 초기화되고 다음 구매부터 새 사이클이 시작됩니다.</td></tr>
+      <tr class="rw"><td class="rk">단계별 지급</td><td class="rv">각 단계는 <b>한 사이클에 한 번만</b> 지급됩니다. 한 단계를 놓쳐도(예: 7일 내 3회 미달) 다음 단계는 계속 노릴 수 있습니다 — 14일 내 5회를 채우면 2단계는 그대로 지급됩니다.</td></tr>
+      <tr class="rw"><td class="rk">적용 대상 구매</td><td class="rv">구매 금액 하한이 없습니다 — 5천원 미만 구매를 포함해 모든 경유구매가 미션 횟수에 포함됩니다. 소액 반복 어뷰징은 기존 <b>구매 적립 한도(일 5건 · 월 50건)</b>로 통제합니다.</td></tr>
+      <tr class="rw"><td class="rk">카운트 · 취소·반품</td><td class="rv">구매 시점에 <b>즉시 카운트</b>되고, 단계 달성 시 이벤트 티켓이 <b>승인 대기</b>로 발급됩니다. 그 구매가 취소·반품되면 <b>카운트와 해당 이벤트 티켓을 함께 환수</b>합니다.</td></tr>
+      <tr class="rw"><td class="rk">지급 상태</td><td class="rv">구매 기반 지급이라 위 3번 카드의 <b>승인 대기 규칙</b>을 그대로 따릅니다. 승인 조건은 <b>전환 대기일 수</b> 경과 또는 쿠팡 구매 확정입니다 — 쿠팡은 카카오 연동 D+7 / 미연동 D+30, 링크프라이스 제휴몰은 몰별 설정(기본 30일). 승인 전에는 랜덤 선물 상자 열기·등급 교환 등에 쓸 수 없습니다.</td></tr>
+      <tr class="rw"><td class="rk">이벤트 티켓 상한</td><td class="rv">미션으로 지급되는 티켓도 <b>이벤트 티켓 일 5장 · 월 30장 공통 상한에 포함</b>됩니다. 상한을 넘는 분은 지급되지 않습니다.</td></tr>
+</table>
+<span class="src">출처 김반장 확정 2026-08-03 / CMS 연속구매 미션</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">5</span>구매 기반 획득 경로 <span class="badge-hold">확인 대기</span></h4>
+<table class="ptbl">
+      <tr class="nt"><td class="rv" colspan="2">아래 항목은 정책서에 기재돼 있으나 결정 근거가 확인되지 않았습니다. 정책 변경 히스토리에 등재된 기록이 없고 백엔드·CMS·앱 어디에도 구현돼 있지 않습니다. 확인 전까지 1단계 적용 대상이 아니며, 개발 착수 대상도 아닙니다.</td></tr>
+      <tr class="rw"><td class="rk">대기 · 구매확정 부스터</td><td class="rv">주문 후 5일 내 구매확정하면 이벤트 티켓 1장.</td></tr>
+</table>
+<span class="src">근거 미확인 — 확인 후 채택 또는 폐기 결정</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">6</span>구매·취소 정보 수신 (포스트백) <span class="badge-new">신설</span></h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">무엇인가</td><td class="rv">앱을 거쳐 구매가 일어나면 쇼핑몰 쪽에서 우리 서버로 그 사실을 한 건씩 보내 줍니다. 이것을 포스트백이라고 부릅니다. 티켓 적립은 전부 이 값에서 출발합니다 — 누가 얼마에 샀는지를 여기서 받습니다.</td></tr>
+      <tr class="rw"><td class="rk">링크프라이스</td><td class="rv">주문은 포스트백으로 옵니다. 취소는 오지 않습니다. 취소를 알려면 하루치 주문 상태를 돌려주는 조회 주소를 매일 돌려서 우리가 직접 찾아내야 합니다.</td></tr>
+      <tr class="rw"><td class="rk">쿠팡</td><td class="rv">주문과 취소가 모두 포스트백으로 옵니다. 주문번호와 상품 정보도 함께 옵니다.</td></tr>
+</table>
+<table class="mt">
+        <thead><tr><th style="width:22%">항목</th><th style="width:39%">링크프라이스</th><th style="width:39%">쿠팡</th></tr></thead>
+        <tbody>
+          <tr><td class="key">주문 통보</td><td>포스트백으로 옵니다</td><td>포스트백으로 옵니다</td></tr>
+          <tr><td class="key">취소 통보</td><td>오지 않습니다 — 조회 주소를 매일 돌려 확인</td><td>포스트백으로 옵니다</td></tr>
+          <tr><td class="key">주문번호</td><td>order_code</td><td>orderId</td></tr>
+          <tr><td class="key">주문을 묶는 값</td><td>uniq_id</td><td>click_id</td></tr>
+          <tr><td class="key">유저 식별</td><td>affiliate_user_id</td><td>subid</td></tr>
+          <tr><td class="key">구매 금액</td><td>price</td><td>order_price</td></tr>
+          <tr><td class="key">수수료</td><td>commision · base_commission · incentive_commission</td><td>오지 않습니다</td></tr>
+          <tr><td class="key">상품 정보</td><td>product_code · product_name · item_count · category_code</td><td>order_detail[] — productid(구매) · productId(취소) · productName · quantity · payment</td></tr>
+          <tr><td class="key">시각</td><td>day + time</td><td>order_time</td></tr>
+        </tbody>
+      </table>
+<table class="ptbl">
+      <tr class="nt"><td class="rv" colspan="2">쿠팡은 수수료 금액이 오지 않습니다. 상품번호 키가 구매와 취소에서 다릅니다 — 구매는 productid, 취소는 productId 입니다.</td></tr>
+      <tr class="rw"><td class="rk">링크프라이스 필드</td><td class="rv">한 주문에 상품이 여러 개면 상품 수만큼 포스트백이 따로 옵니다. 이때 uniq_id가 같은 값으로 와서, 이 값으로 같은 주문임을 알 수 있습니다.</td></tr>
+</table>
+<table class="mt">
+        <thead><tr><th style="width:26%">필드</th><th style="width:28%">예시 값</th><th style="width:46%">무엇에 쓰나</th></tr></thead>
+        <tbody>
+          <tr><td class="key">day</td><td>'20260827'</td><td>주문 날짜. YYYYMMDD</td></tr>
+          <tr><td class="key">time</td><td>'180056'</td><td>주문 시각. HHMMSS</td></tr>
+          <tr><td class="key">merchant_id</td><td>'clickbuy'</td><td>어느 제휴몰에서 산 것인지. 제휴몰별 적립률을 여기서 가릅니다</td></tr>
+          <tr><td class="key">order_code</td><td>'_bjlg0wo83_p_num1'</td><td>제휴몰이 준 주문 코드</td></tr>
+          <tr><td class="key">product_code</td><td>'_bjlg0wo83_p_num1'</td><td>상품 코드</td></tr>
+          <tr><td class="key">product_name</td><td>'_bjlg0wo83_p_num1'</td><td>상품 이름</td></tr>
+          <tr><td class="key">category_code</td><td>''</td><td>카테고리 코드. 예시에서는 빈 값으로 왔습니다</td></tr>
+          <tr><td class="key">item_count</td><td>1</td><td>수량</td></tr>
+          <tr><td class="key">price</td><td>30000</td><td>구매 금액(원). 적립액을 계산하는 기준 금액</td></tr>
+          <tr><td class="key">commision</td><td>300</td><td>우리가 받는 수수료 금액(원). 철자가 commission이 아니라 commision입니다 — 원문 그대로 옮겼습니다</td></tr>
+          <tr><td class="key">affiliate_user_id</td><td>'e5f037d0-6e15-11f1-8c25-a5e9adfc27be'</td><td>우리가 링크에 실어 보낸 유저 식별자. 누구에게 적립할지를 여기서 가릅니다</td></tr>
+          <tr><td class="key">base_commission</td><td>'1%'</td><td>기본 수수료율</td></tr>
+          <tr><td class="key">incentive_commission</td><td>'0%'</td><td>추가 수수료율</td></tr>
+          <tr><td class="key">trlog_id</td><td>18000661263481</td><td>링크프라이스 거래 기록 번호. 포스트백 한 건마다 다릅니다</td></tr>
+          <tr><td class="key">uniq_id</td><td>'6a8ffcc8e7662'</td><td>주문을 묶는 값. 같은 주문에서 온 포스트백은 이 값이 같습니다</td></tr>
+          <tr><td class="key">affiliate_id</td><td>'A100706012'</td><td>프라이스픽의 링크프라이스 계정 번호</td></tr>
+        </tbody>
+      </table>
+<table class="ptbl">
+      <tr class="nt"><td class="rv" colspan="2">취소를 확인하는 조회 주소: <code>https://api.linkprice.com/affiliate/translist.php?a_id=A100706012&amp;auth_key=***&amp;yyyymmdd=20260813</code> — 맨 뒤에 확인할 날짜를 YYYYMMDD로 넣습니다. auth_key는 열쇠값이라 이 문서에 싣지 않습니다. 값은 해리가 전달한 원문 자료에 있습니다.</td></tr>
+      <tr class="rw"><td class="rk">쿠팡 필드</td><td class="rv">주문과 취소가 같은 모양으로 오고 purchase_cancel 값만 달라집니다.</td></tr>
+</table>
+<table class="mt">
+        <thead><tr><th style="width:26%">필드</th><th style="width:28%">예시 값</th><th style="width:46%">무엇에 쓰나</th></tr></thead>
+        <tbody>
+          <tr><td class="key">afcode</td><td>'AF7751406'</td><td>프라이스픽의 쿠팡 파트너스 계정 코드</td></tr>
+          <tr><td class="key">subid</td><td>'androidTEST'</td><td>우리가 링크에 실어 보낸 값. 누구에게 적립할지를 여기서 가릅니다</td></tr>
+          <tr><td class="key">os</td><td>'MWEB'</td><td>구매가 일어난 환경</td></tr>
+          <tr><td class="key">adid</td><td>''</td><td>광고 식별자. 예시에서는 빈 값으로 왔습니다</td></tr>
+          <tr><td class="key">click_id</td><td>'91c9bb20-84b5-11f1-b820-d3b05b507cd4'</td><td>클릭 한 건의 고유 값</td></tr>
+          <tr><td class="key">purchase_cancel</td><td>'purchase' / 'cancel'</td><td>purchase면 주문, cancel이면 취소</td></tr>
+          <tr><td class="key">order_time</td><td>'1787122320'</td><td>주문 시각. 1970년부터 센 초 단위 숫자입니다</td></tr>
+          <tr><td class="key">order_price</td><td>'15600'</td><td>구매 금액(원). 적립액을 계산하는 기준 금액</td></tr>
+          <tr><td class="key">orderId</td><td>'8354194050471340'</td><td>주문번호. 취소는 같은 orderId 로 옵니다</td></tr>
+          <tr><td class="key">order_detail[]</td><td>productid · productName · payment · quantity</td><td>상품 정보. 상품이 여럿이면 배열로 여러 줄이 옵니다(취소는 키가 productId)</td></tr>
+        </tbody>
+      </table>
+<table class="ptbl">
+      <tr class="nt"><td class="rv" colspan="2"><b>2026-09-08 정정 — 쿠팡이 주문번호(orderId)와 상품 정보(order_detail)를 제공합니다.</b> 위 표의 「주문번호 오지 않습니다」 항목을 걷어냈습니다. 수수료 금액이 오지 않는 것은 그대로입니다.
+        취소 포스트백은 주문 때와 같은 click_id로 오고 order_time만 취소 시각으로 바뀝니다. 예시에서 주문은 1787122320, 취소는 1787122450이었고 order_price는 15600으로 같았습니다.</td></tr>
+      <tr class="nt"><td class="rv" colspan="2">210 · 310 같은 상태 코드는 이번 전달 자료에 들어 있지 않습니다. 확인되지 않은 값을 적지 않고 비워 둡니다.</td></tr>
+      <tr class="rw"><td class="rk">적립 산정 단위 <span class="gloss">(주문 1건)</td><td class="rv"></span>링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 여러 건 옵니다. <b>uniq_id가 같은 포스트백은 한 주문으로 묶어 적립액을 한 번만 계산</b>합니다. 건별로 계산하면 잔돈 버림이 여러 번 일어나 유저가 손해를 봅니다. (김반장 확정 2026-08-27 · 자세한 규칙은 <b>티켓·적립 1번 카드</b>)</td></tr>
+      <tr class="rw"><td class="rk">구매 적립 한도의 "1건" <span class="gloss">(주문 1건)</td><td class="rv"></span>구매 적립 한도는 일 5건 · 월 50건이고, 여기서 <b>1건은 주문 1건</b>입니다. <b>포스트백 건수가 아닙니다.</b> 포스트백으로 세면 한 번 산 것이 여러 건으로 잡혀 하루 두 번만 사도 한도에 걸립니다. (김반장 확정 2026-08-27)</td></tr>
+      <tr class="rw"><td class="rk">쿠팡 취소 잇기 <span class="gloss">(2026-09-08 정정)</td><td class="rv"></span>쿠팡이 주문번호를 제공하므로 <b>취소의 orderId로 원 구매를 찾고, 그 주문 안에서 productId로 상품을 가립니다.</b> click_id로 되짚던 방식과 「확인 대기」 표시는 걷어냈습니다.</td></tr>
+      <tr class="nt"><td class="rv" colspan="2"><b>제휴몰별 취소 정책</b> — 취소 통보 · 부분 취소 · 반영 기한 · 환수 처리를 쿠팡/링크프라이스로 갈라 정리한 문서입니다. <a href="/policy-13-cancel.html">제휴몰별 취소 정책 &#8599;</a></td></tr>
+</table>
+<span class="src">출처 해리 전달 「Postback Data: LinkPrice, Coupang」(Notion, 2026-08-27)</span>
+    </div>
+  </div>
+
+  <!-- 3. 유효기간·만료 -->
+  
+<section class="phist"><h3>변경 이력</h3><table class="phist-t">
+<tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<tr><td class="hd">2026-09-14</td><td class="hi">사용 완료분 환수 — 부채·상계 방식 확정</td><td class="hb">김반장 확정 2026-09-14 — 원래 결정은 적립 확정 정책 보고서(2026-08-19) 3항의 「loss로 두고 새로 적립이 될 경우 선차감」이며, 백엔드 답변 #13(2026-08-19)·앱 답변 Kelvin(2026-08-20)·CMS 답변 Vin(2026-06-18)으로 개발팀에 나가 있었습니다. 정책서와 09-03 취소 처리 지시서가 그 결정을 반영하지 못한 것을 바로잡습니다. 백엔드 #14(2026-08-27)와 09-03 지시서의 「사용 완료 티켓 회수 제외 · 잔액 음수 0 고정」은 폐기합니다. 정책 수치 변경은 없습니다.</td></tr>
+<tr><td class="hd">2026-09-08</td><td class="hi">쿠팡 주문번호 미제공 전제 폐기</td><td class="hb">김반장 확정 2026-09-08 — 쿠팡 포스트백에 주문아이디·상품아이디가 들어오는 것을 확인. 수수료 금액이 오지 않는 것은 그대로입니다.</td></tr>
+<tr><td class="hd">2026-08-27</td><td class="hi">포스트백 수신 값 명문화</td><td class="hb">해리 전달 자료 「Postback Data: LinkPrice, Coupang」(Notion, 2026-08-27) — 김반장 지시로 정책 마스터에 반영. 적립 산정 단위·구매 적립 한도의 "건" 기준·쿠팡 취소 잇기 3건은 확인 대기로 남겨 둡니다.</td></tr>
+<tr><td class="hd">2026-08-27</td><td class="hi">주문 단위 적립 · 한도의 「1건」 · 링크프라이스 예외 · 「제휴사」 폐기</td><td class="hb">링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 상품 수만큼 온다(uniq_id가 같다). 같은 uniq_id를 한 주문으로 묶어 <b>적립액을 한 번만 계산</b>하고 <b>거스름돈 버림도 한 번만</b> 일어나게 한다. 구매 적립 한도 일 5건 · 월 50건의 「1건」도 <b>주문 1건</b>이며 포스트백 건수가 아니다. 전환 대기일 수를 몰마다 정하는 것은 <b>링크프라이스만의 예외</b>이고 쿠팡은 연동 D+7 / 미연동 D+30 고정이다. 용어도 <b>「제휴사」를 쓰지 않고 링크프라이스 / 제휴몰로 가른다</b>. (김반장 확정)</td></tr>
+<tr><td class="hd">2026-08-24</td><td class="hi">랜덤 → 등급 전환 시기 <span class="gloss">(링크프라이스 제휴몰만)</span></td><td class="hb">링크프라이스 제휴몰은 CMS 「티켓 적립 설정」 한 곳에서 몰마다 정한다. 일수를 줄이면 이미 발급된 대기 랜덤 티켓도 소급해 앞당겨 전환된다. (김반장 확정)<br><b>2026-08-27 정정</b> — 이 줄에 「카카오 연동 분기 폐지」로 적혀 있었으나 그런 결정은 없었다. 바뀐 것은 링크프라이스 제휴몰뿐이고, <b>쿠팡은 카카오 연동 D+7 / 미연동 D+30 고정이 그대로 살아 있다</b>(CMS에서 수정 불가).</td></tr>
+<tr><td class="hd">2026-08-13</td><td class="hi">5천원 미만 구매 이벤트 티켓 지급 폐지</td><td class="hb">이부장 동의로 김반장 확정(2026-08-13) — 등급 티켓 가치가 1/10로 내려가 소액 구매에도 등급 티켓이 나오게 되면서 이벤트 티켓으로 우회할 이유가 없어졌고, 취소·반품 처리도 단순해진다. 이벤트 티켓 자체·다른 획득 경로(출석·룰렛·온보딩·CS수동)·이벤트 티켓 가치(40원)·한도(일5장·월30장)는 변경 없음.</td></tr>
+<tr><td class="hd">2026-08-12</td><td class="hi">룰렛 표·포인트 교환 방향 정합</td><td class="hb">룰렛 표는 CMS에 저장된 실제 구성과 맞춘 것— 기대값은 매일 9.9원·잭팟 40원으로 계산상 변동 없음(억지로 맞춘 값 아님). 포인트 교환은 이미 앱에서 단방향으로 운영 중인 상태를 정책서가 못 따라가고 있었다.</td></tr>
+<tr><td class="hd">2026-08-12</td><td class="hi">적립 규칙에서 고정 수치 제거</td><td class="hb">등급 티켓 환산가치가 1/10로 바뀌면서 「구매액 2% 고정」 전제로 쓰인 예시·문구가 앞뒤가 안 맞게 됐다. 실제로도 적립률은 제휴몰마다 달라 정책서에 특정 비율을 못 박을 수 없다. 등급별 환산가치·분배 방식(큰 단위부터 채우기)·거스름돈 처리 원칙은 그대로 유지.</td></tr>
+<tr><td class="hd">2026-08-12</td><td class="hi">등급 티켓 환산가치 조정</td><td class="hb">수수료가 낮은 제휴몰에서 소액 구매의 적립이 브론즈 최소 단위(구 100원)에 못 미쳐 통째로 사라지는 문제를 낮은 등급 티켓 가치로 해소한다. 포인트 → 티켓 교환비는 환산가치 조정에 맞춰 같은 비율로 함께 조정한다. 포인트 기준 환율(10P = 1원)은 변경 없음.</td></tr>
+<tr><td class="hd">2026-08-03</td><td class="hi">계정 병합(연동 시 선택형)</td><td class="hb">김반장 확정(2026-08-03) — 계정 간 자산 자동 병합을 폐지하고 연동 시 선택형 방식으로 전환. 구 '충돌 선택' 화면(03-conflict)의 사용자 선택 UI가 이 규칙으로 다시 도입됨.</td></tr>
+<tr><td class="hd">2026-08-03</td><td class="hi">연속구매 미션 확인 대기 4건 확정</td><td class="hb">김반장 확정(2026-08-03) — 채택 시 남겨둔 확인 대기 4건(금액 하한·취소반품 차감·상한 관계·사이클 시작 기준)을 모두 확정. 구매확정 부스터는 별도 대기 상태 유지.</td></tr>
+<tr><td class="hd">2026-08-03</td><td class="hi">구매 티켓 승인 대기 규칙 · 참여 제한 스위치</td><td class="hb">백엔드 실제 구현 확인(Harry 2026-08-03) — 구매로 발급되는 티켓은 등급·이벤트 모두 승인 대기로 발급되고 D+7/D+30 또는 구매 확정 시 승인된다. 티켓 단계에서 이미 잠기므로 CMS 설정은 중복이며 지급 흐름의 일관성을 해친다.</td></tr>
+<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 마스터 수록</td><td class="hb">정책 마스터 초판에 수록 — 이 정책은 그 전부터 결정돼 있었고, 아래 더 오래된 줄이 최초 기록입니다. (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 3 · FunctionalSpec 정책요약 · PolicySpec 4 · FunctionalSpec(혜택 탭)</td></tr>
+<tr><td class="hd">2026-06-09</td><td class="hi">등급 티켓 가치 변경 CMS</td><td class="hb">가치 단독 변경 시 차익거래·역마진 위험 → 정책 변경 마법사(연동 수정·시뮬레이션·역마진 차단·발행분 고정·권한/로그)로만 허용.</td></tr>
+<tr><td class="hd">2026-06-08</td><td class="hi">등급 티켓 만료</td><td class="hb">이부장 변경안. 적립일(확정일 아님) 기산으로 확정, D-30·D-7 알림.</td></tr>
+<tr><td class="hd">2026-06-08</td><td class="hi">미연동 적립 확정 대기</td><td class="hb">미연동 계정 리스크 반영. 연동 유도 인센티브.</td></tr>
+</table><p class="phist-n">최신이 위, 가장 오래된 줄이 아래입니다. <b>맨 아래 줄이 그 정책의 최초 기록</b>이며, 「정책 마스터 수록」은 정책서 초판(2026-06-14)에 실린 날입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
+</main>
+<script src="/policy-i18n.js"></script>
+</body></html>
