@@ -249,6 +249,8 @@ body.policy-sub .panel{display:block}
       <tr class="rw"><td class="rk">계산 단위 <span class="gloss">(주문 1건)</td><td class="rv"></span><b>적립액은 주문 1건마다 한 번만 계산합니다.</b> 링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 상품 수만큼 따로 오고 그때 uniq_id가 같은 값으로 옵니다. <b>같은 uniq_id로 온 포스트백은 한 주문으로 묶어 금액을 합친 뒤 적립률을 한 번 적용</b>합니다. 포스트백 건별로 따로 계산하지 않습니다. (김반장 확정 2026-08-27)</td></tr>
       <tr class="rw"><td class="rk">분배 방식 <span class="gloss">(큰 단위부터 채우기)</td><td class="rv"></span>산정된 적립액을 큰 단위(골드)부터 채우고 남은 금액을 실버 → 브론즈 순으로 채웁니다. <b>최하위 등급(브론즈) 단가 미만으로 남는 잔돈은 버립니다("거스름돈" 방식).</b> 이 버림은 <b>주문 1건에 한 번만</b> 일어납니다 — 포스트백 건마다 버리면 같은 주문에서 잔돈이 여러 번 사라져 유저가 손해를 봅니다. (김반장 확정 2026-08-27)</td></tr>
       <tr class="rw"><td class="rk">최소 구매 금액</td><td class="rv">없습니다. <b>구매 금액과 무관하게 모든 경유구매에 해당 제휴몰의 적립률을 적용해 등급 티켓을 지급</b>합니다. 다만 적립률이 낮은 제휴몰에서는 소액 구매 시 적립액이 브론즈 단가(10원) 미만으로 나와 위 거스름돈 규칙에 따라 0장이 될 수 있습니다.</td></tr>
+
+<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 최초 수립</td><td class="hb">정책 마스터 초판에 수록 (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 3 · FunctionalSpec 정책요약 · PolicySpec 4 · FunctionalSpec(혜택 탭)</td></tr>
 </table>
 <span class="src">출처 PolicySpec 3 / FunctionalSpec 정책요약</span>
     </div>
