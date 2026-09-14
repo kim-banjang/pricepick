@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PricePick 마스터 정책서 v8.3</title>
+<style>
+  :root{
+    --pp:#845EEE; --pp-d:#6a45d4; --pp-l:#f3efff;
+    --ink:#1f2330; --ink2:#4b5163; --ink3:#7a8093;
+    --line:#e7e3f3; --bg:#f6f5fb; --card:#ffffff;
+    --gold:#d4a017; --gold-bg:#fbf3da;
+    --silver:#8a93a6; --silver-bg:#eef0f5;
+    --bronze:#b5793b; --bronze-bg:#f5e9dc;
+    --ok:#16a34a; --ok-bg:#e7f7ed;
+    --pend:#be185d; --pend-bg:#fdeef4;
+    --note:#92400e; --note-bg:#fff5e6;
+    --new:#0e7490; --new-bg:#e0f5fa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Segoe UI",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 40px}
+
+  header{background:linear-gradient(135deg,var(--pp) 0%,#9b78f0 100%);color:#fff;
+    padding:34px 36px 28px;border-radius:0 0 26px 26px;margin-bottom:8px;box-shadow:0 10px 30px rgba(132,94,238,.25)}
+  header .kicker{font-size:12.5px;letter-spacing:2px;opacity:.85;font-weight:600}
+  header h1{font-size:28px;font-weight:800;margin:8px 0 6px;letter-spacing:-.5px}
+  header .sub{font-size:14px;opacity:.95;font-weight:600}
+  header p{font-size:13px;opacity:.9;max-width:720px;margin-top:8px}
+
+  .sot{max-width:1000px;margin:0 auto 16px;padding:0 20px}
+  .sot-bar{background:#1f2330;color:#fff;border-radius:12px;padding:13px 18px;font-size:13.5px;font-weight:700;
+    display:flex;align-items:center;gap:10px;box-shadow:0 4px 14px rgba(31,35,48,.18)}
+  .sot-bar .dot{width:9px;height:9px;border-radius:50%;background:#845EEE;flex:none;box-shadow:0 0 0 4px rgba(132,94,238,.3)}
+  .sot-bar b{color:#c9b6ff}
+
+  /* ===== ① 대시보드 ===== */
+  .dash{max-width:1000px;margin:0 auto 6px;padding:0 20px}
+  .dash .oneliner{background:var(--pp-l);border:1px solid var(--line);border-radius:14px;padding:15px 20px;margin-bottom:16px;font-size:14.5px;color:var(--ink2)}
+  .dash .oneliner b{color:var(--pp-d);font-weight:800}
+  .quick{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(80,60,140,.05)}
+  .quick h3{font-size:14px;font-weight:800;color:var(--pp-d);margin-bottom:13px;display:flex;align-items:center;gap:8px}
+  .quick h3 svg{width:17px;height:17px;stroke:var(--pp);fill:none;stroke-width:2}
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:10px}
+  .qcell{background:#fafafc;border:1px solid #eee;border-radius:10px;padding:11px 13px}
+  .qcell .k{font-size:10.5px;font-weight:800;letter-spacing:.3px;color:var(--ink3);margin-bottom:4px;text-transform:uppercase}
+  .qcell .v{font-size:13px;font-weight:600;color:var(--ink)}
+  .qcell .v b{font-weight:800;color:var(--pp-d)}
+
+  .pendbox{background:var(--pend-bg);border:2px solid var(--pend);border-radius:14px;padding:15px 20px;margin-bottom:18px}
+  .pendbox h3{font-size:13.5px;font-weight:800;color:var(--pend);margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .pendbox h3 svg{width:15px;height:15px;stroke:var(--pend);fill:none;stroke-width:2}
+  .pendbox p{font-size:12.8px;color:#8a1f54;line-height:1.65;margin:5px 0}
+  .pendbox p b{font-weight:800}
+  .pendbox .rec{color:var(--pp-d);font-weight:700}
+
+  /* ===== ② 탭 네비 ===== */
+  .tabnav{position:sticky;top:0;z-index:40;background:var(--bg);padding:12px 0 8px;margin:6px auto 0;max-width:1000px}
+  .tabnav-inner{max-width:1000px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:7px}
+  .tabnav button{font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;
+    border:1.5px solid var(--line);background:#fff;color:var(--ink2);border-radius:22px;padding:7px 14px;transition:all .14s;white-space:nowrap}
+  .tabnav button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .tabnav button:hover{border-color:var(--pp);color:var(--pp-d)}
+  .tabnav button.on{background:var(--pp);border-color:var(--pp);color:#fff}
+
+  /* ===== ③ 패널 ===== */
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .2s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .ptitle{font-size:19px;font-weight:800;color:var(--ink);margin:6px 0 4px;display:flex;align-items:center;gap:9px}
+  .ptitle svg{width:20px;height:20px;stroke:var(--pp);fill:none;stroke-width:2}
+  .ptitle .badge-new{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:var(--new);padding:3px 9px;border-radius:20px}
+  .badge-hold{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#8a6d3b;padding:3px 9px;border-radius:20px;margin-left:6px}
+.badge-hidden{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#6b7280;padding:3px 9px;border-radius:20px;margin-left:6px}
+.badge-replan{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#c0342a;padding:3px 9px;border-radius:20px;margin-left:6px}
+  .card.replan{border:1.5px solid #f3b7ab;background:#fff8f7}
+  .card.replan .note.warn{border-left-color:#e5484d;background:#fff4f2;color:#8f2420}
+  .pdesc{font-size:13px;color:var(--ink3);margin-bottom:16px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 20px;margin-bottom:13px;box-shadow:0 2px 8px rgba(80,60,140,.04)}
+  .card h4{font-size:15px;font-weight:800;color:var(--pp-d);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .card h4 .n{background:var(--pp);color:#fff;font-weight:800;font-size:12px;min-width:24px;height:24px;padding:0 6px;border-radius:7px;display:grid;place-items:center}
+
+  .rule{font-size:13.8px;line-height:1.72;color:var(--ink2);margin-bottom:9px}
+  .rule:last-child{margin-bottom:0}
+  .rule b{color:var(--ink);font-weight:800}
+  .rule .lead{display:inline-block;font-weight:800;color:var(--pp-d);margin-right:4px}
+  .gloss{color:var(--ink3);font-weight:600;font-size:.92em}
+  ul.r{list-style:none;margin:6px 0 4px}
+  ul.r li{position:relative;padding-left:16px;font-size:13.6px;color:var(--ink2);line-height:1.72;margin:5px 0}
+  ul.r li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--pp)}
+  ul.r li b{color:var(--ink);font-weight:800}
+
+  .chip{display:inline-block;font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:20px;margin:0 2px;white-space:nowrap}
+  .c-gold{background:var(--gold-bg);color:var(--gold)} .c-silver{background:var(--silver-bg);color:var(--silver)} .c-bronze{background:var(--bronze-bg);color:var(--bronze)}
+
+  .ex{background:#f7f5ff;border:1px dashed #d8cef5;border-radius:9px;padding:9px 13px;font-size:12.6px;color:var(--ink2);margin:8px 0}
+  .ex b{color:var(--pp-d)}
+  .note{background:var(--note-bg);border-left:3px solid #f0a830;border-radius:0 8px 8px 0;padding:9px 13px;font-size:12.6px;color:var(--note);margin:8px 0}
+  .src{display:inline-block;font-size:11px;font-weight:700;color:var(--ink3);background:#f1eefb;border-radius:6px;padding:2px 8px;margin-top:6px}
+
+  .pending{background:var(--pend-bg);border:1.5px solid #f4b8d2;border-radius:10px;padding:11px 14px;margin:9px 0;font-size:13px;color:#8a1f54}
+  .pending .pl{display:inline-block;background:var(--pend);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:2px 9px;border-radius:6px;margin-right:7px;vertical-align:middle}
+  .pending b{font-weight:800}
+  .pending .rec{display:block;margin-top:6px;color:var(--pp-d);font-weight:700;font-size:12.6px}
+
+  table.mt{width:100%;border-collapse:collapse;font-size:12.8px;margin-top:4px;background:#fff;border-radius:10px;overflow:hidden}
+  table.mt th{background:var(--pp);color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800;letter-spacing:.3px}
+  table.mt td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.mt tr:last-child td{border-bottom:none}
+  table.mt td b{color:var(--ink);font-weight:800}
+  table.mt .key{font-weight:800;color:var(--pp-d);white-space:nowrap}
+  table.mt .pendval{color:var(--pend);font-weight:800}
+  table.mt tr:nth-child(even) td{background:#fbfaff}
+
+  table.hist{width:100%;border-collapse:collapse;font-size:12.8px;background:#fff;border-radius:10px;overflow:hidden}
+  table.hist th{background:#1f2330;color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800}
+  table.hist td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.hist td.date{white-space:nowrap;font-weight:800;color:var(--pp-d)}
+  table.hist td .arrow{color:var(--ink3)}
+  table.hist td b{color:var(--ink)}
+
+  footer{text-align:center;color:var(--ink3);font-size:11.5px;margin-top:28px;line-height:1.7}
+  .lastupdate{position:fixed;bottom:24px;left:24px;background:rgba(31,35,48,.9);color:#fff;font-size:11px;
+    padding:6px 12px;border-radius:8px;font-weight:600;letter-spacing:.3px;backdrop-filter:blur(4px);z-index:50}
+
+  @media(max-width:680px){
+    .wrap{padding:0 12px 40px}.sot,.dash,.tabnav-inner{padding-left:12px;padding-right:12px}
+    header{padding:24px 18px}header h1{font-size:22px}
+    .qgrid{grid-template-columns:1fr 1fr}
+    .lastupdate{bottom:12px;left:12px}
+  }
+
+  /* ===== KO/VI Toggle ===== */
+  #ps-lang-switch{position:fixed;top:18px;right:22px;z-index:9002;}
+  #ip-lang-toggle{display:inline-flex;align-items:center;gap:0;background:#ffffff;border:1px solid #E3E0EC;border-radius:999px;padding:3px;cursor:pointer;font-family:inherit;box-shadow:0 2px 10px rgba(90,60,150,0.12);}
+  #ip-lang-toggle span{font-size:12px;font-weight:700;letter-spacing:.4px;color:#9890ad;padding:3px 12px;border-radius:999px;line-height:1.4;transition:background .15s,color .15s;}
+  #ip-lang-toggle span.on{background:#845EEE;color:#fff;}
+  #ip-lang-toggle:hover{border-color:#845EEE;}
+  @media (max-width:560px){#ps-lang-switch{top:12px;right:12px;}}
+
+  /* ===== 표준 목차 드로어 (DataModel 기준, 운영지침3 확정) ===== */
+  .toc-fixed{position:fixed;top:0;right:0;bottom:0;width:220px;max-height:100vh;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:0;
+    padding:0 4px 8px;box-shadow:-8px 0 24px rgba(80,60,140,.08);overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:#cfc7e6 transparent;z-index:9000;transition:transform .25s ease}
+  .toc-fixed::-webkit-scrollbar{width:3px}
+  .toc-fixed::-webkit-scrollbar-thumb{background:#cfc7e6;border-radius:99px}
+  .toc-head{font-size:13px;font-weight:800;letter-spacing:.3px;color:var(--ink);padding:10px 10px 8px;
+    text-transform:none;border-bottom:1px solid var(--line);margin-bottom:4px;
+    position:sticky;top:0;background:var(--card);z-index:2}
+  .toc-fixed a{display:block;padding:6px 8px;font-size:12px;color:var(--ink2);text-decoration:none;
+    border-radius:4px;line-height:1.5;transition:background .1s,color .1s;cursor:pointer}
+  .toc-fixed a:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-fixed a.toc-ent{padding-left:16px;font-size:11px;color:var(--ink3)}
+  .toc-fixed a.toc-ent:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-group{padding:11px 8px 5px;font-size:10px;font-weight:800;letter-spacing:.7px;color:var(--pp-d);text-transform:uppercase;
+    display:flex;align-items:center;justify-content:space-between;gap:6px;cursor:pointer;user-select:none;border-radius:4px}
+  .toc-group:hover{background:var(--pp-l)}
+  .toc-caret{flex-shrink:0;font-size:9px;line-height:1;color:var(--pp-d)}
+  .toc-caret::before{content:"\25BE"}
+  .toc-grp-wrap.collapsed .toc-caret::before{content:"\25B8"}
+  .toc-grp-wrap.collapsed .toc-items{display:none}
+  body.toc-collapsed .toc-fixed{transform:translateX(100%)}
+  .toc-handle{position:fixed;top:50%;right:220px;transform:translateY(-50%);z-index:9001;
+    width:22px;height:66px;display:flex;align-items:center;justify-content:center;padding:0;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:8px 0 0 8px;
+    color:var(--pp-d);font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;
+    box-shadow:-4px 0 14px rgba(80,60,140,.10);transition:right .25s ease,background .12s}
+  .toc-handle::before{content:"\203A"}
+  body.toc-collapsed .toc-handle{right:0}
+  body.toc-collapsed .toc-handle::before{content:"\2039"}
+  .toc-handle:hover{background:var(--pp-l)}
+  @media(max-width:900px){.toc-fixed{display:none}.toc-handle{display:none}}
+.ptbl{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:13px}
+.ptbl td{border:1px solid var(--line,#e9e7f2);padding:7px 10px;vertical-align:top;text-align:left}
+.ptbl td.rk{width:150px;white-space:nowrap;font-weight:700;background:#faf9fe;color:#5b39b8}
+.ptbl tr.nt td.rk{color:#8b93a7;font-weight:700}
+.ptbl tr.nt td.rv{color:#3f4658}
+@media(max-width:640px){.ptbl td.rk{width:auto;white-space:normal}}
+.sot-note{margin-top:7px;font-size:12.2px;color:#3f4658;line-height:1.65}
+.sot-note b{color:#1f2330}
+
+/* 정책 페이지 분리 (2026-09-14) */
+.tocwrap{max-width:1000px;margin:18px auto 6px;padding:0 20px}
+.toc-h{font-size:15px;font-weight:800;color:#1f2330;margin-bottom:4px}
+.toc-r{font-size:12.4px;color:#3f4658;margin-bottom:12px;line-height:1.6}
+.toc-r b{color:#1f2330}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.tcard{display:block;background:#fff;border:1px solid #e9e7f2;border-radius:12px;padding:12px 14px;text-decoration:none;transition:.15s}
+.tcard:hover{border-color:#845EEE;box-shadow:0 3px 12px rgba(132,94,238,.12)}
+.tc-t{font-size:13.4px;font-weight:800;color:#1f2330;margin-bottom:6px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.tc-h{font-size:10px;font-weight:800;padding:1px 7px;border-radius:20px;background:#efe9fd;color:#5b39b8}
+.tc-h.none{background:#fdf1e3;color:#e8943a}
+.tc-l{margin:0;padding-left:16px;font-size:11.9px;color:#3f4658;line-height:1.7}
+.tc-l li{list-style:disc}
+body.policy-sub{background:#faf9fe}
+.ph{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:20px 0 16px}
+.ph-in{max-width:1000px;margin:0 auto;padding:0 20px;position:relative}
+.ph-kick{font-size:10.5px;font-weight:800;letter-spacing:.18em;opacity:.75}
+.ph-t{font-size:21px;font-weight:800;margin-top:3px}
+.pnav{max-width:1000px;margin:12px auto 0;padding:0 20px;font-size:11.8px;color:#8b93a7;line-height:1.9}
+.pnav a{color:#5b39b8;font-weight:700;text-decoration:none}
+.pnav a:hover{text-decoration:underline}
+.pnav-sep{margin:0 4px;color:#c9c4d6}
+.psub-wrap{max-width:1000px;margin:0 auto;padding:0 20px 50px}
+body.policy-sub .panel{display:block}
+.phist{margin-top:22px;background:#fff;border:1px solid #e9e7f2;border-radius:12px;padding:14px 16px}
+.phist h3{font-size:13.5px;font-weight:800;color:#5b39b8;margin-bottom:8px}
+.phist-t{width:100%;border-collapse:collapse;font-size:12.2px}
+.phist-t th,.phist-t td{border:1px solid #e9e7f2;padding:6px 9px;text-align:left;vertical-align:top}
+.phist-t th{background:#efe9fd;color:#5b39b8;font-weight:800;font-size:11.2px;white-space:nowrap}
+.phist-t td.hd{white-space:nowrap;color:#8b93a7;font-variant-numeric:tabular-nums;width:110px}
+.phist-t td.hi{font-weight:700;color:#1f2330}
+.phist-t td.nohist{color:#e8943a;font-weight:700;text-align:center}
+.phist-n{margin-top:8px;font-size:11.4px;color:#8b93a7;line-height:1.6}
+.phist-n a{color:#5b39b8;font-weight:700}
+/* policy-page-table-tidy */
+/* 정책 페이지 표·네비 정리 (2026-09-14) */
+.pnav{max-width:1000px;margin:12px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pnav a{display:inline-block;font-size:11.6px;font-weight:700;color:#5b39b8;text-decoration:none;
+  background:#fff;border:1px solid #e7e3f3;border-radius:999px;padding:4px 11px;line-height:1.4}
+.pnav a:hover{border-color:#845EEE;background:#f6f2ff}
+.pnav a.home{background:#1f2330;color:#fff;border-color:#1f2330}
+.pnav-sep{display:none}
+.phist-t{table-layout:fixed}
+.phist-t td.hd{width:88px;white-space:nowrap;font-variant-numeric:tabular-nums;color:#7a8093;font-size:11px;letter-spacing:-.2px;padding-right:6px}
+.phist-t td.hi{width:24%;font-weight:700;color:#1f2330;word-break:keep-all;line-height:1.6}
+.phist-t td.hb{color:#4b5163;font-size:11.9px;line-height:1.8;word-break:keep-all}
+.phist-t th:first-child{width:88px}
+.phist-t th,.phist-t td{padding:8px 10px}
+.phist-t tr:nth-child(even) td{background:#fcfbff}
+@media(max-width:720px){.phist-t{table-layout:auto}.phist-t td.hi{width:auto}}
+/* phist-born-style */
+.phist-t tr.born td{background:#f4f1fe}
+.phist-t tr.born td.hi{color:#5b39b8}
+.phist-t code{font-size:11px;background:#efe9fd;color:#5b39b8;padding:1px 5px;border-radius:4px}
+
+/* phist-col-widths v2 */
+.phist-t{table-layout:fixed;width:100%}
+.phist-t th:nth-child(1),.phist-t td.hd{width:86px}
+.phist-t th:nth-child(2),.phist-t td.hi{width:23%}
+.phist-t th:nth-child(3),.phist-t td.hb{width:auto}
+.phist-t td.hd{font-size:11px;letter-spacing:-.2px;white-space:nowrap;color:#7a8093;font-variant-numeric:tabular-nums;padding-right:6px}
+.phist-t td.hd.nd{white-space:normal;word-break:keep-all;line-height:1.45}
+.phist-t td.hi{font-weight:700;color:#1f2330;word-break:keep-all;line-height:1.6}
+.phist-t td.hb{color:#4b5163;font-size:11.9px;line-height:1.8;word-break:keep-all}
+@media(max-width:720px){.phist-t{table-layout:auto}.phist-t th:nth-child(2),.phist-t td.hi{width:auto}}
+
+/* cancel-policy scoped */
+.cp-scope :root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ck:#e8943a}
+
+
+
+
+
+.cp-scope .tblwrap{overflow-x:auto;margin-top:16px}
+.cp-scope .tbl{width:100%;border-collapse:collapse;font-size:12.4px;background:#fff}
+.cp-scope .tbl th,.tbl td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.cp-scope .tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.4px;white-space:nowrap}
+.cp-scope .tbl td.k{font-weight:700;color:var(--ink1);white-space:nowrap;background:#fcfbff;width:150px}
+.cp-scope .tbl tr.step td{background:var(--pp-d);color:#fff;font-weight:800;font-size:10.8px;letter-spacing:.08em;padding:4px 10px;border-color:var(--pp-d)}
+.cp-scope .tbl tr.dif td.a,.tbl tr.dif td.b{background:#FFFBF3}
+.cp-scope .tbl tr.dif td.k{background:#FFF4E4;color:#B4650F}
+.cp-scope .tbl tr.dif td.k::before{content:"◆ ";font-size:9px;vertical-align:1px}
+.cp-scope .s{font-size:9.5px;font-weight:800;color:var(--pp);vertical-align:super;margin-left:2px}
+.cp-scope .na{display:inline-block;font-size:10.3px;font-weight:800;padding:1px 7px;border-radius:20px;background:#fdf1e3;color:var(--ck)}
+.cp-scope .legend{margin-top:9px;font-size:11.4px;color:var(--ink3)}
+.cp-scope .legend b{color:#B4650F}
+.cp-scope .src{margin-top:12px;font-size:11.2px;color:var(--ink3);line-height:1.85}
+.cp-scope .src b{color:var(--ink2)}
+.cp-scope .foot{margin-top:12px;font-size:11.2px;color:var(--ink3)}
+
+
+
+
+
+
+
+
+
+.cp-scope a{color:var(--pp-d);font-weight:700}
+
+</style>
+</head>
+<body class="policy-sub">
+<header class="ph"><div class="ph-in"><div class="ph-kick">PRICEPICK 정책</div><h1 class="ph-t">제휴몰별 취소 정책</h1><button id="ip-lang-toggle" data-lang="ko" type="button" title="KO / VI" aria-label="KO/VI"><span data-l="ko" class="on">KO</span><span data-l="vi">VI</span></button></div></header>
+<div class="pnav"><a class="home" href="/policyspec.html">← 정책 목차</a> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> <a href="/policy-02-earn.html">쇼핑 티켓 · 적립 메커니즘</a> <a href="/policy-03-expiry.html">유효기간 · 만료</a> <a href="/policy-04-point.html">포인트(P)</a> <a href="/policy-05-engage.html">참여</a> <a href="/policy-06-exchange.html">교환 · 등급 전환</a> <a href="/policy-07-account.html">계정 생애주기</a> <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> <a href="/policy-09-push.html">푸시 알림 상한</a> <a href="/policy-10-raffle.html">추첨 · 경품</a> <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> <a href="/policy-12-cms.html">CMS 운영값 마스터표</a> <a href="/policy-13-cancel.html" style="border-color:#845EEE;background:#f6f2ff">제휴몰별 취소 정책</a></div>
+<main class="psub-wrap"><div class="cp-scope">
+
+
+<div class="tblwrap"><table class="tbl">
+<tr><th style="width:150px"><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th style="width:calc(50% - 75px)"><span class="i18n"><span class="ko">쿠팡</span><span class="vi">Coupang</span></span></th><th><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></th></tr>
+
+<tr class="step"><td colspan="3"><span class="i18n"><span class="ko">1 · 구매</span><span class="vi">1 · MUA</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">지급 시점</span><span class="vi">Thời điểm cấp</span></span></td>
+<td class="a"><span class="i18n"><span class="ko">구매 즉시 랜덤 1장 · CONFIRMED 수신 후 전환 대기일 경과 시 등급 전환<span class="s">②</span></span><span class="vi">Ngay khi mua 1 vé ngẫu nhiên · chuyển hạng sau khi nhận CONFIRMED và qua ngày chờ<span class="s">②</span></span></span></td>
+<td class="b"><span class="i18n"><span class="ko">구매 즉시 랜덤 1장 · 매월 6일 이후 status=210 조회 시 등급 전환<span class="s">②③</span></span><span class="vi">Ngay khi mua 1 vé ngẫu nhiên · chuyển hạng khi tra cứu status=210 sau ngày 6 hằng tháng<span class="s">②③</span></span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">전환 대기일 수</span><span class="vi">Số ngày chờ chuyển đổi</span></span></td>
+<td class="a"><span class="i18n"><span class="ko">연동 D+7 / 미연동 D+30 고정 · CMS 수정 불가<span class="s">⑦</span></span><span class="vi">Liên kết D+7 / chưa liên kết D+30 cố định · không sửa trên CMS<span class="s">⑦</span></span></span></td>
+<td class="b"><span class="i18n"><span class="ko">제휴몰별 설정 · 기본 30일<span class="s">⑦</span></span><span class="vi">Thiết lập theo từng sàn · mặc định 30 ngày<span class="s">⑦</span></span></span></td></tr>
+
+<tr class="step"><td colspan="3"><span class="i18n"><span class="ko">2 · 취소</span><span class="vi">2 · HỦY</span></span></td></tr>
+<tr class="dif"><td class="k"><span class="i18n"><span class="ko">취소 통보</span><span class="vi">Thông báo hủy</span></span></td>
+<td class="a"><span class="i18n"><span class="ko"><b>실시간 수신</b> — 포스트백 CANCELLED<span class="s">①②</span></span><span class="vi"><b>Nhận thời gian thực</b> — postback CANCELLED<span class="s">①②</span></span></span></td>
+<td class="b"><span class="i18n"><span class="ko"><b>미수신</b> — 조회 주소 일 1회 조회<span class="s">①②</span></span><span class="vi"><b>Không nhận</b> — tra cứu URL 1 lần/ngày<span class="s">①②</span></span></span></td></tr>
+<tr class="dif"><td class="k"><span class="i18n"><span class="ko">부분 취소</span><span class="vi">Hủy một phần</span></span></td>
+<td class="a"><span class="i18n"><span class="ko"><b>수신</b> · orderId로 원 구매 특정 · productId로 해당 상품만 취소<span class="s">②</span></span><span class="vi"><b>Có nhận</b> · xác định đơn gốc bằng orderId · chỉ hủy sản phẩm đó bằng productId<span class="s">②</span></span></span></td>
+<td class="b"><span class="i18n"><span class="ko"><b>별도 절차 없음</b> · 확정 실적에서 제외<span class="s">②</span> · 「차액 회수」 조항 폐기<span class="s">③</span></span><span class="vi"><b>Không có thủ tục riêng</b> · loại khỏi doanh số đã chốt<span class="s">②</span> · điều khoản 「thu hồi phần chênh」 đã hủy<span class="s">③</span></span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">취소 반영 기한</span><span class="vi">Hạn phản ánh hủy</span></span></td>
+<td class="a"><span class="na">확인 필요</span></td>
+<td class="b"><span class="i18n"><span class="ko">매월 6일 확정 시점까지 · 확정 후 status 불변<span class="s">②③</span> · 「주문일+45일 추적」 폐기<span class="s">③</span></span><span class="vi">Đến thời điểm chốt ngày 6 hằng tháng · sau chốt status không đổi<span class="s">②③</span> · 「theo dõi ngày đặt+45 ngày」 đã hủy<span class="s">③</span></span></span></td></tr>
+<tr class="dif"><td class="k"><span class="i18n"><span class="ko">조회 금지 기간</span><span class="vi">Thời gian cấm tra cứu</span></span></td>
+<td class="a"><span class="i18n"><span class="ko">해당 없음</span><span class="vi">Không áp dụng</span></span></td>
+<td class="b"><span class="i18n"><span class="ko"><b>익월 21일 ~ 익익월 5일</b> · 확정 실적도 취소 상태로 조회 · 환수 처리 금지<span class="s">②③</span></span><span class="vi"><b>Ngày 21 tháng sau ~ ngày 5 tháng sau nữa</b> · doanh số đã chốt cũng hiện trạng thái hủy · cấm xử lý thu hồi<span class="s">②③</span></span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">취소 후 재확정</span><span class="vi">Chốt lại sau hủy</span></span></td>
+<td class="a"><span class="na">확인 필요</span></td>
+<td class="b"><span class="i18n"><span class="ko">확정 전 한정 · 재확정 시 재지급<span class="s">④</span> · 재생성 시 발생일자 변경, 주문번호로 이전 월 조회<span class="s">②③</span></span><span class="vi">Chỉ trước khi chốt · chốt lại thì cấp lại<span class="s">④</span> · khi tạo lại ngày phát sinh đổi, tra cứu tháng trước bằng số đơn<span class="s">②③</span></span></span></td></tr>
+
+<tr class="step"><td colspan="3"><span class="i18n"><span class="ko">3 · 환수</span><span class="vi">3 · THU HỒI</span></span></td></tr>
+<tr class="dif"><td class="k"><span class="i18n"><span class="ko">환수 발생</span><span class="vi">Phát sinh thu hồi</span></span></td>
+<td class="a"><span class="i18n"><span class="ko"><b>발생</b> — 전환 전: 대기 랜덤 1장 취소 / 전환 후: 지급 등급 티켓 환수<span class="s">②</span></span><span class="vi"><b>Có</b> — trước chuyển đổi: hủy 1 vé ngẫu nhiên đang chờ / sau chuyển đổi: thu hồi vé hạng đã cấp<span class="s">②</span></span></span></td>
+<td class="b"><span class="i18n"><span class="ko"><b>미발생</b> — 확정 후 지급 구조 · 확정 대상 부재 시 대기 랜덤 1장만 취소<span class="s">②</span></span><span class="vi"><b>Không</b> — cấu trúc cấp sau khi chốt · không có đối tượng đã chốt thì chỉ hủy 1 vé ngẫu nhiên đang chờ<span class="s">②</span></span></span></td></tr>
+<tr class="dif"><td class="k"><span class="i18n"><span class="ko">지급 티켓 잔액</span><span class="vi">Số dư vé đã cấp</span></span></td>
+<td class="a"><span class="i18n"><span class="ko"><b>감소 가능</b> · 부족 시 동급 차감 → 부족분 부채 기록 → 차기 적립 상계<span class="s">⑤⑥</span></span><span class="vi"><b>Có thể giảm</b> · thiếu thì trừ cùng hạng → ghi nợ phần thiếu → bù trừ ở lần tích lũy kế tiếp<span class="s">⑤⑥</span></span></span></td>
+<td class="b"><span class="i18n"><span class="ko"><b>유지</b> · 지급 후 회수 대상 아님<span class="s">②</span></span><span class="vi"><b>Giữ nguyên</b> · không thuộc diện thu hồi sau khi cấp<span class="s">②</span></span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">환수 금액 기준</span><span class="vi">Căn cứ số tiền thu hồi</span></span></td>
+<td class="a"><span class="i18n"><span class="ko">원 구매 기록 기준 · 취소 포스트백 payment 미사용 · 원본 덮어쓰기 금지<span class="s">②</span></span><span class="vi">Theo bản ghi đơn mua gốc · không dùng payment của postback hủy · cấm ghi đè bản gốc<span class="s">②</span></span></span></td>
+<td class="b"><span class="i18n"><span class="ko">해당 없음 · 확정액 기준 전환<span class="s">②</span></span><span class="vi">Không áp dụng · chuyển đổi theo số tiền đã chốt<span class="s">②</span></span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">분할 취소</span><span class="vi">Hủy nhiều lần</span></span></td>
+<td class="a"><span class="i18n"><span class="ko">취소 금액 누적 후 판정<span class="s">②</span></span><span class="vi">Cộng dồn số tiền hủy rồi xét<span class="s">②</span></span></span></td>
+<td class="b"><span class="na">확인 필요</span></td></tr>
+
+<tr class="step"><td colspan="3"><span class="i18n"><span class="ko">4 · 알림</span><span class="vi">4 · THÔNG BÁO</span></span></td></tr>
+<tr class="dif"><td class="k"><span class="i18n"><span class="ko">취소 알림</span><span class="vi">Thông báo hủy đến hội viên</span></span></td>
+<td class="a"><span class="i18n"><span class="ko"><b>발송</b> · 취소 수신 회차마다 1건<span class="s">②⑧</span></span><span class="vi"><b>Gửi</b> · mỗi lần nhận hủy 1 thông báo<span class="s">②⑧</span></span></span></td>
+<td class="b"><span class="i18n"><span class="ko"><b>미발송</b> · 취소 통보 미수신<span class="s">⑧</span></span><span class="vi"><b>Không gửi</b> · không nhận thông báo hủy<span class="s">⑧</span></span></span></td></tr>
+
+<tr class="step"><td colspan="3"><span class="i18n"><span class="ko">5 · 기준값</span><span class="vi">5 · GIÁ TRỊ CHUẨN</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">주문 매칭 기준</span><span class="vi">Tiêu chí đối chiếu đơn</span></span></td>
+<td class="a"><span class="i18n"><span class="ko">orderId · 상품 productid(구매) / productId(취소)<span class="s">②</span></span><span class="vi">orderId · sản phẩm productid (mua) / productId (hủy)<span class="s">②</span></span></span></td>
+<td class="b"><span class="i18n"><span class="ko">uid 단위 집계 · trlog_id · 주문번호 매칭 금지<span class="s">②③</span></span><span class="vi">Tổng hợp theo uid · cấm đối chiếu theo trlog_id · số đơn hàng<span class="s">②③</span></span></span></td></tr>
+<tr class="dif"><td class="k"><span class="i18n"><span class="ko">수수료 수신</span><span class="vi">Nhận hoa hồng</span></span></td>
+<td class="a"><span class="i18n"><span class="ko"><b>미수신</b><span class="s">①</span></span><span class="vi"><b>Không nhận</b><span class="s">①</span></span></span></td>
+<td class="b">commision · base_commission · incentive_commission<span class="s">①</span></td></tr>
+</table></div>
+
+<div class="legend"><span class="i18n"><span class="ko"><b>◆ 표시</b> = 두 제휴몰의 처리 방식이 갈리는 항목 · <span class="na">확인 필요</span> = 우리 문서에 규정 부재(3건 — 쿠팡 취소 반영 기한 · 쿠팡 취소 후 재확정 · 링크프라이스 분할 취소)</span><span class="vi"><b>Dấu ◆</b> = hạng mục mà hai sàn xử lý khác nhau · <span class="na">확인 필요</span> = tài liệu của ta chưa có quy định (3 mục — hạn phản ánh hủy Coupang · chốt lại sau hủy Coupang · hủy nhiều lần LinkPrice)</span></span></div>
+
+<div class="src"><span class="i18n"><span class="ko"><b>출처</b> ① <a href="/policyspec.html">정책서</a> 「티켓·적립」 6번 카드(2026-08-27 신설 · 2026-09-08 정정) · ② <a href="/devqa/cancel-ticket-recovery-20260903.html">취소 처리 · 티켓 환수 지시</a> 2026-09-03(09-04 개정) 1~7번 · ③ <a href="/devqa/linkprice-settlement-20260904.html">공지 · 링크프라이스 정산 기준 확정</a> 2026-09-04 · ④ <a href="/reports/20260819_AccrualPolicy.html">적립 확정 정책 보고서</a> 2026-08-19 1-7 · ⑤ <a href="/policyspec.html">정책서</a> 「어뷰징·환불」 2번 카드(2026-09-14 개정) · ⑥ <a href="/devqa/backend-harry-20260819.html">백엔드 #13</a> 2026-08-19 · <a href="/devqa/app-kelvin-20260820.html">앱 답변 Kelvin</a> 2026-08-20 · ⑦ <a href="/policyspec.html">정책서</a> 「티켓·적립」 3번 카드 · ⑧ <a href="/devqa/app-john-20260911.html">앱 답변 John</a> 2026-09-11</span><span class="vi"><b>Nguồn</b> ① <a href="/policyspec.html">Tài liệu chính sách</a> 「Vé·Tích lũy」 thẻ 6 (lập 27/08/2026 · đính chính 08/09/2026) · ② <a href="/devqa/cancel-ticket-recovery-20260903.html">Xử lý hủy đơn · Chỉ thị thu hồi vé</a> 03/09/2026 (sửa 04/09) mục 1~7 · ③ <a href="/devqa/linkprice-settlement-20260904.html">Thông báo · Tiêu chuẩn đối soát LinkPrice</a> 04/09/2026 · ④ <a href="/reports/20260819_AccrualPolicy.html">Báo cáo chính sách xác nhận tích lũy</a> 19/08/2026 mục 1-7 · ⑤ <a href="/policyspec.html">Tài liệu chính sách</a> 「Gian lận·Hoàn tiền」 thẻ 2 (sửa 14/09/2026) · ⑥ <a href="/devqa/backend-harry-20260819.html">Backend #13</a> 19/08/2026 · <a href="/devqa/app-kelvin-20260820.html">Trả lời App Kelvin</a> 20/08/2026 · ⑦ <a href="/policyspec.html">Tài liệu chính sách</a> 「Vé·Tích lũy」 thẻ 3 · ⑧ <a href="/devqa/app-john-20260911.html">Trả lời App John</a> 11/09/2026</span></span></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 제휴몰별 취소 정책 · 2026-09-14 · 기존 문서 발췌 · 확인 필요 3</span><span class="vi">PricePick · Chính sách hủy đơn theo sàn liên kết · 14/09/2026 · Trích từ tài liệu hiện có · Cần xác nhận 3</span></span></div>
+
+</div>
+<section class="phist"><h3>변경 이력</h3><table class="phist-t"><tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<tr class="born"><td class="hd">2026-09-14</td><td class="hi">정책 최초 수립</td><td class="hb">제휴몰별 취소 정책 문서 신설. 기존 문서 발췌이며 새로 정한 내용 없음 — 정책서 「티켓·적립」 6번 카드(2026-08-27 신설 · 2026-09-08 정정) · <a href="/devqa/cancel-ticket-recovery-20260903.html">취소 처리 · 티켓 환수 지시</a>(2026-09-03, 09-04 개정) · <a href="/devqa/linkprice-settlement-20260904.html">링크프라이스 정산 기준 확정</a>(2026-09-04) · <a href="/reports/20260819_AccrualPolicy.html">적립 확정 정책 보고서</a>(2026-08-19). 각 규칙의 변경 이력은 <a href="/policy-02-earn.html">쇼핑 티켓 · 적립</a>·<a href="/policy-08-abuse.html">어뷰징 한도 · 환불</a> 페이지에 있습니다.</td></tr>
+</table><p class="phist-n">최신이 위, 가장 오래된 줄이 아래입니다. <b>맨 아래 줄이 그 정책의 최초 기록</b>입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
+</main>
+<script src="/policy-i18n.js"></script>
+</body></html>

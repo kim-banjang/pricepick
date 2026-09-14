@@ -252,7 +252,7 @@ body.policy-sub .panel{display:block}
 </head>
 <body class="policy-sub">
 <header class="ph"><div class="ph-in"><div class="ph-kick">PRICEPICK 정책</div><h1 class="ph-t">쇼핑 티켓 · 적립 메커니즘</h1><button id="ip-lang-toggle" data-lang="ko" type="button" title="KO / VI" aria-label="KO/VI"><span data-l="ko" class="on">KO</span><span data-l="vi">VI</span></button></div></header>
-<div class="pnav"><a class="home" href="/policyspec.html">← 정책 목차</a> <span class="pnav-sep">|</span> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> · <a href="/policy-02-earn.html">쇼핑 티켓 · 적립 메커니즘</a> · <a href="/policy-03-expiry.html">유효기간 · 만료</a> · <a href="/policy-04-point.html">포인트(P)</a> · <a href="/policy-05-engage.html">참여</a> · <a href="/policy-06-exchange.html">교환 · 등급 전환</a> · <a href="/policy-07-account.html">계정 생애주기</a> · <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> · <a href="/policy-09-push.html">푸시 알림 상한</a> · <a href="/policy-10-raffle.html">추첨 · 경품</a> · <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> · <a href="/policy-12-cms.html">CMS 운영값 마스터표</a></div>
+<div class="pnav"><a class="home" href="/policyspec.html">← 정책 목차</a> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> <a href="/policy-02-earn.html" style="border-color:#845EEE;background:#f6f2ff">쇼핑 티켓 · 적립 메커니즘</a> <a href="/policy-03-expiry.html">유효기간 · 만료</a> <a href="/policy-04-point.html">포인트(P)</a> <a href="/policy-05-engage.html">참여</a> <a href="/policy-06-exchange.html">교환 · 등급 전환</a> <a href="/policy-07-account.html">계정 생애주기</a> <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> <a href="/policy-09-push.html">푸시 알림 상한</a> <a href="/policy-10-raffle.html">추첨 · 경품</a> <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> <a href="/policy-12-cms.html">CMS 운영값 마스터표</a> <a href="/policy-13-cancel.html">제휴몰별 취소 정책</a></div>
 <main class="psub-wrap">
 <div class="panel active" data-tab="t2">
     <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/></svg>쇼핑 티켓 · 적립 메커니즘</div>
@@ -394,7 +394,7 @@ body.policy-sub .panel{display:block}
       <tr class="rw"><td class="rk">적립 산정 단위 <span class="gloss">(주문 1건)</td><td class="rv"></span>링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 여러 건 옵니다. <b>uniq_id가 같은 포스트백은 한 주문으로 묶어 적립액을 한 번만 계산</b>합니다. 건별로 계산하면 잔돈 버림이 여러 번 일어나 유저가 손해를 봅니다. (김반장 확정 2026-08-27 · 자세한 규칙은 <b>티켓·적립 1번 카드</b>)</td></tr>
       <tr class="rw"><td class="rk">구매 적립 한도의 "1건" <span class="gloss">(주문 1건)</td><td class="rv"></span>구매 적립 한도는 일 5건 · 월 50건이고, 여기서 <b>1건은 주문 1건</b>입니다. <b>포스트백 건수가 아닙니다.</b> 포스트백으로 세면 한 번 산 것이 여러 건으로 잡혀 하루 두 번만 사도 한도에 걸립니다. (김반장 확정 2026-08-27)</td></tr>
       <tr class="rw"><td class="rk">쿠팡 취소 잇기 <span class="gloss">(2026-09-08 정정)</td><td class="rv"></span>쿠팡이 주문번호를 제공하므로 <b>취소의 orderId로 원 구매를 찾고, 그 주문 안에서 productId로 상품을 가립니다.</b> click_id로 되짚던 방식과 「확인 대기」 표시는 걷어냈습니다.</td></tr>
-      <tr class="nt"><td class="rv" colspan="2"><b>제휴몰별 취소 정책</b> — 취소 통보 · 부분 취소 · 반영 기한 · 환수 처리를 쿠팡/링크프라이스로 갈라 정리한 문서입니다. <a href="/devqa/cancel-policy-by-mall.html">제휴몰별 취소 정책 &#8599;</a></td></tr>
+      <tr class="nt"><td class="rv" colspan="2"><b>제휴몰별 취소 정책</b> — 취소 통보 · 부분 취소 · 반영 기한 · 환수 처리를 쿠팡/링크프라이스로 갈라 정리한 문서입니다. <a href="/policy-13-cancel.html">제휴몰별 취소 정책 &#8599;</a></td></tr>
 </table>
 <span class="src">출처 해리 전달 「Postback Data: LinkPrice, Coupang」(Notion, 2026-08-27)</span>
     </div>
