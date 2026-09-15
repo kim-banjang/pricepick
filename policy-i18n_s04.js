@@ -107,17 +107,17 @@ Object.assign(KO2VI,{"구매·취소 정보 수신 (포스트백)": "Nhận thô
   "2026-08-27 확정 — 매일 행운 룰렛과 잭팟 룰렛을": "Chốt 27/08/2026 — Vòng quay may mắn hằng ngày và Vòng quay Jackpot",
   "둘 다 숨김 처리": "đều bị ẩn",
   "하고,": "và",
-  "매일 선물 열기": "Mở hộp quà mỗi ngày",
+  "매일 선물 상자 열기": "Mở hộp quà mỗi ngày",
   "랜덤 선물 상자 열기": "Mở hộp quà ngẫu nhiên",
   "가 그 자리를 대신합니다. 구글플레이가 App Content: Gambling으로 거절해 돌아가는 판을 화면에서 걷어낸 것입니다. 기능과 코드는 그대로 두고 노출만 차단하므로 되살릴 수 있고, 보상 구성·확률·한도는 아래 표 그대로입니다.": "thay vào chỗ đó. Google Play đã từ chối với lý do App Content: Gambling nên ta gỡ bàn xoay khỏi màn hình. Chức năng và mã nguồn vẫn giữ nguyên, chỉ chặn hiển thị nên khôi phục lại được; cấu hình phần thưởng·xác suất·hạn mức vẫn đúng như bảng bên dưới.",
-  "경로 2 · 매일 선물 열기": "Đường 2 · Mở hộp quà mỗi ngày",
+  "경로 2 · 매일 선물 상자 열기": "Đường 2 · Mở hộp quà mỗi ngày",
   "이벤트 티켓 보상칸이 나오면 해당 수량 지급. 현재 기본 구성은 1장 · 확률 5%입니다.": "Ra ô thưởng vé sự kiện thì cấp đúng số lượng đó. Cấu hình mặc định hiện tại là 1 vé · xác suất 5%.",
-  "매일 선물 열기 (무료)": "Mở hộp quà mỗi ngày (miễn phí)",
+  "매일 선물 상자 열기 (무료)": "Mở hộp quà mỗi ngày (miễn phí)",
   "랜덤 선물 상자 열기 (유료)": "Mở hộp quà ngẫu nhiên (mất phí)",
   "대체": "Thay thế",
   "룰렛 숨김": "Ẩn vòng quay",
   "2026-08-27 확정 —": "Chốt 27/08/2026 —",
-  "매일 행운 룰렛을 숨기고 매일 선물 열기가 그 자리를 대신합니다.": "Ẩn Vòng quay may mắn hằng ngày và Mở hộp quà mỗi ngày thay vào chỗ đó.",
+  "매일 행운 룰렛을 숨기고 매일 선물 상자 열기가 그 자리를 대신합니다.": "Ẩn Vòng quay may mắn hằng ngày và Mở hộp quà mỗi ngày thay vào chỗ đó.",
   "하루 한 번 무료로 여는 것도, 보상 구성과 확률도 그대로입니다. 룰렛의 기능·코드는 남겨 두어 되살릴 수 있습니다.": "Việc mở miễn phí một lần mỗi ngày, cấu hình phần thưởng và xác suất đều giữ nguyên. Chức năng·mã nguồn của vòng quay vẫn để lại nên khôi phục được.",
   "잭팟 룰렛을 숨기고 랜덤 선물 상자 열기가 그 자리를 대신합니다.": "Ẩn Vòng quay Jackpot và Mở hộp quà ngẫu nhiên thay vào chỗ đó.",
   "이벤트 티켓 한 장을 쓰는 것도, 보상 구성과 확률도 그대로입니다. 룰렛의 기능·코드는 남겨 두어 되살릴 수 있습니다.": "Việc dùng một vé sự kiện, cấu hình phần thưởng và xác suất đều giữ nguyên. Chức năng·mã nguồn của vòng quay vẫn để lại nên khôi phục được.",
@@ -125,18 +125,18 @@ Object.assign(KO2VI,{"구매·취소 정보 수신 (포스트백)": "Nhận thô
   "이벤트 티켓 1장으로 1회 엽니다. 홈 하단 「랜덤 선물 상자」 배너로 들어갑니다.": "Dùng 1 vé sự kiện để mở 1 lần. Vào qua banner 「Hộp quà ngẫu nhiên」 ở cuối Trang chủ.",
   "보상칸 6개 고정입니다. 아래 표는": "Cố định 6 ô thưởng. Bảng dưới là",
   "보상칸": "Ô thưởng",
-  "위 구성은 기본값입니다. CMS \"매일 선물 열기\"에서 각 칸의 보상 유형·수량·확률만 수정할 수 있고, 확률 합계가 100%가 아니면 저장되지 않습니다. 칸 추가·삭제는 없습니다.": "Cấu hình trên là mặc định. Ở CMS \"Mở hộp quà mỗi ngày\" chỉ sửa được loại·số lượng·xác suất phần thưởng của từng ô, và tổng xác suất khác 100% thì không lưu được. Không thêm·xóa ô.",
+  "위 구성은 기본값입니다. CMS \"매일 선물 상자 열기\"에서 각 칸의 보상 유형·수량·확률만 수정할 수 있고, 확률 합계가 100%가 아니면 저장되지 않습니다. 칸 추가·삭제는 없습니다.": "Cấu hình trên là mặc định. Ở CMS \"Mở hộp quà mỗi ngày\" chỉ sửa được loại·số lượng·xác suất phần thưởng của từng ô, và tổng xác suất khác 100% thì không lưu được. Không thêm·xóa ô.",
   "대박 표기": "Chữ \"Phần quà lớn nhất!\"",
   "가치가 가장 높은 보상이 나오면 결과 화면에 「대박!」이 붙습니다. 룰렛에서 쓰던 「잭팟!」 표기는 쓰지 않습니다.": "Khi ra phần thưởng có giá trị cao nhất thì màn kết quả hiện 「Phần quà lớn nhất!」. Không dùng chữ 「Jackpot!」 như ở vòng quay.",
   "여기서 받은 이벤트 티켓은 랜덤 선물 상자 열기와 등급 교환에 쓰며, 받은 날부터 100일 만료 규칙과 일 5장·월 30장 한도를 따릅니다.": "Vé sự kiện nhận ở đây dùng cho Mở hộp quà ngẫu nhiên và đổi hạng, theo quy tắc hết hạn 100 ngày kể từ ngày nhận và hạn mức 5 vé/ngày · 30 vé/tháng.",
-  "출처 2026-08-27 룰렛 숨김 확정 / 2026-07-31 룰렛 개편 확정 / 2026-08-03 보상칸 6개 고정 확정 / CMS 매일 선물 열기": "Nguồn: Chốt ẩn vòng quay 27/08/2026 / Chốt cải tổ vòng quay 31/07/2026 / Chốt cố định 6 ô thưởng 03/08/2026 / CMS Mở hộp quà mỗi ngày",
+  "출처 2026-08-27 룰렛 숨김 확정 / 2026-07-31 룰렛 개편 확정 / 2026-08-03 보상칸 6개 고정 확정 / CMS 매일 선물 상자 열기": "Nguồn: Chốt ẩn vòng quay 27/08/2026 / Chốt cải tổ vòng quay 31/07/2026 / Chốt cố định 6 ô thưởng 03/08/2026 / CMS Mở hộp quà mỗi ngày",
   "출처 2026-08-27 룰렛 숨김 확정 / 2026-07-31 룰렛 개편 확정 / 2026-08-03 일 획득 상한 신설 / CMS 랜덤 선물 상자 열기": "Nguồn: Chốt ẩn vòng quay 27/08/2026 / Chốt cải tổ vòng quay 31/07/2026 / Lập trần nhận theo ngày 03/08/2026 / CMS Mở hộp quà ngẫu nhiên",
   "입니다 — 선물 상자 기대값에서 유도하지 않습니다.": "— không suy ra từ giá trị kỳ vọng của hộp quà.",
   "하루 최대 10회까지 열 수 있습니다(매크로 방지). 이벤트 티켓 획득 상한은 일 5장 · 월 30장입니다.": "Mỗi ngày mở được tối đa 10 lần (chặn macro). Trần nhận vé sự kiện là 5 vé/ngày · 30 vé/tháng.",
   "연 뒤 환불하는 악용은 티켓 자체의 승인 대기 규칙이 이미 막습니다. 구매로 발급된 이벤트 티켓은 승인 전에는 랜덤 선물 상자 열기에 쓸 수 없습니다. 별도의 참여 제한 스위치를 두지 않습니다(2026-08-03 확정).": "Việc mở rồi hoàn tiền để trục lợi đã bị quy tắc chờ duyệt của chính vé chặn lại. Vé sự kiện cấp từ giao dịch mua chưa được duyệt thì không dùng cho Mở hộp quà ngẫu nhiên được. Không đặt thêm công tắc giới hạn tham gia riêng (chốt 03/08/2026).",
-  "매일 선물 열기와 동일합니다. 보상칸 6개 고정, 보상 유형·수량·확률만 수정, 확률 합계 100% 검증.": "Giống Mở hộp quà mỗi ngày. Cố định 6 ô thưởng, chỉ sửa loại·số lượng·xác suất phần thưởng, kiểm tra tổng xác suất 100%.",
+  "매일 선물 상자 열기와 동일합니다. 보상칸 6개 고정, 보상 유형·수량·확률만 수정, 확률 합계 100% 검증.": "Giống Mở hộp quà mỗi ngày. Cố định 6 ô thưởng, chỉ sửa loại·số lượng·xác suất phần thưởng, kiểm tra tổng xác suất 100%.",
   "확률표는 앱 안에서 확인할 수 있게 공시하고, 꽝이 있다는 점을 명시합니다. 선물 상자 두 종 모두 해당합니다.": "Công bố bảng xác suất để xem được ngay trong app, và ghi rõ là có ô trượt. Áp dụng cho cả hai loại hộp quà.",
-  "추첨은 이벤트 티켓을 소비할 뿐, 새로 발급하지 않습니다. 획득 경로는 출석 5일 연속·매일 선물 열기·온보딩 가입입니다.": "Rút thăm chỉ tiêu vé sự kiện chứ không phát hành mới. Đường nhận là điểm danh 5 ngày liên tiếp·Mở hộp quà mỗi ngày·đăng ký Onboarding.",
+  "추첨은 이벤트 티켓을 소비할 뿐, 새로 발급하지 않습니다. 획득 경로는 출석 5일 연속·매일 선물 상자 열기·온보딩 가입입니다.": "Rút thăm chỉ tiêu vé sự kiện chứ không phát hành mới. Đường nhận là điểm danh 5 ngày liên tiếp·Mở hộp quà mỗi ngày·đăng ký Onboarding.",
   "무료 · 출석 시 하루 1회 / 보상칸 6개 고정 / 1회 기대값 9.9원": "Miễn phí · 1 lần/ngày khi điểm danh / cố định 6 ô thưởng / GTKV 1 lượt 9,9₩",
   "유료 · 이벤트 티켓 1장 = 1회 / 보상칸 6개 고정 / 1회 기대값 40원 / 하루 10회 상한": "Mất phí · 1 vé sự kiện = 1 lượt / cố định 6 ô thưởng / GTKV 1 lượt 40₩ / trần 10 lần/ngày",
   "랜덤 선물 상자 열기 1회 소모 · 등급 교환(이벤트 5장 → 브론즈 1장, 단방향)": "Tiêu 1 lượt Mở hộp quà ngẫu nhiên · đổi hạng (5 vé sự kiện → 1 vé Bronze, một chiều)",
@@ -148,18 +148,18 @@ Object.assign(KO2VI,{"구매·취소 정보 수신 (포스트백)": "Nhận thô
   "사용처는 랜덤 선물 상자 열기와 등급 교환입니다. 참여 탭 5번 항목을 함께 보십시오.": "Nơi dùng là Mở hộp quà ngẫu nhiên và đổi hạng. Xem kèm mục 5 ở tab Tham gia.",
   "승인 전에는 랜덤 선물 상자 열기·등급 교환 등에 쓸 수 없습니다.": "Trước khi được duyệt thì không dùng cho Mở hộp quà ngẫu nhiên·đổi hạng được.",
   "사용처는 랜덤 선물 상자 열기와 등급 교환이며, 기프티콘 직접 교환에는 쓸 수 없습니다.": "Nơi dùng là Mở hộp quà ngẫu nhiên và đổi hạng; không dùng để đổi Gifticon trực tiếp.",
-  "지급됩니다(별도의 500P 보너스는 없음). 출석·매일 선물 열기·온보딩 독립 3종 중 하나입니다.": "(không có thưởng 500P riêng). Đây là 1 trong 3 đường độc lập: điểm danh·Mở hộp quà mỗi ngày·Onboarding.",
+  "지급됩니다(별도의 500P 보너스는 없음). 출석·매일 선물 상자 열기·온보딩 독립 3종 중 하나입니다.": "(không có thưởng 500P riêng). Đây là 1 trong 3 đường độc lập: điểm danh·Mở hộp quà mỗi ngày·Onboarding.",
   "랜덤 선물 상자 열기": "Mở hộp quà ngẫu nhiên",
   "브론즈 1장(100원)을 이벤트 티켓 5장으로 되돌리면 랜덤 선물 상자 5회(1회 기대값 40원 = 200원)가 되어 가치가 2배로 증식됩니다.": "Đổi ngược 1 vé Bronze (100₩) thành 5 vé sự kiện thì được 5 lượt Mở hộp quà ngẫu nhiên (GTKV 1 lượt 40₩ = 200₩), giá trị bị nhân đôi.",
   "구매와 무관한 경로(출석·선물 상자·온보딩)로 받은 티켓은 대기 없이 바로 쓸 수 있습니다.": "Vé nhận qua đường không liên quan đến mua hàng (điểm danh·hộp quà·Onboarding) thì dùng ngay được, không phải chờ.",
   "룰렛 2종 숨김 · 선물 상자 2종 대체": "Ẩn 2 vòng quay · thay bằng 2 hộp quà",
-  "매일 선물 열기": "Mở hộp quà mỗi ngày",
+  "매일 선물 상자 열기": "Mở hộp quà mỗi ngày",
   "김반장님 확정(2026-08-27) — 구글플레이가 App Content: Gambling으로 거절해, 돌아가는 판을 화면에서 걷어내고 재등록한다. 앱은 아직 런칭 전이라 지금 바꾸는 편이 낫다.": "Người quản lý chốt (27/08/2026) — Google Play từ chối với lý do App Content: Gambling nên gỡ bàn xoay khỏi màn hình rồi nộp lại. App vẫn chưa ra mắt nên sửa ngay bây giờ là hợp lý hơn."
 });
 
   Object.assign(KO2VI, {
   "2026-08-27 확정 — 룰렛 2종을 둘 다 숨기고 선물 상자 2종이 그 자리를 대신합니다.": "Chốt 27/08/2026 — Ẩn cả 2 vòng quay và 2 hộp quà thay vào chỗ đó.",
-  "매일 행운 룰렛은 매일 선물 열기로, 잭팟 룰렛은 랜덤 선물 상자 열기로 바뀝니다. 구글플레이가 App Content: Gambling으로 거절해 돌아가는 판을 화면에서 걷어낸 것입니다. 기능과 코드는 그대로 두고 노출만 차단하므로 되살릴 수 있고, 보상 구성·확률·한도는 아래 표 그대로입니다.": "Vòng quay may mắn hằng ngày đổi thành Mở hộp quà mỗi ngày, Vòng quay Jackpot đổi thành Mở hộp quà ngẫu nhiên. Google Play đã từ chối với lý do App Content: Gambling nên ta gỡ bàn xoay khỏi màn hình. Chức năng và mã nguồn vẫn giữ nguyên, chỉ chặn hiển thị nên khôi phục lại được; cấu hình phần thưởng·xác suất·hạn mức vẫn đúng như bảng bên dưới."
+  "매일 행운 룰렛은 매일 선물 상자 열기로, 잭팟 룰렛은 랜덤 선물 상자 열기로 바뀝니다. 구글플레이가 App Content: Gambling으로 거절해 돌아가는 판을 화면에서 걷어낸 것입니다. 기능과 코드는 그대로 두고 노출만 차단하므로 되살릴 수 있고, 보상 구성·확률·한도는 아래 표 그대로입니다.": "Vòng quay may mắn hằng ngày đổi thành Mở hộp quà mỗi ngày, Vòng quay Jackpot đổi thành Mở hộp quà ngẫu nhiên. Google Play đã từ chối với lý do App Content: Gambling nên ta gỡ bàn xoay khỏi màn hình. Chức năng và mã nguồn vẫn giữ nguyên, chỉ chặn hiển thị nên khôi phục lại được; cấu hình phần thưởng·xác suất·hạn mức vẫn đúng như bảng bên dưới."
 });
 
   /* ── 2026-08-27 김반장 확정 · 주문 단위 적립 · 한도의 1건 · 링크프라이스 예외 ── */
@@ -446,7 +446,7 @@ Object.assign(KO2VI,{"구매·취소 정보 수신 (포스트백)": "Nhận thô
     "계정 · 운영":"Tài khoản · Vận hành",
     "단일 등급 결제 · 액면가 일치 상품만":"Thanh toán bằng một bậc duy nhất · chỉ sản phẩm khớp mệnh giá",
     "랜덤 선물 상자":"Hộp quà ngẫu nhiên",
-    "매일 선물":"Quà hằng ngày",
+    "매일 선물 상자":"Hộp quà hằng ngày",
     "본인인증":"Xác thực danh tính",
     "야간 미발송":"Không gửi ban đêm",
     "응모 한도":"Hạn mức dự thưởng",
@@ -504,10 +504,9 @@ Object.assign(KO2VI,{"구매·취소 정보 수신 (포스트백)": "Nhận thô
   Object.assign(KO2VI,{"실사용자 1만 명 달성 시 부활":"Khôi phục khi đạt 10.000 người dùng thật","Hold 상태입니다 — 지금 돌지 않습니다. 2026-07-31 확정으로 주간 경품 추첨 전체를 화면에서 내렸습니다. 응모·당첨자 발표·관련 화면·배너 2종이 대상이며, 폐기가 아니라 기능과 코드는 그대로 두고 노출만 차단한 상태입니다. 실사용자 1만 명 달성 시 실제 지급으로 부활합니다. 아래 규칙은 부활 시점에 그대로 적용됩니다.":"Đang ở trạng thái Hold — hiện không hoạt động. Theo quyết định ngày 31/07/2026, toàn bộ quay số quà tặng hằng tuần đã được gỡ khỏi màn hình. Phạm vi gồm dự thưởng·công bố người trúng·các màn hình liên quan·2 loại banner; đây không phải hủy bỏ mà là giữ nguyên chức năng và mã nguồn, chỉ chặn hiển thị. Khôi phục thành cấp phát thật khi đạt 10.000 người dùng thật. Các quy tắc dưới đây áp dụng nguyên vẹn tại thời điểm khôi phục.","추첨 · 경품 Hold 표시":"Gắn nhãn Hold cho Quay số · Quà tặng","화면에서 내린 상태임이 드러나도록 제목과 안내문에 Hold 표시를 달았습니다. 규칙 값은 그대로이며 부활 시점에 그대로 적용됩니다. 정책 마스터 「한눈에 보기」의 같은 갈래에도 같은 표시를 달았습니다. 근거 — 2026-07-31 확정 · 김반장 확정(2026-09-15).":"Đã gắn nhãn Hold vào tiêu đề và câu hướng dẫn để thấy rõ đây là trạng thái đã gỡ khỏi màn hình. Giá trị các quy tắc giữ nguyên và sẽ áp dụng nguyên vẹn khi khôi phục. Cùng một nhãn cũng được gắn vào nhóm tương ứng ở mục 「Xem nhanh」 của Chính sách tổng. Căn cứ — quyết định 31/07/2026 · Trưởng nhóm Kim chốt (15/09/2026).","추첨 · 경품 Hold":"Quay số · Quà tặng Hold",});
   Object.assign(KO2VI,{"Hold — 화면에서 내림 (기능·코드 보존)":"Hold — đã gỡ khỏi màn hình (giữ chức năng·mã nguồn)",});
   Object.assign(KO2VI,{"선물 상자 2종이 그 자리를 이어받아 대체가 끝났습니다 — 룰렛은 부활 대상이 아닙니다(2026-09-15 김반장 확정). 기능과 코드는 남아 있으나 되살릴 계획은 없습니다. 보상 구성·확률·한도는 아래 표 그대로입니다.":"Hai loại hộp quà đã tiếp quản vị trí đó và việc thay thế đã hoàn tất — vòng quay không thuộc diện khôi phục (Trưởng nhóm Kim chốt 15/09/2026). Chức năng và mã nguồn vẫn còn nhưng không có kế hoạch khôi phục. Cấu trúc phần thưởng·xác suất·hạn mức giữ nguyên như bảng dưới.","대체 완료":"Đã thay thế xong","하루 한 번 무료로 여는 것도, 보상 구성과 확률도 그대로입니다. 룰렛의 기능·코드는 남아 있으나 부활 대상이 아닙니다 — 대체 완료(2026-09-15 김반장 확정).":"Việc mở miễn phí một lần mỗi ngày, cấu trúc phần thưởng và xác suất đều giữ nguyên. Chức năng và mã nguồn của vòng quay vẫn còn nhưng không thuộc diện khôi phục — đã thay thế xong (Trưởng nhóm Kim chốt 15/09/2026).","이벤트 티켓 한 장을 쓰는 것도, 보상 구성과 확률도 그대로입니다. 룰렛의 기능·코드는 남아 있으나 부활 대상이 아닙니다 — 대체 완료(2026-09-15 김반장 확정).":"Việc dùng một vé sự kiện, cấu trúc phần thưởng và xác suất đều giữ nguyên. Chức năng và mã nguồn của vòng quay vẫn còn nhưng không thuộc diện khôi phục — đã thay thế xong (Trưởng nhóm Kim chốt 15/09/2026).","룰렛 2종 — 대체 완료로 확정":"Vòng quay 2 loại — chốt là đã thay thế xong","Hold(멈춰둔 것)가 아니라 선물 상자 2종이 자리를 이어받은 대체 완료입니다. 룰렛은 부활 대상이 아닙니다. 본문의 「되살릴 수 있다」 서술 3곳을 고치고 카드 배지를 「룰렛 숨김」에서 「대체 완료」로 바꿨습니다. 기능과 코드는 그대로 남아 있습니다. 근거 — 2026-08-27 확정 · 김반장 확정(2026-09-15).":"Không phải Hold (thứ tạm dừng) mà là đã thay thế xong, hai loại hộp quà đã tiếp quản vị trí. Vòng quay không thuộc diện khôi phục. Đã sửa 3 chỗ ghi 「có thể khôi phục」 trong thân bài và đổi nhãn thẻ từ 「Ẩn vòng quay」 thành 「Đã thay thế xong」. Chức năng và mã nguồn vẫn còn nguyên. Căn cứ — chốt 27/08/2026 · Trưởng nhóm Kim chốt (15/09/2026).",});
-  Object.assign(KO2VI,{"매일 행운 룰렛은 매일 선물 열기로, 잭팟 룰렛은 랜덤 선물 상자 열기로 바뀝니다. 구글플레이가 App Content: Gambling으로 거절해 돌아가는 판을 화면에서 걷어낸 것입니다. 선물 상자 2종이 그 자리를 이어받아 대체가 끝났습니다 — 룰렛은 부활 대상이 아닙니다(2026-09-15 김반장 확정). 기능과 코드는 남아 있으나 되살릴 계획은 없습니다. 보상 구성·확률·한도는 아래 표 그대로입니다.":"Vòng quay may mắn hằng ngày đổi thành Quà hằng ngày, Vòng quay Jackpot đổi thành Mở hộp quà ngẫu nhiên. Google Play từ chối vì App Content: Gambling nên đã gỡ trò quay khỏi màn hình. Hai loại hộp quà đã tiếp quản vị trí đó và việc thay thế đã hoàn tất — vòng quay không thuộc diện khôi phục (Trưởng nhóm Kim chốt 15/09/2026). Chức năng và mã nguồn vẫn còn nhưng không có kế hoạch khôi phục. Cấu trúc phần thưởng·xác suất·hạn mức giữ nguyên như bảng dưới.",});
+  Object.assign(KO2VI,{"매일 행운 룰렛은 매일 선물 상자 열기로, 잭팟 룰렛은 랜덤 선물 상자 열기로 바뀝니다. 구글플레이가 App Content: Gambling으로 거절해 돌아가는 판을 화면에서 걷어낸 것입니다. 선물 상자 2종이 그 자리를 이어받아 대체가 끝났습니다 — 룰렛은 부활 대상이 아닙니다(2026-09-15 김반장 확정). 기능과 코드는 남아 있으나 되살릴 계획은 없습니다. 보상 구성·확률·한도는 아래 표 그대로입니다.":"Vòng quay may mắn hằng ngày đổi thành Mở hộp quà hằng ngày, Vòng quay Jackpot đổi thành Mở hộp quà ngẫu nhiên. Google Play từ chối vì App Content: Gambling nên đã gỡ trò quay khỏi màn hình. Hai loại hộp quà đã tiếp quản vị trí đó và việc thay thế đã hoàn tất — vòng quay không thuộc diện khôi phục (Trưởng nhóm Kim chốt 15/09/2026). Chức năng và mã nguồn vẫn còn nhưng không có kế hoạch khôi phục. Cấu trúc phần thưởng·xác suất·hạn mức giữ nguyên như bảng dưới.",});
   Object.assign(KO2VI,{"운영 중":"Đang vận hành","운영 상태기프티콘 재개 확정(2026-09-15 김반장 확정). 2026-07-31부터 앱의 기프티샵 진입 버튼 2곳을 숨겨 왔으나 재개합니다. 진입 자리는 김반장 확정 대기이며, 정해지면 그때 붙입니다. 교환 규칙 자체는 아래 그대로입니다.":"Chốt tái khởi động Gifticon (Trưởng nhóm Kim chốt 15/09/2026). Từ 31/07/2026 đã ẩn 2 nút vào Gifti Shop trên app, nay tái khởi động. Vị trí lối vào đang chờ Trưởng nhóm Kim quyết định, khi nào chốt thì gắn vào lúc đó. Bản thân quy tắc đổi giữ nguyên như dưới đây.","기프티샵 진입 복원 — 기프티콘 재개 확정":"Khôi phục lối vào Gifti Shop — chốt tái khởi động Gifticon","김반장 확정(2026-09-15) — 기프티콘 재개가 확정되어 기프티샵 진입을 되살립니다. 2026-07-31 룰렛 개편 공지에서 「티켓 교환소 진입 버튼 2곳」을 숨김 처리했던 것을 해제합니다. 껐던 까닭은 문서에 기록이 없습니다. 앱 진입 자리는 김반장 확정 대기이며 데모 화면은 이번에 손대지 않았습니다.":"Trưởng nhóm Kim chốt (15/09/2026) — việc tái khởi động Gifticon đã được chốt nên khôi phục lối vào Gifti Shop. Gỡ bỏ việc ẩn 「2 nút vào Nơi đổi vé」 đã làm ở thông báo cải tổ vòng quay ngày 31/07/2026. Lý do tắt không có ghi chép trong tài liệu. Vị trí lối vào trên app đang chờ Trưởng nhóm Kim quyết định, lần này chưa động vào màn hình demo.",});
   Object.assign(KO2VI,{"2026-07-31 숨김 → 운영 중. 김반장 확정(2026-09-15) — 기프티콘 재개가 확정되어 되살립니다. 껐던 까닭은 기록이 없습니다. 앱 진입 자리는 김반장 확정 대기입니다.":"Ẩn từ 31/07/2026 → Đang vận hành. Trưởng nhóm Kim chốt (15/09/2026) — việc tái khởi động Gifticon đã được chốt nên khôi phục. Lý do tắt không có ghi chép. Vị trí lối vào trên app đang chờ Trưởng nhóm Kim quyết định.","고객센터 카카오채널 상담 Hold 확정":"Chốt Hold cho tư vấn qua kênh Kakao của CSKH","2026-07-31 숨김 → Hold 확정. 김반장(2026-09-15) — 1:1 고객문의만으로 충분하다는 잠정 결론입니다. 확정이 아니라 지금 판단이며, 1:1 문의로 감당이 안 되면 다시 봅니다.":"Ẩn từ 31/07/2026 → Chốt Hold. Trưởng nhóm Kim (15/09/2026) — kết luận tạm thời rằng chỉ hỏi đáp 1:1 là đủ. Đây không phải quyết định cuối mà là phán đoán ở thời điểm hiện tại; nếu hỏi đáp 1:1 không kham nổi thì sẽ xem lại.","운영 상태":"Trạng thái vận hành","기프티콘 재개 확정(2026-09-15 김반장 확정). 2026-07-31부터 앱의 기프티샵 진입 버튼 2곳을 숨겨 왔으나 재개합니다. 진입 자리는 김반장 확정 대기이며, 정해지면 그때 붙입니다. 교환 규칙 자체는 아래 그대로입니다.":"Chốt tái khởi động Gifticon (Trưởng nhóm Kim chốt 15/09/2026). Từ 31/07/2026 đã ẩn 2 nút vào Gifti Shop trên app, nay tái khởi động. Vị trí lối vào đang chờ Trưởng nhóm Kim quyết định, khi nào chốt thì gắn vào lúc đó. Bản thân quy tắc đổi giữ nguyên như dưới đây.",});
-  Object.assign(KO2VI,{"「매일 선물 상자」 → 「매일 선물」 명칭 변경":"Đổi tên 「Hộp quà hằng ngày」 → 「Quà hằng ngày」","김반장 확정(2026-09-15) — 홈 화면에서 「매일 선물 상 / 자」로 두 줄로 깨져 명칭을 줄였습니다. 정책 페이지·정책 마스터·CMS·CMS 스토리보드·앱 데모·번역 사전을 같이 바꿨습니다. 「랜덤 선물 상자」는 다른 항목이라 그대로입니다. 보상 구성·확률·한도 등 규칙 값은 변동 없습니다.":"Trưởng nhóm Kim chốt (15/09/2026) — trên màn hình trang chủ chữ bị xuống hai dòng thành 「Hộp quà hằng / ngày」 nên rút gọn tên. Đã đổi đồng thời ở trang chính sách·Chính sách tổng·CMS·storyboard CMS·app demo·từ điển dịch. 「Hộp quà ngẫu nhiên」 là mục khác nên giữ nguyên. Các giá trị quy tắc như cấu trúc phần thưởng·xác suất·hạn mức không đổi.","홈 화면에서 두 줄로 깨져 명칭을 줄였습니다. 정책 페이지·CMS·앱 데모·번역 사전을 같이 바꿨고 「랜덤 선물 상자」는 그대로입니다. 규칙 값은 변동 없습니다. 김반장 확정(2026-09-15).":"Trên màn hình trang chủ chữ bị xuống hai dòng nên rút gọn tên. Đã đổi đồng thời ở trang chính sách·CMS·app demo·từ điển dịch, còn 「Hộp quà ngẫu nhiên」 giữ nguyên. Giá trị quy tắc không đổi. Trưởng nhóm Kim chốt (15/09/2026).",});
   function hasKo(s){return KO_RE.test(s);}
   function tcore(raw){
     if(raw==null) return null;

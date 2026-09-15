@@ -988,9 +988,9 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/><path d="M4.5 5.5 6 7"/><path d="M19.5 5.5 18 7"/></svg></span>
             <span class="sb-item-lbl" id="nav-label-jackpot-roulette">잭팟 룰렛</span>
           </button>
-          <button class="sb-item" id="nav-giftbox-daily" data-label="매일 선물 열기" onclick="go('giftbox-daily',this)">
+          <button class="sb-item" id="nav-giftbox-daily" data-label="매일 선물 상자 열기" onclick="go('giftbox-daily',this)">
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg></span>
-            <span class="sb-item-lbl" id="nav-label-giftbox-daily">매일 선물 열기</span>
+            <span class="sb-item-lbl" id="nav-label-giftbox-daily">매일 선물 상자 열기</span>
           </button>
           <button class="sb-item" id="nav-giftbox-random" data-label="랜덤 선물 상자 열기" onclick="go('giftbox-random',this)">
             <span class="sb-item-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg></span>
@@ -1719,9 +1719,9 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
       </div>
     </div>
 
-    <!-- ── 매일 선물 열기 (무료 · 하루 1회) — 2026-08-25 신설 ── -->
+    <!-- ── 매일 선물 상자 열기 (무료 · 하루 1회) — 2026-08-25 신설 ── -->
     <div class="section" id="sec-giftbox-daily">
-      <div class="info-box"><strong>매일 선물 열기 = 출석(쿠팡 구경하기) 시 1일 1회 무료로 여는 선물 상자</strong> — 보상칸별 보상 내용과 받을 확률을 운영자가 직접 수정합니다. 확률 합계가 100%가 아니면 저장되지 않습니다. 보상칸은 6개 고정이며 보상 유형·수량·확률만 수정합니다. 이벤트 티켓을 쓰는 상자는 <strong>랜덤 선물 상자 열기</strong> 메뉴에서 따로 관리합니다.</div>
+      <div class="info-box"><strong>매일 선물 상자 열기 = 출석(쿠팡 구경하기) 시 1일 1회 무료로 여는 선물 상자</strong> — 보상칸별 보상 내용과 받을 확률을 운영자가 직접 수정합니다. 확률 합계가 100%가 아니면 저장되지 않습니다. 보상칸은 6개 고정이며 보상 유형·수량·확률만 수정합니다. 이벤트 티켓을 쓰는 상자는 <strong>랜덤 선물 상자 열기</strong> 메뉴에서 따로 관리합니다.</div>
       <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
         <div class="stat-card purple"><div class="stat-label">이번 달 상자 열기</div><div class="stat-value" id="gbd-stat-spins">—</div><div class="stat-change neutral">실제 연 횟수 집계</div></div>
         <div class="stat-card green"><div class="stat-label">이번 달 지급 총액</div><div class="stat-value" id="gbd-stat-payout">—</div><div class="stat-change neutral">받은 보상 원화 환산</div></div>
@@ -1785,7 +1785,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
 
     <!-- ── 랜덤 선물 상자 열기 (이벤트 티켓 1장 = 1회) — 2026-08-25 신설 ── -->
     <div class="section" id="sec-giftbox-random">
-      <div class="info-box"><strong>랜덤 선물 상자 열기 = 이벤트 티켓 1장으로 1회 여는 선물 상자</strong> — 매일 선물 열기와 구조는 같고 보상 구성·확률만 다릅니다. 보상칸은 6개 고정입니다. 보상칸별 보상 내용과 받을 확률을 운영자가 직접 수정하며, 확률 합계가 100%가 아니면 저장되지 않습니다. 악용 방지 제한(하루 참여 상한 · 이벤트 티켓 일/월 획득 상한)도 아래에서 조정합니다.</div>
+      <div class="info-box"><strong>랜덤 선물 상자 열기 = 이벤트 티켓 1장으로 1회 여는 선물 상자</strong> — 매일 선물 상자 열기와 구조는 같고 보상 구성·확률만 다릅니다. 보상칸은 6개 고정입니다. 보상칸별 보상 내용과 받을 확률을 운영자가 직접 수정하며, 확률 합계가 100%가 아니면 저장되지 않습니다. 악용 방지 제한(하루 참여 상한 · 이벤트 티켓 일/월 획득 상한)도 아래에서 조정합니다.</div>
       <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
         <div class="stat-card purple"><div class="stat-label">이번 달 상자 열기</div><div class="stat-value" id="gbr-stat-spins">—</div><div class="stat-change neutral">실제 연 횟수 집계</div></div>
         <div class="stat-card green"><div class="stat-label">이번 달 지급 총액</div><div class="stat-value" id="gbr-stat-payout">—</div><div class="stat-change neutral">받은 보상 원화 환산</div></div>
@@ -4065,7 +4065,7 @@ const I18N = {
     'nav.weekly-draws': '주간 이벤트 추첨 관리',
     'nav.roulette-settings': '매일 행운 룰렛',
     'nav.jackpot-roulette': '잭팟 룰렛',
-  'nav.giftbox-daily': '매일 선물 열기',
+  'nav.giftbox-daily': '매일 선물 상자 열기',
   'nav.giftbox-random': '랜덤 선물 상자 열기',
     'nav.gifticons': '구매/사용 내역',
     'nav.group.content': '콘텐츠',
@@ -4102,7 +4102,7 @@ const I18N = {
     'page.weekly-draws.title': '주간 이벤트 추첨 관리', 'page.weekly-draws.bc': '티켓 · 보상',
     'page.roulette-settings.title': '매일 행운 룰렛', 'page.roulette-settings.bc': '티켓 · 보상',
     'page.jackpot-roulette.title': '잭팟 룰렛', 'page.jackpot-roulette.bc': '티켓 · 보상',
-  'page.giftbox-daily.title': '매일 선물 열기', 'page.giftbox-daily.bc': '티켓 · 보상',
+  'page.giftbox-daily.title': '매일 선물 상자 열기', 'page.giftbox-daily.bc': '티켓 · 보상',
   'page.giftbox-random.title': '랜덤 선물 상자 열기', 'page.giftbox-random.bc': '티켓 · 보상',
     'page.gifticons.title': '구매/사용 내역', 'page.gifticons.bc': '기프티콘 관리', 'page.gifticon-cancel.title': '취소 내역', 'page.gifticon-cancel.bc': '기프티콘 관리', 'page.gifticon-products.title': '상품 목록', 'page.gifticon-products.bc': '기프티콘 관리', 'page.gifticon-bulk.title': '상품설명 일괄등록', 'page.gifticon-bulk.bc': '기프티콘 관리',
     'page.banners.title': '배너 관리', 'page.banners.bc': '콘텐츠',
@@ -5781,7 +5781,7 @@ const RLT_KINDS = {
     ],
   },
   giftDaily: {
-    p: 'gbd', name: '매일 선물 열기',
+    p: 'gbd', name: '매일 선물 상자 열기',
     monthSpins: 28470,
     defaults: [                              /* 매일 행운 룰렛과 동일 — 1회 기대값 9.9원 */
       { type:'silver_ticket', qty:1,   prob:0.2  },
@@ -7401,17 +7401,17 @@ Object.assign(KO2VI,{
 /* 룰렛 2종 화면(2026-07-31 개편) — UI 문구만. 닉네임 등 데모 데이터는 한국어 원문 유지 */
 Object.assign(KO2VI,{
   "매일 행운 룰렛":"Vòng quay may mắn hằng ngày",
-"매일 선물 열기":"Mở hộp quà mỗi ngày",
+"매일 선물 상자 열기":"Mở hộp quà mỗi ngày",
 "— 보상칸별 보상 내용과 받을 확률을 운영자가 직접 수정합니다. 확률 합계가 100%가 아니면 저장되지 않습니다. 보상칸은 6개 고정이며 보상 유형·수량·확률만 수정합니다. 이벤트 티켓을 쓰는 상자는":"— Quản trị viên sửa trực tiếp nội dung thưởng và tỷ lệ nhận theo từng ô. Tổng tỷ lệ không đủ 100% thì không lưu được. Cố định 6 ô thưởng, chỉ sửa loại thưởng·số lượng·tỷ lệ. Hộp dùng vé sự kiện thì",
-"— 매일 선물 열기와 구조는 같고 보상 구성·확률만 다릅니다. 보상칸은 6개 고정입니다. 보상칸별 보상 내용과 받을 확률을 운영자가 직접 수정하며, 확률 합계가 100%가 아니면 저장되지 않습니다. 악용 방지 제한(하루 참여 상한 · 이벤트 티켓 일/월 획득 상한)도 아래에서 조정합니다.":"— Cấu trúc giống Mở hộp quà mỗi ngày, chỉ khác cơ cấu thưởng·tỷ lệ. Cố định 6 ô thưởng. Quản trị viên sửa trực tiếp nội dung thưởng và tỷ lệ nhận theo từng ô, tổng tỷ lệ không đủ 100% thì không lưu được. Các giới hạn chống lạm dụng (trần lượt/ngày · trần nhận vé sự kiện theo ngày/tháng) cũng chỉnh ở bên dưới.",
+"— 매일 선물 상자 열기와 구조는 같고 보상 구성·확률만 다릅니다. 보상칸은 6개 고정입니다. 보상칸별 보상 내용과 받을 확률을 운영자가 직접 수정하며, 확률 합계가 100%가 아니면 저장되지 않습니다. 악용 방지 제한(하루 참여 상한 · 이벤트 티켓 일/월 획득 상한)도 아래에서 조정합니다.":"— Cấu trúc giống Mở hộp quà mỗi ngày, chỉ khác cơ cấu thưởng·tỷ lệ. Cố định 6 ô thưởng. Quản trị viên sửa trực tiếp nội dung thưởng và tỷ lệ nhận theo từng ô, tổng tỷ lệ không đủ 100% thì không lưu được. Các giới hạn chống lạm dụng (trần lượt/ngày · trần nhận vé sự kiện theo ngày/tháng) cũng chỉnh ở bên dưới.",
 "구매로 발급된 티켓은 등급 티켓·이벤트 티켓 모두 승인 대기 상태로 발급되고, 제휴몰별 전환 대기일 수(기본 30일) 경과 또는 쿠팡 구매 확정 시 승인됩니다. 승인 전에는 랜덤 선물 상자 열기에 쓸 수 없으므로 \"열고 환불\" 악용은 티켓 단계에서 이미 차단됩니다. 별도 설정 항목을 두지 않습니다.":"Vé phát hành do mua hàng (cả vé hạng lẫn vé sự kiện) đều ở trạng thái chờ duyệt, và được duyệt khi qua số ngày chờ chuyển đổi theo từng sàn (mặc định 30 ngày) hoặc khi đơn Coupang được xác nhận. Trước khi duyệt thì không dùng được ở Mở hộp quà ngẫu nhiên, nên chiêu \"mở rồi hoàn tiền\" đã bị chặn ngay từ khâu vé. Không đặt thêm mục cài đặt riêng.",
 "실제 연 횟수 집계":"Thống kê số lượt mở thực tế",
 "받은 보상 원화 환산":"Quy đổi phần thưởng đã nhận ra tiền",
 "선물 상자 종류":"Loại hộp quà",
 "랜덤 선물 상자 열기":"Mở hộp quà ngẫu nhiên",
-"매일 선물 열기 = 출석(쿠팡 구경하기) 시 1일 1회 무료로 여는 선물 상자":"Mở hộp quà mỗi ngày = hộp quà mở miễn phí 1 lần/ngày khi điểm danh (dạo Coupang)",
+"매일 선물 상자 열기 = 출석(쿠팡 구경하기) 시 1일 1회 무료로 여는 선물 상자":"Mở hộp quà mỗi ngày = hộp quà mở miễn phí 1 lần/ngày khi điểm danh (dạo Coupang)",
 "랜덤 선물 상자 열기 = 이벤트 티켓 1장으로 1회 여는 선물 상자":"Mở hộp quà ngẫu nhiên = hộp quà mở 1 lượt bằng 1 vé sự kiện",
-"매일 선물 열기와 구조는 같고":"Cấu trúc giống Mở hộp quà mỗi ngày",
+"매일 선물 상자 열기와 구조는 같고":"Cấu trúc giống Mở hộp quà mỗi ngày",
 "보상칸 구성 · 받을 확률":"Cơ cấu ô thưởng · Tỷ lệ nhận",
 "받을 확률":"Tỷ lệ nhận",
 "보상칸":"Ô thưởng",
@@ -7422,7 +7422,7 @@ Object.assign(KO2VI,{
 "상자 열기 기록":"Nhật ký mở hộp",
 "가장 큰 선물":"Phần quà lớn nhất",
 "보상 없음":"Không có thưởng",
-"매일 선물 열기 구성을 저장했습니다.":"Đã lưu cơ cấu Mở hộp quà mỗi ngày.",
+"매일 선물 상자 열기 구성을 저장했습니다.":"Đã lưu cơ cấu Mở hộp quà mỗi ngày.",
 "랜덤 선물 상자 열기 구성을 저장했습니다.":"Đã lưu cơ cấu Mở hộp quà ngẫu nhiên.",
 "랜덤 선물 상자 열기 참여 제한 정책을 저장했습니다.":"Đã lưu chính sách giới hạn tham gia Mở hộp quà ngẫu nhiên.",
   "잭팟 룰렛":"Vòng quay Jackpot",

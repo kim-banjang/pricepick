@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PricePick 정책 · CMS 운영값 마스터표</title>
+<title>PricePick 정책 · 참여 — 출석 · 선물 상자 · 친구초대 · 온보딩</title>
 <style>
   :root{
     --pp:#845EEE; --pp-d:#6a45d4; --pp-l:#f3efff;
@@ -205,6 +205,7 @@ body.policy-sub{background:#faf9fe}
 .pnav a{color:#5b39b8;font-weight:700;text-decoration:none}
 .pnav a:hover{text-decoration:underline}
 .pnav-sep{margin:0 4px;color:#c9c4d6}
+.badge-done{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.04em;background:#E9F4EE;color:#2E7D55;border:1px solid #BFE0CD;border-radius:999px;padding:1px 8px;line-height:1.6;vertical-align:middle}
 .psub-wrap{max-width:1000px;margin:0 auto;padding:0 20px 50px}
 body.policy-sub .panel{display:block}
 .phist{margin-top:22px;background:#fff;border:1px solid #e9e7f2;border-radius:12px;padding:14px 16px}
@@ -256,100 +257,138 @@ html[lang="vi"] .cp-scope .vi{display:inline}
 </style>
 </head>
 <body class="policy-sub">
-<header class="ph"><div class="ph-in"><div class="ph-kick">PRICEPICK 정책</div><h1 class="ph-t">CMS 운영값 마스터표</h1><button id="ip-lang-toggle" data-lang="ko" type="button" title="KO / VI" aria-label="KO/VI"><span data-l="ko" class="on">KO</span><span data-l="vi">VI</span></button></div></header>
-<div class="pnav"><a class="home" href="/policyspec.html">← 정책 목차</a> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> <a href="/policy-02-earn.html">쇼핑 티켓 · 적립 메커니즘</a> <a href="/policy-03-expiry.html">유효기간 · 만료</a> <a href="/policy-04-point.html">포인트(P)</a> <a href="/policy-05-engage.html">참여</a> <a href="/policy-06-exchange.html">교환 · 등급 전환</a> <a href="/policy-07-account.html">계정 생애주기</a> <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> <a href="/policy-09-push.html">푸시 알림 상한</a> <a href="/policy-10-raffle.html">추첨 · 경품</a> <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> <a href="/policy-12-cms.html" style="border-color:#845EEE;background:#f6f2ff">CMS 운영값 마스터표</a> <a href="/policy-13-cancel.html">제휴몰별 취소 정책</a></div>
+<header class="ph"><div class="ph-in"><div class="ph-kick">PRICEPICK 정책</div><h1 class="ph-t">참여 — 출석 · 선물 상자 · 친구초대 · 온보딩</h1><button id="ip-lang-toggle" data-lang="ko" type="button" title="KO / VI" aria-label="KO/VI"><span data-l="ko" class="on">KO</span><span data-l="vi">VI</span></button></div></header>
+<div class="pnav"><a class="home" href="/policyspec.html">← 정책 목차</a> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> <a href="/policy-02-earn.html">쇼핑 티켓 · 적립 메커니즘</a> <a href="/policy-03-expiry.html">유효기간 · 만료</a> <a href="/policy-04-point.html">포인트(P)</a> <a href="/policy-05-engage.html" style="border-color:#845EEE;background:#f6f2ff">참여</a> <a href="/policy-06-exchange.html">교환 · 등급 전환</a> <a href="/policy-07-account.html">계정 생애주기</a> <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> <a href="/policy-09-push.html">푸시 알림 상한</a> <a href="/policy-10-raffle.html">추첨 · 경품</a> <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> <a href="/policy-12-cms.html">CMS 운영값 마스터표</a> <a href="/policy-13-cancel.html">제휴몰별 취소 정책</a></div>
 <main class="psub-wrap">
-<div class="panel active" data-tab="t12">
-    <div class="ptitle"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>CMS 운영값 마스터표</div>
-    <div class="pdesc">문서 곳곳에 흩어진 운영값(운영자가 CMS에서 바꾸는 숫자)을 한 표로 모았습니다. <b>키 · 현재값 · 소관 CMS 화면</b> 3열.</div>
-    <div class="card">
-      <table class="mt">
-        <thead><tr><th style="width:32%">키 (운영값)</th><th style="width:34%">현재값</th><th style="width:34%">소관 CMS 화면</th></tr></thead>
-        <tbody>
-          <tr><td class="key">티켓 등급 단가</td><td>브 10원 · 실 100원 · 골 200원</td><td>등급 티켓 가치 변경(정책 변경 마법사)</td></tr>
-          <tr><td class="key">등급 적립 단위</td><td>브 5천 · 실 5만 · 골 10만원당 1장</td><td>적립 정책 설정</td></tr>
-          <tr><td class="key">보상률</td><td>제휴몰별 적립률에 따름</td><td>티켓 적립 설정</td></tr>
-          <tr><td class="key">포인트 가치</td><td>10P = 1원</td><td>포인트 정책</td></tr>
-          <tr><td class="key">포인트 → 티켓 교환비</td><td>브 100P · 실 1,000P · 골 2,000P</td><td>포인트 정책</td></tr>
-          <tr><td class="key">등급 간 교환비</td><td>브 10 ⇄ 실 1 · 실 2 ⇄ 골 1</td><td>등급 교환 규칙</td></tr>
-          <tr><td class="key">등급 티켓 만료</td><td>적립일 + 365일 (D-30·D-7 알림)</td><td>유효기간 정책</td></tr>
-          <tr><td class="key">이벤트 티켓 만료</td><td>발급일 + 100일</td><td>유효기간 정책</td></tr>
-          <tr><td class="key">포인트 만료</td><td>적립일 + 1년</td><td>유효기간 정책</td></tr>
-          <tr><td class="key">전환 대기일 수</td><td>쿠팡 연동 D+7 · 미연동 D+30(고정) / 링크프라이스 제휴몰 몰별 CMS 설정 · 기본 30일 · 줄이면 대기 티켓 소급 전환</td><td>티켓 적립 설정 / 티켓 확정 처리</td></tr>
-          <tr><td class="key">구매기록 미수신 임계</td><td>24시간 → 영수증 인증 수동 지급</td><td>구매기록 / CS 처리</td></tr>
-          <tr><td class="key">출석 체류 검증</td><td>30초 / 100P / 하루 1회</td><td>출석(쿠팡 구경) 정책</td></tr>
-          <tr><td class="key">출석 2배 부스터 유효시간</td><td>30분 (구매 확정 후 +100P)</td><td>출석 부스터 정책</td></tr>
-          <tr><td class="key">매일 선물 열기</td><td>무료 · 출석 시 하루 1회 / 보상칸 6개 고정 / 1회 기대값 9.9원</td><td>매일 선물 열기</td></tr>
-          <tr><td class="key">랜덤 선물 상자 열기</td><td>유료 · 이벤트 티켓 1장 = 1회 / 보상칸 6개 고정 / 1회 기대값 40원 / 하루 10회 상한</td><td>랜덤 선물 상자 열기</td></tr>
-          <tr><td class="key">연속구매 미션</td><td>누적 3단계 · 7일 3회 1장 / 14일 5회 3장 / 30일 10회 5장(최대 9장) · 10회 달성 시 초기화 · 금액 하한 없음 · 이벤트 티켓 상한 포함 · 취소·반품 시 환수</td><td>연속구매 미션</td></tr>
-          <tr><td class="key">이벤트 티켓 사용처</td><td>랜덤 선물 상자 열기 1회 소모 · 등급 교환(이벤트 5장 → 브론즈 1장, 단방향)</td><td>랜덤 선물 상자 열기 / 티켓 교환</td></tr>
-          <tr><td class="key">친구초대 보상·한도</td><td>양쪽 각 500P · 초대자 월 50명</td><td>친구초대 정책</td></tr>
-          <tr><td class="key">이벤트 티켓 적립 한도</td><td>일 5장 / 월 30장</td><td>어뷰징 한도</td></tr>
-          <tr><td class="key">구매 적립 한도</td><td>일 5건 / 월 50건 (1건 = 주문 1건)</td><td>어뷰징 한도</td></tr>
-          <tr><td class="key">추첨 1인 응모 상한</td><td>1회 추첨당 10장</td><td>추첨 회차 설정</td></tr>
-          <tr><td class="key">환불 어뷰징 플래그</td><td>30일 내 5건 초과 → 운영자 검토</td><td>어뷰징 플래그 임계치</td></tr>
-          <tr><td class="key">부스터성 보상 사용가능</td><td>구매 확정 + 7일 경과 후</td><td>환불·보상 정책</td></tr>
-          <tr><td class="key">FCM 기타 알림 상한</td><td>일 2건 · 야간 22~08시 미발송 (거래 무제한)</td><td>FCM 발송 상한</td></tr>
-          <tr><td class="key">탈퇴 처리</td><td>즉시 처리 + PII 파기(최소식별정보 30일 후 파기, 레코드 유지, 유예 없음)</td><td>탈퇴 관리</td></tr>
-          <tr><td class="key">정산 데이터 보관</td><td>5년 그대로 보관 (법적 의무, PII 없이 user_id로만 연결)</td><td>탈퇴 관리 / 정산</td></tr>
-          <tr><td class="key">경품 추첨 주기</td><td>매주 (월요일 0시 시작 ~ 일요일 23:59:59 마감, 현재 시점 기준 4주치 자동 등록)</td><td>추첨 회차 설정</td></tr>
-          <tr><td class="key">경품 예산 비율</td><td class="pendval">미결 (매출 대비 %)</td><td>추첨 회차 설정</td></tr>
-          <tr><td class="key">재가입 쿨타임</td><td>기본 무제한(어뷰징 계정은 개별 제한 가능)</td><td>탈퇴 관리 / 약관</td></tr>
-          <tr><td class="key">본인인증 인증사·단가</td><td class="pendval">미결 (운영 확정)</td><td>본인인증 정책</td></tr>
-        </tbody>
-</table>
-      <span class="src">출처 PolicySpec 17 / CMS 전반 / FunctionalSpec</span>
-    </div>
-    <div class="card">
-      <h4><span class="n">+</span>등급 티켓 가치 변경 — 정책 변경 마법사 (안전장치 5)</h4>
+<div class="panel active" data-tab="t5">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.5-7 10-7 10z"/></svg>참여 — 출석 · 선물 상자 · 친구초대 · 온보딩</div>
+    <div class="pdesc">구매하지 않아도 보상을 얻는 데일리·바이럴 장치들.</div>
 <table class="ptbl">
-      <tr class="rw"><td class="rv" colspan="2">등급 단가(브 10·실 100·골 200원)를 운영자가 조정하는 기능. <b>도입 확정.</b> 단순 입력칸 금지 — 아래 안전장치를 갖춘 "정책 변경 마법사"로만 동작합니다. 가치 하나만 바꾸면 차익거래·역마진이 생기기 때문.</td></tr>
+    <tr class="nt"><td class="rv" colspan="2"><b>2026-08-27 확정 — 룰렛 2종을 둘 다 숨기고 선물 상자 2종이 그 자리를 대신합니다.</b> 매일 행운 룰렛은 매일 선물 상자 열기로, 잭팟 룰렛은 랜덤 선물 상자 열기로 바뀝니다. 구글플레이가 App Content: Gambling으로 거절해 돌아가는 판을 화면에서 걷어낸 것입니다. 선물 상자 2종이 그 자리를 이어받아 대체가 끝났습니다 — 룰렛은 부활 대상이 아닙니다(2026-09-15 김반장 확정). 기능과 코드는 남아 있으나 되살릴 계획은 없습니다. 보상 구성·확률·한도는 아래 표 그대로입니다.</td></tr>
+</table>
+<div class="card">
+      <h4><span class="n">1</span>출석 — "쿠팡 구경하기"</h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">기본</td><td class="rv">기존 출석체크를 <b>"쿠팡 구경하기"로 대체.</b> 매일 앱을 거쳐 쿠팡에 방문하고 <b>30초 이상 머문 게 확인되면 100P</b> 지급.</td></tr>
 </table>
 <ul class="r">
-        <li><b>① 한 세트로 연동 수정</b> — 등급 가치·적립 단위·보상률·등급 교환비·포인트 교환비·기프티콘 라인업을 묶어서 함께 수정. 단독 변경 금지.</li>
-        <li><b>② 저장 전 시뮬레이션</b> — 바꾼 값으로 교환소 상품의 필요 티켓 수·교환비가 어떻게 변하는지, 손해(역마진) 상품이 있는지 저장 전에 미리 보여줌.</li>
-        <li><b>③ 역마진 경고·차단</b> — 바뀐 가치가 커미션 기여분을 넘으면(손해 구간) 빨간 경고로 막거나 재확인.</li>
-        <li><b>④ 기존 발행분 고정</b> — 이미 나간 티켓은 발행 당시 가치로 고정(소급 안 함). 변경 후 새로 발행되는 티켓부터 적용.</li>
-        <li><b>⑤ 권한 제한 + 변경 이력</b> — 권한자만 변경, 누가·언제·이전값→새값 자동 로그.</li>
+        <li><b>"구경하기" 버튼을 먼저 눌러야</b> 인정됩니다(그냥 쿠팡 앱만 열면 미인정).</li>
+        <li>하루 1회. 자정 경계는 <b>앱으로 복귀한 시점의 날짜</b> 기준.</li>
+        <li>구매를 안 해도 받는 보상이라 <b>환불과 무관(환수 없음).</b></li>
       </ul>
 <table class="ptbl">
-      <tr class="nt"><td class="rv" colspan="2">화면 설계 상세는 별도 산출물 <b>CMS등급가치설계</b>(6단계 마법사 와이어프레임) 참조.</td></tr>
+      <tr class="rw"><td class="rk">5일 연속 보너스</td><td class="rv">5일차에도 그날의 <b>100P는 그대로 지급</b>되고, 여기에 <b>이벤트 티켓 1장이 추가로</b> 지급됩니다(별도의 500P 보너스는 없음). 출석·매일 선물 상자 열기·온보딩 독립 3종 중 하나입니다.</td></tr>
+      <tr class="rw"><td class="rk">2배 부스터</td><td class="rv">출석 직후 <b>일정 시간(현재 30분) 내</b>에 경유 구매가 확정되면 출석 보상이 2배(추가 100P, 총 200P). 일 1회만. 추가 100P는 <b>구매 확정 후</b> 지급(환불 리스크 최소화).</td></tr>
+      <tr class="nt"><td class="rv" colspan="2">부스터 유효시간(현재 30분)은 운영값으로 조정될 수 있습니다.</td></tr>
 </table>
-<span class="src">출처 PolicySpec 18 / CMS등급가치설계 / 2026-06-09 결정</span>
+<span class="src">출처 PolicySpec 7 / FunctionalSpec(홈) / CMS</span>
     </div>
     <div class="card">
-      <h4><span class="n">+</span>관리자 역할·권한 <span class="badge-new">신설</span></h4>
+      <h4><span class="n">2</span>매일 선물 상자 열기 (무료)</h4>
 <table class="ptbl">
-      <tr class="rw"><td class="rk">확정</td><td class="rv">CMS 관리자 역할은 <b>슈퍼어드민·운영자 2단계로 단순화합니다.</b> 기존 3단계(슈퍼어드민/운영자/CS)에서 <b>CS 역할은 폐지합니다.</b></td></tr>
-      <tr class="rw"><td class="rk">슈퍼어드민</td><td class="rv">전체 권한. <b>관리자 계정 관리(추가·삭제·수정·역할 변경)·API 키 관리</b> 포함. 설정·정책·콘텐츠·회원·티켓·포인트·문의 등 전 기능.</td></tr>
-      <tr class="rw"><td class="rk">운영자</td><td class="rv">일상 운영 전반 — 설정·정책·콘텐츠 변경, 회원 관리, 티켓·포인트 관리, 1:1 문의 답변, 배너·이벤트·공지 등. <b>관리자 계정 관리·API 키 관리는 제외</b>(슈퍼어드민 전용).</td></tr>
-      <tr class="rw"><td class="rk">CS 역할</td><td class="rv">폐지. 문의 답변은 <b>운영자</b>가 담당. 조회 전용 인력이 필요해지면 그때 별도 역할로 추가.</td></tr>
+      <tr class="rw"><td class="rk">대체 <span class="badge-done">대체 완료</span></td><td class="rv">2026-08-27 확정 — <b>매일 행운 룰렛을 숨기고 매일 선물 상자 열기가 그 자리를 대신합니다.</b> 하루 한 번 무료로 여는 것도, 보상 구성과 확률도 그대로입니다. 룰렛의 기능·코드는 남아 있으나 부활 대상이 아닙니다 — 대체 완료(2026-09-15 김반장 확정).</td></tr>
+      <tr class="rw"><td class="rk">진입</td><td class="rv">출석("쿠팡 구경하기") 시 하루 1회 무료로 엽니다.</td></tr>
+      <tr class="rw"><td class="rk">구성</td><td class="rv">보상칸 6개 고정입니다. 아래 표는 <b>기본 구성 예시</b>이며, 실제 보상 유형·수량·확률·기대값은 CMS에서 운영자가 조정합니다.</td></tr>
 </table>
-<span class="src">출처 김반장 확정(2026-07-15) · 관리자 역할 2단계 단순화</span>
+<table class="mt">
+        <thead><tr><th style="width:34%">보상칸</th><th style="width:22%">가치</th><th style="width:22%">확률</th><th style="width:22%">기대값 기여</th></tr></thead>
+        <tbody>
+          <tr><td class="key">실버 티켓 10장</td><td>1,000원</td><td>0.2%</td><td>2.0원</td></tr>
+          <tr><td class="key">이벤트 티켓 1장</td><td>40원</td><td>5%</td><td>2.0원</td></tr>
+          <tr><td class="key">브론즈 티켓 10장</td><td>100원</td><td>2%</td><td>2.0원</td></tr>
+          <tr><td class="key">100P</td><td>10원</td><td>35%</td><td>3.5원</td></tr>
+          <tr><td class="key">10P</td><td>1원</td><td>40%</td><td>0.4원</td></tr>
+          <tr><td class="key">꽝</td><td>&mdash;</td><td>17.8%</td><td>0원</td></tr>
+          <tr><td class="key">합계</td><td>&mdash;</td><td>100%</td><td>9.9원</td></tr>
+        </tbody>
+      </table>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">운영 편집</td><td class="rv">위 구성은 기본값입니다. CMS "매일 선물 상자 열기"에서 각 칸의 보상 유형·수량·확률만 수정할 수 있고, 확률 합계가 100%가 아니면 저장되지 않습니다. 칸 추가·삭제는 없습니다.</td></tr>
+      <tr class="rw"><td class="rk">대박 표기</td><td class="rv">가치가 가장 높은 보상이 나오면 결과 화면에 「대박!」이 붙습니다. 룰렛에서 쓰던 「잭팟!」 표기는 쓰지 않습니다.</td></tr>
+      <tr class="rw"><td class="rk">연계</td><td class="rv">여기서 받은 이벤트 티켓은 랜덤 선물 상자 열기와 등급 교환에 쓰며, 받은 날부터 100일 만료 규칙과 일 5장·월 30장 한도를 따릅니다.</td></tr>
+</table>
+<span class="src">출처 2026-08-27 룰렛 숨김 확정 / 2026-07-31 룰렛 개편 확정 / 2026-08-03 보상칸 6개 고정 확정 / CMS 매일 선물 상자 열기</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">3</span>랜덤 선물 상자 열기 (유료) <span class="badge-new">신설</span></h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">대체 <span class="badge-done">대체 완료</span></td><td class="rv">2026-08-27 확정 — <b>잭팟 룰렛을 숨기고 랜덤 선물 상자 열기가 그 자리를 대신합니다.</b> 이벤트 티켓 한 장을 쓰는 것도, 보상 구성과 확률도 그대로입니다. 룰렛의 기능·코드는 남아 있으나 부활 대상이 아닙니다 — 대체 완료(2026-09-15 김반장 확정).</td></tr>
+      <tr class="rw"><td class="rk">진입</td><td class="rv">이벤트 티켓 1장으로 1회 엽니다. 홈 하단 「랜덤 선물 상자」 배너로 들어갑니다.</td></tr>
+      <tr class="rw"><td class="rk">구성</td><td class="rv">보상칸 6개 고정입니다. 아래 표는 <b>기본 구성 예시</b>이며, 실제 보상 유형·수량·확률·기대값은 CMS에서 운영자가 조정합니다. <b>이벤트 티켓 가치(40원)는 이 기대값과 무관한 별도 설정값</b>입니다 — 선물 상자 기대값에서 유도하지 않습니다.</td></tr>
+</table>
+<table class="mt">
+        <thead><tr><th style="width:34%">보상칸</th><th style="width:22%">가치</th><th style="width:22%">확률</th><th style="width:22%">기대값 기여</th></tr></thead>
+        <tbody>
+          <tr><td class="key">골드 티켓 10장</td><td>2,000원</td><td>0.4%</td><td>8.0원</td></tr>
+          <tr><td class="key">실버 티켓 10장</td><td>1,000원</td><td>1%</td><td>10.0원</td></tr>
+          <tr><td class="key">1,000P</td><td>100원</td><td>5%</td><td>5.0원</td></tr>
+          <tr><td class="key">브론즈 티켓 10장</td><td>100원</td><td>12%</td><td>12.0원</td></tr>
+          <tr><td class="key">100P</td><td>10원</td><td>50%</td><td>5.0원</td></tr>
+          <tr><td class="key">꽝</td><td>&mdash;</td><td>31.6%</td><td>0원</td></tr>
+          <tr><td class="key">합계</td><td>&mdash;</td><td>100%</td><td>40원</td></tr>
+        </tbody>
+      </table>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">참여 제한</td><td class="rv">하루 최대 10회까지 열 수 있습니다(매크로 방지). 이벤트 티켓 획득 상한은 일 5장 · 월 30장입니다.</td></tr>
+      <tr class="nt"><td class="rv" colspan="2">연 뒤 환불하는 악용은 티켓 자체의 승인 대기 규칙이 이미 막습니다. 구매로 발급된 이벤트 티켓은 승인 전에는 랜덤 선물 상자 열기에 쓸 수 없습니다. 별도의 참여 제한 스위치를 두지 않습니다(2026-08-03 확정).</td></tr>
+      <tr class="rw"><td class="rk">운영 편집</td><td class="rv">매일 선물 상자 열기와 동일합니다. 보상칸 6개 고정, 보상 유형·수량·확률만 수정, 확률 합계 100% 검증.</td></tr>
+      <tr class="nt"><td class="rv" colspan="2">확률표는 앱 안에서 확인할 수 있게 공시하고, 꽝이 있다는 점을 명시합니다. 선물 상자 두 종 모두 해당합니다.</td></tr>
+</table>
+<span class="src">출처 2026-08-27 룰렛 숨김 확정 / 2026-07-31 룰렛 개편 확정 / 2026-08-03 일 획득 상한 신설 / CMS 랜덤 선물 상자 열기</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">4</span>친구초대</h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">보상</td><td class="rv">초대자·피초대자 <b>양쪽 각 500P.</b></td></tr>
+      <tr class="rw"><td class="rk">지급 시점</td><td class="rv">피초대자의 <b>첫 구매(첫 경유 구매)가 성사된 시점</b>에 양쪽 지급. 가입만으로는 지급하지 않습니다(먹튀·중복 차단).</td></tr>
+      <tr class="rw"><td class="rk">한도</td><td class="rv">초대자 기준 <b>월 최대 50명</b>(매월 1일 리셋).</td></tr>
+      <tr class="rw"><td class="rk">어뷰징 방지</td><td class="rv">한 사람은 한 번만 초대받기, 같은 기기로 자기 초대 차단. 최종 방어선은 <b>환금 시 본인인증(1인 1번호)</b>.</td></tr>
+</table>
+<span class="src">출처 PolicySpec 9 / FunctionalSpec 정책요약</span>
+    </div>
+    <div class="card">
+      <h4><span class="n">5</span>온보딩 보상</h4>
+      <ul class="r">
+        <li><b>가입 즉시</b> — 200P 즉시 + 이벤트 티켓 1장 <b>(카카오 연동 후 지급)</b></li>
+        <li><b>첫 쿠팡 구경하기</b> — 100P. <b>이후 매일 지급되는 출석 100P와는 별개인 1회성 보상</b>이라, 가입 첫날은 두 보상이 함께 지급될 수 있습니다(의도된 설계).</li>
+        <li><b>첫 경유 구매(7일 내)</b> — 실버 1장. <b>전환 대기일 수는 “확정 대기” 기간이며 만료가 아닙니다.</b></li>
+        <li><b>친구초대</b> — 양쪽 각 500P(첫 구매 성사 시 · 위 3번 참조)</li>
+      </ul>
+<table class="ptbl">
+      <tr class="nt"><td class="rv" colspan="2">어뷰징 방지: 핵심 보상(이벤트 티켓·실버)은 <b>카카오 연동 후에만</b> 지급. 닉네임만 있는 상태에선 보류됐다가 연동 시 지급 → 재설치 반복 파밍 차단.</td></tr>
+      <tr class="nt"><td class="rv" colspan="2"><b>전환 대기일 수 = 확정(사용가능) 대기 기간</b>입니다. 대기 기간이 지나면 실버가 공개·사용 가능해집니다. 실제 만료는 등급 티켓 공통 규칙대로 <b>받은 날 + 1년</b>입니다.</td></tr>
+      <tr class="nt"><td class="rv" colspan="2"><b>공개</b>: 온보딩 보상은 신규 설치자가 보는 <b>온보딩 인트로</b>에서 조건과 함께 안내합니다(가입 200P / 카카오 연동 시 이벤트 티켓 / 첫 구매 시 실버). 진행 상황(받은 것/남은 것) 표시 UI는 별도 기획입니다.</td></tr>
+</table>
+<span class="src">출처 PolicySpec 8 / FunctionalSpec(시작·카카오 연동) / 김반장 확정(2026-07-15)</span>
     </div>
     <div class="card">
       <h4><span class="n">+</span>정책서 편입 (2026-09-15)</h4>
 <table class="ptbl">
-      <tr class="nt"><td class="rv" colspan="2">CMS 「환수 부채 추적」 — 부채 티켓 · 발생일 · 예상 상계일 · 상태</td></tr>
-      <tr class="nt"><td class="rv" colspan="2">관리자 환수 이력 기록 항목 — 누가 · 언제 · 몇 장 · 왜</td></tr>
-      <tr class="nt"><td class="rv" colspan="2">CMS 「티켓 가치 설정」 · 「티켓 적립 설정」 화면 위치와 편집 범위</td></tr>
-      <tr class="nt"><td class="rv" colspan="2">일부 반영됨 — 운영값 표의 「소관 CMS 화면」 열에 화면 이름은 이미 있습니다. 화면 위치·편집 범위 규정만 여기서 보탭니다.</td></tr>
+      <tr class="nt"><td class="rv" colspan="2">룰렛 색 규칙 — 매일 행운은 자리별 고정 배분, 잭팟은 보상 유형별 색 · JACKPOT 라벨만 별도</td></tr>
+      <tr class="nt"><td class="rv" colspan="2">선물 상자 — 무엇이 들어 있는지 미리 보여주지 않음</td></tr>
 </table>
-<span class="src">출처 CMS 답변 Vin 2026-06-18 / 백엔드 답변 Harry 2026-07-14 / 티켓 적립 설정 개발 가이드 2026-08-11 · CMS QA 2026-08-14 — 김반장 확정(2026-09-15) 정책서 편입</span>
+<span class="src">출처 앱 답변 John · Kelvin 2026-08-03 / 앱 답변 Kelvin 2026-08-24 · 선물 상자 열기 2026-08-27 — 김반장 확정(2026-09-15) 정책서 편입</span>
     </div>
   </div>
 
-  <!-- 13. 정책 변경 히스토리 -->
+  <!-- 6. 교환·등급 -->
   
 <section class="phist"><h3>변경 이력</h3><table class="phist-t">
 <tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
-<tr><td class="hd">2026-09-15</td><td class="hi">CMS 「환수 부채 추적」 / 관리자 환수 이력 기록 항목 / CMS 「티켓 가치 설정」 · 「티켓 적립 설정」 화면 위치와 편집 범위 정책서 편입</td><td class="hb">흩어진 정책 목록(devqa/policy-scatter-list.html) #2 · #13 · #16 항목을 이 페이지로 편입했습니다. 문장은 목록 원문 그대로이며 새로 정한 내용은 없습니다. 원본 문서는 남겨 두고 편입 표시만 달았습니다. 근거 — CMS 답변 Vin 2026-06-18 · 백엔드 답변 Harry 2026-07-14 · 티켓 적립 설정 개발 가이드 2026-08-11 · CMS QA 2026-08-14 · 김반장 확정(2026-09-15).</td></tr>
-<tr><td class="hd">2026-08-24</td><td class="hi">랜덤 → 등급 전환 시기 <span class="gloss">(링크프라이스 제휴몰만)</span></td><td class="hb">링크프라이스 제휴몰은 CMS 「티켓 적립 설정」 한 곳에서 몰마다 정한다. 일수를 줄이면 이미 발급된 대기 랜덤 티켓도 소급해 앞당겨 전환된다. (김반장 확정)<br><b>2026-08-27 정정</b> — 이 줄에 「카카오 연동 분기 폐지」로 적혀 있었으나 그런 결정은 없었다. 바뀐 것은 링크프라이스 제휴몰뿐이고, <b>쿠팡은 카카오 연동 D+7 / 미연동 D+30 고정이 그대로 살아 있다</b>(CMS에서 수정 불가).</td></tr>
-<tr><td class="hd">2026-08-12</td><td class="hi">적립 규칙에서 고정 수치 제거</td><td class="hb">등급 티켓 환산가치가 1/10로 바뀌면서 「구매액 2% 고정」 전제로 쓰인 예시·문구가 앞뒤가 안 맞게 됐다. 실제로도 적립률은 제휴몰마다 달라 정책서에 특정 비율을 못 박을 수 없다. 등급별 환산가치·분배 방식(큰 단위부터 채우기)·거스름돈 처리 원칙은 그대로 유지.</td></tr>
-<tr><td class="hd">2026-08-03</td><td class="hi">구매 티켓 승인 대기 규칙 · 참여 제한 스위치</td><td class="hb">백엔드 실제 구현 확인(Harry 2026-08-03) — 구매로 발급되는 티켓은 등급·이벤트 모두 승인 대기로 발급되고 D+7/D+30 또는 구매 확정 시 승인된다. 티켓 단계에서 이미 잠기므로 CMS 설정은 중복이며 지급 흐름의 일관성을 해친다.</td></tr>
+<tr><td class="hd">2026-09-15</td><td class="hi">룰렛 2종 — 대체 완료로 확정</td><td class="hb">Hold(멈춰둔 것)가 아니라 선물 상자 2종이 자리를 이어받은 대체 완료입니다. 룰렛은 부활 대상이 아닙니다. 본문의 「되살릴 수 있다」 서술 3곳을 고치고 카드 배지를 「룰렛 숨김」에서 「대체 완료」로 바꿨습니다. 기능과 코드는 그대로 남아 있습니다. 근거 — 2026-08-27 확정 · 김반장 확정(2026-09-15).</td></tr>
+<tr><td class="hd">2026-09-15</td><td class="hi">룰렛 색 규칙 / 선물 상자 정책서 편입</td><td class="hb">흩어진 정책 목록(devqa/policy-scatter-list.html) #10 · #11 항목을 이 페이지로 편입했습니다. 문장은 목록 원문 그대로이며 새로 정한 내용은 없습니다. 원본 문서는 남겨 두고 편입 표시만 달았습니다. 근거 — 앱 답변 John · Kelvin 2026-08-03 · 앱 답변 Kelvin 2026-08-24 · 선물 상자 열기 2026-08-27 · 김반장 확정(2026-09-15).</td></tr>
+<tr><td class="hd">2026-08-27</td><td class="hi">룰렛 2종 숨김 · 선물 상자 2종 대체</td><td class="hb">김반장님 확정(2026-08-27) — 구글플레이가 App Content: Gambling으로 거절해, 돌아가는 판을 화면에서 걷어내고 재등록한다. 앱은 아직 런칭 전이라 지금 바꾸는 편이 낫다.</td></tr>
+<tr><td class="hd">2026-08-13</td><td class="hi">룰렛 브론즈 슬롯 정정</td><td class="hb">김반장 확정(2026-08-13) — 브론즈가 룰렛 경품에서 완전히 빠지는 대신, 등급은 유지한 채 수량만 다른 등급 티켓처럼 ×10 해 가치를 맞췄다. 매일 행운 룰렛 2번 슬롯(2%)·잭팟 룰렛 4번 슬롯(12%)이 대상이며 CMS 화면 저장 경로로 반영해 admin_logs에 기록을 남겼다.</td></tr>
+<tr><td class="hd">2026-08-12</td><td class="hi">룰렛 표·포인트 교환 방향 정합</td><td class="hb">룰렛 표는 CMS에 저장된 실제 구성과 맞춘 것— 기대값은 매일 9.9원·잭팟 40원으로 계산상 변동 없음(억지로 맞춘 값 아님). 포인트 교환은 이미 앱에서 단방향으로 운영 중인 상태를 정책서가 못 따라가고 있었다.</td></tr>
+<tr><td class="hd">2026-08-03</td><td class="hi">연속구매 미션 확인 대기 4건 확정</td><td class="hb">김반장 확정(2026-08-03) — 채택 시 남겨둔 확인 대기 4건(금액 하한·취소반품 차감·상한 관계·사이클 시작 기준)을 모두 확정. 구매확정 부스터는 별도 대기 상태 유지.</td></tr>
+<tr><td class="hd">2026-08-03</td><td class="hi">연속구매 미션 채택</td><td class="hb">김반장 확정(2026-08-03) — 정책서에 숫자만 적힌 대기 상태였던 연속구매 미션의 세부 정책(누적 지급·사이클·승인 대기 연동)을 확정하고 정식 채택. 구매 금액 하한·취소반품 카운트 차감·일 상한 관계·사이클 시작 기준 4건은 확인 대기로 별도 관리.</td></tr>
 <tr><td class="hd">2026-08-03</td><td class="hi">룰렛 슬롯 수 · JACKPOT 표기 기준 · 이벤트 티켓 일 상한</td><td class="hb">개발 3인(Kelvin·John·Harry) 동일 질문 반복의 원인이 슬롯 가변 전제였음. 칸 수 변경 수요가 없어 고정. JACKPOT은 확률이 CMS 운영값이라 가치 기준이 안정적. 일 상한은 적립 정책의 일 5건과 정합.</td></tr>
-<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 마스터 수록</td><td class="hb">정책 마스터 초판에 수록 — 이 정책은 그 전부터 결정돼 있었고, 아래 더 오래된 줄이 최초 기록입니다. (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 17 · CMS 전반 · FunctionalSpec · PolicySpec 18</td></tr>
-<tr><td class="hd">2026-06-09</td><td class="hi">등급 티켓 가치 변경 CMS</td><td class="hb">가치 단독 변경 시 차익거래·역마진 위험 → 정책 변경 마법사(연동 수정·시뮬레이션·역마진 차단·발행분 고정·권한/로그)로만 허용.</td></tr>
+<tr><td class="hd">2026-07-31</td><td class="hi">룰렛 개편 · 주간 경품 추첨 중단</td><td class="hb">2026-07-31 이동영 부장 수정 요청. 법적 리스크 검토에 따라 주간 경품 추첨을 중단하고 이벤트 티켓 사용처를 룰렛으로 전환.</td></tr>
+<tr><td class="hd">2026-06-18</td><td class="hi">온보딩 보상 하향 (이부장 협의)</td><td class="hb">이부장 협의 후 김반장 확정. 보상 비용 최적화(과지급 하향).</td></tr>
+<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 마스터 수록</td><td class="hb">정책 마스터 초판에 수록 — 이 정책은 그 전부터 결정돼 있었고, 아래 더 오래된 줄이 최초 기록입니다. (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 7 · FunctionalSpec(홈) · CMS · 2026-08-27 룰렛 숨김 확정</td></tr>
+<tr><td class="hd">2026-06-08</td><td class="hi">출석체크</td><td class="hb">이부장 변경안. 경유 방문 습관화 + 30초 검증으로 어뷰징 방지.</td></tr>
+<tr><td class="hd">2026-06-08</td><td class="hi">친구초대 보상</td><td class="hb">이부장 변경안. 가입 먹튀 차단 위해 성사 기준 지급.</td></tr>
+<tr><td class="hd">2026-06-08</td><td class="hi">온보딩 핵심 보상 지급</td><td class="hb">닉네임 가입 어뷰징(재설치 파밍) 방지 보완책.</td></tr>
 </table><p class="phist-n">최신이 위, 가장 오래된 줄이 아래입니다. <b>맨 아래 줄이 그 정책의 최초 기록</b>이며, 「정책 마스터 수록」은 정책서 초판(2026-06-14)에 실린 날입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
 </main>
 <script src="/policy-i18n.js"></script>
