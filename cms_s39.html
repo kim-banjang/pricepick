@@ -3281,7 +3281,7 @@ tr.manual-edited td { background:rgba(254,243,199,0.15); }
             <div class="policy-item"><div class="policy-label">기준 환율</div><div class="policy-value">10P = 1원</div></div>
             <div class="policy-item"><div class="policy-label">만료 기간</div><div class="policy-value">적립일로부터 1년</div><div class="policy-desc">먼저 적립된 것부터 소멸. 매일 04:00 만료 배치 실행</div></div>
             <div class="policy-item"><div class="policy-label">일일 적립 한도</div><div class="policy-value">없음</div></div>
-            <div class="policy-item"><div class="policy-label">교환 방향</div><div class="policy-value">포인트 → 티켓 단방향 교환</div><div class="policy-desc">티켓 → 포인트 역방향은 2026-08-07 확정으로 중단 (숨김 처리 · 로직 보존)</div></div>
+            <div class="policy-item"><div class="policy-label">교환 방향</div><div class="policy-value">포인트 ↔ 티켓 쌍방 교환</div><div class="policy-desc">어느 방향으로 바꿔도 보유 가치는 동일 — 무한 왕복 가능하나 손익 중립이라 의도된 설계 (2026-07-31 확정)</div></div>
             <div class="policy-item"><div class="policy-label">주 적립 경로</div><div class="policy-value">출석체크 (일 100P)</div></div>
             <div class="policy-item"><div class="policy-label">적용 시점</div><div class="policy-value" id="pp-summary-timing">즉시 적용</div><div class="policy-desc" id="pp-summary-schedule" style="display:none"></div></div>
           </div>
@@ -7230,7 +7230,7 @@ function rltRenderAll() {
   "1장 → 10,000P":"1 vé → 10.000P",
   "1장 → 20,000P":"1 vé → 20.000P",
   "적립 수량 × 환산가치":"Số lượng tích lũy × Giá trị quy đổi",
-  "포인트 → 티켓 단방향 교환":"Trao đổi hai chiều Điểm ↔ Vé",
+  "포인트 ↔ 티켓 쌍방 교환":"Trao đổi hai chiều Điểm ↔ Vé",
   "포인트 ↔ 티켓 교환 비율":"Tỷ lệ đổi Điểm ↔ Vé",
   "이번 주 추첨 마감 D-1":"Đóng rút thăm tuần này D-1",
   "예: 이번 주 추첨 마감 D-1":"VD: Đóng rút thăm tuần này D-1",
@@ -7278,7 +7278,7 @@ function rltRenderAll() {
   "수수료율 3.0%":"Tỷ lệ hoa hồng 3,0%",
   "출석체크 (일 100P)":"Điểm danh (100P/ngày)",
   "오늘 04:00":"Hôm nay 04:00",
-  "티켓 → 포인트 역방향은 2026-08-07 확정으로 중단 (숨김 처리 · 로직 보존)":"Dù đổi hướng nào giá trị vẫn bằng nhau — có thể đổi qua lại vô hạn nhưng trung tính lãi lỗ nên là thiết kế có chủ đích (chốt 2026-07-31)",
+  "어느 방향으로 바꿔도 보유 가치는 동일 — 무한 왕복 가능하나 손익 중립이라 의도된 설계 (2026-07-31 확정)":"Dù đổi hướng nào giá trị vẫn bằng nhau — có thể đổi qua lại vô hạn nhưng trung tính lãi lỗ nên là thiết kế có chủ đích (chốt 2026-07-31)",
   "응모 수단(소비)":"Phương tiện tham dự (chi tiêu)",
   "탈퇴 사유, 가입일, 티켓 패턴":"Lý do hủy TK, ngày đăng ký, mẫu vé",
   "— 매출 발생 건별 기록입니다.":"— Đây là ghi chép từng trường hợp phát sinh doanh thu.",
