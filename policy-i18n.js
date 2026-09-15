@@ -496,6 +496,7 @@ Object.assign(KO2VI,{"구매·취소 정보 수신 (포스트백)": "Nhận thô
     "쿠팡 발생 · 링크프라이스 미발생":"Coupang có · LinkPrice không",
     "쿠팡 실시간 포스트백 · 링크프라이스 미수신(일 1회 조회)":"Coupang thời gian thực qua postback · LinkPrice không nhận (tra cứu 1 lần/ngày)",
   });
+  Object.assign(KO2VI,{"한눈에 보기 — 지금 확정된 핵심 값":"Xem nhanh — các giá trị cốt lõi đã chốt hiện nay",});
   function hasKo(s){return KO_RE.test(s);}
   function tcore(raw){
     if(raw==null) return null;
