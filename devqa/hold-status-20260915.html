@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick Hold 상태 메뉴 목록</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--hold:#B4762A;--gone:#b4453f}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px 70px}
+header{background:linear-gradient(120deg,#B4762A,#8a5a17);color:#fff;padding:26px 0 22px;position:relative}
+.htitle{font-size:22px;font-weight:800} .hsub{font-size:13px;opacity:.88;margin-top:5px}
+.meta{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0 0;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:15px;font-weight:800;color:var(--pp-d);margin:26px 0 9px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.tblwrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:12.9px}
+th{background:#f4f2fb;color:var(--pp-d);font-size:11.5px;font-weight:800;text-align:left;padding:8px 11px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 11px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.n{width:34px;text-align:center;color:var(--ink3);font-weight:700}
+.tag{display:inline-block;font-size:10.5px;font-weight:800;border-radius:11px;padding:2px 8px;white-space:nowrap}
+.tag.hold{background:#FBEFDD;color:var(--hold);border:1px solid #EBCFA4}
+.tag.gone{background:#fdecea;color:var(--gone)}
+.tag.ask{background:#eef0f4;color:#6b7280}
+.tag.step{background:#e8f0fb;color:#3a6ea8}
+.lead{background:#fff;border:2px solid var(--hold);border-radius:13px;padding:14px 18px;margin-top:16px;font-size:14.5px;font-weight:800}
+.note{background:#fff;border:1px solid var(--line);border-left:3px solid var(--ink3);border-radius:8px;padding:11px 15px;margin-top:12px;font-size:12.6px;color:var(--ink2)}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+a{color:var(--pp-d);font-weight:700}
+code{background:#f4f2fb;border-radius:4px;padding:1px 5px;font-size:11.8px}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.2);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:#8a5a17;opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:#8a5a17;opacity:1}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div style="max-width:1120px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">Hold 상태 메뉴 목록</span><span class="vi">Danh sách menu đang ở trạng thái Hold</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">2026-09-15 · 정책 페이지 13개 전수 조사 · Hold와 폐지 구분</span><span class="vi">15/09/2026 · Rà soát toàn bộ 13 trang chính sách · Phân biệt Hold và hủy bỏ</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">Hold 3건</span><span class="vi">Hold 3 mục</span></span></span><span class="chip"><span class="i18n"><span class="ko">판단 필요 2건</span><span class="vi">Cần xác nhận 2 mục</span></span></span><span class="chip"><span class="i18n"><span class="ko">폐지 7건</span><span class="vi">Đã hủy bỏ 7 mục</span></span></span><span class="chip"><span class="i18n"><span class="ko">다음 단계 2건</span><span class="vi">Bước sau 2 mục</span></span></span></div>
+
+<div class="lead"><span class="i18n"><span class="ko">Hold는 멈춰둔 것, 폐지는 되살릴 계획이 없는 것으로 갈랐습니다. 배지를 단 것은 「추첨 · 경품」 한 건입니다.</span><span class="vi">Đã phân Hold là thứ tạm dừng, hủy bỏ là thứ không có kế hoạch khôi phục. Chỉ gắn nhãn cho một mục 「Quay số · Quà tặng」.</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">A. Hold — 멈춰둔 것 (기능·코드 보존)</span><span class="vi">A. Hold — thứ đang tạm dừng (giữ nguyên chức năng·mã nguồn)</span></span></h2>
+<div class="tblwrap"><table>
+<tr><th>#</th><th style="width:96px"><span class="i18n"><span class="ko">처리</span><span class="vi">Xử lý</span></span></th><th style="width:150px"><span class="i18n"><span class="ko">메뉴 · 기능</span><span class="vi">Menu · Chức năng</span></span></th><th><span class="i18n"><span class="ko">근거 · 상태</span><span class="vi">Căn cứ · Trạng thái</span></span></th><th style="width:210px"><span class="i18n"><span class="ko">부활 조건</span><span class="vi">Điều kiện khôi phục</span></span></th></tr>
+
+<tr><td class="n">1</td><td><span class="tag hold">Hold 표시함</span></td><td><a href="/policy-10-raffle.html"><span class="i18n"><span class="ko">주간 경품 추첨 전체</span><span class="vi">Toàn bộ quay số quà tặng hằng tuần</span></span></a></td>
+<td><span class="i18n"><span class="ko">2026-07-31 확정 — 이동영 부장 수정 요청, 법적 리스크 검토. 응모·당첨자 발표·관련 화면·배너 2종을 화면에서 내렸습니다. <b>기능과 코드는 그대로</b>이고 노출만 차단한 상태입니다. 앱 데모 플래그 <code>weeklyRaffle: false</code>.</span><span class="vi">Chốt 31/07/2026 — yêu cầu chỉnh sửa của Phó giám đốc Lee, xem xét rủi ro pháp lý. Đã gỡ dự thưởng·công bố người trúng·màn hình liên quan·2 loại banner khỏi màn hình. <b>Chức năng và mã nguồn giữ nguyên</b>, chỉ chặn hiển thị. Cờ app demo <code>weeklyRaffle: false</code>.</span></span></td>
+<td><span class="i18n"><span class="ko"><b>실사용자 1만 명 달성 시</b> 실제 지급으로 부활</span><span class="vi"><b>Khi đạt 10.000 người dùng thật</b> thì khôi phục thành cấp phát thật</span></span></td></tr>
+
+<tr><td class="n">2</td><td><span class="tag ask">판단 필요</span></td><td><a href="/policy-05-engage.html"><span class="i18n"><span class="ko">매일 행운 룰렛 · 잭팟 룰렛</span><span class="vi">Vòng quay may mắn hằng ngày · Vòng quay Jackpot</span></span></a></td>
+<td><span class="i18n"><span class="ko">2026-08-27 확정 — 구글플레이가 App Content: Gambling으로 거절해 화면에서 내렸습니다. 「기능과 코드는 그대로 두고 노출만 차단하므로 <b>되살릴 수 있다</b>」고 적혀 있습니다. 앱 데모 플래그 <code>roulette: false</code>.<br><b>다만 자리를 선물 상자 2종이 이미 대신하고 있어 화면에 빈자리가 없습니다.</b></span><span class="vi">Chốt 27/08/2026 — Google Play từ chối vì App Content: Gambling nên đã gỡ khỏi màn hình. Tài liệu ghi 「giữ nguyên chức năng và mã nguồn, chỉ chặn hiển thị nên <b>có thể khôi phục</b>」. Cờ app demo <code>roulette: false</code>.<br><b>Tuy nhiên 2 loại hộp quà đã thay thế vị trí đó nên trên màn hình không có chỗ trống.</b></span></span></td>
+<td><span class="i18n"><span class="ko"><b>없음.</b> 부활 조건이 문서에 없습니다. <b>Hold로 볼지, 대체 완료로 볼지 확인 부탁드립니다.</b></span><span class="vi"><b>Không có.</b> Tài liệu không ghi điều kiện khôi phục. <b>Xin xác nhận xem là Hold hay đã thay thế xong.</b></span></span></td></tr>
+
+<tr><td class="n">3</td><td><span class="tag hold">Hold (기능)</span></td><td><a href="/policy-06-exchange.html"><span class="i18n"><span class="ko">티켓 → 포인트 역방향</span><span class="vi">Chiều ngược Vé → Điểm</span></span></a></td>
+<td><span class="i18n"><span class="ko">2026-08-07 확정 — 「화면에서 숨겼을 뿐 <b>로직·데이터는 남아 있어 필요 시 복구할 수 있다</b>」. 앱 데모 플래그 <code>ticketToPoint: false</code>. 메뉴가 아니라 기능 단위라 배지는 달지 않았고, 정책 본문에 복구 가능하다는 문장으로 적혀 있습니다.</span><span class="vi">Chốt 07/08/2026 — 「chỉ ẩn khỏi màn hình, <b>logic·dữ liệu vẫn còn nên có thể khôi phục khi cần</b>」. Cờ app demo <code>ticketToPoint: false</code>. Vì là đơn vị chức năng chứ không phải menu nên không gắn nhãn; thân bài chính sách đã ghi câu có thể khôi phục.</span></span></td>
+<td><span class="i18n"><span class="ko">문서에 없음 — 필요 시 복구</span><span class="vi">Không ghi trong tài liệu — khôi phục khi cần</span></span></td></tr>
+
+<tr><td class="n">4</td><td><span class="tag ask">판단 필요</span></td><td><span class="i18n"><span class="ko">기프티샵 진입</span><span class="vi">Lối vào Gifti Shop</span></span></td>
+<td><span class="i18n"><span class="ko">앱 데모 플래그 <code>exchangeEntry: false</code>로 꺼져 있습니다 — 내 보유티켓 상세 · 혜택 탭 기프티샵 프리뷰 · 홈 보유 카드 기프티콘 교환 행 · 혜택 탭 CTA가 대상입니다.<br><b>정책 페이지 13개 어디에도 이 항목의 근거가 없습니다.</b> 기프티콘 교환 정책 자체는 <a href="/policy-06-exchange.html">06 교환</a> 1번 카드에 살아 있습니다.</span><span class="vi">Đang tắt bằng cờ app demo <code>exchangeEntry: false</code> — phạm vi gồm chi tiết vé đang có · xem trước Gifti Shop ở tab Ưu đãi · dòng đổi Gifticon ở thẻ sở hữu trang chủ · CTA tab Ưu đãi.<br><b>Không có căn cứ cho mục này ở bất kỳ trang nào trong 13 trang chính sách.</b> Bản thân chính sách đổi Gifticon vẫn còn ở thẻ 1 của <a href="/policy-06-exchange.html">06 Đổi</a>.</span></span></td>
+<td><span class="i18n"><span class="ko"><b>모릅니다.</b> 왜 껐는지·언제 켤지 문서에 없습니다. <b>확인 부탁드립니다.</b></span><span class="vi"><b>Không rõ.</b> Tài liệu không ghi lý do tắt·khi nào bật. <b>Xin xác nhận.</b></span></span></td></tr>
+
+<tr><td class="n">5</td><td><span class="tag ask">판단 필요</span></td><td><span class="i18n"><span class="ko">고객센터 카카오채널 상담</span><span class="vi">Tư vấn qua kênh Kakao của CSKH</span></span></td>
+<td><span class="i18n"><span class="ko">앱 데모 플래그 <code>csKakao: false</code>로 꺼져 있습니다.<br><b>정책 페이지 13개 어디에도 이 항목의 근거가 없습니다.</b> 1:1 문의는 살아 있습니다.</span><span class="vi">Đang tắt bằng cờ app demo <code>csKakao: false</code>.<br><b>Không có căn cứ cho mục này ở bất kỳ trang nào trong 13 trang chính sách.</b> Hỏi đáp 1:1 vẫn hoạt động.</span></span></td>
+<td><span class="i18n"><span class="ko"><b>모릅니다. 확인 부탁드립니다.</b></span><span class="vi"><b>Không rõ. Xin xác nhận.</b></span></span></td></tr>
+</table></div>
+
+<div class="note"><span class="i18n"><span class="ko">앱 데모의 기능 노출 플래그 <code>PP_FEATURES</code>는 5개이며 전부 <code>false</code>입니다 — weeklyRaffle · roulette · ticketToPoint · exchangeEntry · csKakao. 이 5개가 곧 화면에서 내려간 항목의 전부입니다. 주석에 「false = 숨김. 진입 경로와 노출만 차단하고 기능·화면·로직은 전부 보존한다」고 적혀 있습니다.</span><span class="vi">App demo có 5 cờ hiển thị chức năng <code>PP_FEATURES</code> và tất cả đều là <code>false</code> — weeklyRaffle · roulette · ticketToPoint · exchangeEntry · csKakao. 5 mục này là toàn bộ những gì đã được gỡ khỏi màn hình. Chú thích ghi 「false = ẩn. Chỉ chặn lối vào và hiển thị, giữ nguyên toàn bộ chức năng·màn hình·logic」.</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">B. 폐지 — 되살릴 계획 없음 (Hold 아님)</span><span class="vi">B. Đã hủy bỏ — không có kế hoạch khôi phục (không phải Hold)</span></span></h2>
+<div class="tblwrap"><table>
+<tr><th>#</th><th style="width:96px"><span class="i18n"><span class="ko">구분</span><span class="vi">Phân loại</span></span></th><th style="width:230px"><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">근거</span><span class="vi">Căn cứ</span></span></th></tr>
+<tr><td class="n">1</td><td><span class="tag gone">폐지</span></td><td><span class="i18n"><span class="ko">5천원 미만 구매 이벤트 티켓 지급</span><span class="vi">Cấp vé sự kiện cho đơn mua dưới 5.000₩</span></span></td><td><span class="i18n"><span class="ko">2026-08-13 폐지 · 2026-09-14 재확정. 등급 티켓 가치 1/10 조정으로 우회 경로가 필요 없어짐</span><span class="vi">Bãi bỏ 13/08/2026 · tái xác nhận 14/09/2026. Do điều chỉnh giá trị vé cấp bậc còn 1/10 nên không cần đường vòng</span></span></td></tr>
+<tr><td class="n">2</td><td><span class="tag gone">폐지</span></td><td><span class="i18n"><span class="ko">닉네임 중복 검사</span><span class="vi">Kiểm tra trùng biệt danh</span></span></td><td><span class="i18n"><span class="ko">2026-08-03 폐지 — 중복 허용, 식별은 UID로 일원화</span><span class="vi">Bãi bỏ 03/08/2026 — cho phép trùng, định danh thống nhất bằng UID</span></span></td></tr>
+<tr><td class="n">3</td><td><span class="tag gone">폐지</span></td><td><span class="i18n"><span class="ko">계정 자산 자동 병합</span><span class="vi">Tự động gộp tài sản tài khoản</span></span></td><td><span class="i18n"><span class="ko">2026-08-03 폐지 — 연동 시 선택형으로 전환</span><span class="vi">Bãi bỏ 03/08/2026 — chuyển sang dạng chọn khi liên kết</span></span></td></tr>
+<tr><td class="n">4</td><td><span class="tag gone">폐지</span></td><td><span class="i18n"><span class="ko">CMS CS 역할</span><span class="vi">Vai trò CS trên CMS</span></span></td><td><span class="i18n"><span class="ko">2026-07-15 폐지 — 슈퍼어드민·운영자 2단계로 단순화</span><span class="vi">Bãi bỏ 15/07/2026 — đơn giản hóa còn 2 cấp Super admin·Vận hành</span></span></td></tr>
+<tr><td class="n">5</td><td><span class="tag gone">폐지</span></td><td><span class="i18n"><span class="ko">「픽(Pick)」 용어</span><span class="vi">Thuật ngữ 「Pick」</span></span></td><td><span class="i18n"><span class="ko">2026-07-31 전면 폐기</span><span class="vi">Bãi bỏ toàn bộ 31/07/2026</span></span></td></tr>
+<tr><td class="n">6</td><td><span class="tag gone">폐지</span></td><td><span class="i18n"><span class="ko">「주문일 + 45일 추적」 · 「부분 취소 차액 회수」</span><span class="vi">「Theo dõi ngày đặt + 45 ngày」 · 「Thu hồi phần chênh khi hủy một phần」</span></span></td><td><span class="i18n"><span class="ko">2026-09-04 폐기 — 링크프라이스 공식 확인</span><span class="vi">Hủy bỏ 04/09/2026 — xác nhận chính thức của LinkPrice</span></span></td></tr>
+<tr><td class="n">7</td><td><span class="tag gone">폐지</span></td><td><span class="i18n"><span class="ko">「사용 완료 티켓 회수 제외 · 잔액 음수 0 고정」</span><span class="vi">「Vé đã dùng không thu hồi · số dư âm cố định 0」</span></span></td><td><span class="i18n"><span class="ko">2026-09-14 폐기 — 동급 차감 + 부채·상계로 확정</span><span class="vi">Hủy bỏ 14/09/2026 — chốt thành trừ cùng bậc + nợ·bù trừ</span></span></td></tr>
+</table></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">C. 다음 단계 · 재기획 — Hold도 폐지도 아님</span><span class="vi">C. Bước sau · Lập lại kế hoạch — không phải Hold cũng không phải hủy bỏ</span></span></h2>
+<div class="tblwrap"><table>
+<tr><th>#</th><th style="width:96px"><span class="i18n"><span class="ko">구분</span><span class="vi">Phân loại</span></span></th><th style="width:230px"><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">상태</span><span class="vi">Trạng thái</span></span></th></tr>
+<tr><td class="n">1</td><td><span class="tag step">다음 단계</span></td><td><span class="i18n"><span class="ko">관심상품 등록 · 가격 하락 알림</span><span class="vi">Đăng ký sản phẩm quan tâm · Báo giảm giá</span></span></td><td><span class="i18n"><span class="ko">STEP2 기능 — 애초에 1단계 범위가 아닙니다. 만든 적이 없으므로 Hold가 아닙니다. <a href="/policy-01-service.html">01 서비스 모델</a></span><span class="vi">Chức năng STEP2 — vốn không thuộc phạm vi bước 1. Chưa từng làm nên không phải Hold. <a href="/policy-01-service.html">01 Mô hình dịch vụ</a></span></span></td></tr>
+<tr><td class="n">2</td><td><span class="tag step">다음 단계</span></td><td><span class="i18n"><span class="ko">제휴몰 확장(11번가 · G마켓 · 알리 · 아이허브)</span><span class="vi">Mở rộng sàn liên kết (11st · Gmarket · Ali · iHerb)</span></span></td><td><span class="i18n"><span class="ko">1단계는 쿠팡 직접 + 링크프라이스. 확장은 다음 단계. <a href="/policy-01-service.html">01 서비스 모델</a></span><span class="vi">Bước 1 là Coupang trực tiếp + LinkPrice. Mở rộng ở bước sau. <a href="/policy-01-service.html">01 Mô hình dịch vụ</a></span></span></td></tr>
+<tr><td class="n">3</td><td><span class="tag step">재기획</span></td><td><span class="i18n"><span class="ko">영수증 인증 적립 확정 흐름</span><span class="vi">Luồng chốt tích lũy qua xác thực hóa đơn</span></span></td><td><span class="i18n"><span class="ko">재기획 예정 — 타사 조사 후 확정. 「CS 수동 확인」 자체는 확정 정책이며 지금 돕니다. <a href="/policy-08-abuse.html">08 어뷰징 · 환불</a></span><span class="vi">Dự kiến lập lại kế hoạch — chốt sau khi khảo sát đối thủ. Bản thân 「CS xác nhận thủ công」 là chính sách đã chốt và đang chạy. <a href="/policy-08-abuse.html">08 Gian lận · Hoàn tiền</a></span></span></td></tr>
+</table></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · Hold 상태 메뉴 목록 · 2026-09-15</span><span class="vi">PricePick · Danh sách menu trạng thái Hold · 15/09/2026</span></span></div></div>
+</body></html>
