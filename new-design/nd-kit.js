@@ -63,16 +63,17 @@
     made.id = 'pp-nd-header';
     var wc = getComputedStyle(wrap);
     var sideways = wc.display.indexOf('flex') >= 0 && wc.flexDirection === 'row';
+    /* 실측 기준(매일선물상자 시안): 세 줄은 붙여 쌓고, 아래로 36px 띄운다 — gap 0 */
     made.setAttribute('style', sideways
-      ? 'display:flex;flex-direction:column;gap:10px;padding:' + wc.paddingTop + ' ' + wc.paddingRight + ' 0 ' + wc.paddingLeft + ';'
-      : 'display:flex;flex-direction:column;gap:10px;');
+      ? 'display:flex;flex-direction:column;padding:' + wc.paddingTop + ' ' + wc.paddingRight + ' 0 ' + wc.paddingLeft + ';'
+      : 'display:flex;flex-direction:column;margin-bottom:36px;');
     [H.eyebrow, H.title, H.lead].forEach(function (txt, i) {
       var d = document.createElement('div');
       d.setAttribute('style', HDR_STYLE[i]);
       d.textContent = txt || '';
       made.appendChild(d);
     });
-    if (sideways) { wrap.parentNode.insertBefore(made, wrap); wrap.style.paddingTop = '32px'; }
+    if (sideways) { wrap.parentNode.insertBefore(made, wrap); wrap.style.paddingTop = '36px'; }
     else { wrap.insertBefore(made, wrap.firstElementChild); }
     root.dataset.ndHdrDone = '1';
   }
