@@ -113,6 +113,7 @@
       <button class="tab" data-target="ticket">티켓 교환</button>
       <button class="tab" data-target="mytickets">내 티켓 &amp; 포인트</button>
       <button class="tab" data-target="giftbox">매일선물상자, 랜덤선물상자 열기</button>
+      <button class="tab" data-target="giftshop">기프티샵</button>
     </div>
     <button id="lang-toggle" class="lang-toggle" data-lang="ko" type="button" title="KO / VI" aria-label="KO/VI">
       <span data-l="ko" class="on">KO</span><span data-l="vi">VI</span>
@@ -127,6 +128,7 @@
     <div id="ph-ticket" class="placeholder hidden">불러오는 중...</div>
     <div id="ph-mytickets" class="placeholder hidden">불러오는 중...</div>
     <div id="ph-giftbox" class="placeholder hidden">불러오는 중...</div>
+    <div id="ph-giftshop" class="placeholder hidden">불러오는 중...</div>
     <iframe id="frame-splash" class="active" src="design-splash-login-20260729.html" title="스플래시·로그인 시안"></iframe>
     <iframe id="frame-lm" title="출석체크 / 행운 룰렛 시안"></iframe>
     <iframe id="frame-jackpot" title="잭팟 룰렛 시안"></iframe>
@@ -135,6 +137,7 @@
     <iframe id="frame-ticket" title="티켓 교환 시안"></iframe>
     <iframe id="frame-mytickets" title="내 티켓 & 포인트 시안"></iframe>
     <iframe id="frame-giftbox" title="매일선물상자, 랜덤선물상자 열기 시안"></iframe>
+    <iframe id="frame-giftshop" title="기프티샵 시안"></iframe>
   </div>
 
   <script>
@@ -145,7 +148,8 @@
       streak: '20260803_NewDesign_streak.html',
       ticket: '20260803_NewDesign_ticket.html',
       mytickets: '20260804_NewDesign_mytickets.html',
-      giftbox: '20260825_NewDesign_giftbox.html'
+      giftbox: '20260825_NewDesign_giftbox.html',
+      giftshop: '20260916_NewDesign_giftshop.html'
     };
 
     var FRAME_OF_TAB = {
@@ -157,7 +161,8 @@
       mission: 'frame-streak',
       ticket: 'frame-ticket',
       mytickets: 'frame-mytickets',
-      giftbox: 'frame-giftbox'
+      giftbox: 'frame-giftbox',
+      giftshop: 'frame-giftshop'
     };
     var PLACEHOLDER_OF_FRAME = {
       'frame-splash': 'ph-splash',
@@ -167,11 +172,12 @@
       'frame-streak': 'ph-streak',
       'frame-ticket': 'ph-ticket',
       'frame-mytickets': 'ph-mytickets',
-      'frame-giftbox': 'ph-giftbox'
+      'frame-giftbox': 'ph-giftbox',
+      'frame-giftshop': 'ph-giftshop'
     };
 
     var frames = {};
-    ['frame-splash', 'frame-lm', 'frame-jackpot', 'frame-invite', 'frame-streak', 'frame-ticket', 'frame-mytickets', 'frame-giftbox'].forEach(function (id) {
+    ['frame-splash', 'frame-lm', 'frame-jackpot', 'frame-invite', 'frame-streak', 'frame-ticket', 'frame-mytickets', 'frame-giftbox', 'frame-giftshop'].forEach(function (id) {
       frames[id] = document.getElementById(id);
     });
     var placeholders = {};
@@ -321,6 +327,7 @@
     frames['frame-ticket'].addEventListener('load', function () { onFrameLoaded('frame-ticket', false); });
     frames['frame-mytickets'].addEventListener('load', function () { onFrameLoaded('frame-mytickets', false); });
     frames['frame-giftbox'].addEventListener('load', function () { onFrameLoaded('frame-giftbox', false); });
+    frames['frame-giftshop'].addEventListener('load', function () { onFrameLoaded('frame-giftshop', false); });
 
     // ── 언어 토글: 합본 상단 단일 토글이 로드된 모든 iframe의 #langsw checkbox를 구동 ──
     var LANG_KEY = 'pp_0803_lang';
