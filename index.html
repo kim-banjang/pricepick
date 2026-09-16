@@ -533,7 +533,12 @@
         </div>
         <h2 id="card-demoapp-title">DEMO APP</h2>
         <p id="card-demoapp-desc">실데이터로 동작하는 앱 데모. 디자인 정본은 인터랙티브입니다.</p>
-        <div class="arrow" id="card-demoapp-arrow">열기 →</div>
+        <div class="card-foot">
+          <span class="arrow" id="card-demoapp-arrow">열기 →</span>
+          <span class="chg-badge" id="card-demoapp-accounts" role="link" tabindex="0"
+            onclick="event.preventDefault();event.stopPropagation();window.open('https://pricepick-demo.vercel.app/demo-accounts/','_blank','noopener');"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('https://pricepick-demo.vercel.app/demo-accounts/','_blank','noopener');}">데모 계정 관리 →</span>
+        </div>
       </a>
 
       <a class="card" href="https://pricepick-demo.vercel.app/cms/" target="_blank" rel="noopener">
@@ -817,6 +822,7 @@ const I18N = {
     'card.functionalspec.desc': '화면별 기능 요구사항 · 데이터 읽기/쓰기 명세.',
     'card.arrow': '열기 →',
     'card.preview': '변경 보기 ↗',
+    'card.demoapp.accounts': '데모 계정 관리 →',
     'card.install': '홈화면 바로가기 ↓',
   },
   vi: {
@@ -881,6 +887,7 @@ const I18N = {
     'card.functionalspec.desc': 'Yêu cầu chức năng · đặc tả đọc/ghi dữ liệu theo màn hình.',
     'card.arrow': 'Mở →',
     'card.preview': 'Xem thay đổi ↗',
+    'card.demoapp.accounts': 'Quản lý tài khoản demo →',
     'card.install': 'Thêm màn hình chính ↓',
   }
 };
@@ -933,6 +940,7 @@ function applyLang() {
   setTxt('card-demoapp-title',        t('card.demoapp.title'));
   setTxt('card-demoapp-desc',         t('card.demoapp.desc'));
   setTxt('card-demoapp-arrow',        t('card.arrow'));
+  setTxt('card-demoapp-accounts',     t('card.demoapp.accounts'));
   setTxt('card-democms-title',        t('card.democms.title'));
   setTxt('card-democms-desc',         t('card.democms.desc'));
   setTxt('card-democms-arrow',        t('card.arrow'));
