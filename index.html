@@ -201,6 +201,59 @@
     margin: 26px 4px 12px;
   }
   .seclabel:first-of-type { margin-top: 0; }
+  /* 폐기 문서 그룹 — 기본 접힘. 펼치면 카드가 그대로 보이고 열람도 가능하다. */
+  .dep-group {
+    margin: 26px 0 0;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(120, 118, 140, 0.035);
+  }
+  .dep-group > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 15px;
+    user-select: none;
+  }
+  .dep-group > summary::-webkit-details-marker { display: none; }
+  .dep-caret {
+    flex: 0 0 auto;
+    width: 14px; height: 14px;
+    color: var(--ink-faint);
+    transition: transform .18s ease;
+  }
+  .dep-group[open] .dep-caret { transform: rotate(90deg); }
+  .dep-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+  .dep-note {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--ink-faint);
+    opacity: .85;
+  }
+  .dep-group > .grid { padding: 2px 15px 16px; }
+  .dep-group .card { opacity: .82; }
+  .dep-group .card:hover { opacity: 1; }
+  .dep-badge {
+    position: absolute;
+    top: 13px; right: 13px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: #9A4A4A;
+    background: #F7ECEC;
+    border: 1px solid #EBD6D6;
+    border-radius: 999px;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
   /* Grid — desktop 4-up, compact */
   .grid {
     display: grid;
@@ -441,76 +494,9 @@
       <div class="arrow" id="card-newdesign-arrow">열기 →</div>
     </a>
 
-    <!-- ── 기획 산출물 ── -->
-    <div class="seclabel" id="seclabel-core">기획 산출물</div>
-    <main class="grid">
-      <a class="card" href="/interactive.html" target="_blank" rel="noopener">
-        <div class="cicon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2.5" y="4" width="19" height="13" rx="2"/>
-            <line x1="8" y1="21" x2="16" y2="21"/>
-            <line x1="12" y1="17" x2="12" y2="21"/>
-          </svg>
-        </div>
-        <h2 id="card-interactive-title">인터랙티브</h2>
-        <p id="card-interactive-desc">클릭으로 UX 흐름을 직접 체험하는 웹 기반 기획 프로토타입.</p>
-        <div class="card-foot">
-          <span class="arrow" id="card-interactive-arrow">열기 →</span>
-          <span class="chg-badge" id="card-interactive-chg" role="link" tabindex="0"
-            onclick="event.preventDefault();event.stopPropagation();window.open('/app-preview.html','_blank','noopener');"
-            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/app-preview.html','_blank','noopener');}">변경 보기 ↗</span>
-        </div>
-      </a>
-
-      <a class="card" href="/prototype.html" target="_blank" rel="noopener">
-        <div class="cicon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="6" y="2.5" width="12" height="19" rx="2.5"/>
-            <line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/>
-          </svg>
-        </div>
-        <h2 id="card-prototype-title">프로토타입</h2>
-        <p id="card-prototype-desc">전체 화면을 모은 카탈로그와 클릭 시뮬레이터. 모바일 최종 확인용.</p>
-        <div class="card-foot">
-          <span class="arrow" id="card-prototype-arrow">열기 →</span>
-          <span class="chg-badge" id="card-prototype-install" role="link" tabindex="0"
-            onclick="event.preventDefault();event.stopPropagation();window.open('/prototype.html?install=1','_blank','noopener');"
-            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/prototype.html?install=1','_blank','noopener');}">홈화면 바로가기 ↓</span>
-        </div>
-      </a>
-
-      <a class="card" href="/screenflow.html" target="_blank" rel="noopener">
-        <div class="cicon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="2.5" width="6" height="5" rx="1"/>
-            <rect x="3" y="16.5" width="6" height="5" rx="1"/>
-            <rect x="15" y="16.5" width="6" height="5" rx="1"/>
-            <path d="M12 7.5v4M12 11.5H6v5M12 11.5h6v5"/>
-          </svg>
-        </div>
-        <h2 id="card-screenflow-title">스크린플로</h2>
-        <p id="card-screenflow-desc">전체 화면 흐름을 트리로 시각화한 흐름도.</p>
-        <div class="arrow" id="card-screenflow-arrow">열기 →</div>
-      </a>
-
-      <a class="card" href="/storyboard.html" target="_blank" rel="noopener">
-        <div class="cicon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="4" y="3" width="16" height="18" rx="2"/>
-            <line x1="8" y1="8" x2="16" y2="8"/>
-            <line x1="8" y1="12" x2="16" y2="12"/>
-            <line x1="8" y1="16" x2="13" y2="16"/>
-          </svg>
-        </div>
-        <h2 id="card-storyboard-title">스토리보드</h2>
-        <p id="card-storyboard-desc">화면별 기획 스펙과 의사결정을 정리한 문서.</p>
-        <div class="arrow" id="card-storyboard-arrow">열기 →</div>
-      </a>
-    </main>
-
     <!-- ── 실제 동작 데모 ── -->
     <div class="seclabel" id="seclabel-demo">실제 동작 데모</div>
-    <div class="grid">
+    <main class="grid">
       <a class="card" href="/homepage.html" target="_blank" rel="noopener">
         <div class="cicon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -580,7 +566,7 @@
         </div>
         <div class="arrow" id="card-stagingcms-arrow">열기 →</div>
       </a>
-    </div>
+    </main>
 
     <!-- ── 개발 협업 · 운영 ── -->
     <div class="seclabel" id="seclabel-ops">개발 협업 · 운영</div>
@@ -611,34 +597,6 @@
         <h2 id="card-devplan-title">DevPlan</h2>
         <p id="card-devplan-desc">개발 일정 · 진행 상태 관리 (앱 · CMS · 백엔드 트랙).</p>
         <div class="arrow" id="card-devplan-arrow">열기 →</div>
-      </a>
-
-      <a class="card" href="/cms.html" target="_blank" rel="noopener">
-        <div class="cicon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3 1a7 7 0 0 0-2-1.2l-.3-2.5H10.7l-.3 2.5a7 7 0 0 0-2 1.2l-2.3-1-2 3.4 2 1.5a7 7 0 0 0 0 2.4l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 2 1.2l.3 2.5h2.6l.3-2.5a7 7 0 0 0 2-1.2l2.3 1 2-3.4-2-1.5A7 7 0 0 0 19 12z"/>
-          </svg>
-        </div>
-        <h2 id="card-cms-title">CMS</h2>
-        <p id="card-cms-desc">어드민 운영 화면 기획안. 실제 동작은 CMS 데모에서 확인.</p>
-        <div class="card-foot">
-          <span class="arrow" id="card-cms-arrow">열기 →</span>
-          <span class="chg-badge" id="card-cms-chg" role="link" tabindex="0"
-            onclick="event.preventDefault();event.stopPropagation();window.open('/cms-preview.html','_blank','noopener');"
-            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/cms-preview.html','_blank','noopener');}">변경 보기 ↗</span>
-        </div>
-      </a>
-
-      <a class="card" href="/cms-storyboard/index.html" target="_blank" rel="noopener">
-        <div class="cicon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-          </svg>
-        </div>
-        <h2 id="card-cmssb-title">CMS 스토리보드</h2>
-        <p id="card-cmssb-desc">CMS 화면별 동작·권한·데이터 흐름을 정리한 개발자용 명세.</p>
-        <div class="arrow" id="card-cmssb-arrow">열기 →</div>
       </a>
 
       <a class="card" href="/devqa/google-play-assets.html" target="_blank" rel="noopener">
@@ -750,6 +708,115 @@
         <div class="arrow" id="card-functionalspec-arrow">열기 →</div>
       </a>
     </div>
+
+    <!-- ── 폐기 문서 ── 기본 접힘. 내용은 그대로 두고 표시만 단다. -->
+    <details class="dep-group" id="dep-group">
+      <summary>
+        <svg class="dep-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 5l7 7-7 7"/>
+        </svg>
+        <span class="dep-title" id="dep-title">폐기 문서</span>
+        <span class="dep-note" id="dep-note">현행 기준은 앱 데모 · 마스터 정책서 · DevQA. 열람은 가능합니다.</span>
+      </summary>
+      <div class="grid">
+      <a class="card" href="/interactive.html" target="_blank" rel="noopener">
+        <span class="dep-badge" id="card-interactive-dep">폐기</span>
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="4" width="19" height="13" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <h2 id="card-interactive-title">인터랙티브</h2>
+        <p id="card-interactive-desc">클릭으로 UX 흐름을 직접 체험하는 웹 기반 기획 프로토타입.</p>
+        <div class="card-foot">
+          <span class="arrow" id="card-interactive-arrow">열기 →</span>
+          <span class="chg-badge" id="card-interactive-chg" role="link" tabindex="0"
+            onclick="event.preventDefault();event.stopPropagation();window.open('/app-preview.html','_blank','noopener');"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/app-preview.html','_blank','noopener');}">변경 보기 ↗</span>
+        </div>
+      </a>
+
+      <a class="card" href="/prototype.html" target="_blank" rel="noopener">
+        <span class="dep-badge" id="card-prototype-dep">폐기</span>
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="2.5" width="12" height="19" rx="2.5"/>
+            <line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/>
+          </svg>
+        </div>
+        <h2 id="card-prototype-title">프로토타입</h2>
+        <p id="card-prototype-desc">전체 화면을 모은 카탈로그와 클릭 시뮬레이터. 모바일 최종 확인용.</p>
+        <div class="card-foot">
+          <span class="arrow" id="card-prototype-arrow">열기 →</span>
+          <span class="chg-badge" id="card-prototype-install" role="link" tabindex="0"
+            onclick="event.preventDefault();event.stopPropagation();window.open('/prototype.html?install=1','_blank','noopener');"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/prototype.html?install=1','_blank','noopener');}">홈화면 바로가기 ↓</span>
+        </div>
+      </a>
+
+      <a class="card" href="/screenflow.html" target="_blank" rel="noopener">
+        <span class="dep-badge" id="card-screenflow-dep">폐기</span>
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="2.5" width="6" height="5" rx="1"/>
+            <rect x="3" y="16.5" width="6" height="5" rx="1"/>
+            <rect x="15" y="16.5" width="6" height="5" rx="1"/>
+            <path d="M12 7.5v4M12 11.5H6v5M12 11.5h6v5"/>
+          </svg>
+        </div>
+        <h2 id="card-screenflow-title">스크린플로</h2>
+        <p id="card-screenflow-desc">전체 화면 흐름을 트리로 시각화한 흐름도.</p>
+        <div class="arrow" id="card-screenflow-arrow">열기 →</div>
+      </a>
+
+      <a class="card" href="/storyboard.html" target="_blank" rel="noopener">
+        <span class="dep-badge" id="card-storyboard-dep">폐기</span>
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="3" width="16" height="18" rx="2"/>
+            <line x1="8" y1="8" x2="16" y2="8"/>
+            <line x1="8" y1="12" x2="16" y2="12"/>
+            <line x1="8" y1="16" x2="13" y2="16"/>
+          </svg>
+        </div>
+        <h2 id="card-storyboard-title">스토리보드</h2>
+        <p id="card-storyboard-desc">화면별 기획 스펙과 의사결정을 정리한 문서.</p>
+        <div class="arrow" id="card-storyboard-arrow">열기 →</div>
+      </a>
+
+      <a class="card" href="/cms.html" target="_blank" rel="noopener">
+        <span class="dep-badge" id="card-cms-dep">폐기</span>
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3 1a7 7 0 0 0-2-1.2l-.3-2.5H10.7l-.3 2.5a7 7 0 0 0-2 1.2l-2.3-1-2 3.4 2 1.5a7 7 0 0 0 0 2.4l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 2 1.2l.3 2.5h2.6l.3-2.5a7 7 0 0 0 2-1.2l2.3 1 2-3.4-2-1.5A7 7 0 0 0 19 12z"/>
+          </svg>
+        </div>
+        <h2 id="card-cms-title">CMS</h2>
+        <p id="card-cms-desc">어드민 운영 화면 기획안. 실제 동작은 CMS 데모에서 확인.</p>
+        <div class="card-foot">
+          <span class="arrow" id="card-cms-arrow">열기 →</span>
+          <span class="chg-badge" id="card-cms-chg" role="link" tabindex="0"
+            onclick="event.preventDefault();event.stopPropagation();window.open('/cms-preview.html','_blank','noopener');"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();window.open('/cms-preview.html','_blank','noopener');}">변경 보기 ↗</span>
+        </div>
+      </a>
+
+      <a class="card" href="/cms-storyboard/index.html" target="_blank" rel="noopener">
+        <span class="dep-badge" id="card-cmssb-dep">폐기</span>
+        <div class="cicon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <h2 id="card-cmssb-title">CMS 스토리보드</h2>
+        <p id="card-cmssb-desc">CMS 화면별 동작·권한·데이터 흐름을 정리한 개발자용 명세.</p>
+        <div class="arrow" id="card-cmssb-arrow">열기 →</div>
+      </a>
+      </div>
+    </details>
   </div>
 
   <footer>
@@ -768,7 +835,9 @@ const I18N = {
     'featured.arrow': '열기 →',
     'notice.title': '2026년 7월 1일 이부장 정책 변경 및 수정 요청 사항',
     'notice.cta': '변경 내용 보기 →',
-    'seclabel.core': '기획 산출물',
+    'dep.title': '폐기 문서',
+    'dep.note': '현행 기준은 앱 데모 · 마스터 정책서 · DevQA. 열람은 가능합니다.',
+    'dep.badge': '폐기',
     'seclabel.demo': '실제 동작 데모',
     'seclabel.ops': '개발 협업 · 운영',
     'seclabel.devref': '개발 참고 기준',
@@ -833,7 +902,9 @@ const I18N = {
     'featured.arrow': 'Mở →',
     'notice.title': 'Yêu cầu thay đổi & sửa đổi chính sách của Phó phòng Lee ngày 01/07/2026',
     'notice.cta': 'Xem nội dung thay đổi →',
-    'seclabel.core': 'Tài liệu kế hoạch',
+    'dep.title': 'Tài liệu đã bỏ',
+    'dep.note': 'Tiêu chuẩn hiện hành là Demo app · Tài liệu chính sách gốc · DevQA. Vẫn có thể xem.',
+    'dep.badge': 'Đã bỏ',
     'seclabel.demo': 'Demo chạy thật',
     'seclabel.ops': 'Hợp tác phát triển · Vận hành',
     'seclabel.devref': 'Tiêu chuẩn tham khảo phát triển',
@@ -916,7 +987,10 @@ function applyLang() {
   setTxt('featured-arrow',            t('featured.arrow'));
   setTxt('notice-title',              t('notice.title'));
   setTxt('notice-cta',                t('notice.cta'));
-  setTxt('seclabel-core',             t('seclabel.core'));
+  setTxt('dep-title',                 t('dep.title'));
+  setTxt('dep-note',                  t('dep.note'));
+  ['card-interactive','card-prototype','card-screenflow','card-storyboard','card-cms','card-cmssb']
+    .forEach(function (k) { setTxt(k + '-dep', t('dep.badge')); });
   setTxt('seclabel-demo',             t('seclabel.demo'));
   setTxt('seclabel-ops',              t('seclabel.ops'));
   setTxt('seclabel-devref',           t('seclabel.devref'));

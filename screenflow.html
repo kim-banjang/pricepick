@@ -8418,6 +8418,38 @@ body.interactive-mode.nav-closed #ip-nav-handle .chev { transform: rotate(180deg
 </style>
 </head>
 <body class="sf-body">
+<!-- 폐기 표시 — 본문은 그대로 두고 상단에 한 줄만 얹는다. -->
+<style>
+#pp-deprecated{background:#F7ECEC;border-bottom:1px solid #EBD6D6;color:#7E3B3B;
+ font:600 13px/1.5 -apple-system,BlinkMacSystemFont,"Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+ padding:9px 16px;text-align:center;letter-spacing:-.1px;}
+#pp-deprecated a{color:#7E3B3B;text-decoration:underline;text-underline-offset:2px;}
+#pp-deprecated .vi{display:none;}
+#pp-deprecated.vi .ko{display:none;}
+#pp-deprecated.vi .vi{display:inline;}
+@media print{#pp-deprecated{position:static;}}
+</style>
+<div id="pp-deprecated" role="note">
+  <span class="ko">이 문서는 폐기되었습니다. 현행 기준은 <a href="/policyspec.html" target="_blank" rel="noopener">마스터 정책서</a>입니다.</span>
+  <span class="vi">Tài liệu này đã bị bỏ. Tiêu chuẩn hiện hành là <a href="/policyspec.html" target="_blank" rel="noopener">Tài liệu chính sách gốc</a>.</span>
+</div>
+<script>
+(function(){
+  var el=document.getElementById('pp-deprecated');
+  function cur(){
+    try{ if(typeof window.ipGetLang==='function') return window.ipGetLang(); }catch(e){}
+    var cb=document.getElementById('langsw');
+    if(cb) return cb.checked?'vi':'ko';
+    return 'ko';
+  }
+  function sync(){ el.classList.toggle('vi', cur()==='vi'); }
+  sync();
+  document.addEventListener('click', function(){ setTimeout(sync,0); }, true);
+  document.addEventListener('change', function(){ setTimeout(sync,0); }, true);
+  setInterval(sync, 700);
+})();
+</script>
+
 
 <header class="sf-header">
   <div class="sf-header-inner">
