@@ -1,6 +1,9 @@
 
 (function(){
   var KO2VI={
+    /* 링크프라이스 연동 무관·취소 구조 (2026-09-22 보충) */
+    "전환합니다 — 실적 월의 익익월 6일 이후 확정 건을 회원 단위로 합산해 등급 티켓으로 전환합니다. 확정되지 않은 건은 전환 대상에서 제외되며 해당 랜덤 티켓은 소멸합니다(별도 취소 절차·환수 없음). 링크프라이스 제휴몰은 카카오 연동 여부와 무관하며 연동·미연동 분기가 없습니다 — 연동 분기는 쿠팡에만 적용됩니다.":"sẽ chuyển đổi — cộng gộp theo từng hội viên các giao dịch đã chốt sau ngày 6 của tháng sau nữa tính từ tháng thực hiện để chuyển thành vé hạng. Giao dịch chưa chốt bị loại khỏi đối tượng chuyển đổi và vé ngẫu nhiên tương ứng tiêu hủy (không có thủ tục hủy riêng·không thu hồi). Sàn liên kết LinkPrice không phụ thuộc việc liên kết Kakao và không có nhánh liên kết·chưa liên kết — nhánh liên kết chỉ áp dụng cho Coupang.",
+
     /* 링크프라이스 전환 시점 변경 (2026-09-22) */
     "익익월 6일 확정 후":"Sau khi chốt ngày 6 của tháng sau nữa",
     "전환합니다 — 실적 월의 익익월 6일 이후 확정 건을 회원 단위로 합산해 등급 티켓으로 전환하며, 취소 건은 지급하지 않습니다.":"sẽ chuyển đổi — cộng gộp theo từng hội viên các giao dịch đã chốt sau ngày 6 của tháng sau nữa tính từ tháng thực hiện để chuyển thành vé hạng, giao dịch hủy không được chi trả.",
