@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 링크프라이스 정산 · 등급티켓 전환 기획안</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--hold:#6b7280;--warn:#9A4A4A;--warn-bg:#F7ECEC;--warn-line:#EBD6D6}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px 60px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:26px 0 22px;position:relative}
+.kick{font-size:11px;font-weight:800;letter-spacing:.18em;opacity:.75}
+.htitle{font-size:23px;font-weight:800;margin-top:4px}
+.decide{background:#fff;border:2px solid var(--pp);border-radius:14px;padding:15px 18px;margin-top:18px}
+.decide .dq{font-size:16px;font-weight:800;color:var(--ink1)}
+.decide .sub{display:block;margin-top:7px;font-size:13.2px;color:var(--ink2)}
+.decide b{color:var(--ink1)}
+h2.grp{font-size:13.5px;color:var(--pp-d);margin:22px 0 8px;padding-bottom:5px;border-bottom:2px solid var(--pp-l)}
+.tblwrap{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:12.4px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.3px;white-space:nowrap}
+.tbl td.k{font-weight:800;color:var(--pp-d);white-space:nowrap}
+.bd{display:inline-block;font-size:10.3px;font-weight:800;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)} .bd.hold{background:#eef0f4;color:var(--hold)}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:12px 0 4px}
+.fstep{flex:1 1 160px;min-width:160px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px 12px}
+.fstep.stop{background:var(--warn-bg);border-color:var(--warn-line)}
+.fstep.fin{border-color:var(--pp);border-width:2px}
+.fs-t{font-size:10.6px;font-weight:800;letter-spacing:.06em;color:var(--ink3)}
+.fstep.stop .fs-t{color:var(--warn)}
+.fs-m{font-size:13.2px;font-weight:800;margin-top:3px}
+.fs-d{font-size:11.6px;color:var(--ink2);margin-top:4px}
+.note{background:#fff;border:1px solid var(--line);border-left:3px solid var(--pp);border-radius:9px;padding:11px 14px;margin-top:12px;font-size:12.6px;color:var(--ink2)}
+.foot{margin-top:18px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+a{color:var(--pp-d);font-weight:700}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div style="max-width:900px;margin:0 auto;padding:0 22px"><div class="kick">POLICY DECISION · 2026-09-22</div><div class="htitle"><span class="i18n"><span class="ko">PricePick 링크프라이스 정산 · 등급티켓 전환 기획안</span><span class="vi">Đề án quyết toán LinkPrice · chuyển đổi vé hạng PricePick</span></span></div></div></header>
+<div class="wrap">
+
+<div class="decide"><div class="dq"><span class="i18n"><span class="ko">링크프라이스 제휴몰 등급티켓 전환 시점 — 익익월 6일 확정 후.</span><span class="vi">Thời điểm chuyển đổi vé hạng cho sàn liên kết LinkPrice — sau khi chốt vào ngày 6 của tháng sau nữa.</span></span></div>
+<span class="sub"><span class="i18n"><span class="ko">지급 대상은 <b>익익월 6일 이후 확정 건을 회원 단위로 합산</b>하여 판정합니다. 취소 건은 미지급이며 이후 되돌아오지 않습니다. 회원 안내 문구는 <b>「최대 2개월」</b>입니다.<br>기존 <b>「제휴몰별 전환 대기일 수 · 기본 30일」은 링크프라이스 제휴몰에 한하여 폐기</b>합니다. 쿠팡은 연동 D+7 / 미연동 D+30 고정으로 종전과 같습니다.</span><span class="vi">Đối tượng chi trả được xác định bằng cách <b>cộng gộp theo từng hội viên các giao dịch đã chốt sau ngày 6 của tháng sau nữa</b>. Giao dịch hủy không được chi trả và sau đó không quay lại. Nội dung thông báo cho hội viên là <b>「tối đa 2 tháng」</b>.<br><b>「Số ngày chờ chuyển đổi theo từng sàn · mặc định 30 ngày」 bị bãi bỏ, chỉ áp dụng với sàn liên kết LinkPrice</b>. Coupang vẫn giữ nguyên D+7 khi đã liên kết / D+30 khi chưa liên kết.</span></span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">전체 흐름</span><span class="vi">Toàn bộ luồng</span></span></h2>
+
+<div class="flow">
+  <div class="fstep"><div class="fs-t">1</div><div class="fs-m"><span class="i18n"><span class="ko">회원 구매</span><span class="vi">Hội viên mua hàng</span></span></div><div class="fs-d"><span class="i18n"><span class="ko">랜덤티켓 즉시 지급. 등급 미정 상태.</span><span class="vi">Cấp ngay vé ngẫu nhiên. Trạng thái chưa xác định hạng.</span></span></div></div>
+  <div class="fstep stop"><div class="fs-t"><span class="i18n"><span class="ko">2 · 조회 금지</span><span class="vi">2 · Cấm tra cứu</span></span></div><div class="fs-m"><span class="i18n"><span class="ko">정산 기간</span><span class="vi">Kỳ quyết toán</span></span></div><div class="fs-d"><span class="i18n"><span class="ko">익월 21일 ~ 익익월 5일. 랜덤티켓 유지.</span><span class="vi">Ngày 21 tháng sau ~ ngày 5 của tháng sau nữa. Giữ nguyên vé ngẫu nhiên.</span></span></div></div>
+  <div class="fstep fin"><div class="fs-t">3</div><div class="fs-m"><span class="i18n"><span class="ko">익익월 6일 확정</span><span class="vi">Chốt ngày 6 của tháng sau nữa</span></span></div><div class="fs-d"><span class="i18n"><span class="ko">등급티켓 전환. 취소분 소멸.</span><span class="vi">Chuyển đổi vé hạng. Phần bị hủy tiêu hủy.</span></span></div></div>
+</div>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th style="width:110px"><span class="i18n"><span class="ko">단계</span><span class="vi">Giai đoạn</span></span></th><th style="width:170px"><span class="i18n"><span class="ko">시점</span><span class="vi">Thời điểm</span></span></th><th style="width:150px"><span class="i18n"><span class="ko">8월 구매 예</span><span class="vi">Ví dụ mua tháng 8</span></span></th><th><span class="i18n"><span class="ko">회원 보유 상태</span><span class="vi">Trạng thái hội viên đang giữ</span></span></th></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">구매</span><span class="vi">Mua hàng</span></span></td><td><span class="i18n"><span class="ko">실적 월 1일 ~ 말일</span><span class="vi">Ngày 1 ~ ngày cuối tháng thực hiện</span></span></td><td><span class="i18n"><span class="ko">8월 1일 ~ 8월 31일</span><span class="vi">01/08 ~ 31/08</span></span></td><td><span class="i18n"><span class="ko">랜덤티켓 즉시 지급</span><span class="vi">Cấp ngay vé ngẫu nhiên</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">정산 기간</span><span class="vi">Kỳ quyết toán</span></span></td><td><span class="i18n"><span class="ko">익월 21일 ~ 익익월 5일</span><span class="vi">Ngày 21 tháng sau ~ ngày 5 tháng sau nữa</span></span></td><td><span class="i18n"><span class="ko">9월 21일 ~ 10월 5일</span><span class="vi">21/09 ~ 05/10</span></span></td><td><span class="i18n"><span class="ko">랜덤티켓 유지 · 조회 금지 구간</span><span class="vi">Giữ vé ngẫu nhiên · khoảng cấm tra cứu</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">확정</span><span class="vi">Chốt</span></span></td><td><span class="i18n"><span class="ko">익익월 6일</span><span class="vi">Ngày 6 của tháng sau nữa</span></span></td><td><span class="i18n"><span class="ko">10월 6일</span><span class="vi">06/10</span></span></td><td><span class="i18n"><span class="ko">확정분 등급티켓 전환 · 취소분 소멸</span><span class="vi">Phần đã chốt chuyển thành vé hạng · phần hủy tiêu hủy</span></span></td></tr>
+</table></div>
+
+<div class="note"><span class="i18n"><span class="ko">「확정」은 링크프라이스가 실적을 최종 승인한 상태(원 코드값 210), 「취소」는 실적에서 제외된 상태(원 코드값 310)를 가리킵니다. 이하 확정 · 취소로 표기합니다.</span><span class="vi">「Đã chốt」 là trạng thái LinkPrice đã phê duyệt cuối cùng doanh số (mã gốc 210), 「Hủy」 là trạng thái bị loại khỏi doanh số (mã gốc 310). Phần dưới đây ghi là Đã chốt · Hủy.</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">판정 기준</span><span class="vi">Tiêu chí xác định</span></span></h2>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th style="width:170px"><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">내용</span><span class="vi">Nội dung</span></span></th></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">등급티켓 전환 시점</span><span class="vi">Thời điểm chuyển đổi vé hạng</span></span></td><td><span class="i18n"><span class="ko">익익월 6일 확정 후</span><span class="vi">Sau khi chốt vào ngày 6 của tháng sau nữa</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">지급 대상 판정</span><span class="vi">Xác định đối tượng chi trả</span></span></td><td><span class="i18n"><span class="ko">익익월 6일 이후 확정 건을 회원 단위로 합산</span><span class="vi">Cộng gộp theo từng hội viên các giao dịch đã chốt sau ngày 6 của tháng sau nữa</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">조회 금지 기간</span><span class="vi">Thời gian cấm tra cứu</span></span></td><td><span class="i18n"><span class="ko">익월 21일 ~ 익익월 5일</span><span class="vi">Ngày 21 tháng sau ~ ngày 5 của tháng sau nữa</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">취소 처리</span><span class="vi">Xử lý hủy</span></span></td><td><span class="i18n"><span class="ko">미지급. 확정 이후 상태 불변이며 되돌아오지 않음</span><span class="vi">Không chi trả. Sau khi chốt trạng thái không đổi và không quay lại</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">건별 매칭</span><span class="vi">Đối chiếu theo từng giao dịch</span></span></td><td><span class="i18n"><span class="ko">미사용. 거래 기록 단위 매칭 배제</span><span class="vi">Không dùng. Loại bỏ cách đối chiếu theo đơn vị bản ghi giao dịch</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">회원 안내</span><span class="vi">Thông báo cho hội viên</span></span></td><td><span class="i18n"><span class="ko">「최대 2개월」</span><span class="vi">「Tối đa 2 tháng」</span></span></td></tr>
+</table></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">근거</span><span class="vi">Căn cứ</span></span></h2>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th style="width:190px"><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">사유</span><span class="vi">Lý do</span></span></th></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">2개월 소요</span><span class="vi">Mất 2 tháng</span></span></td><td><span class="i18n"><span class="ko">반품 기간 경과 후 제휴몰이 실적을 확정하고, 링크프라이스가 제휴몰로부터 수수료를 수령하는 절차가 순차 진행되는 구조. 두 절차 완료 전에는 지급 대상이 성립하지 않음.</span><span class="vi">Cấu trúc tiến hành tuần tự: sau khi hết thời hạn trả hàng, sàn liên kết chốt doanh số, rồi LinkPrice nhận hoa hồng từ sàn. Trước khi hoàn tất hai thủ tục này thì chưa hình thành đối tượng chi trả.</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">정산 기간 조회 금지</span><span class="vi">Cấm tra cứu trong kỳ quyết toán</span></span></td><td><span class="i18n"><span class="ko">해당 기간에는 확정된 건까지 취소 상태로 조회됨. 지급 대상 판별이 불가하며, 이 기간 조회값을 근거로 전환 시 오지급 발생.</span><span class="vi">Trong kỳ này, ngay cả giao dịch đã chốt cũng hiện ở trạng thái hủy. Không thể phân biệt đối tượng chi trả, và nếu chuyển đổi dựa trên giá trị tra cứu của kỳ này sẽ phát sinh cấp sai.</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">건별 매칭 배제</span><span class="vi">Loại bỏ đối chiếu từng giao dịch</span></span></td><td><span class="i18n"><span class="ko">제휴몰별 정산 방식 상이로 하나의 구매가 거래 기록 1건 또는 2건으로 분리됨. 단일 주문을 복수 주문번호·상품코드로 분할 전송하는 제휴몰도 존재. 건별 매칭 시 중복 또는 누락 발생.</span><span class="vi">Do phương thức quyết toán khác nhau theo từng sàn, một lần mua bị tách thành 1 hoặc 2 bản ghi giao dịch. Cũng có sàn chia một đơn thành nhiều số đơn·mã sản phẩm để gửi. Đối chiếu theo từng giao dịch sẽ phát sinh trùng lặp hoặc bỏ sót.</span></span></td></tr>
+<tr><td class="k"><span class="i18n"><span class="ko">확정 후 전환</span><span class="vi">Chuyển đổi sau khi chốt</span></span></td><td><span class="i18n"><span class="ko">링크프라이스는 취소 통보를 발송하지 않아 환수가 불가. 확정 전 등급티켓 지급 시 취소분 전액이 손실로 확정됨. 쿠팡은 실시간 취소 통보 수신으로 환수가 성립하므로 적용 대상 아님.</span><span class="vi">LinkPrice không gửi thông báo hủy nên không thể thu hồi. Nếu cấp vé hạng trước khi chốt thì toàn bộ phần bị hủy trở thành tổn thất. Coupang nhận thông báo hủy theo thời gian thực nên thu hồi được, do đó không thuộc phạm vi áp dụng.</span></span></td></tr>
+</table></div>
+
+<div class="note"><span class="i18n"><span class="ko">재생성 과정에서 실적 발생일자가 변경되는 사례가 존재하므로, 월 단위 조회 시 주문번호를 기준으로 이전 월 구간까지 포함하여 대조합니다.</span><span class="vi">Có trường hợp ngày phát sinh doanh số bị thay đổi trong quá trình tạo lại, nên khi tra cứu theo tháng phải đối chiếu bao gồm cả khoảng tháng trước theo số đơn hàng.</span></span></div>
+
+<h2 class="grp"><span class="i18n"><span class="ko">정책 변경 대상</span><span class="vi">Đối tượng thay đổi chính sách</span></span></h2>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th style="width:70px"><span class="i18n"><span class="ko">상태</span><span class="vi">Trạng thái</span></span></th><th style="width:210px"><span class="i18n"><span class="ko">대상</span><span class="vi">Đối tượng</span></span></th><th><span class="i18n"><span class="ko">처리</span><span class="vi">Xử lý</span></span></th></tr>
+<tr><td><span class="bd ok">완료</span></td><td><a href="/policy-02-earn.html"><span class="i18n"><span class="ko">정책 02 · 적립 메커니즘</span><span class="vi">Chính sách 02 · Cơ chế tích lũy</span></span></a></td><td><span class="i18n"><span class="ko">전환 대기일 수 → 링크프라이스 익익월 6일 확정 후. 기존 「기본 30일」은 폐기 표시 후 존치</span><span class="vi">Số ngày chờ chuyển đổi → LinkPrice sau khi chốt ngày 6 của tháng sau nữa. 「Mặc định 30 ngày」 cũ được giữ lại kèm dấu đã bãi bỏ</span></span></td></tr>
+<tr><td><span class="bd ok">완료</span></td><td><a href="/policy-13-cancel.html"><span class="i18n"><span class="ko">정책 13 · 제휴몰별 취소</span><span class="vi">Chính sách 13 · Hủy theo sàn liên kết</span></span></a></td><td><span class="i18n"><span class="ko">링크프라이스 전환 대기일 수 항목 정합</span><span class="vi">Đồng bộ mục số ngày chờ chuyển đổi của LinkPrice</span></span></td></tr>
+<tr><td><span class="bd hold">대기</span></td><td><span class="i18n"><span class="ko">DevQA 개발 의뢰</span><span class="vi">Yêu cầu phát triển DevQA</span></span></td><td><span class="i18n"><span class="ko">조회 시점 · 판정 기준 · 전환 처리 · 취소 처리 · 회원 안내 문구 5개 항목</span><span class="vi">5 mục: thời điểm tra cứu · tiêu chí xác định · xử lý chuyển đổi · xử lý hủy · nội dung thông báo hội viên</span></span></td></tr>
+</table></div>
+
+<div class="foot"><span class="i18n"><span class="ko">2026-09-22 작성 · 근거 이부장 링크프라이스 문의 회신(2026-09-22) · 김반장님 확정 · 관련 <a href="/reports/20260819_AccrualPolicy.html">적립 확정 정책 보고서</a>(08-19)</span><span class="vi">Lập 22/09/2026 · Căn cứ phản hồi hỏi đáp LinkPrice của Trưởng phòng Lee (22/09/2026) · Mr Mark chốt · Liên quan <a href="/reports/20260819_AccrualPolicy.html">Báo cáo chính sách xác nhận tích lũy</a> (19/08)</span></span></div>
+</div>
+</body></html>

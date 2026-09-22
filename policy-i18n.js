@@ -1,6 +1,22 @@
 
 (function(){
   var KO2VI={
+    /* 링크프라이스 전환 시점 변경 (2026-09-22) */
+    "익익월 6일 확정 후":"Sau khi chốt ngày 6 của tháng sau nữa",
+    "전환합니다 — 실적 월의 익익월 6일 이후 확정 건을 회원 단위로 합산해 등급 티켓으로 전환하며, 취소 건은 지급하지 않습니다.":"sẽ chuyển đổi — cộng gộp theo từng hội viên các giao dịch đã chốt sau ngày 6 của tháng sau nữa tính từ tháng thực hiện để chuyển thành vé hạng, giao dịch hủy không được chi trả.",
+    "CMS 「티켓 적립 설정」에서 몰마다 설정(기본 30일)":"Thiết lập theo từng sàn tại CMS 「Thiết lập tích lũy vé」 (mặc định 30 ngày)",
+    "— 2026-09-22 폐지. 링크프라이스는 취소 통보가 오지 않아 환수가 불가하므로 확정 전 지급 시 취소분이 전액 손실됩니다. 근거는":"— bãi bỏ 22/09/2026. LinkPrice không gửi thông báo hủy nên không thể thu hồi, do đó nếu cấp trước khi chốt thì toàn bộ phần bị hủy thành tổn thất. Căn cứ tại",
+    "링크프라이스 정산 · 등급티켓 전환 기획안":"Đề án quyết toán LinkPrice · chuyển đổi vé hạng",
+    "몰별 설정·기본 30일":"Thiết lập theo từng sàn·mặc định 30 ngày",
+    "— 2026-09-22 폐지). 구매와 무관한 경로(출석·선물 상자·온보딩)로 받은 티켓은 대기 없이 바로 쓸 수 있습니다.":"— bãi bỏ 22/09/2026). Vé nhận qua các đường không liên quan đến mua hàng (điểm danh·hộp quà·onboarding) dùng được ngay, không phải chờ.",
+    "— 2026-09-22 폐지). 승인 전에는 랜덤 선물 상자 열기·등급 교환 등에 쓸 수 없습니다.":"— bãi bỏ 22/09/2026). Trước khi được duyệt thì không dùng được cho mở hộp quà ngẫu nhiên·đổi hạng v.v.",
+    "경과 또는 쿠팡 구매 확정입니다 — 쿠팡은 카카오 연동 D+7 / 미연동 D+30, 링크프라이스 제휴몰은":"trôi qua hoặc đơn Coupang được xác nhận — Coupang là D+7 khi liên kết Kakao / D+30 khi chưa liên kết, còn sàn liên kết LinkPrice là",
+    "링크프라이스 전환 대기일 수 → 익익월 6일 확정 후":"Số ngày chờ chuyển đổi LinkPrice → sau khi chốt ngày 6 của tháng sau nữa",
+    "제휴몰별 설정 · 기본 30일":"Thiết lập theo từng sàn · mặc định 30 ngày",
+    "익익월 6일 확정 후 전환":"Chuyển đổi sau khi chốt ngày 6 của tháng sau nữa",
+    "익익월 6일 이후 확정 건을 회원 단위로 합산해 등급 티켓으로 전환하며 취소 건은 미지급. 익월 21일~익익월 5일은 조회하지 않습니다. 쿠팡은 연동 D+7 / 미연동 D+30 고정으로 종전과 같습니다.":"Cộng gộp theo từng hội viên các giao dịch đã chốt sau ngày 6 của tháng sau nữa để chuyển thành vé hạng, giao dịch hủy không chi trả. Không tra cứu trong khoảng ngày 21 tháng sau ~ ngày 5 của tháng sau nữa. Coupang vẫn cố định D+7 khi liên kết / D+30 khi chưa liên kết như trước.",
+    "이부장 링크프라이스 문의 회신(2026-09-22) · 김반장님 확정 — 링크프라이스는 확정 이후 상태가 바뀌지 않고 취소 통보도 오지 않아 환수가 불가하므로, 확정 전 지급 시 취소분이 전액 손실됩니다. 종전 「기본 30일」 조항은 폐기 표시 후 존치. 전문은":"Phản hồi hỏi đáp LinkPrice của Trưởng phòng Lee (22/09/2026) · Mr Mark chốt — LinkPrice sau khi chốt thì trạng thái không đổi và cũng không gửi thông báo hủy nên không thể thu hồi, do đó nếu cấp trước khi chốt thì toàn bộ phần bị hủy thành tổn thất. Điều khoản 「mặc định 30 ngày」 cũ được giữ lại kèm dấu đã bãi bỏ. Toàn văn tại",
+
     /* 쿠팡 정산 일정 — 메인 정책서 연계 (2026-09-22) */
     "정산은 제휴몰별 D+30 확정입니다(수수료율은 제휴몰별 상이). 쿠팡 파트너스 수령 일정(확정·세금계산서·지급일)은":"Quyết toán được chốt theo D+30 của từng sàn liên kết (tỷ lệ hoa hồng khác nhau theo sàn). Lịch nhận tiền từ Coupang Partners (chốt·hóa đơn thuế·ngày chi trả) xem",
     "3번 카드 참조.":"thẻ số 3.",
