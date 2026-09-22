@@ -67,6 +67,10 @@ h2.grp.hide{color:#95690c;border-bottom-color:#f3e6c6}
 #tab-cp:checked ~ .wrap .tabbar label[for="tab-cp"],#tab-lp:checked ~ .wrap .tabbar label[for="tab-lp"]{background:#fff;color:var(--pp-d);border-color:var(--pp-l);border-bottom:2px solid #fff}
 #tab-cp,#tab-lp{position:absolute;opacity:0;pointer-events:none}
 .commonlab{font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--ink3);margin:26px 0 0}
+.srcbox{background:#fff;border:1px solid var(--line);border-left:4px solid var(--pp);border-radius:10px;padding:14px 16px;margin-top:10px}
+.srcbox pre{white-space:pre-wrap;word-break:break-word;font:12px/1.62 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#2c3040;margin:0}
+.srcmeta{font-size:11.5px;color:var(--ink3);margin-bottom:8px}
+.srcmeta a{color:var(--pp-d);font-weight:700}
 </style></head><body>
 <input type="checkbox" id="langsw">
 <input type="radio" name="mall" id="tab-cp">
@@ -90,7 +94,7 @@ h2.grp.hide{color:#95690c;border-bottom-color:#f3e6c6}
 <tr><th><span class="i18n"><span class="ko">대상</span><span class="vi">Đối tượng</span></span></th><th><span class="i18n"><span class="ko">처리</span><span class="vi">Xử lý</span></span></th><th><span class="i18n"><span class="ko">구분</span><span class="vi">Phân loại</span></span></th></tr>
 <tr><td><span class="i18n"><span class="ko">링크프라이스 지급</span><span class="vi">Cấp vé — LinkPrice</span></span></td><td class="new"><span class="i18n"><span class="ko">익익월 6일 확정 후 · uid 단위 합산 · status=210 만 전환</span><span class="vi">Sau khi chốt ngày 6 của tháng sau nữa · cộng gộp theo uid · chỉ chuyển đổi status=210</span></span></td><td class="new"><span class="i18n"><span class="ko">개정</span><span class="vi">Sửa đổi</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">링크프라이스 환수</span><span class="vi">Thu hồi — LinkPrice</span></span></td><td class="new"><span class="i18n"><span class="ko">발생 없음 (확정 후 지급)</span><span class="vi">Không phát sinh (cấp sau khi chốt)</span></span></td><td class="new"><span class="i18n"><span class="ko">개정</span><span class="vi">Sửa đổi</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">주문 매칭</span><span class="vi">Đối chiếu đơn hàng</span></span></td><td class="new"><span class="i18n"><span class="ko">uid 단위 집계 · trlog_id · 주문번호 매칭 금지</span><span class="vi">Tổng hợp theo uid · cấm đối chiếu theo trlog_id · số đơn hàng</span></span></td><td class="new"><span class="i18n"><span class="ko">개정</span><span class="vi">Sửa đổi</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">주문 매칭</span><span class="vi">Đối chiếu đơn hàng</span></span></td><td class="new"><span class="i18n"><span class="ko">세 값 조합 대조 — 실적조회 API <code>m_id + o_cd + user_id</code> · <code>trlog_id</code> 단독 추적 금지 · <s>uid 단위 집계</s> 2026-09-22 정정</span><span class="vi">Đối chiếu tổ hợp ba giá trị — API tra cứu <code>m_id + o_cd + user_id</code> · cấm theo dõi riêng bằng <code>trlog_id</code> · <s>Tổng hợp theo uid</s> đính chính 22/09/2026</span></span></td><td class="new"><span class="i18n"><span class="ko">개정</span><span class="vi">Sửa đổi</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">쿠팡 지급</span><span class="vi">Cấp vé — Coupang</span></span></td><td><span class="i18n"><span class="ko">실시간 CONFIRMED 수신 시</span><span class="vi">Khi nhận CONFIRMED theo thời gian thực</span></span></td><td><span class="i18n"><span class="ko">유지</span><span class="vi">Giữ nguyên</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">쿠팡 환수</span><span class="vi">Thu hồi — Coupang</span></span></td><td><span class="i18n"><span class="ko">실시간 CANCELLED 수신 시 · 대기 중 랜덤 티켓 1장 취소</span><span class="vi">Khi nhận CANCELLED · hủy 1 vé ngẫu nhiên đang chờ</span></span></td><td><span class="i18n"><span class="ko">유지</span><span class="vi">Giữ nguyên</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">사용 완료 티켓</span><span class="vi">Vé đã sử dụng</span></span></td><td><span class="i18n"><span class="ko">회수 제외</span><span class="vi">Không thu hồi</span></span></td><td><span class="i18n"><span class="ko">유지</span><span class="vi">Giữ nguyên</span></span></td></tr>
@@ -104,11 +108,11 @@ h2.grp.hide{color:#95690c;border-bottom-color:#f3e6c6}
 <tr><th><span class="i18n"><span class="ko">구분</span><span class="vi">Phân loại</span></span></th><th><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></th><th><span class="i18n"><span class="ko">쿠팡</span><span class="vi">Coupang</span></span></th></tr>
 <tr><td><span class="i18n"><span class="ko">구매 즉시</span><span class="vi">Ngay khi mua</span></span></td><td><span class="i18n"><span class="ko">랜덤 티켓 1장 · 지급 대기</span><span class="vi">1 vé ngẫu nhiên · chờ cấp</span></span></td><td><span class="i18n"><span class="ko">랜덤 티켓 1장 · 지급 대기</span><span class="vi">1 vé ngẫu nhiên · chờ cấp</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">등급 전환 시점</span><span class="vi">Thời điểm chuyển đổi hạng</span></span></td><td class="new"><span class="i18n"><span class="ko">매월 6일 이후 · status=210 조회 시</span><span class="vi">Sau ngày 6 hằng tháng · khi tra cứu status=210</span></span></td><td><span class="i18n"><span class="ko">CONFIRMED 수신 후 전환 대기일 수 경과 시</span><span class="vi">Sau khi nhận CONFIRMED và qua số ngày chờ chuyển đổi</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">취소 통보</span><span class="vi">Thông báo hủy</span></span></td><td class="new"><span class="i18n"><span class="ko">취소 포스트백 없음 · 조회 주소로 확인(일 1회 조회)</span><span class="vi">Không có postback hủy · kiểm tra bằng URL tra cứu (1 lần/ngày)</span></span></td><td><span class="i18n"><span class="ko">취소 포스트백 수신 (CANCELLED)</span><span class="vi">Nhận postback hủy (CANCELLED)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">취소 통보</span><span class="vi">Thông báo hủy</span></span></td><td class="new"><span class="i18n"><span class="ko">취소 통보를 별도로 받지 않고 실적조회 API로 확인 · 리워드 API는 확정 전 자료</span><span class="vi">Không nhận thông báo hủy riêng, kiểm tra bằng API tra cứu doanh số · Reward API là dữ liệu chưa chốt</span></span></td><td><span class="i18n"><span class="ko">취소 포스트백 수신 (CANCELLED)</span><span class="vi">Nhận postback hủy (CANCELLED)</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">환수 발생</span><span class="vi">Phát sinh thu hồi</span></span></td><td class="old"><span class="i18n"><span class="ko">없음</span><span class="vi">Không có</span></span></td><td class="new"><span class="i18n"><span class="ko">있음 — 4번 참조</span><span class="vi">Có — xem mục 4</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">조회 대상 없음</span><span class="vi">Không có đối tượng tra cứu</span></span></td><td class="new"><span class="i18n"><span class="ko">미전환 환수</span><span class="vi">Thu hồi khi chưa chuyển đổi</span></span></td><td><span class="i18n"><span class="ko">해당 없음</span><span class="vi">Không áp dụng</span></span></td></tr>
 </table></div>
-<div class="note-box"><span class="i18n"><span class="ko">취소 통보 원문 — 정책서 「티켓·적립」 6번 카드(2026-08-27) 「링크프라이스는 취소 포스트백이 없어 조회 주소를 매일 돌려 확인」 · <a href="/policy-13-cancel.html">정책 13</a> 「취소 통보 — 링크프라이스: 미수신 — 조회 주소 일 1회 조회」.</span><span class="vi">Nguyên văn về thông báo hủy — Tài liệu chính sách 「Vé·Tích lũy」 thẻ 6 (27/08/2026) 「LinkPrice không có postback hủy nên phải chạy URL tra cứu mỗi ngày để kiểm tra」 · <a href="/policy-13-cancel.html">Chính sách 13</a> 「Thông báo hủy — LinkPrice: không nhận — tra cứu URL 1 lần/ngày」.</span></span></div>
+<div class="note-box"><span class="i18n"><span class="ko">링크프라이스 공식 FAQ 원문 — 「리워드 적립은 <b>실적조회 API 수신 데이터 기준</b>으로 처리하시기 바랍니다. 리워드 API는: 확정되지 않은 데이터 / 적립 예정내역을 회원에게 보여줄 때 사용 / 실적조회 API 데이터와 매칭 등 운영/정산 관리 목적의 보조 수단입니다.」 ⇒ <b>리워드 API = 랜덤티켓 즉시 지급 · 실적조회 API = 등급티켓 전환.</b> 전문은 이 문서 하단 「참고 2」 참조.</span><span class="vi">Nguyên văn FAQ chính thức LinkPrice — 「Việc tích lũy thưởng vui lòng xử lý <b>căn cứ dữ liệu nhận từ API tra cứu doanh số</b>. Reward API là: dữ liệu chưa chốt / dùng khi hiển thị dự kiến tích lũy cho hội viên / phương tiện hỗ trợ cho mục đích vận hành·quản lý quyết toán như đối chiếu với dữ liệu API tra cứu doanh số.」 ⇒ <b>Reward API = cấp ngay vé ngẫu nhiên · API tra cứu doanh số = chuyển đổi vé hạng.</b> Toàn văn xem 「Tham khảo 2」 cuối tài liệu.</span></span></div>
 
 
 <div class="tabbar"><label for="tab-cp"><span class="i18n"><span class="ko">쿠팡</span><span class="vi">Coupang</span></span></label><label for="tab-lp"><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></label></div>
@@ -116,29 +120,34 @@ h2.grp.hide{color:#95690c;border-bottom-color:#f3e6c6}
 <h2 class="grp"><span class="i18n"><span class="ko">3. 링크프라이스 — 조회 규칙</span><span class="vi">3. LinkPrice — quy tắc tra cứu</span></span></h2>
 <div class="tblwrap"><table class="tbl">
 <tr><th><span class="i18n"><span class="ko">항목</span><span class="vi">Hạng mục</span></span></th><th><span class="i18n"><span class="ko">내용</span><span class="vi">Nội dung</span></span></th></tr>
-<tr><td><span class="i18n"><span class="ko">등급티켓 전환</span><span class="vi">Chuyển đổi vé hạng</span></span></td><td class="new"><span class="i18n"><span class="ko">익익월 6일 확정 후 · uid 단위 합산</span><span class="vi">Sau khi chốt ngày 6 của tháng sau nữa · cộng gộp theo uid</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">등급티켓 전환</span><span class="vi">Chuyển đổi vé hạng</span></span></td><td class="new"><span class="i18n"><span class="ko">익익월 6일 확정 후 · 세 값 조합 대조 후 합산</span><span class="vi">Sau khi chốt ngày 6 của tháng sau nữa · đối chiếu tổ hợp ba giá trị rồi cộng gộp</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">적립 기준 데이터</span><span class="vi">Dữ liệu căn cứ tích lũy</span></span></td><td class="new"><span class="i18n"><span class="ko">실적조회 API 수신 데이터 기준 · 리워드 API는 확정 전 데이터(적립 예정 표시 · 대조 보조)</span><span class="vi">Căn cứ dữ liệu nhận từ API tra cứu doanh số · Reward API là dữ liệu chưa chốt (hiển thị dự kiến · hỗ trợ đối chiếu)</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">조회 시점</span><span class="vi">Thời điểm tra cứu</span></span></td><td class="new"><span class="i18n"><span class="ko">매월 6일 이후</span><span class="vi">Sau ngày 6 hằng tháng</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">조회 조건</span><span class="vi">Điều kiện tra cứu</span></span></td><td class="new"><span class="i18n"><span class="ko">status = 210 만 전환 대상 · 300 · 310 은 전환 제외</span><span class="vi">Chỉ status = 210 là đối tượng chuyển đổi · 300 · 310 bị loại khỏi chuyển đổi</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">식별 기준</span><span class="vi">Tiêu chí nhận diện</span></span></td><td class="new">uid</td></tr>
-<tr><td><span class="i18n"><span class="ko">조회 금지 기간</span><span class="vi">Thời gian cấm tra cứu</span></span></td><td class="old"><span class="i18n"><span class="ko">익월 21일 ~ 익익월 5일</span><span class="vi">Từ ngày 21 tháng sau đến ngày 5 tháng sau nữa</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">확정 후 상태 변경</span><span class="vi">Đổi trạng thái sau khi chốt</span></span></td><td><span class="i18n"><span class="ko">없음 · 210 → 310, 310 → 210 모두 미발생</span><span class="vi">Không có · 210 → 310 và 310 → 210 đều không xảy ra</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">실적 추적 키</span><span class="vi">Khóa theo dõi doanh số</span></span></td><td class="new">실적조회 API <code>m_id + o_cd + user_id</code> · 리워드 API <code>merchant_id + order_code + affiliate_user_id</code></td></tr>
+<tr><td><span class="i18n"><span class="ko">조회 금지 기간</span><span class="vi">Thời gian cấm tra cứu</span></span></td><td class="old"><span class="i18n"><span class="ko">익월 20일 ~ 익익월 5일</span><span class="vi">Từ ngày 20 tháng sau đến ngày 5 tháng sau nữa</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">확정 후 상태 변경</span><span class="vi">Đổi trạng thái sau khi chốt</span></span></td><td><span class="i18n"><span class="ko">같은 trlog_id 의 상태는 불변. 단 정산 3개월 이상 머천트는 310 된 실적이 정산 달에 <b>다른 trlog_id 로 210 재생성</b> — 실제 취소가 아닐 수 있음</span><span class="vi">Trạng thái của cùng một trlog_id là không đổi. Nhưng với merchant quyết toán từ 3 tháng trở lên, doanh số đã 310 sẽ được <b>tạo lại thành 210 với trlog_id khác</b> vào tháng quyết toán — có thể không phải hủy thật</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">커미션 0</span><span class="vi">Hoa hồng 0</span></span></td><td class="new"><span class="i18n"><span class="ko">commission &lt;= 0 은 적립 제외 · 후속 확정 실적만 적립 (무통장입금 등은 0 으로 전송 후 정상 금액 재전송)</span><span class="vi">commission &lt;= 0 loại khỏi tích lũy · chỉ tích lũy doanh số đã chốt gửi sau (chuyển khoản không sổ v.v. gửi 0 rồi gửi lại số tiền đúng)</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">중복 방어</span><span class="vi">Chống trùng lặp</span></span></td><td class="new"><span class="i18n"><span class="ko">동일 주문에 리워드 API 복수 호출 가능 · trlog_id 기준 중복 방어 필수</span><span class="vi">Reward API có thể gọi nhiều lần cho cùng một đơn · bắt buộc chống trùng theo trlog_id</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">호출 제한</span><span class="vi">Giới hạn gọi API</span></span></td><td class="new"><span class="i18n"><span class="ko">15분에 1회 권장 · 과다 호출 시 사전 안내 없이 차단</span><span class="vi">Khuyến nghị 1 lần/15 phút · gọi quá nhiều sẽ bị chặn không báo trước</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">조회 기준 일자</span><span class="vi">Ngày căn cứ tra cứu</span></span></td><td class="new"><span class="i18n"><span class="ko">실적 발생 기준일자 (yyyymmdd) · 정산·취소 완료 시점 조회 불가 · create_time_stamp 는 DB 생성일로 발생일과 무관</span><span class="vi">Ngày phát sinh doanh số (yyyymmdd) · không tra cứu được theo thời điểm hoàn tất quyết toán·hủy · create_time_stamp là ngày tạo trong DB, không liên quan ngày phát sinh</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">환수</span><span class="vi">Thu hồi</span></span></td><td class="new"><span class="i18n"><span class="ko">없음 · 대기 랜덤티켓만 소멸</span><span class="vi">Không có · chỉ vé ngẫu nhiên đang chờ tiêu hủy</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">카카오 연동</span><span class="vi">Liên kết Kakao</span></span></td><td class="new"><span class="i18n"><span class="ko">무관 · 연동 · 미연동 분기 없음</span><span class="vi">Không liên quan · không có nhánh liên kết · chưa liên kết</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">회원 안내</span><span class="vi">Thông báo hội viên</span></span></td><td class="new"><span class="i18n"><span class="ko">「최대 2개월」</span><span class="vi">「Tối đa 2 tháng」</span></span></td></tr>
 <tr><td><span class="i18n"><span class="ko">전환 대기일 수</span><span class="vi">Số ngày chờ chuyển đổi</span></span></td><td class="old"><span class="i18n"><span class="ko"><s>제휴몰별 설정 · 기본 30일</s> — 2026-09-22 폐기</span><span class="vi"><s>Thiết lập theo từng sàn · mặc định 30 ngày</s> — bãi bỏ 22/09/2026</span></span></td></tr>
 </table></div>
-<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">조회 금지 기간 — 취소 상태로 조회됨</span><span class="vi">Thời gian cấm tra cứu — hiển thị thành trạng thái hủy</span></span></span><span class="i18n"><span class="ko">익월 21일 ~ 익익월 5일은 정산 진행 기간. 확정 실적도 취소 상태로 조회됨.
-예) 8월 구매 건 → 9/21 ~ 10/5 조회 금지 · 10/6 이후 조회
-<b>해당 기간 조회 결과로 환수 처리 금지.</b></span><span class="vi">Từ ngày 21 tháng sau đến ngày 5 tháng sau nữa là kỳ đối soát. Doanh số đã chốt cũng hiển thị ở trạng thái hủy.
-VD) đơn mua tháng 8 → cấm tra cứu 21/9 ~ 5/10 · tra cứu sau 6/10
+<div class="warn hide"><span class="wt"><span class="i18n"><span class="ko">조회 금지 기간 — 취소 상태로 조회됨</span><span class="vi">Thời gian cấm tra cứu — hiển thị thành trạng thái hủy</span></span></span><span class="i18n"><span class="ko">익월 20일 ~ 익익월 5일은 정산 진행 기간. 확정 실적도 취소 상태로 조회됨.
+예) 8월 구매 건 → 9/20 ~ 10/5 조회 금지 · 10/6 이후 조회
+<b>해당 기간 조회 결과로 환수 처리 금지.</b></span><span class="vi">Từ ngày 20 tháng sau đến ngày 5 tháng sau nữa là kỳ đối soát. Doanh số đã chốt cũng hiển thị ở trạng thái hủy.
+VD) đơn mua tháng 8 → cấm tra cứu 20/9 ~ 5/10 · tra cứu sau 6/10
 <b>Cấm xử lý thu hồi dựa trên kết quả tra cứu trong thời gian này.</b></span></span></div>
 
 <h3 style="font-size:13px;color:var(--pp-d);margin:18px 0 2px"><span class="i18n"><span class="ko">주문 매칭 방식</span><span class="vi">Cách đối chiếu đơn hàng</span></span></h3>
 <div class="tblwrap"><table class="tbl">
 <tr><th><span class="i18n"><span class="ko">방식</span><span class="vi">Cách thức</span></span></th><th><span class="i18n"><span class="ko">사용</span><span class="vi">Sử dụng</span></span></th><th><span class="i18n"><span class="ko">근거</span><span class="vi">Căn cứ</span></span></th></tr>
 <tr><td>trlog_id</td><td class="old"><span class="i18n"><span class="ko">금지</span><span class="vi">Cấm</span></span></td><td><span class="i18n"><span class="ko">머천트 정산 방식에 따라 개수 상이 — 확정 건만 남기는 방식 1개 · 전체 취소 후 재생성 방식 2개</span><span class="vi">Số lượng khác nhau tùy cách đối soát của merchant — cách chỉ giữ đơn đã chốt: 1 · cách hủy toàn bộ rồi tạo lại: 2</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">주문번호</span><span class="vi">Số đơn hàng</span></span></td><td class="old"><span class="i18n"><span class="ko">금지</span><span class="vi">Cấm</span></span></td><td><span class="i18n"><span class="ko">한 주문에 복수 주문번호로 상품코드를 달리하여 전송하는 머천트 존재</span><span class="vi">Có merchant gửi một đơn với nhiều số đơn hàng và mã sản phẩm khác nhau</span></span></td></tr>
-<tr><td>uid</td><td class="new"><span class="i18n"><span class="ko">사용</span><span class="vi">Sử dụng</span></span></td><td><span class="i18n"><span class="ko">링크프라이스 권고 · 개별 주문 건 단위 매칭 불필요</span><span class="vi">Khuyến nghị của LinkPrice · không cần đối chiếu theo từng đơn</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">주문번호 단독</span><span class="vi">Chỉ số đơn hàng</span></span></td><td class="old"><span class="i18n"><span class="ko">금지</span><span class="vi">Cấm</span></span></td><td><span class="i18n"><span class="ko">한 주문에 복수 주문번호로 상품코드를 달리하여 전송하는 머천트 존재. 단독 매칭만 금지이며 아래 세 값 조합의 구성요소로는 사용</span><span class="vi">Có merchant gửi một đơn với nhiều số đơn hàng và mã sản phẩm khác nhau. Chỉ cấm đối chiếu đơn lẻ, vẫn dùng làm thành phần của tổ hợp ba giá trị bên dưới</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">세 값 조합</span><span class="vi">Tổ hợp ba giá trị</span></span></td><td class="new"><span class="i18n"><span class="ko">사용</span><span class="vi">Sử dụng</span></span></td><td><span class="i18n"><span class="ko">링크프라이스 공식 FAQ 권고 — 실적 추적 시 변하지 않는 값. 리워드 API <code>merchant_id + order_code + affiliate_user_id</code> · 실적조회 API <code>m_id + o_cd + user_id</code></span><span class="vi">Khuyến nghị của FAQ chính thức LinkPrice — giá trị không đổi khi theo dõi doanh số. Reward API <code>merchant_id + order_code + affiliate_user_id</code> · API tra cứu <code>m_id + o_cd + user_id</code></span></span></td></tr>
 </table></div>
 <div class="note-box"><span class="i18n"><span class="ko"><b>실적 발생일자 변경 대응</b><br>
 재생성 시 실적 발생일자 변경 가능. 월 단위 조회 시 주문번호로 이전 월까지 조회하여 매칭.<br>
@@ -151,7 +160,7 @@ Kiểm tra bằng các giá trị when_trans · trans_reposition · commission_p
 <h2 class="grp"><span class="i18n"><span class="ko">5. 예시</span><span class="vi">5. Ví dụ</span></span></h2>
 <div class="tblwrap"><table class="tbl">
 <tr><th>#</th><th><span class="i18n"><span class="ko">구분</span><span class="vi">Phân loại</span></span></th><th><span class="i18n"><span class="ko">경과</span><span class="vi">Diễn biến</span></span></th><th><span class="i18n"><span class="ko">결과</span><span class="vi">Kết quả</span></span></th></tr>
-<tr><td>1</td><td><span class="i18n"><span class="ko">링크프라이스<br>정상 확정</span><span class="vi">LinkPrice<br>chốt bình thường</span></span></td><td><span class="i18n"><span class="ko">8/01 &nbsp;29,430원 구매 → 랜덤 티켓 1장 · 지급 대기<br>9/21~10/05 &nbsp;정산 기간 · 조회 금지<br>10/06 &nbsp;status=210 조회됨</span><span class="vi">01/08 &nbsp;Mua 29.430₩ → 1 vé ngẫu nhiên · chờ cấp<br>21/09~05/10 &nbsp;kỳ đối soát · cấm tra cứu<br>06/10 &nbsp;tra cứu được status=210</span></span></td><td class="new"><span class="i18n"><span class="ko">브론즈 5장 전환 · 지급 완료</span><span class="vi">Chuyển đổi 5 Bronze · đã cấp</span></span></td></tr>
+<tr><td>1</td><td><span class="i18n"><span class="ko">링크프라이스<br>정상 확정</span><span class="vi">LinkPrice<br>chốt bình thường</span></span></td><td><span class="i18n"><span class="ko">8/01 &nbsp;29,430원 구매 → 랜덤 티켓 1장 · 지급 대기<br>9/20~10/05 &nbsp;정산 기간 · 조회 금지<br>10/06 &nbsp;status=210 조회됨</span><span class="vi">01/08 &nbsp;Mua 29.430₩ → 1 vé ngẫu nhiên · chờ cấp<br>21/09~05/10 &nbsp;kỳ đối soát · cấm tra cứu<br>06/10 &nbsp;tra cứu được status=210</span></span></td><td class="new"><span class="i18n"><span class="ko">브론즈 5장 전환 · 지급 완료</span><span class="vi">Chuyển đổi 5 Bronze · đã cấp</span></span></td></tr>
 <tr><td>2</td><td><span class="i18n"><span class="ko">링크프라이스<br>확정 전 취소</span><span class="vi">LinkPrice<br>hủy trước khi chốt</span></span></td><td><span class="i18n"><span class="ko">8/01 &nbsp;29,430원 구매 → 랜덤 티켓 1장 · 지급 대기<br>10/06 &nbsp;status=210 조회 대상 없음</span><span class="vi">01/08 &nbsp;Mua 29.430₩ → 1 vé ngẫu nhiên · chờ cấp<br>06/10 &nbsp;không có đối tượng status=210</span></span></td><td class="new"><span class="i18n"><span class="ko">미전환 환수<br>회수 대상 없음 (등급 전환 전)</span><span class="vi">Thu hồi khi chưa chuyển đổi<br>Không có đối tượng thu hồi (trước chuyển đổi hạng)</span></span></td></tr>
 <tr><td>3</td><td><span class="i18n"><span class="ko">링크프라이스<br>부분 취소 후 확정</span><span class="vi">LinkPrice<br>hủy một phần rồi chốt</span></span></td><td><span class="i18n"><span class="ko">8/01 &nbsp;3건 묶음 70,000원 구매 → 랜덤 티켓 1장<br>8/10 &nbsp;1건 22,320원 취소 (확정 전 · 실적 제외)<br>10/06 &nbsp;status=210 조회액 47,680원</span><span class="vi">01/08 &nbsp;Mua gộp 3 món 70.000₩ → 1 vé ngẫu nhiên<br>10/08 &nbsp;hủy 1 món 22.320₩ (trước khi chốt · loại khỏi doanh số)<br>06/10 &nbsp;số tiền tra cứu status=210 là 47.680₩</span></span></td><td class="new"><span class="i18n"><span class="ko">브론즈 9장 전환<br>확정액 기준 전환이므로 환수 절차 불필요</span><span class="vi">Chuyển đổi 9 Bronze<br>Chuyển đổi theo số tiền đã chốt nên không cần thủ tục thu hồi</span></span></td></tr>
 </table></div>
@@ -160,12 +169,12 @@ Kiểm tra bằng các giá trị when_trans · trans_reposition · commission_p
 <div class="tblwrap"><table class="tbl">
 <tr><th><span class="i18n"><span class="ko">제휴몰</span><span class="vi">Sàn liên kết</span></span></th><th><span class="i18n"><span class="ko">상태</span><span class="vi">Trạng thái</span></span></th><th><span class="i18n"><span class="ko">의미</span><span class="vi">Ý nghĩa</span></span></th></tr>
 <tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td class="old">100 PENDING</td><td><span class="i18n"><span class="ko">주문 직후</span><span class="vi">Ngay sau khi đặt hàng</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td class="old">200 SETTLING</td><td><span class="i18n"><span class="ko">대사 기간 중</span><span class="vi">Đang trong kỳ đối chiếu</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td class="new">210 CONFIRMED</td><td class="new"><span class="i18n"><span class="ko">결제 확인 · 마감 — 지급 대상</span><span class="vi">Xác nhận thanh toán · đã chốt — đối tượng cấp vé</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td class="old">300 CANCEL_REQUESTED</td><td><span class="i18n"><span class="ko">취소 요청 · 취소 대기</span><span class="vi">Yêu cầu hủy · chờ hủy</span></span></td></tr>
-<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td class="old">310 CANCELLED</td><td><span class="i18n"><span class="ko">취소 완료</span><span class="vi">Đã hủy xong</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td class="old">200 SETTLING</td><td><span class="i18n"><span class="ko">정산 대기 · 정산 과정 내부 관리 상태로 <b>구매 확정 아님</b></span><span class="vi">Chờ quyết toán · trạng thái quản lý nội bộ trong quá trình quyết toán, <b>không phải đã xác nhận mua</b></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td class="new">210 CONFIRMED</td><td class="new"><span class="i18n"><span class="ko">정산 완료 · 커미션 지급 확정 — 지급 대상. 정산 완료 이후 상태 불변</span><span class="vi">Quyết toán xong · đã chốt chi trả hoa hồng — đối tượng cấp vé. Sau khi quyết toán xong trạng thái không đổi</span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td class="old">300 CANCEL_REQUESTED</td><td><span class="i18n"><span class="ko">취소 대기 · 정산 과정 내부 관리 상태로 <b>취소 확정 아님</b></span><span class="vi">Chờ hủy · trạng thái quản lý nội bộ trong quá trình quyết toán, <b>không phải đã xác nhận hủy</b></span></span></td></tr>
+<tr><td><span class="i18n"><span class="ko">링크프라이스</span><span class="vi">LinkPrice</span></span></td><td class="old">310 CANCELLED</td><td><span class="i18n"><span class="ko">취소 확정 · 정산 완료 이후 상태 불변. <b>정산 3개월 이상 머천트는 실제 취소가 아닐 수 있음</b> — 정산 달에 다른 trlog_id 로 210 재생성</span><span class="vi">Đã chốt hủy · sau khi quyết toán xong trạng thái không đổi. <b>Với merchant quyết toán từ 3 tháng trở lên có thể không phải hủy thật</b> — tạo lại thành 210 với trlog_id khác vào tháng quyết toán</span></span></td></tr>
 </table></div>
-<div class="note-box"><span class="i18n"><span class="ko">매월 6일 확정 이후 status 변경 없음. 210 → 310, 310 → 210 모두 미발생. 재생성은 확정 전 정산 과정에서만 발생.</span><span class="vi">Sau khi chốt ngày 6 hằng tháng thì status không thay đổi. 210 → 310 và 310 → 210 đều không xảy ra. Việc tạo lại chỉ phát sinh trong quá trình đối soát trước khi chốt.</span></span></div>
+<div class="note-box"><span class="i18n"><span class="ko">같은 trlog_id 의 status 는 정산 완료 이후 변경되지 않습니다. 다만 정산까지 3개월 이상 걸리는 머천트는 취소완료(310) 된 실적이 정산 달에 <b>다른 trlog_id 의 확정실적(210)으로 재생성</b>되므로 310 을 곧바로 미지급 확정으로 처리하면 안 됩니다.<br>육스(yoox) 예 — 2025-09-26 구매 → 2025-11-06 조회 시 취소완료(310) → 2025-12-06 조회 시 20251001 일자 확정실적(210) 확인. 매월 6일에 전전월 실적을 조회하면 전전월보다 오래된 실적도 확인 가능하도록 운영됩니다.</span><span class="vi">Sau khi chốt ngày 6 hằng tháng thì status không thay đổi. 210 → 310 và 310 → 210 đều không xảy ra. Việc tạo lại chỉ phát sinh trong quá trình đối soát trước khi chốt.</span></span></div>
 
 <h2 class="grp"><span class="i18n"><span class="ko">8. 앱 화면 표시</span><span class="vi">8. Hiển thị màn hình app</span></span></h2>
 <div class="tblwrap"><table class="tbl">
@@ -267,6 +276,182 @@ Vị trí: app 「Của tôi → Vé &amp; Điểm của tôi」 → Lịch sử
 <tr><td><span class="i18n"><span class="ko">CMS 상태 칸 화면</span><span class="vi">Màn hình cột trạng thái CMS</span></span></td><td><a href="/devqa/revenue-fee-guide-20260903.html"><span class="i18n"><span class="ko">제휴 수수료 매출 개발 가이드 ↗</span><span class="vi">Hướng dẫn phát triển Doanh thu hoa hồng liên kết ↗</span></span></a></td></tr>
 </table></div>
 
+
+<h2 class="grp"><span class="i18n"><span class="ko">참고 2 — 링크프라이스 공식 FAQ 원문</span><span class="vi">Tham khảo 2 — Nguyên văn FAQ chính thức LinkPrice</span></span></h2>
+<div class="srcbox"><div class="srcmeta"><span class="i18n"><span class="ko">출처 — 링크프라이스 공식 문서 「Affiliate Setup 자주묻는 질문 (FAQ)」 · <a href="https://github.com/linkprice/AffiliateSetup/blob/master/docs/%EC%9E%90%EC%A3%BC%EB%AC%BB%EB%8A%94_%EC%A7%88%EB%AC%B8.md" target="_blank" rel="noopener">GitHub · linkprice/AffiliateSetup ↗</a> · 요약·편집 없이 전문 그대로.</span><span class="vi">Nguồn — Tài liệu chính thức LinkPrice 「Affiliate Setup 자주묻는 질문 (FAQ)」 · <a href="https://github.com/linkprice/AffiliateSetup/blob/master/docs/%EC%9E%90%EC%A3%BC%EB%AC%BB%EB%8A%94_%EC%A7%88%EB%AC%B8.md" target="_blank" rel="noopener">GitHub · linkprice/AffiliateSetup ↗</a> · nguyên văn, không tóm tắt·chỉnh sửa.</span></span></div>
+<pre># **Affiliate Setup 자주묻는 질문 (FAQ)**
+
+## 운영 및 테스트 참고 사항
+
+### IP 정보
+
+* 리워드 API (아웃바운드 IP)
+  * 13.125.179.218/32
+  * 13.124.188.166/32
+* 실적조회 API, 머천트 상세정보 API 등 링크프라이스 제공 API (인바운드 IP)
+  * AWS 환경에서 동적으로 운영되고 있어 특정한 고정  IP를 지정해드리기 어렵습니다.
+  * 별도 화이트리스트를 운영하는 타 매체의 경우 도메인을 기준으로 화이트 리스트에 등록하여 이용하고 있습니다.
+
+### 구매 테스트
+
+https://click.linkprice.com/click.php?m=clickbuy&amp;a=A100000131&amp;l=0000&amp;l_cd1=B&amp;l_cd2=0
+
+* 위 링크를 클릭하여 구매 테스트 진행 시 리워드 API 전송 및 실적 조회 API에서 조회 가능합니다.
+* a 파라미터의 A코드를 변경 하여 사용 가능하며, u_id 파라미터 추가하여 u_id 관리 가능합니다.
+* 발생한 실적의 경우 매월 2일 전월자 테스트 실적에 한해 취소완료 (310) 처리 됩니다.
+
+### API 더미 데이터 테스트
+
+* 발생한 실적이 없더라도 리워드 API와 실적조회 API 테스트 데이터를 받아서 테스트 해보실 수 있습니다.
+* 리워드 API는 `AffiliateCenter(https://ac.linkprice.net) &gt; 어필리에이트 &gt; 툴박스 &gt; 리워드 API` 메뉴에서 승인 후 테스트 버튼으로 진행이 가능합니다.
+* 실적조회 API는 `test` 파라미터를 `Y`로 추가하여 테스트 하실 수 있으며 `test_uid` 파라미터에 임의 값을 추가하시면 `user_id` 항목으로 응답됩니다.
+
+## API 데이터 매핑 참고
+### 광고주 리스트 조회 API와 AC 머천트 상세정보 데이터
+![merchant_api_ac_merchant_info_mapping.png](..%2Fasset%2Fmerchant_api_ac_merchant_info_mapping.png)
+
+### 실적 조회 API와 리워드 API 간 동일/상이 데이터
+
+|   실적조회 API    |      리워드 API      | 비고                         |
+| :---------------: | :------------------: | :--------------------------- |
+|     trlog_id      |       trlog_id       |                              |
+|       m_id        |     merchant_id      |                              |
+|       o_cd        |      order_code      |                              |
+|       p_cd        |     product_code     |                              |
+|       p_nm        |     product_name     |                              |
+|      it_cnt       |      item_count      |                              |
+|      user_id      |  affiliate_user_id   |                              |
+|      status       |          -           | 실적조회 API에서만 확인 가능 |
+|       c_cd        |    category_code     |                              |
+| create_time_stamp |          -           | 실적조회 API에서만 확인 가능 |
+|  applied_pgm_id   |          -           | 실적조회 API에서만 확인 가능 |
+|     yyyymmdd      |         day          |                              |
+|      hhmisss      |         time         |                              |
+|   trans_comment   |          -           | 실적조회 API에서만 확인 가능 |
+|       sales       |        price         |                              |
+|    commission     |      commision       |                              |
+|     pgm_name      |          -           | 실적조회 API에서만 확인 가능 |
+|       is_pc       |          -           | 실적조회 API에서만 확인 가능 |
+|     pur_rate      |   base_commission    |                              |
+|         -         | incentive_commission | 리워드 API에서만 확인 가능   |
+|         -         |     affiliate_id     | 리워드 API에서만 확인 가능   |
+
+## 자주 묻는 질문
+### Q. 구매/취소 확정 처리 시점 문의
+* 링크프라이스의 정산은 실적 발생월의 익월 20일부터 익익월 5일까지 진행됩니다.
+* 확정된 실적은 매월 6일에 전전월 실적을 조회하여 확인하실 수 있습니다. 
+* 정산까지 3개월 이상 걸리는 머천트의 실적은 발생월의 익익월 정산에서 취소된 후 정산에 해당하는 달에 확정실적으로 생성됩니다.    
+예) `육스(yoox)` 머천트는 구매월 기준 정산까지 3개월이 걸립니다.     
+2025년 9월 26일 구매 시 `20250926` 실적이 생성되며 2025년 11월 6일에 해당 실적을 조회하면 `취소완료(310)` 실적으로 표시됩니다. 이후 2025년 12월 6일 조회시 `20251001` 일자로 생성된 `확정실적(210)`을 확인하실 수 있습니다.    
+위 예에서 `20250926` 실적이 `20251001` 실적으로 생성된 이유는 `육스(yoox)` 머천트 컨디션입니다. 다만 정산까지 3개월 이상 걸리는 머천트 대부분이 확정실적을 정산이 끝난 달의 전전월에 포함되도록 생성하여, 매월 6일에 전전월 실적만 조회하면 전전월보다 오래된 실적도 확인할 수 있도록 진행되고 있습니다.
+
+### Q.  API 호출 제한 문의
+* 별도의 호출 제한은 존재하지 않으나 월별 조회 등 시스템 부하가 발생할 수 있어 내부적으로는 15분에 1회 가량 호출하는 것을 권장하고 있습니다.
+* 사전 협의 없이 자주 호출하여 시스템 부하 발생 시 별도 사전 안내 없이 해당 어필리에이트 코드 기준으로 API 호출이 금지 될 수 있으니 이용에 유의 바랍니다.
+
+### Q. 유니크 값 문의
+* `trlog_id`는 실적의 고유값입니다. 하지만 정산 컨디션이 `실시간 실적 전체 취소 후 구매 확정 실적 재생성`인 머천트일 경우, 리워드 API로 전달된 실적은 정산 시 `취소완료(310)` 상태로 처리되며, 이 후 생성되는 `확정실적(210)`의 `trlog_id` 값과 다르기 때문에 `trlog_id`로 추적이 불가합니다.
+* 실적 추적 시 변하지 않는 값은 리워드 API 기준으로 `merchant_id`, `order_code`, `affiliate_user_id`이며, 실적조회 API 기준으로는 `m_id`, `o_cd`, `user_id` 입니다.
+
+### Q. 응답 데이터 문의
+
+* `status`
+
+  * 100: 일반 상태. 실적이 발생하면 부여되는 상태입니다.
+
+  * 200: 정산 대기 상태. 내부적으로 정산 과정에서 관리되는 상태로 구매 확정인 상태가 아닙니다.    
+  
+  * 210: 정산 완료 상태. 실적의 커미션 지급이 확정된 상태이며 정산 완료 이후 상태가 변경되지 않습니다.
+
+  * 300: 취소 대기 상태. 내부적으로 정산 과정에서 관리되는 상태로 취소 확정된 상태가 아닙니다.
+
+  * 310: 취소 확정 상태. 실적의 취소가 확정된 상태이며 정산 완료 이후 상태가 변경되지 않습니다.   
+  ※ 정산까지 3개월 이상 걸리는 머천트는 `취소완료(310)` 된 실적이 정산에 해당하는 달에 `확정실적(210)`으로 생성되기 때문에 실제 취소가 아닐 수 있습니다.
+
+  * 실적발생일로부터 일부 머천트의 경우 매월 6일 이전 정산 기간 중에는 확정된 실적이 취소 상태로 조회될 수 있으니 연동 시 참고 바랍니다.
+
+* `create_time_stamp`
+
+  * 실적이 링크프라이스 데이터베이스에 생성된 일자로, 실제 실적 발생일과 무관합니다.
+  * 실제 실적 발생일은 `yyyymmdd`입니다.
+
+* `pur_rate`
+
+  * 적용된 머천트 프로그램의 건당 커미션 금액 또는 커미션 비율이며, 별도 프로모션에 의한 커미션 상향 값은 포함되지 않습니다.
+  * 실제 `sales` 대비 내부적으로 계산되어 지급되는 커미션은 `commission` 항목에서 확인 가능합니다.
+
+### Q. 파라미터 문의
+
+* 정산 완료, 취소 완료, 발생 실적 조회 시 조회 기준 일자는 실적 발생 기준일자입니다. 정산 완료, 취소 완료 시점에 대해서는 확인이 불가능합니다.
+
+### Q. 머천트별 실적 전송 방식
+
+* 머천트별 실적 전송 방식의 경우 [광고주 조회 API](https://github.com/linkprice/AffiliateSetup/blob/master/docs/광고주_조회_오픈_API_1.0.md#추가-정보-응답-샘플) 의 `추가 정보 응답 샘플` 항목의  `when_trans` 응답 데이터 확인 바랍니다.
+* 머천트별 정산 방식의 경우 [광고주 조회 API](https://github.com/linkprice/AffiliateSetup/blob/master/docs/광고주_조회_오픈_API_1.0.md#추가-정보-응답-샘플) 의 `추가 정보 응답 샘플` 항목의 `trans_reposition`, `commission_payment_standard` 응답 데이터 확인 바랍니다.
+
+### Q. 암호화된 회원번호(u_id)가 리워드 API로 정상 전달되는지 개발 단계에서 확인할 수 있나요?
+
+* 리워드 API는 별도의 개발/스테이징 환경을 제공하지 않습니다.
+* 정상적인 플로우(클릭 → 구매 → 실적 적재 → 리워드 API 전송)를 통해서만 확인 가능합니다.
+* 개발 단계에서는 다음 방법 중 하나로 검증할 수 있습니다.
+  - 링크프라이스 로그 확인 요청
+  - Affiliate Center에 리워드 API URL 등록 후 링크프라이스 측 테스트 전송 요청
+  - Postman 등 REST API 툴을 이용한 직접 호출 테스트
+
+### Q. 리워드 API 테스트 버튼으로 전달되는 데이터는 고정값인가요?
+
+* 네, 맞습니다.
+* Affiliate Center의 리워드 API 테스트 버튼은  
+  **항상 동일한 고정 샘플 데이터 1건만 전송**합니다.
+* 다양한 케이스(커미션, 상태값, 상품 정보 등)를 테스트해야 하는 경우  
+  Postman 등 외부 테스트 툴을 이용해야 합니다.
+
+### Q. 무통장입금 등 특정 결제 수단에서 커미션이 0으로 전달됩니다.
+
+* 일부 머천트는 실시간 실적 전송 시 커미션을 계산하지 않고 `0`으로 전달합니다.
+* 이후 배치 정산 시 동일 실적이 **정상 커미션으로 재전송**될 수 있습니다.
+* 따라서 다음과 같은 처리를 권장합니다.
+  - `commission &lt;= 0` 인 실적은 리워드 적립 대상에서 제외
+  - 후속 전송되는 확정 실적만 적립 처리
+
+### Q. 동일한 주문에 대해 리워드 API가 두 번 이상 호출될 수 있나요?
+
+* 네, 가능합니다.
+* 다음과 같은 경우 동일 실적이 여러 번 전달될 수 있습니다.
+  - 실시간 실적 + 배치 실적
+  - 커미션 미확정 → 확정 재전송
+  - 정산 정책에 따른 실적 재생성
+* 반드시 `trlog_id` 기준 중복 방어 로직을 구현하시기 바랍니다.
+
+### Q. 머천트의 실적은 왜 취소 후 확정 실적이 다시 생성되나요?
+
+* 일부 머천트는 정산 컨디션상  
+  **실시간 발생 실적을 전부 취소 처리(310)한 후**,  
+  정산이 완료되는 달에 **새로운 확정 실적(210)을 재생성**합니다.
+* 이 경우:
+  - 최초 실적과 확정 실적의 `trlog_id`는 서로 다를 수 있습니다.
+  - 실제 취소가 아님에도 취소 상태로 조회될 수 있습니다.
+* 실적 추적 시에는 다음 조합을 기준으로 매핑을 권장합니다.
+  - 리워드 API: `merchant_id + order_code + affiliate_user_id`
+  - 실적 조회 API: `m_id + o_cd + user_id`
+
+### Q. 리워드 API와 실적 조회 API 중 어떤 데이터를 기준으로 적립해야 하나요?
+
+* 리워드 적립은 **실적조회 API 수신 데이터 기준**으로 처리하시기 바랍니다.
+* 리워드 API는:
+  - 확정되지 않은 데이터
+  - 적립 예정내역을 회원에게 보여줄 때 사용
+  - 실적조회 API 데이터와 매칭 등 운영/정산 관리 목적의 보조 수단입니다.
+
+### Q. 머천트별 실적 전송 방식은 어디에서 확인할 수 있나요?
+
+* 머천트별 실적 전송 방식 및 정산 컨디션은  
+  **광고주 조회 API의 추가 정보 응답 데이터**를 통해 확인 가능합니다.
+* 참고 필드:
+  - `when_trans`
+  - `trans_reposition`
+  - `commission_payment_standard`
+</pre></div>
 <div class="foot"><span class="i18n"><span class="ko">PricePick · 개발 지시서 · 2026-09-03 (2026-09-04 개정) · 취소 처리 · 티켓 환수 · 개정 3 / 유지 4 / 미정 3</span><span class="vi">PricePick · Chỉ thị phát triển · 03/09/2026 (sửa đổi 04/09/2026) · Xử lý hủy đơn · Thu hồi vé · Sửa đổi 3 / Giữ nguyên 4 / Chưa chốt 3</span></span></div>
 </div>
 </body></html>

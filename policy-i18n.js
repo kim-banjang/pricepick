@@ -1,6 +1,13 @@
 
 (function(){
   var KO2VI={
+    "링크프라이스는 실적을 리워드 API로 수신하나 이는 확정 전 자료이며, 적립은 실적조회 API 수신 데이터를 기준으로 처리합니다(링크프라이스 공식 FAQ). 확정 전에는 환수가 불가하므로 확정 전 등급 티켓 지급 시 취소분이 전액 손실됩니다. 익익월 6일 이후 확정 건을 실적 추적 키 세 값 조합으로 대조해 전환하며, 익월 20일~익익월 5일은 확정 건도 취소로 조회되어 조회하지 않습니다. 종전 「제휴몰별 설정·기본 30일」은 폐기하되 조항은 남깁니다. 쿠팡은 종전대로입니다. 전문은":"LinkPrice có nhận doanh số qua Reward API nhưng đó là dữ liệu chưa chốt; việc tích lũy được xử lý căn cứ dữ liệu nhận từ API tra cứu doanh số (FAQ chính thức LinkPrice). Trước khi chốt không thể thu hồi nên nếu cấp vé hạng trước khi chốt thì toàn bộ phần bị hủy thành tổn thất. Các giao dịch đã chốt sau ngày 6 của tháng sau nữa được đối chiếu bằng tổ hợp ba giá trị khóa theo dõi rồi chuyển đổi; không tra cứu trong khoảng ngày 20 tháng sau ~ ngày 5 của tháng sau nữa vì giao dịch đã chốt cũng hiện trạng thái hủy. Điều khoản 「thiết lập theo từng sàn·mặc định 30 ngày」 cũ bị bãi bỏ nhưng vẫn giữ lại. Coupang như cũ. Toàn văn tại",
+
+    /* 링크프라이스 공식 FAQ 기준 정정 (2026-09-22) */
+    "링크프라이스는 실적을 리워드 API로 수신하나 이는 확정 전 자료이며, 적립은 실적조회 API 수신 데이터를 기준으로 처리합니다(링크프라이스 공식 FAQ). 확정 시점 전에는 환수가 불가하므로 확정 전 지급 시 취소분이 전액 손실됩니다.":"LinkPrice có nhận doanh số qua Reward API nhưng đó là dữ liệu chưa chốt; việc tích lũy được xử lý căn cứ dữ liệu nhận từ API tra cứu doanh số (FAQ chính thức LinkPrice). Trước thời điểm chốt không thể thu hồi nên nếu cấp trước khi chốt thì toàn bộ phần bị hủy thành tổn thất.",
+    "실적 월의 익익월 6일 이후 확정 건을 실적 추적 키 세 값 조합(실적조회 API":"Các giao dịch đã chốt sau ngày 6 của tháng sau nữa tính từ tháng thực hiện sẽ được đối chiếu bằng tổ hợp ba giá trị khóa theo dõi doanh số (API tra cứu",
+    ")으로 대조해 합산한 뒤 등급 티켓으로 전환합니다.":") rồi cộng gộp và chuyển thành vé hạng.",
+
     /* 원문 표현 정정 (2026-09-22) */
     "링크프라이스는 취소 포스트백이 없어 조회 주소를 매일 돌려 확인하며(정책서 「티켓·적립」 6번 카드 2026-08-27 · 정책 13), 취소를 밀어 받지 못해 환수가 불가하므로 확정 전 지급 시 취소분이 전액 손실됩니다.":"LinkPrice không có postback hủy nên phải chạy URL tra cứu mỗi ngày để kiểm tra (Tài liệu chính sách 「Vé·Tích lũy」 thẻ 6, 27/08/2026 · Chính sách 13); do không được đẩy thông tin hủy nên không thể thu hồi, vì vậy nếu cấp trước khi chốt thì toàn bộ phần bị hủy thành tổn thất.",
     "링크프라이스는 확정 이후 상태가 바뀌지 않고 취소 포스트백이 없어 조회 주소를 매일 돌려 확인하며(정책서 「티켓·적립」 6번 카드 2026-08-27 · 정책 13), 환수가 불가하므로 확정 전 등급 티켓 지급 시 취소분이 전액 손실됩니다.":"LinkPrice sau khi chốt thì trạng thái không đổi và không có postback hủy nên phải chạy URL tra cứu mỗi ngày để kiểm tra (Tài liệu chính sách 「Vé·Tích lũy」 thẻ 6, 27/08/2026 · Chính sách 13); do không thể thu hồi nên nếu cấp vé hạng trước khi chốt thì toàn bộ phần bị hủy thành tổn thất.",
