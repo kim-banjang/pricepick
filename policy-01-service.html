@@ -253,6 +253,25 @@ body.policy-sub .panel{display:block}
 html[lang="ko"] .cp-scope .vi{display:none}
 html[lang="vi"] .cp-scope .ko{display:none}
 html[lang="vi"] .cp-scope .vi{display:inline}
+.mtblwrap{overflow-x:auto;margin-top:10px}
+.mtbl{width:100%;border-collapse:collapse;font-size:12.2px;background:#fff}
+.mtbl th,.mtbl td{border:1px solid #e9e7f2;padding:6px 8px;text-align:left;vertical-align:top}
+.mtbl th{background:#efe9fd;color:#5b39b8;font-weight:800;font-size:11.2px;white-space:nowrap}
+.mtbl td.mn{white-space:nowrap;font-weight:700}
+.mtbl td.mn .mid{font:10.5px ui-monospace,SFMono-Regular,Menlo,monospace;color:#8b93a7;font-weight:400;margin-top:2px}
+.mtbl td.c{text-align:center;width:52px;font-weight:800}
+.mtbl td.c.ok .yv{color:#1f7a5a}
+.mtbl td.c.no{background:#F7ECEC}
+.mtbl td.c.no .nv{color:#9A4A4A}
+.mtbl td.c.dash{color:#b9bccb;font-weight:400}
+.mtbl tr.appno td.mn{box-shadow:inset 3px 0 0 #9A4A4A}
+.mtbl tr.appok td.mn{box-shadow:inset 3px 0 0 #1f7a5a}
+.mtbl tr.cpg td.mn{box-shadow:inset 3px 0 0 #b9bccb}
+.mtbl .chk{display:inline-block;font-size:9.6px;font-weight:800;color:#95690c;background:#fffaef;border:1px solid #eddcb4;border-radius:999px;padding:1px 6px;white-space:nowrap;margin-top:3px}
+.msnap{font-size:11.5px;color:#8b93a7;margin-top:8px}
+.mrule{font-size:12.6px;color:#3f4658;margin:6px 0 0 17px}
+.mrule li{margin-top:3px}
+.mfn{font-size:11.5px;color:#8b93a7;margin-top:7px}
 </style>
 </head>
 <body class="policy-sub">
@@ -282,6 +301,28 @@ html[lang="vi"] .cp-scope .vi{display:inline}
 <span class="src">출처 PolicySpec 1 / FunctionalSpec(구매 브릿지)</span>
     </div>
     <div class="card">
+      <h4><span class="n">3</span>제휴몰별 지급 · 전환 시점 · 실적 인정 범위 <span class="badge-new">신설</span></h4>
+<ul class="mrule"><li>랜덤티켓 지급 시점은 제휴몰마다 다르며 링크프라이스 광고주 조회 API when_trans 값을 따른다. 실제 값은 CMS 「티켓 적립 설정」에서 확인한다.</li><li>등급티켓 전환 시점은 전 제휴몰 익익월 6일 확정 후로 동일하다. 다만 기준이 되는 달은 제휴몰마다 다르다.</li><li>실적 인정 범위는 제휴몰마다 다르며 mobile_yn · app_android_yn · app_ios_yn 값을 따른다.</li></ul>
+<div class="msnap">2026-09-22 기준 스냅샷 · 정본은 CMS 「티켓 적립 설정」</div>
+<div class="mtblwrap"><table class="mtbl">
+<tr><th>제휴몰</th><th>랜덤티켓 지급 시점</th><th>등급티켓 전환 시점</th><th>PC</th><th>모바일웹</th><th>APP(AOS)</th><th>APP(iOS)</th></tr>
+<tr class="appok"><td class="mn">G마켓<div class="mid">gmarket</div></td><td>실시간 실적 전송</td><td>구매 월 기준 익익월 6일 확정 후</td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td></tr>
+<tr class="appok"><td class="mn">이마트인터넷쇼핑몰<div class="mid">emart</div></td><td>구매 후 1일 이내 전송</td><td>배송 완료 월 기준 익익월 6일 확정 후</td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td></tr>
+<tr class="appok"><td class="mn">옥션<div class="mid">auction</div></td><td>구매일 다음날 구매액만 전송 (커미션 0원) 구매 확정일 다음날 구매액, 커미션 반영하여 재전송</td><td>구매 확정 월 기준 익익월 6일 확정 후</td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td></tr>
+<tr class="appno"><td class="mn">Hmall<div class="mid">hmall</div></td><td>실시간 실적 전송</td><td>구매 월 기준 익익월 6일 확정 후</td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span><br><span class="chk">확인 필요</span></td><td class="c no"><span class="nv">N</span></td></tr>
+<tr class="appno"><td class="mn">롯데온<div class="mid">lotteon</div></td><td>실시간 실적 전송</td><td>구매 확정 월 기준 익익월 6일 확정 후</td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c no"><span class="nv">N</span></td><td class="c no"><span class="nv">N</span></td></tr>
+<tr class="appno"><td class="mn">롯데홈쇼핑<div class="mid">woori</div></td><td>실시간 실적 전송</td><td>구매 월 기준 익익월 6일 확정 후</td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c no"><span class="nv">N</span></td><td class="c no"><span class="nv">N</span></td></tr>
+<tr class="appno"><td class="mn">11번가<div class="mid">11st</div></td><td>PC : 구매수, 구매액만 실적 전송, 구매 확정 시 커미션까지 재전송 모바일 : 구매 확정 시 전송 구매 확정을 하지 않을 경우 배송완료 기준 약 15일 이후 구매 확정</td><td>구매 확정 월 기준 익익월 6일 확정 후</td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c no"><span class="nv">N</span></td><td class="c no"><span class="nv">N</span></td></tr>
+<tr class="appno"><td class="mn">NS홈쇼핑<div class="mid">nsseshop</div></td><td>실시간 실적 전송</td><td>구매 월 기준 익익월 6일 확정 후</td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c no"><span class="nv">N</span></td><td class="c no"><span class="nv">N</span></td></tr>
+<tr class="appno"><td class="mn">GS SHOP<div class="mid">gseshop</div></td><td>실시간 실적 전송</td><td>구매 월 기준 익익월 6일 확정 후</td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c no"><span class="nv">N</span></td><td class="c no"><span class="nv">N</span></td></tr>
+<tr class="appno"><td class="mn">공영홈쇼핑<div class="mid">gongyoung</div></td><td>실시간 실적 전송</td><td>배송 완료 월 기준 익익월 6일 확정 후</td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c no"><span class="nv">N</span></td><td class="c no"><span class="nv">N</span></td></tr>
+<tr class="appok"><td class="mn">CJ더마켓<div class="mid">cjbrand</div></td><td>실시간 실적 전송</td><td>구매 월 기준 익익월 6일 확정 후</td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td><td class="c ok"><span class="yv">Y</span></td></tr>
+<tr class="cpg"><td class="mn">쿠팡<div class="mid">coupang</div></td><td>구매 포스트백 수신 즉시</td><td>카카오 연동 D+7 / 미연동 D+30</td><td class="c dash">—</td><td class="c dash">—</td><td class="c dash">—</td><td class="c dash">—</td></tr>
+</table></div>
+<div class="mfn">현대홈쇼핑 APP(AOS) — 링크프라이스 확인 대기.</div>
+<span class="src">출처 링크프라이스 광고주 조회 오픈 API(2026-09-22 수신) · CMS 「티켓 적립 설정」</span>
+    </div>
+    <div class="card">
       <h4><span class="n">+</span>정책서 편입 (2026-09-15)</h4>
 <table class="ptbl">
       <tr class="nt"><td class="rv" colspan="2">해외직구 제휴몰 — 누적 후 정산</td></tr>
@@ -294,6 +335,7 @@ html[lang="vi"] .cp-scope .vi{display:inline}
   
 <section class="phist"><h3>변경 이력</h3><table class="phist-t">
 <tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<tr><td class="hd">2026-09-22</td><td class="hi">제휴몰별 지급 · 전환 시점 · 실적 인정 범위 표 신설</td><td class="hb">링크프라이스 광고주 조회 오픈 API(2026-09-22 수신). 랜덤티켓 지급 시점은 when_trans, 실적 인정 범위는 mobile_yn · app_android_yn · app_ios_yn 값을 따릅니다. 등급티켓 전환 시점은 전 제휴몰 익익월 6일 확정 후로 동일하며 기준 달만 다릅니다. 값은 스냅샷이며 정본은 CMS 「티켓 적립 설정」입니다.</td></tr>
 <tr><td class="hd">2026-09-15</td><td class="hi">해외직구 제휴몰 정책서 편입</td><td class="hb">흩어진 정책 목록(devqa/policy-scatter-list.html) #14 항목을 이 페이지로 편입했습니다. 문장은 목록 원문 그대로이며 새로 정한 내용은 없습니다. 원본 문서는 남겨 두고 편입 표시만 달았습니다. 근거 — 앱 답변 Kelvin 2026-08-20 · 앱 QA 2026-08-14 · 김반장 확정(2026-09-15).</td></tr>
 <tr><td class="hd">2026-09-14</td><td class="hi">5천원 미만 구매 이벤트 티켓 지급 폐지 재확정</td><td class="hb">2026-09-03 취소 처리 지시서 9번에 이 규칙이 「미정」으로 다시 올라왔던 것을 바로잡습니다. 2026-08-13 폐지가 유효하며 미정 항목이 아닙니다. 지시서·답변서·기능명세서의 해당 자리에 폐지 표시를 걸었습니다. 근거 — 변경 이력 2026-08-13 항목 · 김반장 확정(2026-09-14).</td></tr>
 <tr><td class="hd">2026-08-27</td><td class="hi">주문 단위 적립 · 한도의 「1건」 · 링크프라이스 예외 · 「제휴사」 폐기</td><td class="hb">링크프라이스는 한 주문에 상품이 여럿이면 포스트백이 상품 수만큼 온다(uniq_id가 같다). 같은 uniq_id를 한 주문으로 묶어 <b>적립액을 한 번만 계산</b>하고 <b>거스름돈 버림도 한 번만</b> 일어나게 한다. 구매 적립 한도 일 5건 · 월 50건의 「1건」도 <b>주문 1건</b>이며 포스트백 건수가 아니다. 전환 대기일 수를 몰마다 정하는 것은 <b>링크프라이스만의 예외</b>이고 쿠팡은 연동 D+7 / 미연동 D+30 고정이다. 용어도 <b>「제휴사」를 쓰지 않고 링크프라이스 / 제휴몰로 가른다</b>. (김반장 확정)</td></tr>

@@ -1,6 +1,38 @@
 
 (function(){
   var KO2VI={
+    /* 정책 01 제휴몰 표 (2026-09-22) */
+    "실시간 실적 전송":"Gửi doanh số thời gian thực",
+    "구매 월 기준 익익월 6일 확정 후":"Sau khi chốt ngày 6 của tháng sau nữa, tính theo tháng mua hàng",
+    "이마트인터넷쇼핑몰":"Emart Internet Shopping Mall",
+    "구매 후 1일 이내 전송":"Gửi trong vòng 1 ngày sau khi mua",
+    "배송 완료 월 기준 익익월 6일 확정 후":"Sau khi chốt ngày 6 của tháng sau nữa, tính theo tháng hoàn tất giao hàng",
+    "구매일 다음날 구매액만 전송 (커미션 0원) 구매 확정일 다음날 구매액, 커미션 반영하여 재전송":"Ngày sau ngày mua chỉ gửi số tiền mua (hoa hồng 0đ). Ngày sau ngày xác nhận mua gửi lại kèm số tiền mua và hoa hồng",
+    "구매 확정 월 기준 익익월 6일 확정 후":"Sau khi chốt ngày 6 của tháng sau nữa, tính theo tháng xác nhận mua",
+    "롯데온":"Lotte ON",
+    "롯데홈쇼핑":"Lotte Home Shopping",
+    "PC : 구매수, 구매액만 실적 전송, 구매 확정 시 커미션까지 재전송 모바일 : 구매 확정 시 전송 구매 확정을 하지 않을 경우 배송완료 기준 약 15일 이후 구매 확정":"PC: chỉ gửi số lượt mua và số tiền mua; khi xác nhận mua thì gửi lại kèm hoa hồng. Di động: gửi khi xác nhận mua. Nếu không xác nhận mua thì sau khoảng 15 ngày kể từ khi hoàn tất giao hàng sẽ tự xác nhận",
+    "NS홈쇼핑":"NS Home Shopping",
+    "공영홈쇼핑":"Gongyoung Home Shopping",
+    "CJ더마켓":"CJ The Market",
+    "구매 포스트백 수신 즉시":"Ngay khi nhận postback mua hàng",
+    "제휴몰별 지급 · 전환 시점 · 실적 인정 범위":"Thời điểm cấp · chuyển đổi và phạm vi công nhận theo sàn",
+    "랜덤티켓 지급 시점은 제휴몰마다 다르며 링크프라이스 광고주 조회 API when_trans 값을 따른다. 실제 값은 CMS 「티켓 적립 설정」에서 확인한다.":"Thời điểm cấp vé ngẫu nhiên khác nhau theo từng sàn và theo giá trị when_trans của API tra cứu nhà quảng cáo LinkPrice. Giá trị thực tế kiểm tra tại CMS 「Thiết lập tích lũy vé」.",
+    "등급티켓 전환 시점은 전 제휴몰 익익월 6일 확정 후로 동일하다. 다만 기준이 되는 달은 제휴몰마다 다르다.":"Thời điểm chuyển đổi vé hạng giống nhau ở mọi sàn: sau khi chốt ngày 6 của tháng sau nữa. Tuy nhiên tháng làm căn cứ khác nhau theo từng sàn.",
+    "실적 인정 범위는 제휴몰마다 다르며 mobile_yn · app_android_yn · app_ios_yn 값을 따른다.":"Phạm vi công nhận doanh số khác nhau theo từng sàn và theo các giá trị mobile_yn · app_android_yn · app_ios_yn.",
+    "2026-09-22 기준 스냅샷 · 정본은 CMS 「티켓 적립 설정」":"Ảnh chụp theo ngày 22/09/2026 · bản chuẩn là CMS 「Thiết lập tích lũy vé」",
+    "제휴몰":"Sàn liên kết",
+    "랜덤티켓 지급 시점":"Thời điểm cấp vé ngẫu nhiên",
+    "등급티켓 전환 시점":"Thời điểm chuyển đổi vé hạng",
+    "모바일웹":"Web di động",
+    "현대홈쇼핑 APP(AOS) — 링크프라이스 확인 대기.":"Hmall APP(AOS) — chờ LinkPrice xác nhận.",
+    "출처 링크프라이스 광고주 조회 오픈 API(2026-09-22 수신) · CMS 「티켓 적립 설정」":"Nguồn API mở tra cứu nhà quảng cáo LinkPrice (nhận 22/09/2026) · CMS 「Thiết lập tích lũy vé」",
+    "링크프라이스 광고주 조회 오픈 API(2026-09-22 수신). 랜덤티켓 지급 시점은 when_trans, 실적 인정 범위는 mobile_yn · app_android_yn · app_ios_yn 값을 따릅니다. 등급티켓 전환 시점은 전 제휴몰 익익월 6일 확정 후로 동일하며 기준 달만 다릅니다. 값은 스냅샷이며 정본은 CMS 「티켓 적립 설정」입니다.":"API mở tra cứu nhà quảng cáo LinkPrice (nhận 22/09/2026). Thời điểm cấp vé ngẫu nhiên theo when_trans, phạm vi công nhận theo mobile_yn · app_android_yn · app_ios_yn. Thời điểm chuyển đổi vé hạng giống nhau ở mọi sàn là sau khi chốt ngày 6 của tháng sau nữa, chỉ khác tháng căn cứ. Giá trị là ảnh chụp, bản chuẩn là CMS 「Thiết lập tích lũy vé」.",
+
+    /* 정책 01 제휴몰 표 (2026-09-22) */
+    "제휴몰별 지급 · 전환 시점 · 실적 인정 범위는":"Thời điểm cấp · chuyển đổi và phạm vi công nhận theo từng sàn xem",
+    "제휴몰별 지급 · 전환 시점 · 실적 인정 범위 표 신설":"Bổ sung bảng thời điểm cấp · chuyển đổi · phạm vi công nhận theo sàn",
+
     "링크프라이스는 실적을 리워드 API로 수신하나 이는 확정 전 자료이며, 적립은 실적조회 API 수신 데이터를 기준으로 처리합니다(링크프라이스 공식 FAQ). 확정 전에는 환수가 불가하므로 확정 전 등급 티켓 지급 시 취소분이 전액 손실됩니다. 익익월 6일 이후 확정 건을 실적 추적 키 세 값 조합으로 대조해 전환하며, 익월 20일~익익월 5일은 확정 건도 취소로 조회되어 조회하지 않습니다. 종전 「제휴몰별 설정·기본 30일」은 폐기하되 조항은 남깁니다. 쿠팡은 종전대로입니다. 전문은":"LinkPrice có nhận doanh số qua Reward API nhưng đó là dữ liệu chưa chốt; việc tích lũy được xử lý căn cứ dữ liệu nhận từ API tra cứu doanh số (FAQ chính thức LinkPrice). Trước khi chốt không thể thu hồi nên nếu cấp vé hạng trước khi chốt thì toàn bộ phần bị hủy thành tổn thất. Các giao dịch đã chốt sau ngày 6 của tháng sau nữa được đối chiếu bằng tổ hợp ba giá trị khóa theo dõi rồi chuyển đổi; không tra cứu trong khoảng ngày 20 tháng sau ~ ngày 5 của tháng sau nữa vì giao dịch đã chốt cũng hiện trạng thái hủy. Điều khoản 「thiết lập theo từng sàn·mặc định 30 ngày」 cũ bị bãi bỏ nhưng vẫn giữ lại. Coupang như cũ. Toàn văn tại",
 
     /* 링크프라이스 공식 FAQ 기준 정정 (2026-09-22) */
