@@ -1,6 +1,12 @@
 
 (function(){
   var KO2VI={
+    /* 원문 표현 정정 (2026-09-22) */
+    "링크프라이스는 취소 포스트백이 없어 조회 주소를 매일 돌려 확인하며(정책서 「티켓·적립」 6번 카드 2026-08-27 · 정책 13), 취소를 밀어 받지 못해 환수가 불가하므로 확정 전 지급 시 취소분이 전액 손실됩니다.":"LinkPrice không có postback hủy nên phải chạy URL tra cứu mỗi ngày để kiểm tra (Tài liệu chính sách 「Vé·Tích lũy」 thẻ 6, 27/08/2026 · Chính sách 13); do không được đẩy thông tin hủy nên không thể thu hồi, vì vậy nếu cấp trước khi chốt thì toàn bộ phần bị hủy thành tổn thất.",
+    "링크프라이스는 확정 이후 상태가 바뀌지 않고 취소 포스트백이 없어 조회 주소를 매일 돌려 확인하며(정책서 「티켓·적립」 6번 카드 2026-08-27 · 정책 13), 환수가 불가하므로 확정 전 등급 티켓 지급 시 취소분이 전액 손실됩니다.":"LinkPrice sau khi chốt thì trạng thái không đổi và không có postback hủy nên phải chạy URL tra cứu mỗi ngày để kiểm tra (Tài liệu chính sách 「Vé·Tích lũy」 thẻ 6, 27/08/2026 · Chính sách 13); do không thể thu hồi nên nếu cấp vé hạng trước khi chốt thì toàn bộ phần bị hủy thành tổn thất.",
+    "이부장 링크프라이스 문의 회신(2026-09-22) · 김반장님 확정 — 링크프라이스는 확정 이후 상태가 바뀌지 않고 취소 포스트백이 없어 조회 주소를 매일 돌려 확인하며(정책서 「티켓·적립」 6번 카드 2026-08-27 ·":"Phản hồi hỏi đáp LinkPrice của Trưởng phòng Lee (22/09/2026) · Mr Mark chốt — LinkPrice sau khi chốt thì trạng thái không đổi và không có postback hủy nên phải chạy URL tra cứu mỗi ngày để kiểm tra (Tài liệu chính sách 「Vé·Tích lũy」 thẻ 6, 27/08/2026 ·",
+    "), 환수가 불가하므로 확정 전 지급 시 취소분이 전액 손실됩니다. 종전 「기본 30일」 조항은 폐기 표시 후 존치. 전문은":"); do không thể thu hồi nên nếu cấp trước khi chốt thì toàn bộ phần bị hủy thành tổn thất. Điều khoản 「mặc định 30 ngày」 cũ được giữ lại kèm dấu đã bãi bỏ. Toàn văn tại",
+
     /* 링크프라이스 연동 무관·취소 구조 (2026-09-22 보충) */
     "전환합니다 — 실적 월의 익익월 6일 이후 확정 건을 회원 단위로 합산해 등급 티켓으로 전환합니다. 확정되지 않은 건은 전환 대상에서 제외되며 해당 랜덤 티켓은 소멸합니다(별도 취소 절차·환수 없음). 링크프라이스 제휴몰은 카카오 연동 여부와 무관하며 연동·미연동 분기가 없습니다 — 연동 분기는 쿠팡에만 적용됩니다.":"sẽ chuyển đổi — cộng gộp theo từng hội viên các giao dịch đã chốt sau ngày 6 của tháng sau nữa tính từ tháng thực hiện để chuyển thành vé hạng. Giao dịch chưa chốt bị loại khỏi đối tượng chuyển đổi và vé ngẫu nhiên tương ứng tiêu hủy (không có thủ tục hủy riêng·không thu hồi). Sàn liên kết LinkPrice không phụ thuộc việc liên kết Kakao và không có nhánh liên kết·chưa liên kết — nhánh liên kết chỉ áp dụng cho Coupang.",
 
