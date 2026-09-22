@@ -62,8 +62,17 @@ h2.grp{font-size:13.5px;color:var(--pp-d);margin:24px 0 8px;padding-bottom:5px;b
 #langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
 #langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
 a{color:var(--pp-d);font-weight:700}
+#pp-deprecated{background:#F7ECEC;border-bottom:1px solid #EBD6D6;color:#7E3B3B;font:600 13px/1.5 -apple-system,BlinkMacSystemFont,"Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;padding:9px 16px;text-align:center;letter-spacing:-.1px;}
+#pp-deprecated a{color:#7E3B3B;text-decoration:underline;text-underline-offset:2px;}
+#pp-deprecated .vi{display:none;}
+#langsw:checked ~ #pp-deprecated .ko{display:none;}
+#langsw:checked ~ #pp-deprecated .vi{display:inline;}
 </style></head><body>
 <input type="checkbox" id="langsw">
+<div id="pp-deprecated" role="note">
+  <span class="ko">이 문서는 폐기되었습니다. 현행 기준은 <a href="https://pricepick-demo.vercel.app/cms/" target="_blank" rel="noopener">CMS 데모 「티켓 적립 설정」</a>입니다.</span>
+  <span class="vi">Tài liệu này đã bị bỏ. Tiêu chuẩn hiện hành là <a href="https://pricepick-demo.vercel.app/cms/" target="_blank" rel="noopener">「Thiết lập tích lũy vé」 trên Demo CMS</a>.</span>
+</div>
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
 <div style="max-width:1180px;margin:0 auto;padding:0 22px"><div class="kick">MERCHANT REFERENCE · 2026-09-22</div>
 <div class="htitle"><span class="i18n"><span class="ko">링크프라이스 직결 제휴몰 10곳 정리</span><span class="vi">Tổng hợp 10 sàn liên kết trực tiếp LinkPrice</span></span></div>
