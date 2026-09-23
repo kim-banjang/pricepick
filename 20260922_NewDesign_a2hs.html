@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>적립 안내 — 홈 화면 바로가기 추가</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  :root {
+    --fs-caption:13px; --fs-body:15px; --fs-label:16px; --fs-section:18px; --fs-title:22px; --fs-number:28px;
+    --main:#845EEE; --main-dark:#6C4AB6; --sub-1:#9B78FF; --sub-2:#C6AFFF; --sub-3:#E2D9FF; --sub-4:#F1EEFF;
+    --bg:#FAFAFA; --card:#FFFFFF; --text1:#1A1130; --text2:#5A5370; --text3:#9B93B0; --text4:#C4BED0;
+    --border:#EEEAF3; --bg2:#F6F4FB; --r:12px; --r-lg:16px; --r-sm:8px;
+  }
+  body { margin:0; background:#EDEBF6; font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif; }
+  .nd-wrap { display:flex; gap:56px; padding:56px; align-items:flex-start; overflow-x:auto; }
+  .nd-card { flex:none; }
+  .nd-badge { display:flex; align-items:center; gap:10px; margin:0 2px 16px; }
+  .nd-no { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px;
+    border-radius:8px; background:#845EEE; color:#fff; font-size:13px; font-weight:800; }
+  .nd-cap { font-size:15px; font-weight:700; color:#1A1130; }
+  .phone { width:390px; height:844px; background:var(--bg); border-radius:32px; overflow:hidden;
+    position:relative; transform:translateZ(0);
+    box-shadow:0 8px 32px rgba(25,26,32,.10), 0 0 0 1px rgba(25,26,32,.06); }
+  /* 바텀시트는 시안에서 열린 채로 둔다 — 데모는 2차 액션을 누르면 올라온다 */
+  #cpk-modal.nd-open { display:flex !important; opacity:1 !important; }
+  #cpk-modal.nd-open #cpk-sheet { transform:none !important; }
+/* 그리드 */ .phones-grid { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px 60px; justify-content: center; transition: zoom 0.2s; }
+body.zoom-75 .phones-grid { zoom: 0.75; }
+.phone-wrap { width: 390px; display: flex; flex-direction: column; align-items: center; gap: 14px; isolation: isolate; scroll-margin-top: 20px; }
+.phone-label { color: var(--text2); font-size: var(--fs-caption); font-weight: 500; display: flex; align-items: center; gap: 8px; }
+.phone-label .num { background: var(--main); color: white; padding: 2px 7px; border-radius: 5px; font-weight: 700; font-size: var(--fs-caption); letter-spacing: 0.3px; }
+.phone-label .pill-cat { background: rgba(26,17,48,0.06); padding: 2px 7px; border-radius: 5px; font-size: var(--fs-caption); }
+.phone { width: 390px; height: 844px; background: var(--bg); border-radius: 24px; overflow: hidden; position: relative; box-shadow: 0 16px 48px rgba(26,17,48,0.14), 0 2px 8px rgba(26,17,48,0.06), inset 0 0 0 1px rgba(26,17,48,0.05); isolation: isolate; }
+.statusbar { height: 44px; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; font-size: 14px; font-weight: 600; color: var(--text1); position: relative; z-index: 10; }
+.statusbar-icons { display: flex; gap: 5px; font-size: 13px; }
+/* ============== 홈 탭 공통 ============== */ .app-screen { height: 100%; display: flex; flex-direction: column; background: var(--bg); overflow: hidden; position: relative; }
+/* 스크롤 컨텐츠 */ .scroll { flex: 1; overflow-y: auto; padding-bottom: 80px; }
+.scroll::-webkit-scrollbar { display: none; }
+.back-btn { width: 36px; height: 36px; background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text1); }
+.gbx-screen > .statusbar { background:#FFFFFF; color:#1F1B2E; flex-shrink:0; }
+.gbx-hdr .back-btn { width:36px; height:36px; border:none; background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; color:#1F1B2E; }
+/* 디자인 대기 폰 프레임 */ .phone.pending-phone { opacity: 0.88; }
+/* 그리드: 1열, 전체 너비 */ .phones-grid { display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 0; zoom: 1 !important; }
+body.zoom-75 .phones-grid { zoom: 1 !important; }
+/* phone-wrap: 전체 너비 사용 */ .phone-wrap { width: calc(100vw - 40px) !important; height: calc((100vw - 40px) * (844 / 390) + 40px) !important; display: flex; flex-direction: column; align-items: center; gap: 10px; position: relative; overflow: visible; }
+.phone-wrap .phone-scale-inner { transform-origin: top center; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.phone-label { font-size: var(--fs-caption); }
+.phones-grid { gap: 32px 40px; }
+/* 인터랙티브 모드 phone-wrap */ body.interactive-mode .phone-wrap { display: none !important; position: static; margin: 0; }
+body.interactive-mode .phone-wrap.ip-active { display: flex !important; align-items: center; justify-content: center; width: 390px !important; height: 844px !important; }
+/* 폰 프레임: 원본 크기 유지 (스케일 전 공간 확보). transform은 JS가 적용 */ body.interactive-mode .phone-wrap.ip-active .phone { width: 390px; height: 844px; transform-origin: center center; }
+body.interactive-mode .phone-label { display: none !important; }
+body.interactive-mode .phone-meta { display: none !important; }
+/* ★ 인터랙티브 단일표시 강제 — 프로토타입 540px 세로나열 규칙 완전 무력화 */ body.interactive-mode .phone-wrap { display: none !important; width: auto !important; height: auto !important; position: static !important; margin: 0 !important; flex-direction: initial !important; }
+body.interactive-mode .phone-wrap.ip-active { display: flex !important; }
+body.interactive-mode .phone-wrap .phone-scale-inner { transform: none !important; display: block !important; }
+body.interactive-mode .phone-wrap.ip-active { width: 100vw !important; max-width: 100vw !important; height: 100vh !important; height: 100dvh !important; align-items: stretch !important; justify-content: flex-start !important; overflow-x: hidden !important; }
+body.interactive-mode .phone-wrap.ip-active .phone { width: 100vw !important; max-width: 100vw !important; height: 100vh !important; height: 100dvh !important; border-radius: 0 !important; box-shadow: none !important; transform: none !important; overflow-x: hidden !important; }
+/* 모의 상태바(시간/배터리) 숨김 → 내부 콘텐츠 edge-to-edge */ .phone .statusbar { display: none !important; }
+/* iOS 노치/상태바 영역만큼 앱 최상단 컨테이너(=헤더 위)에 안전 여백 → 기기 상태바와 앱 헤더 겹침 방지 ('-screen'으로 끝나는 화면 래퍼 전부 일괄 적용 → 헤더가 상태바 아래로 내려감. splash는 풀블리드 유지) */ body.interactive-mode .phone-wrap.ip-active .phone > [class$="-screen"] { padding-top: env(safe-area-inset-top, 0px); }
+/* 탭바 하단 고정 (홈 인디케이터 안전영역 반영) */ .phone .tabbar { padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
+/* 스플래시: 고정 390px 폭의 장식 SVG가 좁은 기기에서 우측으로 넘쳐 흰 여백 유발 → 폭 클램프 + 가로 오버플로우 차단 */ body.interactive-mode .phone-wrap.ip-active .splash { width: 100% !important; max-width: 100% !important; overflow-x: hidden !important; }
+/* .si: absolute 요소를 width:100%(WebKit이 shrink-to-fit으로 오해) 대신 left/right:0 으로 양끝 고정해 부모 폭(=뷰포트)으로 확실히 stretch */ body.interactive-mode .phone-wrap.ip-active .splash .si { left: 0 !important; right: 0 !important; width: auto !important; max-width: none !important; overflow-x: hidden !important; }
+body.interactive-mode .phone-wrap.ip-active .splash svg { max-width: 100% !important; }
+.jp-screen .statusbar { color:#FFFFFF; }
+.sf-card-frame .phone-wrap .phone-meta { display: none !important; }
+.sub-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px 12px; background: #fff; border-bottom: 1px solid var(--border); }
+.sh-title { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; color: var(--text1); }
+/* 몰 상세(pw-12)의 유의사항 — 링크프라이스가 내려준 원문을 그대로 보여 준다 */ .C-notice { margin: 10px 16px 18px; padding: 12px 14px; background: var(--bg2, #F6F4FB); border-radius: 12px; }
+.C-notice-h { font-size: var(--fs-caption); font-weight: 700; color: var(--text1); margin-bottom: 4px; }
+.C-notice-h + .C-notice-b { margin-bottom: 10px; }
+.C-notice-b { font-size: var(--fs-caption); color: var(--text2); line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+.C-notice-b:last-child { margin-bottom: 0; }
+.C-meta { margin: 12px 14px; padding: 16px; border: 1px solid var(--border); border-radius: var(--r-lg); display: flex; align-items: center; gap: 14px; }
+.C-meta-logo { width: 56px; height: 56px; border-radius: 14px; color: var(--text2); font-size: var(--fs-caption); font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; position: relative; }
+.C-meta-logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.C-meta-body { flex: 1; min-width: 0; }
+.C-meta-name { font-size: var(--fs-label); font-weight: 800; color: var(--text1); margin-bottom: 4px; }
+.C-meta-rate { font-size: var(--fs-caption); color: var(--text2); }
+.C-meta-rate b { color: var(--main); font-weight: 800; }
+.C-cta { margin: 0 16px 10px; padding: 0; height: 54px; background: #845EEE; border: none; border-radius: 15px; color: #fff; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; width: calc(100% - 32px); }
+/* 2차 액션 — 홈 화면 추가(카드형). 1차보다 약하게 둔다. */ .C-a2hs { margin: 0 16px 14px; width: calc(100% - 32px); padding: 14px 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E0D9ED; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; }
+.C-a2hs-logo { width: 40px; height: 40px; border-radius: 12px; background: #fff; flex-shrink: 0; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #5A5370; }
+.C-a2hs-logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.C-a2hs-body { flex: 1; min-width: 0; }
+.C-a2hs-t { display: block; font-size: 15px; font-weight: 700; color: #1A1130; }
+.C-a2hs-d { display: block; margin-top: 2px; font-size: 13px; color: #5A5370; }
+.C-a2hs-plus { width: 28px; height: 28px; border-radius: 50%; background: #845EEE; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.C-a2hs.done { background: #F4F3F7; cursor: default; }
+.C-a2hs.done .C-a2hs-logo { background: #E8E6EE; }
+.C-a2hs.done .C-a2hs-t { color: #5A5370; }
+.C-a2hs.done .C-a2hs-plus { display: none; }
+.C-a2hs-check { display: none; }
+.C-a2hs.done .C-a2hs-check { display: flex; width: 28px; height: 28px; flex-shrink: 0; align-items: center; justify-content: center; }
+.C-steps { margin: 0 14px 12px; border: 1px solid var(--border); border-radius: var(--r-lg); padding: 4px 0; }
+.C-step { display: flex; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.C-step:last-child { border-bottom: none; }
+.C-step-no { width: 22px; height: 22px; border-radius: 50%; background: var(--sub-4); color: var(--main); font-size: var(--fs-caption); font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.C-step-body { flex: 1; }
+.C-step-t { font-size: var(--fs-caption); font-weight: 700; color: var(--text1); margin-bottom: 2px; }
+.C-step-d { font-size: var(--fs-caption); color: var(--text2); line-height: 1.5; }
+.C-tip { margin: 0 14px 10px; padding: 10px 12px; background: #FFF6DD; border-left: 3px solid #D49B1E; border-radius: 6px; font-size: var(--fs-caption); line-height: 1.5; color: #7A5500; }
+#cpk-modal { display:none; position:fixed; inset:0; z-index:2147483600; background:rgba(26,17,48,0.55); align-items:flex-end; justify-content:center; opacity:0; transition:opacity .22s ease; }
+#cpk-modal.open { opacity:1; }
+#cpk-sheet { width:100%; max-width:420px; background:#fff; border-radius:24px 24px 0 0; padding:10px 20px 20px; font-family:-apple-system,'Apple SD Gothic Neo',sans-serif; transform:translateY(100%); transition:transform .28s cubic-bezier(.32,.72,0,1); will-change:transform; }
+#cpk-modal.open #cpk-sheet { transform:translateY(0); }
+/* 끄는 동안에는 손가락을 그대로 따라야 하므로 전이를 끈다 */ #cpk-sheet.cpk-dragging { transition:none; }
+#cpk-modal.cpk-dragging { transition:none; }
+/* 잡는 자리 — 손잡이와 시트 맨 위. 여기서는 스크롤·선택이 일어나지 않게 막는다. */ .cpk-hold { touch-action:none; cursor:grab; padding:6px 0 10px; margin:-6px 0 0; }
+.cpk-hold:active { cursor:grabbing; }
+.cpk-grab { width:40px; height:4px; border-radius:99px; background:#E0D9ED; margin:0 auto; }
+body.cpk-nosel, body.cpk-nosel * { user-select:none; -webkit-user-select:none; }
+.cpk-prev { background:#F1EEFF; border-radius:20px; padding:18px 16px; margin-bottom:20px; }
+.cpk-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px 10px; }
+.cpk-cell { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.cpk-tile { width:48px; height:48px; border-radius:14px; background:#fff; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; font-size:13px; font-weight:800; color:#5A5370; }
+.cpk-tile img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+.cpk-cell.ghost .cpk-tile { background:#E2D9FF; }
+.cpk-cell.on .cpk-tile { box-shadow:0 0 0 2px #845EEE; }
+.cpk-lbl { font-size:11px; color:#5A5370; max-width:56px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.cpk-h { font-size:24px; font-weight:800; color:#1A1130; line-height:1.34; margin-bottom:10px; }
+.cpk-b { font-size:15px; color:#5A5370; line-height:1.6; margin-bottom:14px; }
+.cpk-ios { background:#FAFAFA; border:1px solid #EEEAF3; border-radius:12px; padding:11px 13px; font-size:13px; color:#5A5370; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+.cpk-ios svg { flex-shrink:0; }
+.cpk-cta { width:100%; height:54px; background:#845EEE; border:none; border-radius:15px; color:#fff; font-size:17px; font-weight:700; cursor:pointer; }
+.cpk-later { width:100%; height:48px; background:none; border:none; color:#5A5370; font-size:15px; font-weight:600; cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="nd-wrap">
+<div class="nd-card">
+  <div class="nd-badge"><span class="nd-no">01</span><span class="nd-cap">적립 안내 (CJ더마켓)</span></div>
+  <div class="phone"><div class="app-screen"><div class="sub-header">
+          <button class="back-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="sh-title">CJ더마켓 적립 안내</div>
+        </div>
+        <div class="scroll">
+          <div class="C-meta">
+            <div class="C-meta-logo nd-logo" data-code="lp:cjbrand"><span>CJ</span></div>
+            <div class="C-meta-body">
+              <div class="C-meta-name">CJ더마켓</div>
+              <div class="C-meta-rate">구매 시 <b>랜덤 티켓</b> 1장</div>
+            </div>
+          </div>
+          <button class="C-cta" onclick="selectMall(currentMall.name, currentMall.domain, 'pw-13')">
+            <span>CJ더마켓 바로가기</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 4h6v6M20 4L10.5 13.5M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <!-- 2차 액션 — 홈 화면 추가. 라벨에 제휴몰 이름·따옴표를 넣지 않는다(시안 확정). -->
+          <button type="button" class="C-a2hs" onclick="cpkOpen()">
+            <span class="C-a2hs-logo nd-logo" data-code="lp:cjbrand"><span>CJ</span></span>
+            <span class="C-a2hs-body">
+              <span class="C-a2hs-t">홈 화면에 바로가기 추가</span>
+              <span class="C-a2hs-d">한 번만 추가해두면 계속 적용돼요</span>
+            </span>
+            <span class="C-a2hs-plus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+            <span class="C-a2hs-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B93B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="C-steps">
+            <div class="C-step">
+              <div class="C-step-no">1</div>
+              <div class="C-step-body">
+                <div class="C-step-t">바로가기로 CJ더마켓 접속</div>
+                <div class="C-step-d">반드시 위 버튼으로 접속해야 적립이 시작돼요.</div>
+              </div>
+            </div>
+            <div class="C-step">
+              <div class="C-step-no">2</div>
+              <div class="C-step-body">
+                <div class="C-step-t">30일 이내 구매</div>
+                <div class="C-step-d">접속 후 30일 안에 구매분만 적립 대상이에요.</div>
+              </div>
+            </div>
+            <div class="C-step">
+              <div class="C-step-no">3</div>
+              <div class="C-step-body">
+                <div class="C-step-t">티켓 확정</div>
+                <div class="C-step-d">구매 월 기준 익익월 6일 지급</div>
+              </div>
+            </div>
+          </div>
+          <div class="C-tip">CJ더마켓 앱이 이미 열려 있다면 종료 후 바로가기를 눌러주세요. 적립 추적이 정확해져요.</div>
+          <div class="C-notice" style="display:none"></div></div></div>
+</div>
+<div class="nd-card">
+  <div class="nd-badge"><span class="nd-no">02</span><span class="nd-cap">홈 화면 추가 모달</span></div>
+  <div class="phone"><div class="app-screen"><div class="sub-header">
+          <button class="back-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="sh-title">CJ더마켓 적립 안내</div>
+        </div>
+        <div class="scroll">
+          <div class="C-meta">
+            <div class="C-meta-logo nd-logo" data-code="lp:cjbrand"><span>CJ</span></div>
+            <div class="C-meta-body">
+              <div class="C-meta-name">CJ더마켓</div>
+              <div class="C-meta-rate">구매 시 <b>랜덤 티켓</b> 1장</div>
+            </div>
+          </div>
+          <button class="C-cta" onclick="selectMall(currentMall.name, currentMall.domain, 'pw-13')">
+            <span>CJ더마켓 바로가기</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 4h6v6M20 4L10.5 13.5M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <!-- 2차 액션 — 홈 화면 추가. 라벨에 제휴몰 이름·따옴표를 넣지 않는다(시안 확정). -->
+          <button type="button" class="C-a2hs" onclick="cpkOpen()">
+            <span class="C-a2hs-logo nd-logo" data-code="lp:cjbrand"><span>CJ</span></span>
+            <span class="C-a2hs-body">
+              <span class="C-a2hs-t">홈 화면에 바로가기 추가</span>
+              <span class="C-a2hs-d">한 번만 추가해두면 계속 적용돼요</span>
+            </span>
+            <span class="C-a2hs-plus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+            <span class="C-a2hs-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B93B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="C-steps">
+            <div class="C-step">
+              <div class="C-step-no">1</div>
+              <div class="C-step-body">
+                <div class="C-step-t">바로가기로 CJ더마켓 접속</div>
+                <div class="C-step-d">반드시 위 버튼으로 접속해야 적립이 시작돼요.</div>
+              </div>
+            </div>
+            <div class="C-step">
+              <div class="C-step-no">2</div>
+              <div class="C-step-body">
+                <div class="C-step-t">30일 이내 구매</div>
+                <div class="C-step-d">접속 후 30일 안에 구매분만 적립 대상이에요.</div>
+              </div>
+            </div>
+            <div class="C-step">
+              <div class="C-step-no">3</div>
+              <div class="C-step-body">
+                <div class="C-step-t">티켓 확정</div>
+                <div class="C-step-d">구매 월 기준 익익월 6일 지급</div>
+              </div>
+            </div>
+          </div>
+          <div class="C-tip">CJ더마켓 앱이 이미 열려 있다면 종료 후 바로가기를 눌러주세요. 적립 추적이 정확해져요.</div>
+          <div class="C-notice" style="display:none"></div><div id="cpk-modal" class="nd-open">
+  <div id="cpk-sheet">
+    <div class="cpk-hold" id="cpk-hold"><div class="cpk-grab"></div></div>
+    <div class="cpk-prev">
+      <div class="cpk-grid" id="cpk-grid"></div>
+    </div>
+    <div class="cpk-h">앱 안 켜고도<br>적립되게 해둘까요?</div>
+    <div class="cpk-b">홈 화면에 생긴 아이콘으로 들어가면 <span id="cpk-modal-mall">CJ더마켓</span> 적립이 자동으로 따라붙어요.</div>
+    <div class="cpk-ios" id="cpk-ios-guide"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1-1" stroke="#9B93B0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>아이폰 사파리 공유 버튼 → 홈 화면에 추가</span></div>
+    <button type="button" class="cpk-cta" onclick="cpkAddHome();">홈 화면에 추가</button>
+    <button type="button" class="cpk-later" onclick="cpkClose();">다음에 할게요</button>
+  </div>
+</div></div></div>
+</div>
+<div class="nd-card">
+  <div class="nd-badge"><span class="nd-no">03</span><span class="nd-cap">홈 화면 추가 완료 상태</span></div>
+  <div class="phone"><div class="app-screen"><div class="sub-header">
+          <button class="back-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="sh-title">CJ더마켓 적립 안내</div>
+        </div>
+        <div class="scroll">
+          <div class="C-meta">
+            <div class="C-meta-logo nd-logo" data-code="lp:cjbrand"><span>CJ</span></div>
+            <div class="C-meta-body">
+              <div class="C-meta-name">CJ더마켓</div>
+              <div class="C-meta-rate">구매 시 <b>랜덤 티켓</b> 1장</div>
+            </div>
+          </div>
+          <button class="C-cta" onclick="selectMall(currentMall.name, currentMall.domain, 'pw-13')">
+            <span>CJ더마켓 바로가기</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 4h6v6M20 4L10.5 13.5M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <!-- 2차 액션 — 홈 화면 추가. 라벨에 제휴몰 이름·따옴표를 넣지 않는다(시안 확정). -->
+          <button type="button" class="C-a2hs done" onclick="cpkOpen()">
+            <span class="C-a2hs-logo nd-logo" data-code="lp:cjbrand"><span>CJ</span></span>
+            <span class="C-a2hs-body">
+              <span class="C-a2hs-t">홈 화면에 추가됨</span>
+              <span class="C-a2hs-d">홈 화면 아이콘으로 접속하면 적립돼요</span>
+            </span>
+            <span class="C-a2hs-plus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+            <span class="C-a2hs-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B93B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="C-steps">
+            <div class="C-step">
+              <div class="C-step-no">1</div>
+              <div class="C-step-body">
+                <div class="C-step-t">바로가기로 CJ더마켓 접속</div>
+                <div class="C-step-d">반드시 위 버튼으로 접속해야 적립이 시작돼요.</div>
+              </div>
+            </div>
+            <div class="C-step">
+              <div class="C-step-no">2</div>
+              <div class="C-step-body">
+                <div class="C-step-t">30일 이내 구매</div>
+                <div class="C-step-d">접속 후 30일 안에 구매분만 적립 대상이에요.</div>
+              </div>
+            </div>
+            <div class="C-step">
+              <div class="C-step-no">3</div>
+              <div class="C-step-body">
+                <div class="C-step-t">티켓 확정</div>
+                <div class="C-step-d">구매 월 기준 익익월 6일 지급</div>
+              </div>
+            </div>
+          </div>
+          <div class="C-tip">CJ더마켓 앱이 이미 열려 있다면 종료 후 바로가기를 눌러주세요. 적립 추적이 정확해져요.</div>
+          <div class="C-notice" style="display:none"></div></div></div>
+</div>
+<div class="nd-card">
+  <div class="nd-badge"><span class="nd-no">04</span><span class="nd-cap">적립 안내 (11번가) — 제휴사 적용</span></div>
+  <div class="phone"><div class="app-screen"><div class="sub-header">
+          <button class="back-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="sh-title">11번가 적립 안내</div>
+        </div>
+        <div class="scroll">
+          <div class="C-meta">
+            <div class="C-meta-logo nd-logo" data-code="lp:11st"><span>11</span></div>
+            <div class="C-meta-body">
+              <div class="C-meta-name">11번가</div>
+              <div class="C-meta-rate">구매 시 <b>랜덤 티켓</b> 1장</div>
+            </div>
+          </div>
+          <button class="C-cta" onclick="selectMall(currentMall.name, currentMall.domain, 'pw-13')">
+            <span>11번가 바로가기</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 4h6v6M20 4L10.5 13.5M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <!-- 2차 액션 — 홈 화면 추가. 라벨에 제휴몰 이름·따옴표를 넣지 않는다(시안 확정). -->
+          <button type="button" class="C-a2hs" onclick="cpkOpen()">
+            <span class="C-a2hs-logo nd-logo" data-code="lp:11st"><span>11</span></span>
+            <span class="C-a2hs-body">
+              <span class="C-a2hs-t">홈 화면에 바로가기 추가</span>
+              <span class="C-a2hs-d">한 번만 추가해두면 계속 적용돼요</span>
+            </span>
+            <span class="C-a2hs-plus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+            <span class="C-a2hs-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B93B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="C-steps">
+            <div class="C-step">
+              <div class="C-step-no">1</div>
+              <div class="C-step-body">
+                <div class="C-step-t">바로가기로 11번가 접속</div>
+                <div class="C-step-d">반드시 위 버튼으로 접속해야 적립이 시작돼요.</div>
+              </div>
+            </div>
+            <div class="C-step" style="display:none">
+              <div class="C-step-no">2</div>
+              <div class="C-step-body">
+                <div class="C-step-t">24시간 이내 구매</div>
+                <div class="C-step-d">접속 후 24시간 안에 구매분만 적립 대상이에요.</div>
+              </div>
+            </div>
+            <div class="C-step">
+              <div class="C-step-no">2</div>
+              <div class="C-step-body">
+                <div class="C-step-t">티켓 확정</div>
+                <div class="C-step-d">구매 확정 월 기준 익익월 6일 지급</div>
+              </div>
+            </div>
+          </div>
+          <div class="C-tip">11번가 앱이 이미 열려 있다면 종료 후 바로가기를 눌러주세요. 적립 추적이 정확해져요.</div>
+          <div class="C-notice" style="display:none"></div></div></div>
+</div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+/* 제휴몰 로고는 데모와 같은 자리(CMS 등록본)를 읽어 채운다 — 시안이 실물과 어긋나지 않게 한다.
+   못 읽으면 첫 글자 배지가 그대로 남는다. */
+(function () {
+  try {
+    firebase.initializeApp({
+      apiKey: "AIzaSyCElUPJAitnMZxttVYjboV0j4s_qpErAgA",
+      authDomain: "pricepick-demo.firebaseapp.com",
+      projectId: "pricepick-demo",
+      storageBucket: "pricepick-demo.firebasestorage.app",
+      messagingSenderId: "505137396208",
+      appId: "1:505137396208:web:cea9d208c7745854e14535"
+    });
+    firebase.firestore().collection('settings').doc('ticket_accrual').get().then(function (d) {
+      var logos = (d.exists && d.data().logos) || {};
+      document.querySelectorAll('.nd-logo').forEach(function (el) {
+        var src = logos[el.getAttribute('data-code')];
+        if (!src) return;
+        var img = document.createElement('img');
+        img.src = src; img.alt = '';
+        img.onerror = function () { img.remove(); };
+        el.appendChild(img);
+      });
+    });
+  } catch (e) { /* 로고만 비고 화면은 그대로 돈다 */ }
+})();
+</script>
+<!-- New Design 공통 덧옷 — 헤더 규격·한베 토글·번역. 시안을 새 판으로 갈아끼울 때
+     이 두 줄만 다시 붙이면 된다. 사전은 시안 파일 밖에 있어 교체해도 남는다. -->
+<script src="/new-design/nd-dict-a2hs.js"></script>
+<script src="/new-design/nd-kit.js"></script>
+</body>
+</html>
