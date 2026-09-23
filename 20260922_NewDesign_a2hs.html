@@ -59,7 +59,6 @@ body.interactive-mode .phone-wrap.ip-active { display: flex !important; }
 body.interactive-mode .phone-wrap .phone-scale-inner { transform: none !important; display: block !important; }
 body.interactive-mode .phone-wrap.ip-active { width: 100vw !important; max-width: 100vw !important; height: 100vh !important; height: 100dvh !important; align-items: stretch !important; justify-content: flex-start !important; overflow-x: hidden !important; }
 body.interactive-mode .phone-wrap.ip-active .phone { width: 100vw !important; max-width: 100vw !important; height: 100vh !important; height: 100dvh !important; border-radius: 0 !important; box-shadow: none !important; transform: none !important; overflow-x: hidden !important; }
-/* 모의 상태바(시간/배터리) 숨김 → 내부 콘텐츠 edge-to-edge */ .phone .statusbar { display: none !important; }
 /* iOS 노치/상태바 영역만큼 앱 최상단 컨테이너(=헤더 위)에 안전 여백 → 기기 상태바와 앱 헤더 겹침 방지 ('-screen'으로 끝나는 화면 래퍼 전부 일괄 적용 → 헤더가 상태바 아래로 내려감. splash는 풀블리드 유지) */ body.interactive-mode .phone-wrap.ip-active .phone > [class$="-screen"] { padding-top: env(safe-area-inset-top, 0px); }
 /* 탭바 하단 고정 (홈 인디케이터 안전영역 반영) */ .phone .tabbar { padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
 /* 스플래시: 고정 390px 폭의 장식 SVG가 좁은 기기에서 우측으로 넘쳐 흰 여백 유발 → 폭 클램프 + 가로 오버플로우 차단 */ body.interactive-mode .phone-wrap.ip-active .splash { width: 100% !important; max-width: 100% !important; overflow-x: hidden !important; }
