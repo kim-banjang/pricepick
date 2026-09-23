@@ -25,6 +25,8 @@
   /* 바텀시트는 시안에서 열린 채로 둔다 — 데모는 2차 액션을 누르면 올라온다 */
   #cpk-modal.nd-open { display:flex !important; opacity:1 !important; }
   #cpk-modal.nd-open #cpk-sheet { transform:none !important; }
+  /* 데모는 대화형 보기에서 상태바를 감추는 규칙이 걸린다 — 시안에서는 다른 시안처럼 보여 준다 */
+  .nd-card .statusbar { display:flex !important; }
 /* 그리드 */ .phones-grid { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px 60px; justify-content: center; transition: zoom 0.2s; }
 body.zoom-75 .phones-grid { zoom: 0.75; }
 .phone-wrap { width: 390px; display: flex; flex-direction: column; align-items: center; gap: 14px; isolation: isolate; scroll-margin-top: 20px; }
