@@ -584,30 +584,7 @@
         <div class="arrow" id="card-devqa-arrow">열기 →</div>
       </a>
 
-      <a class="card" href="/devqa/qa-review-20261005.html" target="_blank" rel="noopener">
-        <div class="cicon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 3.5H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-13a2 2 0 0 0-2-2h-3"/>
-            <rect x="9" y="2" width="6" height="3.5" rx="1"/>
-            <path d="M8.5 12.5l2 2 4.5-4.5"/>
-          </svg>
-        </div>
-        <h2 id="card-qareview-title">검수 자료 (2026-10-05)</h2>
-        <p id="card-qareview-desc">어드민 오류 36건 · 앱 검수 미연동 25건 · 연동 후 13건. 캡처에 수정 위치 표시.</p>
-        <div class="arrow" id="card-qareview-arrow">열기 →</div>
-      </a>
 
-      <a class="card" href="/devqa/qa-answer-20261005.html" target="_blank" rel="noopener">
-        <div class="cicon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.3 9.6 9.6 0 0 1-3.9-.8L3 20.5l1.4-4.2a8 8 0 0 1-1-3.8A8.38 8.38 0 0 1 12 3.7a8.38 8.38 0 0 1 9 7.8z"/>
-            <path d="M8.5 11.8l2.2 2.2 4.3-4.3"/>
-          </svg>
-        </div>
-        <h2 id="card-qaanswer-title">QA 확인 요청 답변 (2026-10-05)</h2>
-        <p id="card-qaanswer-desc">검수 확인 10건 · 어드민 오류 2건 · CMS 기능 설계 2건. 항목마다 정책 근거 표기.</p>
-        <div class="arrow" id="card-qaanswer-arrow">열기 →</div>
-      </a>
 
       <a class="card" href="/devqa/hold-status-20260915.html" target="_blank" rel="noopener">
         <div class="cicon">
@@ -933,10 +910,6 @@ const I18N = {
     'card.holdstatus.desc': '메뉴를 끌 때마다 언제·왜·다시 켜는 조건을 한 줄로 남기는 대장. Hold·복원·폐지 현황.',
     'card.policymove.title': '정책 편입 · VI 반영 결과',
     'card.policymove.desc': '흩어진 정책의 정책서 편입 결과와 한·베 대조 점검 기록.',
-    'card.qaanswer.title': 'QA 확인 요청 답변 (2026-10-05)',
-    'card.qaanswer.desc': '검수 확인 10건 · 어드민 오류 2건 · CMS 기능 설계 2건. 항목마다 정책 근거 표기.',
-    'card.qareview.title': '검수 자료 (2026-10-05)',
-    'card.qareview.desc': '어드민 오류 36건 · 앱 검수 미연동 25건 · 연동 후 13건. 캡처에 수정 위치 표시.',
     'card.devqa.title': 'DevQA',
     'card.devqa.desc': '존·해리 등 개발자 질문에 대한 확정 답변 모음. 모든 답변은 마스터 정책서 근거.',
     'card.reports.title': '보고서',
@@ -1010,10 +983,6 @@ const I18N = {
     'card.holdstatus.desc': 'Sổ ghi một dòng khi nào·vì sao·điều kiện bật lại mỗi khi tắt menu. Hiện trạng Hold·khôi phục·hủy bỏ.',
     'card.policymove.title': 'Kết quả đưa chính sách vào · áp dụng VI',
     'card.policymove.desc': 'Kết quả đưa các chính sách nằm rải rác vào tài liệu chính sách và bản ghi kiểm tra đối chiếu KO·VI.',
-    'card.qaanswer.title': 'Trả lời yêu cầu xác nhận QA (05/10/2026)',
-    'card.qaanswer.desc': '10 mục xác nhận kiểm thử · 2 mục lỗi Admin · 2 yêu cầu thiết kế chức năng CMS. Mỗi mục đều ghi căn cứ chính sách.',
-    'card.qareview.title': 'Tài liệu kiểm thử (05/10/2026)',
-    'card.qareview.desc': 'Lỗi Admin 36 mục · Kiểm thử app chưa liên kết 25 mục · sau liên kết 13 mục. Ảnh chụp có đánh dấu vị trí cần sửa.',
     'card.devqa.title': 'DevQA',
     'card.devqa.desc': 'Tổng hợp giải đáp đã chốt cho câu hỏi của John·Harry v.v. Mọi câu trả lời đều dựa trên Chính sách tổng hợp.',
     'card.reports.title': 'Báo cáo',
@@ -1123,12 +1092,6 @@ function applyLang() {
   setTxt('card-policymove-title',     t('card.policymove.title'));
   setTxt('card-policymove-desc',      t('card.policymove.desc'));
   setTxt('card-policymove-arrow',     t('card.arrow'));
-  setTxt('card-qaanswer-title',       t('card.qaanswer.title'));
-  setTxt('card-qaanswer-desc',        t('card.qaanswer.desc'));
-  setTxt('card-qaanswer-arrow',       t('card.arrow'));
-  setTxt('card-qareview-title',       t('card.qareview.title'));
-  setTxt('card-qareview-desc',        t('card.qareview.desc'));
-  setTxt('card-qareview-arrow',       t('card.arrow'));
   setTxt('card-devqa-title',          t('card.devqa.title'));
   setTxt('card-devqa-desc',           t('card.devqa.desc'));
   setTxt('card-devqa-arrow',          t('card.arrow'));
