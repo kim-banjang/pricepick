@@ -178,8 +178,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 <script>
 (function(){
   var COL='qa_review_20261005';
-  var PWH='5a44e3e0c685d463ac6896072cf700c03186cad742a1d656041dcff59bca0350';
-  var KW='ppqa_who', KP='ppqa_ok';
+  var KW='ppqa_who';
   var db=null, state={};
 
   try{
@@ -190,21 +189,6 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
   function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
   function warn(on){ var w=document.getElementById('wkWarn'); if(w) w.hidden=!on; }
 
-  async function sha(t){
-    try{
-      var b=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
-      return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0');}).join('');
-    }catch(e){ return ''; }
-  }
-  async function gate(){
-    if(ls(KP)==='1') return true;
-    var isVi=document.getElementById('langsw').checked;
-    var v=prompt(isVi?'Nhập mật khẩu ghi':'쓰기 암호를 입력하십시오.');
-    if(v===null) return false;
-    if(await sha(v)===PWH){ ls(KP,'1'); return true; }
-    alert(isVi?'Mật khẩu không đúng.':'암호가 맞지 않습니다.');
-    return false;
-  }
   function who(){ return document.getElementById('wkWho').value; }
   function needWho(){
     if(who()) return true;
@@ -258,7 +242,6 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
   async function save(id, patch, el){
     if(!db){ flash(el,'DB 연결 없음',1); return; }
     if(!needWho()) return;
-    if(!(await gate())) return;
     var body=Object.assign({}, patch, {updatedBy:who(), updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
     try{
       await db.collection(COL).doc(id).set(body,{merge:true});
