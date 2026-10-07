@@ -117,6 +117,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 .pgs{display:block;margin-top:3px;font-size:11.2px;font-weight:700;color:var(--ink3)}
 .wkwarn .wr{display:block;margin-top:3px;font:11.5px ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:400;color:#8a6a2a;word-break:break-all}
 
+#wkWho.need{border-color:#9A4A4A;box-shadow:0 0 0 2px rgba(154,74,74,.18)}
 .shot figcaption{margin-top:4px;font-size:11.3px;line-height:1.45;color:var(--ink3)}
 .lpt-wrap{margin-top:9px;overflow-x:auto;border:1px solid var(--line);border-radius:8px}
 .lpt{width:100%;border-collapse:collapse;font-size:12.4px;min-width:640px}
@@ -205,11 +206,13 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
   function reason(e){ if(!e) return ''; return [e.code,e.message].filter(Boolean).join(' · '); }
 
   function who(){ return document.getElementById('wkWho').value; }
-  function needWho(){
+  function needWho(el){
     if(who()) return true;
     var isVi=document.getElementById('langsw').checked;
-    alert(isVi?'Xin chọn người thực hiện trước.':'작업자를 먼저 선택하십시오.');
-    document.getElementById('wkWho').focus();
+    if(el) flash(el, isVi?'Xin chọn người thực hiện trước.':'작업자를 먼저 선택하십시오.', 1);
+    var sel=document.getElementById('wkWho');
+    sel.classList.add('need');
+    try{ sel.focus({preventScroll:true}); }catch(e){}
     return false;
   }
   function flash(el,msg,err){
@@ -275,7 +278,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
   async function save(id, patch, el){
     var isViD=document.getElementById('langsw').checked;
     if(!db){ flash(el, isViD?'Không có kết nối DB':'DB 연결 없음',1); return; }
-    if(!needWho()) return;
+    if(!needWho(el)) return;
     var body=Object.assign({}, patch, {updatedBy:who(), updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
     try{
       await db.collection(COL).doc(id).set(body,{merge:true});
@@ -298,7 +301,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
     var f=e.target.closest('.fb');
     if(f){ document.querySelectorAll('.fb').forEach(function(x){x.classList.remove('on');}); f.classList.add('on'); filt=f.dataset.f; applyFilter(); }
   });
-  document.getElementById('wkWho').addEventListener('change', function(){ ls(KW,this.value); });
+  document.getElementById('wkWho').addEventListener('change', function(){ ls(KW,this.value); this.classList.remove('need'); });
   document.getElementById('langsw').addEventListener('change', function(){ progress(); });
 
   var saved=ls(KW); if(saved) document.getElementById('wkWho').value=saved;
