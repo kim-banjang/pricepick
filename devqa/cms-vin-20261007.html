@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS 질문 답변 · Vin · 2026-10-07</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box a{color:var(--pp-d);font-weight:700}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.msg{display:block;background:#fff;border:1px solid var(--line);border-left:3px solid var(--pp);border-radius:8px;padding:8px 11px;font-size:12.6px;color:var(--ink1);white-space:normal;margin-top:4px}
+.msg .mh{display:block;font-weight:800;color:var(--ink1);margin-bottom:2px}
+.msg .mb{display:block;color:var(--ink2)}
+.gloss{display:block;font-size:11.6px;color:#8b93a7;margin-top:4px}
+.chipbadge{display:inline-block;padding:3px 8px;border-radius:7px;font-size:11.5px;font-weight:400;white-space:nowrap}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+.depnote{background:#FFF6E9;border:2px solid #E8943A;border-radius:12px;padding:13px 16px;margin-top:16px;font-size:13.2px;color:#3f4658;line-height:1.65}.depnote .dt{display:block;font-size:11.5px;font-weight:800;color:#C2701C;letter-spacing:.05em;margin-bottom:5px}.depnote b{color:#1f2330}.depnote a{color:#5b39b8;font-weight:700}
+
+.qsrc{display:block;margin-top:7px;font-size:11.8px;color:var(--ink3)}
+.mtbl{width:100%;border-collapse:collapse;font-size:12.6px;background:#fff;margin-top:8px}
+.mtbl td{border:1px solid var(--line);padding:7px 10px;vertical-align:top}
+.mtbl td.k{width:200px;font-weight:800;color:var(--pp-d);background:#fbfaff;white-space:nowrap}
+.mtbl td.v{font:12.4px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink1)}
+.wn{margin-top:10px;padding:9px 12px;background:#fffaef;border:1px solid #eddcb4;border-left:3px solid #95690c;border-radius:8px;font-size:12.6px;color:#7a5a11;font-weight:600}
+.sub-h{font-size:12px;font-weight:800;color:var(--pp-d);margin-top:12px}
+.pre{margin-top:8px;padding:11px 13px;background:#f6f5fb;border:1px solid var(--line);border-radius:8px;font:12.2px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink2);white-space:pre-wrap}
+.rules{margin:9px 0 0 18px;font-size:12.8px;color:var(--ink2)}.rules li{margin-top:3px}
+.wn{margin-top:10px;padding:9px 12px;background:#fffaef;border:1px solid #eddcb4;border-left:3px solid #95690c;border-radius:8px;font-size:12.6px;color:#7a5a11;font-weight:600}
+.tbl td.k{font-weight:800;color:var(--pp-d);background:#fbfaff;white-space:nowrap}
+.tbl code{font:11.6px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink1)}</style></head>
+<body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div style="max-width:840px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS 질문 답변 · Vin</span><span class="vi">PricePick Trả lời câu hỏi CMS · Vin</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Vin · CMS · 어드민 출석체크 설정 · 회원 식별값 표기 — 답변 KO/VI</span><span class="vi">Vin · CMS · Cài đặt điểm danh Admin · hiển thị định danh hội viên — Trả lời KO/VI</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 2건</span><span class="vi">2 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 2</span><span class="vi">Đã chốt 2</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장 확정 2026-10-07</span><span class="vi">Căn cứ: Mr Mark chốt 07/10/2026</span></span></span><span class="chip"><span class="i18n"><span class="ko"><a href="https://app.notion.com/p/QA-CMS-2026-10-07-3f2b92a1096480fa824ec1557826dc7b" target="_blank" rel="noopener">원문 질문 (Notion) ↗</a></span><span class="vi"><a href="https://app.notion.com/p/QA-CMS-2026-10-07-3f2b92a1096480fa824ec1557826dc7b" target="_blank" rel="noopener">Câu hỏi gốc (Notion) ↗</a></span></span></span><span class="chip"><span class="i18n"><span class="ko">앞 문서 <a href="/devqa/qa-review-20261005.html">QA 검수 2026-10-05</a></span><span class="vi">Tài liệu trước <a href="/devqa/qa-review-20261005.html">Kiểm tra QA 05/10/2026</a></span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi là bản tóm tắt · bản gốc tại link Notion</span></span></span></div>
+<h2 class="grp"><span class="i18n"><span class="ko">1. 어드민 출석체크 설정 — 인정 방식 (QA 12)</span><span class="vi">1. Cài đặt điểm danh Admin — phương thức công nhận (QA 12)</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">1</span><div class="qtxt"><span class="i18n"><span class="ko">실제 앱은 제휴몰 방문 후 앱으로 복귀해야 출석이 인정되고 100P가 적립됩니다. 그런데 어드민 출석체크 설정과 안내 문구는 「앱 진입만으로 인정」으로 되어 있습니다. 김반장님이 제시한 방안대로 어드민 화면의 관련 문구를 실제 앱 동작에 맞춰 수정해 주십시오.</span><span class="vi">Hiện tại app chỉ ghi nhận điểm danh và cộng 100P sau khi người dùng truy cập cửa hàng liên kết rồi quay lại app. Tuy nhiên phần cài đặt điểm danh và nội dung hướng dẫn trên Admin đang là 「앱 진입만으로 인정」 (Chỉ cần vào app là công nhận). Vui lòng điều chỉnh các text liên quan trên màn hình Admin theo phương án Mr Mark đã đưa ra để khớp với hành vi thực tế của app.</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>실제 앱 동작이 기준입니다. 어드민 출석체크 설정의 「인정 방식」을 「제휴몰 방문 후 복귀 시 인정」으로 확정합니다.</b>
+
+「앱 진입만으로 인정」은 정책에 없는 선택지이므로 선택지에서 제거합니다.
+
+같은 화면의 「현재 적용 정책」 안내 문구도 같은 문장으로 맞춥니다.
+
+어드민 35번(연결 제휴몰 선택창)과 한 묶음으로 처리합니다.</span><span class="vi"><b>Hành vi thực tế của app là tiêu chuẩn. Chốt 「인정 방식」 (Phương thức công nhận) trong cài đặt điểm danh Admin là 「제휴몰 방문 후 복귀 시 인정」 (Công nhận khi truy cập cửa hàng liên kết rồi quay lại).</b>
+
+「앱 진입만으로 인정」 (Chỉ cần vào app là công nhận) là lựa chọn không có trong chính sách, vì vậy loại bỏ khỏi danh sách lựa chọn.
+
+Nội dung hướng dẫn 「현재 적용 정책」 (Chính sách đang áp dụng) trên cùng màn hình cũng thống nhất theo cùng câu này.
+
+Xử lý chung một gói với mục Admin số 35 (cửa sổ chọn cửa hàng liên kết).</span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">화면: <a href="https://pricepick-demo.vercel.app/#point-attendance" target="_blank" rel="noopener">pricepick-demo.vercel.app/#point-attendance</a>
+지적 출처: <a href="/devqa/qa-review-20261005.html">QA 검수 2026-10-05</a> QA 12
+함께 처리: 어드민 35번 — 연결 제휴몰 선택창</span><span class="vi">Màn hình: <a href="https://pricepick-demo.vercel.app/#point-attendance" target="_blank" rel="noopener">pricepick-demo.vercel.app/#point-attendance</a>
+Nguồn chỉ ra: <a href="/devqa/qa-review-20261005.html">Kiểm tra QA 05/10/2026</a> QA 12
+Xử lý cùng: Admin số 35 — cửa sổ chọn cửa hàng liên kết</span></span></div></div>
+<h2 class="grp"><span class="i18n"><span class="ko">2. 회원 식별값 표기 — 카카오 ID · 카카오 이메일 (QA 9)</span><span class="vi">2. Hiển thị định danh hội viên — Kakao ID · Kakao Email (QA 9)</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">2</span><div class="qtxt"><span class="i18n"><span class="ko">같은 회원의 카카오 식별값이 포인트 내역에서는 카카오 회원번호(숫자), 티켓 내역·회원 목록에서는 이메일로 표시됩니다. 카카오 ID와 카카오 이메일 중 어느 쪽으로 통일할지 확인해 주십시오.</span><span class="vi">Cùng một hội viên nhưng định danh Kakao hiển thị là mã hội viên Kakao (số) ở lịch sử điểm, còn là email ở lịch sử vé·danh sách hội viên. Xác nhận xem sẽ thống nhất hiển thị theo Kakao ID hay Kakao Email?</span></span></div><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>카카오 이메일로 통일합니다.</b>
+
+카카오 회원번호는 숫자라 운영자가 회원을 식별할 수 없습니다.
+
+다만 개인정보이므로 목록 화면에서는 가운데를 가립니다(<code>ab***@gmail.com</code> 형태). 상세 화면에서만 전체를 노출합니다.</span><span class="vi"><b>Thống nhất theo Kakao Email.</b>
+
+Mã hội viên Kakao là dãy số nên vận hành viên không thể nhận diện hội viên.
+
+Tuy nhiên đây là thông tin cá nhân nên trên màn hình danh sách che phần giữa (dạng <code>ab***@gmail.com</code>). Chỉ hiển thị đầy đủ ở màn hình chi tiết.</span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">적용 화면: 어드민 포인트 내역 · 티켓 내역 · 회원 목록
+지적 출처: <a href="/devqa/qa-review-20261005.html">QA 검수 2026-10-05</a> QA 9</span><span class="vi">Màn hình áp dụng: Admin lịch sử điểm · lịch sử vé · danh sách hội viên
+Nguồn chỉ ra: <a href="/devqa/qa-review-20261005.html">Kiểm tra QA 05/10/2026</a> QA 9</span></span></div></div>
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS 질문 답변 · Vin · 2026-10-07 · 확정 2 / 확인 필요 0</span><span class="vi">PricePick · Trả lời câu hỏi CMS · Vin · 07/10/2026 · Đã chốt 2 / Cần xác nhận 0</span></span></div></div>
+</body></html>
