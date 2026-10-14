@@ -300,8 +300,8 @@ html[lang="vi"] .cp-scope .vi{display:inline}
 
 <tr class="step"><td colspan="3"><span class="i18n"><span class="ko">1 · 구매</span><span class="vi">1 · MUA</span></span></td></tr>
 <tr><td class="k"><span class="i18n"><span class="ko">지급 시점</span><span class="vi">Thời điểm cấp</span></span></td>
-<td class="a"><span class="i18n"><span class="ko">구매 즉시 랜덤 1장 · CONFIRMED 수신 후 전환 대기일 경과 시 등급 전환<span class="s">②</span></span><span class="vi">Ngay khi mua 1 vé ngẫu nhiên · chuyển hạng sau khi nhận CONFIRMED và qua ngày chờ<span class="s">②</span></span></span></td>
-<td class="b"><span class="i18n"><span class="ko">구매 즉시 랜덤 1장 · 매월 6일 이후 status=210 조회 시 등급 전환<span class="s">②③</span></span><span class="vi">Ngay khi mua 1 vé ngẫu nhiên · chuyển hạng khi tra cứu status=210 sau ngày 6 hằng tháng<span class="s">②③</span></span></span></td></tr>
+<td class="a"><span class="i18n"><span class="ko">구매 즉시 랜덤 1장 · CONFIRMED 수신 후 전환 대기일 경과 시 티켓 전환<span class="s">②</span></span><span class="vi">Ngay khi mua 1 vé ngẫu nhiên · chuyển thành vé sau khi nhận CONFIRMED và qua ngày chờ<span class="s">②</span></span></span></td>
+<td class="b"><span class="i18n"><span class="ko">구매 즉시 랜덤 1장 · 매월 6일 이후 status=210 조회 시 티켓 전환<span class="s">②③</span></span><span class="vi">Ngay khi mua 1 vé ngẫu nhiên · chuyển thành vé khi tra cứu status=210 sau ngày 6 hằng tháng<span class="s">②③</span></span></span></td></tr>
 <tr><td class="k"><span class="i18n"><span class="ko">전환 대기일 수</span><span class="vi">Số ngày chờ chuyển đổi</span></span></td>
 <td class="a"><span class="i18n"><span class="ko">연동 D+7 / 미연동 D+30 고정 · CMS 수정 불가<span class="s">⑦</span></span><span class="vi">Liên kết D+7 / chưa liên kết D+30 cố định · không sửa trên CMS<span class="s">⑦</span></span></span></td>
 <td class="b"><span class="i18n"><span class="ko"><b>익익월 6일 확정 후</b> · 확정 건을 세 값 조합으로 대조해 전환 · <b>카카오 연동 여부 무관</b>(연동 분기 없음) · 미확정분은 전환 제외로 랜덤 1장 소멸 · <s>제휴몰별 설정 · 기본 30일</s> 2026-09-22 폐지<span class="s">⑦⑨</span></span><span class="vi"><b>Sau khi chốt ngày 6 của tháng sau nữa</b> · đối chiếu giao dịch đã chốt bằng tổ hợp ba giá trị để chuyển đổi · <b>không phụ thuộc liên kết Kakao</b> (không có nhánh liên kết) · phần chưa chốt bị loại khỏi chuyển đổi nên 1 vé ngẫu nhiên tiêu hủy · <s>Thiết lập theo từng sàn · mặc định 30 ngày</s> bãi bỏ 22/09/2026<span class="s">⑦⑨</span></span></span></td></tr>
@@ -325,7 +325,7 @@ html[lang="vi"] .cp-scope .vi{display:inline}
 
 <tr class="step"><td colspan="3"><span class="i18n"><span class="ko">3 · 환수</span><span class="vi">3 · THU HỒI</span></span></td></tr>
 <tr class="dif"><td class="k"><span class="i18n"><span class="ko">환수 발생</span><span class="vi">Phát sinh thu hồi</span></span></td>
-<td class="a"><span class="i18n"><span class="ko"><b>발생</b> — 전환 전: 대기 랜덤 1장 취소 / 전환 후: 지급 등급 티켓 환수<span class="s">②</span></span><span class="vi"><b>Có</b> — trước chuyển đổi: hủy 1 vé ngẫu nhiên đang chờ / sau chuyển đổi: thu hồi vé hạng đã cấp<span class="s">②</span></span></span></td>
+<td class="a"><span class="i18n"><span class="ko"><b>발생</b> — 전환 전: 대기 랜덤 1장 취소 / 전환 후: 지급 티켓 환수<span class="s">②</span></span><span class="vi"><b>Có</b> — trước chuyển đổi: hủy 1 vé ngẫu nhiên đang chờ / sau chuyển đổi: thu hồi vé đã cấp<span class="s">②</span></span></span></td>
 <td class="b"><span class="i18n"><span class="ko"><b>미발생</b> — 확정 후 지급 구조 · 확정 대상 부재 시 대기 랜덤 1장만 취소<span class="s">②</span></span><span class="vi"><b>Không</b> — cấu trúc cấp sau khi chốt · không có đối tượng đã chốt thì chỉ hủy 1 vé ngẫu nhiên đang chờ<span class="s">②</span></span></span></td></tr>
 <tr class="dif"><td class="k"><span class="i18n"><span class="ko">지급 티켓 잔액</span><span class="vi">Số dư vé đã cấp</span></span></td>
 <td class="a"><span class="i18n"><span class="ko"><b>감소 가능</b> · 부족 시 동급 차감 → 부족분 부채 기록 → 차기 적립 상계<span class="s">⑤⑥</span></span><span class="vi"><b>Có thể giảm</b> · thiếu thì trừ cùng hạng → ghi nợ phần thiếu → bù trừ ở lần tích lũy kế tiếp<span class="s">⑤⑥</span></span></span></td>
@@ -366,6 +366,7 @@ html[lang="vi"] .cp-scope .vi{display:inline}
 
 </div>
 <section class="phist"><h3>변경 이력</h3><table class="phist-t"><tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<tr><td class="hd">2026-10-14</td><td class="hi">등급 티켓 1종 통합</td><td class="hb">김반장·이동영 부장 합의(2026-10-14) — 등급 티켓 3종(브론즈·실버·골드)을 1종으로 통합하고 명칭을 「티켓」으로 변경. 티켓 1장 가치 10원. 전문은 「등급 티켓 1종 통합 — 정책 변경안」(devqa/policy-change-ticket-unify-20261014.html).</td></tr>
 <tr><td class="hd">2026-09-15</td><td class="hi">티켓 상태 배지 5종 정책서 편입</td><td class="hb">흩어진 정책 목록(devqa/policy-scatter-list.html) #4 항목을 이 페이지로 편입했습니다. 문장은 목록 원문 그대로이며 새로 정한 내용은 없습니다. 원본 문서는 남겨 두고 편입 표시만 달았습니다. 근거 — 취소 처리 지시서 2026-09-03 8번 · 김반장 확정(2026-09-15).</td></tr>
 <tr class="born"><td class="hd">2026-09-14</td><td class="hi">정책 최초 수립</td><td class="hb">제휴몰별 취소 정책 문서 신설. 기존 문서 발췌이며 새로 정한 내용 없음 — 정책서 「티켓·적립」 6번 카드(2026-08-27 신설 · 2026-09-08 정정) · <a href="/devqa/cancel-ticket-recovery-20260903.html">취소 처리 · 티켓 환수 지시</a>(2026-09-03, 09-04 개정) · <a href="/devqa/linkprice-settlement-20260904.html">링크프라이스 정산 기준 확정</a>(2026-09-04) · <a href="/reports/20260819_AccrualPolicy.html">적립 확정 정책 보고서</a>(2026-08-19). 각 규칙의 변경 이력은 <a href="/policy-02-earn.html">쇼핑 티켓 · 적립</a>·<a href="/policy-08-abuse.html">어뷰징 한도 · 환불</a> 페이지에 있습니다.</td></tr>
 </table><p class="phist-n">최신이 위, 가장 오래된 줄이 아래입니다. <b>맨 아래 줄이 그 정책의 최초 기록</b>입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
