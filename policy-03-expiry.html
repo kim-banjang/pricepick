@@ -261,14 +261,15 @@ html[lang="vi"] .cp-scope .vi{display:inline}
 <main class="psub-wrap">
 <div class="panel active" data-tab="t3">
     <div class="ptitle"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>유효기간 · 만료</div>
-    <div class="pdesc">티켓·포인트가 언제 사라지는지. 세 가지(등급 티켓·이벤트 티켓·포인트)가 각각 다릅니다.</div>
+    <div class="pdesc">티켓·포인트가 언제 사라지는지. 세 가지(티켓·이벤트 티켓·포인트)가 각각 다릅니다.</div>
     <div class="card">
       <h4><span class="n">1</span>세 가지 만료 규칙</h4>
 <table class="ptbl">
-      <tr class="rw"><td class="rk">등급 티켓</td><td class="rv"><b>받은 날(구매로 적립된 날)부터 1년(365일)</b> 뒤 자동 소멸. 등급 확정일이 아니라 <b>적립일 기준</b>입니다. 만료 30일 전·7일 전 알림(D-30 / D-7).</td></tr>
-      <tr class="rw"><td class="rk">이벤트 티켓</td><td class="rv">받은 날부터 100일 뒤 소멸합니다(고정). 사용처는 랜덤 선물 상자 열기와 등급 교환이며, 기프티콘 직접 교환에는 쓸 수 없습니다.</td></tr>
+      <tr class="rw"><td class="rk">티켓</td><td class="rv"><b>받은 날(구매로 적립된 날)부터 1년(365일)</b> 뒤 자동 소멸. 장수 확정일이 아니라 <b>적립일 기준</b>입니다. 만료 30일 전·7일 전 알림(D-30 / D-7).</td></tr>
+      <tr class="rw"><td class="rk">이벤트 티켓</td><td class="rv">받은 날부터 100일 뒤 소멸합니다(고정). 사용처는 랜덤 선물 상자 열기와 티켓 전환이며, 기프티콘 직접 교환에는 쓸 수 없습니다.</td></tr>
       <tr class="nt"><td class="rv" colspan="2"><b>변경 확정:</b> 이벤트 티켓 만료는 과거 "추첨 회차 기준 최대 2회 이월" 방식에서 <b>100일 고정</b>으로 정리·확정됐습니다(v8 결정). 추첨 회차 이월 서술은 폐기.</td></tr>
       <tr class="rw"><td class="rk">포인트</td><td class="rv"><b>적립일부터 1년</b> 뒤 만료. 만료 30일 전·7일 전 알림.</td></tr>
+      <tr class="rw"><td class="rk">사용 순서</td><td class="rv"><b>먼저 받은 티켓부터 사용합니다(선입선출).</b> 만료가 가까운 티켓이 먼저 빠집니다.</td></tr>
 </table>
 <span class="src">출처 PolicySpec 5 / FunctionalSpec 정책요약 / 사용자 확정(이벤트 티켓 100일)</span>
     </div>
@@ -278,6 +279,7 @@ html[lang="vi"] .cp-scope .vi{display:inline}
   
 <section class="phist"><h3>변경 이력</h3><table class="phist-t">
 <tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<tr><td class="hd">2026-10-14</td><td class="hi">등급 티켓 1종 통합</td><td class="hb">김반장·이동영 부장 합의(2026-10-14) — 등급 티켓 3종(브론즈·실버·골드)을 1종으로 통합하고 명칭을 「티켓」으로 변경. 티켓 1장 가치 10원. 전문은 「등급 티켓 1종 통합 — 정책 변경안」(devqa/policy-change-ticket-unify-20261014.html).</td></tr>
 <tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 마스터 수록</td><td class="hb">정책 마스터 초판에 수록 — 이 정책은 그 전부터 결정돼 있었고, 아래 더 오래된 줄이 최초 기록입니다. (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 5 · FunctionalSpec 정책요약 · 사용자 확정(이벤트 티켓 100일)</td></tr>
 <tr><td class="hd">2026-06-08</td><td class="hi">등급 티켓 만료</td><td class="hb">이부장 변경안. 적립일(확정일 아님) 기산으로 확정, D-30·D-7 알림.</td></tr>
 <tr><td class="hd nd">v8 결정(날짜 미상)</td><td class="hi">이벤트 티켓 만료</td><td class="hb">이월 로직 복잡·운영 혼선 정리. 100일 고정으로 단순화 확정.</td></tr>
