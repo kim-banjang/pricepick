@@ -105,6 +105,7 @@
   <header>
     <div class="tabs">
       <button class="tab active" data-target="splash">스플래시·로그인</button>
+      <button class="tab" data-target="home">홈</button>
       <button class="tab" data-target="attendance">출석체크</button>
       <button class="tab" data-target="jackpot">잭팟 룰렛</button>
       <button class="tab" data-target="lucky">행운 룰렛</button>
@@ -122,6 +123,7 @@
   </header>
   <div class="frame-wrap">
     <div id="ph-splash" class="placeholder">불러오는 중...</div>
+    <div id="ph-home" class="placeholder hidden">불러오는 중...</div>
     <div id="ph-lm" class="placeholder hidden">불러오는 중...</div>
     <div id="ph-jackpot" class="placeholder hidden">불러오는 중...</div>
     <div id="ph-invite" class="placeholder hidden">불러오는 중...</div>
@@ -132,6 +134,7 @@
     <div id="ph-giftshop" class="placeholder hidden">불러오는 중...</div>
     <div id="ph-a2hs" class="placeholder hidden">불러오는 중...</div>
     <iframe id="frame-splash" class="active" src="design-splash-login-20260729.html" title="스플래시·로그인 시안"></iframe>
+    <iframe id="frame-home" title="홈 시안"></iframe>
     <iframe id="frame-lm" title="출석체크 / 행운 룰렛 시안"></iframe>
     <iframe id="frame-jackpot" title="잭팟 룰렛 시안"></iframe>
     <iframe id="frame-invite" title="친구초대 시안"></iframe>
@@ -144,20 +147,24 @@
   </div>
 
   <script>
+    /* 2026-10-15 티켓 1종 통합 개정판으로 교체 — 이전 판은 각 시안 상단 「이전 판 보기」 링크로 연다.
+       (교체 전 연결: ticket 20260803 · mytickets 20260804 · giftbox 20260825 — NewDesign_s01.html 에 남아 있다) */
     var SRC = {
+      home: '20261015_NewDesign_home.html',
       lm: '20260729_NewDesign.html',
       jackpot: '20260731_NewDesign.html',
       invite: '20260803_NewDesign_invite.html',
       streak: '20260803_NewDesign_streak.html',
-      ticket: '20260803_NewDesign_ticket.html',
-      mytickets: '20260804_NewDesign_mytickets.html',
-      giftbox: '20260825_NewDesign_giftbox.html',
+      ticket: '20261015_NewDesign_ticket.html',
+      mytickets: '20261015_NewDesign_mytickets.html',
+      giftbox: '20261015_NewDesign_giftbox.html',
       giftshop: '20260916_NewDesign_giftshop.html',
       a2hs: '20260922_NewDesign_a2hs.html'
     };
 
     var FRAME_OF_TAB = {
       splash: 'frame-splash',
+      home: 'frame-home',
       attendance: 'frame-lm',
       lucky: 'frame-lm',
       jackpot: 'frame-jackpot',
@@ -171,6 +178,7 @@
     };
     var PLACEHOLDER_OF_FRAME = {
       'frame-splash': 'ph-splash',
+      'frame-home': 'ph-home',
       'frame-lm': 'ph-lm',
       'frame-jackpot': 'ph-jackpot',
       'frame-invite': 'ph-invite',
@@ -183,7 +191,7 @@
     };
 
     var frames = {};
-    ['frame-splash', 'frame-lm', 'frame-jackpot', 'frame-invite', 'frame-streak', 'frame-ticket', 'frame-mytickets', 'frame-giftbox', 'frame-giftshop', 'frame-a2hs'].forEach(function (id) {
+    ['frame-splash', 'frame-home', 'frame-lm', 'frame-jackpot', 'frame-invite', 'frame-streak', 'frame-ticket', 'frame-mytickets', 'frame-giftbox', 'frame-giftshop', 'frame-a2hs'].forEach(function (id) {
       frames[id] = document.getElementById(id);
     });
     var placeholders = {};
@@ -326,6 +334,7 @@
     }
 
     frames['frame-splash'].addEventListener('load', function () { onFrameLoaded('frame-splash', false); });
+    frames['frame-home'].addEventListener('load', function () { onFrameLoaded('frame-home', false); });
     frames['frame-lm'].addEventListener('load', function () { onFrameLoaded('frame-lm', true); });
     frames['frame-jackpot'].addEventListener('load', function () { onFrameLoaded('frame-jackpot', false); });
     frames['frame-invite'].addEventListener('load', function () { onFrameLoaded('frame-invite', false); });
