@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>홈 New Design</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap">
+<style>
+:root { --main:#845EEE; --text1:#1A1130; --text2:#5A5370; --text3:#9B93B0; --text4:#C4BED0; --border:#EEEAF3; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:#FFFFFF; font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif; -webkit-font-smoothing:antialiased; color:var(--text1); }
+a { color:#845EEE; text-decoration:none; }
+.page { padding:56px 56px 72px; display:flex; flex-direction:column; gap:44px; }
+.hdr { display:flex; flex-direction:column; gap:10px; }
+.hdr-eb { color:#9B93B0; font-size:13px; font-weight:700; letter-spacing:.08em; }
+.hdr-t { color:#1A1130; font-size:34px; font-weight:800; letter-spacing:-.035em; }
+.hdr-l { color:#8A8AA3; font-size:15px; font-weight:500; }
+.hist { display:flex; align-items:center; gap:10px; margin-top:6px; flex-wrap:wrap; }
+.hist-badge { padding:4px 10px; border-radius:999px; background:#F1ECFF; color:#845EEE; font-size:12px; font-weight:800; }
+.hist-t { color:#5A5370; font-size:13px; font-weight:600; }
+.row { display:flex; gap:44px; align-items:flex-start; }
+.col { display:flex; flex-direction:column; gap:12px; flex:none; }
+.col-label { display:flex; align-items:center; gap:9px; padding-left:4px; color:#1A1130; font-size:13px; font-weight:700; }
+.col-label .no { width:22px; height:22px; border-radius:7px; background:#1A1130; color:#FFFFFF; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+.phone { width:390px; height:844px; border-radius:44px; background:#FAFAFA; overflow:hidden; position:relative; display:flex; flex-direction:column;
+  box-shadow:0 24px 60px -24px rgba(26,17,48,.28), 0 2px 8px rgba(26,17,48,.06), 0 0 0 1px rgba(26,17,48,.05); }
+.sb { height:47px; padding:14px 28px 0 32px; display:flex; justify-content:space-between; align-items:center; font-size:15px; font-weight:600; background:#FFFFFF; flex:none; }
+.sb .statusbar-icons { display:flex; gap:5px; align-items:center; }
+.top { padding:10px 16px 14px; display:flex; align-items:center; justify-content:space-between; background:#FFFFFF; border-bottom:1px solid var(--border); flex:none; }
+.top .brand-logo { display:flex; align-items:center; gap:8px; }
+.top .brand-symbol { display:flex; align-items:center; justify-content:center; }
+.top .brand-wordmark { font-family:'Poppins',sans-serif; font-size:18px; letter-spacing:.5px; line-height:1; display:flex; align-items:center; }
+.top .bw-light { font-weight:300; color:var(--text1); } .top .bw-bold { font-weight:600; color:var(--main); }
+.top .top-icons { display:flex; gap:4px; }
+.top .top-icon-btn { width:38px; height:38px; background:transparent; border:none; border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--text1); position:relative; }
+.top .top-icon-btn:first-child::after { content:''; position:absolute; top:7px; right:8px; width:7px; height:7px; border-radius:50%; background:#FF4452; }
+.scroll { flex:1; overflow:hidden; padding-bottom:90px; }
+/* 카카오 연동 유도 */
+.kakao { margin:14px 16px 0; background:linear-gradient(135deg,#FFFBEC,#FFF3D2); border:1px solid #FFE69C; border-radius:12px; padding:9px 13px; display:flex; align-items:center; gap:10px; }
+.kakao-ico { width:28px; height:28px; background:#FEE500; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.kakao-t { flex:1; font-size:15px; font-weight:800; }
+.kakao-arrow { color:var(--text3); font-size:18px; font-weight:700; }
+/* 티켓형 보유 카드 */
+.tk-wrap { margin:16px 16px 0; filter:drop-shadow(0 12px 18px rgba(61,42,120,.28)); }
+.tk { --stub:132px; --notch:11px; position:relative; display:flex; min-height:124px; border-radius:20px; color:#FFFFFF; overflow:hidden;
+  background:radial-gradient(130% 150% at 0% 0%, rgba(155,120,255,.42) 0%, rgba(155,120,255,0) 58%), linear-gradient(135deg,#4B35A6 0%,#3D2A78 58%,#2C1E5C 100%);
+  -webkit-mask:radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 0, #0000 calc(var(--notch) - .5px), #000 var(--notch)) top / 100% 51% no-repeat, radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 100%, #0000 calc(var(--notch) - .5px), #000 var(--notch)) bottom / 100% 51% no-repeat;
+  mask:radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 0, #0000 calc(var(--notch) - .5px), #000 var(--notch)) top / 100% 51% no-repeat, radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 100%, #0000 calc(var(--notch) - .5px), #000 var(--notch)) bottom / 100% 51% no-repeat; }
+.tk-main { position:relative; flex:1; min-width:0; overflow:hidden; padding:20px 20px 18px; display:flex; flex-direction:column; justify-content:space-between; }
+.tk-mark { position:absolute; right:-34px; top:-30px; width:150px; height:150px; color:#FFFFFF; opacity:.09; pointer-events:none; }
+.tk-head { position:relative; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.tk-label { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:rgba(255,255,255,.72); }
+.tk-label::before { content:''; width:6px; height:6px; border-radius:50%; background:#FFD93B; box-shadow:0 0 0 3px rgba(255,217,59,.18); }
+.tk-more { font-size:13px; font-weight:500; color:rgba(255,255,255,.5); white-space:nowrap; }
+.tk-num { position:relative; display:flex; align-items:baseline; gap:4px; margin-top:14px; }
+.tk-num b { font-size:36px; font-weight:800; line-height:1; letter-spacing:-.035em; font-variant-numeric:tabular-nums; }
+.tk-num .tk-u { font-size:15px; font-weight:700; color:rgba(255,255,255,.66); }
+.tk-stub { position:relative; flex:0 0 var(--stub); padding:16px 14px 16px 18px; display:flex; flex-direction:column; justify-content:center; background:rgba(255,255,255,.05); }
+.tk-stub::before { content:''; position:absolute; left:0; top:calc(var(--notch) + 6px); bottom:calc(var(--notch) + 6px); border-left:1.5px dashed rgba(255,255,255,.26); }
+.tk-row { display:flex; align-items:center; gap:9px; }
+.tk-row + .tk-row { margin-top:11px; padding-top:11px; border-top:1px solid rgba(255,255,255,.1); }
+.tk-row img { width:22px; height:22px; flex-shrink:0; display:block; }
+.tk-txt { min-width:0; display:flex; flex-direction:column; gap:2px; }
+.tk-k { font-size:11px; font-weight:600; color:rgba(255,255,255,.58); white-space:nowrap; }
+.tk-v { font-size:15px; font-weight:800; letter-spacing:-.02em; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.tk-v i { font-style:normal; font-size:12px; font-weight:700; color:rgba(255,255,255,.62); margin-left:2px; }
+/* 미션 4종 — 실제 앱과 동일(아이콘은 실제 앱이 쓰는 이모지·선물 상자 그림 그대로) */
+.hm-row { margin:16px 16px 4px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:9px; }
+.hm-card { border:1px solid rgba(255,255,255,.9); border-radius:22px; padding:14px 4px 12px; display:flex; flex-direction:column; align-items:center; gap:7px; text-align:center; }
+.hm-card.attend { background:linear-gradient(170deg,#FFF6DC,#FFE9B8); box-shadow:0 8px 18px rgba(230,170,40,.16); }
+.hm-card.gift { background:linear-gradient(170deg,#F3EEFF,#E2D6FF); box-shadow:0 8px 18px rgba(130,90,240,.16); }
+.hm-card.invite { background:linear-gradient(170deg,#EDF6FF,#D6EBFF); box-shadow:0 8px 18px rgba(80,150,230,.16); }
+.hm-card.streak { background:linear-gradient(170deg,#F1EBFF,#E3D8FF); box-shadow:0 8px 18px rgba(130,90,240,.16); }
+.hm-ico { width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:27px; line-height:1; }
+.hm-ico img { width:32px; height:auto; display:block; }
+.attend .hm-ico { background:radial-gradient(circle at 34% 30%,#FFF1C2,#F7C85A); box-shadow:0 5px 12px rgba(240,170,30,.35), inset 0 2px 3px rgba(255,255,255,.7); }
+.gift .hm-ico { background:radial-gradient(circle at 34% 30%,#F4EFFF,#CDBBFF); box-shadow:0 5px 12px rgba(130,90,240,.3), inset 0 2px 3px rgba(255,255,255,.7); }
+.invite .hm-ico { background:radial-gradient(circle at 34% 30%,#EAF4FF,#8EC1FF); box-shadow:0 5px 12px rgba(80,150,230,.35), inset 0 2px 3px rgba(255,255,255,.7); }
+.streak .hm-ico { background:radial-gradient(circle at 34% 30%,#EEE7FF,#A98BFF); box-shadow:0 5px 12px rgba(130,90,240,.35), inset 0 2px 3px rgba(255,255,255,.7); }
+.hm-title { font-size:15px; font-weight:800; letter-spacing:-.2px; line-height:1.2; white-space:nowrap; }
+.attend .hm-title { color:#5A4410; } .invite .hm-title { color:#1D3F66; } .streak .hm-title { color:#3B2570; }
+.hm-pill { font-size:13px; font-weight:600; background:rgba(255,255,255,.85); border-radius:999px; padding:3px 7px; letter-spacing:-.2px; line-height:1.3; max-width:100%; white-space:nowrap; }
+/* 베트남어는 글이 길어 두 줄을 허용한다 */
+#langsw:checked ~ #dc-root .hm-title, #langsw:checked ~ #dc-root .hm-pill { white-space:normal; }
+.hm-pill b { font-weight:800; }
+.attend .hm-pill { color:#C77F00; } .gift .hm-pill { color:#7E5FE6; } .invite .hm-pill { color:#4884E1; } .streak .hm-pill { color:#7233E9; }
+/* 랜덤 선물 상자 배너 — 실제 앱과 동일, 문구만 골드 표기 폐기 */
+.gb { margin:14px 16px 0; min-height:96px; padding:0 16px; border-radius:16px; position:relative; overflow:hidden; display:flex; align-items:center; gap:14px;
+  background:radial-gradient(75% 150% at 10% 0%, rgba(78,48,160,.55) 0%, rgba(78,48,160,0) 62%), #0E0824; box-shadow:0 8px 22px rgba(20,10,50,.22); }
+.gb-ico { position:relative; z-index:1; flex-shrink:0; width:52px; height:52px; border-radius:50%; border:3px solid #5F5157; background:radial-gradient(circle at 38% 32%,#A68CF7 0%,#7B5CE6 55%,#5F43CC 100%); display:flex; align-items:center; justify-content:center; }
+.gb-ico img { width:30px; height:auto; display:block; }
+.gb-txt { position:relative; z-index:1; flex:1; min-width:0; padding-right:44px; }
+.gb-t1 { font-size:12px; font-weight:800; letter-spacing:1.8px; color:#F9DA5C; }
+.gb-t2 { margin-top:3px; font-size:15px; font-weight:800; color:#FFFFFF; letter-spacing:-.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.gb-t3 { margin-top:3px; font-size:13px; font-weight:700; color:#C2B0F9; white-space:nowrap; }
+.gb-box { position:absolute; right:-6px; top:34px; width:60px; height:auto; transform:rotate(-8deg); }
+.gb-tk { position:absolute; right:50px; top:66px; width:22px; height:22px; transform:rotate(-30deg); opacity:.9; }
+.gb-arrow { position:absolute; right:24px; top:30px; z-index:2; font-size:22px; font-weight:800; line-height:1; color:#F9DA5C; }
+/* 구매하고 티켓받기 */
+.hs-hd { margin:22px 16px 10px; display:flex; align-items:flex-end; justify-content:space-between; }
+.hs-title { font-size:18px; font-weight:800; letter-spacing:-.3px; }
+.hs-sub { margin-top:4px; font-size:13px; color:var(--text3); }
+.hs-more { font-size:13px; color:var(--text3); }
+.mall { margin:0 16px 10px; background:#FFFFFF; border:1px solid var(--border); border-radius:16px; padding:14px 14px 14px 12px; display:flex; align-items:center; gap:12px; }
+.mall.best { border:1.5px solid #C6AFFF; }
+.mall-logo { width:44px; height:44px; border-radius:50%; object-fit:cover; flex-shrink:0; }
+.mall-body { flex:1; display:flex; align-items:center; gap:6px; }
+.mall-name { font-size:15px; font-weight:700; }
+.mall-badge { background:var(--main); color:#FFFFFF; font-size:12px; font-weight:600; padding:1px 7px; border-radius:6px; }
+.mall-go { font-size:13px; font-weight:700; padding:8px 12px; border-radius:10px; background:#F1EEFF; color:var(--main); white-space:nowrap; }
+.mall-go.primary { background:var(--main); color:#FFFFFF; }
+/* 하단 탭바 — 활성 보라 */
+.tabbar { position:absolute; bottom:0; left:0; right:0; height:78px; background:#FFFFFF; border-top:1px solid var(--border); box-shadow:0 -4px 16px rgba(26,17,48,.08); display:flex; padding-top:8px; padding-bottom:24px; }
+.tab-item { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; padding:2px; }
+.tab-ico { width:24px; height:24px; display:flex; align-items:center; justify-content:center; color:var(--text3); }
+.tab-ico svg { width:22px; height:22px; }
+.tab-lbl { font-size:13px; color:var(--text3); font-weight:600; }
+.tab-item.active .tab-ico, .tab-item.active .tab-lbl { color:var(--main); }
+.tab-item.active .tab-lbl { font-weight:700; }
+.tab-ico .ico-line { display:block; } .tab-ico .ico-solid { display:none; }
+.tab-item.active .tab-ico .ico-line { display:none; } .tab-item.active .tab-ico .ico-solid { display:block; }
+/* 규격 */
+.spec-col { width:420px; }
+.spec { background:#F7F5FC; border-radius:24px; padding:22px 20px 18px; display:flex; flex-direction:column; gap:2px; }
+.spec-sample { margin:0 -16px 14px; }
+.spec-row { display:grid; grid-template-columns:76px 1fr; gap:10px; padding:9px 2px; border-top:1px solid #ECE8F5; }
+.spec-k { font-size:12px; font-weight:800; color:#845EEE; }
+.spec-v { font-size:12px; font-weight:500; color:#5A5370; line-height:1.55; }
+</style>
+</head>
+<body>
+<div id="dc-root">
+<div class="page">
+  <div class="hdr">
+    <div class="hdr-eb">PRICEPICK · 홈</div>
+    <div class="hdr-t">홈 New Design</div>
+    <div class="hdr-l">보유 카드만 티켓형으로 새로, 나머지는 실제 개발된 앱과 동일하게</div>
+    <div class="hist"><span class="hist-badge">2026-10-15 신설</span><span class="hist-t">티켓 1종 통합 반영 — 보유 카드 티켓형 · 선물 상자 배너 문구 · 미션 보상 한 줄 · 쿠팡 설명 줄 제거 · 탭바 활성 보라</span></div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="col-label"><span class="no">1</span><span>카카오 연동 회원 · 이벤트 티켓 보유</span></div>
+      <div class="phone">
+        <div class="sb"><span>9:41</span><div class="statusbar-icons"><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 2.5C10.2 2.5 12.2 3.4 13.6 4.9L15 3.4C13.2 1.5 10.7 0.3 8 0.3C5.3 0.3 2.8 1.5 1 3.4L2.4 4.9C3.8 3.4 5.8 2.5 8 2.5Z"/><path d="M8 5.5C9.4 5.5 10.7 6.1 11.6 7L13 5.5C11.7 4.2 10 3.3 8 3.3C6 3.3 4.3 4.2 3 5.5L4.4 7C5.3 6.1 6.6 5.5 8 5.5Z"/><circle cx="8" cy="10" r="1.8"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="currentColor"/><path d="M23 4V8C23.8 7.6 24.5 6.9 24.5 6C24.5 5.1 23.8 4.4 23 4Z" fill="currentColor" fill-opacity="0.4"/></svg></div></div>
+        <div class="top"><div class="brand-logo"><div class="brand-symbol"><svg width="28" height="28" viewBox="0 0 360 363" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M178.702 82.6926C125.372 82.6926 82.1367 125.942 82.1367 179.289V277.43H115.611V252.409C132.535 267.036 154.589 275.873 178.702 275.873C232.032 275.873 275.267 232.624 275.267 179.276C275.267 125.929 232.032 82.6797 178.702 82.6797V82.6926ZM178.702 242.401C143.851 242.401 115.611 214.151 115.611 179.289C115.611 144.428 143.851 116.178 178.702 116.178C213.552 116.178 241.792 144.428 241.792 179.289C241.792 214.151 213.552 242.401 178.702 242.401Z" fill="#634C9E"/><path d="M180 0C80.593 0 0 80.6195 0 180.059V363H62.3962V316.368C93.9416 343.627 135.042 360.118 180 360.118C279.407 360.118 360 279.499 360 180.059C360 80.6195 279.42 0 180 0ZM180 297.702C115.045 297.702 62.3962 245.023 62.3962 180.059C62.3962 115.095 115.058 62.4168 180 62.4168C244.942 62.4168 297.604 115.095 297.604 180.059C297.604 245.023 244.942 297.702 180 297.702Z" fill="#7A49DE"/><path d="M208.118 189.436L204.118 182.814C203.278 181.338 202.518 178.546 202.518 176.91V166.818C202.518 153.814 191.918 143.203 178.838 143.203C165.758 143.203 155.158 153.814 155.158 166.818V176.91C155.158 178.546 154.398 181.338 153.558 182.774L149.518 189.436C147.918 192.108 147.558 195.06 148.558 197.773C149.518 200.445 151.798 202.52 154.758 203.517C162.518 206.15 170.678 207.426 178.838 207.426C186.998 207.426 195.158 206.15 202.918 203.557C205.718 202.639 207.878 200.525 208.918 197.773C209.958 195.02 209.678 191.989 208.118 189.436Z" fill="#532E95"/><path d="M187.757 144.883C184.997 143.806 181.997 143.207 178.837 143.207C175.717 143.207 172.717 143.766 169.957 144.883C171.677 141.652 175.077 139.617 178.837 139.617C182.637 139.617 185.997 141.652 187.757 144.883Z" fill="#532E95"/><path d="M190.077 211.462C188.397 216.089 183.957 219.4 178.757 219.4C175.597 219.4 172.477 218.123 170.277 215.85C168.997 214.653 168.037 213.057 167.477 211.422C167.997 211.502 168.517 211.542 169.077 211.621C169.997 211.741 170.957 211.861 171.917 211.94C174.197 212.14 176.517 212.26 178.837 212.26C181.117 212.26 183.397 212.14 185.637 211.94C186.477 211.861 187.317 211.821 188.117 211.701C188.757 211.621 189.397 211.542 190.077 211.462Z" fill="#532E95"/></svg></div><div class="brand-wordmark"><span class="bw-light">PRICE</span><span class="bw-bold">PICK</span></div></div><div class="top-icons">
+            <button class="top-icon-btn" aria-label="알림"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 10.5175C11.59 10.5175 11.25 10.1775 11.25 9.7675V6.4375C11.25 6.0275 11.59 5.6875 12 5.6875C12.41 5.6875 12.75 6.0275 12.75 6.4375V9.7675C12.75 10.1875 12.41 10.5175 12 10.5175Z" fill="currentColor"/><path d="M12.0208 20.3522C9.44084 20.3522 6.87084 19.9422 4.42084 19.1222C3.51084 18.8222 2.82084 18.1722 2.52084 17.3522C2.22084 16.5322 2.32084 15.5922 2.81084 14.7722L4.08084 12.6522C4.36084 12.1822 4.61084 11.3022 4.61084 10.7522V8.65219C4.61084 4.56219 7.93084 1.24219 12.0208 1.24219C16.1108 1.24219 19.4308 4.56219 19.4308 8.65219V10.7522C19.4308 11.2922 19.6808 12.1822 19.9608 12.6522L21.2308 14.7722C21.7008 15.5522 21.7808 16.4822 21.4708 17.3322C21.1608 18.1822 20.4808 18.8322 19.6208 19.1222C17.1708 19.9522 14.6008 20.3522 12.0208 20.3522ZM12.0208 2.75219C8.76084 2.75219 6.11084 5.40219 6.11084 8.66219V10.7622C6.11084 11.5722 5.79084 12.7422 5.37084 13.4322L4.10084 15.5622C3.84084 15.9922 3.78084 16.4522 3.93084 16.8522C4.08084 17.2522 4.42084 17.5522 4.90084 17.7122C9.50084 19.2422 14.5608 19.2422 19.1608 17.7122C19.5908 17.5722 19.9208 17.2522 20.0708 16.8322C20.2308 16.4122 20.1808 15.9522 19.9508 15.5622L18.6808 13.4422C18.2608 12.7522 17.9408 11.5822 17.9408 10.7722V8.67219C17.9308 5.40219 15.2808 2.75219 12.0208 2.75219Z" fill="currentColor"/><path d="M12.0019 22.9003C10.9319 22.9003 9.88187 22.4603 9.12187 21.7003C8.36187 20.9403 7.92188 19.8903 7.92188 18.8203H9.42188C9.42188 19.5003 9.70188 20.1603 10.1819 20.6403C10.6619 21.1203 11.3219 21.4003 12.0019 21.4003C13.4219 21.4003 14.5819 20.2403 14.5819 18.8203H16.0819C16.0819 21.0703 14.2519 22.9003 12.0019 22.9003Z" fill="currentColor"/></svg><div class="top-icon-dot"></div></button>
+            <button class="top-icon-btn" aria-label="설정"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12.8814V11.1214C2 10.0814 2.85 9.2214 3.9 9.2214C5.71 9.2214 6.45 7.9414 5.54 6.3714C5.02 5.4714 5.33 4.3014 6.24 3.7814L7.97 2.7914C8.76 2.3214 9.78 2.6014 10.25 3.3914L10.36 3.5814C11.26 5.1514 12.74 5.1514 13.65 3.5814L13.76 3.3914C14.23 2.6014 15.25 2.3214 16.04 2.7914L17.77 3.7814C18.68 4.3014 18.99 5.4714 18.47 6.3714C17.56 7.9414 18.3 9.2214 20.11 9.2214C21.15 9.2214 22.01 10.0714 22.01 11.1214V12.8814C22.01 13.9214 21.16 14.7814 20.11 14.7814C18.3 14.7814 17.56 16.0614 18.47 17.6314C18.99 18.5414 18.68 19.7014 17.77 20.2214L16.04 21.2114C15.25 21.6814 14.23 21.4014 13.76 20.6114L13.65 20.4214C12.75 18.8514 11.27 18.8514 10.36 20.4214L10.25 20.6114C9.78 21.4014 8.76 21.6814 7.97 21.2114L6.24 20.2214C5.33 19.7014 5.02 18.5314 5.54 17.6314C6.45 16.0614 5.71 14.7814 3.9 14.7814C2.85 14.7814 2 13.9214 2 12.8814Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div></div>
+        <div class="scroll">
+        <div class="tk-wrap"><div class="tk">
+          <div class="tk-main">
+            <svg class="tk-mark" viewBox="0 0 512 512" aria-hidden="true"><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4,-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7,-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4,-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7,-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4,-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="currentColor"/></svg>
+            <div class="tk-head"><span class="tk-label">내 보유 티켓</span><span class="tk-more">자세히 ›</span></div>
+            <div class="tk-num"><b>292</b><span class="tk-u">장</span></div>
+          </div>
+          <div class="tk-stub">
+            <div class="tk-row"><img src="/assets/ticket_event.svg" alt=""><div class="tk-txt"><span class="tk-k">이벤트 티켓</span><span class="tk-v">23<i>장</i></span></div></div>
+            <div class="tk-row"><img src="/assets/coin.svg" alt=""><div class="tk-txt"><span class="tk-k">포인트</span><span class="tk-v">800<i>P</i></span></div></div>
+          </div>
+        </div></div>
+        <div class="hm-row">
+          <div class="hm-card attend"><div class="hm-ico">🛍️</div><div class="hm-title">쿠팡 구경</div><div class="hm-pill">매일 <b>100P</b></div></div>
+          <div class="hm-card gift"><div class="hm-ico"><img src="/assets/home/box-purple.png" alt=""></div><div class="hm-title">매일 선물</div><div class="hm-pill">하루 <b>1회</b></div></div>
+          <div class="hm-card invite"><div class="hm-ico">👥</div><div class="hm-title">친구 초대</div><div class="hm-pill">각 <b>500P</b></div></div>
+          <div class="hm-card streak"><div class="hm-ico">🎯</div><div class="hm-title">연속구매</div><div class="hm-pill">최대 <b>5장</b></div></div>
+        </div>
+        <div class="gb">
+          <div class="gb-ico"><img src="/assets/home/box-gold.png" alt=""></div>
+          <div class="gb-txt"><div class="gb-t1">RANDOM GIFT BOX</div><div class="gb-t2">이벤트 티켓 1장으로 티켓 선물 도전</div><div class="gb-t3">내 보유 이벤트 티켓 23장</div></div>
+          <img class="gb-tk" src="/assets/home/ico-ticket-event.svg" alt="">
+          <img class="gb-box" src="/assets/home/box-gold.png" alt="">
+          <div class="gb-arrow">›</div>
+        </div>
+        <div class="hs-hd"><div><div class="hs-title">구매하고 티켓받기</div><div class="hs-sub">바로가기로 들어가 구매하면 티켓이 쌓여요</div></div><span class="hs-more">전체 ›</span></div>
+        <div class="mall best"><img class="mall-logo" src="/assets/home/logo-coupang.png" alt=""><div class="mall-body"><span class="mall-name">쿠팡</span><span class="mall-badge">BEST</span></div><span class="mall-go primary">바로가기 ›</span></div>
+        <div class="mall"><img class="mall-logo" src="/assets/home/logo-cjthemarket.png" alt=""><div class="mall-body"><span class="mall-name">CJ더마켓</span></div><span class="mall-go">바로가기 ›</span></div>
+        <div class="mall"><img class="mall-logo" src="/assets/home/logo-nsmall.png" alt=""><div class="mall-body"><span class="mall-name">NS홈쇼핑</span></div><span class="mall-go">바로가기 ›</span></div>
+        </div>
+        <div class="tabbar">
+          <div class="tab-item active"><div class="tab-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-line"><path d="M9.02 2.83821L3.63 7.03821C2.73 7.73821 2 9.22821 2 10.3582V17.7682C2 20.0882 3.89 21.9882 6.21 21.9882H17.79C20.11 21.9882 22 20.0882 22 17.7782V10.4982C22 9.28821 21.19 7.73821 20.2 7.04821L14.02 2.71821C12.62 1.73821 10.37 1.78821 9.02 2.83821Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17.9922V14.9922" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-solid"><path d="M20.0383 6.81774L14.2783 2.78774C12.7083 1.68774 10.2983 1.74774 8.78828 2.91774L3.77828 6.82774C2.77828 7.60774 1.98828 9.20774 1.98828 10.4677V17.3677C1.98828 19.9177 4.05828 21.9977 6.60828 21.9977H17.3883C19.9383 21.9977 22.0083 19.9277 22.0083 17.3777V10.5977C22.0083 9.24774 21.1383 7.58774 20.0383 6.81774ZM12.7483 17.9977C12.7483 18.4077 12.4083 18.7477 11.9983 18.7477C11.5883 18.7477 11.2483 18.4077 11.2483 17.9977V14.9977C11.2483 14.5877 11.5883 14.2477 11.9983 14.2477C12.4083 14.2477 12.7483 14.5877 12.7483 14.9977V17.9977Z" fill="currentColor"/></svg></div><div class="tab-lbl">홈</div></div>
+          <div class="tab-item"><div class="tab-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-line"><path d="M19.5 12.5C19.5 11.12 20.62 10 22 10V9C22 5 21 4 17 4H7C3 4 2 5 2 9V9.5C3.38 9.5 4.5 10.62 4.5 12C4.5 13.38 3.38 14.5 2 14.5V15C2 19 3 20 7 20H17C21 20 22 19 22 15C20.62 15 19.5 13.88 19.5 12.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 4L10 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-solid"><path d="M22 10.75C22.41 10.75 22.75 10.41 22.75 10V9C22.75 4.59 21.41 3.25 17 3.25H10.75V5.5C10.75 5.91 10.41 6.25 10 6.25C9.59 6.25 9.25 5.91 9.25 5.5V3.25H7C2.59 3.25 1.25 4.59 1.25 9V9.5C1.25 9.91 1.59 10.25 2 10.25C2.96 10.25 3.75 11.04 3.75 12C3.75 12.96 2.96 13.75 2 13.75C1.59 13.75 1.25 14.09 1.25 14.5V15C1.25 19.41 2.59 20.75 7 20.75H9.25V18.5C9.25 18.09 9.59 17.75 10 17.75C10.41 17.75 10.75 18.09 10.75 18.5V20.75H17C21.41 20.75 22.75 19.41 22.75 15C22.75 14.59 22.41 14.25 22 14.25C21.04 14.25 20.25 13.46 20.25 12.5C20.25 11.54 21.04 10.75 22 10.75ZM10.75 14.17C10.75 14.58 10.41 14.92 10 14.92C9.59 14.92 9.25 14.58 9.25 14.17V9.83C9.25 9.42 9.59 9.08 10 9.08C10.41 9.08 10.75 9.42 10.75 9.83V14.17Z" fill="currentColor"/></svg></div><div class="tab-lbl">혜택</div></div>
+          <div class="tab-item"><div class="tab-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-line"><path d="M8.40002 6.5H15.6C19 6.5 19.34 8.09 19.57 10.03L20.47 17.53C20.76 19.99 20 22 16.5 22H7.51003C4.00003 22 3.24002 19.99 3.54002 17.53L4.44003 10.03C4.66003 8.09 5.00002 6.5 8.40002 6.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 8V4.5C8 3 9 2 10.5 2H13.5C15 2 16 3 16 4.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.41 17.0298H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-solid"><path d="M16 8.75C15.59 8.75 15.25 8.41 15.25 8V4.5C15.25 3.42 14.58 2.75 13.5 2.75H10.5C9.42 2.75 8.75 3.42 8.75 4.5V8C8.75 8.41 8.41 8.75 8 8.75C7.59 8.75 7.25 8.41 7.25 8V4.5C7.25 2.59 8.59 1.25 10.5 1.25H13.5C15.41 1.25 16.75 2.59 16.75 4.5V8C16.75 8.41 16.41 8.75 16 8.75Z" fill="currentColor"/><path d="M7.99984 17.78C7.58984 17.78 7.24984 17.44 7.24984 17.03C7.24984 16.61 7.58984 16.28 7.99984 16.28H19.7598C20.0598 16.28 20.2898 16.02 20.2598 15.72L19.5798 10.03C19.3398 8.09 18.9998 6.5 15.5998 6.5H8.39984C4.99984 6.5 4.65984 8.09 4.42984 10.03L3.52984 17.53C3.23984 19.99 3.99984 22 7.50984 22H16.4898C19.6498 22 20.5798 20.37 20.5298 18.25C20.5198 17.98 20.2998 17.78 20.0298 17.78H7.99984Z" fill="currentColor"/></svg></div><div class="tab-lbl">기프티샵</div></div><div class="tab-item"><div class="tab-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-line"><path d="M12 12.75C8.83 12.75 6.25 10.17 6.25 7C6.25 3.83 8.83 1.25 12 1.25C15.17 1.25 17.75 3.83 17.75 7C17.75 10.17 15.17 12.75 12 12.75ZM12 2.75C9.66 2.75 7.75 4.66 7.75 7C7.75 9.34 9.66 11.25 12 11.25C14.34 11.25 16.25 9.34 16.25 7C16.25 4.66 14.34 2.75 12 2.75Z" fill="currentColor"/><path d="M20.5901 22.75C20.1801 22.75 19.8401 22.41 19.8401 22C19.8401 18.55 16.3202 15.75 12.0002 15.75C7.68015 15.75 4.16016 18.55 4.16016 22C4.16016 22.41 3.82016 22.75 3.41016 22.75C3.00016 22.75 2.66016 22.41 2.66016 22C2.66016 17.73 6.85015 14.25 12.0002 14.25C17.1502 14.25 21.3401 17.73 21.3401 22C21.3401 22.41 21.0001 22.75 20.5901 22.75Z" fill="currentColor"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-solid"><path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="currentColor"/><path d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z" fill="currentColor"/></svg></div><div class="tab-lbl">마이</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-label"><span class="no">2</span><span>신규 · 카카오 미연동 · 보유 없음</span></div>
+      <div class="phone">
+        <div class="sb"><span>9:41</span><div class="statusbar-icons"><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 2.5C10.2 2.5 12.2 3.4 13.6 4.9L15 3.4C13.2 1.5 10.7 0.3 8 0.3C5.3 0.3 2.8 1.5 1 3.4L2.4 4.9C3.8 3.4 5.8 2.5 8 2.5Z"/><path d="M8 5.5C9.4 5.5 10.7 6.1 11.6 7L13 5.5C11.7 4.2 10 3.3 8 3.3C6 3.3 4.3 4.2 3 5.5L4.4 7C5.3 6.1 6.6 5.5 8 5.5Z"/><circle cx="8" cy="10" r="1.8"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="currentColor"/><path d="M23 4V8C23.8 7.6 24.5 6.9 24.5 6C24.5 5.1 23.8 4.4 23 4Z" fill="currentColor" fill-opacity="0.4"/></svg></div></div>
+        <div class="top"><div class="brand-logo"><div class="brand-symbol"><svg width="28" height="28" viewBox="0 0 360 363" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M178.702 82.6926C125.372 82.6926 82.1367 125.942 82.1367 179.289V277.43H115.611V252.409C132.535 267.036 154.589 275.873 178.702 275.873C232.032 275.873 275.267 232.624 275.267 179.276C275.267 125.929 232.032 82.6797 178.702 82.6797V82.6926ZM178.702 242.401C143.851 242.401 115.611 214.151 115.611 179.289C115.611 144.428 143.851 116.178 178.702 116.178C213.552 116.178 241.792 144.428 241.792 179.289C241.792 214.151 213.552 242.401 178.702 242.401Z" fill="#634C9E"/><path d="M180 0C80.593 0 0 80.6195 0 180.059V363H62.3962V316.368C93.9416 343.627 135.042 360.118 180 360.118C279.407 360.118 360 279.499 360 180.059C360 80.6195 279.42 0 180 0ZM180 297.702C115.045 297.702 62.3962 245.023 62.3962 180.059C62.3962 115.095 115.058 62.4168 180 62.4168C244.942 62.4168 297.604 115.095 297.604 180.059C297.604 245.023 244.942 297.702 180 297.702Z" fill="#7A49DE"/><path d="M208.118 189.436L204.118 182.814C203.278 181.338 202.518 178.546 202.518 176.91V166.818C202.518 153.814 191.918 143.203 178.838 143.203C165.758 143.203 155.158 153.814 155.158 166.818V176.91C155.158 178.546 154.398 181.338 153.558 182.774L149.518 189.436C147.918 192.108 147.558 195.06 148.558 197.773C149.518 200.445 151.798 202.52 154.758 203.517C162.518 206.15 170.678 207.426 178.838 207.426C186.998 207.426 195.158 206.15 202.918 203.557C205.718 202.639 207.878 200.525 208.918 197.773C209.958 195.02 209.678 191.989 208.118 189.436Z" fill="#532E95"/><path d="M187.757 144.883C184.997 143.806 181.997 143.207 178.837 143.207C175.717 143.207 172.717 143.766 169.957 144.883C171.677 141.652 175.077 139.617 178.837 139.617C182.637 139.617 185.997 141.652 187.757 144.883Z" fill="#532E95"/><path d="M190.077 211.462C188.397 216.089 183.957 219.4 178.757 219.4C175.597 219.4 172.477 218.123 170.277 215.85C168.997 214.653 168.037 213.057 167.477 211.422C167.997 211.502 168.517 211.542 169.077 211.621C169.997 211.741 170.957 211.861 171.917 211.94C174.197 212.14 176.517 212.26 178.837 212.26C181.117 212.26 183.397 212.14 185.637 211.94C186.477 211.861 187.317 211.821 188.117 211.701C188.757 211.621 189.397 211.542 190.077 211.462Z" fill="#532E95"/></svg></div><div class="brand-wordmark"><span class="bw-light">PRICE</span><span class="bw-bold">PICK</span></div></div><div class="top-icons">
+            <button class="top-icon-btn" aria-label="알림"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 10.5175C11.59 10.5175 11.25 10.1775 11.25 9.7675V6.4375C11.25 6.0275 11.59 5.6875 12 5.6875C12.41 5.6875 12.75 6.0275 12.75 6.4375V9.7675C12.75 10.1875 12.41 10.5175 12 10.5175Z" fill="currentColor"/><path d="M12.0208 20.3522C9.44084 20.3522 6.87084 19.9422 4.42084 19.1222C3.51084 18.8222 2.82084 18.1722 2.52084 17.3522C2.22084 16.5322 2.32084 15.5922 2.81084 14.7722L4.08084 12.6522C4.36084 12.1822 4.61084 11.3022 4.61084 10.7522V8.65219C4.61084 4.56219 7.93084 1.24219 12.0208 1.24219C16.1108 1.24219 19.4308 4.56219 19.4308 8.65219V10.7522C19.4308 11.2922 19.6808 12.1822 19.9608 12.6522L21.2308 14.7722C21.7008 15.5522 21.7808 16.4822 21.4708 17.3322C21.1608 18.1822 20.4808 18.8322 19.6208 19.1222C17.1708 19.9522 14.6008 20.3522 12.0208 20.3522ZM12.0208 2.75219C8.76084 2.75219 6.11084 5.40219 6.11084 8.66219V10.7622C6.11084 11.5722 5.79084 12.7422 5.37084 13.4322L4.10084 15.5622C3.84084 15.9922 3.78084 16.4522 3.93084 16.8522C4.08084 17.2522 4.42084 17.5522 4.90084 17.7122C9.50084 19.2422 14.5608 19.2422 19.1608 17.7122C19.5908 17.5722 19.9208 17.2522 20.0708 16.8322C20.2308 16.4122 20.1808 15.9522 19.9508 15.5622L18.6808 13.4422C18.2608 12.7522 17.9408 11.5822 17.9408 10.7722V8.67219C17.9308 5.40219 15.2808 2.75219 12.0208 2.75219Z" fill="currentColor"/><path d="M12.0019 22.9003C10.9319 22.9003 9.88187 22.4603 9.12187 21.7003C8.36187 20.9403 7.92188 19.8903 7.92188 18.8203H9.42188C9.42188 19.5003 9.70188 20.1603 10.1819 20.6403C10.6619 21.1203 11.3219 21.4003 12.0019 21.4003C13.4219 21.4003 14.5819 20.2403 14.5819 18.8203H16.0819C16.0819 21.0703 14.2519 22.9003 12.0019 22.9003Z" fill="currentColor"/></svg><div class="top-icon-dot"></div></button>
+            <button class="top-icon-btn" aria-label="설정"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12.8814V11.1214C2 10.0814 2.85 9.2214 3.9 9.2214C5.71 9.2214 6.45 7.9414 5.54 6.3714C5.02 5.4714 5.33 4.3014 6.24 3.7814L7.97 2.7914C8.76 2.3214 9.78 2.6014 10.25 3.3914L10.36 3.5814C11.26 5.1514 12.74 5.1514 13.65 3.5814L13.76 3.3914C14.23 2.6014 15.25 2.3214 16.04 2.7914L17.77 3.7814C18.68 4.3014 18.99 5.4714 18.47 6.3714C17.56 7.9414 18.3 9.2214 20.11 9.2214C21.15 9.2214 22.01 10.0714 22.01 11.1214V12.8814C22.01 13.9214 21.16 14.7814 20.11 14.7814C18.3 14.7814 17.56 16.0614 18.47 17.6314C18.99 18.5414 18.68 19.7014 17.77 20.2214L16.04 21.2114C15.25 21.6814 14.23 21.4014 13.76 20.6114L13.65 20.4214C12.75 18.8514 11.27 18.8514 10.36 20.4214L10.25 20.6114C9.78 21.4014 8.76 21.6814 7.97 21.2114L6.24 20.2214C5.33 19.7014 5.02 18.5314 5.54 17.6314C6.45 16.0614 5.71 14.7814 3.9 14.7814C2.85 14.7814 2 13.9214 2 12.8814Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div></div>
+        <div class="scroll">
+        <div class="kakao"><div class="kakao-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3C6.48 3 2 6.58 2 11C2 13.79 3.79 16.23 6.47 17.66L5.5 21.5L9.5 18.94C10.31 19.06 11.14 19.13 12 19.13C17.52 19.13 22 15.55 22 11.13C22 6.58 17.52 3 12 3Z" fill="#3A1D1D"/></svg></div><div class="kakao-t">카카오 연동하고 혜택 받기</div><span class="kakao-arrow">›</span></div>
+        <div class="tk-wrap"><div class="tk">
+          <div class="tk-main">
+            <svg class="tk-mark" viewBox="0 0 512 512" aria-hidden="true"><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4,-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7,-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4,-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7,-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4,-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="currentColor"/></svg>
+            <div class="tk-head"><span class="tk-label">내 보유 티켓</span><span class="tk-more">자세히 ›</span></div>
+            <div class="tk-num"><b>0</b><span class="tk-u">장</span></div>
+          </div>
+          <div class="tk-stub">
+            <div class="tk-row"><img src="/assets/ticket_event.svg" alt=""><div class="tk-txt"><span class="tk-k">이벤트 티켓</span><span class="tk-v">0<i>장</i></span></div></div>
+            <div class="tk-row"><img src="/assets/coin.svg" alt=""><div class="tk-txt"><span class="tk-k">포인트</span><span class="tk-v">0<i>P</i></span></div></div>
+          </div>
+        </div></div>
+        <div class="hm-row">
+          <div class="hm-card attend"><div class="hm-ico">🛍️</div><div class="hm-title">쿠팡 구경</div><div class="hm-pill">매일 <b>100P</b></div></div>
+          <div class="hm-card gift"><div class="hm-ico"><img src="/assets/home/box-purple.png" alt=""></div><div class="hm-title">매일 선물</div><div class="hm-pill">하루 <b>1회</b></div></div>
+          <div class="hm-card invite"><div class="hm-ico">👥</div><div class="hm-title">친구 초대</div><div class="hm-pill">각 <b>500P</b></div></div>
+          <div class="hm-card streak"><div class="hm-ico">🎯</div><div class="hm-title">연속구매</div><div class="hm-pill">최대 <b>5장</b></div></div>
+        </div>
+        <div class="gb">
+          <div class="gb-ico"><img src="/assets/home/box-gold.png" alt=""></div>
+          <div class="gb-txt"><div class="gb-t1">RANDOM GIFT BOX</div><div class="gb-t2">이벤트 티켓으로 티켓 선물 도전</div></div>
+          <img class="gb-tk" src="/assets/home/ico-ticket-event.svg" alt="">
+          <img class="gb-box" src="/assets/home/box-gold.png" alt="">
+          <div class="gb-arrow">›</div>
+        </div>
+        <div class="hs-hd"><div><div class="hs-title">구매하고 티켓받기</div><div class="hs-sub">바로가기로 들어가 구매하면 티켓이 쌓여요</div></div><span class="hs-more">전체 ›</span></div>
+        <div class="mall best"><img class="mall-logo" src="/assets/home/logo-coupang.png" alt=""><div class="mall-body"><span class="mall-name">쿠팡</span><span class="mall-badge">BEST</span></div><span class="mall-go primary">바로가기 ›</span></div>
+        <div class="mall"><img class="mall-logo" src="/assets/home/logo-cjthemarket.png" alt=""><div class="mall-body"><span class="mall-name">CJ더마켓</span></div><span class="mall-go">바로가기 ›</span></div>
+        <div class="mall"><img class="mall-logo" src="/assets/home/logo-nsmall.png" alt=""><div class="mall-body"><span class="mall-name">NS홈쇼핑</span></div><span class="mall-go">바로가기 ›</span></div>
+        </div>
+        <div class="tabbar">
+          <div class="tab-item active"><div class="tab-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-line"><path d="M9.02 2.83821L3.63 7.03821C2.73 7.73821 2 9.22821 2 10.3582V17.7682C2 20.0882 3.89 21.9882 6.21 21.9882H17.79C20.11 21.9882 22 20.0882 22 17.7782V10.4982C22 9.28821 21.19 7.73821 20.2 7.04821L14.02 2.71821C12.62 1.73821 10.37 1.78821 9.02 2.83821Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17.9922V14.9922" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-solid"><path d="M20.0383 6.81774L14.2783 2.78774C12.7083 1.68774 10.2983 1.74774 8.78828 2.91774L3.77828 6.82774C2.77828 7.60774 1.98828 9.20774 1.98828 10.4677V17.3677C1.98828 19.9177 4.05828 21.9977 6.60828 21.9977H17.3883C19.9383 21.9977 22.0083 19.9277 22.0083 17.3777V10.5977C22.0083 9.24774 21.1383 7.58774 20.0383 6.81774ZM12.7483 17.9977C12.7483 18.4077 12.4083 18.7477 11.9983 18.7477C11.5883 18.7477 11.2483 18.4077 11.2483 17.9977V14.9977C11.2483 14.5877 11.5883 14.2477 11.9983 14.2477C12.4083 14.2477 12.7483 14.5877 12.7483 14.9977V17.9977Z" fill="currentColor"/></svg></div><div class="tab-lbl">홈</div></div>
+          <div class="tab-item"><div class="tab-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-line"><path d="M19.5 12.5C19.5 11.12 20.62 10 22 10V9C22 5 21 4 17 4H7C3 4 2 5 2 9V9.5C3.38 9.5 4.5 10.62 4.5 12C4.5 13.38 3.38 14.5 2 14.5V15C2 19 3 20 7 20H17C21 20 22 19 22 15C20.62 15 19.5 13.88 19.5 12.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 4L10 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-solid"><path d="M22 10.75C22.41 10.75 22.75 10.41 22.75 10V9C22.75 4.59 21.41 3.25 17 3.25H10.75V5.5C10.75 5.91 10.41 6.25 10 6.25C9.59 6.25 9.25 5.91 9.25 5.5V3.25H7C2.59 3.25 1.25 4.59 1.25 9V9.5C1.25 9.91 1.59 10.25 2 10.25C2.96 10.25 3.75 11.04 3.75 12C3.75 12.96 2.96 13.75 2 13.75C1.59 13.75 1.25 14.09 1.25 14.5V15C1.25 19.41 2.59 20.75 7 20.75H9.25V18.5C9.25 18.09 9.59 17.75 10 17.75C10.41 17.75 10.75 18.09 10.75 18.5V20.75H17C21.41 20.75 22.75 19.41 22.75 15C22.75 14.59 22.41 14.25 22 14.25C21.04 14.25 20.25 13.46 20.25 12.5C20.25 11.54 21.04 10.75 22 10.75ZM10.75 14.17C10.75 14.58 10.41 14.92 10 14.92C9.59 14.92 9.25 14.58 9.25 14.17V9.83C9.25 9.42 9.59 9.08 10 9.08C10.41 9.08 10.75 9.42 10.75 9.83V14.17Z" fill="currentColor"/></svg></div><div class="tab-lbl">혜택</div></div>
+          <div class="tab-item"><div class="tab-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-line"><path d="M8.40002 6.5H15.6C19 6.5 19.34 8.09 19.57 10.03L20.47 17.53C20.76 19.99 20 22 16.5 22H7.51003C4.00003 22 3.24002 19.99 3.54002 17.53L4.44003 10.03C4.66003 8.09 5.00002 6.5 8.40002 6.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 8V4.5C8 3 9 2 10.5 2H13.5C15 2 16 3 16 4.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.41 17.0298H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-solid"><path d="M16 8.75C15.59 8.75 15.25 8.41 15.25 8V4.5C15.25 3.42 14.58 2.75 13.5 2.75H10.5C9.42 2.75 8.75 3.42 8.75 4.5V8C8.75 8.41 8.41 8.75 8 8.75C7.59 8.75 7.25 8.41 7.25 8V4.5C7.25 2.59 8.59 1.25 10.5 1.25H13.5C15.41 1.25 16.75 2.59 16.75 4.5V8C16.75 8.41 16.41 8.75 16 8.75Z" fill="currentColor"/><path d="M7.99984 17.78C7.58984 17.78 7.24984 17.44 7.24984 17.03C7.24984 16.61 7.58984 16.28 7.99984 16.28H19.7598C20.0598 16.28 20.2898 16.02 20.2598 15.72L19.5798 10.03C19.3398 8.09 18.9998 6.5 15.5998 6.5H8.39984C4.99984 6.5 4.65984 8.09 4.42984 10.03L3.52984 17.53C3.23984 19.99 3.99984 22 7.50984 22H16.4898C19.6498 22 20.5798 20.37 20.5298 18.25C20.5198 17.98 20.2998 17.78 20.0298 17.78H7.99984Z" fill="currentColor"/></svg></div><div class="tab-lbl">기프티샵</div></div><div class="tab-item"><div class="tab-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-line"><path d="M12 12.75C8.83 12.75 6.25 10.17 6.25 7C6.25 3.83 8.83 1.25 12 1.25C15.17 1.25 17.75 3.83 17.75 7C17.75 10.17 15.17 12.75 12 12.75ZM12 2.75C9.66 2.75 7.75 4.66 7.75 7C7.75 9.34 9.66 11.25 12 11.25C14.34 11.25 16.25 9.34 16.25 7C16.25 4.66 14.34 2.75 12 2.75Z" fill="currentColor"/><path d="M20.5901 22.75C20.1801 22.75 19.8401 22.41 19.8401 22C19.8401 18.55 16.3202 15.75 12.0002 15.75C7.68015 15.75 4.16016 18.55 4.16016 22C4.16016 22.41 3.82016 22.75 3.41016 22.75C3.00016 22.75 2.66016 22.41 2.66016 22C2.66016 17.73 6.85015 14.25 12.0002 14.25C17.1502 14.25 21.3401 17.73 21.3401 22C21.3401 22.41 21.0001 22.75 20.5901 22.75Z" fill="currentColor"/></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico-solid"><path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="currentColor"/><path d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z" fill="currentColor"/></svg></div><div class="tab-lbl">마이</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col spec-col">
+      <div class="col-label"><span class="no">3</span><span>티켓형 보유 카드 규격</span></div>
+      <div class="spec">
+        <div class="spec-sample"><div class="tk-wrap"><div class="tk">
+          <div class="tk-main">
+            <svg class="tk-mark" viewBox="0 0 512 512" aria-hidden="true"><path d="M306.6,106.8l-49.5,49.5,2.4,2.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-2.4,-2.4-138.6,138.6c-3.7,3.7-3.7,9.6,0,13.3l75.5,75.5c3.7,3.7,9.6,3.7,13.3,0l138.6-138.6-2.3-2.3c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l2.3,2.3,49.5-49.5c3.7-3.7,3.7,-9.6,0-13.3l-75.5-75.5c-3.7-3.7-9.6-3.7-13.3,0ZM335.6,234.8c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM322.9,222.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4,-1.4,3.5-1.4,4.9,0l4.7,4.7ZM310.2,209.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7,-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM297.6,196.7c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM284.9,184.1c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7ZM272.2,171.4c1.4,1.4,1.4,3.5,0,4.9h0c-1.4,1.4-3.5,1.4,-4.9,0l-4.7-4.7c-1.4-1.4-1.4-3.5,0-4.9h0c1.4-1.4,3.5-1.4,4.9,0l4.7,4.7Z" fill="currentColor"/></svg>
+            <div class="tk-head"><span class="tk-label">내 보유 티켓</span><span class="tk-more">자세히 ›</span></div>
+            <div class="tk-num"><b>16,760</b><span class="tk-u">장</span></div>
+          </div>
+          <div class="tk-stub">
+            <div class="tk-row"><img src="/assets/ticket_event.svg" alt=""><div class="tk-txt"><span class="tk-k">이벤트 티켓</span><span class="tk-v">6<i>장</i></span></div></div>
+            <div class="tk-row"><img src="/assets/coin.svg" alt=""><div class="tk-txt"><span class="tk-k">포인트</span><span class="tk-v">24,000<i>P</i></span></div></div>
+          </div>
+        </div></div></div>
+        <div class="spec-row"><span class="spec-k">구성</span><span class="spec-v">본권(보유 티켓) · 절취선 · 스텁(이벤트 티켓 · 포인트)</span></div>
+<div class="spec-row"><span class="spec-k">크기</span><span class="spec-v">폭 = 화면 − 좌우 16px · 최소 높이 124px · 모서리 20px</span></div>
+<div class="spec-row"><span class="spec-k">스텁</span><span class="spec-v">폭 132px · 왼쪽 점선 1.5px 흰색 26% · 바탕 흰색 5%</span></div>
+<div class="spec-row"><span class="spec-k">절취선 홈</span><span class="spec-v">반지름 11px · 위아래 실제 컷(mask) — 덮개 색으로 흉내 내지 않는다</span></div>
+<div class="spec-row"><span class="spec-k">바탕</span><span class="spec-v">135° #4B35A6 → #3D2A78 → #2C1E5C + 왼쪽 위 보라 광 #9B78FF 42%</span></div>
+<div class="spec-row"><span class="spec-k">그림자</span><span class="spec-v">0 12px 18px rgba(61,42,120,.28) — 컷 모양을 따라가도록 drop-shadow</span></div>
+<div class="spec-row"><span class="spec-k">본권 숫자</span><span class="spec-v">36px · 800 · 천 단위 쉼표 / 단위 「장」 15px · 흰색 66%</span></div>
+<div class="spec-row"><span class="spec-k">라벨</span><span class="spec-v">13px · 600 · 흰색 72% · 앞에 노란 점 #FFD93B</span></div>
+<div class="spec-row"><span class="spec-k">스텁 값</span><span class="spec-v">라벨 11px 흰색 58% / 값 15px 800 / 단위 12px</span></div>
+<div class="spec-row"><span class="spec-k">워터마크</span><span class="spec-v">티켓 아이콘 150px · 흰색 9% · 본권 오른쪽 위</span></div>
+<div class="spec-row"><span class="spec-k">데이터</span><span class="spec-v">본권 = 사용 가능 티켓 합계(티켓 1종) · 스텁 = 이벤트 티켓 · 포인트 잔액</span></div>
+<div class="spec-row"><span class="spec-k">같은 카드</span><span class="spec-v">홈 · 티켓 & 포인트 교환소 상단 · 혜택 탭 「사용 가능 티켓」(스텁은 그림만)</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="/new-design/nd-dict-home.js"></script>
+<script src="/new-design/nd-kit.js"></script>
+</body>
+</html>

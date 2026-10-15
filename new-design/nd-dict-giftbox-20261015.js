@@ -27,6 +27,7 @@ window.ND_DICT = {
   "100장": "100 vé",
   "200장": "200 vé",
   "매일 100P": "100P mỗi ngày",
+  "매일 10P": "10P mỗi ngày",
   /* 헤더 */
   "PRICEPICK · 매일선물상자, 랜덤선물상자 열기": "PRICEPICK · Mở hộp quà mỗi ngày, hộp quà ngẫu nhiên",
   "매일선물상자, 랜덤선물상자 열기 New Design": "Mở hộp quà mỗi ngày, hộp quà ngẫu nhiên New Design",
@@ -61,6 +62,7 @@ window.ND_DICT = {
   "하루 1회": "1 lần/ngày",
   "친구 초대": "Mời bạn",
   "각 500P": "Mỗi bên 500P",
+  "각 50P": "Mỗi bên 50P",
   "연속구매": "Mua liên tiếp",
   "최대 5장": "Tối đa 5 vé",
   "이벤트 티켓 1장으로 골드 티켓 도전": "Dùng 1 vé sự kiện để nhắm vé Gold",
@@ -81,6 +83,7 @@ window.ND_DICT = {
   "행운 룰렛 자리 대체": "Thay chỗ menu cũ (miễn phí hằng ngày)",
   "랜덤 선물 상자 배너 자리": "Vị trí banner Hộp quà ngẫu nhiên",
   "매일 100P": "100P mỗi ngày",
+  "매일 10P": "10P mỗi ngày",
   "매일 선물 상자": "Hộp quà mỗi ngày",
 
   /* 결과 모달 5종 */
@@ -103,7 +106,7 @@ window.ND_DICT = {
 
 /* 번역하지 않는 것 — 숫자·영문 라벨·아이콘 */
 window.ND_SKIP = [
-  "9:41", "P", "PRICE", "PICK", "10", "96", "107,700P", "58", "25", "13", "100P",
+  "9:41", "P", "PRICE", "PICK", "10", "96", "107,700P", "10,770P", "10P", "1P", "5P", "58", "25", "13", "100P",
   "BEST", "CP", "MENU CARD", "BANNER", "RANDOM GIFT BOX", "POINT", "TICKET ×1",
   "EVENT TICKET", "TICKET ×10", "TICKET ×100", "TICKET ×200", "568", "107,700", "›", "New Design",
   "🔔", "⚙️", "💬", "🛍", "👥", "🎯", "🏠", "🎟", "👤"

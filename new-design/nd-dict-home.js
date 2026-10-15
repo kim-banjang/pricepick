@@ -65,4 +65,4 @@ window.ND_DICT = {
   "본권 = 사용 가능 티켓 합계(티켓 1종) · 스텁 = 이벤트 티켓 · 포인트 잔액": "Thân vé = tổng vé dùng được (1 loại vé) · Cuống vé = số dư vé sự kiện · điểm",
   "홈 · 티켓 & 포인트 교환소 상단 · 혜택 탭 「사용 가능 티켓」(스텁은 그림만)": "Trang chủ · Đầu Quầy đổi vé & điểm · Tab Ưu đãi 「Vé dùng được」(cuống vé chỉ có hình)"
 };
-window.ND_SKIP = ["9:41", "P", "292", "23", "800", "0", "16,760", "6", "24,000", "100P", "500P", "BEST", "RANDOM GIFT BOX", "›", "New Design", "1", "2", "3", "PRICE", "PICK"];
+window.ND_SKIP = ["9:41", "P", "292", "23", "800", "0", "16,760", "6", "24,000", "2,400", "80", "100P", "500P", "10P", "50P", "BEST", "RANDOM GIFT BOX", "›", "New Design", "1", "2", "3", "PRICE", "PICK"];
