@@ -265,14 +265,14 @@ html[lang="vi"] .cp-scope .vi{display:inline}
     <div class="card">
       <h4><span class="n">1</span>가치 · 교환 · 한도</h4>
 <table class="ptbl">
-      <tr class="rw"><td class="rk">가치</td><td class="rv"><b>10P = 1원.</b></td></tr>
-      <tr class="rw"><td class="rk">티켓 교환(단방향)</td><td class="rv">포인트 → 티켓 단방향 교환. <b>100P = 티켓 1장.</b> 포인트로 티켓을 살 수 있습니다. <b>티켓 → 포인트 역방향은 2026-08 확정으로 중단</b>했습니다 — 로직·데이터는 남아 있어 필요 시 복구할 수 있습니다.</td></tr>
+      <tr class="rw"><td class="rk">가치</td><td class="rv"><b>1P = 1원.</b></td></tr>
+      <tr class="rw"><td class="rk">티켓 교환(단방향)</td><td class="rv">포인트 → 티켓 단방향 교환. <b>10P = 티켓 1장.</b> 포인트로 티켓을 살 수 있습니다. <b>티켓 → 포인트 역방향은 2026-08 확정으로 중단</b>했습니다 — 로직·데이터는 남아 있어 필요 시 복구할 수 있습니다.</td></tr>
       <tr class="rw"><td class="rk">교환 조건</td><td class="rv">필요 포인트가 정확히 채워져야 교환됩니다(부족하면 거부).</td></tr>
 </table>
-<div class="ex">예) 99P로는 교환 불가. 150P면 티켓 1장(100P) 교환 후 50P 잔여.</div>
+<div class="ex">예) 9P로는 교환 불가. 15P면 티켓 1장(10P) 교환 후 5P 잔여.</div>
 <table class="ptbl">
       <tr class="rw"><td class="rk">적립 한도</td><td class="rv">일일 적립 한도 <b>없음.</b></td></tr>
-      <tr class="rw"><td class="rk">획득 경로</td><td class="rv">출석(쿠팡 구경) 100P · 친구초대 500P · 온보딩 보상.</td></tr>
+      <tr class="rw"><td class="rk">획득 경로</td><td class="rv">출석(쿠팡 구경) 10P · 친구초대 50P · 온보딩 보상.</td></tr>
 </table>
 <span class="src">출처 PolicySpec 6 / FunctionalSpec 정책요약 / CMS 발행유형</span>
     </div>
@@ -282,6 +282,7 @@ html[lang="vi"] .cp-scope .vi{display:inline}
   
 <section class="phist"><h3>변경 이력</h3><table class="phist-t">
 <tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<tr><td class="hd">2026-10-15</td><td class="hi">포인트 가치 1P = 1원</td><td class="hb">김반장 확정(2026-10-15) — 포인트 가치를 10P = 1원에서 <b>1P = 1원</b>으로 바꾼다. 원화 비용은 그대로 두고 포인트 숫자만 1/10로 맞춘다 — 출석 100P → 10P · 2배 부스터 +100P → +10P · 친구초대 각 500P → 50P · 가입 200P → 20P · 첫 구경 100P → 10P · 포인트 → 티켓 100P → 10P(1장) · 선물 상자 포인트 칸도 1/10. 보유 포인트도 1/10로 환산하며 1P 미만 끝수는 올림(회원 손해 없음). 선물 상자 기대값(매일 9.9원 · 랜덤 40원)과 지급 비용은 변하지 않는다.</td></tr>
 <tr><td class="hd">2026-10-14</td><td class="hi">등급 티켓 1종 통합</td><td class="hb">김반장·이동영 부장 합의(2026-10-14) — 등급 티켓 3종(브론즈·실버·골드)을 1종으로 통합하고 명칭을 「티켓」으로 변경. 티켓 1장 가치 10원. 전문은 「등급 티켓 1종 통합 — 정책 변경안」(devqa/policy-change-ticket-unify-20261014.html).</td></tr>
 <tr><td class="hd">2026-08-12</td><td class="hi">룰렛 표·포인트 교환 방향 정합</td><td class="hb">룰렛 표는 CMS에 저장된 실제 구성과 맞춘 것— 기대값은 매일 9.9원·잭팟 40원으로 계산상 변동 없음(억지로 맞춘 값 아님). 포인트 교환은 이미 앱에서 단방향으로 운영 중인 상태를 정책서가 못 따라가고 있었다.</td></tr>
 <tr><td class="hd">2026-08-12</td><td class="hi">등급 티켓 환산가치 조정</td><td class="hb">수수료가 낮은 제휴몰에서 소액 구매의 적립이 브론즈 최소 단위(구 100원)에 못 미쳐 통째로 사라지는 문제를 낮은 등급 티켓 가치로 해소한다. 포인트 → 티켓 교환비는 환산가치 조정에 맞춰 같은 비율로 함께 조정한다. 포인트 기준 환율(10P = 1원)은 변경 없음.</td></tr>
