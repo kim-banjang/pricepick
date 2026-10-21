@@ -97,6 +97,16 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 .lb-img{max-width:92vw;max-height:80vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#fff}
 .lb-x{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .lb-x:hover{background:rgba(255,255,255,.35)}
+
+/* ── 검수 묶음 — 검수 자료 카드만 모은다. 셋까지 보이고 넷째부터 「더보기」(공지 목록과 같은 방식) ── */
+.rvgroup{margin:24px 0 4px}
+.rvgroup .nl-label{padding:0 0 2px}
+.rvgroup .notice{margin:8px 0 0}
+.rvgroup .notice.nl-hid{display:none}
+.rvgroup.nl-open .notice.nl-hid{display:flex}
+.rvgroup .nl-more{margin-top:8px}
+.rvgroup.nl-open .nl-more .nl-open-t{display:none}
+.rvgroup.nl-open .nl-more .nl-less{display:inline}
 </style></head><body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog hdr-langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><div class="wrap" style="padding-bottom:0"><div class="htitle"><span class="i18n"><span class="ko">PricePick · 개발 QA</span><span class="vi">PricePick · Dev QA</span></span></div>
@@ -109,6 +119,31 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 <div class="notice-s"><span class="i18n"><span class="ko">레포를 받기 전에 먼저 읽는 안내 · 소스·데모·정책·주의사항</span><span class="vi">Hướng dẫn cần đọc trước khi nhận repo · Nguồn·Demo·Chính sách·Lưu ý</span></span></div></div>
 <div class="notice-arrow">&rsaquo;</div>
 </a>
+<div class="rvgroup">
+<div class="nl-label i18n"><span class="ko">검수</span><span class="vi">Kiểm thử</span></div>
+<a class="notice" href="/devqa/qa-extra-20261021.html">
+<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+<div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
+<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동영 부장 · 2026-10-21</span><span class="vi">Người kiểm thử : Trưởng phòng Lee Dong-young · 21/10/2026</span></span></div>
+<div class="notice-s"><span class="i18n"><span class="ko">검수 17건 — 우선 11 · 보강 6 · 대상 STG 앱 1.0.0(15) · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">17 mục kiểm thử — ưu tiên 11 · bổ sung 6 · đối tượng app STG 1.0.0(15) · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
+<div class="notice-arrow">&rsaquo;</div>
+</a>
+<a class="notice" href="/devqa/qa-review-20261005.html">
+<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+<div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
+<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동주 과장 · 2026-10-05</span><span class="vi">Người kiểm thử : Trưởng nhóm Lee Dong-ju · 05/10/2026</span></span></div>
+<div class="notice-s"><span class="i18n"><span class="ko">검수 74건 — 어드민 오류 36 · 앱 검수 미연동 25 · 연동 후 13 · 캡처 38장에 수정 위치 표시 · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">74 mục kiểm thử — lỗi Admin 36 · kiểm thử app chưa liên kết 25 · sau liên kết 13 · 38 ảnh chụp có đánh dấu vị trí cần sửa · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
+<div class="notice-arrow">&rsaquo;</div>
+</a>
+<a class="notice" href="/devqa/qa-extra-20261002.html">
+<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+<div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
+<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동영 부장 · 2026-10-02</span><span class="vi">Người kiểm thử : Trưởng phòng Lee Dong-young · 02/10/2026</span></span></div>
+<div class="notice-s"><span class="i18n"><span class="ko">검수 25건 — 링크프라이스 실적 누락 1 · 추가 점검 24 · 기존 74건 검수 자료와 별도 · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">25 mục kiểm thử — Thiếu doanh số LinkPrice 1 · Kiểm tra bổ sung 24 · Tách riêng với tài liệu kiểm thử 74 mục · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
+<div class="notice-arrow">&rsaquo;</div>
+</a>
+<button class="nl-more" type="button" id="rvmore" aria-expanded="false"><span class="nl-open-t"><span class="i18n"><span class="ko">더보기</span><span class="vi">Xem thêm</span></span></span><span class="nl-less"><span class="i18n"><span class="ko">접기</span><span class="vi">Thu gọn</span></span></span></button>
+</div>
 <a class="dnotice" href="https://pricepick-demo.vercel.app/app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 3 20h18z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg><span class="i18n"><span class="ko"><b>앱 데모(pricepick-demo.vercel.app/app)가 디자인·화면 정본입니다.</b> interactive.html은 앱 데모를 정적으로 재현한 참고용 프로토타입이며 비정본입니다. 데모와 다르면 데모를 우선하세요.</span><span class="vi"><b>Demo ứng dụng (pricepick-demo.vercel.app/app) là chuẩn thiết kế·màn hình.</b> interactive.html chỉ là bản tái hiện tĩnh của Demo để tham khảo, không phải bản chuẩn. Nếu khác với Demo thì ưu tiên Demo.</span></span><span class="go i18n"><span class="ko">앱 데모 열기 &rsaquo;</span><span class="vi">Mở Demo &rsaquo;</span></span></a>
 <div class="noticelist">
 <div class="nl-label i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></div>
@@ -131,13 +166,7 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 <div class="nl-row"><a class="nl-link i18n" href="https://pricepick.vercel.app/20260729_NewDesign.html" target="_blank" rel="noopener"><span class="ko">앱 디자인 리뉴얼 안내</span><span class="vi">Thông báo làm mới thiết kế app</span></a><span class="nl-date">2026-07-29</span><a class="nl-sub" href="https://pricepick-demo.vercel.app/app" target="_blank" rel="noopener"><span class="i18n"><span class="ko">데모 바로가기 ↗</span><span class="vi">Đi đến demo ↗</span></span></a></div>
 <button class="nl-more" type="button" id="nlmore" aria-expanded="false"><span class="nl-open-t"><span class="i18n"><span class="ko">더보기</span><span class="vi">Xem thêm</span></span></span><span class="nl-less"><span class="i18n"><span class="ko">접기</span><span class="vi">Thu gọn</span></span></span></button>
 </div>
-<a class="notice" href="/devqa/qa-extra-20261021.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">검수 (검수자 : 이동영 부장) · 2026-10-21</span><span class="vi">Kiểm thử (Người kiểm thử : Trưởng phòng Lee Dong-young) · 21/10/2026</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">검수 17건 — 우선 11 · 보강 6 · 대상 STG 앱 1.0.0(15) · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">17 mục kiểm thử — ưu tiên 11 · bổ sung 6 · đối tượng app STG 1.0.0(15) · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
+
 <a class="notice" href="/devqa/policy-change-ticket-unify-20261014.html">
 <div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
 <div class="notice-b"><span class="notice-label i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></span>
@@ -146,21 +175,7 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 <div class="notice-arrow">&rsaquo;</div>
 </a>
 
-<a class="notice" href="/devqa/qa-extra-20261002.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">검수 (검수자 : 이동영 부장) · 2026-10-02</span><span class="vi">Kiểm thử (Người kiểm thử : Trưởng phòng Lee Dong-young) · 02/10/2026</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">검수 25건 — 링크프라이스 실적 누락 1 · 추가 점검 24 · 기존 74건 검수 자료와 별도 · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">25 mục kiểm thử — Thiếu doanh số LinkPrice 1 · Kiểm tra bổ sung 24 · Tách riêng với tài liệu kiểm thử 74 mục · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
 
-<a class="notice" href="/devqa/qa-review-20261005.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">검수 (검수자 : 이동주 과장) · 2026-10-05</span><span class="vi">Kiểm thử (Người kiểm thử : Trưởng nhóm Lee Dong-ju) · 05/10/2026</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">검수 74건 — 어드민 오류 36 · 앱 검수 미연동 25 · 연동 후 13 · 캡처 38장에 수정 위치 표시 · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">74 mục kiểm thử — lỗi Admin 36 · kiểm thử app chưa liên kết 25 · sau liên kết 13 · 38 ảnh chụp có đánh dấu vị trí cần sửa · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
 
 <a class="notice" href="/devqa/notice-sub5000-eventticket-20260914.html">
 <div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
@@ -516,6 +531,19 @@ document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(_lb.classL
   var rows=Array.prototype.slice.call(box.querySelectorAll('.nl-row')), KEEP=5;
   if(rows.length<=KEEP){btn.style.display='none';return;}
   rows.slice(KEEP).forEach(function(r){r.classList.add('nl-hid');});
+  btn.addEventListener('click',function(){
+    var open=box.classList.toggle('nl-open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+})();
+
+/* ── 검수 묶음 더보기 — 셋까지 노출, 넷째부터 접힘(위 공지 목록과 같은 방식) ── */
+(function(){
+  var box=document.querySelector('.rvgroup'), btn=document.getElementById('rvmore');
+  if(!box||!btn)return;
+  var cards=Array.prototype.slice.call(box.querySelectorAll('.notice')), KEEP=3;
+  if(cards.length<=KEEP){btn.style.display='none';return;}
+  cards.slice(KEEP).forEach(function(c){c.classList.add('nl-hid');});
   btn.addEventListener('click',function(){
     var open=box.classList.toggle('nl-open');
     btn.setAttribute('aria-expanded',open?'true':'false');
