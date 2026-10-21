@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PricePick 정책 · 포인트(P)</title>
+<style>
+  :root{
+    --pp:#845EEE; --pp-d:#6a45d4; --pp-l:#f3efff;
+    --ink:#1f2330; --ink2:#4b5163; --ink3:#7a8093;
+    --line:#e7e3f3; --bg:#f6f5fb; --card:#ffffff;
+    --gold:#d4a017; --gold-bg:#fbf3da;
+    --silver:#8a93a6; --silver-bg:#eef0f5;
+    --bronze:#b5793b; --bronze-bg:#f5e9dc;
+    --ok:#16a34a; --ok-bg:#e7f7ed;
+    --pend:#be185d; --pend-bg:#fdeef4;
+    --note:#92400e; --note-bg:#fff5e6;
+    --new:#0e7490; --new-bg:#e0f5fa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Segoe UI",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 40px}
+
+  header{background:linear-gradient(135deg,var(--pp) 0%,#9b78f0 100%);color:#fff;
+    padding:34px 36px 28px;border-radius:0 0 26px 26px;margin-bottom:8px;box-shadow:0 10px 30px rgba(132,94,238,.25)}
+  header .kicker{font-size:12.5px;letter-spacing:2px;opacity:.85;font-weight:600}
+  header h1{font-size:28px;font-weight:800;margin:8px 0 6px;letter-spacing:-.5px}
+  header .sub{font-size:14px;opacity:.95;font-weight:600}
+  header p{font-size:13px;opacity:.9;max-width:720px;margin-top:8px}
+
+  .sot{max-width:1000px;margin:0 auto 16px;padding:0 20px}
+  .sot-bar{background:#1f2330;color:#fff;border-radius:12px;padding:13px 18px;font-size:13.5px;font-weight:700;
+    display:flex;align-items:center;gap:10px;box-shadow:0 4px 14px rgba(31,35,48,.18)}
+  .sot-bar .dot{width:9px;height:9px;border-radius:50%;background:#845EEE;flex:none;box-shadow:0 0 0 4px rgba(132,94,238,.3)}
+  .sot-bar b{color:#c9b6ff}
+
+  /* ===== ① 대시보드 ===== */
+  .dash{max-width:1000px;margin:0 auto 6px;padding:0 20px}
+  .dash .oneliner{background:var(--pp-l);border:1px solid var(--line);border-radius:14px;padding:15px 20px;margin-bottom:16px;font-size:14.5px;color:var(--ink2)}
+  .dash .oneliner b{color:var(--pp-d);font-weight:800}
+  .quick{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(80,60,140,.05)}
+  .quick h3{font-size:14px;font-weight:800;color:var(--pp-d);margin-bottom:13px;display:flex;align-items:center;gap:8px}
+  .quick h3 svg{width:17px;height:17px;stroke:var(--pp);fill:none;stroke-width:2}
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:10px}
+  .qcell{background:#fafafc;border:1px solid #eee;border-radius:10px;padding:11px 13px}
+  .qcell .k{font-size:10.5px;font-weight:800;letter-spacing:.3px;color:var(--ink3);margin-bottom:4px;text-transform:uppercase}
+  .qcell .v{font-size:13px;font-weight:600;color:var(--ink)}
+  .qcell .v b{font-weight:800;color:var(--pp-d)}
+
+  .pendbox{background:var(--pend-bg);border:2px solid var(--pend);border-radius:14px;padding:15px 20px;margin-bottom:18px}
+  .pendbox h3{font-size:13.5px;font-weight:800;color:var(--pend);margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .pendbox h3 svg{width:15px;height:15px;stroke:var(--pend);fill:none;stroke-width:2}
+  .pendbox p{font-size:12.8px;color:#8a1f54;line-height:1.65;margin:5px 0}
+  .pendbox p b{font-weight:800}
+  .pendbox .rec{color:var(--pp-d);font-weight:700}
+
+  /* ===== ② 탭 네비 ===== */
+  .tabnav{position:sticky;top:0;z-index:40;background:var(--bg);padding:12px 0 8px;margin:6px auto 0;max-width:1000px}
+  .tabnav-inner{max-width:1000px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:7px}
+  .tabnav button{font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;
+    border:1.5px solid var(--line);background:#fff;color:var(--ink2);border-radius:22px;padding:7px 14px;transition:all .14s;white-space:nowrap}
+  .tabnav button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .tabnav button:hover{border-color:var(--pp);color:var(--pp-d)}
+  .tabnav button.on{background:var(--pp);border-color:var(--pp);color:#fff}
+
+  /* ===== ③ 패널 ===== */
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .2s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .ptitle{font-size:19px;font-weight:800;color:var(--ink);margin:6px 0 4px;display:flex;align-items:center;gap:9px}
+  .ptitle svg{width:20px;height:20px;stroke:var(--pp);fill:none;stroke-width:2}
+  .ptitle .badge-new{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:var(--new);padding:3px 9px;border-radius:20px}
+  .badge-hold{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#8a6d3b;padding:3px 9px;border-radius:20px;margin-left:6px}
+.badge-hidden{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#6b7280;padding:3px 9px;border-radius:20px;margin-left:6px}
+.badge-replan{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:#c0342a;padding:3px 9px;border-radius:20px;margin-left:6px}
+  .card.replan{border:1.5px solid #f3b7ab;background:#fff8f7}
+  .card.replan .note.warn{border-left-color:#e5484d;background:#fff4f2;color:#8f2420}
+  .pdesc{font-size:13px;color:var(--ink3);margin-bottom:16px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 20px;margin-bottom:13px;box-shadow:0 2px 8px rgba(80,60,140,.04)}
+  .card h4{font-size:15px;font-weight:800;color:var(--pp-d);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .card h4 .n{background:var(--pp);color:#fff;font-weight:800;font-size:12px;min-width:24px;height:24px;padding:0 6px;border-radius:7px;display:grid;place-items:center}
+
+  .rule{font-size:13.8px;line-height:1.72;color:var(--ink2);margin-bottom:9px}
+  .rule:last-child{margin-bottom:0}
+  .rule b{color:var(--ink);font-weight:800}
+  .rule .lead{display:inline-block;font-weight:800;color:var(--pp-d);margin-right:4px}
+  .gloss{color:var(--ink3);font-weight:600;font-size:.92em}
+  ul.r{list-style:none;margin:6px 0 4px}
+  ul.r li{position:relative;padding-left:16px;font-size:13.6px;color:var(--ink2);line-height:1.72;margin:5px 0}
+  ul.r li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--pp)}
+  ul.r li b{color:var(--ink);font-weight:800}
+
+  .chip{display:inline-block;font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:20px;margin:0 2px;white-space:nowrap}
+  .c-gold{background:var(--gold-bg);color:var(--gold)} .c-silver{background:var(--silver-bg);color:var(--silver)} .c-bronze{background:var(--bronze-bg);color:var(--bronze)}
+
+  .ex{background:#f7f5ff;border:1px dashed #d8cef5;border-radius:9px;padding:9px 13px;font-size:12.6px;color:var(--ink2);margin:8px 0}
+  .ex b{color:var(--pp-d)}
+  .note{background:var(--note-bg);border-left:3px solid #f0a830;border-radius:0 8px 8px 0;padding:9px 13px;font-size:12.6px;color:var(--note);margin:8px 0}
+  .src{display:inline-block;font-size:11px;font-weight:700;color:var(--ink3);background:#f1eefb;border-radius:6px;padding:2px 8px;margin-top:6px}
+
+  .pending{background:var(--pend-bg);border:1.5px solid #f4b8d2;border-radius:10px;padding:11px 14px;margin:9px 0;font-size:13px;color:#8a1f54}
+  .pending .pl{display:inline-block;background:var(--pend);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:2px 9px;border-radius:6px;margin-right:7px;vertical-align:middle}
+  .pending b{font-weight:800}
+  .pending .rec{display:block;margin-top:6px;color:var(--pp-d);font-weight:700;font-size:12.6px}
+
+  table.mt{width:100%;border-collapse:collapse;font-size:12.8px;margin-top:4px;background:#fff;border-radius:10px;overflow:hidden}
+  table.mt th{background:var(--pp);color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800;letter-spacing:.3px}
+  table.mt td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.mt tr:last-child td{border-bottom:none}
+  table.mt td b{color:var(--ink);font-weight:800}
+  table.mt .key{font-weight:800;color:var(--pp-d);white-space:nowrap}
+  table.mt .pendval{color:var(--pend);font-weight:800}
+  table.mt tr:nth-child(even) td{background:#fbfaff}
+
+  table.hist{width:100%;border-collapse:collapse;font-size:12.8px;background:#fff;border-radius:10px;overflow:hidden}
+  table.hist th{background:#1f2330;color:#fff;text-align:left;padding:9px 12px;font-size:11.5px;font-weight:800}
+  table.hist td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  table.hist td.date{white-space:nowrap;font-weight:800;color:var(--pp-d)}
+  table.hist td .arrow{color:var(--ink3)}
+  table.hist td b{color:var(--ink)}
+
+  footer{text-align:center;color:var(--ink3);font-size:11.5px;margin-top:28px;line-height:1.7}
+  .lastupdate{position:fixed;bottom:24px;left:24px;background:rgba(31,35,48,.9);color:#fff;font-size:11px;
+    padding:6px 12px;border-radius:8px;font-weight:600;letter-spacing:.3px;backdrop-filter:blur(4px);z-index:50}
+
+  @media(max-width:680px){
+    .wrap{padding:0 12px 40px}.sot,.dash,.tabnav-inner{padding-left:12px;padding-right:12px}
+    header{padding:24px 18px}header h1{font-size:22px}
+    .qgrid{grid-template-columns:1fr 1fr}
+    .lastupdate{bottom:12px;left:12px}
+  }
+
+  /* ===== KO/VI Toggle ===== */
+  #ps-lang-switch{position:fixed;top:18px;right:22px;z-index:9002;}
+  #ip-lang-toggle{display:inline-flex;align-items:center;gap:0;background:#ffffff;border:1px solid #E3E0EC;border-radius:999px;padding:3px;cursor:pointer;font-family:inherit;box-shadow:0 2px 10px rgba(90,60,150,0.12);}
+  #ip-lang-toggle span{font-size:12px;font-weight:700;letter-spacing:.4px;color:#9890ad;padding:3px 12px;border-radius:999px;line-height:1.4;transition:background .15s,color .15s;}
+  #ip-lang-toggle span.on{background:#845EEE;color:#fff;}
+  #ip-lang-toggle:hover{border-color:#845EEE;}
+  @media (max-width:560px){#ps-lang-switch{top:12px;right:12px;}}
+
+  /* ===== 표준 목차 드로어 (DataModel 기준, 운영지침3 확정) ===== */
+  .toc-fixed{position:fixed;top:0;right:0;bottom:0;width:220px;max-height:100vh;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:0;
+    padding:0 4px 8px;box-shadow:-8px 0 24px rgba(80,60,140,.08);overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:#cfc7e6 transparent;z-index:9000;transition:transform .25s ease}
+  .toc-fixed::-webkit-scrollbar{width:3px}
+  .toc-fixed::-webkit-scrollbar-thumb{background:#cfc7e6;border-radius:99px}
+  .toc-head{font-size:13px;font-weight:800;letter-spacing:.3px;color:var(--ink);padding:10px 10px 8px;
+    text-transform:none;border-bottom:1px solid var(--line);margin-bottom:4px;
+    position:sticky;top:0;background:var(--card);z-index:2}
+  .toc-fixed a{display:block;padding:6px 8px;font-size:12px;color:var(--ink2);text-decoration:none;
+    border-radius:4px;line-height:1.5;transition:background .1s,color .1s;cursor:pointer}
+  .toc-fixed a:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-fixed a.toc-ent{padding-left:16px;font-size:11px;color:var(--ink3)}
+  .toc-fixed a.toc-ent:hover{background:var(--pp-l);color:var(--pp-d)}
+  .toc-group{padding:11px 8px 5px;font-size:10px;font-weight:800;letter-spacing:.7px;color:var(--pp-d);text-transform:uppercase;
+    display:flex;align-items:center;justify-content:space-between;gap:6px;cursor:pointer;user-select:none;border-radius:4px}
+  .toc-group:hover{background:var(--pp-l)}
+  .toc-caret{flex-shrink:0;font-size:9px;line-height:1;color:var(--pp-d)}
+  .toc-caret::before{content:"\25BE"}
+  .toc-grp-wrap.collapsed .toc-caret::before{content:"\25B8"}
+  .toc-grp-wrap.collapsed .toc-items{display:none}
+  body.toc-collapsed .toc-fixed{transform:translateX(100%)}
+  .toc-handle{position:fixed;top:50%;right:220px;transform:translateY(-50%);z-index:9001;
+    width:22px;height:66px;display:flex;align-items:center;justify-content:center;padding:0;
+    background:var(--card);border:1px solid var(--line);border-right:none;border-radius:8px 0 0 8px;
+    color:var(--pp-d);font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;
+    box-shadow:-4px 0 14px rgba(80,60,140,.10);transition:right .25s ease,background .12s}
+  .toc-handle::before{content:"\203A"}
+  body.toc-collapsed .toc-handle{right:0}
+  body.toc-collapsed .toc-handle::before{content:"\2039"}
+  .toc-handle:hover{background:var(--pp-l)}
+  @media(max-width:900px){.toc-fixed{display:none}.toc-handle{display:none}}
+.ptbl{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:13px}
+.ptbl td{border:1px solid var(--line,#e9e7f2);padding:7px 10px;vertical-align:top;text-align:left}
+.ptbl td.rk{width:150px;white-space:nowrap;font-weight:700;background:#faf9fe;color:#5b39b8}
+.ptbl tr.nt td.rk{color:#8b93a7;font-weight:700}
+.ptbl tr.nt td.rv{color:#3f4658}
+@media(max-width:640px){.ptbl td.rk{width:auto;white-space:normal}}
+.sot-note{margin-top:7px;font-size:12.2px;color:#3f4658;line-height:1.65}
+.sot-note b{color:#1f2330}
+
+/* 정책 페이지 분리 (2026-09-14) */
+.tocwrap{max-width:1000px;margin:18px auto 6px;padding:0 20px}
+.toc-h{font-size:15px;font-weight:800;color:#1f2330;margin-bottom:4px}
+.toc-r{font-size:12.4px;color:#3f4658;margin-bottom:12px;line-height:1.6}
+.toc-r b{color:#1f2330}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.tcard{display:block;background:#fff;border:1px solid #e9e7f2;border-radius:12px;padding:12px 14px;text-decoration:none;transition:.15s}
+.tcard:hover{border-color:#845EEE;box-shadow:0 3px 12px rgba(132,94,238,.12)}
+.tc-t{font-size:13.4px;font-weight:800;color:#1f2330;margin-bottom:6px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.tc-h{font-size:10px;font-weight:800;padding:1px 7px;border-radius:20px;background:#efe9fd;color:#5b39b8}
+.tc-h.none{background:#fdf1e3;color:#e8943a}
+.tc-l{margin:0;padding-left:16px;font-size:11.9px;color:#3f4658;line-height:1.7}
+.tc-l li{list-style:disc}
+body.policy-sub{background:#faf9fe}
+.ph{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:20px 0 16px}
+.ph-in{max-width:1000px;margin:0 auto;padding:0 20px;position:relative}
+.ph-kick{font-size:10.5px;font-weight:800;letter-spacing:.18em;opacity:.75}
+.ph-t{font-size:21px;font-weight:800;margin-top:3px}
+.pnav{max-width:1000px;margin:12px auto 0;padding:0 20px;font-size:11.8px;color:#8b93a7;line-height:1.9}
+.pnav a{color:#5b39b8;font-weight:700;text-decoration:none}
+.pnav a:hover{text-decoration:underline}
+.pnav-sep{margin:0 4px;color:#c9c4d6}
+.psub-wrap{max-width:1000px;margin:0 auto;padding:0 20px 50px}
+body.policy-sub .panel{display:block}
+.phist{margin-top:22px;background:#fff;border:1px solid #e9e7f2;border-radius:12px;padding:14px 16px}
+.phist h3{font-size:13.5px;font-weight:800;color:#5b39b8;margin-bottom:8px}
+.phist-t{width:100%;border-collapse:collapse;font-size:12.2px}
+.phist-t th,.phist-t td{border:1px solid #e9e7f2;padding:6px 9px;text-align:left;vertical-align:top}
+.phist-t th{background:#efe9fd;color:#5b39b8;font-weight:800;font-size:11.2px;white-space:nowrap}
+.phist-t td.hd{white-space:nowrap;color:#8b93a7;font-variant-numeric:tabular-nums;width:110px}
+.phist-t td.hi{font-weight:700;color:#1f2330}
+.phist-t td.nohist{color:#e8943a;font-weight:700;text-align:center}
+.phist-n{margin-top:8px;font-size:11.4px;color:#8b93a7;line-height:1.6}
+.phist-n a{color:#5b39b8;font-weight:700}
+/* policy-page-table-tidy */
+/* 정책 페이지 표·네비 정리 (2026-09-14) */
+.pnav{max-width:1000px;margin:12px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pnav a{display:inline-block;font-size:11.6px;font-weight:700;color:#5b39b8;text-decoration:none;
+  background:#fff;border:1px solid #e7e3f3;border-radius:999px;padding:4px 11px;line-height:1.4}
+.pnav a:hover{border-color:#845EEE;background:#f6f2ff}
+.pnav a.home{background:#1f2330;color:#fff;border-color:#1f2330}
+.pnav-sep{display:none}
+.phist-t{table-layout:fixed}
+.phist-t td.hd{width:88px;white-space:nowrap;font-variant-numeric:tabular-nums;color:#7a8093;font-size:11px;letter-spacing:-.2px;padding-right:6px}
+.phist-t td.hi{width:24%;font-weight:700;color:#1f2330;word-break:keep-all;line-height:1.6}
+.phist-t td.hb{color:#4b5163;font-size:11.9px;line-height:1.8;word-break:keep-all}
+.phist-t th:first-child{width:88px}
+.phist-t th,.phist-t td{padding:8px 10px}
+.phist-t tr:nth-child(even) td{background:#fcfbff}
+@media(max-width:720px){.phist-t{table-layout:auto}.phist-t td.hi{width:auto}}
+/* phist-born-style */
+.phist-t tr.born td{background:#f4f1fe}
+.phist-t tr.born td.hi{color:#5b39b8}
+.phist-t code{font-size:11px;background:#efe9fd;color:#5b39b8;padding:1px 5px;border-radius:4px}
+
+/* phist-col-widths v2 */
+.phist-t{table-layout:fixed;width:100%}
+.phist-t th:nth-child(1),.phist-t td.hd{width:86px}
+.phist-t th:nth-child(2),.phist-t td.hi{width:23%}
+.phist-t th:nth-child(3),.phist-t td.hb{width:auto}
+.phist-t td.hd{font-size:11px;letter-spacing:-.2px;white-space:nowrap;color:#7a8093;font-variant-numeric:tabular-nums;padding-right:6px}
+.phist-t td.hd.nd{white-space:normal;word-break:keep-all;line-height:1.45}
+.phist-t td.hi{font-weight:700;color:#1f2330;word-break:keep-all;line-height:1.6}
+.phist-t td.hb{color:#4b5163;font-size:11.9px;line-height:1.8;word-break:keep-all}
+@media(max-width:720px){.phist-t{table-layout:auto}.phist-t th:nth-child(2),.phist-t td.hi{width:auto}}
+
+/* dual-lang scoped blocks (cp-scope) */
+html[lang="ko"] .cp-scope .vi{display:none}
+html[lang="vi"] .cp-scope .ko{display:none}
+html[lang="vi"] .cp-scope .vi{display:inline}
+</style>
+</head>
+<body class="policy-sub">
+<header class="ph"><div class="ph-in"><div class="ph-kick">PRICEPICK 정책</div><h1 class="ph-t">포인트(P)</h1><button id="ip-lang-toggle" data-lang="ko" type="button" title="KO / VI" aria-label="KO/VI"><span data-l="ko" class="on">KO</span><span data-l="vi">VI</span></button></div></header>
+<div class="pnav"><a class="home" href="/policyspec.html">← 정책 목차</a> <a href="/policy-01-service.html">서비스 모델 · 제휴몰</a> <a href="/policy-02-earn.html">쇼핑 티켓 · 적립 메커니즘</a> <a href="/policy-03-expiry.html">유효기간 · 만료</a> <a href="/policy-04-point.html" style="border-color:#845EEE;background:#f6f2ff">포인트(P)</a> <a href="/policy-05-engage.html">참여</a> <a href="/policy-06-exchange.html">교환 · 등급 전환</a> <a href="/policy-07-account.html">계정 생애주기</a> <a href="/policy-08-abuse.html">어뷰징 한도 · 환불 · 예외</a> <a href="/policy-09-push.html">푸시 알림 상한</a> <a href="/policy-10-raffle.html">추첨 · 경품</a> <a href="/policy-11-settlement.html">본인인증 · 정산 · 데이터 보존</a> <a href="/policy-12-cms.html">CMS 운영값 마스터표</a> <a href="/policy-13-cancel.html">제휴몰별 취소 정책</a></div>
+<main class="psub-wrap">
+<div class="panel active" data-tab="t4">
+    <div class="ptitle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></svg>포인트(P)</div>
+    <div class="pdesc">현금성 보조 화폐. 출석·친구초대 등으로 모으고, 티켓과 바꿀 수 있습니다.</div>
+    <div class="card">
+      <h4><span class="n">1</span>가치 · 교환 · 한도</h4>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">가치</td><td class="rv"><b>1P = 1원.</b></td></tr>
+      <tr class="rw"><td class="rk">티켓 교환(단방향)</td><td class="rv">포인트 → 티켓 단방향 교환. <b>10P = 티켓 1장.</b> 포인트로 티켓을 살 수 있습니다. <b>티켓 → 포인트 역방향은 2026-08 확정으로 중단</b>했습니다 — 로직·데이터는 남아 있어 필요 시 복구할 수 있습니다.</td></tr>
+      <tr class="rw"><td class="rk">교환 조건</td><td class="rv">필요 포인트가 정확히 채워져야 교환됩니다(부족하면 거부).</td></tr>
+</table>
+<div class="ex">예) 9P로는 교환 불가. 15P면 티켓 1장(10P) 교환 후 5P 잔여.</div>
+<table class="ptbl">
+      <tr class="rw"><td class="rk">적립 한도</td><td class="rv">일일 적립 한도 <b>없음.</b></td></tr>
+      <tr class="rw"><td class="rk">획득 경로</td><td class="rv">출석(쿠팡 구경) 10P · 친구초대 50P · 온보딩 보상.</td></tr>
+</table>
+<span class="src">출처 PolicySpec 6 / FunctionalSpec 정책요약 / CMS 발행유형</span>
+    </div>
+  </div>
+
+  <!-- 5. 참여 -->
+  
+<section class="phist"><h3>변경 이력</h3><table class="phist-t">
+<tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<tr><td class="hd">2026-10-15</td><td class="hi">포인트 가치 1P = 1원</td><td class="hb">김반장 확정(2026-10-15) — 포인트 가치를 10P = 1원에서 <b>1P = 1원</b>으로 바꾼다. 원화 비용은 그대로 두고 포인트 숫자만 1/10로 맞춘다 — 출석 100P → 10P · 2배 부스터 +100P → +10P · 친구초대 각 500P → 50P · 가입 200P → 20P · 첫 구경 100P → 10P · 포인트 → 티켓 100P → 10P(1장) · 선물 상자 포인트 칸도 1/10. 보유 포인트도 1/10로 환산하며 1P 미만 끝수는 올림(회원 손해 없음). 선물 상자 기대값(매일 9.9원 · 랜덤 40원)과 지급 비용은 변하지 않는다.</td></tr>
+<tr><td class="hd">2026-10-14</td><td class="hi">등급 티켓 1종 통합</td><td class="hb">김반장·이동영 부장 합의(2026-10-14) — 등급 티켓 3종(브론즈·실버·골드)을 1종으로 통합하고 명칭을 「티켓」으로 변경. 티켓 1장 가치 10원. 전문은 「등급 티켓 1종 통합 — 정책 변경안」(devqa/policy-change-ticket-unify-20261014.html).</td></tr>
+<tr><td class="hd">2026-08-12</td><td class="hi">룰렛 표·포인트 교환 방향 정합</td><td class="hb">룰렛 표는 CMS에 저장된 실제 구성과 맞춘 것— 기대값은 매일 9.9원·잭팟 40원으로 계산상 변동 없음(억지로 맞춘 값 아님). 포인트 교환은 이미 앱에서 단방향으로 운영 중인 상태를 정책서가 못 따라가고 있었다.</td></tr>
+<tr><td class="hd">2026-08-12</td><td class="hi">등급 티켓 환산가치 조정</td><td class="hb">수수료가 낮은 제휴몰에서 소액 구매의 적립이 브론즈 최소 단위(구 100원)에 못 미쳐 통째로 사라지는 문제를 낮은 등급 티켓 가치로 해소한다. 포인트 → 티켓 교환비는 환산가치 조정에 맞춰 같은 비율로 함께 조정한다. 포인트 기준 환율(10P = 1원)은 변경 없음.</td></tr>
+<tr class="born"><td class="hd">2026-06-14</td><td class="hi">정책 마스터 수록</td><td class="hb">정책 마스터 초판에 수록 — 이 정책은 그 전부터 결정돼 있었고, 아래 더 오래된 줄이 최초 기록입니다. (policyspec.html 최초 커밋 <code>d0cbc8c</code>). 문서가 밝힌 출처 — PolicySpec 6 · FunctionalSpec 정책요약 · CMS 발행유형</td></tr>
+<tr><td class="hd">2026-06-08</td><td class="hi">친구초대 보상</td><td class="hb">이부장 변경안. 가입 먹튀 차단 위해 성사 기준 지급.</td></tr>
+</table><p class="phist-n">최신이 위, 가장 오래된 줄이 아래입니다. <b>맨 아래 줄이 그 정책의 최초 기록</b>이며, 「정책 마스터 수록」은 정책서 초판(2026-06-14)에 실린 날입니다. 폐기된 항목도 지우지 않고 그대로 둡니다. 전체 이력은 <a href="/policyspec.html#hist">정책 목차 → 정책 변경 히스토리</a>.</p></section>
+</main>
+<script src="/policy-i18n.js"></script>
+</body></html>
