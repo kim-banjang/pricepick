@@ -136,6 +136,10 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 .dq-top{margin-top:24px}
 .dq-top .sec.dq-sh{margin:0 2px 8px}
 .dq-top>.notice{margin:0}
+/* 검수 카드 — 검수일 · 검수자 · 검수건 세 줄(김반장 2026-10-26) */
+.rv-kv{display:grid;grid-template-columns:auto 1fr;column-gap:8px;row-gap:2px;margin-top:4px;font-size:12.5px;line-height:1.45}
+.rv-kv .k{color:var(--ink3);font-weight:600;white-space:nowrap}
+.rv-kv .v{color:var(--ink1);font-weight:700}
 </style></head><body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog hdr-langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><div class="wrap" style="padding-bottom:0"><div class="htitle"><span class="i18n"><span class="ko">PricePick · 개발 QA</span><span class="vi">PricePick · Dev QA</span></span></div>
@@ -348,22 +352,19 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 <a class="notice" href="/devqa/qa-extra-20261021.html">
 <div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
 <div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동영 부장 · 2026-10-21</span><span class="vi">Người kiểm thử : Trưởng phòng Lee Dong-young · 21/10/2026</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">검수 17건 — 우선 11 · 보강 6 · 대상 STG 앱 1.0.0(15) · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">17 mục kiểm thử — ưu tiên 11 · bổ sung 6 · đối tượng app STG 1.0.0(15) · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
+<div class="rv-kv"><span class="k"><span class="i18n"><span class="ko">검수일 :</span><span class="vi">Ngày kiểm thử :</span></span></span><span class="v"><span class="i18n"><span class="ko">2026-10-21</span><span class="vi">21/10/2026</span></span></span><span class="k"><span class="i18n"><span class="ko">검수자 :</span><span class="vi">Người kiểm thử :</span></span></span><span class="v"><span class="i18n"><span class="ko">이동영 부장</span><span class="vi">Trưởng phòng Lee Dong-young</span></span></span><span class="k"><span class="i18n"><span class="ko">검수건 :</span><span class="vi">Số mục :</span></span></span><span class="v"><span class="i18n"><span class="ko">17건</span><span class="vi">17 mục</span></span></span></div></div>
 <div class="notice-arrow">&rsaquo;</div>
 </a>
 <a class="notice" href="/devqa/qa-review-20261005.html">
 <div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
 <div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동주 과장 · 2026-10-05</span><span class="vi">Người kiểm thử : Trưởng nhóm Lee Dong-ju · 05/10/2026</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">검수 74건 — 어드민 오류 36 · 앱 검수 미연동 25 · 연동 후 13 · 캡처 38장에 수정 위치 표시 · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">74 mục kiểm thử — lỗi Admin 36 · kiểm thử app chưa liên kết 25 · sau liên kết 13 · 38 ảnh chụp có đánh dấu vị trí cần sửa · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
+<div class="rv-kv"><span class="k"><span class="i18n"><span class="ko">검수일 :</span><span class="vi">Ngày kiểm thử :</span></span></span><span class="v"><span class="i18n"><span class="ko">2026-10-05</span><span class="vi">05/10/2026</span></span></span><span class="k"><span class="i18n"><span class="ko">검수자 :</span><span class="vi">Người kiểm thử :</span></span></span><span class="v"><span class="i18n"><span class="ko">이동주 과장</span><span class="vi">Trưởng nhóm Lee Dong-ju</span></span></span><span class="k"><span class="i18n"><span class="ko">검수건 :</span><span class="vi">Số mục :</span></span></span><span class="v"><span class="i18n"><span class="ko">74건</span><span class="vi">74 mục</span></span></span></div></div>
 <div class="notice-arrow">&rsaquo;</div>
 </a>
 <a class="notice" href="/devqa/qa-extra-20261002.html">
 <div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
 <div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동영 부장 · 2026-10-02</span><span class="vi">Người kiểm thử : Trưởng phòng Lee Dong-young · 02/10/2026</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">검수 25건 — 링크프라이스 실적 누락 1 · 추가 점검 24 · 기존 74건 검수 자료와 별도 · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">25 mục kiểm thử — Thiếu doanh số LinkPrice 1 · Kiểm tra bổ sung 24 · Tách riêng với tài liệu kiểm thử 74 mục · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
+<div class="rv-kv"><span class="k"><span class="i18n"><span class="ko">검수일 :</span><span class="vi">Ngày kiểm thử :</span></span></span><span class="v"><span class="i18n"><span class="ko">2026-10-02</span><span class="vi">02/10/2026</span></span></span><span class="k"><span class="i18n"><span class="ko">검수자 :</span><span class="vi">Người kiểm thử :</span></span></span><span class="v"><span class="i18n"><span class="ko">이동영 부장</span><span class="vi">Trưởng phòng Lee Dong-young</span></span></span><span class="k"><span class="i18n"><span class="ko">검수건 :</span><span class="vi">Số mục :</span></span></span><span class="v"><span class="i18n"><span class="ko">25건</span><span class="vi">25 mục</span></span></span></div></div>
 <div class="notice-arrow">&rsaquo;</div>
 </a>
 <button class="nl-more" type="button" id="rvmore" aria-expanded="false"><span class="nl-open-t"><span class="i18n"><span class="ko">더보기</span><span class="vi">Xem thêm</span></span></span><span class="nl-less"><span class="i18n"><span class="ko">접기</span><span class="vi">Thu gọn</span></span></span></button>
