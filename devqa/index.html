@@ -103,21 +103,31 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 .rvgroup .nl-more{margin-top:8px}
 .rvgroup.nl-open .nl-more .nl-open-t{display:none}
 .rvgroup.nl-open .nl-more .nl-less{display:inline}
-/* ── 2단 배치 (2026-10-26) — 가운데 Q&A 목록, 오른쪽 날개에 필독·공지·검수. 좁은 화면은 한 단(목록이 위) ── */
+/* ── 3단 배치 (2026-10-26) — 왼쪽 날개 검수 · 가운데 Q&A 목록 · 오른쪽 날개 필독·공지.
+   폭이 모자라면 왼쪽 날개를 목록 아래로 내려 2단, 더 좁으면 한 단(목록 → 검수 → 필독·공지 — 문서 순서 그대로). ── */
 .wrap{max-width:1240px}
-.dq-layout{display:flex;align-items:flex-start;gap:24px}
-.dq-main{flex:1;min-width:0}
-.dq-side{width:340px;flex-shrink:0;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;margin-top:24px;padding-bottom:8px}
+.dq-layout{display:block}
+.dq-main{min-width:0}
+.dq-left,.dq-side{margin-top:28px}
 .dq-sgrp+.dq-sgrp{margin-top:18px}
-.dq-side .sec.dq-sh{margin:0 2px 8px}
-.dq-side .notice{margin:8px 0 0}
-.dq-side .dq-sgrp>.notice:first-of-type{margin-top:0}
-.dq-side .noticelist,.dq-side .rvgroup{margin:0}
-.dq-side .noticelist>.nl-label,.dq-side .rvgroup>.nl-label{display:none}
+.dq-left .sec.dq-sh,.dq-side .sec.dq-sh{margin:0 2px 8px}
+.dq-left .notice,.dq-side .notice{margin:8px 0 0}
+.dq-left .dq-sgrp>.notice:first-of-type,.dq-side .dq-sgrp>.notice:first-of-type{margin-top:0}
+.dq-side .noticelist,.dq-left .rvgroup{margin:0}
+.dq-side .noticelist>.nl-label,.dq-left .rvgroup>.nl-label{display:none}
 .dq-side .noticelist+.notice{margin-top:8px}
-@media (max-width:1023px){
-  .dq-layout{display:block}
-  .dq-side{width:auto;position:static;max-height:none;overflow:visible;margin-top:28px}
+/* 2단 — 목록 + 오른쪽 날개. 왼쪽 날개(검수)는 목록 아래 */
+@media (min-width:1024px){
+  .dq-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;grid-template-areas:"main side" "left side";column-gap:24px;align-items:start}
+  .dq-main{grid-area:main}
+  .dq-left{grid-area:left}
+  .dq-side{grid-area:side;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;margin-top:24px;padding-bottom:8px}
+}
+/* 3단 — 가운데 폭이 600px 이상 남는 폭부터 */
+@media (min-width:1360px){
+  .wrap{max-width:1560px}
+  .dq-layout{grid-template-columns:280px minmax(0,1fr) 320px;grid-template-areas:"left main side"}
+  .dq-left{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;margin-top:24px;padding-bottom:8px}
 }
 </style></head><body>
 <input type="checkbox" id="langsw">
@@ -313,6 +323,36 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 
 <div class="foot">PricePick · Dev Q&amp;A Index · pricepick.vercel.app/devqa</div>
 </div>
+<aside class="dq-left">
+<div class="dq-sgrp">
+<div class="sec dq-sh i18n"><span class="ko">검수</span><span class="vi">Kiểm thử</span></div>
+<div class="rvgroup">
+<div class="nl-label i18n"><span class="ko">검수</span><span class="vi">Kiểm thử</span></div>
+<a class="notice" href="/devqa/qa-extra-20261021.html">
+<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+<div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
+<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동영 부장 · 2026-10-21</span><span class="vi">Người kiểm thử : Trưởng phòng Lee Dong-young · 21/10/2026</span></span></div>
+<div class="notice-s"><span class="i18n"><span class="ko">검수 17건 — 우선 11 · 보강 6 · 대상 STG 앱 1.0.0(15) · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">17 mục kiểm thử — ưu tiên 11 · bổ sung 6 · đối tượng app STG 1.0.0(15) · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
+<div class="notice-arrow">&rsaquo;</div>
+</a>
+<a class="notice" href="/devqa/qa-review-20261005.html">
+<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+<div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
+<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동주 과장 · 2026-10-05</span><span class="vi">Người kiểm thử : Trưởng nhóm Lee Dong-ju · 05/10/2026</span></span></div>
+<div class="notice-s"><span class="i18n"><span class="ko">검수 74건 — 어드민 오류 36 · 앱 검수 미연동 25 · 연동 후 13 · 캡처 38장에 수정 위치 표시 · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">74 mục kiểm thử — lỗi Admin 36 · kiểm thử app chưa liên kết 25 · sau liên kết 13 · 38 ảnh chụp có đánh dấu vị trí cần sửa · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
+<div class="notice-arrow">&rsaquo;</div>
+</a>
+<a class="notice" href="/devqa/qa-extra-20261002.html">
+<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+<div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
+<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동영 부장 · 2026-10-02</span><span class="vi">Người kiểm thử : Trưởng phòng Lee Dong-young · 02/10/2026</span></span></div>
+<div class="notice-s"><span class="i18n"><span class="ko">검수 25건 — 링크프라이스 실적 누락 1 · 추가 점검 24 · 기존 74건 검수 자료와 별도 · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">25 mục kiểm thử — Thiếu doanh số LinkPrice 1 · Kiểm tra bổ sung 24 · Tách riêng với tài liệu kiểm thử 74 mục · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
+<div class="notice-arrow">&rsaquo;</div>
+</a>
+<button class="nl-more" type="button" id="rvmore" aria-expanded="false"><span class="nl-open-t"><span class="i18n"><span class="ko">더보기</span><span class="vi">Xem thêm</span></span></span><span class="nl-less"><span class="i18n"><span class="ko">접기</span><span class="vi">Thu gọn</span></span></span></button>
+</div>
+</div>
+</aside>
 <aside class="dq-side">
 <div class="dq-sgrp">
 <div class="sec dq-sh i18n"><span class="ko">필독</span><span class="vi">ĐỌC TRƯỚC</span></div>
@@ -381,34 +421,6 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 <div class="notice-s"><span class="i18n"><span class="ko">쿠팡 파트너스 테스트 API 공유 안내(ddaynet 대행사) · 데모 적용 가능 범위 · 개발자 문의 3건 · 개발자 전체 공용</span><span class="vi">Thông báo chia sẻ API test Coupang Partners (đại lý ddaynet) · phạm vi áp dụng ở demo · 3 câu hỏi từ dev · dùng chung cho mọi dev</span></span></div></div>
 <div class="notice-arrow">&rsaquo;</div>
 </a>
-</div>
-<div class="dq-sgrp">
-<div class="sec dq-sh i18n"><span class="ko">검수</span><span class="vi">Kiểm thử</span></div>
-<div class="rvgroup">
-<div class="nl-label i18n"><span class="ko">검수</span><span class="vi">Kiểm thử</span></div>
-<a class="notice" href="/devqa/qa-extra-20261021.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동영 부장 · 2026-10-21</span><span class="vi">Người kiểm thử : Trưởng phòng Lee Dong-young · 21/10/2026</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">검수 17건 — 우선 11 · 보강 6 · 대상 STG 앱 1.0.0(15) · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">17 mục kiểm thử — ưu tiên 11 · bổ sung 6 · đối tượng app STG 1.0.0(15) · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
-<a class="notice" href="/devqa/qa-review-20261005.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동주 과장 · 2026-10-05</span><span class="vi">Người kiểm thử : Trưởng nhóm Lee Dong-ju · 05/10/2026</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">검수 74건 — 어드민 오류 36 · 앱 검수 미연동 25 · 연동 후 13 · 캡처 38장에 수정 위치 표시 · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">74 mục kiểm thử — lỗi Admin 36 · kiểm thử app chưa liên kết 25 · sau liên kết 13 · 38 ảnh chụp có đánh dấu vị trí cần sửa · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
-<a class="notice" href="/devqa/qa-extra-20261002.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">검수</span><span class="vi">KIỂM THỬ</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">검수자 : 이동영 부장 · 2026-10-02</span><span class="vi">Người kiểm thử : Trưởng phòng Lee Dong-young · 02/10/2026</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">검수 25건 — 링크프라이스 실적 누락 1 · 추가 점검 24 · 기존 74건 검수 자료와 별도 · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">25 mục kiểm thử — Thiếu doanh số LinkPrice 1 · Kiểm tra bổ sung 24 · Tách riêng với tài liệu kiểm thử 74 mục · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
-<button class="nl-more" type="button" id="rvmore" aria-expanded="false"><span class="nl-open-t"><span class="i18n"><span class="ko">더보기</span><span class="vi">Xem thêm</span></span></span><span class="nl-less"><span class="i18n"><span class="ko">접기</span><span class="vi">Thu gọn</span></span></span></button>
-</div>
 </div>
 </aside>
 </div>
