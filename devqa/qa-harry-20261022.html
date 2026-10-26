@@ -1,185 +1,17 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS · 앱 질문 답변 · Harry · 2026-10-22</title><style>
-:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--mk:#E23B3B}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
-.wrap{max-width:1000px;margin:0 auto;padding:0 22px 70px}
-header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:26px 0 22px;position:relative}
-.kick{font-size:11px;font-weight:800;letter-spacing:.18em;opacity:.75}
-.htitle{font-size:23px;font-weight:800;margin-top:4px}
-.hsub{font-size:12.6px;opacity:.92;margin-top:5px}
-.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 0;border-bottom:2px solid var(--pp-l)}
-.tabs label{display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;font-weight:800;color:var(--ink3);background:#f3f1fa;border:1px solid var(--line);border-bottom:none;border-radius:10px 10px 0 0;padding:9px 16px;margin-bottom:-2px;user-select:none}
-.tabs label:hover{color:var(--pp-d)}
-.tabs .tn{font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--pp-d)}
-.tabs .tc{font-size:11px;font-weight:800;color:#fff;background:var(--ink3);border-radius:999px;padding:1px 7px}
-input[name=sec]{position:absolute;opacity:0;pointer-events:none}
-.pane{display:none;padding-top:14px}
-#tA:checked ~ .wrap .pA,#tB:checked ~ .wrap .pB{display:block}
-#tA:checked ~ .wrap .tabs label[for=tA],#tB:checked ~ .wrap .tabs label[for=tB]{background:#fff;color:var(--pp-d);border-color:var(--pp-l);border-bottom:2px solid #fff}
-#tA:checked ~ .wrap .tabs label[for=tA] .tc,#tB:checked ~ .wrap .tabs label[for=tB] .tc{background:var(--pp)}
-.qa{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:10px}
-.qh{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.qn{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:22px;padding:0 7px;border-radius:7px;background:var(--pp-l);color:var(--pp-d);font-size:12px;font-weight:800}
-.qs{font-size:13px;font-weight:800;color:var(--pp-d)}
-.qb{font-size:13.4px;color:var(--ink1);margin-top:7px;white-space:pre-wrap}
-.sub{margin-top:9px;padding:9px 12px;background:#fbfaff;border:1px solid var(--line);border-left:3px solid var(--pp);border-radius:8px}
-.sh{font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--pp-d);margin-bottom:3px}
-.sb{font-size:12.5px;color:var(--ink2)}
-.shots{display:flex;flex-wrap:wrap;gap:10px;margin-top:11px}
-.shot{margin:0}
-.iw{position:relative;display:block;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;cursor:zoom-in}
-.iw img{display:block;width:100%;height:auto}
-.mk{position:absolute;border:2px solid var(--mk);border-radius:2px;pointer-events:none;box-shadow:0 0 0 1px rgba(255,255,255,.55)}
-.vid{margin-top:9px;font:11.5px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink3);background:#f4f3f9;border:1px solid var(--line);border-radius:7px;padding:6px 10px;word-break:break-all}
-.lb{position:fixed;inset:0;background:rgba(24,20,40,.86);display:none;align-items:center;justify-content:center;z-index:9000;padding:24px;cursor:zoom-out}
-.lb.on{display:flex}
-.lb img{max-width:100%;max-height:100%;border-radius:8px;background:#fff}
-.foot{margin-top:22px;font-size:11.5px;color:var(--ink3)}
-.vi{display:none}
-#langsw{position:absolute;opacity:0;pointer-events:none}
-#langsw:checked ~ header .ko,#langsw:checked ~ .wrap .ko{display:none}
-#langsw:checked ~ header .vi,#langsw:checked ~ .wrap .vi{display:inline}
-.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
-.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
-.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
-#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
-#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
-
-.wkbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px;padding:11px 14px;background:#fff;border:1px solid var(--line);border-radius:11px}
-.wkb-l,.wkb-f{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.wkb-p{flex:1 1 200px;font-size:12.6px;font-weight:800;color:var(--pp-d)}
-.wkb-lb{font-size:11.5px;font-weight:800;color:var(--ink3)}
-#wkWho{font:600 12.5px inherit;color:var(--ink1);background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
-.fb{font:700 12px inherit;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
-.fb:hover{border-color:var(--pp);color:var(--pp-d)}
-.fb.on{background:var(--pp);border-color:var(--pp);color:#fff}
-.wkwarn{margin-top:9px;padding:9px 12px;background:#fffaef;border:1px solid #eddcb4;border-left:3px solid #95690c;border-radius:8px;font-size:12.4px;color:#7a5a11;font-weight:600}
-.wk{margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
-.wk-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
-.wk-st{display:inline-flex;gap:5px}
-.stb{font:700 11.8px inherit;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
-.stb:hover{border-color:var(--pp)}
-.stb.on[data-v=todo]{background:#F1EFF6;border-color:#d9d4e6;color:#6b6480}
-.stb.on[data-v=doing]{background:#FDF2E6;border-color:#f0d8b4;color:#D97706}
-.stb.on[data-v=done]{background:#EAF7F1;border-color:#BFE6D6;color:#1f7a5a}
-.wk-meta{font-size:11.3px;color:var(--ink3);margin-left:auto}
-.wk-note{display:block;width:100%;margin-top:8px;font:12.6px/1.6 inherit;color:var(--ink1);background:#fbfaff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;resize:vertical}
-.wk-note:focus{outline:none;border-color:var(--pp)}
-.wk-row2{display:flex;align-items:center;gap:9px;margin-top:7px}
-.wk-save{font:700 11.8px inherit;color:#fff;background:var(--pp);border:1px solid var(--pp);border-radius:8px;padding:6px 14px;cursor:pointer}
-.wk-save:hover{background:var(--pp-d);border-color:var(--pp-d)}
-.wk-flash{font-size:11.5px;font-weight:700;color:#1f7a5a;opacity:0;transition:opacity .18s}
-.wk-flash.on{opacity:1}
-.wk-flash.err{color:#9A4A4A}
-.qa[hidden]{display:none}
-
-:root{--s-todo:#6B7488;--s-doing:#E08A1E;--s-done:#1F9D6B}
-.qcols{display:grid;grid-template-columns:minmax(0,290px) minmax(0,1fr);gap:14px;align-items:start}
-.qcol-l>.shots,.qcol-r>.qb{margin-top:9px}
-.shots .shot{max-width:100%}
-@media (max-width:820px){.qcols{display:flex;flex-direction:column}.qcol-r{order:1}.qcol-l{order:2}}
-.exp{margin-top:9px;padding:9px 12px;background:#F2FBF6;border:1px solid #CFEADD;border-left:3px solid var(--s-done);border-radius:8px}
-.eh{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:11px;font-weight:800;letter-spacing:.04em;color:#17795A;margin-bottom:3px}
-.eb{font-size:12.8px;color:var(--ink1)}
-.chkb{font-size:10.5px;font-weight:800;color:#8A5A00;background:#FFF3DC;border:1px solid #F0D8A8;border-radius:999px;padding:1px 8px;letter-spacing:0}
-.critnote{margin-top:9px;padding:9px 12px;background:#F2FBF6;border:1px solid #CFEADD;border-left:3px solid var(--s-done);border-radius:8px;font-size:12.4px;font-weight:600;color:#17795A}
-.qa{border-left:5px solid var(--s-todo)}
-.qa.st-doing{border-left-color:var(--s-doing)}
-.qa.st-done{border-left-color:var(--s-done)}
-.sg{font-style:normal;font-weight:800;margin-right:4px}
-.stb[data-v=todo] .sg::before,.fb[data-f=todo] .sg::before{content:'\25CB'}
-.stb[data-v=doing] .sg::before,.fb[data-f=doing] .sg::before{content:'\25D0'}
-.stb[data-v=done] .sg::before,.fb[data-f=done] .sg::before{content:'\2713'}
-.fb[data-f=all] .sg::before{content:'\25A4'}
-.stb[data-v=todo] .sg,.fb[data-f=todo] .sg{color:var(--s-todo)}
-.stb[data-v=doing] .sg,.fb[data-f=doing] .sg{color:var(--s-doing)}
-.stb[data-v=done] .sg,.fb[data-f=done] .sg{color:var(--s-done)}
-.stb.on[data-v=todo]{background:var(--s-todo);border-color:var(--s-todo);color:#fff}
-.stb.on[data-v=doing]{background:var(--s-doing);border-color:var(--s-doing);color:#fff}
-.stb.on[data-v=done]{background:var(--s-done);border-color:var(--s-done);color:#fff}
-.stb.on .sg{color:#fff}
-.fb.on[data-f=todo]{background:var(--s-todo);border-color:var(--s-todo);color:#fff}
-.fb.on[data-f=doing]{background:var(--s-doing);border-color:var(--s-doing);color:#fff}
-.fb.on[data-f=done]{background:var(--s-done);border-color:var(--s-done);color:#fff}
-.fb.on .sg{color:#fff}
-.wkb-p{flex:1 1 280px}
-#wkProg{display:block}
-.pgbar{display:flex;height:7px;border-radius:5px;background:#ECEAF4;overflow:hidden;margin-bottom:5px}
-.pgbar i{display:block;height:100%}
-.pg-done{background:var(--s-done)}
-.pg-doing{background:var(--s-doing)}
-.pgl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:11.8px}
-.pgl b{font-weight:800}
-.c-done{color:var(--s-done)}
-.c-doing{color:var(--s-doing)}
-.c-todo{color:var(--s-todo)}
-.pgl em{font-style:normal;font-weight:700;color:var(--ink3)}
-.pgs{display:block;margin-top:3px;font-size:11.2px;font-weight:700;color:var(--ink3)}
-.wkwarn .wr{display:block;margin-top:3px;font:11.5px ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:400;color:#8a6a2a;word-break:break-all}
-
-#wkWho.need{border-color:#9A4A4A;box-shadow:0 0 0 2px rgba(154,74,74,.18)}
-.exp-old{margin-top:7px;padding-top:6px;border-top:1px dashed #CFEADD;font-size:11.8px;color:var(--ink3)}
-.exp-old a{color:var(--pp-d)}
-.shot figcaption{margin-top:4px;font-size:11.3px;line-height:1.45;color:var(--ink3)}
-.lpt-wrap{margin-top:9px;overflow-x:auto;border:1px solid var(--line);border-radius:8px}
-.lpt{width:100%;border-collapse:collapse;font-size:12.4px;min-width:640px}
-.lpt th{background:#f4f3f9;color:var(--ink2);font-size:11.5px;font-weight:800;text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
-.lpt td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink1)}
-.lpt tr:last-child td{border-bottom:none}
-.lpt td.miss{color:#9A4A4A;font-weight:700}
-.lpt code{font:11.5px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink2);word-break:break-all}
-.lpt small{color:var(--ink3);font-size:11.3px}
-.lpt-note{margin-top:6px;font-size:11.6px;color:var(--ink3)}
-.lpo{margin:2px 0 0 18px}
-.lpo li{margin-top:3px}
-.lpo code{font:12px ui-monospace,SFMono-Regular,Menlo,monospace}
-.sb a{color:var(--pp-d)}
-
-/* 항목 아래쪽 자리 정리 (2026-10-21) — 상태 한 줄 · 메모 좌우 · 저장 단추는 메모 칸 오른쪽 아래.
-   .wk·.fk 는 그대로 두고(스크립트가 그 클래스로 찾는다) 자식들만 .wkx 격자에 올린다. */
-.wkx{display:grid;grid-template-columns:1fr 1fr;column-gap:12px;row-gap:6px;margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}
-.wkx .wk,.wkx .fk{display:contents}
-.wkx .wk-row,.wkx .fk-row{grid-row:1;gap:6px;align-items:center;min-width:0}
-.wkx .wk-row{grid-column:1}
-.wkx .fk-row{grid-column:2;justify-self:end;background:var(--pp-l);border-radius:999px;padding:3px 4px 3px 10px}
-.wkx .wk-note,.wkx .fk-note{grid-row:2;margin-top:0;min-height:0;height:52px;padding:6px 9px 24px;font-size:12.4px;line-height:1.5;resize:vertical;min-width:0}
-.wkx .wk-note{grid-column:1}
-.wkx .fk-note{grid-column:2;background:var(--pp-l);border-color:var(--pp-l)}
-.wkx .wk-row2,.wkx .fk-row2{grid-row:2;align-self:end;justify-self:end;margin:0 6px 5px 0;gap:6px;position:relative;z-index:1}
-.wkx .wk-row2{grid-column:1}
-.wkx .fk-row2{grid-column:2}
-.wkx .wk-lb,.wkx .fk-lb{min-width:0}
-.wkx .stb,.wkx .fkb{padding:3px 10px;font-size:11.4px}
-.wkx .wk-save,.wkx .fk-save{padding:2px 9px;font-size:11px;border-radius:6px}
-.wkx .wk-meta,.wkx .fk-meta{font-size:10.8px}
-.wkx .wk-flash{font-size:11px}
-@media (max-width:600px){
-  .wkx{grid-template-columns:1fr}
-  .wkx .wk-row,.wkx .wk-note,.wkx .wk-row2,.wkx .fk-row,.wkx .fk-note,.wkx .fk-row2{grid-column:1}
-  .wkx .wk-row{grid-row:1}.wkx .wk-note,.wkx .wk-row2{grid-row:2}
-  .wkx .fk-row{grid-row:3;justify-self:start;margin-top:4px}.wkx .fk-note,.wkx .fk-row2{grid-row:4}
-}
-/* 최종 검수 줄 (2026-10-21) — 개발팀 줄 아래, 보라 계열로 구분 */
-.wk-lb,.fk-lb{font-size:11.5px;font-weight:800;color:var(--ink3);min-width:62px}
-.fk-lb{color:var(--pp-d)}
-.fk{margin-top:9px;padding:9px 11px;background:var(--pp-l);border:1px solid #ddd3fa;border-left:3px solid var(--pp);border-radius:8px}
-.fk-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
-.fkb{font:700 11.8px inherit;color:var(--pp-d);background:#fff;border:1px solid #d6caf8;border-radius:999px;padding:5px 12px;cursor:pointer}
-.fkb:hover{border-color:var(--pp)}
-.fkb.on{background:var(--pp);border-color:var(--pp);color:#fff}
-.fkb .sg::before,.fb[data-f=final] .sg::before{content:'\25C6'}
-.fkb .sg,.fb[data-f=final] .sg{color:var(--pp)}
-.fkb.on .sg{color:#fff}
-.fb.on[data-f=final]{background:var(--pp);border-color:var(--pp);color:#fff}
-.fk-meta{font-size:11.3px;color:var(--ink3);margin-left:auto}
-.fk-note{display:block;width:100%;margin-top:8px;font:12.6px/1.6 inherit;color:var(--ink1);background:#fff;border:1px solid #ddd3fa;border-radius:8px;padding:8px 10px;resize:vertical}
-.fk-note:focus{outline:none;border-color:var(--pp)}
-.fk-row2{display:flex;align-items:center;gap:9px;margin-top:7px}
-.fk-save{font:700 11.8px inherit;color:#fff;background:var(--pp);border:1px solid var(--pp);border-radius:8px;padding:6px 14px;cursor:pointer}
-.fk-save:hover{background:var(--pp-d);border-color:var(--pp-d)}
-.c-final{color:var(--pp-d)}
-
-/* 답변 카드 — qa-harry-20261013 과 같은 클래스 */
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick CMS · 앱 질문 답변 · Harry · 2026-10-22</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
 .arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
 .alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
 .atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
@@ -187,37 +19,83 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 .ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
 .ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
 .ref-box a{color:var(--pp-d);font-weight:700}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.msg{display:block;background:#fff;border:1px solid var(--line);border-left:3px solid var(--pp);border-radius:8px;padding:8px 11px;font-size:12.6px;color:var(--ink1);white-space:normal;margin-top:4px}
+.msg .mh{display:block;font-weight:800;color:var(--ink1);margin-bottom:2px}
+.msg .mb{display:block;color:var(--ink2)}
+.gloss{display:block;font-size:11.6px;color:#8b93a7;margin-top:4px}
+.chipbadge{display:inline-block;padding:3px 8px;border-radius:7px;font-size:11.5px;font-weight:400;white-space:nowrap}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+.depnote{background:#FFF6E9;border:2px solid #E8943A;border-radius:12px;padding:13px 16px;margin-top:16px;font-size:13.2px;color:#3f4658;line-height:1.65}.depnote .dt{display:block;font-size:11.5px;font-weight:800;color:#C2701C;letter-spacing:.05em;margin-bottom:5px}.depnote b{color:#1f2330}.depnote a{color:#5b39b8;font-weight:700}
+
+.qsrc{display:block;margin-top:7px;font-size:11.8px;color:var(--ink3)}
+.mtbl{width:100%;border-collapse:collapse;font-size:12.6px;background:#fff;margin-top:8px}
+.mtbl td{border:1px solid var(--line);padding:7px 10px;vertical-align:top}
+.mtbl td.k{width:200px;font-weight:800;color:var(--pp-d);background:#fbfaff;white-space:nowrap}
+.mtbl td.v{font:12.4px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink1)}
+.wn{margin-top:10px;padding:9px 12px;background:#fffaef;border:1px solid #eddcb4;border-left:3px solid #95690c;border-radius:8px;font-size:12.6px;color:#7a5a11;font-weight:600}
 .sub-h{font-size:12px;font-weight:800;color:var(--pp-d);margin-top:12px}
+.pre{margin-top:8px;padding:11px 13px;background:#f6f5fb;border:1px solid var(--line);border-radius:8px;font:12.2px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink2);white-space:pre-wrap}
 .rules{margin:9px 0 0 18px;font-size:12.8px;color:var(--ink2)}.rules li{margin-top:3px}
+.wn{margin-top:10px;padding:9px 12px;background:#fffaef;border:1px solid #eddcb4;border-left:3px solid #95690c;border-radius:8px;font-size:12.6px;color:#7a5a11;font-weight:600}
+.tbl td.k{font-weight:800;color:var(--pp-d);background:#fbfaff;white-space:nowrap}
+.tbl code{font:11.6px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink1)}
+.bds{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.bd.pri{background:#fdecec;color:#B42318}
+.bd.rep{background:#fff3e0;color:#C2701C}
+.qa.qa-pri{border:2px solid #E5484D}
+.pri-box{background:#fff5f5;border:1px solid #f3c4c4;border-left:4px solid #B42318;border-radius:8px;padding:10px 13px;margin-top:10px;font-size:13px;color:#3f4658}
+.pri-box .pri-label{display:block;font-size:11px;font-weight:800;color:#B42318;letter-spacing:.04em;margin-bottom:4px}
+.pri-box b{color:#1f2330}
 .rep-box{background:#FFF6E9;border:1px solid #f0d3a8;border-left:4px solid #E8943A;border-radius:8px;padding:10px 13px;margin-top:10px;font-size:13px;color:#1f2330;font-weight:700}
 .rep-box .rep-label{display:block;font-size:11px;font-weight:800;color:#C2701C;letter-spacing:.04em;margin-bottom:3px}
 .atxt .rules{margin:6px 0 6px 18px;white-space:normal}
 .atxt code,.qtxt code{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink1)}
-</style></head><body>
-<input type="checkbox" id="langsw"><input type="radio" name="sec" id="tA" checked><input type="radio" name="sec" id="tB">
+</style></head>
+<body>
+<input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
-<div style="max-width:1000px;margin:0 auto;padding:0 22px"><div class="kick">QA HARRY &middot; 2026-10-22</div>
-<div class="htitle"><span class="i18n"><span class="ko">PricePick CMS · 앱 질문 답변 · Harry · 2026-10-22</span><span class="vi">PricePick Trả lời câu hỏi CMS · App · Harry · 22/10/2026</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">Harry · 검수 2026-10-21 회신 8건 + 김반장 답변 — 12건 · 확정 4 · 반영 후 회신 5 · 확인 후 회신 2 · 보류 1 — 답변 KO/VI</span><span class="vi">Harry · 8 phản hồi về Kiểm thử 21/10/2026 + trả lời của Mr Mark — 12 mục · đã chốt 4 · trả lời sau khi phản ánh 5 · trả lời sau khi xác nhận 2 · tạm hoãn 1 — Trả lời KO/VI</span></span></div></div></header>
-<div class="wrap">
-
-<div class="wkbar"><div class="wkb-l"><label class="wkb-lb" for="wkWho"><span class="i18n"><span class="ko">작업자</span><span class="vi">Người thực hiện</span></span></label><select id="wkWho"><option value="">작업자 선택 / Chọn người thực hiện</option><option value="빈 (Nguyen Vuong)">빈 (Nguyen Vuong) / Vin (Nguyen Vuong)</option><option value="존 (John)">존 (John) / John</option><option value="해리 (Harry)">해리 (Harry) / Harry</option><option value="켈빈 (Kelvin)">켈빈 (Kelvin) / Kelvin</option><option value="이부장">이부장 / Trưởng phòng Lee</option><option value="김반장">김반장 / Mr Mark</option></select></div><div class="wkb-p"><span id="wkProg">—</span></div><div class="wkb-f"><span class="wkb-lb"><span class="i18n"><span class="ko">걸러보기</span><span class="vi">Lọc</span></span></span><button type="button" class="fb on" data-f="all"><i class="sg"></i><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span></button><button type="button" class="fb" data-f="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="fb" data-f="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button><button type="button" class="fb" data-f="final"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button></div></div>
-<div class="wkwarn" id="wkWarn" hidden><span class="i18n"><span class="ko">처리 현황을 불러오지 못했습니다. 본문은 그대로 보입니다. 연결이 돌아오면 새로고침해 주십시오.</span><span class="vi">Không tải được trạng thái xử lý. Nội dung vẫn hiển thị bình thường. Khi kết nối trở lại xin tải lại trang.</span></span><span class="wr" id="wkWarnR"></span></div>
-<div class="critnote"><span class="i18n"><span class="ko">처리 완료의 기준은 각 항목의 「답변」입니다. 답변대로 반영되면 「처리 완료」로 바꿉니다.</span><span class="vi">Tiêu chí xử lý xong là 「답변」 (Trả lời) của từng mục. Khi đã phản ánh đúng như câu trả lời thì đổi sang 「처리 완료」 (Đã xử lý xong).</span></span></div>
-<div class="critnote"><span class="i18n"><span class="ko">기준 정책: 포인트 1P = 1원 · 포인트 10P → 티켓 1장 · 티켓 1종(1장 = 10원) · 이벤트 티켓 별도(이벤트 1장 → 티켓 2장) · 친구초대 양쪽 각 500P(피초대자 첫 구매 완료 시, 월 50명)</span><span class="vi">Chính sách tiêu chuẩn: điểm 1P = 1 won · 10P điểm → 1 vé · 1 loại vé (1 vé = 10 won) · vé sự kiện riêng (1 vé sự kiện → 2 vé) · mời bạn bè mỗi bên 500P (khi người được mời hoàn tất mua hàng lần đầu, 50 người/tháng)</span></span></div>
-<div class="critnote"><span class="i18n"><span class="ko">원 자료: <a href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html">검수 (검수자 : 이동영 부장) 2026-10-21</a> · <a href="https://app.notion.com/p/QA-CMS-2026-10-22-40186f66c22480d09ec3defcd9100687" target="_blank" rel="noopener">해리 회신 원문 (Notion) ↗</a></span><span class="vi">Tài liệu gốc: <a href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html">Kiểm thử (Người kiểm thử : Trưởng phòng Lee Dong-young) 21/10/2026</a> · <a href="https://app.notion.com/p/QA-CMS-2026-10-22-40186f66c22480d09ec3defcd9100687" target="_blank" rel="noopener">Bản gốc phản hồi của Harry (Notion) ↗</a></span></span></div>
-<div class="critnote"><span class="i18n"><span class="ko">「CMS 데모에 반영한 뒤 알림」이 여러 건인 이유 — CMS 데모가 화면 기준이고, 우리가 거기 반영하면 개발팀이 그대로 따라갑니다.</span><span class="vi">Lý do có nhiều mục 「phản ánh vào CMS demo rồi báo lại」 — CMS demo là chuẩn màn hình, khi chúng tôi phản ánh vào đó thì đội phát triển làm theo đúng như vậy.</span></span></div>
-<div class="tabs"><label for="tA"><span class="tn">A</span> <span class="i18n"><span class="ko">김반장 확정 답변</span><span class="vi">Mr Mark đã chốt</span></span> <span class="tc">5</span></label><label for="tB"><span class="tn">B</span> <span class="i18n"><span class="ko">해리 회신에 대한 답변</span><span class="vi">Trả lời phản hồi của Harry</span></span> <span class="tc">7</span></label></div>
-<div class="pane pA" data-g="A"><article class="qa st-todo" id="i01"><div class="qh"><span class="qn">01</span><span class="qs"><span class="i18n"><span class="ko">친구초대 보상 각 500P로 수정</span><span class="vi">Sửa thưởng mời bạn bè thành mỗi bên 500P</span></span></span><span class="chkb"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>초대코드 입력 화면 상단 안내 바로 아래에 조건 문구를 보조 문구로 넣습니다.</b><ul class="rules"><li>상단 안내 — 「나와 친구 모두 500P를 받을 수 있어요」</li><li>보조 문구 — 「친구가 첫 구매를 완료하면 지급」</li></ul>같은 영역에, 상단 안내보다 작은 글씨로 넣습니다.</span><span class="vi"><b>Thêm câu điều kiện làm câu phụ ngay bên dưới hướng dẫn phía trên màn hình nhập mã mời.</b><ul class="rules"><li>Hướng dẫn phía trên — 「나와 친구 모두 500P를 받을 수 있어요」 (Cả bạn và bạn bè đều nhận được 500P)</li><li>Câu phụ — 「친구가 첫 구매를 완료하면 지급」 (Chi trả khi bạn bè hoàn tất mua hàng lần đầu)</li></ul>Đặt trong cùng khu vực, cỡ chữ nhỏ hơn hướng dẫn phía trên.</span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i01">검수 2026-10-21</a> 01번
-확인 위치: 앱 → 마이 → 초대코드 입력 — 상단 안내</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i01">Kiểm thử 21/10/2026</a> mục 01
-Vị trí kiểm tra: App → Của tôi → Nhập mã mời — hướng dẫn phía trên</span></span></div><div class="wkx"><div class="wk" data-id="01"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="01"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-<article class="qa st-todo" id="i06"><div class="qh"><span class="qn">06</span><span class="qs"><span class="i18n"><span class="ko">출석 5일 연속 보너스 안내와 설정값 불일치</span><span class="vi">Hướng dẫn thưởng điểm danh 5 ngày liên tiếp không khớp với giá trị cài đặt</span></span></span><span class="chkb"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>5일 연속 보너스는 「이벤트 티켓 1장」으로 확정합니다.</b><ul class="rules"><li>CMS 출석체크 설정의 「5일 연속 보너스」 선택값을 「보너스 포인트」에서 이벤트 티켓 1장으로 바꿉니다</li><li>하단 「현재 적용 정책」과 앱 문구도 같이 맞춥니다</li></ul><b>이벤트 티켓 유효기간은 100일입니다.</b> 지금 앱과 같습니다. 데모의 「유효기간 30일」을 「유효기간 100일」로 고칩니다.</span><span class="vi"><b>Thưởng 5 ngày liên tiếp được chốt là 「이벤트 티켓 1장」 (1 vé sự kiện).</b><ul class="rules"><li>Đổi giá trị chọn 「5일 연속 보너스」 (Thưởng 5 ngày liên tiếp) trong Cài đặt điểm danh của CMS từ 「보너스 포인트」 (Điểm thưởng) sang 1 vé sự kiện</li><li>Đồng thời sửa cho khớp 「현재 적용 정책」 (Chính sách đang áp dụng) phía dưới và câu chữ trên app</li></ul><b>Thời hạn sử dụng vé sự kiện là 100 ngày.</b> Giống app hiện tại. Sửa 「유효기간 30일」 (Hạn sử dụng 30 ngày) trên demo thành 「유효기간 100일」 (Hạn sử dụng 100 ngày).</span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i06">검수 2026-10-21</a> 06번
-확인 위치: CMS → 포인트 관리 → 출석체크 설정 — 지급 설정 「5일 연속 보너스」, 하단 현재 적용 정책</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i06">Kiểm thử 21/10/2026</a> mục 06
-Vị trí kiểm tra: CMS → Quản lý điểm → Cài đặt điểm danh — cài đặt chi trả 「5일 연속 보너스」, chính sách đang áp dụng phía dưới</span></span></div><div class="wkx"><div class="wk" data-id="06"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="06"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-<article class="qa st-todo" id="i07"><div class="qh"><span class="qn">07</span><span class="qs"><span class="i18n"><span class="ko">랜덤 선물 상자 보상 안내·사용 티켓 표기</span><span class="vi">Hướng dẫn thưởng và cách ghi vé sử dụng của hộp quà ngẫu nhiên</span></span></span><span class="chkb"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>아래 두 문구만 바꿉니다.</b><ul class="rules"><li>상단 배지 — 「EVENT · 이벤트 티켓 1장으로 열기」</li><li>설명 — 「티켓, 포인트 등 다양한 선물이 쏟아집니다.」</li></ul>설명에서 이벤트 티켓은 뺍니다. 실제 보상에 이벤트 티켓이 없습니다.</span><span class="vi"><b>Chỉ đổi hai câu dưới đây.</b><ul class="rules"><li>Huy hiệu phía trên — 「EVENT · 이벤트 티켓 1장으로 열기」 (EVENT · Mở bằng 1 vé sự kiện)</li><li>Mô tả — 「티켓, 포인트 등 다양한 선물이 쏟아집니다.」 (Vô số quà như vé, điểm đổ xuống.)</li></ul>Bỏ vé sự kiện khỏi phần mô tả. Phần thưởng thực tế không có vé sự kiện.</span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i07">검수 2026-10-21</a> 07번
-종전 문구: 상단 「EVENT · 티켓 1장으로 열기」, 설명 「이벤트티켓, 포인트, 티켓 등 다양한 선물」</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i07">Kiểm thử 21/10/2026</a> mục 07
-Câu chữ trước đây: phía trên 「EVENT · 티켓 1장으로 열기」, mô tả 「이벤트티켓, 포인트, 티켓 등 다양한 선물」</span></span></div><div class="wkx"><div class="wk" data-id="07"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="07"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-<article class="qa st-todo" id="i08"><div class="qh"><span class="qn">08</span><span class="qs"><span class="i18n"><span class="ko">링크프라이스 적립 확정 기간 표기 통일</span><span class="vi">Thống nhất cách ghi thời gian xác nhận tích lũy LinkPrice</span></span></span><span class="chkb"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">해리 회신</div><div class="sb">CMS 데모 UI를 업데이트해 주십시오.</div></span><span class="vi"><div class="sh">Phản hồi của Harry</div><div class="sb">Vui lòng cập nhật lại UI trong CMS demo.</div></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>앱 구매 지원 여부 — 몰별 값을 CMS 「앱(AOS·iOS)」에 반영하고 몰 상세에 보여 줍니다. 표시 위치는 개발팀이 정합니다.</b>
+<div style="max-width:840px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">PricePick CMS · 앱 질문 답변 · Harry</span><span class="vi">PricePick Trả lời câu hỏi CMS · App · Harry</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">Harry · 검수 2026-10-21 회신 8건 + 김반장 답변 5건 — 답변 KO/VI</span><span class="vi">Harry · 8 phản hồi về Kiểm thử 21/10/2026 + 5 trả lời của Mr Mark — Trả lời KO/VI</span></span></div></div></header>
+<div class="wrap"><div class="meta"><span class="chip"><span class="i18n"><span class="ko">질문 12건</span><span class="vi">12 câu hỏi</span></span></span><span class="chip"><span class="i18n"><span class="ko">확정 답변 9 · 확정 대기 3 (09 · 13 · 16)</span><span class="vi">Đã chốt 9 · chờ chốt 3 (09 · 13 · 16)</span></span></span><span class="chip"><span class="i18n"><span class="ko">CMS 데모 반영 후 회신 5 (02 · 03 · 14 · 15 · 17)</span><span class="vi">Trả lời sau khi phản ánh vào CMS demo 5 (02 · 03 · 14 · 15 · 17)</span></span></span><span class="chip"><span class="i18n"><span class="ko">개발팀 회신 필요 1 (08)</span><span class="vi">Cần đội phát triển trả lời 1 (08)</span></span></span><span class="chip"><span class="i18n"><span class="ko">근거: 김반장 확정 2026-10-22</span><span class="vi">Căn cứ: Mr Mark chốt 22/10/2026</span></span></span><span class="chip"><span class="i18n"><span class="ko"><a href="https://app.notion.com/p/QA-CMS-2026-10-22-40186f66c22480d09ec3defcd9100687" target="_blank" rel="noopener">원문 질문 (Notion) ↗</a></span><span class="vi"><a href="https://app.notion.com/p/QA-CMS-2026-10-22-40186f66c22480d09ec3defcd9100687" target="_blank" rel="noopener">Câu hỏi gốc (Notion) ↗</a></span></span></span><span class="chip"><span class="i18n"><span class="ko">원 자료 <a href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html">검수 2026-10-21</a></span><span class="vi">Tài liệu gốc <a href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html">Kiểm thử 21/10/2026</a></span></span></span><span class="chip"><span class="i18n"><span class="ko">앞 문서 <a href="/devqa/qa-harry-20261013.html">Harry 답변 2026-10-13</a></span><span class="vi">Tài liệu trước <a href="/devqa/qa-harry-20261013.html">Trả lời Harry 13/10/2026</a></span></span></span><span class="chip"><span class="i18n"><span class="ko">질문 문구는 요약 · 원문은 노션 링크</span><span class="vi">Câu hỏi là bản tóm tắt · bản gốc tại link Notion</span></span></span></div>
+<div class="note-box"><span class="i18n"><span class="ko"><b>기준 정책</b> — 포인트 1P = 1원 · 포인트 10P → 티켓 1장 · 티켓 1종(1장 = 10원) · 이벤트 티켓 별도(이벤트 1장 → 티켓 2장) · 친구초대 양쪽 각 500P(피초대자 첫 구매 완료 시, 월 50명)</span><span class="vi"><b>Chính sách tiêu chuẩn</b> — điểm 1P = 1 won · 10P điểm → 1 vé · 1 loại vé (1 vé = 10 won) · vé sự kiện riêng (1 vé sự kiện → 2 vé) · mời bạn bè mỗi bên 500P (khi người được mời hoàn tất mua hàng lần đầu, 50 người/tháng)</span></span></div>
+<h2 class="grp" id="a"><span class="i18n"><span class="ko">A. 김반장 확정 답변 — 01 · 06 · 07 · 08 · 13</span><span class="vi">A. Mr Mark đã chốt — 01 · 06 · 07 · 08 · 13</span></span></h2>
+<div class="qa"><div class="arow" style="margin-top:0;padding-top:0;border-top:none"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">김반장님이 메신저로 이미 답한 5건입니다.</span><span class="vi">Là 5 mục Mr Mark đã trả lời qua tin nhắn.</span></span></div></div></div>
+<h2 class="grp" id="i01"><span class="i18n"><span class="ko">01. 친구초대 보상 각 500P — 초대코드 입력 화면 조건 문구</span><span class="vi">01. Thưởng mời bạn mỗi bên 500P — câu điều kiện ở màn hình nhập mã mời</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">01</span><div class="qtxt"><span class="i18n"><span class="ko">친구초대 보상을 각 500P로 수정하면서, 앱 초대코드 입력 화면에 「친구가 첫 구매를 완료하면 지급」 조건을 추가하라는 요청입니다.</span><span class="vi">Yêu cầu khi sửa thưởng mời bạn thành mỗi bên 500P thì thêm điều kiện 「친구가 첫 구매를 완료하면 지급」 (Chi trả khi bạn bè hoàn tất mua hàng lần đầu) vào màn hình nhập mã mời trên app.</span></span></div><span class="bds"><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>초대코드 입력 화면 상단 안내 바로 아래에 조건 문구를 보조 문구로 넣습니다.</b><ul class="rules"><li>상단 안내 — 「나와 친구 모두 500P를 받을 수 있어요」</li><li>보조 문구 — 「친구가 첫 구매를 완료하면 지급」</li></ul>같은 영역에, 상단 안내보다 작은 글씨로 넣습니다.</span><span class="vi"><b>Thêm câu điều kiện làm câu phụ ngay bên dưới hướng dẫn phía trên màn hình nhập mã mời.</b><ul class="rules"><li>Hướng dẫn phía trên — 「나와 친구 모두 500P를 받을 수 있어요」 (Cả bạn và bạn bè đều nhận được 500P)</li><li>Câu phụ — 「친구가 첫 구매를 완료하면 지급」 (Chi trả khi bạn bè hoàn tất mua hàng lần đầu)</li></ul>Đặt trong cùng khu vực, cỡ chữ nhỏ hơn hướng dẫn phía trên.</span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i01">검수 2026-10-21</a> 01번
+확인 위치: 앱 → 마이 → 초대코드 입력 — 상단 안내</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i01">Kiểm thử 21/10/2026</a> mục 01
+Vị trí kiểm tra: App → Của tôi → Nhập mã mời — hướng dẫn phía trên</span></span></div></div>
+<h2 class="grp" id="i06"><span class="i18n"><span class="ko">06. 출석 5일 연속 보너스</span><span class="vi">06. Thưởng điểm danh 5 ngày liên tiếp</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">06</span><div class="qtxt"><span class="i18n"><span class="ko">안내는 이벤트 티켓 1장인데 CMS 실제 설정은 보너스 포인트이고, 포인트 금액 표시도 없습니다. 지급할 보상을 하나로 정해 달라는 요청입니다.</span><span class="vi">Hướng dẫn ghi 1 vé sự kiện nhưng cài đặt thực tế trên CMS là điểm thưởng, và không hiển thị số điểm. Yêu cầu chốt một loại phần thưởng để chi trả.</span></span></div><span class="bds"><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>5일 연속 보너스는 「이벤트 티켓 1장」으로 확정합니다.</b><ul class="rules"><li>CMS 출석체크 설정의 「5일 연속 보너스」 선택값을 「보너스 포인트」에서 이벤트 티켓 1장으로 바꿉니다</li><li>하단 「현재 적용 정책」과 앱 문구도 같이 맞춥니다</li></ul><b>이벤트 티켓 유효기간은 100일입니다.</b> 지금 앱과 같습니다. 데모의 「유효기간 30일」을 「유효기간 100일」로 고칩니다.</span><span class="vi"><b>Thưởng 5 ngày liên tiếp được chốt là 「이벤트 티켓 1장」 (1 vé sự kiện).</b><ul class="rules"><li>Đổi giá trị chọn 「5일 연속 보너스」 (Thưởng 5 ngày liên tiếp) trong Cài đặt điểm danh của CMS từ 「보너스 포인트」 (Điểm thưởng) sang 1 vé sự kiện</li><li>Đồng thời sửa cho khớp 「현재 적용 정책」 (Chính sách đang áp dụng) phía dưới và câu chữ trên app</li></ul><b>Thời hạn sử dụng vé sự kiện là 100 ngày.</b> Giống app hiện tại. Sửa 「유효기간 30일」 (Hạn sử dụng 30 ngày) trên demo thành 「유효기간 100일」 (Hạn sử dụng 100 ngày).</span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i06">검수 2026-10-21</a> 06번
+확인 위치: CMS → 포인트 관리 → 출석체크 설정 — 지급 설정 「5일 연속 보너스」, 하단 현재 적용 정책</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i06">Kiểm thử 21/10/2026</a> mục 06
+Vị trí kiểm tra: CMS → Quản lý điểm → Cài đặt điểm danh — cài đặt chi trả 「5일 연속 보너스」, chính sách đang áp dụng phía dưới</span></span></div></div>
+<h2 class="grp" id="i07"><span class="i18n"><span class="ko">07. 랜덤 선물 상자 열기</span><span class="vi">07. Mở hộp quà ngẫu nhiên</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">07</span><div class="qtxt"><span class="i18n"><span class="ko">CMS 보상 슬롯에는 이벤트 티켓이 없는데 앱은 이벤트 티켓을 보상으로 안내합니다. 상단은 「티켓 1장」, 하단은 「이벤트 티켓 1장」으로 표기가 다릅니다.</span><span class="vi">Ô thưởng trên CMS không có vé sự kiện nhưng app lại hướng dẫn vé sự kiện là phần thưởng. Phía trên ghi 「티켓 1장」 (1 vé), phía dưới ghi 「이벤트 티켓 1장」 (1 vé sự kiện), không thống nhất.</span></span></div><span class="bds"><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>아래 두 문구만 바꿉니다.</b><ul class="rules"><li>상단 배지 — 「EVENT · 이벤트 티켓 1장으로 열기」</li><li>설명 — 「티켓, 포인트 등 다양한 선물이 쏟아집니다.」</li></ul>설명에서 이벤트 티켓은 뺍니다. 실제 보상에 이벤트 티켓이 없습니다.</span><span class="vi"><b>Chỉ đổi hai câu dưới đây.</b><ul class="rules"><li>Huy hiệu phía trên — 「EVENT · 이벤트 티켓 1장으로 열기」 (EVENT · Mở bằng 1 vé sự kiện)</li><li>Mô tả — 「티켓, 포인트 등 다양한 선물이 쏟아집니다.」 (Vô số quà như vé, điểm đổ xuống.)</li></ul>Bỏ vé sự kiện khỏi phần mô tả. Phần thưởng thực tế không có vé sự kiện.</span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i07">검수 2026-10-21</a> 07번
+종전 문구: 상단 「EVENT · 티켓 1장으로 열기」, 설명 「이벤트티켓, 포인트, 티켓 등 다양한 선물」</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i07">Kiểm thử 21/10/2026</a> mục 07
+Câu chữ trước đây: phía trên 「EVENT · 티켓 1장으로 열기」, mô tả 「이벤트티켓, 포인트, 티켓 등 다양한 선물」</span></span></div></div>
+<h2 class="grp" id="i08"><span class="i18n"><span class="ko">08. 쇼핑몰 상세</span><span class="vi">08. Chi tiết sàn mua sắm</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">08</span><div class="qtxt"><span class="i18n"><span class="ko">링크프라이스 적립 확정 기간 표기가 화면마다 다르고(기본 30일 / 익익월 6일), 앱 몰 상세에서 몰별 사용 가능 시점과 앱 구매 지원 여부를 알 수 없습니다.</span><span class="vi">Cách ghi thời gian xác nhận tích lũy LinkPrice khác nhau giữa các màn hình (mặc định 30 ngày / ngày 6 của tháng thứ hai sau đó), và ở chi tiết sàn trên app không biết được thời điểm sử dụng được và việc có hỗ trợ mua trên app hay không theo từng sàn.</span></span><span class="qsrc"><span class="i18n"><span class="ko">해리 회신 — CMS 데모 UI를 업데이트해 주십시오.</span><span class="vi">Phản hồi của Harry — Vui lòng cập nhật lại UI trong CMS demo.</span></span></span></div><span class="bds"><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span><span class="bd rep"><span class="i18n"><span class="ko">개발팀 회신 필요</span><span class="vi">Cần đội phát triển trả lời</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>앱 구매 지원 여부 — 몰별 값을 CMS 「앱(AOS·iOS)」에 반영하고 몰 상세에 보여 줍니다. 표시 위치는 개발팀이 정합니다.</b>
 
 링크프라이스에서 받는 몰 정보로 몰별 앱 구매 적립 여부를 확인해 CMS 「앱(AOS·iOS)」 값에 반영합니다.<ul class="rules"><li>지원 — 「앱 구매도 적립돼요」</li><li>미지원 — 「앱에서 구매하면 적립되지 않아요 · 웹에서 구매해 주세요」</li><li>일부만 지원 — 「안드로이드 앱 구매만 적립돼요」 또는 「iOS 앱 구매만 적립돼요」</li></ul><b>사용 가능 시점 — 그대로 둡니다.</b> 지금처럼 링크프라이스 원문 「구매 월 기준 익익월 6일 지급」을 보여 주면 충분합니다.
 
@@ -225,206 +103,64 @@ CMS 데모 반영은 우리가 하고 알려 드리겠습니다.</span><span cla
 
 Dùng thông tin sàn nhận từ LinkPrice để xác nhận từng sàn có tích lũy khi mua trên app hay không, rồi phản ánh vào giá trị 「앱(AOS·iOS)」 trên CMS.<ul class="rules"><li>Hỗ trợ — 「앱 구매도 적립돼요」 (Mua trên app cũng được tích lũy)</li><li>Không hỗ trợ — 「앱에서 구매하면 적립되지 않아요 · 웹에서 구매해 주세요」 (Mua trên app sẽ không được tích lũy · Vui lòng mua trên web)</li><li>Chỉ hỗ trợ một phần — 「안드로이드 앱 구매만 적립돼요」 (Chỉ mua trên app Android được tích lũy) hoặc 「iOS 앱 구매만 적립돼요」 (Chỉ mua trên app iOS được tích lũy)</li></ul><b>Thời điểm sử dụng được — giữ nguyên.</b> Như hiện tại, hiển thị nguyên văn LinkPrice 「구매 월 기준 익익월 6일 지급」 (Chi trả ngày 6 của tháng thứ hai sau tháng mua) là đủ.
 
-Việc phản ánh vào CMS demo do chúng tôi thực hiện rồi báo lại.</span></span></div></div><div class="rep-box"><span class="rep-label"><span class="i18n"><span class="ko">개발팀 회신 사항</span><span class="vi">Nội dung đội phát triển cần trả lời</span></span></span><span class="i18n"><span class="ko">지금 CMS에 있는 값(NS·GS 미지원, Hmall은 AOS만 지원 등)이 링크프라이스 정보와 맞는지</span><span class="vi">Các giá trị hiện có trên CMS (NS·GS không hỗ trợ, Hmall chỉ hỗ trợ AOS, v.v.) có khớp với thông tin của LinkPrice hay không</span></span></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i08">검수 2026-10-21</a> 08번</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i08">Kiểm thử 21/10/2026</a> mục 08</span></span></div><div class="wkx"><div class="wk" data-id="08"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="08"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-<article class="qa st-todo" id="i13"><div class="qh"><span class="qn">13</span><span class="qs"><span class="i18n"><span class="ko">마이에 「쇼핑 적립 방법」 다시 보기 추가</span><span class="vi">Thêm mục xem lại 「쇼핑 적립 방법」 ở Của tôi</span></span></span><span class="chkb"><span class="i18n"><span class="ko">보류</span><span class="vi">Tạm hoãn</span></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>이 항목은 보류합니다.</b>
+Việc phản ánh vào CMS demo do chúng tôi thực hiện rồi báo lại.</span></span></div></div>
+<div class="rep-box"><span class="rep-label"><span class="i18n"><span class="ko">개발팀 회신 사항</span><span class="vi">Nội dung đội phát triển cần trả lời</span></span></span><span class="i18n"><span class="ko">지금 CMS에 있는 값(NS·GS 미지원, Hmall은 AOS만 지원 등)이 링크프라이스 정보와 맞는지</span><span class="vi">Các giá trị hiện có trên CMS (NS·GS không hỗ trợ, Hmall chỉ hỗ trợ AOS, v.v.) có khớp với thông tin của LinkPrice hay không</span></span></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i08">검수 2026-10-21</a> 08번</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i08">Kiểm thử 21/10/2026</a> mục 08</span></span></div></div>
+<h2 class="grp" id="i13"><span class="i18n"><span class="ko">13. 마이에 「쇼핑 적립 방법」 다시 보기 추가</span><span class="vi">13. Thêm mục xem lại 「쇼핑 적립 방법」 ở Của tôi</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">13</span><div class="qtxt"><span class="i18n"><span class="ko">첫 이용 이후 적립 방법 안내를 다시 열 경로가 없습니다. 마이 도움말에 「쇼핑 적립 방법」 행을 추가해 기존 첫 이용 안내 화면으로 연결하라는 요청입니다.</span><span class="vi">Sau lần sử dụng đầu tiên không có đường mở lại hướng dẫn cách tích lũy. Yêu cầu thêm dòng 「쇼핑 적립 방법」 (Cách tích lũy khi mua sắm) vào phần trợ giúp ở Của tôi và liên kết sang màn hình hướng dẫn lần đầu sử dụng hiện có.</span></span></div><span class="bds"><span class="bd rep"><span class="i18n"><span class="ko">보류</span><span class="vi">Tạm hoãn</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>이 항목은 보류합니다.</b>
 
 기존 화면으로 연결하지 않고, 첫 이용 안내 팝업을 새로 만들자는 의견이 있습니다. 팝업 내용과 구성은 내부에서 협의한 뒤 따로 전달합니다. 그때까지 작업하지 않습니다.</span><span class="vi"><b>Tạm hoãn mục này.</b>
 
-Có ý kiến không liên kết sang màn hình hiện có mà làm mới một popup hướng dẫn lần đầu sử dụng. Nội dung và bố cục popup sẽ được thống nhất nội bộ rồi gửi riêng. Cho đến lúc đó không thực hiện.</span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i13">검수 2026-10-21</a> 13번</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i13">Kiểm thử 21/10/2026</a> mục 13</span></span></div><div class="wkx"><div class="wk" data-id="13"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="13"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-</div>
-<div class="pane pB" data-g="B"><article class="qa st-todo" id="i02"><div class="qh"><span class="qn">02</span><span class="qs"><span class="i18n"><span class="ko">개인정보처리방침 내부 메모·빈칸 제거</span><span class="vi">Xóa ghi chú nội bộ·chỗ trống trong Chính sách bảo mật</span></span></span><span class="chkb"><span class="i18n"><span class="ko">반영 후 회신</span><span class="vi">Trả lời sau khi phản ánh</span></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">해리 회신</div><div class="sb">내용은 CMS 데모에서 가져온 것이고 admin이 바꿀 수 있습니다. CMS 데모에서 고쳐 주시면 반영하겠습니다.</div></span><span class="vi"><div class="sh">Phản hồi của Harry</div><div class="sb">Nội dung lấy từ CMS demo và admin có thể thay đổi. Nếu sửa trên CMS demo thì chúng tôi sẽ phản ánh.</div></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>CMS 데모에 반영한 뒤 알려 드리겠습니다.</b> 실제 클라우드 사업자명과 푸시 발송 서비스명은 확정되는 대로 함께 채웁니다.</span><span class="vi"><b>Chúng tôi sẽ phản ánh vào CMS demo rồi báo lại.</b> Tên nhà cung cấp cloud thực tế và tên dịch vụ gửi push sẽ được điền cùng lúc khi chốt.</span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i02">검수 2026-10-21</a> 02번</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i02">Kiểm thử 21/10/2026</a> mục 02</span></span></div><div class="wkx"><div class="wk" data-id="02"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="02"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-<article class="qa st-todo" id="i03"><div class="qh"><span class="qn">03</span><span class="qs"><span class="i18n"><span class="ko">이용약관을 현행 티켓·포인트 체계로 개정</span><span class="vi">Sửa Điều khoản sử dụng theo hệ thống vé·điểm hiện hành</span></span></span><span class="chkb"><span class="i18n"><span class="ko">반영 후 회신</span><span class="vi">Trả lời sau khi phản ánh</span></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">해리 회신</div><div class="sb">약관 관리 쪽은 CMS 데모(UI)에서 업데이트해 주십시오. 나머지는 UI대로 이미 맞춰 두었고, UI가 바뀌면 따라가겠습니다.</div></span><span class="vi"><div class="sh">Phản hồi của Harry</div><div class="sb">Phần Quản lý điều khoản xin cập nhật trên CMS demo (UI). Phần còn lại đã làm theo UI, khi UI thay đổi chúng tôi sẽ làm theo.</div></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>CMS 데모에 반영한 뒤 알려 드리겠습니다.</b>
+Có ý kiến không liên kết sang màn hình hiện có mà làm mới một popup hướng dẫn lần đầu sử dụng. Nội dung và bố cục popup sẽ được thống nhất nội bộ rồi gửi riêng. Cho đến lúc đó không thực hiện.</span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i13">검수 2026-10-21</a> 13번</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i13">Kiểm thử 21/10/2026</a> mục 13</span></span></div></div>
+<h2 class="grp" id="b"><span class="i18n"><span class="ko">B. 해리 회신에 대한 답변 — 02 · 03 · 09 · 14 · 15 · 16 · 17</span><span class="vi">B. Trả lời phản hồi của Harry — 02 · 03 · 09 · 14 · 15 · 16 · 17</span></span></h2>
+<div class="qa"><div class="arow" style="margin-top:0;padding-top:0;border-top:none"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko">질문 칸은 해리 회신 요지입니다.
+
+「CMS 데모에 반영한 뒤 알림」이 여러 건인 이유 — <b>CMS 데모가 화면 기준이고, 우리가 거기 반영하면 개발팀이 그대로 따라갑니다.</b></span><span class="vi">Ô câu hỏi là tóm tắt phản hồi của Harry.
+
+Lý do có nhiều mục 「phản ánh vào CMS demo rồi báo lại」 — <b>CMS demo là chuẩn màn hình, khi chúng tôi phản ánh vào đó thì đội phát triển làm theo đúng như vậy.</b></span></span></div></div></div>
+<h2 class="grp" id="i02"><span class="i18n"><span class="ko">02. 개인정보처리방침 내부 메모·빈칸 제거</span><span class="vi">02. Xóa ghi chú nội bộ·chỗ trống trong Chính sách bảo mật</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">02</span><div class="qtxt"><span class="i18n"><span class="ko">내용은 CMS 데모에서 가져온 것이고 admin이 바꿀 수 있습니다. CMS 데모에서 고쳐 주시면 반영하겠습니다.</span><span class="vi">Nội dung lấy từ CMS demo và admin có thể thay đổi. Nếu sửa trên CMS demo thì chúng tôi sẽ phản ánh.</span></span></div><span class="bds"><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span><span class="bd rep"><span class="i18n"><span class="ko">CMS 데모 반영 후 회신</span><span class="vi">Trả lời sau khi phản ánh vào CMS demo</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>CMS 데모에 반영한 뒤 알려 드리겠습니다.</b> 실제 클라우드 사업자명과 푸시 발송 서비스명은 확정되는 대로 함께 채웁니다.</span><span class="vi"><b>Chúng tôi sẽ phản ánh vào CMS demo rồi báo lại.</b> Tên nhà cung cấp cloud thực tế và tên dịch vụ gửi push sẽ được điền cùng lúc khi chốt.</span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i02">검수 2026-10-21</a> 02번</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i02">Kiểm thử 21/10/2026</a> mục 02</span></span></div></div>
+<h2 class="grp" id="i03"><span class="i18n"><span class="ko">03. 이용약관을 현행 티켓·포인트 체계로 개정</span><span class="vi">03. Sửa Điều khoản sử dụng theo hệ thống vé·điểm hiện hành</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">03</span><div class="qtxt"><span class="i18n"><span class="ko">약관 관리 쪽은 CMS 데모(UI)에서 업데이트해 주십시오. 나머지는 UI대로 이미 맞춰 두었고, UI가 바뀌면 따라가겠습니다.</span><span class="vi">Phần Quản lý điều khoản xin cập nhật trên CMS demo (UI). Phần còn lại đã làm theo UI, khi UI thay đổi chúng tôi sẽ làm theo.</span></span></div><span class="bds"><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span><span class="bd rep"><span class="i18n"><span class="ko">CMS 데모 반영 후 회신</span><span class="vi">Trả lời sau khi phản ánh vào CMS demo</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>CMS 데모에 반영한 뒤 알려 드리겠습니다.</b>
 
 다만 <b>약관 본문은 법무 검토 대상</b>이므로, 개정안이 확정된 뒤 반영합니다.</span><span class="vi"><b>Chúng tôi sẽ phản ánh vào CMS demo rồi báo lại.</b>
 
-Tuy nhiên <b>nội dung điều khoản thuộc đối tượng rà soát pháp chế</b>, nên sẽ phản ánh sau khi bản sửa đổi được chốt.</span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i03">검수 2026-10-21</a> 03번</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i03">Kiểm thử 21/10/2026</a> mục 03</span></span></div><div class="wkx"><div class="wk" data-id="03"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="03"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-<article class="qa st-todo" id="i09"><div class="qh"><span class="qn">09</span><span class="qs"><span class="i18n"><span class="ko">테스트 제휴몰 「으하하하」 정리</span><span class="vi">Xử lý cửa hàng liên kết thử nghiệm 「으하하하」</span></span></span><span class="chkb"><span class="i18n"><span class="ko">확인 후 회신</span><span class="vi">Trả lời sau khi xác nhận</span></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">해리 회신</div><div class="sb">테스트몰은 삭제했습니다. 몰 비활성화 기능은 링크프라이스 몰에는 이미 있습니다. 쿠팡은 백엔드가 관리하므로, 쿠팡까지 하려면 UI에 비활성화 버튼을 추가해야 합니다.</div></span><span class="vi"><div class="sh">Phản hồi của Harry</div><div class="sb">Đã xóa sàn thử nghiệm. Chức năng vô hiệu hóa sàn đã có cho các sàn LinkPrice. Coupang do backend quản lý, nên muốn làm cả Coupang thì phải thêm nút vô hiệu hóa vào UI.</div></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>테스트몰 삭제를 확인했습니다.</b>
+Tuy nhiên <b>nội dung điều khoản thuộc đối tượng rà soát pháp chế</b>, nên sẽ phản ánh sau khi bản sửa đổi được chốt.</span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i03">검수 2026-10-21</a> 03번</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i03">Kiểm thử 21/10/2026</a> mục 03</span></span></div></div>
+<h2 class="grp" id="i09"><span class="i18n"><span class="ko">09. 테스트 제휴몰 「으하하하」 정리</span><span class="vi">09. Xử lý cửa hàng liên kết thử nghiệm 「으하하하」</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">09</span><div class="qtxt"><span class="i18n"><span class="ko">테스트몰은 삭제했습니다. 몰 비활성화 기능은 링크프라이스 몰에는 이미 있습니다. 쿠팡은 백엔드가 관리하므로, 쿠팡까지 하려면 UI에 비활성화 버튼을 추가해야 합니다.</span><span class="vi">Đã xóa sàn thử nghiệm. Chức năng vô hiệu hóa sàn đã có cho các sàn LinkPrice. Coupang do backend quản lý, nên muốn làm cả Coupang thì phải thêm nút vô hiệu hóa vào UI.</span></span></div><span class="bds"><span class="bd rep"><span class="i18n"><span class="ko">확인 후 회신</span><span class="vi">Trả lời sau khi xác nhận</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>테스트몰 삭제를 확인했습니다.</b>
 
 쿠팡 비활성화 버튼 추가 여부는 확인 후 회신합니다.</span><span class="vi"><b>Đã xác nhận việc xóa sàn thử nghiệm.</b>
 
-Việc có thêm nút vô hiệu hóa cho Coupang hay không sẽ trả lời sau khi xác nhận.</span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i09">검수 2026-10-21</a> 09번</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i09">Kiểm thử 21/10/2026</a> mục 09</span></span></div><div class="wkx"><div class="wk" data-id="09"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="09"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-<article class="qa st-todo" id="i14"><div class="qh"><span class="qn">14</span><span class="qs"><span class="i18n"><span class="ko">수동 지급·회수 사유와 제재 이력 조회</span><span class="vi">Xem lý do trả·thu hồi thủ công và lịch sử xử phạt</span></span></span><span class="chkb"><span class="i18n"><span class="ko">반영 후 회신</span><span class="vi">Trả lời sau khi phản ánh</span></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">해리 회신</div><div class="sb">이 항목 요구대로 CMS 데모 UI를 업데이트해 주십시오.</div></span><span class="vi"><div class="sh">Phản hồi của Harry</div><div class="sb">Xin cập nhật UI của CMS demo theo yêu cầu của mục này.</div></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>CMS 데모에 반영한 뒤 알려 드리겠습니다.</b></span><span class="vi"><b>Chúng tôi sẽ phản ánh vào CMS demo rồi báo lại.</b></span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i14">검수 2026-10-21</a> 14번</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i14">Kiểm thử 21/10/2026</a> mục 14</span></span></div><div class="wkx"><div class="wk" data-id="14"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="14"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-<article class="qa st-todo" id="i15"><div class="qh"><span class="qn">15</span><span class="qs"><span class="i18n"><span class="ko">회원 상태 용어·포스트백 회원 연결·주문번호 안내</span><span class="vi">Thuật ngữ trạng thái hội viên·liên kết hội viên postback·hướng dẫn mã đơn hàng</span></span></span><span class="chkb"><span class="i18n"><span class="ko">반영 후 회신</span><span class="vi">Trả lời sau khi phản ánh</span></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">해리 회신</div><div class="sb">쿠팡 주문번호는 추가했습니다. 예전에는 포스트백이 주문번호를 주지 않았으나 지금은 줍니다. 나머지는 UI가 업데이트되지 않아 진행하지 못했습니다. UI 업데이트와 더 자세한 설명을 부탁합니다.</div></span><span class="vi"><div class="sh">Phản hồi của Harry</div><div class="sb">Đã thêm mã đơn hàng Coupang. Trước đây postback không gửi mã đơn hàng nhưng nay đã gửi. Phần còn lại chưa làm được vì UI chưa được cập nhật. Xin cập nhật UI và giải thích chi tiết hơn.</div></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>주문번호 추가를 확인했습니다. 매출 표 아래 안내 「쿠팡은 주문번호가 오지 않습니다」는 사실과 달라졌으므로 이 문구를 걷어냅니다.</b>
+Việc có thêm nút vô hiệu hóa cho Coupang hay không sẽ trả lời sau khi xác nhận.</span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i09">검수 2026-10-21</a> 09번</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i09">Kiểm thử 21/10/2026</a> mục 09</span></span></div></div>
+<h2 class="grp" id="i14"><span class="i18n"><span class="ko">14. 수동 지급·회수 사유와 제재 이력 조회</span><span class="vi">14. Xem lý do trả·thu hồi thủ công và lịch sử xử phạt</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">14</span><div class="qtxt"><span class="i18n"><span class="ko">이 항목 요구대로 CMS 데모 UI를 업데이트해 주십시오.</span><span class="vi">Xin cập nhật UI của CMS demo theo yêu cầu của mục này.</span></span></div><span class="bds"><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span><span class="bd rep"><span class="i18n"><span class="ko">CMS 데모 반영 후 회신</span><span class="vi">Trả lời sau khi phản ánh vào CMS demo</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>CMS 데모에 반영한 뒤 알려 드리겠습니다.</b></span><span class="vi"><b>Chúng tôi sẽ phản ánh vào CMS demo rồi báo lại.</b></span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i14">검수 2026-10-21</a> 14번</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i14">Kiểm thử 21/10/2026</a> mục 14</span></span></div></div>
+<h2 class="grp" id="i15"><span class="i18n"><span class="ko">15. 회원 상태 용어·포스트백 회원 연결·주문번호 안내</span><span class="vi">15. Thuật ngữ trạng thái hội viên·liên kết hội viên postback·hướng dẫn mã đơn hàng</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">15</span><div class="qtxt"><span class="i18n"><span class="ko">쿠팡 주문번호는 추가했습니다. 예전에는 포스트백이 주문번호를 주지 않았으나 지금은 줍니다. 나머지는 UI가 업데이트되지 않아 진행하지 못했습니다. UI 업데이트와 더 자세한 설명을 부탁합니다.</span><span class="vi">Đã thêm mã đơn hàng Coupang. Trước đây postback không gửi mã đơn hàng nhưng nay đã gửi. Phần còn lại chưa làm được vì UI chưa được cập nhật. Xin cập nhật UI và giải thích chi tiết hơn.</span></span></div><span class="bds"><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span><span class="bd rep"><span class="i18n"><span class="ko">CMS 데모 반영 후 회신</span><span class="vi">Trả lời sau khi phản ánh vào CMS demo</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>주문번호 추가를 확인했습니다. 매출 표 아래 안내 「쿠팡은 주문번호가 오지 않습니다」는 사실과 달라졌으므로 이 문구를 걷어냅니다.</b>
 
 상태 용어 통일과 포스트백 회원 연결 표시는 CMS 데모에 반영한 뒤 알려 드리겠습니다.</span><span class="vi"><b>Đã xác nhận việc thêm mã đơn hàng. Hướng dẫn dưới bảng doanh thu 「쿠팡은 주문번호가 오지 않습니다」 (Coupang không gửi mã đơn hàng) không còn đúng sự thật nên gỡ bỏ câu này.</b>
 
-Việc thống nhất thuật ngữ trạng thái và hiển thị liên kết hội viên postback sẽ được phản ánh vào CMS demo rồi báo lại.</span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i15">검수 2026-10-21</a> 15번
-확인 위치: CMS → 매출·수익 → 제휴 수수료 매출 — 표 아래 안내 「쿠팡은 주문번호가 오지 않습니다.」</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i15">Kiểm thử 21/10/2026</a> mục 15
-Vị trí kiểm tra: CMS → Doanh thu·Lợi nhuận → Doanh thu hoa hồng liên kết — hướng dẫn dưới bảng 「쿠팡은 주문번호가 오지 않습니다.」</span></span></div><div class="wkx"><div class="wk" data-id="15"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="15"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-<article class="qa st-todo" id="i16"><div class="qh"><span class="qn">16</span><span class="qs"><span class="i18n"><span class="ko">알림 이력 합계 불일치</span><span class="vi">Tổng trong lịch sử thông báo không khớp</span></span></span><span class="chkb"><span class="i18n"><span class="ko">확인 후 회신</span><span class="vi">Trả lời sau khi xác nhận</span></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">해리 회신</div><div class="sb">요구를 정확히 이해하지 못했습니다. 지금은 테스트 발송은 세지 않고 실제 발송만 셉니다. 집계 방식을 바꿔야 한다면 어떻게 세기를 원하는지 알려 주십시오.</div></span><span class="vi"><div class="sh">Phản hồi của Harry</div><div class="sb">Chưa hiểu chính xác yêu cầu. Hiện tại không đếm gửi thử mà chỉ đếm gửi thực tế. Nếu cần đổi cách tổng hợp, xin cho biết muốn đếm như thế nào.</div></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>집계 기준은 확인 후 회신합니다.</b></span><span class="vi"><b>Tiêu chí tổng hợp sẽ trả lời sau khi xác nhận.</b></span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i16">검수 2026-10-21</a> 16번</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i16">Kiểm thử 21/10/2026</a> mục 16</span></span></div><div class="wkx"><div class="wk" data-id="16"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="16"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-<article class="qa st-todo" id="i17"><div class="qh"><span class="qn">17</span><span class="qs"><span class="i18n"><span class="ko">연속구매 미션 설정 조회 화면</span><span class="vi">Màn hình xem cài đặt nhiệm vụ mua liên tiếp</span></span></span><span class="chkb"><span class="i18n"><span class="ko">반영 후 회신</span><span class="vi">Trả lời sau khi phản ánh</span></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">해리 회신</div><div class="sb">새 화면을 추가하는 요구이므로 UI가 필요합니다. CMS 데모에 UI를 업데이트해 주십시오.</div></span><span class="vi"><div class="sh">Phản hồi của Harry</div><div class="sb">Đây là yêu cầu thêm màn hình mới nên cần UI. Xin cập nhật UI trên CMS demo.</div></span></span></div><div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>CMS 데모에 반영한 뒤 알려 드리겠습니다.</b></span><span class="vi"><b>Chúng tôi sẽ phản ánh vào CMS demo rồi báo lại.</b></span></span></div></div><div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">원 자료: <a href="/devqa/qa-extra-20261021.html#i17">검수 2026-10-21</a> 17번</span><span class="vi">Tài liệu gốc: <a href="/devqa/qa-extra-20261021.html#i17">Kiểm thử 21/10/2026</a> mục 17</span></span></div><div class="wkx"><div class="wk" data-id="17"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="17"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article>
-</div>
-
-<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS · 앱 질문 답변 · Harry · 2026-10-22 · 확정 4 · 반영 후 회신 5 · 확인 후 회신 2 · 보류 1 · 원 자료 <a href="/devqa/qa-extra-20261021.html">검수(2026-10-21)</a> · 앞 문서 <a href="/devqa/qa-harry-20261013.html">Harry 2026-10-13</a></span><span class="vi">PricePick · Trả lời câu hỏi CMS · App · Harry · 22/10/2026 · đã chốt 4 · trả lời sau khi phản ánh 5 · trả lời sau khi xác nhận 2 · tạm hoãn 1 · tài liệu gốc <a href="/devqa/qa-extra-20261021.html">Kiểm thử (21/10/2026)</a> · tài liệu trước <a href="/devqa/qa-harry-20261013.html">Harry 13/10/2026</a></span></span></div>
-</div>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script>
-(function(){
-  var COL='qa_harry_20261022';
-  var KW='ppqa_who';
-  var db=null, state={};
-
-  try{
-    firebase.initializeApp({apiKey:"AIzaSyCElUPJAitnMZxttVYjboV0j4s_qpErAgA",authDomain:"pricepick-demo.firebaseapp.com",projectId:"pricepick-demo",storageBucket:"pricepick-demo.firebasestorage.app",messagingSenderId:"505137396208",appId:"1:505137396208:web:cea9d208c7745854e14535"});
-    db=firebase.firestore();
-  }catch(e){ db=null; }
-
-  function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
-  function warn(on,why){
-    var w=document.getElementById('wkWarn'); if(w) w.hidden=!on;
-    var r=document.getElementById('wkWarnR'); if(r) r.textContent=(on&&why)?why:'';
-  }
-  // 「처리중」은 단추에서 뺐다(2026-10-21). 이미 저장된 doing 은 지우지 않고 화면에서만 미처리로 읽는다.
-  function stOf(d){ var s=(d&&d.status)||'todo'; return s==='doing'?'todo':s; }
-  // 메모 칸 안내 문구는 지금 고른 언어 하나만 (KO/VI 토글을 따라간다).
-  function setPh(){
-    var vi=document.getElementById('langsw').checked;
-    document.querySelectorAll('textarea[data-ph-ko]').forEach(function(t){ t.placeholder=vi?t.dataset.phVi:t.dataset.phKo; });
-  }
-  function reason(e){ if(!e) return ''; return [e.code,e.message].filter(Boolean).join(' · '); }
-
-  function who(){ return document.getElementById('wkWho').value; }
-  function needWho(el){
-    if(who()) return true;
-    var isVi=document.getElementById('langsw').checked;
-    if(el) flash(el, isVi?'Xin chọn người thực hiện trước.':'작업자를 먼저 선택하십시오.', 1);
-    var sel=document.getElementById('wkWho');
-    sel.classList.add('need');
-    try{ sel.focus({preventScroll:true}); }catch(e){}
-    return false;
-  }
-  function flash(el,msg,err){
-    var f=el.querySelector('.wk-flash');
-    f.textContent=msg; f.classList.toggle('err',!!err); f.classList.add('on');
-    setTimeout(function(){ f.classList.remove('on'); },1800);
-  }
-  function fmt(ts){
-    if(!ts) return '';
-    var d=ts.toDate?ts.toDate():new Date(ts);
-    var p=function(n){return String(n).padStart(2,'0');};
-    return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());
-  }
-  function paintOne(wk){
-    var d=state[wk.dataset.id]||{};
-    var st=stOf(d);
-    wk.querySelectorAll('.stb').forEach(function(b){ b.classList.toggle('on', b.dataset.v===st); });
-    var art=wk.closest('article.qa');
-    if(art){ art.classList.remove('st-todo','st-doing','st-done'); art.classList.add('st-'+st); }
-    var n=wk.querySelector('.wk-note');
-    if(document.activeElement!==n) n.value=d.note||'';
-    var m=wk.querySelector('.wk-meta');
-    m.textContent=(d.updatedBy||d.updatedAt)?((d.updatedBy||'')+(d.updatedAt?' · '+fmt(d.updatedAt):'')):'';
-  }
-  var GRP=[], GOF={};
-  document.querySelectorAll('.pane').forEach(function(p){
-    var g={k:p.dataset.g, n:0}; GRP.push(g);
-    p.querySelectorAll('.wk').forEach(function(w){ GOF[w.dataset.id]=g; g.n++; });
-  });
-  var TOTAL=Object.keys(GOF).length;
-  function progress(){
-    var done={}, nd=0, nf=0;
-    GRP.forEach(function(g){ done[g.k]=0; });
-    Object.keys(state).forEach(function(k){
-      var g=GOF[k]; if(!g) return;
-      if(state[k]&&state[k].final_done) nf++;
-      var st=state[k]&&state[k].status;
-      if(st==='done'){ done[g.k]++; nd++; }
-    });
-    var nt=TOTAL-nd, pct=Math.round(nd/TOTAL*100);
-    var isVi=document.getElementById('langsw').checked;
-    var L=isVi?{d:'Đã xử lý xong',t:'Chưa xử lý',h:'Hoàn tất',f:'Đã kiểm thử cuối'}
-              :{d:'처리 완료',t:'미처리',h:'완료',f:'최종 검수 완료'};
-    document.getElementById('wkProg').innerHTML=
-      '<span class="pgbar"><i class="pg-done" style="width:'+(nd/TOTAL*100).toFixed(2)+'%"></i>'
-      +'</span>'
-      +'<span class="pgl"><b class="c-done">\u2713 '+L.d+' '+nd+'</b>'
-      +'<b class="c-todo">\u25CB '+L.t+' '+nt+'</b>'
-      +'<em>'+L.h+' '+pct+'%</em>'
-      +'<b class="c-final">\u25C6 '+L.f+' '+nf+'</b></span>'
-      +'<span class="pgs">'+GRP.map(function(g){ return g.k+' '+done[g.k]+'/'+g.n; }).join(' &middot; ')+'</span>';
-  }
-
-  // 최종 검수(김성권 이사) — 개발팀 상태·메모와 같은 문서의 final_* 필드에만 쓴다. 작업자 선택 없이 저장.
-  function paintFinal(fk){
-    var d=state[fk.dataset.id]||{}, on=!!d.final_done;
-    fk.querySelector('.fkb').classList.toggle('on',on);
-    var n=fk.querySelector('.fk-note');
-    if(document.activeElement!==n) n.value=d.final_note||'';
-    fk.querySelector('.fk-meta').textContent=d.final_updated_at?fmt(d.final_updated_at):'';
-  }
-  async function saveFinal(id, patch, el){
-    var isViD=document.getElementById('langsw').checked;
-    if(!db){ flash(el, isViD?'Không có kết nối DB':'DB 연결 없음',1); return; }
-    var body=Object.assign({}, patch, {final_updated_at:firebase.firestore.FieldValue.serverTimestamp()});
-    try{
-      await db.collection(COL).doc(id).set(body,{merge:true});
-      state[id]=Object.assign({}, state[id]||{}, patch, {final_updated_at:new Date()});
-      paintFinal(el); progress(); applyFilter();
-      flash(el, document.getElementById('langsw').checked?'Đã lưu':'저장됐습니다');
-    }catch(e){
-      var r=reason(e);
-      flash(el, (document.getElementById('langsw').checked?'Lưu thất bại':'저장 실패')+(r?' · '+r:''),1);
-      console.error('[qa] final save failed', id, e);
-    }
-  }
-  function paint(){ document.querySelectorAll('.wk').forEach(paintOne); document.querySelectorAll('.fk').forEach(paintFinal); progress(); applyFilter(); }
-
-  var filt='all';
-  function applyFilter(){
-    document.querySelectorAll('article.qa').forEach(function(a){
-      var wk=a.querySelector('.wk'); if(!wk) return;
-      var st=stOf(state[wk.dataset.id]);
-      var fin=!!(state[wk.dataset.id]||{}).final_done;
-      a.hidden = !(filt==='all'||(filt==='final'?fin:filt===st));
-    });
-  }
-
-  async function save(id, patch, el){
-    var isViD=document.getElementById('langsw').checked;
-    if(!db){ flash(el, isViD?'Không có kết nối DB':'DB 연결 없음',1); return; }
-    if(!needWho(el)) return;
-    var body=Object.assign({}, patch, {updatedBy:who(), updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
-    try{
-      await db.collection(COL).doc(id).set(body,{merge:true});
-      state[id]=Object.assign({}, state[id]||{}, patch, {updatedBy:who(), updatedAt:new Date()});
-      paintOne(el); progress(); applyFilter();
-      var isVi=document.getElementById('langsw').checked;
-      flash(el, isVi?'Đã lưu':'저장됐습니다');
-    }catch(e){
-      var isVi2=document.getElementById('langsw').checked, r=reason(e);
-      flash(el, (isVi2?'Lưu thất bại':'저장 실패')+(r?' · '+r:''),1);
-      console.error('[qa-harry] save failed', id, e);
-    }
-  }
-
-  document.addEventListener('click', function(e){
-    var fb2=e.target.closest('.fkb');
-    if(fb2){ var fk=fb2.closest('.fk'); saveFinal(fk.dataset.id,{final_done:!(state[fk.dataset.id]||{}).final_done},fk); return; }
-    var fs=e.target.closest('.fk-save');
-    if(fs){ var fk2=fs.closest('.fk'); saveFinal(fk2.dataset.id,{final_note:fk2.querySelector('.fk-note').value},fk2); return; }
-    var b=e.target.closest('.stb');
-    if(b){ var wk=b.closest('.wk'); save(wk.dataset.id,{status:b.dataset.v},wk); return; }
-    var sv=e.target.closest('.wk-save');
-    if(sv){ var w2=sv.closest('.wk'); save(w2.dataset.id,{note:w2.querySelector('.wk-note').value},w2); return; }
-    var f=e.target.closest('.fb');
-    if(f){ document.querySelectorAll('.fb').forEach(function(x){x.classList.remove('on');}); f.classList.add('on'); filt=f.dataset.f; applyFilter(); }
-  });
-  document.getElementById('wkWho').addEventListener('change', function(){ ls(KW,this.value); this.classList.remove('need'); });
-  document.getElementById('langsw').addEventListener('change', function(){ progress(); setPh(); });
-  setPh();
-
-  var saved=ls(KW); if(saved) document.getElementById('wkWho').value=saved;
-
-  (async function(){
-    if(!db){ warn(true,'Firebase SDK'); progress(); return; }
-    try{
-      var snap=await db.collection(COL).get();
-      snap.forEach(function(doc){ state[doc.id]=doc.data(); });
-      warn(false);
-    }catch(e){ warn(true,reason(e)); console.error('[qa-harry] load failed',e); }
-    paint();
-  })();
-})();
-</script>
+Việc thống nhất thuật ngữ trạng thái và hiển thị liên kết hội viên postback sẽ được phản ánh vào CMS demo rồi báo lại.</span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i15">검수 2026-10-21</a> 15번
+확인 위치: CMS → 매출·수익 → 제휴 수수료 매출 — 표 아래 안내 「쿠팡은 주문번호가 오지 않습니다.」</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i15">Kiểm thử 21/10/2026</a> mục 15
+Vị trí kiểm tra: CMS → Doanh thu·Lợi nhuận → Doanh thu hoa hồng liên kết — hướng dẫn dưới bảng 「쿠팡은 주문번호가 오지 않습니다.」</span></span></div></div>
+<h2 class="grp" id="i16"><span class="i18n"><span class="ko">16. 알림 이력 합계 불일치</span><span class="vi">16. Tổng trong lịch sử thông báo không khớp</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">16</span><div class="qtxt"><span class="i18n"><span class="ko">요구를 정확히 이해하지 못했습니다. 지금은 테스트 발송은 세지 않고 실제 발송만 셉니다. 집계 방식을 바꿔야 한다면 어떻게 세기를 원하는지 알려 주십시오.</span><span class="vi">Chưa hiểu chính xác yêu cầu. Hiện tại không đếm gửi thử mà chỉ đếm gửi thực tế. Nếu cần đổi cách tổng hợp, xin cho biết muốn đếm như thế nào.</span></span></div><span class="bds"><span class="bd rep"><span class="i18n"><span class="ko">확인 후 회신</span><span class="vi">Trả lời sau khi xác nhận</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>집계 기준은 확인 후 회신합니다.</b></span><span class="vi"><b>Tiêu chí tổng hợp sẽ trả lời sau khi xác nhận.</b></span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i16">검수 2026-10-21</a> 16번</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i16">Kiểm thử 21/10/2026</a> mục 16</span></span></div></div>
+<h2 class="grp" id="i17"><span class="i18n"><span class="ko">17. 연속구매 미션 설정 조회 화면</span><span class="vi">17. Màn hình xem cài đặt nhiệm vụ mua liên tiếp</span></span></h2>
+<div class="qa"><div class="qrow"><span class="qno">17</span><div class="qtxt"><span class="i18n"><span class="ko">새 화면을 추가하는 요구이므로 UI가 필요합니다. CMS 데모에 UI를 업데이트해 주십시오.</span><span class="vi">Đây là yêu cầu thêm màn hình mới nên cần UI. Xin cập nhật UI trên CMS demo.</span></span></div><span class="bds"><span class="bd ok"><span class="i18n"><span class="ko">확정</span><span class="vi">Đã chốt</span></span></span><span class="bd rep"><span class="i18n"><span class="ko">CMS 데모 반영 후 회신</span><span class="vi">Trả lời sau khi phản ánh vào CMS demo</span></span></span></span></div>
+<div class="arow"><span class="alabel"><span class="i18n"><span class="ko">답변</span><span class="vi">Trả lời</span></span></span><div class="atxt"><span class="i18n"><span class="ko"><b>CMS 데모에 반영한 뒤 알려 드리겠습니다.</b></span><span class="vi"><b>Chúng tôi sẽ phản ánh vào CMS demo rồi báo lại.</b></span></span></div></div>
+<div class="ref-box"><span class="ref-label"><span class="i18n"><span class="ko">[참조]</span><span class="vi">[Tham chiếu]</span></span></span><span class="i18n"><span class="ko">지적 출처: <a href="/devqa/qa-extra-20261021.html#i17">검수 2026-10-21</a> 17번</span><span class="vi">Nguồn chỉ ra: <a href="/devqa/qa-extra-20261021.html#i17">Kiểm thử 21/10/2026</a> mục 17</span></span></div></div>
+<div class="foot"><span class="i18n"><span class="ko">PricePick · CMS · 앱 질문 답변 · Harry · 2026-10-22 · 확정 9 / 확인 필요 3 · 개발팀 회신 필요 1</span><span class="vi">PricePick · Trả lời câu hỏi CMS · App · Harry · 22/10/2026 · Đã chốt 9 / Cần xác nhận 3 · Cần đội phát triển trả lời 1</span></span></div></div>
 </body></html>
