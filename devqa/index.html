@@ -132,10 +132,16 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
   .dq-left{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;margin-top:24px;padding-bottom:8px}
   .dq-side{margin-top:24px}
 }
-/* 필독 — 머리말 바로 아래 가로 전체 폭(3단보다 위). 좁은 화면에서도 맨 위 */
-.dq-top{margin-top:24px}
-.dq-top .sec.dq-sh{margin:0 2px 8px}
-.dq-top>.notice{margin:0}
+/* 필독 — 타이틀 바 안 한 줄 링크(김반장 2026-10-26). 넓은 화면은 오른쪽 아래(KO/VI 토글 아래)에 띄워 바 높이를 늘리지 않고,
+   좁은 화면은 부제 아래로 한 줄 내린다. */
+.hdr-must{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:5px 10px 5px 5px;border-radius:20px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;font-size:12.5px;font-weight:700;max-width:100%}
+.hdr-must:hover{background:rgba(255,255,255,.26)}
+.hdr-must .hm-tag{background:#fff;color:var(--pp-d);font-size:10px;font-weight:800;letter-spacing:.04em;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.hdr-must .hm-t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr-must .hm-arrow{font-size:15px;line-height:1;opacity:.85}
+@media (min-width:720px){
+  .hdr-must{position:absolute;right:22px;bottom:28px;margin-top:0}
+}
 /* 검수 카드 — 검수일 · 검수자 · 검수건 세 줄(김반장 2026-10-26) */
 .rv-kv{display:grid;grid-template-columns:auto 1fr;column-gap:8px;row-gap:2px;margin-top:4px;font-size:12.5px;line-height:1.45}
 .rv-kv .k{color:var(--ink3);font-weight:600;white-space:nowrap}
@@ -145,18 +151,8 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 </style></head><body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog hdr-langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><div class="wrap" style="padding-bottom:0"><div class="htitle"><span class="i18n"><span class="ko">PricePick · 개발 QA</span><span class="vi">PricePick · Dev QA</span></span></div>
-<div class="hsub"><span class="i18n"><span class="ko">개발팀 질문·답변 모음</span><span class="vi">Tổng hợp hỏi đáp đội phát triển</span></span></div></div></header>
+<div class="hsub"><span class="i18n"><span class="ko">개발팀 질문·답변 모음</span><span class="vi">Tổng hợp hỏi đáp đội phát triển</span></span></div><a class="hdr-must" href="/devqa/handoff.html"><span class="hm-tag i18n"><span class="ko">필독</span><span class="vi">ĐỌC TRƯỚC</span></span><span class="hm-t i18n"><span class="ko">개발자 온보딩 가이드</span><span class="vi">Hướng dẫn Onboarding</span></span><span class="hm-arrow">&rsaquo;</span></a></div></header>
 <div class="wrap">
-<div class="dq-sgrp dq-top">
-<div class="sec dq-sh i18n"><span class="ko">필독</span><span class="vi">ĐỌC TRƯỚC</span></div>
-<a class="notice" href="/devqa/handoff.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M4 4h13l3 3v13H4z"/><path d="M9 4v6l2-1.4L13 10V4"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">필독</span><span class="vi">ĐỌC TRƯỚC</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">개발자 온보딩 가이드</span><span class="vi">Hướng dẫn Onboarding</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">레포를 받기 전에 먼저 읽는 안내 · 소스·데모·정책·주의사항</span><span class="vi">Hướng dẫn cần đọc trước khi nhận repo · Nguồn·Demo·Chính sách·Lưu ý</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
-</div>
 <div class="dq-layout">
 <div class="dq-main">
 <div class="sec i18n"><span class="ko">Q&amp;A 문서</span><span class="vi">Tài liệu Q&amp;A</span></div>
