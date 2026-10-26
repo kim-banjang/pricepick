@@ -111,11 +111,10 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 .dq-left,.dq-side{margin-top:28px}
 .dq-sgrp+.dq-sgrp{margin-top:18px}
 .dq-left .sec.dq-sh,.dq-side .sec.dq-sh{margin:0 2px 8px}
-.dq-left .notice,.dq-side .notice{margin:8px 0 0}
-.dq-left .dq-sgrp>.notice:first-of-type,.dq-side .dq-sgrp>.notice:first-of-type{margin-top:0}
+.dq-left .notice{margin:8px 0 0}
+.dq-left .dq-sgrp>.notice:first-of-type{margin-top:0}
 .dq-side .noticelist,.dq-left .rvgroup{margin:0}
 .dq-side .noticelist>.nl-label,.dq-left .rvgroup>.nl-label{display:none}
-.dq-side .noticelist+.notice{margin-top:8px}
 /* 2단(1024~1719px) — 목록 + 오른쪽 칸. 오른쪽 칸 맨 위에 검수, 그 아래 공지(상단 고정).
    검수를 목록 아래로 내리면 Q&A 86건 뒤(꼬리말 아래)로 밀려 사실상 안 보인다 — 2026-10-26 지적. */
 @media (min-width:1024px){
@@ -376,6 +375,7 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 <div class="sec dq-sh i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></div>
 <div class="noticelist">
 <div class="nl-label i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></div>
+<div class="nl-row"><a class="nl-link i18n" href="/devqa/policy-change-ticket-unify-20261014.html"><span class="ko">정책 변경 확정 · 등급 티켓 1종 통합 · 2026-10-14 · 추가 10-15 포인트 1P = 1원 — 브론즈·실버·골드 → 「티켓」 1종 · 1장 10원 · 랜덤 티켓은 장수 비공개 · 등급 간 교환·큰 등급부터 채우기 폐기 · 포인트 1P = 1원(숫자 1/10) · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">Chốt thay đổi chính sách · Hợp nhất vé hạng thành 1 loại · 14/10/2026 · bổ sung 15/10 điểm 1P = 1 won — Đồng·Bạc·Vàng → 1 loại 「티켓」 (Vé) · 1 vé 10 won · vé ngẫu nhiên không công khai số lượng · bỏ đổi giữa các hạng·lấp từ hạng lớn trước · điểm 1P = 1 won (số điểm 1/10) · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></a><span class="nl-date">2026-10-14</span></div>
 <div class="nl-row"><a class="nl-link i18n" href="/devqa/postback-storyboard-20260907.html"><span class="ko">포스트백 로그 화면 설계 (1차) — 쿠팡·링크프라이스 탭 분리 · 취소는 원 구매 금액으로 · 링크프라이스 취소는 포스트백 받은 뒤 추가</span><span class="vi">Thiết kế màn hình Nhật ký Postback (bản 1) — tách tab Coupang·LinkPrice · hủy tính theo số tiền đơn mua gốc · phần hủy LinkPrice làm thêm sau khi nhận được postback</span></a><span class="nl-date">2026-09-07</span><a class="nl-sub" href="https://pricepick-demo.vercel.app/cms" target="_blank" rel="noopener"><span class="i18n"><span class="ko">CMS 바로가기 ↗</span><span class="vi">Đi đến CMS ↗</span></span></a></div>
 <div class="nl-row"><a class="nl-link i18n" href="/devqa/linkprice-settlement-20260904.html"><span class="ko">링크프라이스 정산 기준 확정</span><span class="vi">Xác định tiêu chuẩn đối soát LinkPrice</span></a><span class="nl-date">2026-09-04</span><a class="nl-sub" href="/devqa/cancel-ticket-recovery-20260903.html"><span class="i18n"><span class="ko">처리 규칙 ↗</span><span class="vi">Quy tắc xử lý ↗</span></span></a></div>
 <div class="nl-row"><a class="nl-link i18n" href="/devqa/cancel-ticket-recovery-20260903.html"><span class="ko">취소 처리 · 티켓 환수</span><span class="vi">Xử lý hủy đơn · Thu hồi vé</span></a><span class="nl-date">2026-09-03</span><a class="nl-sub" href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">정책서 확인 ↗</span><span class="vi">Xem chính sách ↗</span></span></a></div>
@@ -387,48 +387,17 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 <div class="nl-row"><a class="nl-link i18n" href="/devqa/ticket-value-change-report-20260812.html"><span class="ko">PricePick 등급 티켓 가치 조정 반영 보고서</span><span class="vi">Báo cáo phản ánh điều chỉnh giá trị vé hạng PricePick</span></a><span class="nl-date">2026-08-13</span><a class="nl-sub" href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">정책서 확인 ↗</span><span class="vi">Xem chính sách ↗</span></span></a></div>
 <div class="nl-row"><a class="nl-link i18n" href="/devqa/ticket-value-review-20260811.html"><span class="ko">티켓 가치 조정 검토</span><span class="vi">Xem xét điều chỉnh giá trị vé</span></a><span class="nl-date">2026-08-11</span><a class="nl-sub" href="https://pricepick.vercel.app/policyspec.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">정책서 확인 ↗</span><span class="vi">Xem chính sách ↗</span></span></a></div>
 <div class="nl-row"><a class="nl-link i18n" href="/devqa/linkprice-merchants-20260811.html"><span class="ko">링크프라이스 제휴몰 목록 (110개)</span><span class="vi">Danh sách cửa hàng liên kết Linkprice (110 cửa hàng)</span></a><span class="nl-date">2026-08-11</span><a class="nl-sub" href="https://pricepick-demo.vercel.app/cms/" target="_blank" rel="noopener"><span class="i18n"><span class="ko">CMS 바로가기 ↗</span><span class="vi">Đi đến CMS ↗</span></span></a></div>
-<div class="nl-row"><a class="nl-link i18n" href="/devqa/ticket-settings-dev-20260811.html"><span class="ko">「티켓 가치 설정」·「티켓 적립 설정」 두 화면의 저장 구조·계산 규칙 정리</span><span class="vi">Tổng hợp cấu trúc lưu trữ·quy tắc tính toán của 2 màn hình 「Thiết lập giá trị vé」·「Thiết lập tích lũy vé」</span></a><span class="nl-date">2026-08-11</span><a class="nl-sub" href="https://pricepick-demo.vercel.app/cms/ticket-value.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">CMS 바로가기 ↗</span><span class="vi">Đi đến CMS ↗</span></span></a></div>
-<div class="nl-row"><a class="nl-link i18n" href="/devqa/status-kelvin-20260715.html"><span class="ko">스테이징 앱 준비 현황 · Kelvin — 등록 준비 현황 공유 + 김반장님 검토 피드백</span><span class="vi">Tình hình chuẩn bị app staging · Kelvin — chia sẻ tình hình đăng ký + phản hồi rà soát của Mr Mark</span></a><span class="nl-date">2026-07-15</span><a class="nl-sub" href="https://quixotic-vase-a61.notion.site/Chu-n-b-ng-k-Price-Pick-app-phi-n-b-n-staging-39e7c275399180e99266d11eeb068376" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 보고 (Notion) ↗</span><span class="vi">Báo cáo gốc (Notion) ↗</span></span></a></div>
+<div class="nl-row"><a class="nl-link i18n" href="/devqa/ticket-settings-dev-20260811.html"><span class="ko">「티켓 가치 설정」·「티켓 적립 설정」 두 화면의 저장 구조·계산 규칙 정리 — 받는 사람: 켈빈·해리</span><span class="vi">Tổng hợp cấu trúc lưu trữ·quy tắc tính toán của 2 màn hình 「Thiết lập giá trị vé」·「Thiết lập tích lũy vé」 — Người nhận: Kelvin·Harry</span></a><span class="nl-date">2026-08-11</span><a class="nl-sub" href="https://pricepick-demo.vercel.app/cms/ticket-value.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">CMS 바로가기 ↗</span><span class="vi">Đi đến CMS ↗</span></span></a></div>
 <div class="nl-row"><a class="nl-link i18n" href="/devqa/roulette-probability-modal-20260807.html"><span class="ko">룰렛 당첨 확률 표시 방식 변경 — 버튼 클릭 시 모달</span><span class="vi">Đổi cách hiển thị xác suất trúng thưởng vòng quay — bấm nút hiện modal</span></a><span class="nl-date">2026-08-07</span><a class="nl-sub" href="https://pricepick-demo.vercel.app/app" target="_blank" rel="noopener"><span class="i18n"><span class="ko">데모 바로가기 ↗</span><span class="vi">Đi đến demo ↗</span></span></a></div>
 <div class="nl-row"><a class="nl-link i18n" href="/devqa/point-exchange-oneway-20260807.html"><span class="ko">티켓 &amp; 포인트 교환 단방향 변경</span><span class="vi">Đổi vé &amp; điểm thành một chiều</span></a><span class="nl-date">2026-08-07</span><a class="nl-sub" href="https://pricepick-demo.vercel.app/app" target="_blank" rel="noopener"><span class="i18n"><span class="ko">데모 바로가기 ↗</span><span class="vi">Đi đến demo ↗</span></span></a></div>
 <div class="nl-row"><a class="nl-link i18n" href="/devqa/cms-roulette-revamp-20260731.html"><span class="ko">룰렛 개편 및 주간 이벤트 정책 변경</span><span class="vi">Cải tổ vòng quay và thay đổi chính sách sự kiện tuần</span></a><span class="nl-date">2026-07-31</span><a class="nl-sub" href="/reports/20260731_RouletteRevamp.html" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 보고서 ↗</span><span class="vi">Báo cáo gốc ↗</span></span></a></div>
 <div class="nl-row"><a class="nl-link i18n" href="https://pricepick.vercel.app/20260729_NewDesign.html" target="_blank" rel="noopener"><span class="ko">앱 디자인 리뉴얼 안내</span><span class="vi">Thông báo làm mới thiết kế app</span></a><span class="nl-date">2026-07-29</span><a class="nl-sub" href="https://pricepick-demo.vercel.app/app" target="_blank" rel="noopener"><span class="i18n"><span class="ko">데모 바로가기 ↗</span><span class="vi">Đi đến demo ↗</span></span></a></div>
+<div class="nl-row"><a class="nl-link i18n" href="/devqa/status-kelvin-20260715.html"><span class="ko">스테이징 앱 준비 현황 · Kelvin — 등록 준비 현황 공유 + 김반장님 검토 피드백</span><span class="vi">Tình hình chuẩn bị app staging · Kelvin — chia sẻ tình hình đăng ký + phản hồi rà soát của Mr Mark</span></a><span class="nl-date">2026-07-15</span><a class="nl-sub" href="https://quixotic-vase-a61.notion.site/Chu-n-b-ng-k-Price-Pick-app-phi-n-b-n-staging-39e7c275399180e99266d11eeb068376" target="_blank" rel="noopener"><span class="i18n"><span class="ko">원문 보고 (Notion) ↗</span><span class="vi">Báo cáo gốc (Notion) ↗</span></span></a></div>
+<div class="nl-row"><a class="nl-link i18n" href="/devqa/notice-sub5000-eventticket-20260914.html"><span class="ko">폐기 고지 · 5천원 미만 경유구매 이벤트 티켓 — 「5천원 미만 경유구매 1건당 이벤트 티켓 1장」 경로 폐지(2026-08-13) · 08-03 CMS 답변 #2와 07-23 앱 답변서 해당 행 폐기 · 09-03 지시서 9번 미정 사항에서 제외 · 서버 잔존 분기 현황 회신 요청 · 받는 사람: 개발팀 전체</span><span class="vi">Thông báo hủy bỏ · Vé sự kiện cho đơn mua qua liên kết dưới 5.000₩ — Bãi bỏ đường nhận 「mỗi đơn mua qua liên kết dưới 5.000₩ được 1 vé sự kiện」 (13/08/2026) · Hủy dòng tương ứng ở Trả lời CMS #2 (03/08) và bản trả lời App (23/07) · Loại khỏi mục chưa chốt số 9 của chỉ thị 03/09 · Đề nghị phản hồi hiện trạng nhánh còn sót trên server · Người nhận: Toàn bộ đội phát triển</span></a><span class="nl-date"></span></div>
+<div class="nl-row"><a class="nl-link i18n" href="/devqa/api-coupang-20260722.html"><span class="ko">API 답변 · 쿠팡 파트너스 — 쿠팡 파트너스 테스트 API 공유 안내(ddaynet 대행사) · 데모 적용 가능 범위 · 개발자 문의 3건 · 개발자 전체 공용</span><span class="vi">Trả lời API · Coupang Partners — Thông báo chia sẻ API test Coupang Partners (đại lý ddaynet) · phạm vi áp dụng ở demo · 3 câu hỏi từ dev · dùng chung cho mọi dev</span></a><span class="nl-date"></span></div>
 <button class="nl-more" type="button" id="nlmore" aria-expanded="false"><span class="nl-open-t"><span class="i18n"><span class="ko">더보기</span><span class="vi">Xem thêm</span></span></span><span class="nl-less"><span class="i18n"><span class="ko">접기</span><span class="vi">Thu gọn</span></span></span></button>
 </div>
 
-<a class="notice" href="/devqa/policy-change-ticket-unify-20261014.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">정책 변경 확정 · 등급 티켓 1종 통합 · 2026-10-14 · 추가 10-15 포인트 1P = 1원</span><span class="vi">Chốt thay đổi chính sách · Hợp nhất vé hạng thành 1 loại · 14/10/2026 · bổ sung 15/10 điểm 1P = 1 won</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">브론즈·실버·골드 → 「티켓」 1종 · 1장 10원 · 랜덤 티켓은 장수 비공개 · 등급 간 교환·큰 등급부터 채우기 폐기 · 포인트 1P = 1원(숫자 1/10) · 이 자료를 보고 작업해 주십시오 · 받는 사람: 개발팀 전체</span><span class="vi">Đồng·Bạc·Vàng → 1 loại 「티켓」 (Vé) · 1 vé 10 won · vé ngẫu nhiên không công khai số lượng · bỏ đổi giữa các hạng·lấp từ hạng lớn trước · điểm 1P = 1 won (số điểm 1/10) · Vui lòng làm việc theo tài liệu này · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
-
-
-
-<a class="notice" href="/devqa/notice-sub5000-eventticket-20260914.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">폐기 고지 · 5천원 미만 경유구매 이벤트 티켓</span><span class="vi">Thông báo hủy bỏ · Vé sự kiện cho đơn mua qua liên kết dưới 5.000₩</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">「5천원 미만 경유구매 1건당 이벤트 티켓 1장」 경로 폐지(2026-08-13) · 08-03 CMS 답변 #2와 07-23 앱 답변서 해당 행 폐기 · 09-03 지시서 9번 미정 사항에서 제외 · 서버 잔존 분기 현황 회신 요청 · 받는 사람: 개발팀 전체</span><span class="vi">Bãi bỏ đường nhận 「mỗi đơn mua qua liên kết dưới 5.000₩ được 1 vé sự kiện」 (13/08/2026) · Hủy dòng tương ứng ở Trả lời CMS #2 (03/08) và bản trả lời App (23/07) · Loại khỏi mục chưa chốt số 9 của chỉ thị 03/09 · Đề nghị phản hồi hiện trạng nhánh còn sót trên server · Người nhận: Toàn bộ đội phát triển</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
-
-<a class="notice" href="/devqa/ticket-settings-dev-20260811.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">정책 문서 · 티켓 가치 · 적립 설정</span><span class="vi">Tài liệu chính sách · Giá trị vé · Cài đặt tích lũy</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">「티켓 가치 설정」·「티켓 적립 설정」 저장 구조(Firestore)·계산 규칙 정리 · 받는 사람: 켈빈·해리</span><span class="vi">Tổng hợp cấu trúc lưu trữ (Firestore)·quy tắc tính toán của "Cài đặt giá trị vé"·"Cài đặt tích lũy vé" · Người nhận: Kelvin·Harry</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
-
-<a class="notice" href="/devqa/api-coupang-20260722.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">API 답변 · 쿠팡 파트너스</span><span class="vi">Trả lời API · Coupang Partners</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">쿠팡 파트너스 테스트 API 공유 안내(ddaynet 대행사) · 데모 적용 가능 범위 · 개발자 문의 3건 · 개발자 전체 공용</span><span class="vi">Thông báo chia sẻ API test Coupang Partners (đại lý ddaynet) · phạm vi áp dụng ở demo · 3 câu hỏi từ dev · dùng chung cho mọi dev</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
 </div>
 </aside>
 </div>
