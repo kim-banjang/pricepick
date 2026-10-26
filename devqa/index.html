@@ -129,11 +129,25 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
   .dq-layout{grid-template-columns:280px minmax(0,1fr) 320px;grid-template-areas:"left main side"}
   .dq-left{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;margin-top:24px;padding-bottom:8px}
 }
+/* 필독 — 머리말 바로 아래 가로 전체 폭(3단보다 위). 좁은 화면에서도 맨 위 */
+.dq-top{margin-top:24px}
+.dq-top .sec.dq-sh{margin:0 2px 8px}
+.dq-top>.notice{margin:0}
 </style></head><body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog hdr-langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><div class="wrap" style="padding-bottom:0"><div class="htitle"><span class="i18n"><span class="ko">PricePick · 개발 QA</span><span class="vi">PricePick · Dev QA</span></span></div>
 <div class="hsub"><span class="i18n"><span class="ko">개발팀 질문·답변 모음</span><span class="vi">Tổng hợp hỏi đáp đội phát triển</span></span></div></div></header>
 <div class="wrap">
+<div class="dq-sgrp dq-top">
+<div class="sec dq-sh i18n"><span class="ko">필독</span><span class="vi">ĐỌC TRƯỚC</span></div>
+<a class="notice" href="/devqa/handoff.html">
+<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M4 4h13l3 3v13H4z"/><path d="M9 4v6l2-1.4L13 10V4"/></svg></div>
+<div class="notice-b"><span class="notice-label i18n"><span class="ko">필독</span><span class="vi">ĐỌC TRƯỚC</span></span>
+<div class="notice-t"><span class="i18n"><span class="ko">개발자 온보딩 가이드</span><span class="vi">Hướng dẫn Onboarding</span></span></div>
+<div class="notice-s"><span class="i18n"><span class="ko">레포를 받기 전에 먼저 읽는 안내 · 소스·데모·정책·주의사항</span><span class="vi">Hướng dẫn cần đọc trước khi nhận repo · Nguồn·Demo·Chính sách·Lưu ý</span></span></div></div>
+<div class="notice-arrow">&rsaquo;</div>
+</a>
+</div>
 <div class="dq-layout">
 <div class="dq-main">
 <div class="sec i18n"><span class="ko">Q&amp;A 문서</span><span class="vi">Tài liệu Q&amp;A</span></div>
@@ -354,16 +368,6 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 </div>
 </aside>
 <aside class="dq-side">
-<div class="dq-sgrp">
-<div class="sec dq-sh i18n"><span class="ko">필독</span><span class="vi">ĐỌC TRƯỚC</span></div>
-<a class="notice" href="/devqa/handoff.html">
-<div class="notice-ico"><svg viewBox="0 0 24 24"><path d="M4 4h13l3 3v13H4z"/><path d="M9 4v6l2-1.4L13 10V4"/></svg></div>
-<div class="notice-b"><span class="notice-label i18n"><span class="ko">필독</span><span class="vi">ĐỌC TRƯỚC</span></span>
-<div class="notice-t"><span class="i18n"><span class="ko">개발자 온보딩 가이드</span><span class="vi">Hướng dẫn Onboarding</span></span></div>
-<div class="notice-s"><span class="i18n"><span class="ko">레포를 받기 전에 먼저 읽는 안내 · 소스·데모·정책·주의사항</span><span class="vi">Hướng dẫn cần đọc trước khi nhận repo · Nguồn·Demo·Chính sách·Lưu ý</span></span></div></div>
-<div class="notice-arrow">&rsaquo;</div>
-</a>
-</div>
 <div class="dq-sgrp">
 <div class="sec dq-sh i18n"><span class="ko">공지</span><span class="vi">THÔNG BÁO</span></div>
 <div class="noticelist">
