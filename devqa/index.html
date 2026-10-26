@@ -104,7 +104,7 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 .rvgroup.nl-open .nl-more .nl-open-t{display:none}
 .rvgroup.nl-open .nl-more .nl-less{display:inline}
 /* ── 3단 배치 (2026-10-26) — 왼쪽 날개 검수 · 가운데 Q&A 목록 · 오른쪽 날개 공지(필독은 맨 위 전체 폭).
-   1280px 이상 3단, 1024~1279px 2단(검수는 오른쪽 칸 맨 위), 그 아래 한 단(목록 → 검수 → 공지 — 문서 순서). ── */
+   1720px 이상 3단(Q&A = 공지 폭), 1024~1719px 2단(검수는 오른쪽 칸 맨 위), 그 아래 한 단(목록 → 검수 → 공지 — 문서 순서). ── */
 .wrap{max-width:1240px}
 .dq-layout{display:block}
 .dq-main{min-width:0}
@@ -116,7 +116,7 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
 .dq-side .noticelist,.dq-left .rvgroup{margin:0}
 .dq-side .noticelist>.nl-label,.dq-left .rvgroup>.nl-label{display:none}
 .dq-side .noticelist+.notice{margin-top:8px}
-/* 2단(1024~1279px) — 목록 + 오른쪽 칸. 오른쪽 칸 맨 위에 검수, 그 아래 공지(상단 고정).
+/* 2단(1024~1719px) — 목록 + 오른쪽 칸. 오른쪽 칸 맨 위에 검수, 그 아래 공지(상단 고정).
    검수를 목록 아래로 내리면 Q&A 86건 뒤(꼬리말 아래)로 밀려 사실상 안 보인다 — 2026-10-26 지적. */
 @media (min-width:1024px){
   .dq-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;grid-template-areas:"main left" "main side";grid-template-rows:auto 1fr;column-gap:24px;align-items:start}
@@ -124,15 +124,14 @@ header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:34p
   .dq-left{grid-area:left;margin-top:24px}
   .dq-side{grid-area:side;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;margin-top:18px;padding-bottom:8px}
 }
-/* 3단 — 1280px 이상. 가운데 폭을 먼저 잡고 날개는 좁게(240 · 280), 1440px 이상에서 넓힌다(280 · 320) */
-@media (min-width:1280px){
-  .wrap{max-width:1560px}
-  .dq-layout{grid-template-columns:240px minmax(0,1fr) 280px;grid-template-areas:"left main side";grid-template-rows:auto;column-gap:20px}
+/* 3단 — Q&A 열과 공지 열을 같은 폭으로(김반장 2026-10-26). 검수 280px 그대로.
+   최대 너비 2108px = 좌우 여백 44 + 검수 280 + Q&A 868 + 공지 868 + 사이 48 — Q&A 는 종전 최대 폭 868px 를 지킨다.
+   두 열이 각각 674px 이상 남는 1720px 부터 3단, 그보다 좁으면 위 2단. */
+@media (min-width:1720px){
+  .wrap{max-width:2108px}
+  .dq-layout{grid-template-columns:280px minmax(0,1fr) minmax(0,1fr);grid-template-areas:"left main side";grid-template-rows:auto;column-gap:24px}
   .dq-left{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;margin-top:24px;padding-bottom:8px}
   .dq-side{margin-top:24px}
-}
-@media (min-width:1440px){
-  .dq-layout{grid-template-columns:280px minmax(0,1fr) 320px;column-gap:24px}
 }
 /* 필독 — 머리말 바로 아래 가로 전체 폭(3단보다 위). 좁은 화면에서도 맨 위 */
 .dq-top{margin-top:24px}
