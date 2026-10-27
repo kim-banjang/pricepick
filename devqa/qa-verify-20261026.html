@@ -112,6 +112,15 @@ a.ext{color:var(--pp-d);text-decoration:underline;text-decoration-thickness:1px;
 .tbl.list tr[data-diff] td.demo{background:#FFF1B8;color:#5c4400}
 .tbl.list tr[data-diff] td.no{box-shadow:inset 3px 0 0 #E8A200}
 .sumrow.diff .sumlabel{color:#8a5a00}
+.fbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 0;margin-top:8px;background:var(--bg)}
+.fc{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font:inherit;font-size:12px;color:#374151;cursor:pointer;white-space:nowrap}
+.fc .fn{font-variant-numeric:tabular-nums;color:var(--pp-d);margin-left:2px}
+.fc.on{background:var(--pp-d);border-color:var(--pp-d);color:#fff}.fc.on .fn{color:#fff}
+.fc[data-v="all"].on{background:#374151;border-color:#374151}
+.fsep{width:1px;height:18px;background:#d6d9e2;margin:0 4px}
+.fnow{font-size:12px;color:#374151;margin-left:6px}.fnow b{color:var(--pp-d)}
+.fnow button{margin-left:6px;border:0;background:none;color:var(--pp-d);text-decoration:underline;cursor:pointer;font:inherit;font-size:12px}
+tr.fhide{display:none}
 </style></head>
 <body>
 <input type="checkbox" id="langsw">
@@ -119,13 +128,7 @@ a.ext{color:var(--pp-d);text-decoration:underline;text-decoration-thickness:1px;
 <div style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">검수 반영 현황</span><span class="vi">Tình trạng phản ánh kiểm thử</span></span></div>
 <div class="hsub"><span class="i18n"><span class="ko">검수 2026-10-02 · 10-05 · 10-21 · 2026-10-27 기준</span><span class="vi">Kiểm thử 02/10 · 05/10 · 21/10/2026 · tính đến 27/10/2026</span></span></div></div></header>
 <div class="wrap">
-<p class="lead"><span class="i18n"><span class="ko">전체 116건 중 미반영 <em>23건</em> · 미확인 38건.</span><span class="vi">Tổng 116 mục: chưa phản ánh <em>23 mục</em> · chưa xác nhận 38 mục.</span></span></p>
-<div class="summary">
-<div class="sumrow diff"><span class="sumlabel"><span class="i18n"><span class="ko">DEMO·STG 판정 어긋남 16건</span><span class="vi">DEMO·STG lệch nhau 16 mục</span></span></span><span class="sumnums"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i02" target="_blank" rel="noopener noreferrer">10-02 02</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i19" target="_blank" rel="noopener noreferrer">10-02 19</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i21" target="_blank" rel="noopener noreferrer">10-02 21</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-6" target="_blank" rel="noopener noreferrer">10-05 05-06</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-13" target="_blank" rel="noopener noreferrer">10-05 05-13</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-16" target="_blank" rel="noopener noreferrer">10-05 05-16</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-20" target="_blank" rel="noopener noreferrer">10-05 05-20</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-21" target="_blank" rel="noopener noreferrer">10-05 05-21</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#06-7" target="_blank" rel="noopener noreferrer">10-05 06-07</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#06-11" target="_blank" rel="noopener noreferrer">10-05 06-11</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#06-12" target="_blank" rel="noopener noreferrer">10-05 06-12</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#06-13" target="_blank" rel="noopener noreferrer">10-05 06-13</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i01" target="_blank" rel="noopener noreferrer">10-21 01</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i07" target="_blank" rel="noopener noreferrer">10-21 07</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i08" target="_blank" rel="noopener noreferrer">10-21 08</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i14" target="_blank" rel="noopener noreferrer">10-21 14</a></span></div>
-<div class="sumrow"><span class="sumlabel"><span class="i18n"><span class="ko">처리 완료 보고 대비 미반영 10건</span><span class="vi">Báo hoàn tất nhưng chưa phản ánh 10 mục</span></span></span><span class="sumnums"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i08" target="_blank" rel="noopener noreferrer">10-02 08</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i10" target="_blank" rel="noopener noreferrer">10-02 10</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i19" target="_blank" rel="noopener noreferrer">10-02 19</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#04-10" target="_blank" rel="noopener noreferrer">10-05 04-10</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#04-21" target="_blank" rel="noopener noreferrer">10-05 04-21</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-16" target="_blank" rel="noopener noreferrer">10-05 05-16</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-21" target="_blank" rel="noopener noreferrer">10-05 05-21</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-23" target="_blank" rel="noopener noreferrer">10-05 05-23</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-24" target="_blank" rel="noopener noreferrer">10-05 05-24</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#06-13" target="_blank" rel="noopener noreferrer">10-05 06-13</a></span></div>
-<div class="sumrow"><span class="sumlabel"><span class="i18n"><span class="ko">미반영 23건</span><span class="vi">Chưa phản ánh 23 mục</span></span></span><span class="sumnums"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#lp" target="_blank" rel="noopener noreferrer">10-02 LP</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i04" target="_blank" rel="noopener noreferrer">10-02 04</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i08" target="_blank" rel="noopener noreferrer">10-02 08</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i10" target="_blank" rel="noopener noreferrer">10-02 10</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i15" target="_blank" rel="noopener noreferrer">10-02 15</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i19" target="_blank" rel="noopener noreferrer">10-02 19</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i20" target="_blank" rel="noopener noreferrer">10-02 20</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#04-10" target="_blank" rel="noopener noreferrer">10-05 04-10</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#04-21" target="_blank" rel="noopener noreferrer">10-05 04-21</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-16" target="_blank" rel="noopener noreferrer">10-05 05-16</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-21" target="_blank" rel="noopener noreferrer">10-05 05-21</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-23" target="_blank" rel="noopener noreferrer">10-05 05-23</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#05-24" target="_blank" rel="noopener noreferrer">10-05 05-24</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#06-13" target="_blank" rel="noopener noreferrer">10-05 06-13</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i01" target="_blank" rel="noopener noreferrer">10-21 01</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i03" target="_blank" rel="noopener noreferrer">10-21 03</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i07" target="_blank" rel="noopener noreferrer">10-21 07</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i08" target="_blank" rel="noopener noreferrer">10-21 08</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i13" target="_blank" rel="noopener noreferrer">10-21 13</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i14" target="_blank" rel="noopener noreferrer">10-21 14</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i15" target="_blank" rel="noopener noreferrer">10-21 15</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i16" target="_blank" rel="noopener noreferrer">10-21 16</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261021.html#i17" target="_blank" rel="noopener noreferrer">10-21 17</a></span></div>
-<div class="sumrow"><span class="sumlabel"><span class="i18n"><span class="ko">정책 확정 대기 3건</span><span class="vi">Chờ chốt chính sách 3 mục</span></span></span><span class="sumnums"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html#i24" target="_blank" rel="noopener noreferrer">10-02 24</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#04-2" target="_blank" rel="noopener noreferrer">10-05 04-02</a> · <a class="ext" href="https://pricepick.vercel.app/devqa/qa-review-20261005.html#04-4" target="_blank" rel="noopener noreferrer">10-05 04-04</a></span></div>
-</div>
+<div class="fbar" id="fbar"><button type="button" class="fc" data-k="st" data-v="all"><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="unk"><span class="i18n"><span class="ko">미확인</span><span class="vi">Chưa xác nhận</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="wait"><span class="i18n"><span class="ko">정책 확정 대기</span><span class="vi">Chờ chốt chính sách</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="t1"><span class="i18n"><span class="ko">처리 완료 보고 대비 미반영</span><span class="vi">Báo hoàn tất nhưng chưa phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="who" data-v="dev"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="who" data-v="me"><span class="i18n"><span class="ko">김반장</span><span class="vi">Mr Mark</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="doc" data-v="d1002"><span class="i18n"><span class="ko">10-02</span><span class="vi">02/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1005"><span class="i18n"><span class="ko">10-05</span><span class="vi">05/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1021"><span class="i18n"><span class="ko">10-21</span><span class="vi">21/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="dx"><span class="i18n"><span class="ko">검수 외</span><span class="vi">Ngoài kiểm thử</span></span> <b class="fn"></b></button><span class="fnow" id="fnow" hidden></span></div>
 
 <h2 class="sec" id="d1002"><span class="i18n"><span class="ko">검수 2026-10-02 — 25건</span><span class="vi">Kiểm thử 02/10/2026 — 25 mục</span></span> <span class="srcdoc"><a href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html" target="_blank" rel="noopener noreferrer">qa-extra-20261002.html</a></span></h2>
 <div class="tblwrap"><table class="tbl list"><thead><tr><th class="no"><span class="i18n"><span class="ko">번호</span><span class="vi">Số</span></span></th><th><span class="i18n"><span class="ko">화면</span><span class="vi">Màn hình</span></span></th><th class="demo"><span class="i18n"><span class="ko">DEMO 현재 표기</span><span class="vi">DEMO hiển thị hiện tại</span></span></th><th><span class="i18n"><span class="ko">STG 현재 표기</span><span class="vi">STG hiển thị hiện tại</span></span></th><th><span class="i18n"><span class="ko">STG 수정 후 표기</span><span class="vi">STG hiển thị sau khi sửa</span></span></th><th class="stcol"><span class="i18n"><span class="ko">상태</span><span class="vi">Trạng thái</span></span></th><th><span class="i18n"><span class="ko">담당</span><span class="vi">Phụ trách</span></span></th></tr></thead><tbody>
@@ -287,4 +290,56 @@ document.addEventListener('click',function(e){
   win.focus();
 });
 </script>
+<script>
+/* 표 위 건수 필터 — 상태 · 담당 · 검수 문서. 같은 단추를 다시 누르면 해제 */
+(function(){
+  var T1=["r1002-08", "r1002-10", "r1002-19", "r1005-04-10", "r1005-04-21", "r1005-05-16", "r1005-05-21", "r1005-05-23", "r1005-05-24", "r1005-06-13"], f={st:null,who:null,doc:null};
+  var all=[].slice.call(document.querySelectorAll('table.list tbody tr'));
+  var rows=all.filter(function(r){return !r.classList.contains('st-gap');});
+  var gaps=all.filter(function(r){return r.classList.contains('st-gap');});
+  rows.forEach(function(r){
+    var m=r.className.match(/st-([a-z]+)/); r._st=m?m[1]:'';
+    var w=r.querySelector('td.who .ko'); w=w?w.textContent:'';
+    r._dev=w.indexOf('개발팀')>=0; r._me=w.indexOf('김반장')>=0||w.indexOf('문구 작성')>=0;
+    var t=r.closest('.tblwrap'), h=t&&t.previousElementSibling; r._doc=h&&h.id||'';
+    r._t1=T1.indexOf(r.id)>=0;
+  });
+  function hit(r,k,v){
+    if(!v) return true;
+    if(k==='st') return v==='all'||(v==='t1'?r._t1:r._st===v);
+    if(k==='who') return v==='dev'?r._dev:r._me;
+    return r._doc===v;
+  }
+  function pass(r,skip){ return (skip==='st'||hit(r,'st',f.st))&&(skip==='who'||hit(r,'who',f.who))&&(skip==='doc'||hit(r,'doc',f.doc)); }
+  var chips=[].slice.call(document.querySelectorAll('#fbar .fc'));
+  function paint(){
+    var n=0, any=!!(f.st||f.who||f.doc);
+    rows.forEach(function(r){var ok=pass(r); r.classList.toggle('fhide',!ok); if(ok)n++;});
+    gaps.forEach(function(r){r.classList.toggle('fhide',any);});
+    document.querySelectorAll('.tblwrap').forEach(function(t){
+      var vis=!!t.querySelector('tbody tr:not(.fhide)'); t.hidden=!vis; var h=t.previousElementSibling; if(h&&h.tagName==='H2') h.hidden=!vis;
+    });
+    chips.forEach(function(c){
+      var k=c.dataset.k,v=c.dataset.v;
+      c.querySelector('.fn').textContent=rows.filter(function(r){return hit(r,k,v)&&pass(r,k);}).length;
+      c.classList.toggle('on', k==='st'&&v==='all' ? !f.st : f[k]===v);
+    });
+    var now=document.getElementById('fnow');
+    if(any){
+      var lab=chips.filter(function(c){return f[c.dataset.k]===c.dataset.v;}).map(function(c){return c.querySelector('.i18n').outerHTML;}).join(' · ');
+      now.innerHTML='<span class="i18n"><span class="ko">적용 중</span><span class="vi">Đang lọc</span></span> '+lab+' — <b>'+n+'</b><span class="i18n"><span class="ko">건</span><span class="vi"> mục</span></span><button type="button" id="fclr"><span class="i18n"><span class="ko">전체 해제</span><span class="vi">Bỏ lọc</span></span></button>';
+      now.hidden=false;
+    } else now.hidden=true;
+  }
+  document.getElementById('fbar').addEventListener('click',function(e){
+    if(e.target.closest('#fclr')){ f={st:null,who:null,doc:null}; paint(); return; }
+    var c=e.target.closest('.fc'); if(!c) return;
+    var k=c.dataset.k,v=c.dataset.v;
+    if(k==='st'&&v==='all') f.st=null; else f[k]=(f[k]===v?null:v);
+    paint();
+  });
+  paint();
+})();
+</script>
+
 </body></html>
