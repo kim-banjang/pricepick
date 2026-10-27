@@ -131,11 +131,24 @@ tr.fhide{display:none}
 .tbl.list tr[data-diff] td.dst,.tbl.list tr[data-diff] td.sst{background:#FFF1B8}
 .fc-d{border-color:#e8c766;background:#fffaf0}.fc-d .fn{color:#8a5a00}.fc-d.on{background:#8a5a00;border-color:#8a5a00}
 .tbl.list td.dst.s-na{color:#9aa1ad;font-weight:600}
+.wrap{max-width:none;padding:0 28px 80px}
+.tbl.list{table-layout:fixed;width:100%;min-width:1160px}
+.tbl.list th:nth-child(1){width:72px}
+.tbl.list th:nth-child(2){width:13%}
+.tbl.list th:nth-child(3){width:22%}
+.tbl.list th:nth-child(4){width:92px}
+.tbl.list th:nth-child(5){width:22%}
+.tbl.list th:nth-child(6){width:18%}
+.tbl.list th:nth-child(7){width:104px}
+.tbl.list th:nth-child(8){width:118px}
+.tbl.list td{overflow-wrap:anywhere}
+.tbl.list td.st,.tbl.list td.no{overflow-wrap:normal}
+@media (max-width:640px){.wrap{padding:0 16px 60px}.hin{padding:0 16px!important}}
 </style></head>
 <body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
-<div style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">검수 반영 현황</span><span class="vi">Tình trạng phản ánh kiểm thử</span></span></div>
+<div class="hin" style="margin:0 auto;padding:0 28px"><div class="htitle"><span class="i18n"><span class="ko">검수 반영 현황</span><span class="vi">Tình trạng phản ánh kiểm thử</span></span></div>
 <div class="hsub"><span class="i18n"><span class="ko">검수 2026-10-02 · 10-05 · 10-21 · 2026-10-27 기준</span><span class="vi">Kiểm thử 02/10 · 05/10 · 21/10/2026 · tính đến 27/10/2026</span></span></div></div></header>
 <div class="wrap">
 <div class="fbar" id="fbar"><button type="button" class="fc" data-k="st" data-v="all"><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="unk"><span class="i18n"><span class="ko">미확인</span><span class="vi">Chưa xác nhận</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="wait"><span class="i18n"><span class="ko">정책 확정 대기</span><span class="vi">Chờ chốt chính sách</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="t1"><span class="i18n"><span class="ko">처리 완료 보고 대비 미반영</span><span class="vi">Báo hoàn tất nhưng chưa phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc fc-d" data-k="dst" data-v="ng"><span class="i18n"><span class="ko">DEMO 미반영</span><span class="vi">DEMO chưa phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="who" data-v="dev"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="who" data-v="me"><span class="i18n"><span class="ko">김반장</span><span class="vi">Mr Mark</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="doc" data-v="d1002"><span class="i18n"><span class="ko">10-02</span><span class="vi">02/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1005"><span class="i18n"><span class="ko">10-05</span><span class="vi">05/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1021"><span class="i18n"><span class="ko">10-21</span><span class="vi">21/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="dx"><span class="i18n"><span class="ko">검수 외</span><span class="vi">Ngoài kiểm thử</span></span> <b class="fn"></b></button><span class="fnow" id="fnow" hidden></span></div>
