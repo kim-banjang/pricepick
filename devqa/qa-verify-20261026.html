@@ -273,7 +273,7 @@ document.addEventListener('click',function(e){
   var w=Math.min(1100,screen.availWidth-40), h=Math.min(900,screen.availHeight-60);
   var l=Math.max(0,screen.availWidth-w-20), t=Math.max(0,Math.round((screen.availHeight-h)/2));
   var win=window.open(a.href,'ppqa_source','popup=yes,width='+w+',height='+h+',left='+l+',top='+t+',resizable=yes,scrollbars=yes');
-  if(!win){ location.href=a.href; return; }
+  if(!win) return;  /* 팝업이 막힌 경우 — 보던 자리를 떠나지 않는다. 브라우저의 팝업 허용 안내로 처리 */
   try{ win.opener=null; }catch(_){}
   win.focus();
 });
