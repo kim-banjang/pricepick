@@ -423,4 +423,19 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
   })();
 })();
 </script>
+<script>
+/* 주소 #번호 로 들어오면 그 항목이 든 탭을 열고 항목 위치로 이동한다 (검수 반영 현황 문서의 번호 링크) */
+(function(){
+  function go(){
+    var id=decodeURIComponent(location.hash.slice(1)); if(!id) return;
+    var el=document.getElementById(id); if(!el) return;
+    var p=el.closest('.pane');
+    if(p){ var g=[].filter.call(p.classList,function(c){return c!=='pane'&&/^p[a-z0-9]+$/.test(c);})[0];
+      var r=g&&document.getElementById('t'+g.slice(1)); if(r) r.checked=true; }
+    el.scrollIntoView({block:'start'});
+  }
+  window.addEventListener('hashchange',go);
+  window.addEventListener('load',function(){ go(); setTimeout(go,1200); });
+})();
+</script>
 </body></html>
