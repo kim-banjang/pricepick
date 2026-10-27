@@ -129,6 +129,8 @@ tr.fhide{display:none}
 .tbl.list td.dst{background:#f6f7f9;font-weight:600}
 .tbl.list td.dst.s-ng,.tbl.list td.dst.s-ok{font-weight:700}
 .tbl.list tr[data-diff] td.dst,.tbl.list tr[data-diff] td.sst{background:#FFF1B8}
+.fc-d{border-color:#e8c766;background:#fffaf0}.fc-d .fn{color:#8a5a00}.fc-d.on{background:#8a5a00;border-color:#8a5a00}
+.tbl.list td.dst.s-na{color:#9aa1ad;font-weight:600}
 </style></head>
 <body>
 <input type="checkbox" id="langsw">
@@ -136,7 +138,7 @@ tr.fhide{display:none}
 <div style="max-width:940px;margin:0 auto;padding:0 22px"><div class="htitle"><span class="i18n"><span class="ko">검수 반영 현황</span><span class="vi">Tình trạng phản ánh kiểm thử</span></span></div>
 <div class="hsub"><span class="i18n"><span class="ko">검수 2026-10-02 · 10-05 · 10-21 · 2026-10-27 기준</span><span class="vi">Kiểm thử 02/10 · 05/10 · 21/10/2026 · tính đến 27/10/2026</span></span></div></div></header>
 <div class="wrap">
-<div class="fbar" id="fbar"><button type="button" class="fc" data-k="st" data-v="all"><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="unk"><span class="i18n"><span class="ko">미확인</span><span class="vi">Chưa xác nhận</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="wait"><span class="i18n"><span class="ko">정책 확정 대기</span><span class="vi">Chờ chốt chính sách</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="t1"><span class="i18n"><span class="ko">처리 완료 보고 대비 미반영</span><span class="vi">Báo hoàn tất nhưng chưa phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="who" data-v="dev"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="who" data-v="me"><span class="i18n"><span class="ko">김반장</span><span class="vi">Mr Mark</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="doc" data-v="d1002"><span class="i18n"><span class="ko">10-02</span><span class="vi">02/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1005"><span class="i18n"><span class="ko">10-05</span><span class="vi">05/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1021"><span class="i18n"><span class="ko">10-21</span><span class="vi">21/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="dx"><span class="i18n"><span class="ko">검수 외</span><span class="vi">Ngoài kiểm thử</span></span> <b class="fn"></b></button><span class="fnow" id="fnow" hidden></span></div>
+<div class="fbar" id="fbar"><button type="button" class="fc" data-k="st" data-v="all"><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="unk"><span class="i18n"><span class="ko">미확인</span><span class="vi">Chưa xác nhận</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="wait"><span class="i18n"><span class="ko">정책 확정 대기</span><span class="vi">Chờ chốt chính sách</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="t1"><span class="i18n"><span class="ko">처리 완료 보고 대비 미반영</span><span class="vi">Báo hoàn tất nhưng chưa phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc fc-d" data-k="dst" data-v="ng"><span class="i18n"><span class="ko">DEMO 미반영</span><span class="vi">DEMO chưa phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="who" data-v="dev"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="who" data-v="me"><span class="i18n"><span class="ko">김반장</span><span class="vi">Mr Mark</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="doc" data-v="d1002"><span class="i18n"><span class="ko">10-02</span><span class="vi">02/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1005"><span class="i18n"><span class="ko">10-05</span><span class="vi">05/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1021"><span class="i18n"><span class="ko">10-21</span><span class="vi">21/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="dx"><span class="i18n"><span class="ko">검수 외</span><span class="vi">Ngoài kiểm thử</span></span> <b class="fn"></b></button><span class="fnow" id="fnow" hidden></span></div>
 
 <h2 class="sec" id="d1002"><span class="i18n"><span class="ko">검수 2026-10-02 — 25건</span><span class="vi">Kiểm thử 02/10/2026 — 25 mục</span></span> <span class="srcdoc"><a href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html" target="_blank" rel="noopener noreferrer">qa-extra-20261002.html</a></span></h2>
 <div class="tblwrap"><table class="tbl list"><thead><tr><th class="no"><span class="i18n"><span class="ko">번호</span><span class="vi">Số</span></span></th><th><span class="i18n"><span class="ko">화면</span><span class="vi">Màn hình</span></span></th><th class="demo"><span class="i18n"><span class="ko">DEMO 현재 표기</span><span class="vi">DEMO hiển thị hiện tại</span></span></th><th class="demo"><span class="i18n"><span class="ko">DEMO 상태</span><span class="vi">DEMO trạng thái</span></span></th><th><span class="i18n"><span class="ko">STG 현재 표기</span><span class="vi">STG hiển thị hiện tại</span></span></th><th><span class="i18n"><span class="ko">STG 수정 후 표기</span><span class="vi">STG hiển thị sau khi sửa</span></span></th><th class="stcol"><span class="i18n"><span class="ko">STG 상태</span><span class="vi">STG trạng thái</span></span></th><th><span class="i18n"><span class="ko">담당</span><span class="vi">Phụ trách</span></span></th></tr></thead><tbody>
@@ -301,7 +303,7 @@ document.addEventListener('click',function(e){
 <script>
 /* 표 위 건수 필터 — 상태 · 담당 · 검수 문서. 같은 단추를 다시 누르면 해제 */
 (function(){
-  var T1=["r1002-08", "r1002-10", "r1002-19", "r1005-04-10", "r1005-04-21", "r1005-05-16", "r1005-05-21", "r1005-05-23", "r1005-05-24", "r1005-06-13"], f={st:null,who:null,doc:null};
+  var T1=["r1002-08", "r1002-10", "r1002-19", "r1005-04-10", "r1005-04-21", "r1005-05-16", "r1005-05-21", "r1005-05-23", "r1005-05-24", "r1005-06-13"], f={st:null,who:null,doc:null,dst:null};
   var all=[].slice.call(document.querySelectorAll('table.list tbody tr'));
   var rows=all.filter(function(r){return !r.classList.contains('st-gap');});
   var gaps=all.filter(function(r){return r.classList.contains('st-gap');});
@@ -311,17 +313,19 @@ document.addEventListener('click',function(e){
     r._dev=w.indexOf('개발팀')>=0; r._me=w.indexOf('김반장')>=0||w.indexOf('문구 작성')>=0;
     var t=r.closest('.tblwrap'), h=t&&t.previousElementSibling; r._doc=h&&h.id||'';
     r._t1=T1.indexOf(r.id)>=0;
+    var d=r.querySelector('td.dst'), dm=d&&d.className.match(/s-([a-z]+)/); r._dst=dm?dm[1]:'';
   });
   function hit(r,k,v){
     if(!v) return true;
     if(k==='st') return v==='all'||(v==='t1'?r._t1:r._st===v);
     if(k==='who') return v==='dev'?r._dev:r._me;
+    if(k==='dst') return r._dst===v;
     return r._doc===v;
   }
-  function pass(r,skip){ return (skip==='st'||hit(r,'st',f.st))&&(skip==='who'||hit(r,'who',f.who))&&(skip==='doc'||hit(r,'doc',f.doc)); }
+  function pass(r,skip){ return (skip==='st'||hit(r,'st',f.st))&&(skip==='who'||hit(r,'who',f.who))&&(skip==='doc'||hit(r,'doc',f.doc))&&(skip==='dst'||hit(r,'dst',f.dst)); }
   var chips=[].slice.call(document.querySelectorAll('#fbar .fc'));
   function paint(){
-    var n=0, any=!!(f.st||f.who||f.doc);
+    var n=0, any=!!(f.st||f.who||f.doc||f.dst);
     rows.forEach(function(r){var ok=pass(r); r.classList.toggle('fhide',!ok); if(ok)n++;});
     gaps.forEach(function(r){r.classList.toggle('fhide',any);});
     document.querySelectorAll('.tblwrap').forEach(function(t){
@@ -340,7 +344,7 @@ document.addEventListener('click',function(e){
     } else now.hidden=true;
   }
   document.getElementById('fbar').addEventListener('click',function(e){
-    if(e.target.closest('#fclr')){ f={st:null,who:null,doc:null}; paint(); return; }
+    if(e.target.closest('#fclr')){ f={st:null,who:null,doc:null,dst:null}; paint(); return; }
     var c=e.target.closest('.fc'); if(!c) return;
     var k=c.dataset.k,v=c.dataset.v;
     if(k==='st'&&v==='all') f.st=null; else f[k]=(f[k]===v?null:v);
