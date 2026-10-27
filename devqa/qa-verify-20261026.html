@@ -263,4 +263,19 @@ a.ext{color:var(--pp-d);text-decoration:underline;text-decoration-thickness:1px;
 </tbody></table></div>
 
 <div class="foot"><span class="i18n"><span class="ko">PricePick · 검수 반영 현황 · 2026-10-27</span><span class="vi">PricePick · Tình trạng phản ánh kiểm thử · 27/10/2026</span></span></div></div>
+<script>
+/* 번호 링크 — 원본 검수 문서를 크기를 지정한 별도 창으로 연다. 창 이름을 고정해 같은 창을 다시 쓴다.
+   같은 사이트 문서라 창을 재사용하려면 noopener 를 쓸 수 없다(noopener 는 이름 재사용을 막는다). 대신 열린 뒤 opener 를 끊는다. */
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a.ext'); if(!a) return;
+  if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+  e.preventDefault();
+  var w=Math.min(1100,screen.availWidth-40), h=Math.min(900,screen.availHeight-60);
+  var l=Math.max(0,screen.availWidth-w-20), t=Math.max(0,Math.round((screen.availHeight-h)/2));
+  var win=window.open(a.href,'ppqa_source','popup=yes,width='+w+',height='+h+',left='+l+',top='+t+',resizable=yes,scrollbars=yes');
+  if(!win){ location.href=a.href; return; }
+  try{ win.opener=null; }catch(_){}
+  win.focus();
+});
+</script>
 </body></html>
