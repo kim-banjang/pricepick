@@ -89,7 +89,7 @@ details.fold[open] summary{margin-bottom:6px}
 .tbl.list td.no a{color:var(--pp-d);text-decoration:none}
 .tbl.list td.no .src{display:block;font-size:10px;color:#aab0bf;font-weight:400;margin-top:2px}
 .tbl.list td.st{white-space:nowrap}
-.tbl.list td.scr{white-space:normal;min-width:150px}
+.tbl.list td.scr{white-space:normal}
 tr.st-ng td{background:#fff5f5} tr.st-ng td.st{color:#B42318;font-weight:800}
 tr.st-wait td{background:#fff8ec} tr.st-wait td.st{color:#B54708;font-weight:800}
 tr.st-unk td.st{color:#6b7280;font-weight:700}
@@ -105,7 +105,6 @@ tr:target td{outline:2px solid var(--pp);outline-offset:-2px}
 @media (max-width:640px){.sumrow{flex-direction:column;gap:2px}.sumlabel{min-width:0}}
 a.ext{color:var(--pp-d);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(91,57,184,.45)}a.ext:hover{text-decoration-color:currentColor}a.ext::after{content:'';display:inline-block;width:9px;height:9px;margin-left:2px;vertical-align:1px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h6v6'/%3E%3Cpath d='M20 4l-9 9'/%3E%3Cpath d='M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'/%3E%3C/svg%3E") no-repeat center/contain;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h6v6'/%3E%3Cpath d='M20 4l-9 9'/%3E%3Cpath d='M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'/%3E%3C/svg%3E") no-repeat center/contain;opacity:.7}
 .wrap{max-width:1240px}
-.tbl.list{min-width:1040px}
 .tbl.list th.demo,.tbl.list td.demo{background:#f6f7f9;color:#4b5563}
 .tbl.list th.stcol{background:#ece6fb;color:var(--pp-d)}
 .tbl.list td.st{border-left:2px solid #d9cff5}
@@ -121,7 +120,17 @@ a.ext{color:var(--pp-d);text-decoration:underline;text-decoration-thickness:1px;
 .fnow{font-size:12px;color:#374151;margin-left:6px}.fnow b{color:var(--pp-d)}
 .fnow button{margin-left:6px;border:0;background:none;color:var(--pp-d);text-decoration:underline;cursor:pointer;font:inherit;font-size:12px}
 tr.fhide{display:none}
-.tbl.list{min-width:1160px}
+/* 가로 스크롤 없이 화면 폭 안에 — 좁은 칸(번호·상태·담당·개발팀 표시)은 고정, 글이 긴 칸이 남는 폭을 나눠 쓰고 줄바꿈으로 흐른다 (2026-10-28) */
+.tbl.list{width:100%;min-width:0;table-layout:fixed}
+.tbl.list th{white-space:normal}
+.tbl.list td{overflow-wrap:anywhere}
+.tbl.list th:nth-child(1){width:58px}
+.tbl.list th:nth-child(2){width:13%}
+.tbl.list th:nth-child(4),.tbl.list th:nth-child(7){width:68px}
+.tbl.list th:nth-child(8){width:62px}
+.tbl.list th:nth-child(9){width:104px}
+.tbl.list td.who,.tbl.list td.st{white-space:normal}
+.tbl.list td.dm{white-space:normal}
 .tbl.list td.st.s-ng{color:#B42318;font-weight:800}
 .tbl.list td.st.s-wait{color:#B54708;font-weight:800}
 .tbl.list td.st.s-unk{color:#6b7280;font-weight:700}
@@ -148,7 +157,7 @@ tr.fhide{display:none}
 .tbl.cl{width:100%}
 .tbl.cl td.no{white-space:nowrap;font-weight:800}
 .tbl.cl td.scr{white-space:nowrap;font-weight:700}
-.tbl td.dm{white-space:nowrap;font-size:11.8px}.tbl td.dm .dm-by{display:block;color:var(--ink3);font-size:11px;margin-top:2px}
+.tbl td.dm{font-size:11.8px}.tbl td.dm .dm-by{display:block;color:var(--ink3);font-size:11px;margin-top:2px}
 .secnote{font-size:12px;color:var(--ink3);margin:2px 0 0}
 .rfwrap{margin-left:auto;display:inline-flex;align-items:baseline;white-space:nowrap}
 .rf-at{font-size:12px;color:#a3a3a3}
