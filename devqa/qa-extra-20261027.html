@@ -169,6 +169,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 .fkb.on{background:var(--pp);border-color:var(--pp);color:#fff}
 .fkb .sg::before,.fb[data-f=final] .sg::before{content:'\25C6'}
 .fkb .sg,.fb[data-f=final] .sg{color:var(--pp)}
+.fb[data-f=prefinal] .sg::before{content:'\25CB'}.fb[data-f=prefinal] .sg{color:var(--pp)}
 .fkb.on .sg{color:#fff}
 .fkb:not(.on) .sg::before{content:'\25CB'}
 .fkb .fk-on,.fkb.on .fk-off{display:none}.fkb.on .fk-on{display:inline}
@@ -187,6 +188,12 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 .rf-btn:hover{border-color:#a3a3a3;color:#171717}
 .rf-btn:disabled{cursor:wait;background:#f5f5f5;color:#a3a3a3}
 .rf-btn .rf-busy{display:none}.rf-btn[aria-busy="true"] .rf-idle{display:none}.rf-btn[aria-busy="true"] .rf-busy{display:inline}
+.vbox{margin-top:9px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:12.2px;line-height:1.6}
+.vbox .vl{display:inline-block;min-width:64px;color:var(--ink3);font-weight:700}
+.vbox .vs{font-weight:800}
+.vbox .vs.s-ng{color:#B42318}.vbox .vs.s-ok{color:#1f7a5a}.vbox .vs.s-unk,.vbox .vs.s-wait,.vbox .vs.s-na{color:var(--ink2)}
+.golinks{margin-left:6px;white-space:nowrap}
+.golinks a{font-size:11px;font-weight:700;color:var(--pp-d);text-decoration:underline;text-underline-offset:2px;margin-left:6px}
 </style></head><body>
 <input type="checkbox" id="langsw"><input type="radio" name="sec" id="t01" checked>
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
@@ -195,7 +202,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 <div class="hsub"><span class="i18n"><span class="ko">수정 요청 2건 · 대상 STG 앱 소스(main ff5332d) · 캡처 없음</span><span class="vi">2 mục yêu cầu sửa · đối tượng mã nguồn app STG (main ff5332d) · không có ảnh chụp</span></span></div></div></div></header>
 <div class="wrap">
 
-<div class="wkbar"><div class="wkb-l"><label class="wkb-lb" for="wkWho"><span class="i18n"><span class="ko">작업자</span><span class="vi">Người thực hiện</span></span></label><select id="wkWho"><option value="">작업자 선택 / Chọn người thực hiện</option><option value="빈 (Nguyen Vuong)">빈 (Nguyen Vuong) / Vin (Nguyen Vuong)</option><option value="존 (John)">존 (John) / John</option><option value="해리 (Harry)">해리 (Harry) / Harry</option><option value="켈빈 (Kelvin)">켈빈 (Kelvin) / Kelvin</option><option value="이부장">이부장 / Trưởng phòng Lee</option><option value="김반장">김반장 / Mr Mark</option></select></div><div class="wkb-p"><span id="wkProg">—</span><span class="rfwrap"><span class="rf-at"><span class="i18n"><span class="ko">마지막 갱신 </span><span class="vi">Cập nhật lần cuối </span></span><span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle"><span class="i18n"><span class="ko">새로고침</span><span class="vi">Làm mới</span></span></span><span class="rf-busy"><span class="i18n"><span class="ko">조회 중</span><span class="vi">Đang tải</span></span></span></button></span></div><div class="wkb-f"><span class="wkb-lb"><span class="i18n"><span class="ko">걸러보기</span><span class="vi">Lọc</span></span></span><button type="button" class="fb on" data-f="all"><i class="sg"></i><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span></button><button type="button" class="fb" data-f="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="fb" data-f="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button><button type="button" class="fb" data-f="final"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button></div></div>
+<div class="wkbar"><div class="wkb-l"><label class="wkb-lb" for="wkWho"><span class="i18n"><span class="ko">작업자</span><span class="vi">Người thực hiện</span></span></label><select id="wkWho"><option value="">작업자 선택 / Chọn người thực hiện</option><option value="빈 (Nguyen Vuong)">빈 (Nguyen Vuong) / Vin (Nguyen Vuong)</option><option value="존 (John)">존 (John) / John</option><option value="해리 (Harry)">해리 (Harry) / Harry</option><option value="켈빈 (Kelvin)">켈빈 (Kelvin) / Kelvin</option><option value="이부장">이부장 / Trưởng phòng Lee</option><option value="김반장">김반장 / Mr Mark</option></select></div><div class="wkb-p"><span id="wkProg">—</span><span class="rfwrap"><span class="rf-at"><span class="i18n"><span class="ko">마지막 갱신 </span><span class="vi">Cập nhật lần cuối </span></span><span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle"><span class="i18n"><span class="ko">새로고침</span><span class="vi">Làm mới</span></span></span><span class="rf-busy"><span class="i18n"><span class="ko">조회 중</span><span class="vi">Đang tải</span></span></span></button></span></div><div class="wkb-f"><span class="wkb-lb"><span class="i18n"><span class="ko">걸러보기</span><span class="vi">Lọc</span></span></span><button type="button" class="fb on" data-f="all"><i class="sg"></i><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span></button><button type="button" class="fb" data-f="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="fb" data-f="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button><button type="button" class="fb" data-f="final"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><button type="button" class="fb" data-f="prefinal"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 전</span><span class="vi">Chưa kiểm thử cuối</span></span></button></div></div>
 <div class="wkwarn" id="wkWarn" hidden><span class="i18n"><span class="ko">처리 현황을 불러오지 못했습니다. 본문은 그대로 보입니다. 연결이 돌아오면 새로고침해 주십시오.</span><span class="vi">Không tải được trạng thái xử lý. Nội dung vẫn hiển thị bình thường. Khi kết nối trở lại xin tải lại trang.</span></span><span class="wr" id="wkWarnR"></span></div>
 <div class="critnote"><span class="i18n"><span class="ko">처리 완료의 기준은 각 항목의 「정상 동작」입니다. 「정상 동작」대로 되면 「처리 완료」로 바꿉니다.</span><span class="vi">Tiêu chí xử lý xong là 「정상 동작」 (Hoạt động đúng) của từng mục. Khi đúng như 「정상 동작」 thì đổi sang 「처리 완료」 (Đã xử lý xong).</span></span></div>
 <div class="tabs"><label for="t01"><span class="tn">01</span> <span class="i18n"><span class="ko">우선</span><span class="vi">Ưu tiên</span></span> <span class="tc">2</span></label></div>
@@ -292,15 +299,15 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
     });
     var nt=TOTAL-nd, pct=Math.round(nd/TOTAL*100);
     var isVi=document.getElementById('langsw').checked;
-    var L=isVi?{d:'Đã xử lý xong',t:'Chưa xử lý',h:'Hoàn tất',f:'Đã kiểm thử cuối'}
-              :{d:'처리 완료',t:'미처리',h:'완료',f:'최종 검수 완료'};
+    var L=isVi?{d:'Đã xử lý xong',t:'Chưa xử lý',h:'Hoàn tất',f:'Đã kiểm thử cuối',a:'Tổng'}
+              :{d:'처리 완료',t:'미처리',h:'완료',f:'최종 검수 완료',a:'전체'};
     document.getElementById('wkProg').innerHTML=
       '<span class="pgbar"><i class="pg-done" style="width:'+(nd/TOTAL*100).toFixed(2)+'%"></i>'
       +'</span>'
       +'<span class="pgl"><b class="c-done">\u2713 '+L.d+' '+nd+'</b>'
       +'<b class="c-todo">\u25CB '+L.t+' '+nt+'</b>'
       +'<em>'+L.h+' '+pct+'%</em>'
-      +'<b class="c-final">\u25C6 '+L.f+' '+nf+'</b></span>'
+      +'<b class="c-final">\u25C6 '+L.f+' '+nf+' / '+L.a+' '+TOTAL+'</b></span>'
       +'<span class="pgs">'+GRP.map(function(g){ return g.k+' '+done[g.k]+'/'+g.n; }).join(' &middot; ')+'</span>';
   }
 
@@ -335,7 +342,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
       var wk=a.querySelector('.wk'); if(!wk) return;
       var st=stOf(state[wk.dataset.id]);
       var fin=!!(state[wk.dataset.id]||{}).final_done;
-      a.hidden = !(filt==='all'||(filt==='final'?fin:filt===st));
+      a.hidden = !(filt==='all'||(filt==='final'?fin:filt==='prefinal'?!fin:filt===st));
     });
   }
 
@@ -392,6 +399,75 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
   }
   rfBtn.addEventListener('click', load);
   load();
+})();
+</script>
+<script>
+/* 최종 검수 재료 — 항목마다 우리 판정(검수 반영 현황의 STG·DEMO 상태)과 판정 근거, 확인 화면 바로가기.
+   판정은 검수 반영 현황 문서를 그때그때 읽어 온다 — 여기 따로 적어 두지 않는다(어긋나지 않게). */
+(function(){
+  var DOC=location.pathname.split('/').pop().replace('.html','');
+  var STG='https://admin-stg.pricepick.co.kr', DEMO='https://pricepick-demo.vercel.app/cms/#';
+  /* CMS 메뉴 이름 → [STG 주소, 데모 화면]. 메뉴에 없는 화면은 링크를 달지 않는다(주소를 지어내지 않는다) */
+  var MENU={'대시보드':['/','dashboard'],'제휴 수수료 매출':['/revenue-fee/','revenue-fee'],'기프티샵 판매 매출':['/revenue-gifti/','revenue-gifti'],
+    '회원 목록':['/members/','members'],'티켓 가치 설정':['/ticket-value/','ticket-value'],'티켓 적립 설정':['/ticket-accrual/','ticket-accrual'],
+    '티켓 내역':['/tickets/','tickets'],'매일 선물 상자 열기':['/giftbox-daily/','giftbox-daily'],'랜덤 선물 상자 열기':['/giftbox-random/','giftbox-random'],
+    '포인트 내역':['/points/','points'],'출석체크 설정':['/point-attendance/','point-attendance'],'포인트 정책':['/point-policy/','point-policy'],
+    '상품 목록':['/gifticon-products/','gifticon-products'],'구매내역':['/gifticons/','gifticons'],'기프티콘 미사용 취소':['/gifticon-unused/','gifticon-unused'],
+    '취소 내역':['/gifticon-cancel/','gifticon-cancel'],'취소내역':['/gifticon-cancel/','gifticon-cancel'],'친구초대 관리':['/invite/','invite'],
+    '공지사항 관리':['/announcement/','notice'],'알림 관리':['/notifications/','notifications'],'운영 정책':['/op-policy/','op-policy'],
+    '약관 관리':['/terms/','terms'],'1:1 문의':['/inquiries/','inquiries'],'계정 탈퇴 처리':['/withdrawal/','withdrawal'],
+    '포스트백 로그':['/postback/','postback'],'관리자 계정':['/accounts/','accounts'],
+    '연속구매 미션':[null,'streak-mission'],'정산 내역':[null,'settlement']};
+  function i18n(ko,vi){ return '<span class="i18n"><span class="ko">'+ko+'</span><span class="vi">'+vi+'</span></span>'; }
+  function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function screensOf(path){
+    if(!/^\s*CMS/.test(path)) return [];
+    var head=path.split(' — ')[0], out=[];
+    head.split(/\s*(?:→|>|·|,)\s*/).forEach(function(seg){ seg=seg.trim(); if(MENU[seg]&&out.indexOf(seg)<0) out.push(seg); });
+    return out;
+  }
+  function links(names, vi){
+    return names.map(function(n){
+      var m=MENU[n], a='';
+      if(m[0]) a+='<a href="'+STG+m[0]+'" target="_blank" rel="noopener noreferrer">'+(vi?'Mở STG':'STG 열기')+(names.length>1?' · '+esc(n):'')+'</a>';
+      a+='<a href="'+DEMO+m[1]+'" target="_blank" rel="noopener noreferrer">'+(vi?'Mở demo':'데모 열기')+(names.length>1?' · '+esc(n):'')+'</a>';
+      return a;
+    }).join('');
+  }
+  /* 개발팀 확인 위치 — CMS 경로 줄에 바로가기 */
+  document.querySelectorAll('.sb').forEach(function(sb){
+    var names=screensOf(sb.textContent); if(!names.length) return;
+    var vi=!!sb.closest('.vi');
+    sb.insertAdjacentHTML('beforeend','<span class="golinks">'+links(names,vi)+'</span>');
+  });
+  /* 우리 판정 · 판정 근거 */
+  fetch('qa-verify-20261026.html',{cache:'no-store'}).then(function(r){ return r.text(); }).then(function(html){
+    var d=new DOMParser().parseFromString(html,'text/html'), seen={};
+    d.querySelectorAll('tr[id^="r"]').forEach(function(tr){
+      var a=tr.querySelector('td.no a.ext'); if(!a) return;
+      var h=a.getAttribute('href')||''; if(h.indexOf(DOC+'.html#')<0) return;
+      var art=document.getElementById(decodeURIComponent(h.split('#')[1])); if(!art||seen[art.id]) return; seen[art.id]=1;
+      var td=tr.children, k=function(c){ var x=c&&c.querySelector('.ko'); return x?x.innerHTML:''; }, v=function(c){ var x=c&&c.querySelector('.vi'); return x?x.innerHTML:''; };
+      var stg=tr.querySelector('td.sst'), dem=tr.querySelector('td.dst'), cls=function(c){ var m=c&&c.className.match(/s-[a-z]+/); return m?m[0]:''; };
+      var scr=td[1].querySelector('.ko')?td[1].querySelector('.ko').textContent:td[1].textContent, names=[];
+      scr.split(/\n|(?=CMS)/).forEach(function(p){ screensOf(p).forEach(function(n){ if(names.indexOf(n)<0) names.push(n); }); });
+      var bko=tr.getAttribute('data-basis')||'근거 없음', bvi=tr.getAttribute('data-basis-vi')||'Không có căn cứ';
+      var box='<div class="vbox">'
+        +'<div><span class="vl">'+i18n('우리 판정','Đánh giá')+'</span>STG <b class="vs '+cls(stg)+'">'+i18n(k(stg),v(stg))+'</b> · DEMO <b class="vs '+cls(dem)+'">'+i18n(k(dem),v(dem))+'</b></div>'
+        +'<div><span class="vl">'+i18n('판정 근거','Căn cứ')+'</span>'+i18n(esc(bko),esc(bvi))+'</div>'
+        +'<div><span class="vl">'+i18n('확인 화면','Màn hình')+'</span>'+i18n(k(td[1])+(names.length?'<span class="golinks">'+links(names,false)+'</span>':''),v(td[1])+(names.length?'<span class="golinks">'+links(names,true)+'</span>':''))+'</div>'
+        +'<div><span class="vl">'+i18n('STG 현재','STG hiện tại')+'</span>'+i18n(k(td[4]),v(td[4]))+'</div>'
+        +'</div>';
+      var wk=art.querySelector('.wkx')||art.querySelector('.wk');
+      if(wk) wk.insertAdjacentHTML('beforebegin',box); else art.insertAdjacentHTML('beforeend',box);
+    });
+    document.querySelectorAll('article.qa').forEach(function(art){
+      if(seen[art.id]) return;
+      var wk=art.querySelector('.wkx')||art.querySelector('.wk');
+      var box='<div class="vbox"><span class="vl">'+i18n('우리 판정','Đánh giá')+'</span>'+i18n('검수 반영 현황에 이 항목 판정 없음','Bảng tình trạng phản ánh chưa có đánh giá cho mục này')+'</div>';
+      if(wk) wk.insertAdjacentHTML('beforebegin',box);
+    });
+  }).catch(function(e){ console.error('[qa] verdict load failed',e); });
 })();
 </script>
 </body></html>
