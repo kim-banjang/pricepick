@@ -449,13 +449,15 @@ document.addEventListener('click',function(e){
     var a=r.querySelector('td.no a.ext'), m=a&&a.getAttribute('href').match(/devqa\/([a-z0-9-]+)\.html/);
     return (m&&DEVCOL[m[1]])?{doc:m[1],col:DEVCOL[m[1]],id:a.textContent.trim()}:null;
   }
+  /* 시각 — 원본 문서의 fmt() 그대로(보는 사람 컴퓨터 시각). 원본과 같은 시각이 보여야 한다 */
+  function fmt(d){ var p=function(n){return String(n).padStart(2,'0');}; return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes()); }
   function stBtn(v,on){ return '<button type="button" class="stb'+(on?' on':'')+'" data-v="'+v+'"><i class="sg"></i>'+(v==='todo'?i18n('미처리','Chưa xử lý'):i18n('처리 완료','Đã xử lý xong'))+'</button>'; }
   function paintDm(r){
     var td=r.querySelector('td.dm'), src=r._src;
     if(!src){ r._dm='none'; td.innerHTML=NOREC; return; }
     var d=(DEV[src.doc]||{})[src.id]||null, st=d&&d.status;
     r._dm=(st==='done')?'done':(st==='todo'||st==='doing')?'todo':'none';
-    var who=(r._dm!=='none'&&(d.by||d.at))?'<span class="dm-by">'+(d.by?esc(d.by):'')+(d.at?(d.by?' · ':'')+atFmt.format(d.at):'')+'</span>':'';
+    var who=(r._dm!=='none'&&(d.by||d.at))?'<span class="dm-by">'+(d.by?esc(d.by):'')+(d.at?(d.by?' · ':'')+fmt(d.at):'')+'</span>':'';
     td.innerHTML='<div class="wk-st">'+stBtn('todo',r._dm==='todo')+stBtn('done',r._dm==='done')+'</div>'+(r._dm==='none'?'<span class="dm-none">'+NOREC+'</span>':who);
   }
   rows.forEach(function(r){ r._src=srcOf(r); paintDm(r); });
