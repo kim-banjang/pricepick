@@ -175,6 +175,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 .vbox .vs.s-ng{color:#B42318}.vbox .vs.s-ok{color:#1f7a5a}.vbox .vs.s-unk,.vbox .vs.s-wait,.vbox .vs.s-na{color:var(--ink2)}
 .golinks{margin-left:6px;white-space:nowrap}
 .golinks a{font-size:11px;font-weight:700;color:var(--pp-d);text-decoration:underline;text-underline-offset:2px;margin-left:6px}
+#wkWho.need{border-color:#9A4A4A;box-shadow:0 0 0 2px rgba(154,74,74,.18)}
 </style></head><body>
 <input type="checkbox" id="langsw"><input type="radio" name="sec" id="t04" checked><input type="radio" name="sec" id="t05"><input type="radio" name="sec" id="t06">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
@@ -305,11 +306,13 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
   function reason(e){ if(!e) return ''; return [e.code,e.message].filter(Boolean).join(' · '); }
 
   function who(){ return document.getElementById('wkWho').value; }
-  function needWho(){
+  function needWho(el){
     if(who()) return true;
     var isVi=document.getElementById('langsw').checked;
-    alert(isVi?'Xin chọn người thực hiện trước.':'작업자를 먼저 선택하십시오.');
-    document.getElementById('wkWho').focus();
+    if(el) flash(el, isVi?'Xin chọn người thực hiện trước.':'작업자를 먼저 선택하십시오.', 1);
+    var sel=document.getElementById('wkWho');
+    sel.classList.add('need');
+    try{ sel.focus({preventScroll:true}); }catch(e){}
     return false;
   }
   function flash(el,msg,err){
@@ -332,7 +335,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
     var n=wk.querySelector('.wk-note');
     if(document.activeElement!==n) n.value=d.note||'';
     var m=wk.querySelector('.wk-meta');
-    m.textContent=(d.updatedBy||d.updatedAt)?((d.updatedBy||'')+(d.updatedAt?' · '+fmt(d.updatedAt):'')):'';
+    m.textContent=(st==='done'&&(d.updatedBy||d.updatedAt))?((d.updatedBy||'')+(d.updatedAt?' · '+fmt(d.updatedAt):'')):'';
   }
   function progress(){
     var secs={'04':36,'05':25,'06':13}, done={'04':0,'05':0,'06':0}, nd=0, nf=0;
@@ -394,11 +397,12 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
   async function save(id, patch, el){
     var isViD=document.getElementById('langsw').checked;
     if(!db){ flash(el, isViD?'Không có kết nối DB':'DB 연결 없음',1); return; }
-    if(!needWho()) return;
-    var body=Object.assign({}, patch, {updatedBy:who(), updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+    var toTodo=(patch.status==='todo');
+    if(!toTodo&&!needWho(el)) return;
+    var body=Object.assign({}, patch, toTodo?{}:{updatedBy:who(), updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
     try{
       await db.collection(COL).doc(id).set(body,{merge:true});
-      state[id]=Object.assign({}, state[id]||{}, patch, {updatedBy:who(), updatedAt:new Date()});
+      state[id]=Object.assign({}, state[id]||{}, patch, toTodo?{}:{updatedBy:who(), updatedAt:new Date()});
       paintOne(el); progress(); applyFilter();
       var isVi=document.getElementById('langsw').checked;
       flash(el, isVi?'Đã lưu':'저장됐습니다');
