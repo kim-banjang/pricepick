@@ -163,6 +163,7 @@ tr.fhide{display:none}
 .t1g{font-size:13.5px;color:var(--ink1);margin:18px 0 6px}
 .t1sub{font-size:12.5px;color:var(--ink2);margin:12px 0 6px}
 .t1load{font-size:12.5px;color:var(--ink3)}
+.tbl.t1 td.rereq{min-width:150px}
 </style></head>
 <body>
 <input type="checkbox" id="langsw">
@@ -448,7 +449,7 @@ document.addEventListener('click',function(e){
           +'<td class="by">'+(d.by?esc(d.by):NOREC)+'</td>'
           +'<td class="at">'+(d.at?atFmt.format(new Date(d.at)):NOREC)+'</td>'
           +'<td>'+td[4].innerHTML+'</td><td>'+td[5].innerHTML+'</td>'
-          +(g==='g1'?'<td>'+REREQ+'</td>':'')+'</tr>');
+          +(g==='g1'?'<td class="rereq">'+REREQ+'</td>':'')+'</tr>');
       });
       cnt.textContent=rows.filter(function(r){return r._t1;}).length;
       var tbl=function(list,re){ return '<table class="tbl cl t1"><thead>'+T1TH+(re?'<th>'+i18n('비고','Ghi chú')+'</th>':'')+'</tr></thead><tbody>'+list.join('')+'</tbody></table>'; };
