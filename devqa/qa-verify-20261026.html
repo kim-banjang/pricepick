@@ -128,7 +128,7 @@ tr.fhide{display:none}
 .tbl.list th:nth-child(2){width:13%}
 .tbl.list th:nth-child(4),.tbl.list th:nth-child(7){width:68px}
 .tbl.list th:nth-child(8){width:62px}
-.tbl.list th:nth-child(9){width:104px}
+.tbl.list th:nth-child(9){width:116px}
 .tbl.list td.who,.tbl.list td.st{white-space:normal}
 .tbl.list td.dm{white-space:normal}
 .tbl.list td.st.s-ng{color:#B42318;font-weight:800}
@@ -157,6 +157,27 @@ tr.fhide{display:none}
 .rf-btn:hover{border-color:#a3a3a3;color:#171717}
 .rf-btn:disabled{cursor:wait;background:#f5f5f5;color:#a3a3a3}
 .rf-btn .rf-busy{display:none}.rf-btn[aria-busy="true"] .rf-idle{display:none}.rf-btn[aria-busy="true"] .rf-busy{display:inline}
+/* 개발팀 표시 토글 — 검수 원본 문서와 같은 모양(원본 CSS 그대로) */
+:root{--s-todo:#6B7488;--s-doing:#E08A1E;--s-done:#1F9D6B}
+.wk-st{display:inline-flex;gap:5px}
+.stb{font:700 11.8px inherit;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+.stb:hover{border-color:var(--pp)}
+.sg{font-style:normal;font-weight:800;margin-right:4px}
+.stb[data-v=todo] .sg::before{content:'\25CB'}
+.stb[data-v=done] .sg::before{content:'\2713'}
+.stb[data-v=todo] .sg{color:var(--s-todo)}
+.stb[data-v=done] .sg{color:var(--s-done)}
+.stb.on[data-v=todo]{background:var(--s-todo);border-color:var(--s-todo);color:#fff}
+.stb.on[data-v=done]{background:var(--s-done);border-color:var(--s-done);color:#fff}
+.stb.on .sg{color:#fff}
+.tbl td.dm .wk-st{flex-direction:column;align-items:flex-start;gap:4px}
+.tbl td.dm .stb{padding:3px 10px;font-size:11.4px;white-space:nowrap}
+.tbl td.dm .dm-none{display:block;color:var(--ink3);font-size:11px;margin-top:4px}
+.wkb-l{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:10px}
+.wkb-lb{font-size:11.5px;font-weight:800;color:var(--ink3)}
+#wkWho{font:600 12.5px inherit;color:var(--ink1);background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+#wkWho.need{border-color:#9A4A4A;box-shadow:0 0 0 2px rgba(154,74,74,.18)}
+.dm-flash{display:block;font-size:11px;font-weight:700;color:#9A4A4A;margin-top:3px}
 </style></head>
 <body>
 <input type="checkbox" id="langsw">
@@ -169,6 +190,7 @@ tr.fhide{display:none}
 <tr><td class="no"><span class="i18n"><span class="ko">C-1</span><span class="vi">C-1</span></span></td><td class="scr"><span class="i18n"><span class="ko">점검용 예약 발송 1건</span><span class="vi">1 thông báo hẹn giờ dùng để kiểm tra</span></span></td><td><span class="i18n"><span class="ko">2026-10-27 STG 확인 때 우리가 등록했다. 2027-01-15 10:00 · 대상 「신규 가입(7일 이내)」 · 제목 「[내부 점검] 예약 발송 확인용 - 즉시 취소 예정」. 지금 대상은 0명. 화면에 취소 기능이 없어 지울 수 없다(외-15)</span><span class="vi">Chúng tôi đã đăng ký khi kiểm tra STG ngày 27/10/2026. 15/01/2027 10:00 · đối tượng 「신규 가입(7일 이내)」 · tiêu đề 「[내부 점검] 예약 발송 확인용 - 즉시 취소 예정」. Hiện có 0 người nhận. Màn hình không có chức năng hủy nên không xóa được (ngoài-15)</span></span></td><td><span class="i18n"><span class="ko">2027-01-15 전에 서버에서 삭제</span><span class="vi">Xóa trên máy chủ trước 15/01/2027</span></span></td><td class="who"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></td></tr>
 <tr><td class="no"><span class="i18n"><span class="ko">C-2</span><span class="vi">C-2</span></span></td><td class="scr"><span class="i18n"><span class="ko">쿠팡 로고 파일</span><span class="vi">Tệp logo Coupang</span></span></td><td><span class="i18n"><span class="ko">2026-10-27 STG 확인 때 우리가 쿠팡 로고를 바꿨다 되돌렸다. 그 과정에서 원본 로고 파일이 서버에서 삭제됐다. 같은 디자인 파일을 다시 올려 화면은 복구했으나 파일 주소가 원래와 다르다(외-16)</span><span class="vi">Khi kiểm tra STG ngày 27/10/2026, chúng tôi đã đổi rồi đổi lại logo Coupang. Trong quá trình đó tệp logo gốc bị xóa khỏi máy chủ. Đã tải lại cùng tệp thiết kế nên màn hình đã khôi phục, nhưng địa chỉ tệp khác với ban đầu (ngoài-16)</span></span></td><td><span class="i18n"><span class="ko">이전 주소를 쓰는 곳이 있으면 새 주소로 맞춤</span><span class="vi">Nếu nơi nào còn dùng địa chỉ cũ thì đổi sang địa chỉ mới</span></span></td><td class="who"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></td></tr>
 </tbody></table></div>
+<div class="wkb-l"><label class="wkb-lb" for="wkWho"><span class="i18n"><span class="ko">작업자</span><span class="vi">Người thực hiện</span></span></label><select id="wkWho"><option value="">작업자 선택 / Chọn người thực hiện</option><option value="빈 (Nguyen Vuong)">빈 (Nguyen Vuong) / Vin (Nguyen Vuong)</option><option value="존 (John)">존 (John) / John</option><option value="해리 (Harry)">해리 (Harry) / Harry</option><option value="켈빈 (Kelvin)">켈빈 (Kelvin) / Kelvin</option><option value="이부장">이부장 / Trưởng phòng Lee</option><option value="김반장">김반장 / Mr Mark</option></select></div>
 <div class="fbar" id="fbar"><button type="button" class="fc" data-k="st" data-v="all"><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="unk"><span class="i18n"><span class="ko">미확인</span><span class="vi">Chưa xác nhận</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="wait"><span class="i18n"><span class="ko">정책 확정 대기</span><span class="vi">Chờ chốt chính sách</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc fc-d" data-k="dst" data-v="ng"><span class="i18n"><span class="ko">DEMO 미반영</span><span class="vi">DEMO chưa phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="who" data-v="dev"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="who" data-v="me"><span class="i18n"><span class="ko">김반장</span><span class="vi">Mr Mark</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="dm" data-v="done"><span class="i18n"><span class="ko">개발팀 표시 처리 완료</span><span class="vi">Đội PT: đã xử lý</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="dm" data-v="todo"><span class="i18n"><span class="ko">개발팀 표시 미처리</span><span class="vi">Đội PT: chưa xử lý</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="dm" data-v="none"><span class="i18n"><span class="ko">개발팀 표시 기록 없음</span><span class="vi">Đội PT: không có bản ghi</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="doc" data-v="d1002"><span class="i18n"><span class="ko">10-02</span><span class="vi">02/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1005"><span class="i18n"><span class="ko">10-05</span><span class="vi">05/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1021"><span class="i18n"><span class="ko">10-21</span><span class="vi">21/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="dx"><span class="i18n"><span class="ko">검수 외</span><span class="vi">Ngoài kiểm thử</span></span> <b class="fn"></b></button><span class="fnow" id="fnow" hidden></span><span class="rfwrap"><span class="rf-at"><span class="i18n"><span class="ko">마지막 갱신 </span><span class="vi">Cập nhật lần cuối </span></span><span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle"><span class="i18n"><span class="ko">새로고침</span><span class="vi">Làm mới</span></span></span><span class="rf-busy"><span class="i18n"><span class="ko">조회 중</span><span class="vi">Đang tải</span></span></span></button></span></div>
 
 <h2 class="sec" id="d1002"><span class="i18n"><span class="ko">검수 2026-10-02 — 25건</span><span class="vi">Kiểm thử 02/10/2026 — 25 mục</span></span> <span class="srcdoc"><a href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html" target="_blank" rel="noopener noreferrer">qa-extra-20261002.html</a></span></h2>
@@ -342,6 +364,8 @@ document.addEventListener('click',function(e){
   win.focus();
 });
 </script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
 /* 표 위 건수 필터 — 상태 · 담당 · 검수 문서. 같은 단추를 다시 누르면 해제 */
 (function(){
@@ -407,39 +431,62 @@ document.addEventListener('click',function(e){
   function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
   var NOREC=i18n('기록 없음','Không có bản ghi');
   var atFmt=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
-  async function devCol(c){
-    var out={}, tok='';
-    do{
-      var res=await fetch('https://firestore.googleapis.com/v1/projects/pricepick-demo/databases/(default)/documents/'+c+'?pageSize=300'+(tok?'&pageToken='+encodeURIComponent(tok):''));
-      if(!res.ok) throw new Error(c+' '+res.status);
-      var j=await res.json();
-      (j.documents||[]).forEach(function(d){
-        var x=d.fields||{}, g=function(k){ var v=x[k]; return v?(v.stringValue||v.timestampValue||''):''; };
-        out[d.name.split('/').pop()]={status:g('status'),by:g('updatedBy'),at:g('updatedAt')};
-      });
-      tok=j.nextPageToken||'';
-    }while(tok);
-    return out;
+  /* 원본 검수 문서(qa-extra-20261002 · qa-review-20261005 · qa-extra-20261021)와 같은 저장소를 실시간으로 읽는다.
+     값을 따로 복사해 두지 않는다 — 원본에서 바꾸면 여기에, 여기서 바꾸면 원본에 그대로 보인다.
+     쓰기는 원본 문서의 save() 와 같다: status · updatedBy(작업자) · updatedAt(서버 시각)만 merge. 다른 필드(메모·최종 검수)는 건드리지 않는다. */
+  var db=null;
+  try{
+    firebase.initializeApp({apiKey:"AIzaSyCElUPJAitnMZxttVYjboV0j4s_qpErAgA",authDomain:"pricepick-demo.firebaseapp.com",projectId:"pricepick-demo",storageBucket:"pricepick-demo.firebasestorage.app",messagingSenderId:"505137396208",appId:"1:505137396208:web:cea9d208c7745854e14535"});
+    db=firebase.firestore();
+  }catch(e){ db=null; }
+  var KW='ppqa_who';
+  function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
+  var whoSel=document.getElementById('wkWho');
+  var savedWho=ls(KW); if(savedWho) whoSel.value=savedWho;
+  whoSel.addEventListener('change',function(){ ls(KW,this.value); this.classList.remove('need'); });
+  var DEV={};   /* 문서별 실시간 값: DEV[원본 문서][항목] = {status, by, at} */
+  function srcOf(r){
+    var a=r.querySelector('td.no a.ext'), m=a&&a.getAttribute('href').match(/devqa\/([a-z0-9-]+)\.html/);
+    return (m&&DEVCOL[m[1]])?{doc:m[1],col:DEVCOL[m[1]],id:a.textContent.trim()}:null;
   }
-
-  var DMLAB={done:i18n('처리 완료','Đã xử lý'),todo:i18n('미처리','Chưa xử lý'),none:NOREC};
-  async function loadDev(){
-    try{
-      var keys=Object.keys(DEVCOL), got=await Promise.all(keys.map(function(k){ return devCol(DEVCOL[k]); })), dev={};
-      keys.forEach(function(k,i){ dev[k]=got[i]; });
-      rows.forEach(function(r){
-        var a=r.querySelector('td.no a.ext'), m=a&&a.getAttribute('href').match(/devqa\/([a-z0-9-]+)\.html/);
-        var d=(m&&dev[m[1]])?dev[m[1]][a.textContent.trim()]:null, st=d&&d.status;
-        r._dm=(st==='done')?'done':(st==='todo'||st==='doing')?'todo':'none';
-        var who=(r._dm!=='none'&&(d.by||d.at))?'<span class="dm-by">'+(d.by?esc(d.by):'')+(d.at?(d.by?' · ':'')+atFmt.format(new Date(d.at)):'')+'</span>':'';
-        r.querySelector('td.dm').innerHTML=DMLAB[r._dm]+who;
-      });
-    }catch(e){
-      console.error('[qa-verify] dev status load failed',e);
-      rows.forEach(function(r){ r.querySelector('td.dm').innerHTML=i18n('불러오지 못함','Không tải được'); });
+  function stBtn(v,on){ return '<button type="button" class="stb'+(on?' on':'')+'" data-v="'+v+'"><i class="sg"></i>'+(v==='todo'?i18n('미처리','Chưa xử lý'):i18n('처리 완료','Đã xử lý xong'))+'</button>'; }
+  function paintDm(r){
+    var td=r.querySelector('td.dm'), src=r._src;
+    if(!src){ r._dm='none'; td.innerHTML=NOREC; return; }
+    var d=(DEV[src.doc]||{})[src.id]||null, st=d&&d.status;
+    r._dm=(st==='done')?'done':(st==='todo'||st==='doing')?'todo':'none';
+    var who=(r._dm!=='none'&&(d.by||d.at))?'<span class="dm-by">'+(d.by?esc(d.by):'')+(d.at?(d.by?' · ':'')+atFmt.format(d.at):'')+'</span>':'';
+    td.innerHTML='<div class="wk-st">'+stBtn('todo',r._dm==='todo')+stBtn('done',r._dm==='done')+'</div>'+(r._dm==='none'?'<span class="dm-none">'+NOREC+'</span>':who);
+  }
+  rows.forEach(function(r){ r._src=srcOf(r); paintDm(r); });
+  function loadDev(){
+    if(!db){ rows.forEach(function(r){ r.querySelector('td.dm').innerHTML=i18n('불러오지 못함','Không tải được'); }); return; }
+    Object.keys(DEVCOL).forEach(function(doc){
+      db.collection(DEVCOL[doc]).onSnapshot(function(snap){
+        var m={};
+        snap.forEach(function(x){ var v=x.data(); m[x.id]={status:v.status||'',by:v.updatedBy||'',at:(v.updatedAt&&v.updatedAt.toDate)?v.updatedAt.toDate():null}; });
+        DEV[doc]=m;
+        rows.forEach(function(r){ if(r._src&&r._src.doc===doc) paintDm(r); });
+        paint();
+      },function(e){ console.error('[qa-verify] dev status load failed',doc,e); });
+    });
+  }
+  document.addEventListener('click',async function(e){
+    var b=e.target.closest('td.dm .stb'); if(!b) return;
+    var r=b.closest('tr'), src=r&&r._src; if(!src||!db) return;
+    var td=r.querySelector('td.dm'), isVi=document.getElementById('langsw').checked;
+    if(!whoSel.value){
+      whoSel.classList.add('need'); try{ whoSel.focus({preventScroll:true}); }catch(_){}
+      td.insertAdjacentHTML('beforeend','<span class="dm-flash">'+(isVi?'Xin chọn người thực hiện trước.':'작업자를 먼저 선택하십시오.')+'</span>');
+      return;
     }
-    paint();
-  }
+    try{
+      await db.collection(src.col).doc(src.id).set({status:b.dataset.v,updatedBy:whoSel.value,updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});
+    }catch(err){
+      console.error('[qa-verify] save failed',src,err);
+      td.insertAdjacentHTML('beforeend','<span class="dm-flash">'+(isVi?'Lưu thất bại':'저장 실패')+'</span>');
+    }
+  });
   loadDev();
   document.getElementById('fbar').addEventListener('click',function(e){
     if(e.target.closest('#fclr')){ f={st:null,who:null,doc:null,dst:null,dm:null}; paint(); return; }
