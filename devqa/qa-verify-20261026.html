@@ -155,6 +155,11 @@ tr.fhide{display:none}
 .rf-btn:hover{border-color:#a3a3a3;color:#171717}
 .rf-btn:disabled{cursor:wait;background:#f5f5f5;color:#a3a3a3}
 .rf-btn .rf-busy{display:none}.rf-btn[aria-busy="true"] .rf-idle{display:none}.rf-btn[aria-busy="true"] .rf-busy{display:inline}
+.t1box{margin:4px 0 0}
+.t1box h2.sec{margin-top:24px}
+.t1go{border:0;background:none;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:left;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:rgba(91,57,184,.45)}
+.t1go:hover{text-decoration-color:currentColor}
+.tbl.t1 td.by,.tbl.t1 td.at{white-space:nowrap}
 </style></head>
 <body>
 <input type="checkbox" id="langsw">
@@ -162,6 +167,8 @@ tr.fhide{display:none}
 <div class="hin" style="margin:0 auto;padding:0 28px"><div class="htitle"><span class="i18n"><span class="ko">검수 반영 현황</span><span class="vi">Tình trạng phản ánh kiểm thử</span></span></div>
 <div class="hsub"><span class="i18n"><span class="ko">검수 2026-10-02 · 10-05 · 10-21 · 2026-10-28 기준</span><span class="vi">Kiểm thử 02/10 · 05/10 · 21/10/2026 · tính đến 28/10/2026</span></span></div></div></header>
 <div class="wrap">
+<div class="t1box"><h2 class="sec" id="dt1"><button type="button" class="t1go" id="t1go"><span class="i18n"><span class="ko">처리 완료 보고 대비 미반영 </span><span class="vi">Đã báo xử lý nhưng chưa phản ánh </span></span><b id="t1n">—</b><span class="i18n"><span class="ko">건</span><span class="vi"> mục</span></span></button></h2>
+<table class="tbl cl t1"><thead><tr><th><span class="i18n"><span class="ko">번호</span><span class="vi">Số</span></span></th><th><span class="i18n"><span class="ko">화면</span><span class="vi">Màn hình</span></span></th><th><span class="i18n"><span class="ko">개발팀 처리자</span><span class="vi">Người xử lý (đội phát triển)</span></span></th><th><span class="i18n"><span class="ko">처리 완료 표시 시각</span><span class="vi">Thời điểm đánh dấu đã xử lý</span></span></th><th><span class="i18n"><span class="ko">STG 현재 표기</span><span class="vi">STG hiển thị hiện tại</span></span></th><th><span class="i18n"><span class="ko">STG 수정 후 표기</span><span class="vi">STG hiển thị sau khi sửa</span></span></th></tr></thead><tbody id="t1body"><tr><td colspan="6"><span class="i18n"><span class="ko">불러오는 중</span><span class="vi">Đang tải</span></span></td></tr></tbody></table></div>
 <div class="cleanup"><h2 class="sec" id="dcl"><span class="i18n"><span class="ko">개발팀 처리 필요 — STG 확인 과정에서 우리가 만든 것 2건</span><span class="vi">Đội phát triển cần xử lý — 2 mục do chúng tôi tạo ra khi kiểm tra STG</span></span></h2>
 <table class="tbl cl"><thead><tr><th><span class="i18n"><span class="ko">번호</span><span class="vi">Số</span></span></th><th><span class="i18n"><span class="ko">대상</span><span class="vi">Đối tượng</span></span></th><th><span class="i18n"><span class="ko">경위</span><span class="vi">Diễn biến</span></span></th><th><span class="i18n"><span class="ko">요청</span><span class="vi">Yêu cầu</span></span></th><th><span class="i18n"><span class="ko">담당</span><span class="vi">Phụ trách</span></span></th></tr></thead><tbody>
 <tr><td class="no"><span class="i18n"><span class="ko">C-1</span><span class="vi">C-1</span></span></td><td class="scr"><span class="i18n"><span class="ko">점검용 예약 발송 1건</span><span class="vi">1 thông báo hẹn giờ dùng để kiểm tra</span></span></td><td><span class="i18n"><span class="ko">2026-10-27 STG 확인 때 우리가 등록했다. 2027-01-15 10:00 · 대상 「신규 가입(7일 이내)」 · 제목 「[내부 점검] 예약 발송 확인용 - 즉시 취소 예정」. 지금 대상은 0명. 화면에 취소 기능이 없어 지울 수 없다(외-15)</span><span class="vi">Chúng tôi đã đăng ký khi kiểm tra STG ngày 27/10/2026. 15/01/2027 10:00 · đối tượng 「신규 가입(7일 이내)」 · tiêu đề 「[내부 점검] 예약 발송 확인용 - 즉시 취소 예정」. Hiện có 0 người nhận. Màn hình không có chức năng hủy nên không xóa được (ngoài-15)</span></span></td><td><span class="i18n"><span class="ko">2027-01-15 전에 서버에서 삭제</span><span class="vi">Xóa trên máy chủ trước 15/01/2027</span></span></td><td class="who"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></td></tr>
@@ -340,7 +347,7 @@ document.addEventListener('click',function(e){
 <script>
 /* 표 위 건수 필터 — 상태 · 담당 · 검수 문서. 같은 단추를 다시 누르면 해제 */
 (function(){
-  var T1=["r1002-08", "r1002-10", "r1002-19", "r1005-04-10", "r1005-04-21", "r1005-05-16", "r1005-05-21", "r1005-05-23", "r1005-05-24", "r1005-06-13"], f={st:null,who:null,doc:null,dst:null};
+  var f={st:null,who:null,doc:null,dst:null};
   /* 표 바로 위의 절 제목(h2) — 사이에 절 머리 문구(.secnote)가 있어도 찾는다 */
   function secHead(t){ var h=t&&t.previousElementSibling; while(h&&h.tagName!=='H2') h=h.previousElementSibling; return h; }
   var all=[].slice.call(document.querySelectorAll('table.list tbody tr'));
@@ -351,7 +358,7 @@ document.addEventListener('click',function(e){
     var w=r.querySelector('td.who .ko'); w=w?w.textContent:'';
     r._dev=w.indexOf('개발팀')>=0; r._me=w.indexOf('김반장')>=0||w.indexOf('문구 작성')>=0;
     var t=r.closest('.tblwrap'), h=secHead(t); r._doc=h&&h.id||'';
-    r._t1=T1.indexOf(r.id)>=0;
+    r._t1=false;
     var d=r.querySelector('td.dst'), dm=d&&d.className.match(/s-([a-z]+)/); r._dst=dm?dm[1]:'';
   });
   function hit(r,k,v){
@@ -393,6 +400,57 @@ document.addEventListener('click',function(e){
     try{ sessionStorage.setItem(RFK, JSON.stringify({f:f, y:window.scrollY})); }catch(_){}
     location.reload();
   });
+  /* 처리 완료 보고 대비 미반영 — 개발팀이 검수 문서에서 「처리 완료」로 둔 항목 중 STG 상태가 미반영인 것 */
+  var DEVCOL={'qa-extra-20261002':'qa_extra_20261002','qa-review-20261005':'qa_review_20261005','qa-extra-20261021':'qa_extra_20261021'};
+  function i18n(ko,vi){ return '<span class="i18n"><span class="ko">'+ko+'</span><span class="vi">'+vi+'</span></span>'; }
+  function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  var NOREC=i18n('기록 없음','Không có bản ghi');
+  var atFmt=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+  async function devCol(c){
+    var out={}, tok='';
+    do{
+      var res=await fetch('https://firestore.googleapis.com/v1/projects/pricepick-demo/databases/(default)/documents/'+c+'?pageSize=300'+(tok?'&pageToken='+encodeURIComponent(tok):''));
+      if(!res.ok) throw new Error(c+' '+res.status);
+      var j=await res.json();
+      (j.documents||[]).forEach(function(d){
+        var x=d.fields||{}, g=function(k){ var v=x[k]; return v?(v.stringValue||v.timestampValue||''):''; };
+        out[d.name.split('/').pop()]={status:g('status'),by:g('updatedBy'),at:g('updatedAt')};
+      });
+      tok=j.nextPageToken||'';
+    }while(tok);
+    return out;
+  }
+  async function loadDev(){
+    var body=document.getElementById('t1body'), cnt=document.getElementById('t1n');
+    try{
+      var keys=Object.keys(DEVCOL), got=await Promise.all(keys.map(function(k){ return devCol(DEVCOL[k]); })), dev={};
+      keys.forEach(function(k,i){ dev[k]=got[i]; });
+      var html='';
+      rows.forEach(function(r){
+        var a=r.querySelector('td.no a.ext'); if(!a) return;
+        var m=a.getAttribute('href').match(/devqa\/([a-z0-9-]+)\.html/); if(!m||!dev[m[1]]) return;
+        var d=dev[m[1]][a.textContent.trim()], sst=r.querySelector('td.sst');
+        r._t1=!!(d&&d.status==='done'&&sst&&/\bs-ng\b/.test(sst.className));
+        if(!r._t1) return;
+        var td=r.children;
+        html+='<tr><td class="no">'+a.outerHTML+'</td><td class="scr">'+td[1].innerHTML+'</td>'
+          +'<td class="by">'+(d.by?esc(d.by):NOREC)+'</td>'
+          +'<td class="at">'+(d.at?atFmt.format(new Date(d.at)):NOREC)+'</td>'
+          +'<td>'+td[4].innerHTML+'</td><td>'+td[5].innerHTML+'</td></tr>';
+      });
+      cnt.textContent=rows.filter(function(r){return r._t1;}).length;
+      body.innerHTML=html||'<tr><td colspan="6">'+i18n('없음','Không có')+'</td></tr>';
+    }catch(e){
+      console.error('[qa-verify] dev status load failed',e);
+      body.innerHTML='<tr><td colspan="6">'+i18n('개발팀 처리 상태를 불러오지 못했습니다','Không tải được trạng thái xử lý của đội phát triển')+'</td></tr>';
+    }
+    paint();
+  }
+  document.getElementById('t1go').addEventListener('click',function(){
+    f.st=(f.st==='t1'?null:'t1'); paint();
+    if(f.st) document.getElementById('fbar').scrollIntoView({block:'start'});
+  });
+  loadDev();
   document.getElementById('fbar').addEventListener('click',function(e){
     if(e.target.closest('#fclr')){ f={st:null,who:null,doc:null,dst:null}; paint(); return; }
     var c=e.target.closest('.fc'); if(!c) return;
