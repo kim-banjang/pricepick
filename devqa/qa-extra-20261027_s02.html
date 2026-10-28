@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 검수 (검수자 : 김반장) 2026-10-27</title><style>
+:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--mk:#E23B3B}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px 70px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:26px 0 22px;position:relative}
+.kick{font-size:11px;font-weight:800;letter-spacing:.18em;opacity:.75}
+.htitle{font-size:23px;font-weight:800;margin-top:4px}
+.hsub{font-size:12.6px;opacity:.92;margin-top:5px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 0;border-bottom:2px solid var(--pp-l)}
+.tabs label{display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;font-weight:800;color:var(--ink3);background:#f3f1fa;border:1px solid var(--line);border-bottom:none;border-radius:10px 10px 0 0;padding:9px 16px;margin-bottom:-2px;user-select:none}
+.tabs label:hover{color:var(--pp-d)}
+.tabs .tn{font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--pp-d)}
+.tabs .tc{font-size:11px;font-weight:800;color:#fff;background:var(--ink3);border-radius:999px;padding:1px 7px}
+input[name=sec]{position:absolute;opacity:0;pointer-events:none}
+.pane{display:none;padding-top:14px}
+#t01:checked ~ .wrap .p01,#t12:checked ~ .wrap .p12{display:block}
+#t01:checked ~ .wrap .tabs label[for=t01],#t12:checked ~ .wrap .tabs label[for=t12]{background:#fff;color:var(--pp-d);border-color:var(--pp-l);border-bottom:2px solid #fff}
+#t01:checked ~ .wrap .tabs label[for=t01] .tc,#t12:checked ~ .wrap .tabs label[for=t12] .tc{background:var(--pp)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:10px}
+.qh{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.qn{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:22px;padding:0 7px;border-radius:7px;background:var(--pp-l);color:var(--pp-d);font-size:12px;font-weight:800}
+.qs{font-size:13px;font-weight:800;color:var(--pp-d)}
+.qb{font-size:13.4px;color:var(--ink1);margin-top:7px;white-space:pre-wrap}
+.sub{margin-top:9px;padding:9px 12px;background:#fbfaff;border:1px solid var(--line);border-left:3px solid var(--pp);border-radius:8px}
+.sh{font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--pp-d);margin-bottom:3px}
+.sb{font-size:12.5px;color:var(--ink2)}
+.shots{display:flex;flex-wrap:wrap;gap:10px;margin-top:11px}
+.shot{margin:0}
+.iw{position:relative;display:block;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;cursor:zoom-in}
+.iw img{display:block;width:100%;height:auto}
+.mk{position:absolute;border:2px solid var(--mk);border-radius:2px;pointer-events:none;box-shadow:0 0 0 1px rgba(255,255,255,.55)}
+.vid{margin-top:9px;font:11.5px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink3);background:#f4f3f9;border:1px solid var(--line);border-radius:7px;padding:6px 10px;word-break:break-all}
+.lb{position:fixed;inset:0;background:rgba(24,20,40,.86);display:none;align-items:center;justify-content:center;z-index:9000;padding:24px;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:100%;border-radius:8px;background:#fff}
+.foot{margin-top:22px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko,#langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi,#langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+
+.wkbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px;padding:11px 14px;background:#fff;border:1px solid var(--line);border-radius:11px}
+.wkb-l,.wkb-f{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.wkb-p{flex:1 1 200px;font-size:12.6px;font-weight:800;color:var(--pp-d)}
+.wkb-lb{font-size:11.5px;font-weight:800;color:var(--ink3)}
+#wkWho{font:600 12.5px inherit;color:var(--ink1);background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.fb{font:700 12px inherit;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.fb:hover{border-color:var(--pp);color:var(--pp-d)}
+.fb.on{background:var(--pp);border-color:var(--pp);color:#fff}
+.wkwarn{margin-top:9px;padding:9px 12px;background:#fffaef;border:1px solid #eddcb4;border-left:3px solid #95690c;border-radius:8px;font-size:12.4px;color:#7a5a11;font-weight:600}
+.wk{margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.wk-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.wk-st{display:inline-flex;gap:5px}
+.stb{font:700 11.8px inherit;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+.stb:hover{border-color:var(--pp)}
+.stb.on[data-v=todo]{background:#F1EFF6;border-color:#d9d4e6;color:#6b6480}
+.stb.on[data-v=doing]{background:#FDF2E6;border-color:#f0d8b4;color:#D97706}
+.stb.on[data-v=done]{background:#EAF7F1;border-color:#BFE6D6;color:#1f7a5a}
+.wk-meta{font-size:11.3px;color:var(--ink3);margin-left:auto}
+.wk-note{display:block;width:100%;margin-top:8px;font:12.6px/1.6 inherit;color:var(--ink1);background:#fbfaff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;resize:vertical}
+.wk-note:focus{outline:none;border-color:var(--pp)}
+.wk-row2{display:flex;align-items:center;gap:9px;margin-top:7px}
+.wk-save{font:700 11.8px inherit;color:#fff;background:var(--pp);border:1px solid var(--pp);border-radius:8px;padding:6px 14px;cursor:pointer}
+.wk-save:hover{background:var(--pp-d);border-color:var(--pp-d)}
+.wk-flash{font-size:11.5px;font-weight:700;color:#1f7a5a;opacity:0;transition:opacity .18s}
+.wk-flash.on{opacity:1}
+.wk-flash.err{color:#9A4A4A}
+.qa[hidden]{display:none}
+
+:root{--s-todo:#6B7488;--s-doing:#E08A1E;--s-done:#1F9D6B}
+.qcols{display:grid;grid-template-columns:minmax(0,290px) minmax(0,1fr);gap:14px;align-items:start}
+.qcol-l>.shots,.qcol-r>.qb{margin-top:9px}
+.shots .shot{max-width:100%}
+@media (max-width:820px){.qcols{display:flex;flex-direction:column}.qcol-r{order:1}.qcol-l{order:2}}
+.exp{margin-top:9px;padding:9px 12px;background:#F2FBF6;border:1px solid #CFEADD;border-left:3px solid var(--s-done);border-radius:8px}
+.eh{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:11px;font-weight:800;letter-spacing:.04em;color:#17795A;margin-bottom:3px}
+.eb{font-size:12.8px;color:var(--ink1)}
+.chkb{font-size:10.5px;font-weight:800;color:#8A5A00;background:#FFF3DC;border:1px solid #F0D8A8;border-radius:999px;padding:1px 8px;letter-spacing:0}
+.critnote{margin-top:9px;padding:9px 12px;background:#F2FBF6;border:1px solid #CFEADD;border-left:3px solid var(--s-done);border-radius:8px;font-size:12.4px;font-weight:600;color:#17795A}
+.qa{border-left:5px solid var(--s-todo)}
+.qa.st-doing{border-left-color:var(--s-doing)}
+.qa.st-done{border-left-color:var(--s-done)}
+.sg{font-style:normal;font-weight:800;margin-right:4px}
+.stb[data-v=todo] .sg::before,.fb[data-f=todo] .sg::before{content:'\25CB'}
+.stb[data-v=doing] .sg::before,.fb[data-f=doing] .sg::before{content:'\25D0'}
+.stb[data-v=done] .sg::before,.fb[data-f=done] .sg::before{content:'\2713'}
+.fb[data-f=all] .sg::before{content:'\25A4'}
+.stb[data-v=todo] .sg,.fb[data-f=todo] .sg{color:var(--s-todo)}
+.stb[data-v=doing] .sg,.fb[data-f=doing] .sg{color:var(--s-doing)}
+.stb[data-v=done] .sg,.fb[data-f=done] .sg{color:var(--s-done)}
+.stb.on[data-v=todo]{background:var(--s-todo);border-color:var(--s-todo);color:#fff}
+.stb.on[data-v=doing]{background:var(--s-doing);border-color:var(--s-doing);color:#fff}
+.stb.on[data-v=done]{background:var(--s-done);border-color:var(--s-done);color:#fff}
+.stb.on .sg{color:#fff}
+.fb.on[data-f=todo]{background:var(--s-todo);border-color:var(--s-todo);color:#fff}
+.fb.on[data-f=doing]{background:var(--s-doing);border-color:var(--s-doing);color:#fff}
+.fb.on[data-f=done]{background:var(--s-done);border-color:var(--s-done);color:#fff}
+.fb.on .sg{color:#fff}
+.wkb-p{flex:1 1 280px}
+#wkProg{display:block}
+.pgbar{display:flex;height:7px;border-radius:5px;background:#ECEAF4;overflow:hidden;margin-bottom:5px}
+.pgbar i{display:block;height:100%}
+.pg-done{background:var(--s-done)}
+.pg-doing{background:var(--s-doing)}
+.pgl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:11.8px}
+.pgl b{font-weight:800}
+.c-done{color:var(--s-done)}
+.c-doing{color:var(--s-doing)}
+.c-todo{color:var(--s-todo)}
+.pgl em{font-style:normal;font-weight:700;color:var(--ink3)}
+.pgs{display:block;margin-top:3px;font-size:11.2px;font-weight:700;color:var(--ink3)}
+.wkwarn .wr{display:block;margin-top:3px;font:11.5px ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:400;color:#8a6a2a;word-break:break-all}
+
+#wkWho.need{border-color:#9A4A4A;box-shadow:0 0 0 2px rgba(154,74,74,.18)}
+.exp-old{margin-top:7px;padding-top:6px;border-top:1px dashed #CFEADD;font-size:11.8px;color:var(--ink3)}
+.exp-old a{color:var(--pp-d)}
+.shot figcaption{margin-top:4px;font-size:11.3px;line-height:1.45;color:var(--ink3)}
+.lpt-wrap{margin-top:9px;overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.lpt{width:100%;border-collapse:collapse;font-size:12.4px;min-width:640px}
+.lpt th{background:#f4f3f9;color:var(--ink2);font-size:11.5px;font-weight:800;text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
+.lpt td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink1)}
+.lpt tr:last-child td{border-bottom:none}
+.lpt td.miss{color:#9A4A4A;font-weight:700}
+.lpt code{font:11.5px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink2);word-break:break-all}
+.lpt small{color:var(--ink3);font-size:11.3px}
+.lpt-note{margin-top:6px;font-size:11.6px;color:var(--ink3)}
+.lpo{margin:2px 0 0 18px}
+.lpo li{margin-top:3px}
+.lpo code{font:12px ui-monospace,SFMono-Regular,Menlo,monospace}
+.sb a{color:var(--pp-d)}
+
+/* 항목 아래쪽 자리 정리 (2026-10-21) — 상태 한 줄 · 메모 좌우 · 저장 단추는 메모 칸 오른쪽 아래.
+   .wk·.fk 는 그대로 두고(스크립트가 그 클래스로 찾는다) 자식들만 .wkx 격자에 올린다. */
+.wkx{display:grid;grid-template-columns:1fr 1fr;column-gap:12px;row-gap:6px;margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}
+.wkx .wk,.wkx .fk{display:contents}
+.wkx .wk-row,.wkx .fk-row{grid-row:1;gap:6px;align-items:center;min-width:0}
+.wkx .wk-row{grid-column:1}
+.wkx .fk-row{grid-column:2;justify-self:end;background:var(--pp-l);border-radius:999px;padding:3px 4px 3px 10px}
+.wkx .wk-note,.wkx .fk-note{grid-row:2;margin-top:0;min-height:0;height:52px;padding:6px 9px 24px;font-size:12.4px;line-height:1.5;resize:vertical;min-width:0}
+.wkx .wk-note{grid-column:1}
+.wkx .fk-note{grid-column:2;background:var(--pp-l);border-color:var(--pp-l)}
+.wkx .wk-row2,.wkx .fk-row2{grid-row:2;align-self:end;justify-self:end;margin:0 6px 5px 0;gap:6px;position:relative;z-index:1}
+.wkx .wk-row2{grid-column:1}
+.wkx .fk-row2{grid-column:2}
+.wkx .wk-lb,.wkx .fk-lb{min-width:0}
+.wkx .stb,.wkx .fkb{padding:3px 10px;font-size:11.4px}
+.wkx .wk-save,.wkx .fk-save{padding:2px 9px;font-size:11px;border-radius:6px}
+.wkx .wk-meta,.wkx .fk-meta{font-size:10.8px}
+.wkx .wk-flash{font-size:11px}
+@media (max-width:600px){
+  .wkx{grid-template-columns:1fr}
+  .wkx .wk-row,.wkx .wk-note,.wkx .wk-row2,.wkx .fk-row,.wkx .fk-note,.wkx .fk-row2{grid-column:1}
+  .wkx .wk-row{grid-row:1}.wkx .wk-note,.wkx .wk-row2{grid-row:2}
+  .wkx .fk-row{grid-row:3;justify-self:start;margin-top:4px}.wkx .fk-note,.wkx .fk-row2{grid-row:4}
+}
+/* 최종 검수 줄 (2026-10-21) — 개발팀 줄 아래, 보라 계열로 구분 */
+.wk-lb,.fk-lb{font-size:11.5px;font-weight:800;color:var(--ink3);min-width:62px}
+.fk-lb{color:var(--pp-d)}
+.fk{margin-top:9px;padding:9px 11px;background:var(--pp-l);border:1px solid #ddd3fa;border-left:3px solid var(--pp);border-radius:8px}
+.fk-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.fkb{font:700 11.8px inherit;color:var(--pp-d);background:#fff;border:1px solid #d6caf8;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fkb:hover{border-color:var(--pp)}
+.fkb.on{background:var(--pp);border-color:var(--pp);color:#fff}
+.fkb .sg::before,.fb[data-f=final] .sg::before{content:'\25C6'}
+.fkb .sg,.fb[data-f=final] .sg{color:var(--pp)}
+.fkb.on .sg{color:#fff}
+.fb.on[data-f=final]{background:var(--pp);border-color:var(--pp);color:#fff}
+.fk-meta{font-size:11.3px;color:var(--ink3);margin-left:auto}
+.fk-note{display:block;width:100%;margin-top:8px;font:12.6px/1.6 inherit;color:var(--ink1);background:#fff;border:1px solid #ddd3fa;border-radius:8px;padding:8px 10px;resize:vertical}
+.fk-note:focus{outline:none;border-color:var(--pp)}
+.fk-row2{display:flex;align-items:center;gap:9px;margin-top:7px}
+.fk-save{font:700 11.8px inherit;color:#fff;background:var(--pp);border:1px solid var(--pp);border-radius:8px;padding:6px 14px;cursor:pointer}
+.fk-save:hover{background:var(--pp-d);border-color:var(--pp-d)}
+.c-final{color:var(--pp-d)}
+.sb code,.eb code{font:11.6px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--pp-d);background:#f4f3f9;border:1px solid var(--line);border-radius:5px;padding:0 5px;word-break:break-all}
+</style></head><body>
+<input type="checkbox" id="langsw"><input type="radio" name="sec" id="t01" checked>
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div style="max-width:1000px;margin:0 auto;padding:0 22px"><div class="kick">QA EXTRA &middot; 2026-10-27</div>
+<div class="htitle"><span class="i18n"><span class="ko">PricePick 검수 (검수자 : 김반장) 2026-10-27</span><span class="vi">Kiểm thử PricePick (Người kiểm thử : Mr Mark) 27/10/2026</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">수정 요청 2건 · 대상 STG 앱 소스(main ff5332d) · 캡처 없음</span><span class="vi">2 mục yêu cầu sửa · đối tượng mã nguồn app STG (main ff5332d) · không có ảnh chụp</span></span></div></div></div></header>
+<div class="wrap">
+
+<div class="wkbar"><div class="wkb-l"><label class="wkb-lb" for="wkWho"><span class="i18n"><span class="ko">작업자</span><span class="vi">Người thực hiện</span></span></label><select id="wkWho"><option value="">작업자 선택 / Chọn người thực hiện</option><option value="빈 (Nguyen Vuong)">빈 (Nguyen Vuong) / Vin (Nguyen Vuong)</option><option value="존 (John)">존 (John) / John</option><option value="해리 (Harry)">해리 (Harry) / Harry</option><option value="켈빈 (Kelvin)">켈빈 (Kelvin) / Kelvin</option><option value="이부장">이부장 / Trưởng phòng Lee</option><option value="김반장">김반장 / Mr Mark</option></select></div><div class="wkb-p"><span id="wkProg">—</span></div><div class="wkb-f"><span class="wkb-lb"><span class="i18n"><span class="ko">걸러보기</span><span class="vi">Lọc</span></span></span><button type="button" class="fb on" data-f="all"><i class="sg"></i><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span></button><button type="button" class="fb" data-f="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="fb" data-f="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button><button type="button" class="fb" data-f="final"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button></div></div>
+<div class="wkwarn" id="wkWarn" hidden><span class="i18n"><span class="ko">처리 현황을 불러오지 못했습니다. 본문은 그대로 보입니다. 연결이 돌아오면 새로고침해 주십시오.</span><span class="vi">Không tải được trạng thái xử lý. Nội dung vẫn hiển thị bình thường. Khi kết nối trở lại xin tải lại trang.</span></span><span class="wr" id="wkWarnR"></span></div>
+<div class="critnote"><span class="i18n"><span class="ko">처리 완료의 기준은 각 항목의 「정상 동작」입니다. 「정상 동작」대로 되면 「처리 완료」로 바꿉니다.</span><span class="vi">Tiêu chí xử lý xong là 「정상 동작」 (Hoạt động đúng) của từng mục. Khi đúng như 「정상 동작」 thì đổi sang 「처리 완료」 (Đã xử lý xong).</span></span></div>
+<div class="tabs"><label for="t01"><span class="tn">01</span> <span class="i18n"><span class="ko">우선</span><span class="vi">Ưu tiên</span></span> <span class="tc">2</span></label></div>
+<div class="pane p01" data-g="01"><article class="qa st-todo" id="i01"><div class="qh"><span class="qn">01</span><span class="qs"><span class="i18n"><span class="ko">Android 광고식별자(AD_ID) 권한 선언 누락</span><span class="vi">Thiếu khai báo quyền advertising ID (AD_ID) trên Android</span></span></span><span class="chkb"><span class="i18n"><span class="ko">우선</span><span class="vi">Ưu tiên</span></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">소스 점검</div><div class="sb"><code>android/app/src/main/AndroidManifest.xml</code>에 <code>com.google.android.gms.permission.AD_ID</code> 권한 선언 없음. 광고식별자는 쿠팡 경유 구매 실적 확인에 사용.</div></span><span class="vi"><div class="sh">Kiểm tra mã nguồn</div><div class="sb">Không có khai báo quyền <code>com.google.android.gms.permission.AD_ID</code> trong <code>android/app/src/main/AndroidManifest.xml</code>. Advertising ID được dùng để xác nhận đơn mua qua Coupang.</div></span></span></div><div class="exp"><div class="eh"><span class="i18n"><span class="ko">정상 동작</span><span class="vi">Hoạt động đúng</span></span></div><div class="eb"><span class="i18n"><span class="ko">배포 빌드 APK의 권한 목록에 <code>com.google.android.gms.permission.AD_ID</code> 포함. Android 13 이상 기기에서 광고식별자 수집.</span><span class="vi">Danh sách quyền của APK bản phát hành có <code>com.google.android.gms.permission.AD_ID</code>. Thu thập được advertising ID trên thiết bị Android 13 trở lên.</span></span></div></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">확인 방법</div><div class="sb">빌드된 APK의 권한 목록을 회신해 주십시오. 구두 확인은 반영 확인으로 처리하지 않습니다.</div></span><span class="vi"><div class="sh">Cách xác nhận</div><div class="sb">Xin gửi lại danh sách quyền của APK đã build. Xác nhận bằng lời sẽ không được xem là xác nhận đã phản ánh.</div></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">개발팀 확인 위치</div><div class="sb"><code>android/app/src/main/AndroidManifest.xml</code> · 빌드 시 병합된 최종 매니페스트</div></span><span class="vi"><div class="sh">Vị trí đội phát triển kiểm tra</div><div class="sb"><code>android/app/src/main/AndroidManifest.xml</code> · manifest cuối cùng sau khi merge lúc build</div></span></span></div><div class="wkx"><div class="wk" data-id="01"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="01"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article><article class="qa st-todo" id="i02"><div class="qh"><span class="qn">02</span><span class="qs"><span class="i18n"><span class="ko">카카오 연동 완료 화면의 「가입 축하 20P」 중복 표기</span><span class="vi">Hiển thị trùng 「가입 축하 20P」 ở màn liên kết Kakao xong</span></span></span><span class="chkb"><span class="i18n"><span class="ko">우선</span><span class="vi">Ưu tiên</span></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">소스 점검</div><div class="sb">가입 직후 팝업(<code>lib/features/nickname/presentation/widgets/signup_bonus_dialog.dart</code>)은 「가입 축하 20P를 드렸어요」, 「카카오 연동하면 이벤트 티켓 1장」으로 가입 시점 지급을 안내. 그런데 카카오 연동 완료 화면(<code>lib/features/auth/presentation/pages/kakao_link_success_page.dart</code>)의 「카카오 연동 보상 (지금 지급)」에도 「가입 축하 20P 즉시 지급」 행이 있음.</div></span><span class="vi"><div class="sh">Kiểm tra mã nguồn</div><div class="sb">Popup ngay sau đăng ký (<code>lib/features/nickname/presentation/widgets/signup_bonus_dialog.dart</code>) ghi 「가입 축하 20P를 드렸어요」, 「카카오 연동하면 이벤트 티켓 1장」. Nhưng màn liên kết Kakao xong (<code>lib/features/auth/presentation/pages/kakao_link_success_page.dart</code>) phần 「카카오 연동 보상 (지금 지급)」 vẫn có dòng 「가입 축하 20P 즉시 지급」.</div></span></span></div><div class="exp"><div class="eh"><span class="i18n"><span class="ko">정상 동작</span><span class="vi">Hoạt động đúng</span></span></div><div class="eb"><span class="i18n"><span class="ko">가입 축하 20P는 닉네임 가입 시점에 지급(카카오 미연동 회원 포함). 카카오 연동 시에는 이벤트 티켓 1장만 지급·표기(2026-10-27 확정). 연동 완료 화면에서 「가입 축하 20P 즉시 지급」 행 제거, 서버도 연동 시 20P를 다시 지급하지 않음.</span><span class="vi">Thưởng đăng ký 20P cấp lúc đăng ký biệt danh (kể cả hội viên chưa liên kết Kakao). Khi liên kết Kakao chỉ cấp·hiển thị 1 vé sự kiện (chốt 27/10/2026). Bỏ dòng 「가입 축하 20P 즉시 지급」 ở màn liên kết xong, server cũng không cấp lại 20P khi liên kết.</span></span></div></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">확인 방법</div><div class="sb">신규 가입 → 포인트 내역에 가입 축하 20P 1건. 이어서 카카오 연동 → 이벤트 티켓 1장만 추가되고 포인트는 늘지 않음. 포인트·티켓 내역 화면을 회신해 주십시오.</div></span><span class="vi"><div class="sh">Cách xác nhận</div><div class="sb">Đăng ký mới → lịch sử điểm có 1 dòng thưởng đăng ký 20P. Sau đó liên kết Kakao → chỉ thêm 1 vé sự kiện, điểm không tăng. Xin gửi lại màn lịch sử điểm·vé.</div></span></span></div><div class="sub"><span class="i18n"><span class="ko"><div class="sh">개발팀 확인 위치</div><div class="sb"><code>lib/features/auth/presentation/pages/kakao_link_success_page.dart</code> 「카카오 연동 보상 (지금 지급)」 · 서버 카카오 연동 보상 지급</div></span><span class="vi"><div class="sh">Vị trí đội phát triển kiểm tra</div><div class="sb"><code>lib/features/auth/presentation/pages/kakao_link_success_page.dart</code> 「카카오 연동 보상 (지금 지급)」 · server cấp thưởng liên kết Kakao</div></span></span></div><div class="wkx"><div class="wk" data-id="02"><div class="wk-row"><span class="wk-lb"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></span><div class="wk-st"><button type="button" class="stb on" data-v="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="stb" data-v="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div><span class="wk-meta"></span></div><textarea class="wk-note" rows="2" placeholder="메모" data-ph-ko="메모" data-ph-vi="Ghi chú"></textarea><div class="wk-row2"><button type="button" class="wk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div><div class="fk" data-id="02"><div class="fk-row"><span class="fk-lb"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span><button type="button" class="fkb"><i class="sg"></i><span class="i18n"><span class="ko">최종 검수 완료</span><span class="vi">Đã kiểm thử cuối</span></span></button><span class="fk-meta"></span></div><textarea class="fk-note" rows="2" placeholder="최종 검수 메모 (김성권 이사)" data-ph-ko="최종 검수 메모 (김성권 이사)" data-ph-vi="Ghi chú kiểm thử cuối (Giám đốc Kim Seong-gwon)"></textarea><div class="fk-row2"><button type="button" class="fk-save"><span class="i18n"><span class="ko">메모 저장</span><span class="vi">Lưu ghi chú</span></span></button><span class="wk-flash"></span></div></div></div></article></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 검수 · 2026-10-27 · 우선 2 · 총 2건 · 이전 검수는 <a href="/devqa/qa-extra-20261021.html">검수(2026-10-21)</a></span><span class="vi">PricePick · Kiểm thử · 27/10/2026 · ưu tiên 2 · tổng 2 mục · lần kiểm thử trước: <a href="/devqa/qa-extra-20261021.html">Kiểm thử (21/10/2026)</a></span></span></div>
+</div>
+<div class="lb" id="lb"><img id="lbi" alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=document.getElementById('lbi');
+  document.addEventListener('click',function(e){
+    var w=e.target.closest('.iw');
+    if(w){ im.src=w.dataset.src; lb.classList.add('on'); return; }
+    if(lb.classList.contains('on')) lb.classList.remove('on');
+  });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') lb.classList.remove('on'); });
+})();
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  var COL='qa_extra_20261027';
+  var KW='ppqa_who';
+  var db=null, state={};
+
+  try{
+    firebase.initializeApp({apiKey:"AIzaSyCElUPJAitnMZxttVYjboV0j4s_qpErAgA",authDomain:"pricepick-demo.firebaseapp.com",projectId:"pricepick-demo",storageBucket:"pricepick-demo.firebasestorage.app",messagingSenderId:"505137396208",appId:"1:505137396208:web:cea9d208c7745854e14535"});
+    db=firebase.firestore();
+  }catch(e){ db=null; }
+
+  function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
+  function warn(on,why){
+    var w=document.getElementById('wkWarn'); if(w) w.hidden=!on;
+    var r=document.getElementById('wkWarnR'); if(r) r.textContent=(on&&why)?why:'';
+  }
+  // 「처리중」은 단추에서 뺐다(2026-10-21). 이미 저장된 doing 은 지우지 않고 화면에서만 미처리로 읽는다.
+  function stOf(d){ var s=(d&&d.status)||'todo'; return s==='doing'?'todo':s; }
+  // 메모 칸 안내 문구는 지금 고른 언어 하나만 (KO/VI 토글을 따라간다).
+  function setPh(){
+    var vi=document.getElementById('langsw').checked;
+    document.querySelectorAll('textarea[data-ph-ko]').forEach(function(t){ t.placeholder=vi?t.dataset.phVi:t.dataset.phKo; });
+  }
+  function reason(e){ if(!e) return ''; return [e.code,e.message].filter(Boolean).join(' · '); }
+
+  function who(){ return document.getElementById('wkWho').value; }
+  function needWho(el){
+    if(who()) return true;
+    var isVi=document.getElementById('langsw').checked;
+    if(el) flash(el, isVi?'Xin chọn người thực hiện trước.':'작업자를 먼저 선택하십시오.', 1);
+    var sel=document.getElementById('wkWho');
+    sel.classList.add('need');
+    try{ sel.focus({preventScroll:true}); }catch(e){}
+    return false;
+  }
+  function flash(el,msg,err){
+    var f=el.querySelector('.wk-flash');
+    f.textContent=msg; f.classList.toggle('err',!!err); f.classList.add('on');
+    setTimeout(function(){ f.classList.remove('on'); },1800);
+  }
+  function fmt(ts){
+    if(!ts) return '';
+    var d=ts.toDate?ts.toDate():new Date(ts);
+    var p=function(n){return String(n).padStart(2,'0');};
+    return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());
+  }
+  function paintOne(wk){
+    var d=state[wk.dataset.id]||{};
+    var st=stOf(d);
+    wk.querySelectorAll('.stb').forEach(function(b){ b.classList.toggle('on', b.dataset.v===st); });
+    var art=wk.closest('article.qa');
+    if(art){ art.classList.remove('st-todo','st-doing','st-done'); art.classList.add('st-'+st); }
+    var n=wk.querySelector('.wk-note');
+    if(document.activeElement!==n) n.value=d.note||'';
+    var m=wk.querySelector('.wk-meta');
+    m.textContent=(d.updatedBy||d.updatedAt)?((d.updatedBy||'')+(d.updatedAt?' · '+fmt(d.updatedAt):'')):'';
+  }
+  var GRP=[], GOF={};
+  document.querySelectorAll('.pane').forEach(function(p){
+    var g={k:p.dataset.g, n:0}; GRP.push(g);
+    p.querySelectorAll('.wk').forEach(function(w){ GOF[w.dataset.id]=g; g.n++; });
+  });
+  var TOTAL=Object.keys(GOF).length;
+  function progress(){
+    var done={}, nd=0, nf=0;
+    GRP.forEach(function(g){ done[g.k]=0; });
+    Object.keys(state).forEach(function(k){
+      var g=GOF[k]; if(!g) return;
+      if(state[k]&&state[k].final_done) nf++;
+      var st=state[k]&&state[k].status;
+      if(st==='done'){ done[g.k]++; nd++; }
+    });
+    var nt=TOTAL-nd, pct=Math.round(nd/TOTAL*100);
+    var isVi=document.getElementById('langsw').checked;
+    var L=isVi?{d:'Đã xử lý xong',t:'Chưa xử lý',h:'Hoàn tất',f:'Đã kiểm thử cuối'}
+              :{d:'처리 완료',t:'미처리',h:'완료',f:'최종 검수 완료'};
+    document.getElementById('wkProg').innerHTML=
+      '<span class="pgbar"><i class="pg-done" style="width:'+(nd/TOTAL*100).toFixed(2)+'%"></i>'
+      +'</span>'
+      +'<span class="pgl"><b class="c-done">\u2713 '+L.d+' '+nd+'</b>'
+      +'<b class="c-todo">\u25CB '+L.t+' '+nt+'</b>'
+      +'<em>'+L.h+' '+pct+'%</em>'
+      +'<b class="c-final">\u25C6 '+L.f+' '+nf+'</b></span>'
+      +'<span class="pgs">'+GRP.map(function(g){ return g.k+' '+done[g.k]+'/'+g.n; }).join(' &middot; ')+'</span>';
+  }
+
+  // 최종 검수(김성권 이사) — 개발팀 상태·메모와 같은 문서의 final_* 필드에만 쓴다. 작업자 선택 없이 저장.
+  function paintFinal(fk){
+    var d=state[fk.dataset.id]||{}, on=!!d.final_done;
+    fk.querySelector('.fkb').classList.toggle('on',on);
+    var n=fk.querySelector('.fk-note');
+    if(document.activeElement!==n) n.value=d.final_note||'';
+    fk.querySelector('.fk-meta').textContent=d.final_updated_at?fmt(d.final_updated_at):'';
+  }
+  async function saveFinal(id, patch, el){
+    var isViD=document.getElementById('langsw').checked;
+    if(!db){ flash(el, isViD?'Không có kết nối DB':'DB 연결 없음',1); return; }
+    var body=Object.assign({}, patch, {final_updated_at:firebase.firestore.FieldValue.serverTimestamp()});
+    try{
+      await db.collection(COL).doc(id).set(body,{merge:true});
+      state[id]=Object.assign({}, state[id]||{}, patch, {final_updated_at:new Date()});
+      paintFinal(el); progress(); applyFilter();
+      flash(el, document.getElementById('langsw').checked?'Đã lưu':'저장됐습니다');
+    }catch(e){
+      var r=reason(e);
+      flash(el, (document.getElementById('langsw').checked?'Lưu thất bại':'저장 실패')+(r?' · '+r:''),1);
+      console.error('[qa] final save failed', id, e);
+    }
+  }
+  function paint(){ document.querySelectorAll('.wk').forEach(paintOne); document.querySelectorAll('.fk').forEach(paintFinal); progress(); applyFilter(); }
+
+  var filt='all';
+  function applyFilter(){
+    document.querySelectorAll('article.qa').forEach(function(a){
+      var wk=a.querySelector('.wk'); if(!wk) return;
+      var st=stOf(state[wk.dataset.id]);
+      var fin=!!(state[wk.dataset.id]||{}).final_done;
+      a.hidden = !(filt==='all'||(filt==='final'?fin:filt===st));
+    });
+  }
+
+  async function save(id, patch, el){
+    var isViD=document.getElementById('langsw').checked;
+    if(!db){ flash(el, isViD?'Không có kết nối DB':'DB 연결 없음',1); return; }
+    if(!needWho(el)) return;
+    var body=Object.assign({}, patch, {updatedBy:who(), updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+    try{
+      await db.collection(COL).doc(id).set(body,{merge:true});
+      state[id]=Object.assign({}, state[id]||{}, patch, {updatedBy:who(), updatedAt:new Date()});
+      paintOne(el); progress(); applyFilter();
+      var isVi=document.getElementById('langsw').checked;
+      flash(el, isVi?'Đã lưu':'저장됐습니다');
+    }catch(e){
+      var isVi2=document.getElementById('langsw').checked, r=reason(e);
+      flash(el, (isVi2?'Lưu thất bại':'저장 실패')+(r?' · '+r:''),1);
+      console.error('[qa-extra] save failed', id, e);
+    }
+  }
+
+  document.addEventListener('click', function(e){
+    var fb2=e.target.closest('.fkb');
+    if(fb2){ var fk=fb2.closest('.fk'); saveFinal(fk.dataset.id,{final_done:!(state[fk.dataset.id]||{}).final_done},fk); return; }
+    var fs=e.target.closest('.fk-save');
+    if(fs){ var fk2=fs.closest('.fk'); saveFinal(fk2.dataset.id,{final_note:fk2.querySelector('.fk-note').value},fk2); return; }
+    var b=e.target.closest('.stb');
+    if(b){ var wk=b.closest('.wk'); save(wk.dataset.id,{status:b.dataset.v},wk); return; }
+    var sv=e.target.closest('.wk-save');
+    if(sv){ var w2=sv.closest('.wk'); save(w2.dataset.id,{note:w2.querySelector('.wk-note').value},w2); return; }
+    var f=e.target.closest('.fb');
+    if(f){ document.querySelectorAll('.fb').forEach(function(x){x.classList.remove('on');}); f.classList.add('on'); filt=f.dataset.f; applyFilter(); }
+  });
+  document.getElementById('wkWho').addEventListener('change', function(){ ls(KW,this.value); this.classList.remove('need'); });
+  document.getElementById('langsw').addEventListener('change', function(){ progress(); setPh(); });
+  setPh();
+
+  var saved=ls(KW); if(saved) document.getElementById('wkWho').value=saved;
+
+  (async function(){
+    if(!db){ warn(true,'Firebase SDK'); progress(); return; }
+    try{
+      var snap=await db.collection(COL).get();
+      snap.forEach(function(doc){ state[doc.id]=doc.data(); });
+      warn(false);
+    }catch(e){ warn(true,reason(e)); console.error('[qa-extra] load failed',e); }
+    paint();
+  })();
+})();
+</script>
+</body></html>

@@ -182,6 +182,12 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 .wkx .wk-note{height:110px}
 .qb code{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--pp-d);background:#f4f3f9;border:1px solid var(--line);border-radius:5px;padding:0 5px}
 
+.rfwrap{margin-left:8px;display:inline-flex;align-items:baseline;white-space:nowrap;font-weight:400}
+.rf-at{font-size:12px;color:#a3a3a3}
+.rf-btn{margin-left:6px;border:1px solid #e5e5e5;border-radius:4px;background:#fff;padding:2px 6px;font:inherit;font-size:11px;color:#737373;cursor:pointer}
+.rf-btn:hover{border-color:#a3a3a3;color:#171717}
+.rf-btn:disabled{cursor:wait;background:#f5f5f5;color:#a3a3a3}
+.rf-btn .rf-busy{display:none}.rf-btn[aria-busy="true"] .rf-idle{display:none}.rf-btn[aria-busy="true"] .rf-busy{display:inline}
 </style></head><body>
 <input type="checkbox" id="langsw"><input type="radio" name="sec" id="t01" checked>
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
@@ -189,7 +195,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 <div class="htitle"><span class="i18n"><span class="ko">PricePick 개인정보처리방침 확정 문의 (2026-10-27)</span><span class="vi">Câu hỏi chốt Chính sách xử lý thông tin cá nhân PricePick (27/10/2026)</span></span></div></div></header>
 <div class="wrap">
 
-<div class="wkbar"><div class="wkb-l"><label class="wkb-lb" for="wkWho"><span class="i18n"><span class="ko">작업자</span><span class="vi">Người thực hiện</span></span></label><select id="wkWho"><option value="">작업자 선택 / Chọn người thực hiện</option><option value="빈 (Nguyen Vuong)">빈 (Nguyen Vuong) / Vin (Nguyen Vuong)</option><option value="존 (John)">존 (John) / John</option><option value="해리 (Harry)">해리 (Harry) / Harry</option><option value="켈빈 (Kelvin)">켈빈 (Kelvin) / Kelvin</option><option value="이부장">이부장 / Trưởng phòng Lee</option><option value="김반장">김반장 / Mr Mark</option></select></div><div class="wkb-p"><span id="wkProg">—</span></div><div class="wkb-f"><span class="wkb-lb"><span class="i18n"><span class="ko">걸러보기</span><span class="vi">Lọc</span></span></span><button type="button" class="fb on" data-f="all"><i class="sg"></i><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span></button><button type="button" class="fb" data-f="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="fb" data-f="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div></div>
+<div class="wkbar"><div class="wkb-l"><label class="wkb-lb" for="wkWho"><span class="i18n"><span class="ko">작업자</span><span class="vi">Người thực hiện</span></span></label><select id="wkWho"><option value="">작업자 선택 / Chọn người thực hiện</option><option value="빈 (Nguyen Vuong)">빈 (Nguyen Vuong) / Vin (Nguyen Vuong)</option><option value="존 (John)">존 (John) / John</option><option value="해리 (Harry)">해리 (Harry) / Harry</option><option value="켈빈 (Kelvin)">켈빈 (Kelvin) / Kelvin</option><option value="이부장">이부장 / Trưởng phòng Lee</option><option value="김반장">김반장 / Mr Mark</option></select></div><div class="wkb-p"><span id="wkProg">—</span><span class="rfwrap"><span class="rf-at"><span class="i18n"><span class="ko">마지막 갱신 </span><span class="vi">Cập nhật lần cuối </span></span><span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle"><span class="i18n"><span class="ko">새로고침</span><span class="vi">Làm mới</span></span></span><span class="rf-busy"><span class="i18n"><span class="ko">조회 중</span><span class="vi">Đang tải</span></span></span></button></span></div><div class="wkb-f"><span class="wkb-lb"><span class="i18n"><span class="ko">걸러보기</span><span class="vi">Lọc</span></span></span><button type="button" class="fb on" data-f="all"><i class="sg"></i><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span></button><button type="button" class="fb" data-f="todo"><i class="sg"></i><span class="i18n"><span class="ko">미처리</span><span class="vi">Chưa xử lý</span></span></button><button type="button" class="fb" data-f="done"><i class="sg"></i><span class="i18n"><span class="ko">처리 완료</span><span class="vi">Đã xử lý xong</span></span></button></div></div>
 <div class="wkwarn" id="wkWarn" hidden><span class="i18n"><span class="ko">처리 현황을 불러오지 못했습니다. 본문은 그대로 보입니다. 연결이 돌아오면 새로고침해 주십시오.</span><span class="vi">Không tải được trạng thái xử lý. Nội dung vẫn hiển thị bình thường. Khi kết nối trở lại xin tải lại trang.</span></span><span class="wr" id="wkWarnR"></span></div>
 <div class="critnote"><span class="i18n"><span class="ko">개인정보처리방침 확정을 위한 개발팀 확인 사항입니다. 각 항목 답변란에 직접 기재해 주십시오.</span><span class="vi">Đây là các mục cần đội phát triển xác nhận để chốt Chính sách xử lý thông tin cá nhân. Xin ghi trực tiếp vào ô trả lời của từng mục.</span></span></div>
 <div class="tabs"><label for="t01"><span class="tn">01–03</span> <span class="i18n"><span class="ko">확정 문의</span><span class="vi">Câu hỏi chốt</span></span> <span class="tc">3</span></label></div>
@@ -329,15 +335,23 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 
   var saved=ls(KW); if(saved) document.getElementById('wkWho').value=saved;
 
-  (async function(){
+  /* 상태 값을 읽어 와 화면·건수를 그린다. 「새로고침」도 이 함수를 다시 부른다 — 걸러보기와 쓰던 메모는 그대로 둔다. */
+  var rfBtn=document.getElementById('rfBtn'), rfAt=document.getElementById('rfAt');
+  async function load(){
     if(!db){ warn(true,'Firebase SDK'); progress(); return; }
+    rfBtn.disabled=true; rfBtn.setAttribute('aria-busy','true');
     try{
       var snap=await db.collection(COL).get();
+      Object.keys(state).forEach(function(k){ delete state[k]; });
       snap.forEach(function(doc){ state[doc.id]=doc.data(); });
       warn(false);
+      rfAt.textContent=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date());
     }catch(e){ warn(true,reason(e)); console.error('[qa-privacy] load failed',e); }
+    rfBtn.disabled=false; rfBtn.removeAttribute('aria-busy');
     paint();
-  })();
+  }
+  rfBtn.addEventListener('click', load);
+  load();
 })();
 </script>
 </body></html>
