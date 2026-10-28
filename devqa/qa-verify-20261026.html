@@ -160,6 +160,9 @@ tr.fhide{display:none}
 .t1go{border:0;background:none;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:left;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:rgba(91,57,184,.45)}
 .t1go:hover{text-decoration-color:currentColor}
 .tbl.t1 td.by,.tbl.t1 td.at{white-space:nowrap}
+.t1g{font-size:13.5px;color:var(--ink1);margin:18px 0 6px}
+.t1sub{font-size:12.5px;color:var(--ink2);margin:12px 0 6px}
+.t1load{font-size:12.5px;color:var(--ink3)}
 </style></head>
 <body>
 <input type="checkbox" id="langsw">
@@ -168,7 +171,7 @@ tr.fhide{display:none}
 <div class="hsub"><span class="i18n"><span class="ko">검수 2026-10-02 · 10-05 · 10-21 · 2026-10-28 기준</span><span class="vi">Kiểm thử 02/10 · 05/10 · 21/10/2026 · tính đến 28/10/2026</span></span></div></div></header>
 <div class="wrap">
 <div class="t1box"><h2 class="sec" id="dt1"><button type="button" class="t1go" id="t1go"><span class="i18n"><span class="ko">처리 완료 보고 대비 미반영 </span><span class="vi">Đã báo xử lý nhưng chưa phản ánh </span></span><b id="t1n">—</b><span class="i18n"><span class="ko">건</span><span class="vi"> mục</span></span></button></h2>
-<table class="tbl cl t1"><thead><tr><th><span class="i18n"><span class="ko">번호</span><span class="vi">Số</span></span></th><th><span class="i18n"><span class="ko">화면</span><span class="vi">Màn hình</span></span></th><th><span class="i18n"><span class="ko">개발팀 처리자</span><span class="vi">Người xử lý (đội phát triển)</span></span></th><th><span class="i18n"><span class="ko">처리 완료 표시 시각</span><span class="vi">Thời điểm đánh dấu đã xử lý</span></span></th><th><span class="i18n"><span class="ko">STG 현재 표기</span><span class="vi">STG hiển thị hiện tại</span></span></th><th><span class="i18n"><span class="ko">STG 수정 후 표기</span><span class="vi">STG hiển thị sau khi sửa</span></span></th></tr></thead><tbody id="t1body"><tr><td colspan="6"><span class="i18n"><span class="ko">불러오는 중</span><span class="vi">Đang tải</span></span></td></tr></tbody></table></div>
+<div id="t1groups"><p class="t1load"><span class="i18n"><span class="ko">불러오는 중</span><span class="vi">Đang tải</span></span></p></div></div>
 <div class="cleanup"><h2 class="sec" id="dcl"><span class="i18n"><span class="ko">개발팀 처리 필요 — STG 확인 과정에서 우리가 만든 것 2건</span><span class="vi">Đội phát triển cần xử lý — 2 mục do chúng tôi tạo ra khi kiểm tra STG</span></span></h2>
 <table class="tbl cl"><thead><tr><th><span class="i18n"><span class="ko">번호</span><span class="vi">Số</span></span></th><th><span class="i18n"><span class="ko">대상</span><span class="vi">Đối tượng</span></span></th><th><span class="i18n"><span class="ko">경위</span><span class="vi">Diễn biến</span></span></th><th><span class="i18n"><span class="ko">요청</span><span class="vi">Yêu cầu</span></span></th><th><span class="i18n"><span class="ko">담당</span><span class="vi">Phụ trách</span></span></th></tr></thead><tbody>
 <tr><td class="no"><span class="i18n"><span class="ko">C-1</span><span class="vi">C-1</span></span></td><td class="scr"><span class="i18n"><span class="ko">점검용 예약 발송 1건</span><span class="vi">1 thông báo hẹn giờ dùng để kiểm tra</span></span></td><td><span class="i18n"><span class="ko">2026-10-27 STG 확인 때 우리가 등록했다. 2027-01-15 10:00 · 대상 「신규 가입(7일 이내)」 · 제목 「[내부 점검] 예약 발송 확인용 - 즉시 취소 예정」. 지금 대상은 0명. 화면에 취소 기능이 없어 지울 수 없다(외-15)</span><span class="vi">Chúng tôi đã đăng ký khi kiểm tra STG ngày 27/10/2026. 15/01/2027 10:00 · đối tượng 「신규 가입(7일 이내)」 · tiêu đề 「[내부 점검] 예약 발송 확인용 - 즉시 취소 예정」. Hiện có 0 người nhận. Màn hình không có chức năng hủy nên không xóa được (ngoài-15)</span></span></td><td><span class="i18n"><span class="ko">2027-01-15 전에 서버에서 삭제</span><span class="vi">Xóa trên máy chủ trước 15/01/2027</span></span></td><td class="who"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></td></tr>
@@ -421,29 +424,46 @@ document.addEventListener('click',function(e){
     }while(tok);
     return out;
   }
+
+  /* 갈래 — 처리 완료 표시(10-06~10-08) 뒤에 정책이 바뀐 항목은 재요청, 나머지는 완료 표시 후 미반영 (2026-10-28) */
+  var T1GROUP={'r1005-04-02':'g1','r1005-04-04':'g1','r1005-05-23':'g1','r1005-05-24':'g1','r1005-06-13':'g1','r1005-04-10':'g1',
+    'r1002-08':'g2a','r1002-10':'g2a','r1002-19':'g2a','r1005-05-21':'g2a','r1002-23':'g2a',
+    'r1005-04-07':'g2b','r1005-04-11':'g2b','r1005-04-13':'g2b','r1005-04-16':'g2b','r1005-04-21':'g2b','r1005-04-26':'g2b','r1005-04-36':'g2b','r1005-05-16':'g2b'};
+  var REREQ=i18n('최초 요청 이후 정책 변경. 재요청.','Chính sách đã thay đổi sau yêu cầu ban đầu. Yêu cầu lại.');
+  var T1TH='<tr><th><span class="i18n"><span class="ko">번호</span><span class="vi">Số</span></span></th><th><span class="i18n"><span class="ko">화면</span><span class="vi">Màn hình</span></span></th><th><span class="i18n"><span class="ko">개발팀 처리자</span><span class="vi">Người xử lý (đội phát triển)</span></span></th><th><span class="i18n"><span class="ko">처리 완료 표시 시각</span><span class="vi">Thời điểm đánh dấu đã xử lý</span></span></th><th><span class="i18n"><span class="ko">STG 현재 표기</span><span class="vi">STG hiển thị hiện tại</span></span></th><th><span class="i18n"><span class="ko">STG 수정 후 표기</span><span class="vi">STG hiển thị sau khi sửa</span></span></th>';
   async function loadDev(){
-    var body=document.getElementById('t1body'), cnt=document.getElementById('t1n');
+    var groups=document.getElementById('t1groups'), cnt=document.getElementById('t1n');
     try{
       var keys=Object.keys(DEVCOL), got=await Promise.all(keys.map(function(k){ return devCol(DEVCOL[k]); })), dev={};
       keys.forEach(function(k,i){ dev[k]=got[i]; });
-      var html='';
+      var by={g1:[],g2a:[],g2b:[],etc:[]};
       rows.forEach(function(r){
         var a=r.querySelector('td.no a.ext'); if(!a) return;
         var m=a.getAttribute('href').match(/devqa\/([a-z0-9-]+)\.html/); if(!m||!dev[m[1]]) return;
         var d=dev[m[1]][a.textContent.trim()], sst=r.querySelector('td.sst');
         r._t1=!!(d&&d.status==='done'&&sst&&/\bs-ng\b/.test(sst.className));
         if(!r._t1) return;
-        var td=r.children;
-        html+='<tr><td class="no">'+a.outerHTML+'</td><td class="scr">'+td[1].innerHTML+'</td>'
+        var td=r.children, g=T1GROUP[r.id]||'etc';
+        by[g].push('<tr><td class="no">'+a.outerHTML+'</td><td class="scr">'+td[1].innerHTML+'</td>'
           +'<td class="by">'+(d.by?esc(d.by):NOREC)+'</td>'
           +'<td class="at">'+(d.at?atFmt.format(new Date(d.at)):NOREC)+'</td>'
-          +'<td>'+td[4].innerHTML+'</td><td>'+td[5].innerHTML+'</td></tr>';
+          +'<td>'+td[4].innerHTML+'</td><td>'+td[5].innerHTML+'</td>'
+          +(g==='g1'?'<td>'+REREQ+'</td>':'')+'</tr>');
       });
       cnt.textContent=rows.filter(function(r){return r._t1;}).length;
-      body.innerHTML=html||'<tr><td colspan="6">'+i18n('없음','Không có')+'</td></tr>';
+      var tbl=function(list,re){ return '<table class="tbl cl t1"><thead>'+T1TH+(re?'<th>'+i18n('비고','Ghi chú')+'</th>':'')+'</tr></thead><tbody>'+list.join('')+'</tbody></table>'; };
+      var n2=by.g2a.length+by.g2b.length+by.etc.length, out='';
+      if(by.g1.length) out+='<h3 class="t1g">'+i18n('정책 변경으로 재요청 — '+by.g1.length+'건','Yêu cầu lại do thay đổi chính sách — '+by.g1.length+' mục')+'</h3>'+tbl(by.g1,true);
+      if(n2){
+        out+='<h3 class="t1g">'+i18n('완료 표시 후 미반영 — '+n2+'건','Đã đánh dấu xong nhưng chưa phản ánh — '+n2+' mục')+'</h3>';
+        if(by.g2a.length) out+='<h4 class="t1sub">'+i18n('(가) 지정한 문구와 다름 — '+by.g2a.length+'건','(가) Câu chữ khác với câu đã chỉ định — '+by.g2a.length+' mục')+'</h4>'+tbl(by.g2a);
+        if(by.g2b.length) out+='<h4 class="t1sub">'+i18n('(나) 화면에 해당 기능이 없음 — '+by.g2b.length+'건','(나) Màn hình chưa có chức năng tương ứng — '+by.g2b.length+' mục')+'</h4>'+tbl(by.g2b);
+        if(by.etc.length) out+='<h4 class="t1sub">'+i18n('(다) 아직 나누지 않음 — '+by.etc.length+'건','(다) Chưa phân loại — '+by.etc.length+' mục')+'</h4>'+tbl(by.etc);
+      }
+      groups.innerHTML=out||'<p class="t1load">'+i18n('없음','Không có')+'</p>';
     }catch(e){
       console.error('[qa-verify] dev status load failed',e);
-      body.innerHTML='<tr><td colspan="6">'+i18n('개발팀 처리 상태를 불러오지 못했습니다','Không tải được trạng thái xử lý của đội phát triển')+'</td></tr>';
+      groups.innerHTML='<p class="t1load">'+i18n('개발팀 처리 상태를 불러오지 못했습니다','Không tải được trạng thái xử lý của đội phát triển')+'</p>';
     }
     paint();
   }
