@@ -209,9 +209,9 @@ li:first-child{border-top:0}
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
-/* 화면별 체크 — 검수 문서와 같은 저장소(컬렉션 qa_final_check_20261029)에 저장. 어느 기기에서 열어도 이어서 본다. 연결이 안 되면 이 브라우저에만 저장 */
+/* 화면별 체크 — 검수 문서와 같은 저장소에 저장(추가 확인 사항 저장소의 문서 zz_final_check_20261029, screens 칸). 어느 기기에서 열어도 이어서 본다. 연결이 안 되면 이 브라우저에만 저장 */
 (function(){
-  var KEY='ppqa_final_check_20261029', COL='qa_final_check_20261029', st={}, db=null;
+  var KEY='ppqa_final_check_20261029', REF=null, st={}, db=null;
   var boxes=[].slice.call(document.querySelectorAll('.ck input'));
   try{ st=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(_){ st={}; }
   function paint(){
@@ -224,11 +224,12 @@ li:first-child{border-top:0}
   try{
     firebase.initializeApp({apiKey:"AIzaSyCElUPJAitnMZxttVYjboV0j4s_qpErAgA",authDomain:"pricepick-demo.firebaseapp.com",projectId:"pricepick-demo",storageBucket:"pricepick-demo.firebasestorage.app",messagingSenderId:"505137396208",appId:"1:505137396208:web:cea9d208c7745854e14535"});
     db=firebase.firestore();
-    db.collection(COL).onSnapshot(function(snap){ var m={}; snap.forEach(function(d){ if(d.data().checked) m[d.id]=true; }); st=m; keep(); paint(); },function(e){ console.error('[final-check] load failed',e); });
+    REF=db.collection('qa_extra_20261028').doc('zz_final_check_20261029');
+    REF.onSnapshot(function(d){ var sc=(d.exists&&d.data().screens)||{}, m={}; Object.keys(sc).forEach(function(k){ if(sc[k]) m[k]=true; }); st=m; keep(); paint(); },function(e){ console.error('[final-check] load failed',e); });
   }catch(e){ db=null; }
   boxes.forEach(function(b){ b.addEventListener('change',function(){
     var k=b.dataset.k, on=b.checked; if(on) st[k]=true; else delete st[k]; keep(); paint();
-    if(db) db.collection(COL).doc(k).set({checked:on,updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true}).catch(function(e){ console.error('[final-check] save failed',k,e); });
+    if(REF){ var u={}; u[k]=on; REF.set({screens:u,updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true}).catch(function(e){ console.error('[final-check] save failed',k,e); }); }
   }); });
   paint();
 })();
