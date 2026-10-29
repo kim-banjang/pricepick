@@ -332,15 +332,18 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
     fk.querySelector('.fkb').classList.toggle('on',on);
     var n=fk.querySelector('.fk-note');
     if(document.activeElement!==n) n.value=d.final_note||'';
-    fk.querySelector('.fk-meta').textContent=(on&&d.final_updated_at)?fmt(d.final_updated_at):'';
+    fk.querySelector('.fk-meta').textContent=(on&&d.final_updated_at)?((d.final_by?d.final_by+' · ':'')+fmt(d.final_updated_at).slice(5,10)):'';
   }
   async function saveFinal(id, patch, el){
     var isViD=document.getElementById('langsw').checked;
     if(!db){ flash(el, isViD?'Không có kết nối DB':'DB 연결 없음',1); return; }
     var body=Object.assign({}, patch, {final_updated_at:firebase.firestore.FieldValue.serverTimestamp()});
+    /* 최종 검수는 김반장만 한다(2026-10-29 확정) — 완료로 바꾸면 작업자 「김반장」, 전으로 되돌리면 지운다. 묻지 않는다 */
+    var fby=('final_done' in patch)?(patch.final_done?'김반장':''):null;
+    if(fby!==null) body.final_by=fby?fby:firebase.firestore.FieldValue.delete();
     try{
       await db.collection(COL).doc(id).set(body,{merge:true});
-      state[id]=Object.assign({}, state[id]||{}, patch, {final_updated_at:new Date()});
+      state[id]=Object.assign({}, state[id]||{}, patch, {final_updated_at:new Date()}, fby!==null?{final_by:fby}:{});
       paintFinal(el); progress(); applyFilter();
       flash(el, document.getElementById('langsw').checked?'Đã lưu':'저장됐습니다');
     }catch(e){

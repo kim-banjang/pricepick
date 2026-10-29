@@ -128,7 +128,7 @@ tr.fhide{display:none}
 .tbl.list th:nth-child(2){width:13%}
 .tbl.list th:nth-child(4),.tbl.list th:nth-child(7){width:68px}
 
-.tbl.list th:nth-child(8){width:116px}
+.tbl.list th:nth-child(8){width:150px}
 .tbl.list td.who,.tbl.list td.st{white-space:normal}
 .tbl.list td.dm{white-space:normal}
 .tbl.list td.st.s-ng{color:#B42318;font-weight:800}
@@ -177,15 +177,15 @@ tr.fhide{display:none}
 .wkb-lb{font-size:11.5px;font-weight:800;color:var(--ink3)}
 #wkWho{font:600 12.5px inherit;color:var(--ink1);background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
 #wkWho.need{border-color:#9A4A4A;box-shadow:0 0 0 2px rgba(154,74,74,.18)}
-/* 처리 상태 칸 — 위는 개발팀 처리, 아래는 최종 검수. 점선과 이름표로 나눈다 */
-.tbl td.dm .dm-fin{margin-top:7px;padding-top:6px;border-top:1px dashed #cfd3dd}
-.tbl td.dm .dm-lb{display:block;font-size:10.5px;font-weight:800;color:var(--ink3);margin-bottom:3px}
-.stb[data-v=pre] .sg::before{content:'\25CB'}
-.stb[data-v=fin] .sg::before{content:'\25C6'}
-.stb[data-v=pre] .sg{color:#9CA3AF}
-.stb[data-v=fin] .sg{color:#6D28D9}
-.stb.on[data-v=pre]{background:#9CA3AF;border-color:#9CA3AF;color:#fff}
-.stb.on[data-v=fin]{background:#6D28D9;border-color:#6D28D9;color:#fff}
+/* 처리 상태 칸 — 한 줄에 라벨 · 지금 상태 칩 · 작업자와 날짜. 두 줄로 끝 */
+.tbl td.dm .dmr{display:flex;align-items:center;gap:6px;flex-wrap:wrap;line-height:1.3}
+.tbl td.dm .dmr+.dmr{margin-top:5px}
+.tbl td.dm .dm-lb{font-size:10.8px;font-weight:700;color:var(--ink3);min-width:30px}
+.tbl td.dm .dm-by{display:inline;margin:0;color:var(--ink3);font-size:10.8px;white-space:nowrap}
+.chip{font:700 11.2px inherit;border-radius:999px;padding:2px 9px;cursor:pointer;white-space:nowrap;background:#F3F4F6;color:#6B7280;border:1px solid #E5E7EB}
+.chip:hover{border-color:#9CA3AF}
+.chip-dev.on{background:var(--s-done);border-color:var(--s-done);color:#fff}
+.chip-fin.on{background:#6D28D9;border-color:#6D28D9;color:#fff}
 .finsum{font-size:12.4px;font-weight:800;color:#5B21B6;margin-left:12px}
 .dm-flash{display:block;font-size:11px;font-weight:700;color:#9A4A4A;margin-top:3px}
 
@@ -211,7 +211,7 @@ tr.fhide{display:none}
 <tr><td class="no"><span class="i18n"><span class="ko">C-1</span><span class="vi">C-1</span></span></td><td class="scr"><span class="i18n"><span class="ko">점검용 예약 발송 1건</span><span class="vi">1 thông báo hẹn giờ dùng để kiểm tra</span></span></td><td><span class="i18n"><span class="ko">2026-10-27 STG 확인 때 우리가 등록했다. 2027-01-15 10:00 · 대상 「신규 가입(7일 이내)」 · 제목 「[내부 점검] 예약 발송 확인용 - 즉시 취소 예정」. 지금 대상은 0명. 화면에 취소 기능이 없어 지울 수 없다(추가-15)</span><span class="vi">Chúng tôi đã đăng ký khi kiểm tra STG ngày 27/10/2026. 15/01/2027 10:00 · đối tượng 「신규 가입(7일 이내)」 · tiêu đề 「[내부 점검] 예약 발송 확인용 - 즉시 취소 예정」. Hiện có 0 người nhận. Màn hình không có chức năng hủy nên không xóa được (Thêm-15)</span></span></td><td><span class="i18n"><span class="ko">2027-01-15 전에 서버에서 삭제</span><span class="vi">Xóa trên máy chủ trước 15/01/2027</span></span></td><td class="who"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></td></tr>
 <tr><td class="no"><span class="i18n"><span class="ko">C-2</span><span class="vi">C-2</span></span></td><td class="scr"><span class="i18n"><span class="ko">쿠팡 로고 파일</span><span class="vi">Tệp logo Coupang</span></span></td><td><span class="i18n"><span class="ko">2026-10-27 STG 확인 때 우리가 쿠팡 로고를 바꿨다 되돌렸다. 그 과정에서 원본 로고 파일이 서버에서 삭제됐다. 같은 디자인 파일을 다시 올려 화면은 복구했으나 파일 주소가 원래와 다르다(추가-16)</span><span class="vi">Khi kiểm tra STG ngày 27/10/2026, chúng tôi đã đổi rồi đổi lại logo Coupang. Trong quá trình đó tệp logo gốc bị xóa khỏi máy chủ. Đã tải lại cùng tệp thiết kế nên màn hình đã khôi phục, nhưng địa chỉ tệp khác với ban đầu (Thêm-16)</span></span></td><td><span class="i18n"><span class="ko">이전 주소를 쓰는 곳이 있으면 새 주소로 맞춤</span><span class="vi">Nếu nơi nào còn dùng địa chỉ cũ thì đổi sang địa chỉ mới</span></span></td><td class="who"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></td></tr>
 </tbody></table></div>
-<div class="wkb-l"><label class="wkb-lb" for="wkWho"><span class="i18n"><span class="ko">작업자</span><span class="vi">Người thực hiện</span></span></label><select id="wkWho"><option value="">작업자 선택 / Chọn người thực hiện</option><option value="빈 (Nguyen Vuong)">빈 (Nguyen Vuong) / Vin (Nguyen Vuong)</option><option value="존 (John)">존 (John) / John</option><option value="해리 (Harry)">해리 (Harry) / Harry</option><option value="켈빈 (Kelvin)">켈빈 (Kelvin) / Kelvin</option><option value="이부장">이부장 / Trưởng phòng Lee</option><option value="김반장">김반장 / Mr Mark</option><option value="김성권 이사">김성권 이사 / Giám đốc Kim Seong-gwon</option></select><span class="finsum" id="finSum"></span></div>
+<div class="wkb-l"><label class="wkb-lb" for="wkWho"><span class="i18n"><span class="ko">작업자</span><span class="vi">Người thực hiện</span></span></label><select id="wkWho"><option value="">작업자 선택 / Chọn người thực hiện</option><option value="빈 (Nguyen Vuong)">빈 (Nguyen Vuong) / Vin (Nguyen Vuong)</option><option value="존 (John)">존 (John) / John</option><option value="해리 (Harry)">해리 (Harry) / Harry</option><option value="켈빈 (Kelvin)">켈빈 (Kelvin) / Kelvin</option><option value="이부장">이부장 / Trưởng phòng Lee</option><option value="김반장">김반장 / Mr Mark</option></select><span class="finsum" id="finSum"></span></div>
 <div class="ftlegend"><span class="ftl-h"><span class="i18n"><span class="ko">수정 유형</span><span class="vi">Loại sửa</span></span></span><span class="ftb ft-text"><span class="i18n"><span class="ko">단순 문구 수정</span><span class="vi">Chỉ sửa chữ</span></span></span><span class="ftl-d"><span class="i18n"><span class="ko">글자만 바꾸면 되는 것</span><span class="vi">Chỉ cần thay đổi chữ</span></span></span><span class="ftb ft-disp"><span class="i18n"><span class="ko">표시·동작 수정</span><span class="vi">Sửa hiển thị·hoạt động</span></span></span><span class="ftl-d"><span class="i18n"><span class="ko">값을 어디서 가져오는지, 어떻게 세는지를 고쳐야 하는 것</span><span class="vi">Cần sửa nơi lấy giá trị hoặc cách đếm</span></span></span><span class="ftb ft-feat"><span class="i18n"><span class="ko">기능 개발</span><span class="vi">Phát triển tính năng</span></span></span><span class="ftl-d"><span class="i18n"><span class="ko">지금 없는 기능을 새로 만드는 것</span><span class="vi">Tạo mới tính năng hiện chưa có</span></span></span><span class="ftb ft-chk"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span><span class="ftl-d"><span class="i18n"><span class="ko">판단이 안 서는 것</span><span class="vi">Chưa thể phân loại</span></span></span></div>
 <div class="fbar" id="fbar"><button type="button" class="fc" data-k="st" data-v="all"><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="unk"><span class="i18n"><span class="ko">미확인</span><span class="vi">Chưa xác nhận</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="wait"><span class="i18n"><span class="ko">정책 확정 대기</span><span class="vi">Chờ chốt chính sách</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc fc-d" data-k="dst" data-v="ng"><span class="i18n"><span class="ko">DEMO 미반영</span><span class="vi">DEMO chưa phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="dm" data-v="done"><span class="i18n"><span class="ko">개발팀 표시 처리 완료</span><span class="vi">Đội PT: đã xử lý</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="dm" data-v="todo"><span class="i18n"><span class="ko">개발팀 표시 미처리</span><span class="vi">Đội PT: chưa xử lý</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="fin" data-v="pre"><span class="i18n"><span class="ko">최종 검수 전</span><span class="vi">Chưa kiểm thử cuối</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="doc" data-v="d1002"><span class="i18n"><span class="ko">10-02</span><span class="vi">02/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1005"><span class="i18n"><span class="ko">10-05</span><span class="vi">05/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1021"><span class="i18n"><span class="ko">10-21</span><span class="vi">21/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="dx"><span class="i18n"><span class="ko">추가 확인 사항</span><span class="vi">Mục xác nhận thêm</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc fc-ft" data-k="ft" data-v="text"><span class="ftb ft-text"><span class="i18n"><span class="ko">단순 문구 수정</span><span class="vi">Chỉ sửa chữ</span></span></span> <b class="fn"></b></button><button type="button" class="fc fc-ft" data-k="ft" data-v="disp"><span class="ftb ft-disp"><span class="i18n"><span class="ko">표시·동작 수정</span><span class="vi">Sửa hiển thị·hoạt động</span></span></span> <b class="fn"></b></button><button type="button" class="fc fc-ft" data-k="ft" data-v="feat"><span class="ftb ft-feat"><span class="i18n"><span class="ko">기능 개발</span><span class="vi">Phát triển tính năng</span></span></span> <b class="fn"></b></button><button type="button" class="fc fc-ft" data-k="ft" data-v="chk"><span class="ftb ft-chk"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span> <b class="fn"></b></button><span class="fnow" id="fnow" hidden></span><span class="rfwrap"><span class="rf-at"><span class="i18n"><span class="ko">마지막 갱신 </span><span class="vi">Cập nhật lần cuối </span></span><span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle"><span class="i18n"><span class="ko">새로고침</span><span class="vi">Làm mới</span></span></span><span class="rf-busy"><span class="i18n"><span class="ko">조회 중</span><span class="vi">Đang tải</span></span></span></button></span></div>
 
@@ -476,20 +476,23 @@ document.addEventListener('click',function(e){
   }
   /* 시각 — 원본 문서의 fmt() 그대로(보는 사람 컴퓨터 시각). 원본과 같은 시각이 보여야 한다 */
   function fmt(d){ var p=function(n){return String(n).padStart(2,'0');}; return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes()); }
-  function stBtn(v,on){ return '<button type="button" class="stb'+(on?' on':'')+'" data-v="'+v+'"><i class="sg"></i>'+(v==='todo'?i18n('미처리','Chưa xử lý'):i18n('처리 완료','Đã xử lý xong'))+'</button>'; }
   function paintDm(r){
     var td=r.querySelector('td.dm'), src=r._src;
     if(!src){ r._dm='na'; r._fin='na'; td.innerHTML='—'; return; }
     var d=(DEV[src.doc]||{})[src.id]||null, st=d&&d.status;
     r._dm=(st==='done')?'done':'todo';
-    var who=(r._dm==='done'&&(d.by||d.at))?'<span class="dm-by">'+(d.by?esc(d.by):'')+(d.at?(d.by?' · ':'')+fmt(d.at):'')+'</span>':'';
-    /* 최종 검수 — 원본 문서의 final_done · final_updated_at 과 같은 값. 완료일 때만 작업자(final_by)·시각을 보인다 */
     r._fin=(d&&d.final)?'fin':'pre';
-    var fwho=(r._fin==='fin'&&(d.fby||d.fat))?'<span class="dm-by">'+(d.fby?esc(d.fby):'')+(d.fat?(d.fby?' · ':'')+fmt(d.fat):'')+'</span>':'';
-    td.innerHTML='<div class="dm-dev"><span class="dm-lb">'+i18n('개발팀 처리','Đội phát triển')+'</span><div class="wk-st">'+stBtn('todo',r._dm==='todo')+stBtn('done',r._dm==='done')+'</div>'+who+'</div>'
-      +'<div class="dm-fin"><span class="dm-lb">'+i18n('최종 검수','Kiểm thử cuối')+'</span><div class="wk-st">'+fnBtn('pre',r._fin==='pre')+fnBtn('fin',r._fin==='fin')+'</div>'+fwho+'</div>';
+    /* 지금 상태만 칩 하나로 — 누르면 바뀐다. 색은 끝난 상태(처리 완료 · 검수 완료)에만 */
+    var dby=(r._dm==='done'&&(d.by||d.at))?(d.by?esc(d.by):'')+(d.at?(d.by?' · ':'')+md(d.at):''):'';
+    var fby=(r._fin==='fin'&&(d.fby||d.fat))?(d.fby?esc(d.fby):'')+(d.fat?(d.fby?' · ':'')+md(d.fat):''):'';
+    td.innerHTML='<div class="dmr"><span class="dm-lb">'+i18n('개발팀','Đội PT')+'</span>'
+      +'<button type="button" class="chip chip-dev'+(r._dm==='done'?' on':'')+'">'+(r._dm==='done'?i18n('처리 완료','Đã xử lý'):i18n('미처리','Chưa xử lý'))+'</button>'
+      +(dby?'<span class="dm-by">'+dby+'</span>':'')+'</div>'
+      +'<div class="dmr"><span class="dm-lb">'+i18n('검수','Kiểm thử')+'</span>'
+      +'<button type="button" class="chip chip-fin'+(r._fin==='fin'?' on':'')+'">'+(r._fin==='fin'?i18n('검수 완료','Đã kiểm thử'):i18n('검수 전','Chưa kiểm thử'))+'</button>'
+      +(fby?'<span class="dm-by">'+fby+'</span>':'')+'</div>';
   }
-  function fnBtn(v,on){ return '<button type="button" class="stb fnb'+(on?' on':'')+'" data-v="'+v+'"><i class="sg"></i>'+(v==='pre'?i18n('최종 검수 전','Chưa kiểm thử cuối'):i18n('최종 검수 완료','Đã kiểm thử cuối'))+'</button>'; }
+  function md(t){ return fmt(t).slice(5,10); }
   function finSum(){
     var el=document.getElementById('finSum'); if(!el) return;
     var all=rows.filter(function(r){return r._src;}), fin=all.filter(function(r){return r._fin==='fin';}).length;
@@ -510,10 +513,10 @@ document.addEventListener('click',function(e){
     });
   }
   document.addEventListener('click',async function(e){
-    var fb=e.target.closest('td.dm .fnb'); if(fb){ saveFinal(fb); return; }
-    var b=e.target.closest('td.dm .stb'); if(!b) return;
+    var fb=e.target.closest('td.dm .chip-fin'); if(fb){ saveFinal(fb); return; }
+    var b=e.target.closest('td.dm .chip-dev'); if(!b) return;
     var r=b.closest('tr'), src=r&&r._src; if(!src||!db) return;
-    var td=r.querySelector('td.dm'), isVi=document.getElementById('langsw').checked, toTodo=(b.dataset.v==='todo');
+    var td=r.querySelector('td.dm'), isVi=document.getElementById('langsw').checked, toTodo=(r._dm==='done');
     var say=function(msg){ var f=td.querySelector('.dm-flash'); if(!f){ td.insertAdjacentHTML('beforeend','<span class="dm-flash"></span>'); f=td.querySelector('.dm-flash'); } f.textContent=msg; };
     if(!toTodo&&!whoSel.value){
       whoSel.classList.add('need'); try{ whoSel.focus({preventScroll:true}); }catch(_){}
@@ -528,22 +531,17 @@ document.addEventListener('click',function(e){
     }
   });
   /* 최종 검수 저장 — 원본 문서의 saveFinal 과 같은 필드(final_done · final_updated_at)에 쓴다. 완료로 바꿀 때만 작업자(final_by)를 남기고, 전으로 되돌리면 지운다 */
+  /* 검수 저장 — 원본 문서와 같은 필드(final_done · final_updated_at). 검수는 김반장만 한다(2026-10-29 확정) — 작업자를 묻지 않고, 완료면 「김반장」, 전으로 되돌리면 지운다 */
   async function saveFinal(b){
     var r=b.closest('tr'), src=r&&r._src; if(!src||!db) return;
-    var td=r.querySelector('td.dm'), isVi=document.getElementById('langsw').checked, toFin=(b.dataset.v==='fin');
-    var say=function(msg){ var f=td.querySelector('.dm-flash'); if(!f){ td.insertAdjacentHTML('beforeend','<span class="dm-flash"></span>'); f=td.querySelector('.dm-flash'); } f.textContent=msg; };
-    if((r._fin==='fin')===toFin) return;
-    if(toFin&&!whoSel.value){
-      whoSel.classList.add('need'); try{ whoSel.focus({preventScroll:true}); }catch(_){}
-      say(isVi?'Xin chọn người thực hiện trước.':'작업자를 먼저 선택하십시오.');
-      return;
-    }
+    var td=r.querySelector('td.dm'), isVi=document.getElementById('langsw').checked, toFin=(r._fin!=='fin');
     var FV=firebase.firestore.FieldValue;
     try{
-      await db.collection(src.col).doc(src.id).set(toFin?{final_done:true,final_by:whoSel.value,final_updated_at:FV.serverTimestamp()}:{final_done:false,final_by:FV.delete(),final_updated_at:FV.serverTimestamp()},{merge:true});
+      await db.collection(src.col).doc(src.id).set(toFin?{final_done:true,final_by:'김반장',final_updated_at:FV.serverTimestamp()}:{final_done:false,final_by:FV.delete(),final_updated_at:FV.serverTimestamp()},{merge:true});
     }catch(err){
       console.error('[qa-verify] final save failed',src,err);
-      say(isVi?'Lưu thất bại':'저장 실패');
+      var f=td.querySelector('.dm-flash'); if(!f){ td.insertAdjacentHTML('beforeend','<span class="dm-flash"></span>'); f=td.querySelector('.dm-flash'); }
+      f.textContent=isVi?'Lưu thất bại':'저장 실패';
     }
   }
   loadDev();
