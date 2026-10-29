@@ -128,7 +128,7 @@ tr.fhide{display:none}
 .tbl.list th:nth-child(2){width:13%}
 .tbl.list th:nth-child(4),.tbl.list th:nth-child(7){width:68px}
 
-.tbl.list th:nth-child(8){width:172px}
+.tbl.list th:nth-child(8){width:196px}
 .tbl.list td.who,.tbl.list td.st{white-space:normal}
 .tbl.list td.dm{white-space:normal}
 .tbl.list td.st.s-ng{color:#B42318;font-weight:800}
@@ -178,7 +178,7 @@ tr.fhide{display:none}
 #wkWho{font:600 12.5px inherit;color:var(--ink1);background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
 #wkWho.need{border-color:#9A4A4A;box-shadow:0 0 0 2px rgba(154,74,74,.18)}
 /* 처리 상태 칸 — 한 줄에 라벨 · 지금 상태 칩 · 작업자와 날짜. 두 줄로 끝 */
-.tbl td.dm .dmr{display:flex;align-items:center;gap:6px;flex-wrap:wrap;line-height:1.3}
+.tbl td.dm .dmr{display:flex;align-items:center;gap:5px;flex-wrap:nowrap;line-height:1.3;white-space:nowrap}
 .tbl td.dm .dmr+.dmr{margin-top:5px}
 .tbl td.dm .dm-lb{font-size:10.8px;font-weight:700;color:var(--ink3);min-width:30px}
 .tbl td.dm .dm-by{display:inline;margin:0;color:var(--ink3);font-size:10.8px;white-space:nowrap}
@@ -484,7 +484,7 @@ document.addEventListener('click',function(e){
     r._fin=(d&&d.final)?'fin':'pre';
     /* 지금 상태만 칩 하나로 — 누르면 바뀐다. 색은 끝난 상태(처리 완료 · 검수 완료)에만 */
     var dby=(r._dm==='done'&&(d.by||d.at))?(d.by?esc(nm(d.by)):'')+(d.at?(d.by?' · ':'')+md(d.at):''):'';
-    var fby=(r._fin==='fin'&&(d.fby||d.fat))?(d.fby?esc(d.fby):'')+(d.fat?(d.fby?' · ':'')+md(d.fat):''):'';
+    var fby=(r._fin==='fin'&&(d.fby||d.fat))?(d.fby?esc(nm(d.fby)):'')+(d.fat?(d.fby?' · ':'')+md(d.fat):''):'';
     td.innerHTML='<div class="dmr"><span class="dm-lb">'+i18n('개발팀','Đội PT')+'</span>'
       +'<button type="button" class="chip chip-dev'+(r._dm==='done'?' on':'')+'">'+(r._dm==='done'?i18n('처리 완료','Đã xử lý'):i18n('미처리','Chưa xử lý'))+'</button>'
       +(dby?'<span class="dm-by">'+dby+'</span>':'')+'</div>'
