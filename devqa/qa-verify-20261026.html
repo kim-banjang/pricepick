@@ -128,7 +128,7 @@ tr.fhide{display:none}
 .tbl.list th:nth-child(2){width:13%}
 .tbl.list th:nth-child(4),.tbl.list th:nth-child(7){width:68px}
 
-.tbl.list th:nth-child(8){width:150px}
+.tbl.list th:nth-child(8){width:172px}
 .tbl.list td.who,.tbl.list td.st{white-space:normal}
 .tbl.list td.dm{white-space:normal}
 .tbl.list td.st.s-ng{color:#B42318;font-weight:800}
@@ -483,7 +483,7 @@ document.addEventListener('click',function(e){
     r._dm=(st==='done')?'done':'todo';
     r._fin=(d&&d.final)?'fin':'pre';
     /* 지금 상태만 칩 하나로 — 누르면 바뀐다. 색은 끝난 상태(처리 완료 · 검수 완료)에만 */
-    var dby=(r._dm==='done'&&(d.by||d.at))?(d.by?esc(d.by):'')+(d.at?(d.by?' · ':'')+md(d.at):''):'';
+    var dby=(r._dm==='done'&&(d.by||d.at))?(d.by?esc(nm(d.by)):'')+(d.at?(d.by?' · ':'')+md(d.at):''):'';
     var fby=(r._fin==='fin'&&(d.fby||d.fat))?(d.fby?esc(d.fby):'')+(d.fat?(d.fby?' · ':'')+md(d.fat):''):'';
     td.innerHTML='<div class="dmr"><span class="dm-lb">'+i18n('개발팀','Đội PT')+'</span>'
       +'<button type="button" class="chip chip-dev'+(r._dm==='done'?' on':'')+'">'+(r._dm==='done'?i18n('처리 완료','Đã xử lý'):i18n('미처리','Chưa xử lý'))+'</button>'
@@ -493,6 +493,8 @@ document.addEventListener('click',function(e){
       +(fby?'<span class="dm-by">'+fby+'</span>':'')+'</div>';
   }
   function md(t){ return fmt(t).slice(5,10); }
+  /* 작업자 이름은 앞부분만 — 「존 (John)」 → 「존」. 한 줄에 들어가게 */
+  function nm(t){ return String(t).replace(/\s*\(.*\)\s*$/,''); }
   function finSum(){
     var el=document.getElementById('finSum'); if(!el) return;
     var all=rows.filter(function(r){return r._src;}), fin=all.filter(function(r){return r._fin==='fin';}).length;
