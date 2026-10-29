@@ -128,7 +128,7 @@ tr.fhide{display:none}
 .tbl.list th:nth-child(2){width:13%}
 .tbl.list th:nth-child(4),.tbl.list th:nth-child(7){width:68px}
 
-.tbl.list th:nth-child(8){width:196px}
+.tbl.list th:nth-child(8){width:132px}
 .tbl.list td.who,.tbl.list td.st{white-space:normal}
 .tbl.list td.dm{white-space:normal}
 .tbl.list td.st.s-ng{color:#B42318;font-weight:800}
@@ -182,7 +182,7 @@ tr.fhide{display:none}
 .tbl td.dm .dmr+.dmr{margin-top:5px}
 .tbl td.dm .dm-lb{font-size:10.8px;font-weight:700;color:var(--ink3);min-width:30px}
 .tbl td.dm .dm-by{display:inline;margin:0;color:var(--ink3);font-size:10.8px;white-space:nowrap}
-@media (max-width:760px){.tbl td.dm .dmr{flex-wrap:wrap;white-space:normal}.tbl.list th:nth-child(8){width:116px}}
+@media (max-width:760px){.tbl td.dm .dmr{flex-wrap:wrap;white-space:normal}.tbl.list th:nth-child(8){width:112px}}
 .chip{font:700 11.2px inherit;border-radius:999px;padding:2px 9px;cursor:pointer;white-space:nowrap;background:#F3F4F6;color:#6B7280;border:1px solid #E5E7EB}
 .chip:hover{border-color:#9CA3AF}
 .chip-dev.on{background:var(--s-done);border-color:var(--s-done);color:#fff}
@@ -484,14 +484,13 @@ document.addEventListener('click',function(e){
     r._dm=(st==='done')?'done':'todo';
     r._fin=(d&&d.final)?'fin':'pre';
     /* 지금 상태만 칩 하나로 — 누르면 바뀐다. 색은 끝난 상태(처리 완료 · 검수 완료)에만 */
-    var dby=(r._dm==='done'&&(d.by||d.at))?(d.by?esc(nm(d.by)):'')+(d.at?(d.by?' · ':'')+md(d.at):''):'';
-    var fby=(r._fin==='fin'&&(d.fby||d.fat))?(d.fby?esc(nm(d.fby)):'')+(d.fat?(d.fby?' · ':'')+md(d.fat):''):'';
+    /* 작업자·시각은 현황에서 보이지 않는다(2026-10-29 형님 지시) — 저장 값은 그대로, 원본 검수 문서에서 보인다 */
     td.innerHTML='<div class="dmr"><span class="dm-lb">'+i18n('개발팀','Đội PT')+'</span>'
       +'<button type="button" class="chip chip-dev'+(r._dm==='done'?' on':'')+'">'+(r._dm==='done'?i18n('처리 완료','Đã xử lý'):i18n('미처리','Chưa xử lý'))+'</button>'
-      +(dby?'<span class="dm-by">'+dby+'</span>':'')+'</div>'
+      +'</div>'
       +'<div class="dmr"><span class="dm-lb">'+i18n('검수','Kiểm thử')+'</span>'
       +'<button type="button" class="chip chip-fin'+(r._fin==='fin'?' on':'')+'">'+(r._fin==='fin'?i18n('검수 완료','Đã kiểm thử'):i18n('검수 전','Chưa kiểm thử'))+'</button>'
-      +(fby?'<span class="dm-by">'+fby+'</span>':'')+'</div>';
+      +'</div>';
   }
   function md(t){ return fmt(t).slice(5,10); }
   /* 작업자 이름은 앞부분만 — 「존 (John)」 → 「존」. 한 줄에 들어가게 */
