@@ -49,6 +49,14 @@ li[data-s=ng] .tx{color:#7A271A}
 li[data-s=wait] .stl{background:#FFF4E5;color:#B54708}
 li[data-s=wait] .tx{color:#7A4A10}
 li.hide,.g.hide{display:none}
+.rfwrap{margin-left:auto;display:inline-flex;align-items:baseline;white-space:nowrap}
+.rf-at{font-size:12px;color:#a3a3a3}
+.rf-btn{margin-left:6px;border:1px solid #e5e5e5;border-radius:4px;background:#fff;padding:2px 6px;font:inherit;font-size:11px;color:#737373;cursor:pointer}
+.rf-btn:hover{border-color:#a3a3a3;color:#171717}
+.rf-btn:disabled{cursor:wait;background:#f5f5f5;color:#a3a3a3}
+.rf-btn .rf-busy{display:none}
+.rf-btn[aria-busy="true"] .rf-idle{display:none}
+.rf-btn[aria-busy="true"] .rf-busy{display:inline}
 .fk{flex:none;margin-left:auto;font:800 11.5px inherit;border:1px solid var(--pp);background:#fff;color:var(--pp-d);border-radius:999px;padding:1px 10px;cursor:pointer;white-space:nowrap}
 li[data-s=fin] .fk{background:#E8F3EC;border-color:#cfe8da;color:var(--done)}
 li[data-s=ng] .fk,li[data-s=wait] .fk,.fk[hidden]{display:none}
@@ -56,7 +64,7 @@ li[data-s=ng] .fk,li[data-s=wait] .fk,.fk[hidden]{display:none}
 </style></head><body>
 <header><div class="in"><h1>PricePick 최종 검수 안내 (2026-10-29) · 전체 <span id="tot">138</span>건</h1><div class="sumrow" id="sum"></div></div></header>
 <div class="bar"><div class="in"><span class="prog" id="prog">확인한 화면 0 / 전체 42</span><span class="pgbar"><i id="pgi"></i></span>
-<div class="fb" id="fb"><button type="button" class="fbt" data-f="pre">검수 전만 보기</button><button type="button" class="fbt on" data-f="all">전체</button><button type="button" class="fbt" data-f="fin">검수 완료</button><button type="button" class="fbt" data-f="ng">미반영</button><button type="button" class="fbt" data-f="wait">정책 확정 대기</button></div></div></div>
+<div class="fb" id="fb"><button type="button" class="fbt" data-f="pre">검수 전만 보기</button><button type="button" class="fbt on" data-f="all">전체</button><button type="button" class="fbt" data-f="fin">검수 완료</button><button type="button" class="fbt" data-f="ng">미반영</button><button type="button" class="fbt" data-f="wait">정책 확정 대기</button><span class="rfwrap"><span class="rf-at">마지막 갱신 <span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle">새로고침</span><span class="rf-busy">조회 중</span></button></span></div></div></div>
 <div class="wrap">
 <h2>CMS — 92건</h2>
 <section class="g" data-k="ta"><div class="gh"><label class="ck"><input type="checkbox" data-k="ta"><span class="gt">티켓·보상 &gt; 티켓 적립 설정</span><span class="gn">13건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/ticket-accrual/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
@@ -289,6 +297,7 @@ li[data-s=ng] .fk,li[data-s=wait] .fk,.fk[hidden]{display:none}
 (function(){
   var SRC={"r1002-LP": ["qa_extra_20261002", "LP"], "r1002-01": ["qa_extra_20261002", "01"], "r1002-02": ["qa_extra_20261002", "02"], "r1002-03": ["qa_extra_20261002", "03"], "r1002-04": ["qa_extra_20261002", "04"], "r1002-05": ["qa_extra_20261002", "05"], "r1002-06": ["qa_extra_20261002", "06"], "r1002-07": ["qa_extra_20261002", "07"], "r1002-08": ["qa_extra_20261002", "08"], "r1002-09": ["qa_extra_20261002", "09"], "r1002-10": ["qa_extra_20261002", "10"], "r1002-11": ["qa_extra_20261002", "11"], "r1002-12": ["qa_extra_20261002", "12"], "r1002-13": ["qa_extra_20261002", "13"], "r1002-14": ["qa_extra_20261002", "14"], "r1002-15": ["qa_extra_20261002", "15"], "r1002-16": ["qa_extra_20261002", "16"], "r1002-17": ["qa_extra_20261002", "17"], "r1002-18": ["qa_extra_20261002", "18"], "r1002-19": ["qa_extra_20261002", "19"], "r1002-20": ["qa_extra_20261002", "20"], "r1002-21": ["qa_extra_20261002", "21"], "r1002-23": ["qa_extra_20261002", "23"], "r1002-24": ["qa_extra_20261002", "24"], "r1002-27": ["qa_extra_20261002", "27"], "r1005-04-01": ["qa_review_20261005", "04-01"], "r1005-04-02": ["qa_review_20261005", "04-02"], "r1005-04-03": ["qa_review_20261005", "04-03"], "r1005-04-04": ["qa_review_20261005", "04-04"], "r1005-04-05": ["qa_review_20261005", "04-05"], "r1005-04-06": ["qa_review_20261005", "04-06"], "r1005-04-07": ["qa_review_20261005", "04-07"], "r1005-04-08": ["qa_review_20261005", "04-08"], "r1005-04-09": ["qa_review_20261005", "04-09"], "r1005-04-10": ["qa_review_20261005", "04-10"], "r1005-04-11": ["qa_review_20261005", "04-11"], "r1005-04-12": ["qa_review_20261005", "04-12"], "r1005-04-13": ["qa_review_20261005", "04-13"], "r1005-04-14": ["qa_review_20261005", "04-14"], "r1005-04-15": ["qa_review_20261005", "04-15"], "r1005-04-16": ["qa_review_20261005", "04-16"], "r1005-04-17": ["qa_review_20261005", "04-17"], "r1005-04-18": ["qa_review_20261005", "04-18"], "r1005-04-19": ["qa_review_20261005", "04-19"], "r1005-04-20": ["qa_review_20261005", "04-20"], "r1005-04-21": ["qa_review_20261005", "04-21"], "r1005-04-22": ["qa_review_20261005", "04-22"], "r1005-04-23": ["qa_review_20261005", "04-23"], "r1005-04-24": ["qa_review_20261005", "04-24"], "r1005-04-25": ["qa_review_20261005", "04-25"], "r1005-04-26": ["qa_review_20261005", "04-26"], "r1005-04-27": ["qa_review_20261005", "04-27"], "r1005-04-28": ["qa_review_20261005", "04-28"], "r1005-04-29": ["qa_review_20261005", "04-29"], "r1005-04-30": ["qa_review_20261005", "04-30"], "r1005-04-31": ["qa_review_20261005", "04-31"], "r1005-04-32": ["qa_review_20261005", "04-32"], "r1005-04-33": ["qa_review_20261005", "04-33"], "r1005-04-34": ["qa_review_20261005", "04-34"], "r1005-04-35": ["qa_review_20261005", "04-35"], "r1005-04-36": ["qa_review_20261005", "04-36"], "r1005-05-01": ["qa_review_20261005", "05-01"], "r1005-05-02": ["qa_review_20261005", "05-02"], "r1005-05-03": ["qa_review_20261005", "05-03"], "r1005-05-04": ["qa_review_20261005", "05-04"], "r1005-05-05": ["qa_review_20261005", "05-05"], "r1005-05-06": ["qa_review_20261005", "05-06"], "r1005-05-07": ["qa_review_20261005", "05-07"], "r1005-05-08": ["qa_review_20261005", "05-08"], "r1005-05-09": ["qa_review_20261005", "05-09"], "r1005-05-10": ["qa_review_20261005", "05-10"], "r1005-05-11": ["qa_review_20261005", "05-11"], "r1005-05-12": ["qa_review_20261005", "05-12"], "r1005-05-13": ["qa_review_20261005", "05-13"], "r1005-05-14": ["qa_review_20261005", "05-14"], "r1005-05-15": ["qa_review_20261005", "05-15"], "r1005-05-16": ["qa_review_20261005", "05-16"], "r1005-05-17": ["qa_review_20261005", "05-17"], "r1005-05-18": ["qa_review_20261005", "05-18"], "r1005-05-19": ["qa_review_20261005", "05-19"], "r1005-05-20": ["qa_review_20261005", "05-20"], "r1005-05-21": ["qa_review_20261005", "05-21"], "r1005-05-22": ["qa_review_20261005", "05-22"], "r1005-05-23": ["qa_review_20261005", "05-23"], "r1005-05-24": ["qa_review_20261005", "05-24"], "r1005-05-25": ["qa_review_20261005", "05-25"], "r1005-06-01": ["qa_review_20261005", "06-01"], "r1005-06-02": ["qa_review_20261005", "06-02"], "r1005-06-03": ["qa_review_20261005", "06-03"], "r1005-06-04": ["qa_review_20261005", "06-04"], "r1005-06-05": ["qa_review_20261005", "06-05"], "r1005-06-06": ["qa_review_20261005", "06-06"], "r1005-06-07": ["qa_review_20261005", "06-07"], "r1005-06-08": ["qa_review_20261005", "06-08"], "r1005-06-09": ["qa_review_20261005", "06-09"], "r1005-06-10": ["qa_review_20261005", "06-10"], "r1005-06-11": ["qa_review_20261005", "06-11"], "r1005-06-12": ["qa_review_20261005", "06-12"], "r1005-06-13": ["qa_review_20261005", "06-13"], "r1021-01": ["qa_extra_20261021", "01"], "r1021-02": ["qa_extra_20261021", "02"], "r1021-03": ["qa_extra_20261021", "03"], "r1021-04": ["qa_extra_20261021", "04"], "r1021-05": ["qa_extra_20261021", "05"], "r1021-06": ["qa_extra_20261021", "06"], "r1021-07": ["qa_extra_20261021", "07"], "r1021-08": ["qa_extra_20261021", "08"], "r1021-09": ["qa_extra_20261021", "09"], "r1021-10": ["qa_extra_20261021", "10"], "r1021-11": ["qa_extra_20261021", "11"], "r1021-12": ["qa_extra_20261021", "12"], "r1021-13": ["qa_extra_20261021", "13"], "r1021-14": ["qa_extra_20261021", "14"], "r1021-15": ["qa_extra_20261021", "15"], "r1021-16": ["qa_extra_20261021", "16"], "r1021-17": ["qa_extra_20261021", "17"], "rx-1": ["qa_extra_20261028", "01"], "rx-2": ["qa_extra_20261028", "02"], "rx-3": ["qa_extra_20261028", "03"], "rx-4": ["qa_extra_20261028", "04"], "rx-5": ["qa_extra_20261028", "05"], "rx-6": ["qa_extra_20261028", "06"], "rx-7": ["qa_extra_20261028", "07"], "rx-8": ["qa_extra_20261028", "08"], "rx-10": ["qa_extra_20261028", "09"], "rx-11": ["qa_extra_20261028", "10"], "rx-12": ["qa_extra_20261028", "11"], "rx-13": ["qa_extra_20261028", "12"], "rx-14": ["qa_extra_20261028", "13"], "rx-15": ["qa_extra_20261028", "14"], "rx-16": ["qa_extra_20261028", "15"], "rx-17": ["qa_extra_20261028", "16"], "rx-18": ["qa_extra_20261028", "17"], "rx-19": ["qa_extra_20261028", "18"], "rx-20": ["qa_extra_20261028", "19"], "rx-21": ["qa_extra_20261028", "20"], "rx-23": ["qa_extra_20261028", "22"]};
   var DEVCOL={'qa-extra-20261002':'qa_extra_20261002','qa-review-20261005':'qa_review_20261005','qa-extra-20261021':'qa_extra_20261021','qa-extra-20261028':'qa_extra_20261028'};
+  var COLS=['qa_extra_20261002','qa_review_20261005','qa_extra_20261021','qa_extra_20261028'];
   var LBL={pre:'반영 · 검수 전',fin:'반영 · 검수 완료',ng:'미반영',wait:'정책 확정 대기'};
   var lis=[].slice.call(document.querySelectorAll('li[data-r]')), FIN={}, filt='all';
   /* 줄 상태 — 반영/미반영/정책 확정 대기는 검수 반영 현황 문서를 그때그때 읽고, 검수 여부는 검수 저장소를 실시간으로 읽는다 */
@@ -301,13 +310,14 @@ li[data-s=ng] .fk,li[data-s=wait] .fk,.fk[hidden]{display:none}
     document.getElementById('tot').textContent=lis.length;
     document.getElementById('sum').innerHTML='<span>전체 <b>'+lis.length+'</b>건</span><span>검수 대상 <b>'+c.pre+'</b>건</span><span>검수 완료 <b>'+c.fin+'</b>건</span><span>미반영 <b>'+c.ng+'</b>건</span><span>정책 확정 대기 <b>'+c.wait+'</b>건</span>';
   }
-  fetch('qa-verify-20261026.html',{cache:'no-store'}).then(function(r){return r.text();}).then(function(h){
+  function loadVerify(){ return fetch('qa-verify-20261026.html',{cache:'no-store'}).then(function(r){return r.text();}).then(function(h){
     var d=new DOMParser().parseFromString(h,'text/html');
     /* 판정(st-*)과 저장소 위치(번호 링크의 문서·data-id)를 모두 검수 반영 현황에서 가져온다 — 현황 문서의 srcOf() 와 같은 규칙 */
     lis.forEach(function(li){ var tr=d.getElementById(li.dataset.r), m=tr&&tr.className.match(/st-([a-z]+)/); if(m) li.dataset.st=m[1];
       var a=tr&&tr.querySelector('td.no a.ext'), h=a&&a.getAttribute('href').match(/devqa\/([a-z0-9-]+)\.html/), col=h&&DEVCOL[h[1]];
       if(col) SRC[li.dataset.r]=[col,(a.getAttribute('data-id')||a.textContent.trim())]; }); paint();
-  }).catch(function(){});
+  }).catch(function(e){ console.error('[final-check] verify load failed',e); }); }
+  loadVerify();
   document.getElementById('fb').addEventListener('click',function(e){ var b=e.target.closest('.fbt'); if(!b) return; filt=b.dataset.f; document.querySelectorAll('.fbt').forEach(function(x){x.classList.toggle('on',x===b);}); paint(); });
   /* 화면별 체크 — 추가 확인 사항 저장소의 문서 zz_final_check_20261029(screens 칸). 연결이 안 되면 이 브라우저에만 저장 */
   var KEY='ppqa_final_check_20261029', REF=null, st={}, db=null;
@@ -324,7 +334,7 @@ li[data-s=ng] .fk,li[data-s=wait] .fk,.fk[hidden]{display:none}
     db=firebase.firestore();
     REF=db.collection('qa_extra_20261028').doc('zz_final_check_20261029');
     REF.onSnapshot(function(d){ var sc=(d.exists&&d.data().screens)||{}, m={}; Object.keys(sc).forEach(function(k){ if(sc[k]) m[k]=true; }); st=m; keep(); paintCk(); },function(e){ console.error('[final-check] load failed',e); });
-    ['qa_extra_20261002','qa_review_20261005','qa_extra_20261021','qa_extra_20261028'].forEach(function(col){
+    COLS.forEach(function(col){
       db.collection(col).onSnapshot(function(snap){ snap.forEach(function(x){ FIN[col+'/'+x.id]=!!x.data().final_done; }); paint(); },function(e){ console.error('[final-check] final load failed',col,e); });
     });
   }catch(e){ db=null; }
@@ -336,6 +346,19 @@ li[data-s=ng] .fk,li[data-s=wait] .fk,.fk[hidden]{display:none}
     db.collection(s[0]).doc(s[1]).set(toFin?{final_done:true,final_by:'김반장',final_updated_at:FV.serverTimestamp()}:{final_done:false,final_by:FV.delete(),final_updated_at:FV.serverTimestamp()},{merge:true})
       .then(function(){ k.disabled=false; })
       .catch(function(err){ console.error('[final-check] final save failed',key,err); FIN[key]=!toFin; paint(); k.disabled=false; k.textContent='저장 실패'; });
+  });
+  /* 새로고침 — 페이지는 그대로 두고 판정(검수 반영 현황)과 검수 상태·화면 체크(저장소)만 서버에서 다시 읽는다 */
+  var rfAt=document.getElementById('rfAt'), rfBtn=document.getElementById('rfBtn');
+  function stamp(){ rfAt.textContent=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date()); }
+  stamp();
+  rfBtn.addEventListener('click',function(){
+    rfBtn.disabled=true; rfBtn.setAttribute('aria-busy','true');
+    var jobs=[loadVerify()];
+    if(db){
+      COLS.forEach(function(col){ jobs.push(db.collection(col).get({source:'server'}).then(function(snap){ snap.forEach(function(x){ FIN[col+'/'+x.id]=!!x.data().final_done; }); }).catch(function(e){ console.error('[final-check] refresh failed',col,e); })); });
+      if(REF) jobs.push(REF.get({source:'server'}).then(function(d){ var sc=(d.exists&&d.data().screens)||{}, m={}; Object.keys(sc).forEach(function(k){ if(sc[k]) m[k]=true; }); st=m; keep(); }).catch(function(e){ console.error('[final-check] refresh failed',e); }));
+    }
+    Promise.all(jobs).then(function(){ paint(); paintCk(); stamp(); rfBtn.disabled=false; rfBtn.removeAttribute('aria-busy'); });
   });
   boxes.forEach(function(b){ b.addEventListener('change',function(){
     var k=b.dataset.k, on=b.checked; if(on) st[k]=true; else delete st[k]; keep(); paintCk();
