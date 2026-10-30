@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 최종 검수 안내 (2026-10-29)</title>
+<style>
+:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--done:#1f7a4d;--warn:#B54708}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.55}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:22px 0 18px}
+.in{max-width:900px;margin:0 auto;padding:0 20px}
+h1{font-size:20px;font-weight:800}
+.sum{margin-top:6px;font-size:13.5px;font-weight:600;opacity:.95}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar .in{display:flex;align-items:center;gap:10px;padding-top:9px;padding-bottom:9px;flex-wrap:wrap}
+.prog{font-size:13.5px;font-weight:800;color:var(--pp-d)}
+.pgbar{flex:1 1 160px;height:6px;background:#e7e3f6;border-radius:9px;overflow:hidden;min-width:120px}
+.pgbar i{display:block;height:100%;width:0;background:var(--done)}
+.wrap{max-width:900px;margin:0 auto;padding:6px 20px 60px}
+h2{font-size:16px;font-weight:800;margin:22px 0 8px;color:var(--pp-d)}
+.g{background:#fff;border:1px solid var(--line);border-radius:10px;margin:8px 0;padding:10px 12px}
+.g.done{background:#f3faf6;border-color:#cfe8da}
+.gh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ck{display:flex;align-items:center;gap:8px;cursor:pointer;flex:1 1 auto;min-width:0}
+.ck input{width:18px;height:18px;accent-color:var(--done);flex:none}
+.gt{font-size:14.5px;font-weight:800}
+.gn{font-size:12px;font-weight:700;color:var(--ink3)}
+.g.done .gt{color:var(--done)}
+.open{font-size:12.5px;font-weight:800;color:var(--pp-d);text-decoration:none;white-space:nowrap}
+.open:hover{text-decoration:underline}
+.path{font-size:12px;color:var(--ink2);font-weight:600}
+ul{list-style:none;margin-top:6px}
+li{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:4px 0;border-top:1px dashed #eeecf5;font-size:13.5px}
+li:first-child{border-top:0}
+.no{flex:none;font-size:12px;font-weight:800;color:var(--pp-d);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.tx{flex:1 1 300px;min-width:0;word-break:keep-all;overflow-wrap:anywhere}
+.warn{flex:1 1 100%;font-size:12px;font-weight:700;color:var(--warn);padding-left:2px}
+.warn::before{content:'! ';}
+@media (max-width:600px){.in,.wrap{padding-left:16px;padding-right:16px} .tx{flex-basis:100%}}
+
+.sumrow{margin-top:6px;font-size:13px;font-weight:600;display:flex;gap:4px 12px;flex-wrap:wrap;opacity:.97}
+.sumrow b{font-weight:800}
+.fb{display:flex;gap:6px;flex-wrap:wrap;width:100%}
+.fbt{font:700 12px inherit;border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:999px;padding:4px 11px;cursor:pointer}
+.fbt.on{background:var(--pp-d);border-color:var(--pp-d);color:#fff}
+.fbt[data-f=pre]{border-color:var(--pp)}
+.stl{flex:none;width:112px;text-align:center;font-size:11.5px;font-weight:800;border-radius:6px;padding:1px 0;white-space:nowrap}
+li[data-s=pre] .stl{background:var(--pp);color:#fff}
+li[data-s=fin] .stl{background:#E8F3EC;color:var(--done)}
+li[data-s=fin] .tx,li[data-s=fin] .no{opacity:.5}
+li[data-s=ng] .stl{background:#FDECEA;color:#B42318}
+li[data-s=ng] .tx{color:#7A271A}
+li[data-s=wait] .stl{background:#FFF4E5;color:#B54708}
+li[data-s=wait] .tx{color:#7A4A10}
+li.hide,.g.hide{display:none}
+</style></head><body>
+<header><div class="in"><h1>PricePick 최종 검수 안내 (2026-10-29) · 전체 138건</h1><div class="sumrow" id="sum"></div></div></header>
+<div class="bar"><div class="in"><span class="prog" id="prog">확인한 화면 0 / 전체 42</span><span class="pgbar"><i id="pgi"></i></span>
+<div class="fb" id="fb"><button type="button" class="fbt" data-f="pre">검수 전만 보기</button><button type="button" class="fbt on" data-f="all">전체</button><button type="button" class="fbt" data-f="fin">검수 완료</button><button type="button" class="fbt" data-f="ng">미반영</button><button type="button" class="fbt" data-f="wait">정책 확정 대기</button></div></div></div>
+<div class="wrap">
+<h2>CMS — 92건</h2>
+<section class="g" data-k="ta"><div class="gh"><label class="ck"><input type="checkbox" data-k="ta"><span class="gt">티켓·보상 &gt; 티켓 적립 설정</span><span class="gn">13건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/ticket-accrual/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1002-07" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-07" target="_blank" rel="noopener">10-02 07</a><span class="tx">적립 계산이 「구매확정금액 × 적립률 ÷ 10원」 기준으로 설명돼 있다</span></li>
+<li data-r="r1005-04-13" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-13" target="_blank" rel="noopener">10-05 04-13</a><span class="tx">제휴몰 삭제 단추가 없고 「적용 / 미적용」 토글만 있다</span></li>
+<li data-r="r1005-04-26" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-26" target="_blank" rel="noopener">10-05 04-26</a><span class="tx">(04-13과 같은 내용) 제휴몰 삭제 단추가 없다</span></li>
+<li data-r="r1005-04-14" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-14" target="_blank" rel="noopener">10-05 04-14</a><span class="tx">쿠팡은 「카카오톡 연동 D+7 / 미연동 D+30」, 링크프라이스 몰은 「익익월 6일 확정 후」로 고정 표시된다</span></li>
+<li data-r="r1005-04-15" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-15" target="_blank" rel="noopener">10-05 04-15</a><span class="tx">몰마다 「로고 등록」 창이 열린다(파일 또는 이미지 주소)</span></li>
+<li data-r="r1005-04-16" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-16" target="_blank" rel="noopener">10-05 04-16</a><span class="tx">제휴몰을 손으로 추가하는 창이 없다(추가 기능 폐지)</span></li>
+<li data-r="r1021-09" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-09" target="_blank" rel="noopener">10-21 09</a><span class="tx">테스트몰 「으하하하」가 목록에 없다</span></li>
+<li data-r="rx-5" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-5" target="_blank" rel="noopener">추가-5</a><span class="tx">열 이름이 「등급 전환 시점」이다 (「티켓 전환 시점」이어야 함)</span></li>
+<li data-r="rx-12" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-12" target="_blank" rel="noopener">추가-12</a><span class="tx">링크프라이스 목록 열 이름이 아직 「등급 전환 시점」이다</span></li>
+<li data-r="rx-18" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-18" target="_blank" rel="noopener">추가-18</a><span class="tx">수수료 칸을 다 지우면 「0」이 남고, 5를 치면 「05」가 된다</span></li>
+<li data-r="rx-19" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-19" target="_blank" rel="noopener">추가-19</a><span class="tx">적용·미적용 토글 옆에 「미적용으로 두면 회원에게 노출되지 않습니다.」 안내가 없다</span></li>
+<li data-r="rx-16" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-16" target="_blank" rel="noopener">추가-16</a><span class="tx">로고를 바꾸면 이전 로고 파일이 지워져 되돌릴 수 없다</span></li>
+<li data-r="rx-9" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-9" target="_blank" rel="noopener">추가-9</a><span class="tx">제휴몰 목록·수수료율이 STG 값 그대로다 (예: CJ더마켓 커미션 2.1%, 11번가 0.7%)</span></li>
+</ul></section>
+<section class="g" data-k="rf"><div class="gh"><label class="ck"><input type="checkbox" data-k="rf"><span class="gt">매출·수익 &gt; 제휴 수수료 매출</span><span class="gn">10건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/revenue-fee/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1005-04-03" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-03" target="_blank" rel="noopener">10-05 04-03</a><span class="tx">처음 열면 조회 기간이 오늘 기준 최근 1개월이다</span></li>
+<li data-r="r1005-04-05" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-05" target="_blank" rel="noopener">10-05 04-05</a><span class="tx">검색칸에 주문번호 전체나 일부를 넣으면 찾아진다</span></li>
+<li data-r="r1005-04-08" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-08" target="_blank" rel="noopener">10-05 04-08</a><span class="tx">검색칸에 닉네임·식별 아이디를 넣어도 찾아진다</span></li>
+<li data-r="r1005-04-06" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-06" target="_blank" rel="noopener">10-05 04-06</a><span class="tx">「취소 확인일」 열이 있다</span></li>
+<li data-r="r1005-04-09" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-09" target="_blank" rel="noopener">10-05 04-09</a><span class="tx">상태 검색 이름과 목록 상태 이름이 「미전환 환수 · 전환 후 환수 · 부분 환수」로 같다</span></li>
+<li data-r="r1002-16" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-16" target="_blank" rel="noopener">10-02 16</a><span class="tx">쿠팡·링크프라이스 주문번호가 나오고, 회원 열에 닉네임과 식별 아이디가 나온다</span></li>
+<li data-r="r1005-04-04" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-04" target="_blank" rel="noopener">10-05 04-04</a><span class="tx">월별·일별·기간별 선택창이 「기간별 매출」 탭 안 표 위에 있고 기본이 월별이다 (조회 기간 줄 맨 왼쪽 · 기본 일별이어야 함)</span></li>
+<li data-r="r1005-04-07" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-07" target="_blank" rel="noopener">10-05 04-07</a><span class="tx">일부 지급 건의 지급 상품명 표시 — STG에 일부 지급 건이 없어 확인 불가</span><span class="warn">일반 건은 주문을 펼치면 상품명이 보임(Hmall). G마켓은 링크프라이스가 상품명을 빈 값으로 보냄(개발팀 메모)</span></li>
+<li data-r="rx-10" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-10" target="_blank" rel="noopener">추가-10</a><span class="tx">상품명에 「Coupang cancel …」 같은 내부 문구가 나오고, G마켓 주문 2건은 상품명이 비어 있다</span></li>
+<li data-r="rx-11" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-11" target="_blank" rel="noopener">추가-11</a><span class="tx">같은 G마켓 주문의 구매일이 대시보드와 하루 다르다</span></li>
+</ul></section>
+<section class="g" data-k="m"><div class="gh"><label class="ck"><input type="checkbox" data-k="m"><span class="gt">회원 관리 &gt; 회원 목록</span><span class="gn">9건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/members/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1005-04-12" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-12" target="_blank" rel="noopener">10-05 04-12</a><span class="tx">목록에 「최근 접속」 열이 있고 날짜·시각이 보인다</span></li>
+<li data-r="r1005-05-11" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-11" target="_blank" rel="noopener">10-05 05-11</a><span class="tx">「마케팅 수신」 칸이 「동의」/「거부」로 나온다</span></li>
+<li data-r="r1005-04-10" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-10" target="_blank" rel="noopener">10-05 04-10</a><span class="tx">상태 거르개가 「정상 / 차단 / 탈퇴」이고 회원 상세 상태도 「차단」이다</span></li>
+<li data-r="r1005-04-36" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-36" target="_blank" rel="noopener">10-05 04-36</a><span class="tx">회원 상세 보유 현황에 포인트(예: 30P)가 보인다</span><span class="warn">오늘 오전에는 없던 항목. 개발팀이 이후 추가했다고 메모함. 실제로 보이는지가 핵심</span></li>
+<li data-r="r1002-17" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-17" target="_blank" rel="noopener">10-02 17</a><span class="tx">회원 상세 「티켓 수동 지급 · 차감」에 「사유 (필수)」 입력칸이 있다</span><span class="warn">오늘 오전에는 없던 항목. 개발팀이 이후 추가했다고 메모함. 실제로 보이는지가 핵심</span></li>
+<li data-r="r1005-04-11" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-11" target="_blank" rel="noopener">10-05 04-11</a><span class="tx">같은 곳에 「차감」 단추가 있다</span><span class="warn">오늘 오전에는 없던 항목. 개발팀이 이후 추가했다고 메모함. 실제로 보이는지가 핵심</span></li>
+<li data-r="r1002-03" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-03" target="_blank" rel="noopener">10-02 03</a><span class="tx">회원 상세에서 상태를 「차단」으로 두면 「차단 기간 · 영구 / 7일 / 30일」 선택이 나온다</span><span class="warn">저장 단추는 누르지 말 것. 차단된 회원(상태 거르개 「차단」)을 열면 저장 없이 볼 수 있다</span></li>
+<li data-r="r1002-04" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-04" target="_blank" rel="noopener">10-02 04</a><span class="tx">목록 위 「총 98명」과 아래 페이지 「1–10 / 159」의 총수가 다르고, 대시보드 「활성 회원 99」도 목록 위 98명과 다르다</span></li>
+<li data-r="r1002-24" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-24" target="_blank" rel="noopener">10-02 24</a><span class="tx">반복 가입 닉네임(알뜰한판다1 · 64 · 65 등)이 남아 있다 (출시 직전 일괄 정리)</span><span class="warn">개발팀 메모: 실서비스는 새 데이터로 시작</span></li>
+</ul></section>
+<section class="g" data-k="tk"><div class="gh"><label class="ck"><input type="checkbox" data-k="tk"><span class="gt">티켓·보상 &gt; 티켓 내역</span><span class="gn">7건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/tickets/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1002-05" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-05" target="_blank" rel="noopener">10-02 05</a><span class="tx">위 「원장」 수와 목록 맨 아래 총 건수가 같다</span></li>
+<li data-r="r1005-04-17" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-17" target="_blank" rel="noopener">10-05 04-17</a><span class="tx">관리자 지급 건의 사유가 「관리자 지급」이다</span><span class="warn">오늘 시험으로 티켓 1장을 수동 지급함. 그 기록이 보임</span></li>
+<li data-r="r1005-04-18" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-18" target="_blank" rel="noopener">10-05 04-18</a><span class="tx">관리자 지급 건의 상태가 「지급」이다</span><span class="warn">오늘 시험으로 티켓 1장을 수동 지급함. 그 기록이 보임</span></li>
+<li data-r="r1005-04-19" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-19" target="_blank" rel="noopener">10-05 04-19</a><span class="tx">「전체 거래유형」 목록이 줄지 않고 그대로 있다</span></li>
+<li data-r="r1005-04-34" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-34" target="_blank" rel="noopener">10-05 04-34</a><span class="tx">사유에 「BRONZE」 같은 영문 등급이 없다</span></li>
+<li data-r="rx-6" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-6" target="_blank" rel="noopener">추가-6</a><span class="tx">거래유형이 「구매 대기(수량 미정)」, 되돌림이 「회수」로 나온다 (「장수 미정」·「환수」여야 함)</span></li>
+<li data-r="rx-8" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-8" target="_blank" rel="noopener">추가-8</a><span class="tx">환수 부채(바로 회수하지 못한 몫)를 기록하는 기능이 없다</span></li>
+</ul></section>
+<section class="g" data-k="pt"><div class="gh"><label class="ck"><input type="checkbox" data-k="pt"><span class="gt">포인트 관리 &gt; 포인트 내역</span><span class="gn">6건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/points/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1005-04-21" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-21" target="_blank" rel="noopener">10-05 04-21</a><span class="tx">열에 「사유」와 「처리자」가 있다</span><span class="warn">오늘 오전에는 없던 항목. 개발팀이 이후 추가했다고 메모함. 실제로 보이는지가 핵심</span></li>
+<li data-r="r1021-14" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-14" target="_blank" rel="noopener">10-21 14</a><span class="tx">(같은 내용) 「사유」·「처리자」 열이 있다</span><span class="warn">오늘 오전에는 없던 항목. 개발팀이 이후 추가했다고 메모함. 실제로 보이는지가 핵심</span></li>
+<li data-r="r1002-09" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-09" target="_blank" rel="noopener">10-02 09</a><span class="tx">「오늘 출석체크로 10P를 받았어요」 같은 문구가 나오고 「룰렛」·「잭팟」이 없다</span></li>
+<li data-r="r1005-06-06" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-06" target="_blank" rel="noopener">10-05 06-06</a><span class="tx">선물 상자 항목이 「매일 / 랜덤 선물 상자」로 나오고 「LUCKY_SPIN_JACKPOT」이 없다 (티켓 내역도 같이 확인)</span></li>
+<li data-r="r1005-06-09" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-09" target="_blank" rel="noopener">10-05 06-09</a><span class="tx">이메일이 「sungkwan0***@naver.com」처럼 가려져 있다 (회원 목록·티켓 내역도 같은 모양)</span></li>
+<li data-r="rx-13" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-13" target="_blank" rel="noopener">추가-13</a><span class="tx">유형 선택칸에 「티켓→포인트 전환」이 남아 있다</span></li>
+</ul></section>
+<section class="g" data-k="gb"><div class="gh"><label class="ck"><input type="checkbox" data-k="gb"><span class="gt">티켓·보상 &gt; 매일·랜덤 선물 상자 열기</span><span class="gn">5건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/giftbox-daily/" target="_blank" rel="noopener">[매일 열기]</a><a class="open" href="https://admin-stg.pricepick.co.kr/giftbox-random/" target="_blank" rel="noopener">[랜덤 열기]</a></div><ul>
+<li data-r="r1002-18" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-18" target="_blank" rel="noopener">10-02 18</a><span class="tx">「이번 달 상자 열기」 횟수와 아래 실행 기록이 같이 나온다(「실행 기록 없음」이 아니다)</span></li>
+<li data-r="r1005-05-20" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-20" target="_blank" rel="noopener">10-05 05-20</a><span class="tx">(같은 내용) 횟수와 실행 기록이 맞는다</span></li>
+<li data-r="r1005-06-07" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-07" target="_blank" rel="noopener">10-05 06-07</a><span class="tx">(같은 내용) 횟수와 실행 기록이 맞는다</span></li>
+<li data-r="r1005-04-20" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-20" target="_blank" rel="noopener">10-05 04-20</a><span class="tx">「보상칸 구성 · 받을 확률」 표 아래에 기본값이 적혀 있다</span></li>
+<li data-r="rx-4" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-4" target="_blank" rel="noopener">추가-4</a><span class="tx">보상칸 1번에 「JACKPOT」이 보인다 (「최고 보상」이어야 함)</span></li>
+</ul></section>
+<section class="g" data-k="nt"><div class="gh"><label class="ck"><input type="checkbox" data-k="nt"><span class="gt">콘텐츠 &gt; 알림 관리</span><span class="gn">5건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/notifications/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1005-04-23" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-23" target="_blank" rel="noopener">10-05 04-23</a><span class="tx">알림 작성에 「테스트 발송」 단추가 있다</span></li>
+<li data-r="r1005-04-24" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-24" target="_blank" rel="noopener">10-05 04-24</a><span class="tx">발송 이력에 대상 수·성공·실패가 나온다</span></li>
+<li data-r="r1005-04-25" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-25" target="_blank" rel="noopener">10-05 04-25</a><span class="tx">발송 시점에 「예약 발송」을 고를 수 있다</span></li>
+<li data-r="r1021-16" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-16" target="_blank" rel="noopener">10-21 16</a><span class="tx">발송 이력의 대상 수와 성공·실패 합이 맞지 않고 「미처리」 열이 없다 (예: 10/14 16:56 대상 1명 · 성공 0명 · 실패 0명)</span></li>
+<li data-r="rx-15" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-15" target="_blank" rel="noopener">추가-15</a><span class="tx">예약 건을 발송 전에 취소·수정하는 단추가 없다</span></li>
+</ul></section>
+<section class="g" data-k="pb"><div class="gh"><label class="ck"><input type="checkbox" data-k="pb"><span class="gt">시스템 &gt; 포스트백 로그</span><span class="gn">4건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/postback/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1002-LP" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-LP" target="_blank" rel="noopener">10-02 LP</a><span class="tx">링크프라이스 탭에 10/13 G마켓 주문이 들어와 있다</span></li>
+<li data-r="r1002-15" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-15" target="_blank" rel="noopener">10-02 15</a><span class="tx">쿠팡·링크프라이스 탭에 「회원 연결」 열이 있고 닉네임(예: 김반장아이폰)이 나온다</span></li>
+<li data-r="r1021-15" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-15" target="_blank" rel="noopener">10-21 15</a><span class="tx">(위와 같은 열) + 회원 목록 상태 거르개에 「차단」이 있다</span></li>
+<li data-r="r1005-04-31" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-31" target="_blank" rel="noopener">10-05 04-31</a><span class="tx">「취소 확인일」 열이 있다</span></li>
+</ul></section>
+<section class="g" data-k="at"><div class="gh"><label class="ck"><input type="checkbox" data-k="at"><span class="gt">포인트 관리 &gt; 출석체크 설정</span><span class="gn">4건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/point-attendance/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1005-04-35" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-35" target="_blank" rel="noopener">10-05 04-35</a><span class="tx">연결 제휴몰이 「쿠팡」으로 고정돼 있다</span></li>
+<li data-r="r1005-05-12" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-12" target="_blank" rel="noopener">10-05 05-12</a><span class="tx">출석 인정 조건이 「1일 1회, 방문 후 복귀 시 인정」으로 나온다</span></li>
+<li data-r="r1021-06" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-06" target="_blank" rel="noopener">10-21 06</a><span class="tx">5일 연속 보너스가 「이벤트 티켓 1장」이다</span></li>
+<li data-r="rx-17" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-17" target="_blank" rel="noopener">추가-17</a><span class="tx">안내 세 곳이 「제휴몰 방문 후 복귀」로 돼 있다 (「쿠팡 방문 후 복귀」여야 함)</span></li>
+</ul></section>
+<section class="g" data-k="iq"><div class="gh"><label class="ck"><input type="checkbox" data-k="iq"><span class="gt">1:1 문의</span><span class="gn">4건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/inquiries/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1005-04-28" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-28" target="_blank" rel="noopener">10-05 04-28</a><span class="tx">상태가 「미처리 / 처리 완료」 두 가지다</span></li>
+<li data-r="r1005-04-29" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-29" target="_blank" rel="noopener">10-05 04-29</a><span class="tx">「답변일」 열이 있고 답변 없는 건은 「-」다</span></li>
+<li data-r="r1002-23" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-23" target="_blank" rel="noopener">10-02 23</a><span class="tx">검색 결과가 0건일 때 1:1 문의는 「1–1 / 1」, 포인트 내역은 「0–0 / 0」으로 나온다 (「총 0건」이어야 함)</span></li>
+<li data-r="rx-14" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-14" target="_blank" rel="noopener">추가-14</a><span class="tx">검색 결과가 0건인데 「1–1 / 1」로 나온다</span></li>
+</ul></section>
+<section class="g" data-k="op"><div class="gh"><label class="ck"><input type="checkbox" data-k="op"><span class="gt">운영 &gt; 운영 정책</span><span class="gn">4건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/op-policy/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1002-13" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-13" target="_blank" rel="noopener">10-02 13</a><span class="tx">이벤트 티켓 쓰임이 「랜덤 선물 상자 1장 + 티켓 2장 전환(한 방향)」이다 (앱 교환소와 같음)</span></li>
+<li data-r="r1002-20" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-20" target="_blank" rel="noopener">10-02 20</a><span class="tx">참여·이벤트 탭 온보딩 보상이 「가입 완료 시 20P」 · 「카카오 연동 시 이벤트 티켓 1장」이고, 획득 경로 표도 「카카오 연동 후 지급」이다</span></li>
+<li data-r="rx-3" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-3" target="_blank" rel="noopener">추가-3</a><span class="tx">「첫 픽구매」, 「앱 10e 화면」 문구가 남아 있다</span></li>
+<li data-r="r1021-08" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-08" target="_blank" rel="noopener">10-21 08</a><span class="tx">CMS는 「익익월 6일 확정 후」로 고쳐짐. 앱 몰 상세의 앱 구매 지원 여부 표기는 확인 전</span></li>
+</ul></section>
+<section class="g" data-k="wd"><div class="gh"><label class="ck"><input type="checkbox" data-k="wd"><span class="gt">운영 &gt; 계정 탈퇴 처리</span><span class="gn">3건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/withdrawal/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1002-01" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-01" target="_blank" rel="noopener">10-02 01</a><span class="tx">탈퇴 회원 목록에 닉네임 없이 식별 아이디만 나온다</span></li>
+<li data-r="r1021-11" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-11" target="_blank" rel="noopener">10-21 11</a><span class="tx">(같은 내용) 탈퇴 회원 닉네임이 지워져 있다</span></li>
+<li data-r="r1005-04-30" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-30" target="_blank" rel="noopener">10-05 04-30</a><span class="tx">목록에 「상세」 단추가 없다</span></li>
+</ul></section>
+<section class="g" data-k="db"><div class="gh"><label class="ck"><input type="checkbox" data-k="db"><span class="gt">대시보드</span><span class="gn">3건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1005-04-01" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-01" target="_blank" rel="noopener">10-05 04-01</a><span class="tx">「기프티콘 판매수익」 카드가 없다</span></li>
+<li data-r="r1005-04-02" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-02" target="_blank" rel="noopener">10-05 04-02</a><span class="tx">「발행 티켓 (누적 적립)」 카드가 「티켓」·「이벤트 티켓」 두 수치로 나뉘어 있다</span></li>
+<li data-r="rx-2" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-2" target="_blank" rel="noopener">추가-2</a><span class="tx">「최근 픽구매 현황」으로 나온다 (「최근 구매 현황」이어야 함)</span></li>
+</ul></section>
+<section class="g" data-k="sm"><div class="gh"><label class="ck"><input type="checkbox" data-k="sm"><span class="gt">연속구매 미션</span><span class="gn">2건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/streak-mission/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1005-05-16" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-16" target="_blank" rel="noopener">10-05 05-16</a><span class="tx">메뉴가 있고 3·5·10회, 7·14·30일 내, 이벤트 티켓 1·3·5장이 보인다</span></li>
+<li data-r="r1021-17" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-17" target="_blank" rel="noopener">10-21 17</a><span class="tx">(같은 화면) 현재 조건이 조회된다</span></li>
+</ul></section>
+<section class="g" data-k="tm"><div class="gh"><label class="ck"><input type="checkbox" data-k="tm"><span class="gt">운영 &gt; 약관 관리</span><span class="gn">2건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/terms/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1002-02" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-02" target="_blank" rel="noopener">10-02 02</a><span class="tx">개인정보처리방침 6항에 위탁업체 3곳이 실명으로 있고, 7항 「국외 이전」이 있다 (앱 마이 &gt; 이용약관·개인정보처리방침에도 같은 글)</span></li>
+<li data-r="r1021-02" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-02" target="_blank" rel="noopener">10-21 02</a><span class="tx">(같은 내용) 위탁·국외 이전 항목이 채워져 있다</span></li>
+</ul></section>
+<section class="g" data-k="an"><div class="gh"><label class="ck"><input type="checkbox" data-k="an"><span class="gt">콘텐츠 &gt; 공지사항 관리</span><span class="gn">2건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/announcement/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1005-04-22" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-22" target="_blank" rel="noopener">10-05 04-22</a><span class="tx">공지마다 「비게시」 단추가 있다</span></li>
+<li data-r="rx-23" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-23" target="_blank" rel="noopener">추가-23</a><span class="tx">「LK 매장 추가 오픈 안내」가 비게시 상태다</span></li>
+</ul></section>
+<section class="g" data-k="tv"><div class="gh"><label class="ck"><input type="checkbox" data-k="tv"><span class="gt">티켓 가치 설정</span><span class="gn">2건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/ticket-value/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1002-06" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-06" target="_blank" rel="noopener">10-02 06</a><span class="tx">「티켓 10원」 한 칸과 이벤트 티켓 40원이 따로 있다</span></li>
+<li data-r="r1021-03" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-03" target="_blank" rel="noopener">10-21 03</a><span class="tx">이용약관·운영 정책은 고쳐졌으나, 이 화면 설명에 「룰렛 잭팟 판정」이 남아 있다</span></li>
+</ul></section>
+<section class="g" data-k="iv"><div class="gh"><label class="ck"><input type="checkbox" data-k="iv"><span class="gt">콘텐츠 &gt; 친구초대 관리</span><span class="gn">2건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/invite/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1005-04-27" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-27" target="_blank" rel="noopener">10-05 04-27</a><span class="tx">「초대자 월 최대 50명」이 보인다</span></li>
+<li data-r="r1002-10" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-10" target="_blank" rel="noopener">10-02 10</a><span class="tx">CMS 통계 카드는 「가입 인원」·「첫 구매 성사 인원」으로 나뉨. 앱 초대코드 입력의 지급 조건 문구는 확인 전</span></li>
+</ul></section>
+<section class="g" data-k="pp"><div class="gh"><label class="ck"><input type="checkbox" data-k="pp"><span class="gt">포인트 정책</span><span class="gn">1건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/point-policy/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1002-11" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-11" target="_blank" rel="noopener">10-02 11</a><span class="tx">교환 방향이 「포인트 → 티켓 단방향」이다</span></li>
+</ul></section>
+<section class="g" data-k="ac"><div class="gh"><label class="ck"><input type="checkbox" data-k="ac"><span class="gt">관리자 계정</span><span class="gn">1건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/accounts/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1005-04-32" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-32" target="_blank" rel="noopener">10-05 04-32</a><span class="tx">계정 수정 창에 「새 비밀번호」·「새 비밀번호 확인」 칸이 있다</span><span class="warn">저장하지 말 것</span></li>
+</ul></section>
+<section class="g" data-k="aa"><div class="gh"><label class="ck"><input type="checkbox" data-k="aa"><span class="gt">/attendance/ 주소</span><span class="gn">1건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/attendance/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="r1021-10" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-10" target="_blank" rel="noopener">10-21 10</a><span class="tx">주소를 열면 대시보드로 넘어간다</span></li>
+</ul></section>
+<section class="g" data-k="gf"><div class="gh"><label class="ck"><input type="checkbox" data-k="gf"><span class="gt">기프티콘 &gt; 상품 목록</span><span class="gn">1건</span></label><a class="open" href="https://admin-stg.pricepick.co.kr/gifticon-products/" target="_blank" rel="noopener">[STG 열기]</a></div><ul>
+<li data-r="rx-7" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-7" target="_blank" rel="noopener">추가-7</a><span class="tx">기프티콘 사용 표기가 「교환」으로 나온다 (「구매」여야 함)</span></li>
+</ul></section>
+<section class="g" data-k="lg"><div class="gh"><label class="ck"><input type="checkbox" data-k="lg"><span class="gt">CMS 로그인 화면</span><span class="gn">1건</span></label></div><ul>
+<li data-r="r1005-04-33" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-04-33" target="_blank" rel="noopener">10-05 04-33</a><span class="tx">아이디 칸 예시가 「아이디」다</span><span class="warn">로그아웃해야 보이므로 맨 마지막에</span></li>
+</ul></section>
+<h2>앱 — 46건</h2>
+<section class="g" data-k="a-nick"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-nick"><span class="gt">마이 &gt; 닉네임</span><span class="gn">5건</span></label><span class="path">마이 → 닉네임 행 누름</span></div><ul>
+<li data-r="r1002-27" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-27" target="_blank" rel="noopener">10-02 27</a><span class="tx">기존 닉네임을 넣고 중복 확인 → 「이미 쓰고 있는 닉네임이에요」, 저장 단추가 비활성이다</span></li>
+<li data-r="r1002-21" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-21" target="_blank" rel="noopener">10-02 21</a><span class="tx">(미연동 계정) 「카카오 닉네임 가져오기」가 없다</span></li>
+<li data-r="r1005-05-13" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-13" target="_blank" rel="noopener">10-05 05-13</a><span class="tx">(같은 내용) 연동 계정에만 「카카오 닉네임 가져오기」가 있다</span></li>
+<li data-r="r1005-06-08" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-08" target="_blank" rel="noopener">10-05 06-08</a><span class="tx">연동 계정 닉네임이 「김반장아이폰」 그대로다</span></li>
+<li data-r="r1005-05-14" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-14" target="_blank" rel="noopener">10-05 05-14</a><span class="tx">카카오 닉네임 가져오기에서 동의를 취소해도 영문 오류가 뜨지 않는다</span></li>
+</ul></section>
+<section class="g" data-k="a-pt"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-pt"><span class="gt">혜택 &gt; 포인트</span><span class="gn">4건</span></label><span class="path">혜택 → 포인트 칸</span></div><ul>
+<li data-r="r1002-12" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-12" target="_blank" rel="noopener">10-02 12</a><span class="tx">「티켓으로 전환」을 누르면 교환소 「포인트 교환」 탭이 먼저 열린다</span></li>
+<li data-r="r1005-05-04" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-04" target="_blank" rel="noopener">10-05 05-04</a><span class="tx">(미연동 계정) 교환하기 → 「카카오 연동 후 교환할 수 있어요.」, 포인트 그대로</span></li>
+<li data-r="r1005-05-19" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-19" target="_blank" rel="noopener">10-05 05-19</a><span class="tx">내역에 「매일 선물 상자에서 10P를 받았어요.」가 있다</span></li>
+<li data-r="r1005-06-03" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-03" target="_blank" rel="noopener">10-05 06-03</a><span class="tx">내역에 「랜덤 선물 상자에서 100P를 받았어요.」가 있다</span></li>
+</ul></section>
+<section class="g" data-k="a-act"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-act"><span class="gt">마이 &gt; 활동 내역</span><span class="gn">4건</span></label><span class="path">마이 → 활동 내역</span></div><ul>
+<li data-r="r1005-06-04" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-04" target="_blank" rel="noopener">10-05 06-04</a><span class="tx">「랜덤 선물 상자 열기 · 이벤트 티켓 1장」이고 「럭키 스핀」이 없다</span></li>
+<li data-r="r1005-05-10" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-10" target="_blank" rel="noopener">10-05 05-10</a><span class="tx">관리자 지급 건이 「티켓 적립 · 관리자 지급」으로 나온다</span></li>
+<li data-r="r1021-05" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-05" target="_blank" rel="noopener">10-21 05</a><span class="tx">「오래된순」을 누르면 맨 위가 2026년 7월이다</span></li>
+<li data-r="rx-20" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-20" target="_blank" rel="noopener">추가-20</a><span class="tx">가입 보상 항목에 「Onboarding reward for nickname registration」 영문이 보인다</span></li>
+</ul></section>
+<section class="g" data-k="a-inv"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-inv"><span class="gt">마이 &gt; 초대코드 입력</span><span class="gn">4건</span></label><span class="path">마이 → 초대코드 입력</span></div><ul>
+<li data-r="r1005-05-17" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-17" target="_blank" rel="noopener">10-05 05-17</a><span class="tx">없는 코드를 넣어도 [404]·[400] 같은 영문이 뜨지 않는다</span></li>
+<li data-r="r1005-06-13" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-13" target="_blank" rel="noopener">10-05 06-13</a><span class="tx">입력칸 예시가 「예: 4A7C2E91」이다</span></li>
+<li data-r="r1021-01" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-01" target="_blank" rel="noopener">10-21 01</a><span class="tx">「나와 친구 모두 ○○P를 받을 수 있어요」만 있고 「친구가 첫 구매를 완료하면 지급」이 없다</span></li>
+<li data-r="r1002-08" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-08" target="_blank" rel="noopener">10-02 08</a><span class="tx">오류 문구가 「존재하지 않는 초대코드예요. 다시 확인해주세요.」 등으로, 요청 문구와 글자가 다르다</span><span class="warn">영문 원문·오류 코드는 숨겨져 있음. 글자만 다름</span></li>
+</ul></section>
+<section class="g" data-k="a-an"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-an"><span class="gt">마이 &gt; 공지사항</span><span class="gn">4건</span></label><span class="path">마이 → 도움말 → 공지사항</span></div><ul>
+<li data-r="r1021-12" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-12" target="_blank" rel="noopener">10-21 12</a><span class="tx">공지가 하나도 없다(게시 0건)</span></li>
+<li data-r="rx-21" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-21" target="_blank" rel="noopener">추가-21</a><span class="tx">(같은 화면) 「개인정보 처리방침 개정 안내」가 보이지 않는다</span></li>
+<li data-r="r1002-14" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-14" target="_blank" rel="noopener">10-02 14</a><span class="tx">베트남어 시험 공지가 없다 (게시 0건)</span></li>
+<li data-r="r1005-05-24" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-24" target="_blank" rel="noopener">10-05 05-24</a><span class="tx">「신규」 표시가 게시일과 상관없이 안 읽은 공지 전부에 붙는다 (게시 7일까지만이어야 함)</span><span class="warn">지금 게시 공지가 0건이라 화면으로는 확인 불가</span></li>
+</ul></section>
+<section class="g" data-k="a-ex"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-ex"><span class="gt">교환소</span><span class="gn">3건</span></label><span class="path">혜택 → 내 티켓 자세히 보기 → 티켓 &amp; 포인트 교환소</span></div><ul>
+<li data-r="r1005-05-05" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-05" target="_blank" rel="noopener">10-05 05-05</a><span class="tx">탭이 「포인트 교환」·「이벤트티켓 교환」 두 개뿐이다</span></li>
+<li data-r="r1005-05-22" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-22" target="_blank" rel="noopener">10-05 05-22</a><span class="tx">안내가 「포인트 → 티켓 한 방향만 가능해요.」다</span></li>
+<li data-r="r1005-06-02" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-02" target="_blank" rel="noopener">10-05 06-02</a><span class="tx">(오늘 교환한 기록으로 확인) 교환 직후 「티켓 1장으로 교환했어요」가 떴다</span></li>
+</ul></section>
+<section class="g" data-k="a-nt"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-nt"><span class="gt">홈 &gt; 알림</span><span class="gn">3건</span></label><span class="path">홈 → 오른쪽 위 종 모양</span></div><ul>
+<li data-r="r1005-05-09" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-09" target="_blank" rel="noopener">10-05 05-09</a><span class="tx">티켓 지급 알림이 「티켓 1장이 지급됐어요.」이고 영문 등급이 없다</span></li>
+<li data-r="r1005-06-05" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-05" target="_blank" rel="noopener">10-05 06-05</a><span class="tx">「행운 룰렛」·「SILVER」 같은 말이 없다</span></li>
+<li data-r="r1005-06-10" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-10" target="_blank" rel="noopener">10-05 06-10</a><span class="tx">알림 화면에 들어갔다 나오면 홈 벨의 안 읽음 표시가 사라진다</span></li>
+</ul></section>
+<section class="g" data-k="a-rb"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-rb"><span class="gt">홈 &gt; 랜덤 선물 상자</span><span class="gn">3건</span></label><span class="path">홈 → 랜덤 선물 상자 배너</span></div><ul>
+<li data-r="r1002-19" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1002-19" target="_blank" rel="noopener">10-02 19</a><span class="tx">보상 설명에 「이벤트티켓」이 들어 있다 (이벤트 티켓으로 여는 상자라 빼야 함)</span></li>
+<li data-r="r1005-05-21" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-21" target="_blank" rel="noopener">10-05 05-21</a><span class="tx">(같은 내용) 보상 설명에 「이벤트티켓」이 들어 있다</span></li>
+<li data-r="r1021-07" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-07" target="_blank" rel="noopener">10-21 07</a><span class="tx">아래 단추는 「이벤트 티켓 1장으로 열기」인데 위 배지는 「EVENT · 티켓 1장으로 열기」다</span></li>
+</ul></section>
+<section class="g" data-k="a-cs"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-cs"><span class="gt">마이 &gt; 고객센터</span><span class="gn">2건</span></label><span class="path">마이 → 도움말 → 고객센터 · 1:1 문의</span></div><ul>
+<li data-r="r1005-05-02" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-02" target="_blank" rel="noopener">10-05 05-02</a><span class="tx">내 문의 상태가 「미처리 / 처리 완료」로 나온다</span></li>
+<li data-r="r1005-05-03" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-03" target="_blank" rel="noopener">10-05 05-03</a><span class="tx">문의를 누르면 상세가 열린다</span></li>
+</ul></section>
+<section class="g" data-k="a-earn"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-earn"><span class="gt">혜택 &gt; 티켓은 이렇게 적립돼요</span><span class="gn">2건</span></label><span class="path">혜택 → 「티켓은 이렇게 적립돼요」</span></div><ul>
+<li data-r="r1005-05-06" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-06" target="_blank" rel="noopener">10-05 05-06</a><span class="tx">쿠팡 「연동 D+7 / 미연동 D+30」이 보인다</span></li>
+<li data-r="r1005-05-07" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-07" target="_blank" rel="noopener">10-05 05-07</a><span class="tx">「월 한도 50건」이 보인다</span></li>
+</ul></section>
+<section class="g" data-k="a-kk"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-kk"><span class="gt">홈 &gt; 카카오 연동 배너 · 가입 팝업</span><span class="gn">2건</span></label><span class="path">홈 → 카카오 연동 배너 (미연동 계정)</span></div><ul>
+<li data-r="r1005-05-08" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-08" target="_blank" rel="noopener">10-05 05-08</a><span class="tx">「브론즈」라는 말이 없고 「첫 경유구매(7일 내) 시 티켓 10장」이 있다</span></li>
+<li data-r="r1005-06-01" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-01" target="_blank" rel="noopener">10-05 06-01</a><span class="tx">(같은 내용) 배너·팝업에 브론즈 표기가 없다</span></li>
+</ul></section>
+<section class="g" data-k="a-wd"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-wd"><span class="gt">마이 &gt; 계정 탈퇴</span><span class="gn">2건</span></label><span class="path">마이 → 맨 아래 「계정 탈퇴」</span></div><ul>
+<li data-r="r1005-05-15" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-15" target="_blank" rel="noopener">10-05 05-15</a><span class="tx">삭제 항목에 이벤트 티켓·보유 포인트가 실제 값으로 나온다</span><span class="warn">탈퇴 누르지 말 것</span></li>
+<li data-r="rx-1" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#rx-1" target="_blank" rel="noopener">추가-1</a><span class="tx">최종 확인 화면에 「픽구매 이력」 문구가 남아 있다</span></li>
+</ul></section>
+<section class="g" data-k="a-my"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-my"><span class="gt">마이</span><span class="gn">2건</span></label><span class="path">마이 첫 화면</span></div><ul>
+<li data-r="r1005-05-01" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-01" target="_blank" rel="noopener">10-05 05-01</a><span class="tx">직접 정한 닉네임 아래 「자동 생성된 닉네임이에요」가 없다</span></li>
+<li data-r="r1021-13" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-13" target="_blank" rel="noopener">10-21 13</a><span class="tx">도움말에 「쇼핑 적립 방법」 행이 없다 (3행뿐)</span></li>
+</ul></section>
+<section class="g" data-k="a-fr"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-fr"><span class="gt">홈 &gt; 친구 초대</span><span class="gn">1건</span></label><span class="path">홈 → 친구 초대</span></div><ul>
+<li data-r="r1005-05-18" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-18" target="_blank" rel="noopener">10-05 05-18</a><span class="tx">「이번 달 초대 ○/50명」이 보인다</span></li>
+</ul></section>
+<section class="g" data-k="a-buy"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-buy"><span class="gt">마이 &gt; 구매 내역</span><span class="gn">1건</span></label><span class="path">마이 → 구매 내역</span></div><ul>
+<li data-r="r1005-06-11" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-11" target="_blank" rel="noopener">10-05 06-11</a><span class="tx">위 단계 안내 없이 필터만 있다</span></li>
+</ul></section>
+<section class="g" data-k="a-set"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-set"><span class="gt">설정</span><span class="gn">1건</span></label><span class="path">홈 → 위쪽 설정 아이콘</span></div><ul>
+<li data-r="r1005-06-12" data-st="ok"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-06-12" target="_blank" rel="noopener">10-05 06-12</a><span class="tx">맨 아래 「© 2026 Appmix」가 있다</span></li>
+</ul></section>
+<section class="g" data-k="a-terms"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-terms"><span class="gt">마이 &gt; 이용약관·개인정보처리방침</span><span class="gn">1건</span></label><span class="path">마이 → 도움말 → 이용약관 · 개인정보처리방침</span></div><ul>
+<li data-r="r1005-05-23" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-23" target="_blank" rel="noopener">10-05 05-23</a><span class="tx">앱 이용약관·개인정보처리방침에 「[시행일]」 「[클라우드 사업자명]」 같은 빈칸이 남아 있는지 확인 전</span><span class="warn">10-30 STG 약관 관리에서는 빈칸이 모두 채워져 있었음(2026년 11월 1일 시행, Google LLC). 앱에서 채워졌는지가 핵심</span></li>
+</ul></section>
+<section class="g" data-k="a-mt"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-mt"><span class="gt">마이 &gt; 내 티켓·기프티콘</span><span class="gn">1건</span></label><span class="path">마이 → 내 티켓·기프티콘</span></div><ul>
+<li data-r="r1021-04" data-st="ng"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1021-04" target="_blank" rel="noopener">10-21 04</a><span class="tx">「가장 가까운 만료일」에서 포인트만 「— · 만료일 없음」이다 (포인트도 만료일·수량이 나와야 함)</span></li>
+</ul></section>
+<section class="g" data-k="a-re"><div class="gh"><label class="ck"><input type="checkbox" data-k="a-re"><span class="gt">앱 재설치</span><span class="gn">1건</span></label><span class="path">앱 삭제 후 다시 설치</span></div><ul>
+<li data-r="r1005-05-25" data-st="wait"><span class="stl"></span><a class="no" href="https://pricepick.vercel.app/devqa/qa-verify-20261026.html#r1005-05-25" target="_blank" rel="noopener">10-05 05-25</a><span class="tx">재설치 시 기준을 정해야 한다 — 「새 회원으로 시작(팝업 표시, 기기 단위 보상 제한)」 / 「기기 식별값으로 이전 상태 유지」</span></li>
+</ul></section>
+</div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  var SRC={"r1002-LP": ["qa_extra_20261002", "LP"], "r1002-01": ["qa_extra_20261002", "01"], "r1002-02": ["qa_extra_20261002", "02"], "r1002-03": ["qa_extra_20261002", "03"], "r1002-04": ["qa_extra_20261002", "04"], "r1002-05": ["qa_extra_20261002", "05"], "r1002-06": ["qa_extra_20261002", "06"], "r1002-07": ["qa_extra_20261002", "07"], "r1002-08": ["qa_extra_20261002", "08"], "r1002-09": ["qa_extra_20261002", "09"], "r1002-10": ["qa_extra_20261002", "10"], "r1002-11": ["qa_extra_20261002", "11"], "r1002-12": ["qa_extra_20261002", "12"], "r1002-13": ["qa_extra_20261002", "13"], "r1002-14": ["qa_extra_20261002", "14"], "r1002-15": ["qa_extra_20261002", "15"], "r1002-16": ["qa_extra_20261002", "16"], "r1002-17": ["qa_extra_20261002", "17"], "r1002-18": ["qa_extra_20261002", "18"], "r1002-19": ["qa_extra_20261002", "19"], "r1002-20": ["qa_extra_20261002", "20"], "r1002-21": ["qa_extra_20261002", "21"], "r1002-23": ["qa_extra_20261002", "23"], "r1002-24": ["qa_extra_20261002", "24"], "r1002-27": ["qa_extra_20261002", "27"], "r1005-04-01": ["qa_review_20261005", "04-01"], "r1005-04-02": ["qa_review_20261005", "04-02"], "r1005-04-03": ["qa_review_20261005", "04-03"], "r1005-04-04": ["qa_review_20261005", "04-04"], "r1005-04-05": ["qa_review_20261005", "04-05"], "r1005-04-06": ["qa_review_20261005", "04-06"], "r1005-04-07": ["qa_review_20261005", "04-07"], "r1005-04-08": ["qa_review_20261005", "04-08"], "r1005-04-09": ["qa_review_20261005", "04-09"], "r1005-04-10": ["qa_review_20261005", "04-10"], "r1005-04-11": ["qa_review_20261005", "04-11"], "r1005-04-12": ["qa_review_20261005", "04-12"], "r1005-04-13": ["qa_review_20261005", "04-13"], "r1005-04-14": ["qa_review_20261005", "04-14"], "r1005-04-15": ["qa_review_20261005", "04-15"], "r1005-04-16": ["qa_review_20261005", "04-16"], "r1005-04-17": ["qa_review_20261005", "04-17"], "r1005-04-18": ["qa_review_20261005", "04-18"], "r1005-04-19": ["qa_review_20261005", "04-19"], "r1005-04-20": ["qa_review_20261005", "04-20"], "r1005-04-21": ["qa_review_20261005", "04-21"], "r1005-04-22": ["qa_review_20261005", "04-22"], "r1005-04-23": ["qa_review_20261005", "04-23"], "r1005-04-24": ["qa_review_20261005", "04-24"], "r1005-04-25": ["qa_review_20261005", "04-25"], "r1005-04-26": ["qa_review_20261005", "04-26"], "r1005-04-27": ["qa_review_20261005", "04-27"], "r1005-04-28": ["qa_review_20261005", "04-28"], "r1005-04-29": ["qa_review_20261005", "04-29"], "r1005-04-30": ["qa_review_20261005", "04-30"], "r1005-04-31": ["qa_review_20261005", "04-31"], "r1005-04-32": ["qa_review_20261005", "04-32"], "r1005-04-33": ["qa_review_20261005", "04-33"], "r1005-04-34": ["qa_review_20261005", "04-34"], "r1005-04-35": ["qa_review_20261005", "04-35"], "r1005-04-36": ["qa_review_20261005", "04-36"], "r1005-05-01": ["qa_review_20261005", "05-01"], "r1005-05-02": ["qa_review_20261005", "05-02"], "r1005-05-03": ["qa_review_20261005", "05-03"], "r1005-05-04": ["qa_review_20261005", "05-04"], "r1005-05-05": ["qa_review_20261005", "05-05"], "r1005-05-06": ["qa_review_20261005", "05-06"], "r1005-05-07": ["qa_review_20261005", "05-07"], "r1005-05-08": ["qa_review_20261005", "05-08"], "r1005-05-09": ["qa_review_20261005", "05-09"], "r1005-05-10": ["qa_review_20261005", "05-10"], "r1005-05-11": ["qa_review_20261005", "05-11"], "r1005-05-12": ["qa_review_20261005", "05-12"], "r1005-05-13": ["qa_review_20261005", "05-13"], "r1005-05-14": ["qa_review_20261005", "05-14"], "r1005-05-15": ["qa_review_20261005", "05-15"], "r1005-05-16": ["qa_review_20261005", "05-16"], "r1005-05-17": ["qa_review_20261005", "05-17"], "r1005-05-18": ["qa_review_20261005", "05-18"], "r1005-05-19": ["qa_review_20261005", "05-19"], "r1005-05-20": ["qa_review_20261005", "05-20"], "r1005-05-21": ["qa_review_20261005", "05-21"], "r1005-05-22": ["qa_review_20261005", "05-22"], "r1005-05-23": ["qa_review_20261005", "05-23"], "r1005-05-24": ["qa_review_20261005", "05-24"], "r1005-05-25": ["qa_review_20261005", "05-25"], "r1005-06-01": ["qa_review_20261005", "06-01"], "r1005-06-02": ["qa_review_20261005", "06-02"], "r1005-06-03": ["qa_review_20261005", "06-03"], "r1005-06-04": ["qa_review_20261005", "06-04"], "r1005-06-05": ["qa_review_20261005", "06-05"], "r1005-06-06": ["qa_review_20261005", "06-06"], "r1005-06-07": ["qa_review_20261005", "06-07"], "r1005-06-08": ["qa_review_20261005", "06-08"], "r1005-06-09": ["qa_review_20261005", "06-09"], "r1005-06-10": ["qa_review_20261005", "06-10"], "r1005-06-11": ["qa_review_20261005", "06-11"], "r1005-06-12": ["qa_review_20261005", "06-12"], "r1005-06-13": ["qa_review_20261005", "06-13"], "r1021-01": ["qa_extra_20261021", "01"], "r1021-02": ["qa_extra_20261021", "02"], "r1021-03": ["qa_extra_20261021", "03"], "r1021-04": ["qa_extra_20261021", "04"], "r1021-05": ["qa_extra_20261021", "05"], "r1021-06": ["qa_extra_20261021", "06"], "r1021-07": ["qa_extra_20261021", "07"], "r1021-08": ["qa_extra_20261021", "08"], "r1021-09": ["qa_extra_20261021", "09"], "r1021-10": ["qa_extra_20261021", "10"], "r1021-11": ["qa_extra_20261021", "11"], "r1021-12": ["qa_extra_20261021", "12"], "r1021-13": ["qa_extra_20261021", "13"], "r1021-14": ["qa_extra_20261021", "14"], "r1021-15": ["qa_extra_20261021", "15"], "r1021-16": ["qa_extra_20261021", "16"], "r1021-17": ["qa_extra_20261021", "17"], "rx-1": ["qa_extra_20261028", "01"], "rx-2": ["qa_extra_20261028", "02"], "rx-3": ["qa_extra_20261028", "03"], "rx-4": ["qa_extra_20261028", "04"], "rx-5": ["qa_extra_20261028", "05"], "rx-6": ["qa_extra_20261028", "06"], "rx-7": ["qa_extra_20261028", "07"], "rx-8": ["qa_extra_20261028", "08"], "rx-10": ["qa_extra_20261028", "09"], "rx-11": ["qa_extra_20261028", "10"], "rx-12": ["qa_extra_20261028", "11"], "rx-13": ["qa_extra_20261028", "12"], "rx-14": ["qa_extra_20261028", "13"], "rx-15": ["qa_extra_20261028", "14"], "rx-16": ["qa_extra_20261028", "15"], "rx-17": ["qa_extra_20261028", "16"], "rx-18": ["qa_extra_20261028", "17"], "rx-19": ["qa_extra_20261028", "18"], "rx-20": ["qa_extra_20261028", "19"], "rx-21": ["qa_extra_20261028", "20"], "rx-23": ["qa_extra_20261028", "22"]};
+  var LBL={pre:'반영 · 검수 전',fin:'반영 · 검수 완료',ng:'미반영',wait:'정책 확정 대기'};
+  var lis=[].slice.call(document.querySelectorAll('li[data-r]')), FIN={}, filt='all';
+  /* 줄 상태 — 반영/미반영/정책 확정 대기는 검수 반영 현황 문서를 그때그때 읽고, 검수 여부는 검수 저장소를 실시간으로 읽는다 */
+  function state(li){ var st=li.dataset.st; if(st==='ok'){ var s=SRC[li.dataset.r]; return (s&&FIN[s[0]+'/'+s[1]])?'fin':'pre'; } return st==='wait'?'wait':(st==='ng'?'ng':'pre'); }
+  function paint(){
+    var c={pre:0,fin:0,ng:0,wait:0};
+    lis.forEach(function(li){ var s=state(li); li.dataset.s=s; li.querySelector('.stl').textContent=LBL[s]; c[s]++; li.classList.toggle('hide', !(filt==='all'||filt===s)); });
+    document.querySelectorAll('.g').forEach(function(g){ g.classList.toggle('hide', !g.querySelector('li:not(.hide)')); });
+    document.getElementById('sum').innerHTML='<span>전체 <b>'+lis.length+'</b>건</span><span>검수 대상 <b>'+c.pre+'</b>건</span><span>검수 완료 <b>'+c.fin+'</b>건</span><span>미반영 <b>'+c.ng+'</b>건</span><span>정책 확정 대기 <b>'+c.wait+'</b>건</span>';
+  }
+  fetch('qa-verify-20261026.html',{cache:'no-store'}).then(function(r){return r.text();}).then(function(h){
+    var d=new DOMParser().parseFromString(h,'text/html');
+    lis.forEach(function(li){ var tr=d.getElementById(li.dataset.r), m=tr&&tr.className.match(/st-([a-z]+)/); if(m) li.dataset.st=m[1]; }); paint();
+  }).catch(function(){});
+  document.getElementById('fb').addEventListener('click',function(e){ var b=e.target.closest('.fbt'); if(!b) return; filt=b.dataset.f; document.querySelectorAll('.fbt').forEach(function(x){x.classList.toggle('on',x===b);}); paint(); });
+  /* 화면별 체크 — 추가 확인 사항 저장소의 문서 zz_final_check_20261029(screens 칸). 연결이 안 되면 이 브라우저에만 저장 */
+  var KEY='ppqa_final_check_20261029', REF=null, st={}, db=null;
+  var boxes=[].slice.call(document.querySelectorAll('.ck input'));
+  try{ st=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(_){ st={}; }
+  function paintCk(){
+    var n=0; boxes.forEach(function(b){ var on=!!st[b.dataset.k]; b.checked=on; b.closest('.g').classList.toggle('done',on); if(on) n++; });
+    document.getElementById('prog').textContent='확인한 화면 '+n+' / 전체 '+boxes.length;
+    document.getElementById('pgi').style.width=(n/boxes.length*100).toFixed(1)+'%';
+  }
+  function keep(){ try{ localStorage.setItem(KEY,JSON.stringify(st)); }catch(_){} }
+  try{
+    firebase.initializeApp({apiKey:"AIzaSyCElUPJAitnMZxttVYjboV0j4s_qpErAgA",authDomain:"pricepick-demo.firebaseapp.com",projectId:"pricepick-demo",storageBucket:"pricepick-demo.firebasestorage.app",messagingSenderId:"505137396208",appId:"1:505137396208:web:cea9d208c7745854e14535"});
+    db=firebase.firestore();
+    REF=db.collection('qa_extra_20261028').doc('zz_final_check_20261029');
+    REF.onSnapshot(function(d){ var sc=(d.exists&&d.data().screens)||{}, m={}; Object.keys(sc).forEach(function(k){ if(sc[k]) m[k]=true; }); st=m; keep(); paintCk(); },function(e){ console.error('[final-check] load failed',e); });
+    ['qa_extra_20261002','qa_review_20261005','qa_extra_20261021','qa_extra_20261028'].forEach(function(col){
+      db.collection(col).onSnapshot(function(snap){ snap.forEach(function(x){ FIN[col+'/'+x.id]=!!x.data().final_done; }); paint(); },function(e){ console.error('[final-check] final load failed',col,e); });
+    });
+  }catch(e){ db=null; }
+  boxes.forEach(function(b){ b.addEventListener('change',function(){
+    var k=b.dataset.k, on=b.checked; if(on) st[k]=true; else delete st[k]; keep(); paintCk();
+    if(REF){ var u={}; u[k]=on; REF.set({screens:u,updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true}).catch(function(e){ console.error('[final-check] save failed',k,e); }); }
+  }); });
+  paint(); paintCk();
+})();
+</script>
+</body></html>
