@@ -34,6 +34,11 @@ li:first-child{border-top:0}
 .fbt{font:700 12px inherit;border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:999px;padding:4px 11px;cursor:pointer}
 .fbt.on{background:var(--pp-d);border-color:var(--pp-d);color:#fff}
 .fbt[data-f=pre]{border-color:var(--pp)}
+/* 정렬 선택 — 필터 단추와 같은 모양. CMS 메뉴순(기본) · 건수 많은순, CMS·앱 구분 안에서만 바꾼다 */
+.sb{display:flex;gap:6px;flex-wrap:wrap;align-items:center;width:100%}
+.sb-lb{font-size:12px;font-weight:700;color:var(--ink3);margin-right:2px}
+.sbt{font:700 12px inherit;border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:999px;padding:4px 11px;cursor:pointer}
+.sbt.on{background:var(--pp-d);border-color:var(--pp-d);color:#fff}
 li[data-s=fin] .tx,li[data-s=fin] .no{opacity:.5}
 li[data-s=ng] .tx{color:#7A271A}
 li.hide,.g.hide{display:none}
@@ -80,7 +85,7 @@ header{position:relative}
 <script>if(window.self!==window.top)document.documentElement.className+=' emb';</script></head><body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label><div class="in"><nav class="ptabs"><a href="qa-verify-20261026.html#tab-verify" data-tab="tab-verify"><span class="i18n"><span class="ko">검수 반영 현황</span><span class="vi">Tình trạng phản ánh kiểm thử</span></span></a><a href="qa-verify-20261026.html#tab-final" data-tab="tab-final" class="on" aria-current="page"><span class="i18n"><span class="ko">화면별 최종 검수</span><span class="vi">Kiểm thử cuối theo màn hình</span></span></a><a href="qa-verify-20261026.html#tab-1002" data-tab="tab-1002"><span class="i18n"><span class="ko">검수 10-02</span><span class="vi">Kiểm thử 02/10</span></span></a><a href="qa-verify-20261026.html#tab-1005" data-tab="tab-1005"><span class="i18n"><span class="ko">검수 10-05</span><span class="vi">Kiểm thử 05/10</span></span></a><a href="qa-verify-20261026.html#tab-1021" data-tab="tab-1021"><span class="i18n"><span class="ko">검수 10-21</span><span class="vi">Kiểm thử 21/10</span></span></a></nav><h1><span class="i18n"><span class="ko">PricePick 화면별 최종 검수 · 전체 </span><span class="vi">PricePick · Kiểm thử cuối theo màn hình · Tất cả </span></span><span id="tot">137</span><span class="i18n"><span class="ko">건</span><span class="vi"> mục</span></span></h1><div class="sumrow" id="sum"></div></div></header>
-<div class="bar"><div class="in"><div class="fb" id="fb"><button type="button" class="fbt on" data-f="all"><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span></button><button type="button" class="fbt" data-f="pre"><span class="i18n"><span class="ko">반영 완료 미검수</span><span class="vi">Đã phản ánh, chưa kiểm thử</span></span></button><button type="button" class="fbt" data-f="fin"><span class="i18n"><span class="ko">검수 완료</span><span class="vi">Đã kiểm thử</span></span></button><button type="button" class="fbt" data-f="ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span></button><span class="rfwrap"><span class="rf-at"><span class="i18n"><span class="ko">마지막 갱신 </span><span class="vi">Cập nhật lần cuối </span></span><span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle"><span class="i18n"><span class="ko">새로고침</span><span class="vi">Làm mới</span></span></span><span class="rf-busy"><span class="i18n"><span class="ko">조회 중</span><span class="vi">Đang tải</span></span></span></button></span></div></div></div>
+<div class="bar"><div class="in"><div class="fb" id="fb"><button type="button" class="fbt on" data-f="all"><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span></button><button type="button" class="fbt" data-f="pre"><span class="i18n"><span class="ko">반영 완료 미검수</span><span class="vi">Đã phản ánh, chưa kiểm thử</span></span></button><button type="button" class="fbt" data-f="fin"><span class="i18n"><span class="ko">검수 완료</span><span class="vi">Đã kiểm thử</span></span></button><button type="button" class="fbt" data-f="ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span></button><span class="rfwrap"><span class="rf-at"><span class="i18n"><span class="ko">마지막 갱신 </span><span class="vi">Cập nhật lần cuối </span></span><span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle"><span class="i18n"><span class="ko">새로고침</span><span class="vi">Làm mới</span></span></span><span class="rf-busy"><span class="i18n"><span class="ko">조회 중</span><span class="vi">Đang tải</span></span></span></button></span></div><div class="sb" id="sb"><span class="sb-lb"><span class="i18n"><span class="ko">정렬</span><span class="vi">Sắp xếp</span></span></span><button type="button" class="sbt on" data-o="menu"><span class="i18n"><span class="ko">CMS 메뉴순</span><span class="vi">Theo thứ tự menu CMS</span></span></button><button type="button" class="sbt" data-o="cnt"><span class="i18n"><span class="ko">건수 많은순</span><span class="vi">Nhiều mục nhất trước</span></span></button></div></div></div>
 <div id="lb" hidden><img alt=""></div>
 <div class="wrap">
 <h2><span class="i18n"><span class="ko">CMS — 90건</span><span class="vi">CMS — 90 mục</span></span></h2>
@@ -336,6 +341,18 @@ header{position:relative}
       else { var f=tr&&tr.querySelector('td.no[data-fsrc]'), q=f&&f.getAttribute('data-fsrc').split(':'); if(q&&DEVCOL[q[0]]) SRC[li.dataset.r]=[DEVCOL[q[0]],q[1]]; } }); paint();
   }).catch(function(e){ console.error('[final-check] verify load failed',e); }); }
   loadVerify();
+  /* 정렬 — 묶음 노드만 옮긴다(검수 상태·필터 표시는 노드에 붙어 있어 그대로). 고른 값은 이 브라우저에 기억 */
+  (function(){
+    var parts=[].map.call(document.querySelectorAll('.wrap > h2'),function(h){ var gs=[],n=h.nextElementSibling; while(n&&n.tagName!=='H2'){ if(n.matches('section.g')) gs.push(n); n=n.nextElementSibling; } gs.forEach(function(g,i){ g._o=i; g._n=g.querySelectorAll('li[data-r]').length; }); return {h:h,gs:gs}; });
+    function order(o){
+      parts.forEach(function(p){ var gs=p.gs.slice().sort(function(a,b){ return o==='cnt'?(b._n-a._n)||(a._o-b._o):a._o-b._o; }); var at=p.h; gs.forEach(function(g){ at.after(g); at=g; }); });
+      document.querySelectorAll('.sbt').forEach(function(x){ x.classList.toggle('on',x.dataset.o===o); });
+      try{ localStorage.setItem('fc-sort',o); }catch(e){}
+    }
+    var o0='menu'; try{ if(localStorage.getItem('fc-sort')==='cnt') o0='cnt'; }catch(e){}
+    if(o0!=='menu') order(o0);
+    document.getElementById('sb').addEventListener('click',function(e){ var b=e.target.closest('.sbt'); if(b) order(b.dataset.o); });
+  })();
   document.getElementById('fb').addEventListener('click',function(e){ var b=e.target.closest('.fbt'); if(!b) return; filt=b.dataset.f; document.querySelectorAll('.fbt').forEach(function(x){x.classList.toggle('on',x===b);}); paint(); });
   var db=null;
   try{
