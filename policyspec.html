@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PricePick 마스터 정책서 v8.3</title>
+<title>PricePick 마스터 정책서 v8.4</title>
 <style>
   :root{
     --pp:#845EEE; --pp-d:#6a45d4; --pp-l:#f3efff;
@@ -270,7 +270,7 @@ html[lang="vi"] .cp-scope .vi{display:inline}
 <body>
 
 <header>
-  <div class="kicker">PRICEPICK · MASTER POLICY · v8.3</div>
+  <div class="kicker">PRICEPICK · MASTER POLICY · v8.4</div>
   <h1>PricePick 마스터 정책서</h1>
   <div class="sub">운영자·개발자를 위한 정책 단일 기준서(SoT)</div>
   <p>프라이스픽 서비스 전모와 확정된 모든 정책·숫자를 한 문서에 모았습니다. 화면 UI의 기준이 Interactive이듯, 정책의 기준은 이 문서입니다. 이 문서는 "무엇을·왜"(결정·규칙·수치)를 다루며, "어떻게 구현하나"(스키마·코드)는 개발 산출물의 몫입니다.</p>
@@ -365,6 +365,7 @@ html[lang="vi"] .cp-scope .vi{display:inline}
       <table class="hist">
         <thead><tr><th style="width:13%">날짜</th><th style="width:24%">변경 항목</th><th style="width:33%">이전 → 이후</th><th style="width:30%">결정 근거</th></tr></thead>
         <tbody>
+          <tr><td class="date">2026-11-02</td><td>재설치·카카오 연동 시 계정 처리 확정</td><td>재설치 시 기준 미확정(검수 10-05 05-25 정책 확정 대기) <span class="arrow">&rarr;</span> <b>미연동 계정 삭제 시 적립 내역 소멸 · 재설치는 새 계정(가입 보상 지급) · 연동 이력 있는 카카오로 연동 시 기존 카카오 데이터 사용, 미연동 데이터 폐기(합산 없음) · 기기 단위 보상 제한 없음</b></td><td>김반장 지시(Dispatch, 2026-11-02) — 미연동 계정은 앱 삭제 시 적립 내역(포인트·티켓 포함)과 함께 소멸하며 복구하지 않는다. 재설치해 미연동으로 다시 시작하면 새 계정으로 보고 가입 보상을 지급한다. 이 상태에서 연동 이력이 있는 카카오 계정으로 연동하면 기존 카카오 계정의 데이터를 사용하고 현재 미연동 계정의 데이터는 버리며, 두 계정의 적립 내역을 합산하지 않는다. 미연동 계정의 적립 내역이 삭제와 함께 사라지므로 재설치를 반복해도 보상이 누적되지 않아 기기 단위 보상 제한은 따로 두지 않는다.</td></tr>
           <tr><td class="date">2026-10-21</td><td>친구초대 보상</td><td>양쪽 각 50P <span class="arrow">&rarr;</span> <b>양쪽 각 500P</b> · 지급 시점(피초대자 첫 구매 성사 시) · 한도(초대자 월 50명) 유지</td><td>김반장 확정(2026-10-21) — 보상 금액만 바꾸고 지급 시점과 한도는 그대로 둔다. 전문은 <a href="/policy-05-engage.html">참여</a>.</td></tr>
           <tr><td class="date">2026-10-15</td><td>포인트 가치 1P = 1원</td><td>10P = 1원 <span class="arrow">&rarr;</span> <b>1P = 1원</b> · 포인트 숫자 1/10 (출석 100P → 10P · 부스터 +100P → +10P · 친구초대 각 500P → 50P · 가입 200P → 20P · 첫 구경 100P → 10P · 포인트 → 티켓 100P → 10P/장 · 선물 상자 포인트 칸 1/10) · 보유 포인트 1/10 환산(1P 미만 올림)</td><td>김반장 확정(2026-10-15) — 원화 비용은 그대로 두고 표기 단위만 바꾼다. 선물 상자 기대값(매일 9.9원 · 랜덤 40원)과 지급 비용은 변하지 않는다. 전문은 <a href="/policy-04-point.html">포인트(P)</a> · <a href="/policy-05-engage.html">참여</a>.</td></tr>
           <tr><td class="date">2026-10-14</td><td>등급 티켓 1종 통합</td><td>브론즈 · 실버 · 골드 <span class="arrow">&rarr;</span> <b>티켓 (1종)</b></td><td>김반장·이동영 부장 합의(2026-10-14) — 등급 티켓 3종(브론즈·실버·골드)을 1종으로 통합하고 명칭을 「티켓」으로 변경. 티켓 1장 가치 10원. 전문은 「등급 티켓 1종 통합 — 정책 변경안」(devqa/policy-change-ticket-unify-20261014.html).</td></tr>
@@ -528,7 +529,7 @@ html[lang="vi"] .cp-scope .vi{display:inline}
 </div>
 
 <footer>
-  PricePick 마스터 정책서 · v8.3 · 운영자·개발자 단일 기준서(SoT)<br>
+  PricePick 마스터 정책서 · v8.4 · 운영자·개발자 단일 기준서(SoT)<br>
   충돌 시 이 문서 우선 · 미결 항목(경품 예산 비율 등)은 확정 전 임의 운영 금지
 </footer>
 

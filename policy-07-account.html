@@ -291,6 +291,14 @@ html[lang="vi"] .cp-scope .vi{display:inline}
       <tr class="rw"><td class="rk">사용 제한:</td><td class="rv"> <b>티켓·이벤트 티켓·포인트는 카카오 연동 후에만 사용 가능.</b> 미연동(guest) 상태는 적립만 누적, 사용·교환·응모·차감 불가. 닉네임 반복가입 파밍 원천 차단.</td></tr>
 </table>
 <span class="src">출처 PolicySpec 14 / FunctionalSpec(시작·연동) / DataModel(보존 정책)</span>
+<table class="ptbl">
+      <tr class="nt"><td class="rv" colspan="2"><b>재설치·카카오 연동 시 계정 처리</b> <span class="badge-new">신설</span></td></tr>
+      <tr class="rw"><td class="rk">미연동 계정 삭제</td><td class="rv">미연동 계정은 앱 삭제 시 해당 계정의 적립 내역(포인트·티켓 포함)과 함께 소멸합니다. 복구하지 않습니다.</td></tr>
+      <tr class="rw"><td class="rk">재설치 후 다시 시작</td><td class="rv">앱을 재설치해 미연동으로 다시 시작하면 새 계정으로 보고 가입 보상을 지급합니다.</td></tr>
+      <tr class="rw"><td class="rk">연동 이력이 있는 카카오 계정으로 연동</td><td class="rv">이 상태에서 이미 연동한 적이 있는 카카오 계정으로 연동하면, 기존 카카오 계정의 데이터를 사용하고 현재 미연동 계정의 데이터는 버립니다. 두 계정의 적립 내역을 합산하지 않습니다.</td></tr>
+      <tr class="rw"><td class="rk">기기 단위 보상 제한</td><td class="rv">두지 않습니다. 미연동 계정의 적립 내역이 삭제와 함께 사라지므로 재설치를 반복해도 보상이 누적되지 않기 때문입니다.</td></tr>
+</table>
+<span class="src">출처 김반장 확정(2026-11-02) · 김반장 지시(Dispatch)</span>
     </div>
     <div class="card">
       <h4><span class="n">3</span>닉네임 <span class="badge-new">신설</span></h4>
@@ -349,6 +357,7 @@ html[lang="vi"] .cp-scope .vi{display:inline}
   
 <section class="phist"><h3>변경 이력</h3><table class="phist-t">
 <tr><th>날짜</th><th>변경 내용</th><th>근거</th></tr>
+<tr><td class="hd">2026-11-02</td><td class="hi">재설치·카카오 연동 시 계정 처리 확정</td><td class="hb">김반장 지시(Dispatch, 2026-11-02) — 미연동 계정은 앱 삭제 시 적립 내역(포인트·티켓 포함)과 함께 소멸하며 복구하지 않는다. 재설치해 미연동으로 다시 시작하면 새 계정으로 보고 가입 보상을 지급한다. 이 상태에서 연동 이력이 있는 카카오 계정으로 연동하면 기존 카카오 계정의 데이터를 사용하고 현재 미연동 계정의 데이터는 버리며, 두 계정의 적립 내역을 합산하지 않는다. 미연동 계정의 적립 내역이 삭제와 함께 사라지므로 재설치를 반복해도 보상이 누적되지 않아 기기 단위 보상 제한은 따로 두지 않는다.</td></tr>
 <tr><td class="hd">2026-10-14</td><td class="hi">등급 티켓 1종 통합</td><td class="hb">김반장·이동영 부장 합의(2026-10-14) — 등급 티켓 3종(브론즈·실버·골드)을 1종으로 통합하고 명칭을 「티켓」으로 변경. 티켓 1장 가치 10원. 전문은 「등급 티켓 1종 통합 — 정책 변경안」(devqa/policy-change-ticket-unify-20261014.html).</td></tr>
 <tr><td class="hd">2026-10-13</td><td class="hi">닉네임 중복 금지로 전환</td><td class="hb">김반장 확정(2026-10-13) — 「닉네임 중복 체크 버튼을 삽입하고, 변경시점에 중복된 닉네임이 있는지 확인한다.」 종전 2026-08-03 중복 허용 정책을 변경. 기존 중복 계정은 소급 적용하지 않으며 신규 가입·변경에만 적용한다.</td></tr>
 <tr><td class="hd">2026-08-03</td><td class="hi">닉네임 중복 허용</td><td class="hb">김반장·이동영 부장 합의(2026-08-03) — 닉네임은 표시용일 뿐 식별자가 아니므로 중복을 막을 이유가 없다. 화면에만 있던 형식 규칙(한글·영문·숫자 조합, 2~10자)을 정책서에 명문화.</td></tr>
