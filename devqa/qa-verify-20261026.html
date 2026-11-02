@@ -144,11 +144,6 @@ tr.fhide{display:none}
 .tbl.list td{overflow-wrap:anywhere}
 .tbl.list td.st,.tbl.list td.no{overflow-wrap:normal}
 @media (max-width:640px){.wrap{padding:0 16px 60px}.hin{padding:0 16px!important}}
-.cleanup{margin:4px 0 18px}
-.cleanup h2.sec{margin-top:24px}
-.tbl.cl{width:100%}
-.tbl.cl td.no{white-space:nowrap;font-weight:800}
-.tbl.cl td.scr{white-space:nowrap;font-weight:700}
 .tbl td.dm{font-size:11.8px}.tbl td.dm .dm-by{display:block;color:var(--ink3);font-size:11px;margin-top:2px}
 .secnote{font-size:12px;color:var(--ink3);margin:2px 0 0}
 .rfwrap{margin-left:auto;display:inline-flex;align-items:baseline;white-space:nowrap}
@@ -197,34 +192,22 @@ tr.fhide{display:none}
 .dm-flash{display:block;font-size:11px;font-weight:700;color:#9A4A4A;margin-top:3px}
 
 /* 수정 유형 — 단순 문구 수정이 가장 가볍게, 기능 개발이 가장 무겁게 보인다 */
-.ftb{display:inline-block;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:800;white-space:nowrap;line-height:1.5}
-.ftb.ft-text{background:#F3F4F6;color:#4B5563;border:1px solid #E5E7EB;font-weight:700}
-.ftb.ft-disp{background:#DBEAFE;color:#1E40AF;border:1px solid #BFDBFE}
-.ftb.ft-feat{background:#5B21B6;color:#fff;border:1px solid #5B21B6}
-.ftb.ft-chk{background:#FFFBEB;color:#92400E;border:1px dashed #D97706}
 .ftlegend{margin-top:10px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:8px;display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:center;font-size:12.4px}
 .ftlegend .ftl-h{grid-column:1/-1;font-size:11.5px;font-weight:800;color:var(--ink3,#6b7280)}
 .ftlegend .ftl-d{color:#374151;font-weight:600}
 .ftp{display:block;font-weight:800;white-space:nowrap;line-height:1.3;margin-bottom:1px}.ftp.ft-text{color:#6B7280}.ftp.ft-disp{color:#1D4ED8}.ftp.ft-feat{color:#6D28D9}.ftp.ft-chk{color:#B45309}
 .ptabs{display:inline-flex;flex-wrap:wrap;gap:2px;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;margin-bottom:12px;max-width:calc(100% - 110px)}.ptabs a{font-size:12.5px;font-weight:700;color:#fff;padding:5px 14px;border-radius:16px;text-decoration:none;opacity:.75;white-space:nowrap}.ptabs a:hover{opacity:1}.ptabs a.on{background:#fff;color:#5b39b8;opacity:1;cursor:default}
+#hubv{display:none}body.hub-emb #hubv{display:block}body.hub-emb>:not(header):not(#hubv){display:none!important}body.hub-emb{overflow:hidden}body.hub-emb header .htitle,body.hub-emb header .hsub,body.hub-emb header .langtog{display:none}body.hub-emb header{padding:14px 0 2px}#hubv iframe{display:block;width:100%;height:100%;border:0;background:#fff}#hubv iframe[hidden]{display:none}
 </style></head>
 <body>
 <input type="checkbox" id="langsw">
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
-<div class="hin" style="margin:0 auto;padding:0 28px"><nav class="ptabs"><a href="qa-verify-20261026.html" class="on" aria-current="page"><span class="i18n"><span class="ko">검수 반영 현황</span><span class="vi">Tình trạng phản ánh kiểm thử</span></span></a><a href="qa-final-check-20261029.html"><span class="i18n"><span class="ko">최종 검수 안내</span><span class="vi">Hướng dẫn kiểm thử cuối</span></span></a></nav><div class="htitle"><span class="i18n"><span class="ko">검수 반영 현황</span><span class="vi">Tình trạng phản ánh kiểm thử</span></span></div>
+<div class="hin" style="margin:0 auto;padding:0 28px"><nav class="ptabs"><a href="qa-verify-20261026.html#tab-verify" data-tab="tab-verify" class="on" aria-current="page"><span class="i18n"><span class="ko">검수 반영 현황</span><span class="vi">Tình trạng phản ánh kiểm thử</span></span></a><a href="qa-verify-20261026.html#tab-final" data-tab="tab-final"><span class="i18n"><span class="ko">최종 검수 안내</span><span class="vi">Hướng dẫn kiểm thử cuối</span></span></a><a href="qa-verify-20261026.html#tab-1002" data-tab="tab-1002"><span class="i18n"><span class="ko">검수 10-02</span><span class="vi">Kiểm thử 02/10</span></span></a><a href="qa-verify-20261026.html#tab-1005" data-tab="tab-1005"><span class="i18n"><span class="ko">검수 10-05</span><span class="vi">Kiểm thử 05/10</span></span></a><a href="qa-verify-20261026.html#tab-1021" data-tab="tab-1021"><span class="i18n"><span class="ko">검수 10-21</span><span class="vi">Kiểm thử 21/10</span></span></a></nav><div class="htitle"><span class="i18n"><span class="ko">검수 반영 현황</span><span class="vi">Tình trạng phản ánh kiểm thử</span></span></div>
 <div class="hsub"><span class="i18n"><span class="ko">검수 2026-10-02 · 10-05 · 10-21 · 2026-10-28 기준</span><span class="vi">Kiểm thử 02/10 · 05/10 · 21/10/2026 · tính đến 28/10/2026</span></span></div></div></header>
+<div id="hubv"></div>
 <div class="wrap">
-<div class="cleanup"><h2 class="sec" id="dcl"><span class="i18n"><span class="ko">개발팀 처리 필요 — STG 확인 과정에서 우리가 만든 것 2건</span><span class="vi">Đội phát triển cần xử lý — 2 mục do chúng tôi tạo ra khi kiểm tra STG</span></span></h2>
-<table class="tbl cl"><thead><tr><th><span class="i18n"><span class="ko">번호</span><span class="vi">Số</span></span></th><th><span class="i18n"><span class="ko">대상</span><span class="vi">Đối tượng</span></span></th><th><span class="i18n"><span class="ko">경위</span><span class="vi">Diễn biến</span></span></th><th><span class="i18n"><span class="ko">요청</span><span class="vi">Yêu cầu</span></span></th><th><span class="i18n"><span class="ko">담당</span><span class="vi">Phụ trách</span></span></th></tr></thead><tbody>
-<tr><td class="no"><span class="i18n"><span class="ko">C-1</span><span class="vi">C-1</span></span></td><td class="scr"><span class="i18n"><span class="ko">점검용 예약 발송 1건</span><span class="vi">1 thông báo hẹn giờ dùng để kiểm tra</span></span></td><td><span class="i18n"><span class="ko">2026-10-27 STG 확인 때 우리가 등록했다. 2027-01-15 10:00 · 대상 「신규 가입(7일 이내)」 · 제목 「[내부 점검] 예약 발송 확인용 - 즉시 취소 예정」. 지금 대상은 0명. 화면에 취소 기능이 없어 지울 수 없다(추가-15)</span><span class="vi">Chúng tôi đã đăng ký khi kiểm tra STG ngày 27/10/2026. 15/01/2027 10:00 · đối tượng 「신규 가입(7일 이내)」 · tiêu đề 「[내부 점검] 예약 발송 확인용 - 즉시 취소 예정」. Hiện có 0 người nhận. Màn hình không có chức năng hủy nên không xóa được (Thêm-15)</span></span></td><td><span class="i18n"><span class="ko">2027-01-15 전에 서버에서 삭제</span><span class="vi">Xóa trên máy chủ trước 15/01/2027</span></span></td><td class="who"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></td></tr>
-<tr><td class="no"><span class="i18n"><span class="ko">C-2</span><span class="vi">C-2</span></span></td><td class="scr"><span class="i18n"><span class="ko">쿠팡 로고 파일</span><span class="vi">Tệp logo Coupang</span></span></td><td><span class="i18n"><span class="ko">2026-10-27 STG 확인 때 우리가 쿠팡 로고를 바꿨다 되돌렸다. 그 과정에서 원본 로고 파일이 서버에서 삭제됐다. 같은 디자인 파일을 다시 올려 화면은 복구했으나 파일 주소가 원래와 다르다(추가-16)</span><span class="vi">Khi kiểm tra STG ngày 27/10/2026, chúng tôi đã đổi rồi đổi lại logo Coupang. Trong quá trình đó tệp logo gốc bị xóa khỏi máy chủ. Đã tải lại cùng tệp thiết kế nên màn hình đã khôi phục, nhưng địa chỉ tệp khác với ban đầu (Thêm-16)</span></span></td><td><span class="i18n"><span class="ko">이전 주소를 쓰는 곳이 있으면 새 주소로 맞춤</span><span class="vi">Nếu nơi nào còn dùng địa chỉ cũ thì đổi sang địa chỉ mới</span></span></td><td class="who"><span class="i18n"><span class="ko">개발팀</span><span class="vi">Đội phát triển</span></span></td></tr>
-</tbody></table></div>
-<div class="cleanup"><h2 class="sec" id="dlaunch"><span class="i18n"><span class="ko">출시 전 처리 — 1건</span><span class="vi">Cần xử lý trước khi ra mắt — 1 mục</span></span></h2>
-<table class="tbl cl"><thead><tr><th><span class="i18n"><span class="ko">번호</span><span class="vi">Số</span></span></th><th><span class="i18n"><span class="ko">대상</span><span class="vi">Đối tượng</span></span></th><th><span class="i18n"><span class="ko">경위</span><span class="vi">Diễn biến</span></span></th><th><span class="i18n"><span class="ko">요청</span><span class="vi">Yêu cầu</span></span></th></tr></thead><tbody>
-<tr><td class="no"><span class="i18n"><span class="ko">L-1</span><span class="vi">L-1</span></span></td><td class="scr"><span class="i18n"><span class="ko">앱 공지사항</span><span class="vi">Thông báo trong app</span></span></td><td><span class="i18n"><span class="ko">출시 전이라 개정 안내가 성립하지 않아 2026-10-29 STG 공지를 전부 비게시로 돌렸다. 지금 앱 공지사항 게시 0건</span><span class="vi">Vì chưa ra mắt nên thông báo sửa đổi không có ý nghĩa; ngày 29/10/2026 đã ẩn toàn bộ thông báo trên STG. Hiện app có 0 thông báo đang đăng</span></span></td><td><span class="i18n"><span class="ko">출시 시점에 공지 작성 필요 — 출시 안내 1건. 안 쓰면 빈 공지사항으로 출시된다</span><span class="vi">Cần viết thông báo khi ra mắt — 1 thông báo ra mắt. Nếu không viết thì ra mắt với mục thông báo trống</span></span></td></tr>
-</tbody></table></div>
 <div class="wkb-l"><label class="wkb-lb" for="wkWho"><span class="i18n"><span class="ko">작업자</span><span class="vi">Người thực hiện</span></span></label><select id="wkWho"><option value="">작업자 선택 / Chọn người thực hiện</option><option value="빈 (Nguyen Vuong)">빈 (Nguyen Vuong) / Vin (Nguyen Vuong)</option><option value="존 (John)">존 (John) / John</option><option value="해리 (Harry)">해리 (Harry) / Harry</option><option value="켈빈 (Kelvin)">켈빈 (Kelvin) / Kelvin</option><option value="이부장">이부장 / Trưởng phòng Lee</option><option value="김반장">김반장 / Mr Mark</option></select><span class="finsum" id="finSum"></span></div>
-<div class="fbar" id="fbar"><button type="button" class="fc" data-k="st" data-v="all"><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="unk"><span class="i18n"><span class="ko">미확인</span><span class="vi">Chưa xác nhận</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="wait"><span class="i18n"><span class="ko">정책 확정 대기</span><span class="vi">Chờ chốt chính sách</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc fc-d" data-k="dst" data-v="ng"><span class="i18n"><span class="ko">DEMO 미반영</span><span class="vi">DEMO chưa phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="dm" data-v="done"><span class="i18n"><span class="ko">개발팀 표시 처리 완료</span><span class="vi">Đội PT: đã xử lý</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="dm" data-v="todo"><span class="i18n"><span class="ko">개발팀 표시 미처리</span><span class="vi">Đội PT: chưa xử lý</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="fin" data-v="pre"><span class="i18n"><span class="ko">최종 검수 전</span><span class="vi">Chưa kiểm thử cuối</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="fin" data-v="okpre"><span class="i18n"><span class="ko">반영 + 검수 전</span><span class="vi">Đã phản ánh + chưa kiểm thử</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="doc" data-v="d1002"><span class="i18n"><span class="ko">10-02</span><span class="vi">02/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1005"><span class="i18n"><span class="ko">10-05</span><span class="vi">05/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1021"><span class="i18n"><span class="ko">10-21</span><span class="vi">21/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="dx"><span class="i18n"><span class="ko">추가 확인 사항</span><span class="vi">Mục xác nhận thêm</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc fc-ft" data-k="ft" data-v="text"><span class="ftb ft-text"><span class="i18n"><span class="ko">단순 문구 수정</span><span class="vi">Chỉ sửa chữ</span></span></span> <b class="fn"></b></button><button type="button" class="fc fc-ft" data-k="ft" data-v="disp"><span class="ftb ft-disp"><span class="i18n"><span class="ko">표시·동작 수정</span><span class="vi">Sửa hiển thị·hoạt động</span></span></span> <b class="fn"></b></button><button type="button" class="fc fc-ft" data-k="ft" data-v="feat"><span class="ftb ft-feat"><span class="i18n"><span class="ko">기능 개발</span><span class="vi">Phát triển tính năng</span></span></span> <b class="fn"></b></button><button type="button" class="fc fc-ft" data-k="ft" data-v="chk"><span class="ftb ft-chk"><span class="i18n"><span class="ko">확인 필요</span><span class="vi">Cần xác nhận</span></span></span> <b class="fn"></b></button><span class="fnow" id="fnow" hidden></span><span class="rfwrap"><span class="rf-at"><span class="i18n"><span class="ko">마지막 갱신 </span><span class="vi">Cập nhật lần cuối </span></span><span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle"><span class="i18n"><span class="ko">새로고침</span><span class="vi">Làm mới</span></span></span><span class="rf-busy"><span class="i18n"><span class="ko">조회 중</span><span class="vi">Đang tải</span></span></span></button></span></div>
+<div class="fbar" id="fbar"><button type="button" class="fc" data-k="st" data-v="all"><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="unk"><span class="i18n"><span class="ko">미확인</span><span class="vi">Chưa xác nhận</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="wait"><span class="i18n"><span class="ko">정책 확정 대기</span><span class="vi">Chờ chốt chính sách</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc fc-d" data-k="dst" data-v="ng"><span class="i18n"><span class="ko">DEMO 미반영</span><span class="vi">DEMO chưa phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="dm" data-v="done"><span class="i18n"><span class="ko">개발팀 표시 처리 완료</span><span class="vi">Đội PT: đã xử lý</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="dm" data-v="todo"><span class="i18n"><span class="ko">개발팀 표시 미처리</span><span class="vi">Đội PT: chưa xử lý</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="fin" data-v="pre"><span class="i18n"><span class="ko">최종 검수 전</span><span class="vi">Chưa kiểm thử cuối</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="fin" data-v="okpre"><span class="i18n"><span class="ko">반영 + 검수 전</span><span class="vi">Đã phản ánh + chưa kiểm thử</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="doc" data-v="d1002"><span class="i18n"><span class="ko">10-02</span><span class="vi">02/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1005"><span class="i18n"><span class="ko">10-05</span><span class="vi">05/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="d1021"><span class="i18n"><span class="ko">10-21</span><span class="vi">21/10</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="doc" data-v="dx"><span class="i18n"><span class="ko">추가 확인 사항</span><span class="vi">Mục xác nhận thêm</span></span> <b class="fn"></b></button><span class="fnow" id="fnow" hidden></span><span class="rfwrap"><span class="rf-at"><span class="i18n"><span class="ko">마지막 갱신 </span><span class="vi">Cập nhật lần cuối </span></span><span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle"><span class="i18n"><span class="ko">새로고침</span><span class="vi">Làm mới</span></span></span><span class="rf-busy"><span class="i18n"><span class="ko">조회 중</span><span class="vi">Đang tải</span></span></span></button></span></div>
 
 <div class="memo-miss" id="memoMiss" hidden></div>
 <h2 class="sec" id="d1002"><span class="i18n"><span class="ko">검수 2026-10-02 — 25건</span><span class="vi">Kiểm thử 02/10/2026 — 25 mục</span></span> <span class="srcdoc"><a href="https://pricepick.vercel.app/devqa/qa-extra-20261002.html" target="_blank" rel="noopener noreferrer">qa-extra-20261002.html</a></span></h2>
@@ -406,7 +389,7 @@ document.addEventListener('click',function(e){
 <script>
 /* 표 위 건수 필터 — 상태 · 담당 · 검수 문서. 같은 단추를 다시 누르면 해제 */
 (function(){
-  var f={st:null,who:null,doc:null,dst:null,dm:null,ft:null,fin:null};
+  var f={st:null,who:null,doc:null,dst:null,dm:null,fin:null};
   /* 표 바로 위의 절 제목(h2) — 사이에 절 머리 문구(.secnote)가 있어도 찾는다 */
   function secHead(t){ var h=t&&t.previousElementSibling; while(h&&h.tagName!=='H2') h=h.previousElementSibling; return h; }
   var all=[].slice.call(document.querySelectorAll('table.list tbody tr'));
@@ -420,7 +403,6 @@ document.addEventListener('click',function(e){
     r._dm='none';
     r.appendChild(document.createElement('td')).className='dm';
     var d=r.querySelector('td.dst'), dm=d&&d.className.match(/s-([a-z]+)/); r._dst=dm?dm[1]:'';
-    var ftd=r.querySelector('.ftp'), fm=ftd&&ftd.className.match(/ft-([a-z]+)/); r._ft=fm?fm[1]:'';
   });
   gaps.forEach(function(r){ r.appendChild(document.createElement('td')); });
   function hit(r,k,v){
@@ -429,14 +411,13 @@ document.addEventListener('click',function(e){
     if(k==='dm') return r._dm===v;
     if(k==='who') return v==='dev'?r._dev:r._me;
     if(k==='dst') return r._dst===v;
-    if(k==='ft') return r._ft===v;
     if(k==='fin') return v==='okpre'?(r._st==='ok'&&r._fin==='pre'):r._fin===v;
     return r._doc===v;
   }
-  function pass(r,skip){ return (skip==='st'||hit(r,'st',f.st))&&(skip==='who'||hit(r,'who',f.who))&&(skip==='doc'||hit(r,'doc',f.doc))&&(skip==='dst'||hit(r,'dst',f.dst))&&(skip==='ft'||hit(r,'ft',f.ft))&&(skip==='fin'||hit(r,'fin',f.fin))&&(skip==='dm'||hit(r,'dm',f.dm)); }
+  function pass(r,skip){ return (skip==='st'||hit(r,'st',f.st))&&(skip==='who'||hit(r,'who',f.who))&&(skip==='doc'||hit(r,'doc',f.doc))&&(skip==='dst'||hit(r,'dst',f.dst))&&(skip==='fin'||hit(r,'fin',f.fin))&&(skip==='dm'||hit(r,'dm',f.dm)); }
   var chips=[].slice.call(document.querySelectorAll('#fbar .fc'));
   function paint(){
-    var n=0, any=!!(f.st||f.who||f.doc||f.dst||f.dm||f.ft||f.fin);
+    var n=0, any=!!(f.st||f.who||f.doc||f.dst||f.dm||f.fin);
     rows.forEach(function(r){var ok=pass(r); r.classList.toggle('fhide',!ok); if(ok)n++;});
     gaps.forEach(function(r){r.classList.toggle('fhide',any);});
     document.querySelectorAll('.tblwrap').forEach(function(t){
@@ -577,7 +558,7 @@ document.addEventListener('click',function(e){
   }
   loadDev();
   document.getElementById('fbar').addEventListener('click',function(e){
-    if(e.target.closest('#fclr')){ f={st:null,who:null,doc:null,dst:null,dm:null,ft:null,fin:null}; paint(); return; }
+    if(e.target.closest('#fclr')){ f={st:null,who:null,doc:null,dst:null,dm:null,fin:null}; paint(); return; }
     var c=e.target.closest('.fc'); if(!c) return;
     var k=c.dataset.k,v=c.dataset.v;
     if(k==='st'&&v==='all') f.st=null; else f[k]=(f[k]===v?null:v);
@@ -587,4 +568,20 @@ document.addEventListener('click',function(e){
 })();
 </script>
 
+<script>
+/* 문서 전환 탭 — 이 문서를 허브로, 나머지 네 문서는 같은 화면 안 iframe 으로 연다. 탭 상태는 주소 해시(#tab-…)로 남긴다 */
+(function(){
+  var DOC={'tab-final':'qa-final-check-20261029.html','tab-1002':'qa-extra-20261002.html','tab-1005':'qa-review-20261005.html','tab-1021':'qa-extra-20261021.html'};
+  var hd=document.querySelector('header'), box=document.getElementById('hubv'), fr={};
+  function fit(){ if(document.body.classList.contains('hub-emb')) box.style.height=(window.innerHeight-hd.offsetHeight)+'px'; }
+  function show(){
+    var h=location.hash.slice(1), u=DOC[h], cur=u?h:'tab-verify';
+    [].forEach.call(document.querySelectorAll('.ptabs a'),function(a){ var on=a.getAttribute('data-tab')===cur; a.classList.toggle('on',on); if(on) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+    document.body.classList.toggle('hub-emb',!!u);
+    Object.keys(fr).forEach(function(k){ fr[k].hidden=(k!==h); });
+    if(u){ if(!fr[h]){ var f=document.createElement('iframe'); f.src=u; f.title=h; box.appendChild(f); fr[h]=f; } fit(); window.scrollTo(0,0); }
+  }
+  window.addEventListener('hashchange',show); window.addEventListener('resize',fit); show();
+})();
+</script>
 </body></html>
