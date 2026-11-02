@@ -75,8 +75,10 @@ li[data-st=wait] .stl{background:#fff8ec;color:#B54708}
 .rf-btn[aria-busy="true"] .rf-busy{display:inline}
 li[data-s=ng] .fk,li[data-s=wait] .fk,.fk[hidden]{display:none}
 .fk:disabled{opacity:.5;cursor:default}
+.ptabs{display:inline-flex;flex-wrap:wrap;gap:2px;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;margin-bottom:12px;max-width:calc(100% - 110px)}.ptabs a{font-size:12.5px;font-weight:700;color:#fff;padding:5px 14px;border-radius:16px;text-decoration:none;opacity:.75;white-space:nowrap}.ptabs a:hover{opacity:1}.ptabs a.on{background:#fff;color:#5b39b8;opacity:1;cursor:default}
+.ptabs .vi{display:none}
 </style></head><body>
-<header><div class="in"><h1>PricePick 최종 검수 안내 (2026-10-29) · 전체 <span id="tot">138</span>건</h1><div class="sumrow" id="sum"></div></div></header>
+<header><div class="in"><nav class="ptabs"><a href="qa-verify-20261026.html"><span class="i18n"><span class="ko">검수 반영 현황</span><span class="vi">Tình trạng phản ánh kiểm thử</span></span></a><a href="qa-final-check-20261029.html" class="on" aria-current="page"><span class="i18n"><span class="ko">최종 검수 안내</span><span class="vi">Hướng dẫn kiểm thử cuối</span></span></a></nav><h1>PricePick 최종 검수 안내 (2026-10-29) · 전체 <span id="tot">138</span>건</h1><div class="sumrow" id="sum"></div></div></header>
 <div class="bar"><div class="in"><span class="prog" id="prog">확인한 화면 0 / 전체 42</span><span class="pgbar"><i id="pgi"></i></span>
 <div class="fb" id="fb"><button type="button" class="fbt" data-f="pre">검수 전만 보기</button><button type="button" class="fbt on" data-f="all">전체</button><button type="button" class="fbt" data-f="fin">검수 완료</button><button type="button" class="fbt" data-f="ng">미반영</button><button type="button" class="fbt" data-f="wait">정책 확정 대기</button><span class="rfwrap"><span class="rf-at">마지막 갱신 <span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle">새로고침</span><span class="rf-busy">조회 중</span></button></span></div></div></div>
 <div id="lb" hidden><img alt=""></div>
