@@ -61,7 +61,7 @@ li[data-st=ng] .stl{background:#fff5f5;color:#B42318}
 .rf-btn .rf-busy{display:none}
 .rf-btn[aria-busy="true"] .rf-idle{display:none}
 .rf-btn[aria-busy="true"] .rf-busy{display:inline}
-li[data-s=ng] .fk,.fk[hidden]{display:none}
+.fk[hidden]{display:none}
 .fk:disabled{opacity:.5;cursor:default}
 .ptabs{display:inline-flex;flex-wrap:wrap;gap:2px;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;margin-bottom:12px;max-width:calc(100% - 110px)}.ptabs a{font-size:12.5px;font-weight:700;color:#fff;padding:5px 14px;border-radius:16px;text-decoration:none;opacity:.75;white-space:nowrap}.ptabs a:hover{opacity:1}.ptabs a.on{background:#fff;color:#5b39b8;opacity:1;cursor:default}
 .vi{display:none}
@@ -315,11 +315,14 @@ header{position:relative}
   var LBL={ok:I('반영','Đã phản ánh'),ng:I('미반영','Chưa phản ánh')};
   var lis=[].slice.call(document.querySelectorAll('li[data-r]')), FIN={}, filt='all';
   /* 줄 상태 — 반영/미반영은 검수 반영 현황 문서를 그때그때 읽고, 검수 여부는 검수 저장소를 실시간으로 읽는다 */
-  /* 검수 단추 — 반영 항목만. 누르면 검수 반영 현황의 「검수 전 / 검수 완료」 칩과 같은 칸(final_done)에 같은 방식으로 쓴다 */
-  function state(li){ var st=li.dataset.st; if(st==='ok'){ var s=SRC[li.dataset.r]; return (s&&FIN[s[0]+'/'+s[1]])?'fin':'pre'; } return st==='ng'?'ng':'pre'; }
+  /* 검수 단추 — 반영·미반영 모두. 누르면 검수 반영 현황의 「검수 전 / 검수 완료」 칩과 같은 칸(final_done)에 같은 방식으로 쓴다 */
+  /* 검수 여부는 반영 여부와 따로 센다(2026-11-02 김반장 지시 — 미반영도 직접 보고 확인한 표시를 남긴다). 표시 색은 미반영이 우선 */
+  function isFin(li){ var s=SRC[li.dataset.r]; return !!(s&&FIN[s[0]+'/'+s[1]]); }
+  function state(li){ var st=li.dataset.st; return st==='ng'?'ng':(isFin(li)?'fin':'pre'); }
+  function match(li,f){ var fin=isFin(li); return f==='all'||(f==='pre'&&li.dataset.st==='ok'&&!fin)||(f==='fin'&&fin)||(f==='ng'&&li.dataset.st==='ng'); }
   function paint(){
     var c={pre:0,fin:0,ng:0};
-    lis.forEach(function(li){ var s=state(li); li.dataset.s=s; li.querySelector('.stl').innerHTML=LBL[li.dataset.st]||''; c[s]++; var k=li.querySelector('.fk'); if(k){ k.innerHTML=s==='fin'?I('검수 완료','Đã kiểm thử'):I('검수 전','Chưa kiểm thử'); k.classList.toggle('on',s==='fin'); k.hidden=!SRC[li.dataset.r]; } li.classList.toggle('hide', !(filt==='all'||filt===s)); });
+    lis.forEach(function(li){ var s=state(li), fin=isFin(li); li.dataset.s=s; li.querySelector('.stl').innerHTML=LBL[li.dataset.st]||''; if(fin) c.fin++; if(li.dataset.st==='ng') c.ng++; else if(li.dataset.st==='ok'&&!fin) c.pre++; var k=li.querySelector('.fk'); if(k){ k.innerHTML=fin?I('검수 완료','Đã kiểm thử'):I('검수 전','Chưa kiểm thử'); k.classList.toggle('on',fin); k.hidden=!SRC[li.dataset.r]; } li.classList.toggle('hide', !match(li,filt)); });
     document.querySelectorAll('.g').forEach(function(g){ g.classList.toggle('hide', !g.querySelector('li:not(.hide)')); });
     document.getElementById('tot').textContent=lis.length;
     var G=I('건',' mục'); document.getElementById('sum').innerHTML='<span>'+I('전체 ','Tất cả ')+'<b>'+lis.length+'</b>'+G+'</span><span>'+I('검수 대상 ','Cần kiểm thử ')+'<b>'+c.pre+'</b>'+G+'</span><span>'+I('검수 완료 ','Đã kiểm thử ')+'<b>'+c.fin+'</b>'+G+'</span><span>'+I('미반영 ','Chưa phản ánh ')+'<b>'+c.ng+'</b>'+G+'</span>';
@@ -344,7 +347,7 @@ header{position:relative}
   }catch(e){ db=null; }
   document.querySelector('.wrap').addEventListener('click',function(e){
     var k=e.target.closest('.fk'); if(!k||k.disabled) return;
-    var li=k.closest('li'), s=SRC[li.dataset.r]; if(!s||!db||li.dataset.st!=='ok') return;
+    var li=k.closest('li'), s=SRC[li.dataset.r]; if(!s||!db) return;
     var key=s[0]+'/'+s[1], toFin=!FIN[key], FV=firebase.firestore.FieldValue;
     FIN[key]=toFin; paint(); k.disabled=true;
     db.collection(s[0]).doc(s[1]).set(toFin?{final_done:true,final_by:'김반장',final_updated_at:FV.serverTimestamp()}:{final_done:false,final_by:FV.delete(),final_updated_at:FV.serverTimestamp()},{merge:true})
