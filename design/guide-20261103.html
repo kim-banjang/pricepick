@@ -111,11 +111,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nd.lift .pop::after{content:'';position:absolute;left:50%;bottom:-20px;width:var(--fw);height:16px;margin-left:calc(var(--fw) / -2);border-radius:50%;background:rgba(108,74,182,.22);filter:blur(8px);z-index:-1;pointer-events:none}
 .ncard{width:100%;height:100%;padding:16px;background:var(--card);border-radius:var(--r-xl);box-shadow:var(--shadow-p)}
 .ncard img{display:block;width:100%;height:100%;object-fit:contain}
-/* 정면 폰 + 프라이스픽 3D 앱 아이콘. 폰 이미지(512x816)의 화면 영역 실측: left 15.2% top 9.6% w 69.7% h 82.1%
-   아이콘 = 화면 폭의 46%(폰 폭의 32.1%), 중심은 화면 세로 44% 지점(세로 가운데보다 살짝 위) */
+/* 정면 폰 + 프라이스픽 홈 화면(이전: 3D 앱 아이콘 pricepick-appicon.png, 파일 보존). 폰 이미지(512x816)의 화면 영역 실측: left 15.2% top 9.6% w 69.7% h 82.1%
+   홈 화면은 화면 영역을 꽉 채운다 */
 .obj{position:relative;display:block;width:100%;height:100%}
-.obj img.appicon{position:absolute;left:33.95%;top:35.6%;width:32.1%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:22%;box-shadow:0 8px 20px rgba(108,74,182,.35)}
-.nd.on .appicon{animation:iconIn 420ms cubic-bezier(.34,1.45,.5,1) 120ms both}
+.obj{container-type:size}
+/* 화면 영역 전체에 프라이스픽 홈 화면(288x626) — cover·위쪽 정렬, 모서리 = 화면 폭의 8%(폰 폭 기준 5.58cqw), 경계 안쪽 그림자 */
+.obj .scr{position:absolute;left:15.2%;top:9.6%;width:69.7%;height:82.1%;overflow:hidden;border-radius:5.58cqw}
+.obj .scr img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:top center}
+.obj .scr::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 6px rgba(0,0,0,.12);pointer-events:none}
+.nd.on .scr{animation:scrIn 420ms cubic-bezier(.34,1.45,.5,1) 120ms both}
+@keyframes scrIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
 @keyframes iconIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
 .step .th .obj{height:100%;width:auto;aspect-ratio:512/816}
 .step .th .obj img{max-width:none;max-height:none}
@@ -322,12 +327,12 @@ const THUMB = ['o1', null, 'o2', 'tw', 'tk', 'o5', 'o6'];
 const DRAW = 420, GAP = 300, CAM_Y = 355;
 const FIN = { top: 152, h: 544 };
 const src = k => `guide-art/${k}.png`;
-/* 오브젝트 그림. 폰(o1)은 화면 자리에 앱 아이콘을 얹는다 */
+/* 오브젝트 그림. 폰(o1)은 화면 자리에 홈 화면을 얹는다 */
 /* 티켓: tw = 대기(빨강 랜덤 티켓 3장 겹침), tk = 확정(금색 티켓 1장 + 체크 배지) */
 const TK = 'guide-art/ticket-gold.svg', TR = 'guide-art/ticket-random.svg';
 const CHK = '<span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>';
 const objHTML = k => k === 'o1'
-  ? `<span class="obj"><img src="${src('o1')}" alt=""><img class="appicon" src="guide-art/pricepick-appicon.png" alt=""></span>`
+  ? `<span class="obj"><img src="${src('o1')}" alt=""><span class="scr"><img src="guide-art/pricepick-home.png" alt=""></span></span>`
   : k === 'tw' ? `<span class="tks wait">${`<img src="${TR}" alt="">`.repeat(3)}</span>`
   : k === 'tk' ? `<span class="tks one"><img src="${TK}" alt="">${CHK}</span>`
   : `<img src="${src(k)}" alt="">`;
