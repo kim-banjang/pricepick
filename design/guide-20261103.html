@@ -124,8 +124,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .tks{position:relative;display:block;width:100%;height:100%;container-type:size;filter:drop-shadow(0 10px 16px rgba(108,74,182,.35))}
 .tks img{position:absolute;left:50%;top:50%;width:var(--s);height:var(--s);max-width:none;max-height:none;margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);transform:translate(var(--dx,0),var(--dy,0))}
 .tks.one img{--s:150cqmin}
-/* 대기: 3장 겹침, 묶음째 투명도 .45 = 아직 못 쓴다 */
-.tks.wait{opacity:.45}
+/* 대기: 빨강 랜덤 티켓 3장 겹침(확정 전·가지급). 구매 확정을 지나면 금색 티켓으로 바뀐다 */
 .tks.wait img{--s:128cqmin}
 .tks.wait img:nth-child(1){--dx:-13cqmin;--dy:-11cqmin}
 .tks.wait img:nth-child(3){--dx:13cqmin;--dy:11cqmin}
@@ -283,7 +282,7 @@ const NODES = {
   phone:  { x: 187.5, y: 40,   w: 135, h: 198, img: 'o1', lab: '프라이스픽', at: 'b' },
   mall:   { x: 187.5, y: 366,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
   bag:    { x: 187.5, y: 624,  w: 207, h: 228, img: 'o2', lab: '구매 완료', at: 'b' },
-  wait:   { x: 106,   y: 1008, w: 168, h: 143, img: 'tw', lab: '티켓', at: 'b', edge: true },
+  wait:   { x: 106,   y: 1008, w: 168, h: 143, img: 'tw', lab: '랜덤 티켓', at: 'b', edge: true },
   ok:     { x: 106,   y: 1207, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
   ticket: { x: 106,   y: 1277, w: 193, h: 163, img: 'tk', lab: '사용 가능 티켓', at: 'b', edge: true },
   coin:   { x: 284,   y: 1008, w: 168, h: 120, img: 'o5', lab: '포인트', at: 'b', edge: true },
@@ -312,7 +311,7 @@ const STEPS = [
     seq: [['a2'], ['bag']] },
   { t: '쌓인 티켓은 사용 대기예요', d: '반품·취소 기간이 지나야 확정돼요', cam: 1092,
     seq: [['sl'], ['wait']] },
-  { t: '확정되면 바로 쓸 수 있어요', d: '티켓이 사용 가능 상태로 바뀌어요', cam: 1336,
+  { t: '확정되면 바로 쓸 수 있어요', d: '티켓이 사용 가능 상태로 바뀌어요', cam: 1262,
     seq: [['al'], ['ok', 'ticket']] },
   { t: '포인트 10P는 티켓 1장이 돼요', d: '다양한 방식으로 모은 포인트는 티켓으로 전환이 가능해요', cam: 1190,
     seq: [['sr'], ['coin'], ['ar'], ['rate']] },
@@ -324,15 +323,15 @@ const DRAW = 420, GAP = 300, CAM_Y = 355;
 const FIN = { top: 152, h: 544 };
 const src = k => `guide-art/${k}.png`;
 /* 오브젝트 그림. 폰(o1)은 화면 자리에 앱 아이콘을 얹는다 */
-/* 티켓: tw = 대기(3장 겹침·흐리게), tk = 확정(1장 선명 + 체크 배지) */
-const TK = 'guide-art/ticket-gold.svg';
+/* 티켓: tw = 대기(빨강 랜덤 티켓 3장 겹침), tk = 확정(금색 티켓 1장 + 체크 배지) */
+const TK = 'guide-art/ticket-gold.svg', TR = 'guide-art/ticket-random.svg';
 const CHK = '<span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>';
 const objHTML = k => k === 'o1'
   ? `<span class="obj"><img src="${src('o1')}" alt=""><img class="appicon" src="guide-art/pricepick-appicon.png" alt=""></span>`
-  : k === 'tw' ? `<span class="tks wait">${`<img src="${TK}" alt="">`.repeat(3)}</span>`
+  : k === 'tw' ? `<span class="tks wait">${`<img src="${TR}" alt="">`.repeat(3)}</span>`
   : k === 'tk' ? `<span class="tks one"><img src="${TK}" alt="">${CHK}</span>`
   : `<img src="${src(k)}" alt="">`;
-new Image().src = TK;
+[TK, TR].forEach(u => new Image().src = u);
 Object.values(NODES).forEach(n => n.img && n.img[0] === 'o' && (new Image().src = src(n.img)));
 
 function arrowPath([x1, y1, x2, y2, kind, , cy]) {
