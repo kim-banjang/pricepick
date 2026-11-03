@@ -106,6 +106,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nd.lift .pop::after{content:'';position:absolute;left:50%;bottom:-20px;width:var(--fw);height:16px;margin-left:calc(var(--fw) / -2);border-radius:50%;background:rgba(92,58,180,.22);filter:blur(8px);z-index:-1;pointer-events:none}
 .ncard{width:100%;height:100%;padding:14px;background:#fff;border-radius:24px;box-shadow:var(--shadow-p)}
 .ncard img{display:block;width:100%;height:100%;object-fit:contain}
+/* 정면 폰 + 프라이스픽 3D 앱 아이콘. 폰 이미지(512x816)의 화면 영역 실측: left 15.2% top 9.6% w 69.7% h 82.1%
+   아이콘 = 화면 폭의 46%(폰 폭의 32.1%), 중심은 화면 세로 44% 지점(세로 가운데보다 살짝 위) */
+.obj{position:relative;display:block;width:100%;height:100%}
+.obj img.appicon{position:absolute;left:33.95%;top:35.6%;width:32.1%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:22%;box-shadow:0 8px 20px rgba(92,58,180,.35)}
+.nd.on .appicon{animation:iconIn 420ms cubic-bezier(.34,1.45,.5,1) 120ms both}
+@keyframes iconIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+.step .th .obj{height:100%;width:auto;aspect-ratio:512/816}
+.step .th .obj img{max-width:none;max-height:none}
+.step .th .obj img:first-child{width:100%;height:100%}
 .snap,.snap *{transition:none!important}
 
 /* 제휴몰 카드 5장 계단식 겹침 — 전부 순백, 층은 그림자로만 */
@@ -252,7 +261,7 @@ const MALLS = '<div class="malls"><div class="chips">' +
 const CV_H = 1700;
 /* lab: 노드 라벨, at: r(오른쪽) | b(아래 — 오른쪽 공간이 없을 때) */
 const NODES = {
-  phone:  { x: 187.5, y: 40,   w: 153, h: 198, img: 'o1', lab: '프라이스픽', at: 'r' },
+  phone:  { x: 187.5, y: 40,   w: 135, h: 198, img: 'o1', lab: '프라이스픽', at: 'r' },
   mall:   { x: 187.5, y: 340,  w: 286, h: 128, html: MALLS, lab: '제휴몰', at: 'b' },
   bag:    { x: 187.5, y: 604,  w: 207, h: 228, img: 'o2', lab: '구매 완료', at: 'r' },
   wait:   { x: 106,   y: 962,  w: 168, h: 137, img: 'o3', lab: '티켓', at: 'b', edge: true },
@@ -294,6 +303,10 @@ const THUMB = ['o1', null, 'o2', 'o3', 'o4', 'o5', 'o6'];
 const DRAW = 420, GAP = 300, CAM_Y = 355;
 const FIN = { top: 152, h: 544 };
 const src = k => `guide-art/${k}.png`;
+/* 오브젝트 그림. 폰(o1)은 화면 자리에 앱 아이콘을 얹는다 */
+const objHTML = k => k === 'o1'
+  ? `<span class="obj"><img src="${src('o1')}" alt=""><img class="appicon" src="guide-art/pricepick-appicon.png" alt=""></span>`
+  : `<img src="${src(k)}" alt="">`;
 Object.values(NODES).forEach(n => n.img && (new Image().src = src(n.img)));
 
 function arrowPath([x1, y1, x2, y2, kind]) {
@@ -316,7 +329,7 @@ function canvasHTML() {
   const nodes = Object.entries(NODES).map(([k, n]) =>
     `<div class="nd${n.html && k !== 'mall' ? '' : ' lift'}${n.edge ? ' edge' : ''}" data-k="${k}" style="left:${n.x - n.w / 2}px;top:${n.y}px;width:${n.w}px;height:${n.h}px;` +
     `--gw:${n.w + 60}px;--gh:${n.h + 50}px;--fw:${Math.round(n.w * .72)}px">` +
-    `<div class="fx"><div class="pop">${n.img ? `<div class="ncard"><img src="${src(n.img)}" alt=""></div>` : n.html}` +
+    `<div class="fx"><div class="pop">${n.img ? `<div class="ncard">${objHTML(n.img)}</div>` : n.html}` +
     `${n.lab ? `<span class="lab ${n.at}">${n.lab}</span>` : ''}</div></div></div>`).join('');
   return `<div class="cv"><svg width="375" height="${CV_H}" viewBox="0 0 375 ${CV_H}">${svg}</svg>${nodes}</div>`;
 }
@@ -359,7 +372,7 @@ function mountPage(screen) {
   mini.classList.add('snap');
   mini.querySelectorAll('.ar,.nd').forEach(el => el.classList.add('on'));
   $('[data-steps]').innerHTML = STEPS.map((s, i) =>
-    `<button class="step" data-go="${i}"><span class="th">${THUMB[i] ? `<img src="${src(THUMB[i])}" alt="">` : MALLS}</span>` +
+    `<button class="step" data-go="${i}"><span class="th">${THUMB[i] ? objHTML(THUMB[i]) : MALLS}</span>` +
     `<span class="tx"><span class="no">${i + 1}</span><b>${s.t}</b><p>${s.d}</p></span></button>`).join('');
   return { screen };
 }
