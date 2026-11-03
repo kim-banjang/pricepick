@@ -11,7 +11,13 @@
   --bg:#FAFAFA; --card:#FFFFFF; --text1:#1A1130; --text2:#5A5370; --text3:#9B93B0; --border:#EEEAF3; --green:#22C55E;
   --r:12px; --r-lg:16px; --r-xl:20px;
   --line:#9B78FF;
-  --shadow-p:0 12px 30px rgba(92,58,180,.18),0 2px 6px rgba(92,58,180,.10);
+  --r-sm:8px;
+  --red:#FF4452; --text4:#C4BED0; --border-strong:#E0D9ED;
+  --gold-a:#FFD93B; --gold-b:#E6A800;
+  --fs-caption:13px; --fs-body:15px; --fs-label:16px; --fs-section:18px; --fs-title:22px; --fs-number:28px;
+  --fw-regular:400; --fw-bold:700; --fw-emphasis:800;
+  --shadow-sm:0 2px 8px rgba(26,17,48,0.05);
+  --shadow-p:0 12px 30px rgba(108,74,182,.18),0 2px 6px rgba(108,74,182,.10);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{background:#ECECF0}
@@ -19,21 +25,21 @@ body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFo
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* 상단 탭 (프레임 바깥) */
-.tabs{display:flex;gap:4px;padding:4px;background:#fff;border:1px solid #E2E2E8;border-radius:999px;margin-bottom:24px}
-.tabs button{height:40px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:600;color:var(--text2);transition:background .2s,color .2s}
+.tabs{display:flex;gap:4px;padding:4px;background:#fff;border:1px solid #E5E5EA;border-radius:20px;margin-bottom:24px}
+.tabs button{height:40px;padding:0 20px;border-radius:20px;font-size:var(--fs-body);font-weight:var(--fw-bold);color:var(--text2);transition:background .2s,color .2s}
 .tabs button.on{background:var(--text1);color:#fff}
 
 /* 아이폰 프레임 */
 .phone{width:395px;height:832px;padding:10px;border-radius:56px;background:#1B1B1F;box-shadow:0 0 0 1px #2E2E33 inset,0 24px 60px rgba(26,17,48,.18);flex:none}
 .screen{position:relative;width:375px;height:812px;border-radius:46px;overflow:hidden;background:var(--bg)}
 .screen[hidden]{display:none!important}
-.screen.is-tour{background:linear-gradient(180deg,#F6F3FF 0%,#EBE3FC 55%,#E2D6FA 100%)}
+.screen.is-tour{background:linear-gradient(180deg,var(--sub-4) 0%,var(--sub-3) 100%)}
 @media (max-width:420px){
   body{padding:16px 0 32px;overflow-x:hidden}
   .phone{transform:scale(calc((100vw - 8px) / 395px));transform-origin:top center;margin-bottom:calc((100vw - 403px) * 2.1)}
 }
 
-.status{position:absolute;top:0;left:0;right:0;height:47px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 34px;font-size:15px;font-weight:600;z-index:30;pointer-events:none;color:var(--text1)}
+.status{position:absolute;top:0;left:0;right:0;height:47px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 34px;font-size:var(--fs-body);font-weight:var(--fw-bold);z-index:30;pointer-events:none;color:var(--text1)}
 .status .icons{display:flex;gap:6px;align-items:center}
 .island{position:absolute;top:11px;left:50%;width:120px;height:34px;margin-left:-60px;border-radius:20px;background:#000;z-index:31}
 .homebar{position:absolute;bottom:8px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:var(--text1);z-index:31}
@@ -41,20 +47,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* 쇼핑 가이드 페이지 */
 .page{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding-top:47px;scrollbar-width:none}
 .page::-webkit-scrollbar{display:none}
-.appbar{position:sticky;top:0;z-index:5;height:52px;display:flex;align-items:center;gap:2px;padding:0 12px 0 6px;background:rgba(250,250,250,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.appbar{position:sticky;top:0;z-index:5;height:52px;display:flex;align-items:center;gap:4px;padding:0 12px 0 4px;background:rgba(250,250,250,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .appbar .back{width:40px;height:40px;display:grid;place-items:center;color:var(--text1)}
-.appbar h1{font-size:17px;font-weight:700}
-.head{padding:12px 20px 0}
-.head h2{font-size:22px;font-weight:700;line-height:1.4;letter-spacing:-.3px;word-break:keep-all}
-.head p{margin-top:8px;font-size:14px;color:var(--text3)}
+.appbar h1{font-size:var(--fs-title);font-weight:var(--fw-bold)}
+.head{padding:12px 16px 0}
+.head h2{font-size:var(--fs-title);font-weight:var(--fw-bold);line-height:1.4;letter-spacing:-.3px;word-break:keep-all}
+.head p{margin-top:8px;font-size:var(--fs-body);font-weight:var(--fw-regular);color:var(--text3)}
 
 .overview{display:block;width:calc(100% - 32px);margin:24px 16px 0;padding:18px 16px 20px;border-radius:var(--r-xl);
-  background:linear-gradient(165deg,#F6F2FF 0%,#ECE4FD 55%,#E2D6FA 100%);border:1px solid rgba(132,94,238,.12);
-  box-shadow:0 10px 28px rgba(92,58,180,.14),0 2px 6px rgba(92,58,180,.06);text-align:left;color:var(--text1);transition:transform .15s}
+  background:linear-gradient(165deg,var(--sub-4) 0%,var(--sub-3) 100%);border:1px solid var(--border);
+  box-shadow:0 4px 16px rgba(132,94,238,0.13);text-align:left;color:var(--text1);transition:transform .15s}
 .overview:active{transform:scale(.985)}
 .overview .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.overview .top b{font-size:16px;font-weight:800}
-.overview .top span{display:flex;align-items:center;gap:2px;font-size:12px;font-weight:700;color:var(--main)}
+.overview .top b{font-size:var(--fs-label);font-weight:var(--fw-bold)}
+.overview .top span{display:flex;align-items:center;gap:4px;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--main)}
 .mini{position:relative;height:calc(1700px * var(--s));overflow:hidden;pointer-events:none}
 .mini .cv{left:50%;margin-left:-187.5px;transform:scale(var(--s));transform-origin:50% 0}
 .mini .ln{stroke-width:9;stroke-dasharray:20 14}
@@ -62,8 +68,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mini .hd{transform:scale(1.5);transform-box:fill-box;transform-origin:50% 100%}
 
 .steps{padding:24px 16px 48px;display:flex;flex-direction:column;gap:12px}
-.step{display:flex;gap:14px;align-items:center;width:100%;padding:14px;background:#fff;border-radius:var(--r-lg);text-align:left;
-  box-shadow:0 8px 22px rgba(92,58,180,.10),0 1px 3px rgba(92,58,180,.06);transition:transform .15s}
+.step{display:flex;gap:12px;align-items:center;width:100%;padding:14px;background:#fff;border-radius:var(--r-lg);text-align:left;
+  box-shadow:0 4px 16px rgba(132,94,238,0.13);transition:transform .15s}
 .step:active{transform:scale(.985)}
 .step .th{flex:none;width:72px;height:72px;overflow:hidden;border-radius:var(--r);background:var(--sub-4);display:grid;place-items:center;padding:8px}
 .step .th img{max-width:100%;max-height:100%;display:block}
@@ -71,9 +77,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .step .th .malls{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.22)}
 .step .th .chip{animation:none}
 .step .tx{min-width:0}
-.step .no{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 7px;border-radius:11px;background:var(--sub-4);color:var(--main);font-size:12px;font-weight:800}
-.step b{display:block;margin-top:6px;font-size:15px;font-weight:700;line-height:1.4;word-break:keep-all}
-.step p{margin-top:2px;font-size:13px;line-height:1.5;color:var(--text2);word-break:keep-all}
+.step .no{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 8px;border-radius:20px;background:var(--sub-4);color:var(--main);font-size:var(--fs-caption);font-weight:var(--fw-bold)}
+.step b{display:block;margin-top:8px;font-size:var(--fs-label);font-weight:var(--fw-bold);line-height:1.4;word-break:keep-all}
+.step p{margin-top:4px;font-size:var(--fs-body);font-weight:var(--fw-regular);line-height:1.5;color:var(--text2);word-break:keep-all}
 
 /* 흐름도 캔버스 (투어·축소판 공용) */
 .cv{position:absolute;top:0;left:0;width:375px;height:1700px;transform-origin:187.5px 0}
@@ -85,10 +91,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes flow{to{stroke-dashoffset:-18}}
 .ar{filter:drop-shadow(0 2px 6px rgba(132,94,238,.35))}
 .ar.l{--line:#845EEE}
-.ar.r{--line:#F5B84A;filter:drop-shadow(0 2px 6px rgba(245,184,74,.45))}
+.ar.r{--line:var(--gold-b);filter:drop-shadow(0 2px 6px rgba(230,168,0,.4))}
 /* 노드 라벨 */
-.lab{position:absolute;font-size:13px;font-weight:700;color:#5A5370;white-space:nowrap;pointer-events:none}
-.lab.r{left:calc(100% + 10px);top:50%;transform:translateY(-50%)}
+.lab{position:absolute;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--text2);white-space:nowrap;pointer-events:none}
+.lab.r{left:calc(100% + 12px);top:50%;transform:translateY(-50%)}
 .lab.b{top:calc(100% + 8px);left:50%;transform:translateX(-50%)}
 .ar:not(.on),.nd:not(.on){opacity:0;visibility:hidden}
 .ar.on .rv{stroke-dashoffset:0}
@@ -103,13 +109,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nd.past .fx{opacity:.55}
 /* 노드 뒤 보라 글로우, 아래 타원 그림자 */
 .nd.lift .pop::before{content:'';position:absolute;left:50%;top:50%;width:var(--gw);height:var(--gh);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(132,94,238,.35),rgba(132,94,238,0));filter:blur(36px);z-index:-2;pointer-events:none}
-.nd.lift .pop::after{content:'';position:absolute;left:50%;bottom:-20px;width:var(--fw);height:16px;margin-left:calc(var(--fw) / -2);border-radius:50%;background:rgba(92,58,180,.22);filter:blur(8px);z-index:-1;pointer-events:none}
-.ncard{width:100%;height:100%;padding:14px;background:#fff;border-radius:24px;box-shadow:var(--shadow-p)}
+.nd.lift .pop::after{content:'';position:absolute;left:50%;bottom:-20px;width:var(--fw);height:16px;margin-left:calc(var(--fw) / -2);border-radius:50%;background:rgba(108,74,182,.22);filter:blur(8px);z-index:-1;pointer-events:none}
+.ncard{width:100%;height:100%;padding:16px;background:var(--card);border-radius:var(--r-xl);box-shadow:var(--shadow-p)}
 .ncard img{display:block;width:100%;height:100%;object-fit:contain}
 /* 정면 폰 + 프라이스픽 3D 앱 아이콘. 폰 이미지(512x816)의 화면 영역 실측: left 15.2% top 9.6% w 69.7% h 82.1%
    아이콘 = 화면 폭의 46%(폰 폭의 32.1%), 중심은 화면 세로 44% 지점(세로 가운데보다 살짝 위) */
 .obj{position:relative;display:block;width:100%;height:100%}
-.obj img.appicon{position:absolute;left:33.95%;top:35.6%;width:32.1%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:22%;box-shadow:0 8px 20px rgba(92,58,180,.35)}
+.obj img.appicon{position:absolute;left:33.95%;top:35.6%;width:32.1%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:22%;box-shadow:0 8px 20px rgba(108,74,182,.35)}
 .nd.on .appicon{animation:iconIn 420ms cubic-bezier(.34,1.45,.5,1) 120ms both}
 @keyframes iconIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
 .step .th .obj{height:100%;width:auto;aspect-ratio:512/816}
@@ -124,18 +130,18 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .chip{width:46px;height:46px;flex:none}
 .nd.on .chip{animation:chipIn 520ms cubic-bezier(.34,1.45,.5,1) calc(var(--i) * 60ms) both}
 @keyframes chipIn{from{opacity:0;transform:translateY(14px) scale(.7)}to{opacity:1;transform:none}}
-.chip .c{width:100%;height:100%;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(92,58,180,.18)}
+.chip .c{width:100%;height:100%;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(108,74,182,.18)}
 .chip .c img{width:34px;height:34px;border-radius:50%;object-fit:contain;display:block}
-.chip.hot .c{transform:scale(1.08);box-shadow:0 0 0 3px #845EEE,0 6px 16px rgba(92,58,180,.22)}
-.mall{margin-top:22px;width:286px;height:60px;flex:none;border-radius:18px;background:#FFFFFF;box-shadow:0 10px 26px rgba(92,58,180,.20);display:flex;align-items:center;gap:10px;padding:0 14px}
-.badge{flex:none;width:38px;height:38px;border-radius:50%;background:#fff;overflow:hidden;box-shadow:0 0 0 1px #EEEAF3;display:grid;place-items:center}
+.chip.hot .c{transform:scale(1.08);box-shadow:0 0 0 3px var(--main),0 6px 16px rgba(108,74,182,.22)}
+.mall{margin-top:24px;width:286px;height:60px;flex:none;border-radius:var(--r-lg);background:var(--card);border:1px solid var(--border);box-shadow:0 10px 26px rgba(108,74,182,.20);display:flex;align-items:center;gap:10px;padding:0 16px}
+.badge{flex:none;width:38px;height:38px;border-radius:50%;background:var(--card);overflow:hidden;box-shadow:0 0 0 1px var(--border);display:grid;place-items:center}
 .badge img{width:100%;height:100%;object-fit:contain}
-.mall b{flex:1;font-size:16px;font-weight:700;color:#1A1130}
-.mall span.go{height:34px;padding:0 15px;border-radius:17px;background:var(--main);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center;box-shadow:0 4px 12px rgba(132,94,238,.4);animation:pulse 1.8s ease-in-out infinite}
+.mall b{flex:1;font-size:var(--fs-label);font-weight:var(--fw-bold);color:var(--text1)}
+.mall span.go{height:34px;padding:0 16px;border-radius:20px;background:var(--main);color:#fff;font-size:var(--fs-caption);font-weight:var(--fw-bold);display:grid;place-items:center;box-shadow:0 4px 14px rgba(132,94,238,0.28);animation:pulse 1.8s ease-in-out infinite}
 @keyframes pulse{50%{transform:scale(1.06)}}
-.pill{height:30px;padding:0 13px;border-radius:15px;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;white-space:nowrap}
+.pill{height:30px;padding:0 12px;border-radius:20px;color:#fff;font-size:var(--fs-caption);font-weight:var(--fw-bold);display:grid;place-items:center;white-space:nowrap}
 .pill.g{background:var(--green);box-shadow:0 6px 16px rgba(34,197,94,.35),0 2px 4px rgba(34,197,94,.2)}
-.pill.y{background:#fff;border:2px solid #F5B84A;color:#845EEE;box-shadow:0 6px 16px rgba(245,184,74,.4),0 2px 4px rgba(132,94,238,.15)}
+.pill.y{border:2px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(90deg,var(--gold-a),var(--gold-b)) border-box;color:var(--main);box-shadow:0 6px 16px rgba(230,168,0,.35),0 2px 4px rgba(132,94,238,.15)}
 
 /* 가이드 투어 */
 .tour{position:absolute;inset:0;z-index:20;color:var(--text1);opacity:0;pointer-events:none;transition:opacity .25s;cursor:pointer;user-select:none;-webkit-user-select:none}
@@ -143,7 +149,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .bgfx{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .blob{position:absolute;border-radius:50%;filter:blur(60px)}
 .blob.b1{width:320px;height:320px;left:-90px;top:40px;background:rgba(132,94,238,.28)}
-.blob.b2{width:260px;height:260px;right:-80px;top:300px;background:rgba(245,184,74,.22)}
+.blob.b2{width:260px;height:260px;right:-80px;top:300px;background:rgba(255,217,59,.22)}
 .blob.b3{width:300px;height:300px;left:-100px;bottom:40px;background:rgba(155,120,255,.22)}
 .deco{position:absolute;animation:bob var(--d) ease-in-out var(--dl) infinite}
 .deco svg{display:block;width:100%;height:100%}
@@ -158,33 +164,33 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           mask-image:linear-gradient(to bottom,transparent 136px,#000 152px,#000 700px,transparent 716px)}
 .tour .cv{transition:transform 640ms ease-in-out}
 
-.tour .bar{position:absolute;top:47px;left:0;right:0;display:flex;align-items:center;gap:20px;padding:12px 14px 0 36px;z-index:2}
-.tour .prog{flex:1;display:flex;gap:5px}
-.tour .prog span{flex:1;height:3px;border-radius:2px;background:rgba(132,94,238,.22);transition:background .3s}
+.tour .bar{position:absolute;top:47px;left:0;right:0;display:flex;align-items:center;gap:20px;padding:12px 16px 0 36px;z-index:2}
+.tour .prog{flex:1;display:flex;gap:4px}
+.tour .prog span{flex:1;height:3px;border-radius:2px;background:var(--sub-3);transition:background .3s}
 .tour .prog span.done{background:var(--main)}
-.tour .x{width:36px;height:36px;display:grid;place-items:center;color:#5A5370}
-.tour .skip{position:absolute;top:96px;left:12px;z-index:2;height:36px;padding:0 8px;font-size:14px;font-weight:600;color:#5A5370;transition:opacity .2s}
+.tour .x{width:36px;height:36px;display:grid;place-items:center;color:var(--text2)}
+.tour .skip{position:absolute;top:96px;left:8px;z-index:2;height:36px;padding:0 8px;font-size:var(--fs-body);font-weight:var(--fw-regular);color:var(--text2);transition:opacity .2s}
 .tour.final .skip{opacity:0;pointer-events:none}
 
 .tour .txt{position:absolute;left:16px;right:16px;bottom:22px;display:flex;flex-direction:column;align-items:center;transition:opacity .2s;z-index:2}
-.tour .tcard{width:100%;background:rgba(255,255,255,.92);border-radius:22px;padding:20px 18px;box-shadow:0 8px 24px rgba(92,58,180,.14);
+.tour .tcard{width:100%;background:rgba(255,255,255,.92);border-radius:var(--r-xl);padding:20px;box-shadow:0 8px 24px rgba(108,74,182,.14);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);text-align:center}
 .tour .txt .lines{min-height:96px;display:flex;flex-direction:column;justify-content:center}
 .tour .txt.out .lines{opacity:0;transform:translateY(-6px);transition:opacity 120ms,transform 120ms}
 .tour .txt.in .lines{animation:fadeUp 320ms cubic-bezier(.2,.7,.3,1) both}
-.tour h3{font-size:26px;font-weight:800;line-height:1.35;color:#1A1130;letter-spacing:-.4px;word-break:keep-all}
-.tour .desc{margin-top:8px;font-size:15px;font-weight:500;line-height:1.55;color:#5A5370;word-break:keep-all}
-.tour .more{margin-top:6px;height:40px;padding:0 8px;font-size:14px;font-weight:700;color:var(--main)}
+.tour h3{font-size:var(--fs-title);font-weight:var(--fw-emphasis);line-height:1.4;color:var(--text1);letter-spacing:-.4px;word-break:keep-all}
+.tour .desc{margin-top:8px;font-size:var(--fs-body);font-weight:var(--fw-regular);line-height:1.55;color:var(--text2);word-break:keep-all}
+.tour .more{margin-top:8px;height:40px;padding:0 8px;font-size:var(--fs-body);font-weight:var(--fw-bold);color:var(--main)}
 .tour.final .txt{opacity:0;pointer-events:none}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
 .tour .fin{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;z-index:2}
 .tour.final .fin{opacity:1;pointer-events:auto;cursor:default}
 .tour .fin h3{position:absolute;top:96px;left:0;right:0;text-align:center}
-.tour .btns{position:absolute;left:20px;right:20px;bottom:40px;display:flex;gap:8px}
-.tour .btns button{flex:1;height:52px;border-radius:26px;font-size:16px;font-weight:700}
-.tour .btns .ghost{background:rgba(255,255,255,.75);border:1.5px solid rgba(132,94,238,.35);color:var(--main)}
-.tour .btns .fill{background:var(--main);color:#fff;box-shadow:0 8px 20px rgba(132,54,238,.35)}
+.tour .btns{position:absolute;left:16px;right:16px;bottom:40px;display:flex;gap:8px}
+.tour .btns button{flex:1;height:52px;border-radius:var(--r);font-size:var(--fs-label);font-weight:var(--fw-bold)}
+.tour .btns .ghost{background:rgba(132,94,238,0.1);border:1.5px solid rgba(132,94,238,0.3);color:var(--main)}
+.tour .btns .fill{background:var(--main);color:#fff;box-shadow:0 4px 14px rgba(132,94,238,0.28)}
 .tour .btns .fill:active{background:var(--main-dark)}
 .tour.final .fin h3,.tour.final .btns{animation:fadeUp 320ms 180ms cubic-bezier(.2,.7,.3,1) both}
 
@@ -262,7 +268,7 @@ const CV_H = 1700;
 /* lab: 노드 라벨, at: r(오른쪽) | b(아래 — 오른쪽 공간이 없을 때) */
 const NODES = {
   phone:  { x: 187.5, y: 40,   w: 135, h: 198, img: 'o1', lab: '프라이스픽', at: 'r' },
-  mall:   { x: 187.5, y: 340,  w: 286, h: 128, html: MALLS, lab: '제휴몰', at: 'b' },
+  mall:   { x: 187.5, y: 340,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
   bag:    { x: 187.5, y: 604,  w: 207, h: 228, img: 'o2', lab: '구매 완료', at: 'r' },
   wait:   { x: 106,   y: 962,  w: 168, h: 137, img: 'o3', lab: '티켓', at: 'b', edge: true },
   ok:     { x: 106,   y: 1155, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
@@ -321,9 +327,13 @@ function canvasHTML() {
   const id = `cv${++cvSeq}`;
   const svg = Object.entries(ARROWS).map(([k, a]) => {
     const d = arrowPath(a), m = `${id}-${k}`;
-    return `<g class="ar${a[5] ? ' ' + a[5] : ''}" data-k="${k}">` +
+    /* 포인트 길은 디자인 시스템 Gold 그라디언트(#FFD93B → #E6A800)를 선 방향으로 */
+    const gold = a[5] === 'r'
+      ? `<linearGradient id="${m}-g" gradientUnits="userSpaceOnUse" x1="${a[0]}" y1="${a[1]}" x2="${a[2]}" y2="${a[3]}"><stop offset="0" stop-color="#FFD93B"/><stop offset="1" stop-color="#E6A800"/></linearGradient>`
+      : '';
+    return `<g class="ar${a[5] ? ' ' + a[5] : ''}" data-k="${k}">` + gold +
       `<mask id="${m}" maskUnits="userSpaceOnUse" x="0" y="0" width="375" height="${CV_H}"><path class="rv" d="${d}"/></mask>` +
-      `<path class="ln" d="${d}" mask="url(#${m})"/>` +
+      `<path class="ln" d="${d}" mask="url(#${m})"${gold ? ` style="stroke:url(#${m}-g)"` : ''}/>` +
       `<path class="hd" d="M${a[2] - 10} ${a[3] - 14}Q${a[2]} ${a[3] - 11} ${a[2] + 10} ${a[3] - 14}L${a[2]} ${a[3]}Z"/></g>`;
   }).join('');
   const nodes = Object.entries(NODES).map(([k, n]) =>
@@ -339,7 +349,7 @@ const DECO_SHAPE = {
   coin:   c => `<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="${c}"/><circle cx="10" cy="10" r="6" fill="none" stroke="${c}" stroke-width="2"/></svg>`,
   spark:  c => `<svg viewBox="0 0 20 20"><path fill="${c}" d="M10 0c.9 5.4 4.6 9.1 10 10-5.4.9-9.1 4.6-10 10-.9-5.4-4.6-9.1-10-10C5.4 9.1 9.1 5.4 10 0Z"/></svg>`,
 };
-const P = 'rgba(132,94,238,.18)', Y = 'rgba(245,184,74,.22)';
+const P = 'rgba(132,94,238,.18)', Y = 'rgba(230,168,0,.22)';
 const DECO = [ // [모양, x, y, 크기, 색, 주기(s), 지연(s), 흐림]
   ['spark', 300, 92, 18, Y, 7, 0, 0], ['ticket', 28, 150, 24, P, 9, -2, 0], ['coin', 330, 200, 14, Y, 6.5, -1, 1],
   ['spark', 52, 262, 12, P, 8, -4, 0], ['coin', 18, 380, 22, Y, 10, -3, 1], ['ticket', 318, 360, 20, P, 8.5, -5, 0],
