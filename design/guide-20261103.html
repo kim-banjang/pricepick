@@ -120,6 +120,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .step .th .obj{height:100%;width:auto;aspect-ratio:512/816}
 .step .th .obj img{max-width:none;max-height:none}
 .step .th .obj img:first-child{width:100%;height:100%}
+/* 티켓(김반장 2D 아이콘 ticket-gold.svg, 입체는 SVG 안에서 처리). viewBox 512 중 티켓 실체는 약 290px라 1.76배로 키워 카드를 채운다 */
+.tks{position:relative;display:block;width:100%;height:100%;container-type:size;filter:drop-shadow(0 10px 16px rgba(108,74,182,.35))}
+.tks img{position:absolute;left:50%;top:50%;width:var(--s);height:var(--s);max-width:none;max-height:none;margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);transform:translate(var(--dx,0),var(--dy,0))}
+.tks.one img{--s:150cqmin}
+/* 대기: 3장 겹침, 묶음째 투명도 .45 = 아직 못 쓴다 */
+.tks.wait{opacity:.45}
+.tks.wait img{--s:128cqmin}
+.tks.wait img:nth-child(1){--dx:-13cqmin;--dy:-11cqmin}
+.tks.wait img:nth-child(3){--dx:13cqmin;--dy:11cqmin}
+/* 확정: 오른쪽 위 초록 체크 배지 */
+.tks .chk{position:absolute;left:calc(50% + 30cqmin);top:calc(50% - 58cqmin);width:28cqmin;height:28cqmin;border-radius:50%;background:var(--green);border:2px solid #fff;box-shadow:0 4px 10px rgba(34,197,94,.4);display:grid;place-items:center}
+.tks .chk svg{width:58%;height:58%}
+.nd.on .chk{animation:iconIn 420ms cubic-bezier(.34,1.45,.5,1) 160ms both}
+.step .th .tks{width:56px;height:56px}
 .snap,.snap *{transition:none!important}
 
 /* 제휴몰 카드 5장 계단식 겹침 — 전부 순백, 층은 그림자로만 */
@@ -269,9 +283,9 @@ const NODES = {
   phone:  { x: 187.5, y: 40,   w: 135, h: 198, img: 'o1', lab: '프라이스픽', at: 'b' },
   mall:   { x: 187.5, y: 366,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
   bag:    { x: 187.5, y: 624,  w: 207, h: 228, img: 'o2', lab: '구매 완료', at: 'b' },
-  wait:   { x: 106,   y: 1008, w: 168, h: 143, img: 'o3', lab: '티켓', at: 'b', edge: true },
+  wait:   { x: 106,   y: 1008, w: 168, h: 143, img: 'tw', lab: '티켓', at: 'b', edge: true },
   ok:     { x: 106,   y: 1207, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
-  ticket: { x: 106,   y: 1277, w: 193, h: 163, img: 'o4', lab: '사용 가능 티켓', at: 'b', edge: true },
+  ticket: { x: 106,   y: 1277, w: 193, h: 163, img: 'tk', lab: '사용 가능 티켓', at: 'b', edge: true },
   coin:   { x: 284,   y: 1008, w: 168, h: 120, img: 'o5', lab: '포인트', at: 'b', edge: true },
   rate:   { x: 284,   y: 1343, w: 130, h: 30,  html: '<span class="pill y">10P = 티켓 1장</span>' },
   gift:   { x: 187.5, y: 1638, w: 223, h: 137, img: 'o6', lab: '기프티콘', at: 'b' },
@@ -305,15 +319,21 @@ const STEPS = [
   { t: '티켓으로 기프티콘을 사요', d: '다양한 방법으로 모은 티켓으로 기프티콘을 구매할 수 있어요', cam: 1690,
     seq: [['ml', 'mr'], ['gift']] },
 ];
-const THUMB = ['o1', null, 'o2', 'o3', 'o4', 'o5', 'o6'];
+const THUMB = ['o1', null, 'o2', 'tw', 'tk', 'o5', 'o6'];
 const DRAW = 420, GAP = 300, CAM_Y = 355;
 const FIN = { top: 152, h: 544 };
 const src = k => `guide-art/${k}.png`;
 /* 오브젝트 그림. 폰(o1)은 화면 자리에 앱 아이콘을 얹는다 */
+/* 티켓: tw = 대기(3장 겹침·흐리게), tk = 확정(1장 선명 + 체크 배지) */
+const TK = 'guide-art/ticket-gold.svg';
+const CHK = '<span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>';
 const objHTML = k => k === 'o1'
   ? `<span class="obj"><img src="${src('o1')}" alt=""><img class="appicon" src="guide-art/pricepick-appicon.png" alt=""></span>`
+  : k === 'tw' ? `<span class="tks wait">${`<img src="${TK}" alt="">`.repeat(3)}</span>`
+  : k === 'tk' ? `<span class="tks one"><img src="${TK}" alt="">${CHK}</span>`
   : `<img src="${src(k)}" alt="">`;
-Object.values(NODES).forEach(n => n.img && (new Image().src = src(n.img)));
+new Image().src = TK;
+Object.values(NODES).forEach(n => n.img && n.img[0] === 'o' && (new Image().src = src(n.img)));
 
 function arrowPath([x1, y1, x2, y2, kind, , cy]) {
   const tip = y2 - 12;
