@@ -61,7 +61,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .overview .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .overview .top b{font-size:var(--fs-label);font-weight:var(--fw-bold)}
 .overview .top span{display:flex;align-items:center;gap:4px;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--main)}
-.mini{position:relative;height:calc(1741px * var(--s));overflow:hidden;pointer-events:none}
+.mini{position:relative;height:calc(1840px * var(--s));overflow:hidden;pointer-events:none}
 .mini .cv{left:50%;margin-left:-187.5px;transform:scale(var(--s));transform-origin:50% 0}
 .mini .ln{stroke-width:9;stroke-dasharray:20 14}
 .mini .rv{stroke-width:16}
@@ -82,7 +82,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .step p{margin-top:4px;font-size:var(--fs-body);font-weight:var(--fw-regular);line-height:1.5;color:var(--text2);word-break:keep-all}
 
 /* 흐름도 캔버스 (투어·축소판 공용) */
-.cv{position:absolute;top:0;left:0;width:375px;height:1741px;transform-origin:187.5px 0}
+.cv{position:absolute;top:0;left:0;width:375px;height:1840px;transform-origin:187.5px 0}
 .cv svg{position:absolute;inset:0;overflow:visible}
 /* 화살표: 보이는 선은 점선(아래로 흐름), 그려지는 효과는 마스크 안의 실선이 자라며 드러낸다 */
 .ln{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-dasharray:10 8;animation:flow 1.6s linear infinite}
@@ -94,7 +94,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .ar.r{--line:var(--gold-b);filter:drop-shadow(0 2px 6px rgba(230,168,0,.4))}
 /* 노드 라벨 */
 .lab{position:absolute;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--text2);white-space:nowrap;pointer-events:none}
-.lab.r{left:calc(100% + 12px);top:50%;transform:translateY(-50%)}
 .lab.b{top:calc(100% + 8px);left:50%;transform:translateX(-50%)}
 .ar:not(.on),.nd:not(.on){opacity:0;visibility:hidden}
 .ar.on .rv{stroke-dashoffset:0}
@@ -157,8 +156,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes bob{50%{transform:translateY(-14px)}}
 
 .tour .vp{position:absolute;inset:0;overflow:hidden;
-  -webkit-mask-image:linear-gradient(to bottom,transparent 104px,#000 150px,#000 640px,transparent 700px);
-          mask-image:linear-gradient(to bottom,transparent 104px,#000 150px,#000 640px,transparent 700px)}
+  -webkit-mask-image:linear-gradient(to bottom,transparent 124px,#000 168px,#000 calc(var(--clip,600px) - 28px),transparent calc(var(--clip,600px) - 4px));
+          mask-image:linear-gradient(to bottom,transparent 124px,#000 168px,#000 calc(var(--clip,600px) - 28px),transparent calc(var(--clip,600px) - 4px))}
 .tour.final .vp{
   -webkit-mask-image:linear-gradient(to bottom,transparent 136px,#000 152px,#000 700px,transparent 716px);
           mask-image:linear-gradient(to bottom,transparent 136px,#000 152px,#000 700px,transparent 716px)}
@@ -264,45 +263,46 @@ const MALL_LOGOS = ['coupang.jpg', 'gmarket.png', '11st.png', 'nsmall.png', 'cjt
 const MALLS = '<div class="malls"><div class="chips">' +
   MALL_LOGOS.map((f, i) => `<span class="chip${i ? '' : ' hot'}" style="--i:${i}"><span class="c"><img src="guide-art/mall/${f}" alt=""></span></span>`).join('') +
   '</div><div class="mall"><span class="badge"><img src="guide-art/mall/coupang.jpg" alt=""></span><b>쿠팡</b><span class="go">바로가기</span></div></div>';
-const CV_H = 1741;
-/* lab: 노드 라벨, at: r(오른쪽) | b(아래 — 오른쪽 공간이 없을 때) */
+const CV_H = 1840;
+/* lab: 노드 라벨 — 전부 카드 아래 8px, 가운데 정렬 */
 const NODES = {
-  phone:  { x: 187.5, y: 40,   w: 135, h: 198, img: 'o1', lab: '프라이스픽', at: 'r' },
-  mall:   { x: 187.5, y: 340,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
-  bag:    { x: 187.5, y: 604,  w: 207, h: 228, img: 'o2', lab: '구매 완료', at: 'r' },
-  wait:   { x: 106,   y: 962,  w: 168, h: 143, img: 'o3', lab: '티켓', at: 'b', edge: true },
-  ok:     { x: 106,   y: 1161, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
-  ticket: { x: 106,   y: 1231, w: 193, h: 163, img: 'o4', lab: '사용 가능 티켓', at: 'b', edge: true },
-  coin:   { x: 284,   y: 962,  w: 168, h: 120, img: 'o5', lab: '포인트', at: 'b', edge: true },
-  rate:   { x: 284,   y: 1297, w: 130, h: 30,  html: '<span class="pill y">10P = 티켓 1장</span>' },
-  gift:   { x: 187.5, y: 1560, w: 223, h: 137, img: 'o6', lab: '기프티콘', at: 'r' },
+  phone:  { x: 187.5, y: 40,   w: 135, h: 198, img: 'o1', lab: '프라이스픽', at: 'b' },
+  mall:   { x: 187.5, y: 366,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
+  bag:    { x: 187.5, y: 624,  w: 207, h: 228, img: 'o2', lab: '구매 완료', at: 'b' },
+  wait:   { x: 106,   y: 1008, w: 168, h: 143, img: 'o3', lab: '티켓', at: 'b', edge: true },
+  ok:     { x: 106,   y: 1207, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
+  ticket: { x: 106,   y: 1277, w: 193, h: 163, img: 'o4', lab: '사용 가능 티켓', at: 'b', edge: true },
+  coin:   { x: 284,   y: 1008, w: 168, h: 120, img: 'o5', lab: '포인트', at: 'b', edge: true },
+  rate:   { x: 284,   y: 1343, w: 130, h: 30,  html: '<span class="pill y">10P = 티켓 1장</span>' },
+  gift:   { x: 187.5, y: 1638, w: 223, h: 137, img: 'o6', lab: '기프티콘', at: 'b' },
 };
 /* 화살표: 끝점은 항상 아래 방향. 선은 촉 길이만큼 짧게 끝낸다.
-   5번째 값: 곡선 종류, 6번째 값: 갈래 색(l 티켓 길 보라 / r 포인트 길 노랑) */
+   5번째 값: 곡선 종류, 6번째 값: 갈래 색(l 티켓 길 보라 / r 포인트 길 골드),
+   7번째 값: 곡선 시작 y — 그 전까지는 수직선(합류 곡선 두 개를 같은 크기로 맞춘다) */
 const ARROWS = {
-  a1: [187.5, 248, 187.5, 330],
-  a2: [187.5, 504, 187.5, 596],
-  sl: [187.5, 842, 106, 952, 'curve', 'l'],
-  sr: [187.5, 842, 284, 952, 'curve', 'r'],
-  al: [106, 1141, 106, 1221, null, 'l'],
-  ar: [284, 1118, 284, 1287, null, 'r'],
-  ml: [106, 1430, 174, 1550, 'curve', 'l'],
-  mr: [284, 1337, 201, 1550, 'curve', 'r'],
+  a1: [187.5, 274, 187.5, 356],
+  a2: [187.5, 532, 187.5, 614],
+  sl: [187.5, 888, 106, 998, 'curve', 'l'],
+  sr: [187.5, 888, 284, 998, 'curve', 'r'],
+  al: [106, 1187, 106, 1267, null, 'l'],
+  ar: [284, 1164, 284, 1333, null, 'r'],
+  ml: [106, 1476, 172, 1628, 'curve', 'l'],
+  mr: [284, 1383, 203, 1628, 'curve', 'r', 1476],
 };
 const STEPS = [
-  { t: '프라이스픽에서 출발해요', d: '쇼핑하기 전에 프라이스픽을 먼저 열어요', cam: 139,
+  { t: '프라이스픽에서 출발해요', d: '쇼핑하기 전에 프라이스픽을 먼저 열어요', cam: 150,
     seq: [['phone']] },
-  { t: "제휴몰에서 '바로가기'를 눌러요", d: '열린 창에서 평소처럼 결제하면 돼요', cam: 412,
+  { t: "제휴몰에서 '바로가기'를 눌러요", d: '열린 창에서 평소처럼 결제하면 돼요', cam: 444,
     seq: [['a1'], ['mall']] },
-  { t: '상품은 집으로 오고', d: '프라이스픽에는 티켓이 쌓여요', cam: 718,
+  { t: '상품은 집으로 오고', d: '프라이스픽에는 티켓이 쌓여요', cam: 751,
     seq: [['a2'], ['bag']] },
-  { t: '쌓인 티켓은 사용 대기예요', d: '반품·취소 기간이 지나야 확정돼요', cam: 1030,
+  { t: '쌓인 티켓은 사용 대기예요', d: '반품·취소 기간이 지나야 확정돼요', cam: 1092,
     seq: [['sl'], ['wait']] },
-  { t: '확정되면 바로 쓸 수 있어요', d: '티켓이 사용 가능 상태로 바뀌어요', cam: 1290,
+  { t: '확정되면 바로 쓸 수 있어요', d: '티켓이 사용 가능 상태로 바뀌어요', cam: 1336,
     seq: [['al'], ['ok', 'ticket']] },
-  { t: '포인트 10P는 티켓 1장이 돼요', d: '다양한 방식으로 모은 포인트는 티켓으로 전환이 가능해요', cam: 1160,
+  { t: '포인트 10P는 티켓 1장이 돼요', d: '다양한 방식으로 모은 포인트는 티켓으로 전환이 가능해요', cam: 1190,
     seq: [['sr'], ['coin'], ['ar'], ['rate']] },
-  { t: '티켓으로 기프티콘을 사요', d: '다양한 방법으로 모은 티켓으로 기프티콘을 구매할 수 있어요', cam: 1601,
+  { t: '티켓으로 기프티콘을 사요', d: '다양한 방법으로 모은 티켓으로 기프티콘을 구매할 수 있어요', cam: 1690,
     seq: [['ml', 'mr'], ['gift']] },
 ];
 const THUMB = ['o1', null, 'o2', 'o3', 'o4', 'o5', 'o6'];
@@ -315,9 +315,10 @@ const objHTML = k => k === 'o1'
   : `<img src="${src(k)}" alt="">`;
 Object.values(NODES).forEach(n => n.img && (new Image().src = src(n.img)));
 
-function arrowPath([x1, y1, x2, y2, kind]) {
+function arrowPath([x1, y1, x2, y2, kind, , cy]) {
   const tip = y2 - 12;
   if (!kind) return `M${x1} ${y1}L${x2} ${tip}`;
+  if (cy) return `M${x1} ${y1}L${x1} ${cy}` + arrowPath([x1, cy, x2, y2, kind]).slice(`M${x1} ${cy}`.length);
   /* 큰 S 곡선: 시작 제어점을 아래로 당겨 어깨를 둥글게, 끝은 수직으로 꽂힌다 */
   const H = tip - y1;
   return `M${x1} ${y1}C${x1} ${y1 + H * .6} ${x2} ${y1 + H * .4} ${x2} ${tip}`;
@@ -423,6 +424,8 @@ function mountTour(screen, onClose) {
       $('[data-title]').textContent = STEPS[i].t;
       $('[data-desc]').textContent = STEPS[i].d;
       txt.classList.remove('out', 'in'); void txt.offsetWidth; txt.classList.add('in');
+      /* 흐름도는 문구 카드 위쪽 경계에서 끝난다 — 지난 노드·라벨이 카드 뒤로 비치지 않게 */
+      $('[data-vp]').style.setProperty('--clip', txt.offsetTop + 'px');
     };
     if (!animate) return put();
     txt.classList.remove('in'); txt.classList.add('out');
