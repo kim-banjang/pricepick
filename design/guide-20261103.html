@@ -61,7 +61,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .overview .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .overview .top b{font-size:var(--fs-label);font-weight:var(--fw-bold)}
 .overview .top span{display:flex;align-items:center;gap:4px;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--main)}
-.mini{position:relative;height:calc(1700px * var(--s));overflow:hidden;pointer-events:none}
+.mini{position:relative;height:calc(1741px * var(--s));overflow:hidden;pointer-events:none}
 .mini .cv{left:50%;margin-left:-187.5px;transform:scale(var(--s));transform-origin:50% 0}
 .mini .ln{stroke-width:9;stroke-dasharray:20 14}
 .mini .rv{stroke-width:16}
@@ -82,7 +82,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .step p{margin-top:4px;font-size:var(--fs-body);font-weight:var(--fw-regular);line-height:1.5;color:var(--text2);word-break:keep-all}
 
 /* 흐름도 캔버스 (투어·축소판 공용) */
-.cv{position:absolute;top:0;left:0;width:375px;height:1700px;transform-origin:187.5px 0}
+.cv{position:absolute;top:0;left:0;width:375px;height:1741px;transform-origin:187.5px 0}
 .cv svg{position:absolute;inset:0;overflow:visible}
 /* 화살표: 보이는 선은 점선(아래로 흐름), 그려지는 효과는 마스크 안의 실선이 자라며 드러낸다 */
 .ln{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-dasharray:10 8;animation:flow 1.6s linear infinite}
@@ -264,18 +264,18 @@ const MALL_LOGOS = ['coupang.jpg', 'gmarket.png', '11st.png', 'nsmall.png', 'cjt
 const MALLS = '<div class="malls"><div class="chips">' +
   MALL_LOGOS.map((f, i) => `<span class="chip${i ? '' : ' hot'}" style="--i:${i}"><span class="c"><img src="guide-art/mall/${f}" alt=""></span></span>`).join('') +
   '</div><div class="mall"><span class="badge"><img src="guide-art/mall/coupang.jpg" alt=""></span><b>쿠팡</b><span class="go">바로가기</span></div></div>';
-const CV_H = 1700;
+const CV_H = 1741;
 /* lab: 노드 라벨, at: r(오른쪽) | b(아래 — 오른쪽 공간이 없을 때) */
 const NODES = {
   phone:  { x: 187.5, y: 40,   w: 135, h: 198, img: 'o1', lab: '프라이스픽', at: 'r' },
   mall:   { x: 187.5, y: 340,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
   bag:    { x: 187.5, y: 604,  w: 207, h: 228, img: 'o2', lab: '구매 완료', at: 'r' },
-  wait:   { x: 106,   y: 962,  w: 168, h: 137, img: 'o3', lab: '티켓', at: 'b', edge: true },
-  ok:     { x: 106,   y: 1155, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
-  ticket: { x: 106,   y: 1225, w: 193, h: 128, img: 'o4', lab: '사용 가능 티켓', at: 'b', edge: true },
+  wait:   { x: 106,   y: 962,  w: 168, h: 143, img: 'o3', lab: '티켓', at: 'b', edge: true },
+  ok:     { x: 106,   y: 1161, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
+  ticket: { x: 106,   y: 1231, w: 193, h: 163, img: 'o4', lab: '사용 가능 티켓', at: 'b', edge: true },
   coin:   { x: 284,   y: 962,  w: 168, h: 120, img: 'o5', lab: '포인트', at: 'b', edge: true },
-  rate:   { x: 284,   y: 1274, w: 130, h: 30,  html: '<span class="pill y">10P = 티켓 1장</span>' },
-  gift:   { x: 187.5, y: 1519, w: 223, h: 137, img: 'o6', lab: '기프티콘', at: 'r' },
+  rate:   { x: 284,   y: 1297, w: 130, h: 30,  html: '<span class="pill y">10P = 티켓 1장</span>' },
+  gift:   { x: 187.5, y: 1560, w: 223, h: 137, img: 'o6', lab: '기프티콘', at: 'r' },
 };
 /* 화살표: 끝점은 항상 아래 방향. 선은 촉 길이만큼 짧게 끝낸다.
    5번째 값: 곡선 종류, 6번째 값: 갈래 색(l 티켓 길 보라 / r 포인트 길 노랑) */
@@ -284,10 +284,10 @@ const ARROWS = {
   a2: [187.5, 504, 187.5, 596],
   sl: [187.5, 842, 106, 952, 'curve', 'l'],
   sr: [187.5, 842, 284, 952, 'curve', 'r'],
-  al: [106, 1135, 106, 1215, null, 'l'],
-  ar: [284, 1118, 284, 1264, null, 'r'],
-  ml: [106, 1389, 174, 1509, 'curve', 'l'],
-  mr: [284, 1314, 201, 1509, 'curve', 'r'],
+  al: [106, 1141, 106, 1221, null, 'l'],
+  ar: [284, 1118, 284, 1287, null, 'r'],
+  ml: [106, 1430, 174, 1550, 'curve', 'l'],
+  mr: [284, 1337, 201, 1550, 'curve', 'r'],
 };
 const STEPS = [
   { t: '프라이스픽에서 출발해요', d: '쇼핑하기 전에 프라이스픽을 먼저 열어요', cam: 139,
@@ -298,11 +298,11 @@ const STEPS = [
     seq: [['a2'], ['bag']] },
   { t: '쌓인 티켓은 사용 대기예요', d: '반품·취소 기간이 지나야 확정돼요', cam: 1030,
     seq: [['sl'], ['wait']] },
-  { t: '확정되면 바로 쓸 수 있어요', d: '티켓이 사용 가능 상태로 바뀌어요', cam: 1265,
+  { t: '확정되면 바로 쓸 수 있어요', d: '티켓이 사용 가능 상태로 바뀌어요', cam: 1290,
     seq: [['al'], ['ok', 'ticket']] },
-  { t: '포인트 10P는 티켓 1장이 돼요', d: '다양한 방식으로 모은 포인트는 티켓으로 전환이 가능해요', cam: 1140,
+  { t: '포인트 10P는 티켓 1장이 돼요', d: '다양한 방식으로 모은 포인트는 티켓으로 전환이 가능해요', cam: 1160,
     seq: [['sr'], ['coin'], ['ar'], ['rate']] },
-  { t: '티켓으로 기프티콘을 사요', d: '다양한 방법으로 모은 티켓으로 기프티콘을 구매할 수 있어요', cam: 1560,
+  { t: '티켓으로 기프티콘을 사요', d: '다양한 방법으로 모은 티켓으로 기프티콘을 구매할 수 있어요', cam: 1601,
     seq: [['ml', 'mr'], ['gift']] },
 ];
 const THUMB = ['o1', null, 'o2', 'o3', 'o4', 'o5', 'o6'];
