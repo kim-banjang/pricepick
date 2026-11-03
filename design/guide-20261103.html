@@ -10,8 +10,8 @@
   --main:#845EEE; --main-dark:#6C4AB6; --sub-1:#9B78FF; --sub-2:#C6AFFF; --sub-3:#E2D9FF; --sub-4:#F1EEFF;
   --bg:#FAFAFA; --card:#FFFFFF; --text1:#1A1130; --text2:#5A5370; --text3:#9B93B0; --border:#EEEAF3; --green:#22C55E;
   --r:12px; --r-lg:16px; --r-xl:20px;
-  --dim:rgba(26,17,48,.94);
-  --line:rgba(155,120,255,.8);
+  --line:#9B78FF;
+  --shadow-p:0 12px 30px rgba(92,58,180,.18),0 2px 6px rgba(92,58,180,.10);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{background:#ECECF0}
@@ -27,18 +27,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .phone{width:395px;height:832px;padding:10px;border-radius:56px;background:#1B1B1F;box-shadow:0 0 0 1px #2E2E33 inset,0 24px 60px rgba(26,17,48,.18);flex:none}
 .screen{position:relative;width:375px;height:812px;border-radius:46px;overflow:hidden;background:var(--bg)}
 .screen[hidden]{display:none!important}
-.screen.is-tour{background:#1A1130}
+.screen.is-tour{background:linear-gradient(180deg,#F6F3FF 0%,#EBE3FC 55%,#E2D6FA 100%)}
 @media (max-width:420px){
   body{padding:16px 0 32px;overflow-x:hidden}
   .phone{transform:scale(calc((100vw - 8px) / 395px));transform-origin:top center;margin-bottom:calc((100vw - 403px) * 2.1)}
 }
 
-.status{position:absolute;top:0;left:0;right:0;height:47px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 34px;font-size:15px;font-weight:600;z-index:30;pointer-events:none;color:var(--text1);transition:color .2s}
-.status.light{color:#fff}
+.status{position:absolute;top:0;left:0;right:0;height:47px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 34px;font-size:15px;font-weight:600;z-index:30;pointer-events:none;color:var(--text1)}
 .status .icons{display:flex;gap:6px;align-items:center}
 .island{position:absolute;top:11px;left:50%;width:120px;height:34px;margin-left:-60px;border-radius:20px;background:#000;z-index:31}
-.homebar{position:absolute;bottom:8px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:var(--text1);z-index:31;transition:background .2s}
-.homebar.light{background:#fff}
+.homebar{position:absolute;bottom:8px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:var(--text1);z-index:31}
 
 /* 쇼핑 가이드 페이지 */
 .page{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding-top:47px;scrollbar-width:none}
@@ -50,61 +48,67 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .head h2{font-size:22px;font-weight:700;line-height:1.4;letter-spacing:-.3px;word-break:keep-all}
 .head p{margin-top:8px;font-size:14px;color:var(--text3)}
 
-.overview{display:block;width:calc(100% - 32px);margin:24px 16px 0;padding:18px 16px 20px;border-radius:var(--r-xl);background:#1A1130;text-align:left;color:#fff;transition:transform .15s}
+.overview{display:block;width:calc(100% - 32px);margin:24px 16px 0;padding:18px 16px 20px;border-radius:var(--r-xl);
+  background:linear-gradient(165deg,#F6F2FF 0%,#ECE4FD 55%,#E2D6FA 100%);border:1px solid rgba(132,94,238,.12);
+  box-shadow:0 10px 28px rgba(92,58,180,.14),0 2px 6px rgba(92,58,180,.06);text-align:left;color:var(--text1);transition:transform .15s}
 .overview:active{transform:scale(.985)}
 .overview .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.overview .top b{font-size:16px;font-weight:700}
-.overview .top span{display:flex;align-items:center;gap:2px;font-size:12px;color:rgba(255,255,255,.6)}
-.mini{position:relative;height:calc(1380px * var(--s));overflow:hidden;pointer-events:none}
+.overview .top b{font-size:16px;font-weight:800}
+.overview .top span{display:flex;align-items:center;gap:2px;font-size:12px;font-weight:700;color:var(--main)}
+.mini{position:relative;height:calc(1615px * var(--s));overflow:hidden;pointer-events:none}
 .mini .cv{left:50%;margin-left:-187.5px;transform:scale(var(--s));transform-origin:50% 0}
-.mini .ln{stroke-width:5}
-.mini .hd{transform:scale(1.6);transform-box:fill-box;transform-origin:50% 100%}
+.mini .ln{stroke-width:9;stroke-dasharray:20 14}
+.mini .rv{stroke-width:16}
+.mini .hd{transform:scale(1.5);transform-box:fill-box;transform-origin:50% 100%}
 
-.steps{padding:24px 16px 48px;display:flex;flex-direction:column;gap:10px}
-.step{display:flex;gap:14px;align-items:center;width:100%;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);text-align:left;transition:transform .15s}
+.steps{padding:24px 16px 48px;display:flex;flex-direction:column;gap:12px}
+.step{display:flex;gap:14px;align-items:center;width:100%;padding:14px;background:#fff;border-radius:var(--r-lg);text-align:left;
+  box-shadow:0 8px 22px rgba(92,58,180,.10),0 1px 3px rgba(92,58,180,.06);transition:transform .15s}
 .step:active{transform:scale(.985)}
 .step .th{flex:none;width:72px;height:72px;overflow:hidden;border-radius:var(--r);background:var(--sub-4);display:grid;place-items:center;padding:8px}
 .step .th img{max-width:100%;max-height:100%;display:block}
 .step .th .malls{flex:none;transform:scale(.21)}
 .step .tx{min-width:0}
-.step .no{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 7px;border-radius:11px;background:var(--sub-4);color:var(--main);font-size:12px;font-weight:700}
+.step .no{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 7px;border-radius:11px;background:var(--sub-4);color:var(--main);font-size:12px;font-weight:800}
 .step b{display:block;margin-top:6px;font-size:15px;font-weight:700;line-height:1.4;word-break:keep-all}
 .step p{margin-top:2px;font-size:13px;line-height:1.5;color:var(--text2);word-break:keep-all}
 
 /* 흐름도 캔버스 (투어·축소판 공용) */
-.cv{position:absolute;top:0;left:0;width:375px;height:1380px;transform-origin:187.5px 0}
+.cv{position:absolute;top:0;left:0;width:375px;height:1615px;transform-origin:187.5px 0}
 .cv svg{position:absolute;inset:0;overflow:visible}
-.ln{fill:none;stroke:var(--line);stroke-width:3;stroke-linecap:round;stroke-dasharray:calc(var(--L) * 1px);stroke-dashoffset:calc(var(--L) * 1px);transition:stroke-dashoffset 420ms ease-out}
+/* 화살표: 보이는 선은 점선(아래로 흐름), 그려지는 효과는 마스크 안의 실선이 자라며 드러낸다 */
+.ln{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-dasharray:10 8;animation:flow 1.6s linear infinite}
+.rv{fill:none;stroke:#fff;stroke-width:12;stroke-linecap:round;stroke-dasharray:calc(var(--L) * 1px);stroke-dashoffset:calc(var(--L) * 1px);transition:stroke-dashoffset 420ms ease-out}
 .hd{fill:var(--line);opacity:0;transition:opacity 120ms 320ms}
+@keyframes flow{to{stroke-dashoffset:-18}}
+.ar{filter:drop-shadow(0 2px 6px rgba(132,94,238,.35))}
 .ar:not(.on),.nd:not(.on){opacity:0;visibility:hidden}
-.ar{filter:drop-shadow(0 0 5px rgba(132,94,238,.75))}
-.ar.on .ln{stroke-dashoffset:0}
+.ar.on .rv{stroke-dashoffset:0}
 .ar.on .hd{opacity:1}
 .nd{position:absolute;display:flex;align-items:center;justify-content:center}
 .nd .fx{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform 420ms ease-out,opacity 420ms ease-out}
-.nd .pop{width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(24px) scale(.88);transition:transform 520ms cubic-bezier(.34,1.45,.5,1),opacity 260ms ease-out}
+.nd .pop{position:relative;isolation:isolate;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(24px) scale(.88);transition:transform 520ms cubic-bezier(.34,1.45,.5,1),opacity 260ms ease-out}
 .nd.on .pop{opacity:1;transform:none}
 .nd.cur .fx{transform:scale(1.06)}
 .nd.past .fx{opacity:.55}
-.nd.lift .pop{position:relative;isolation:isolate}
-.nd.lift .pop::before{content:'';position:absolute;left:50%;top:50%;width:var(--gw);height:var(--gh);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(132,94,238,.45),rgba(132,94,238,0));filter:blur(40px);z-index:-2;pointer-events:none}
-.nd.lift .pop::after{content:'';position:absolute;left:50%;bottom:-16px;width:var(--fw);height:18px;margin-left:calc(var(--fw) / -2);border-radius:50%;background:rgba(0,0,0,.35);filter:blur(24px);z-index:-1;pointer-events:none}
-.nd img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,.28))}
+/* 노드 뒤 보라 글로우, 아래 타원 그림자 */
+.nd.lift .pop::before{content:'';position:absolute;left:50%;top:50%;width:var(--gw);height:var(--gh);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(132,94,238,.35),rgba(132,94,238,0));filter:blur(36px);z-index:-2;pointer-events:none}
+.nd.lift .pop::after{content:'';position:absolute;left:50%;bottom:-20px;width:var(--fw);height:16px;margin-left:calc(var(--fw) / -2);border-radius:50%;background:rgba(92,58,180,.22);filter:blur(8px);z-index:-1;pointer-events:none}
+.ncard{width:100%;height:100%;padding:14px;background:#fff;border-radius:24px;box-shadow:var(--shadow-p)}
+.ncard img{display:block;width:100%;height:100%;object-fit:contain}
 .snap,.snap *{transition:none!important}
 
+/* 제휴몰 카드 5장 계단식 겹침 — 전부 순백, 층은 그림자로만 */
 .malls{position:relative;width:270px;height:176px}
-.mall{position:absolute;left:0;bottom:0;width:270px;height:56px;border-radius:9px;display:flex;align-items:center;gap:10px;padding:0 9px;transform-origin:50% 100%}
-/* 카드 바탕: 3D 렌더 셸. 좌·우 모서리는 고정하고 가운데만 늘려 270x56(@2x)로 미리 이어 붙인 이미지.
-   브라우저 border-image 9-slice는 조각 경계에 가는 선이 생겨 쓰지 않는다 */
-.mall::before{content:'';position:absolute;inset:0;z-index:-1;background:url(guide-art/card-shell-270.png) 0 0 / 100% 100% no-repeat;pointer-events:none}
-.mall.m1{z-index:5;box-shadow:0 -2px 10px rgba(0,0,0,.25),0 10px 24px rgba(0,0,0,.25)}
-.mall.mb{align-items:flex-start;padding-top:2px;gap:8px;box-shadow:0 -2px 10px rgba(0,0,0,.25)}
-.mall.m2{z-index:4;transform:translate(5px,-30px) scale(.98);filter:brightness(.92)}
-.mall.m3{z-index:3;transform:translate(-5px,-60px) scale(.96);filter:brightness(.85)}
-.mall.m4{z-index:2;transform:translate(5px,-90px) scale(.94);filter:brightness(.78)}
-.mall.m5{z-index:1;transform:translate(-5px,-120px) scale(.92);filter:brightness(.72)}
+.mall{position:absolute;left:0;bottom:0;width:270px;height:56px;border-radius:14px;background:#fff;display:flex;align-items:center;gap:10px;padding:0 9px;transform-origin:50% 100%;border:1px solid rgba(132,94,238,.08)}
+.mall.m1{z-index:5;box-shadow:0 -3px 12px rgba(92,58,180,.14),var(--shadow-p)}
+.mall.mb{align-items:flex-start;padding-top:2px;gap:8px;box-shadow:0 -3px 12px rgba(92,58,180,.12)}
+.mall.m2{z-index:4;transform:translate(5px,-30px) scale(.98)}
+.mall.m3{z-index:3;transform:translate(-5px,-60px) scale(.96)}
+.mall.m4{z-index:2;transform:translate(5px,-90px) scale(.94)}
+.mall.m5{z-index:1;transform:translate(-5px,-120px) scale(.92)}
 .badge{flex:none;width:32px;height:32px;border-radius:50%;background:#fff;overflow:hidden;box-shadow:0 0 0 1px #EEEAF3;display:grid;place-items:center}
-.nd .badge img,.badge img{width:100%;height:100%;object-fit:contain;filter:none}
+.badge img{width:100%;height:100%;object-fit:contain}
 .mall.mb .badge{width:26px;height:26px}
 .mall b{flex:1;font-size:15px;font-weight:700;color:#1A1130}
 .mall.mb b{font-size:13px;line-height:26px}
@@ -113,50 +117,62 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mall.m4 b{color:#4A4260}
 .mall.m5 b{color:#5A5370}
 .mall span.go{height:30px;padding:0 14px;border-radius:15px;background:var(--main);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center}
-.pill{height:28px;padding:0 12px;border-radius:14px;color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;white-space:nowrap;box-shadow:0 6px 14px rgba(0,0,0,.22)}
-.pill.g{background:var(--green)}
-.pill.p{background:var(--main)}
+.pill{height:30px;padding:0 13px;border-radius:15px;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;white-space:nowrap}
+.pill.g{background:var(--green);box-shadow:0 6px 16px rgba(34,197,94,.35),0 2px 4px rgba(34,197,94,.2)}
+.pill.p{background:var(--main);box-shadow:0 6px 16px rgba(132,94,238,.38),0 2px 4px rgba(132,94,238,.2)}
 
-/* 가이드 투어 오버레이 */
-.tour{position:absolute;inset:0;z-index:20;background:var(--dim);color:#fff;opacity:0;pointer-events:none;transition:opacity .25s;cursor:pointer;user-select:none;-webkit-user-select:none}
+/* 가이드 투어 */
+.tour{position:absolute;inset:0;z-index:20;color:var(--text1);opacity:0;pointer-events:none;transition:opacity .25s;cursor:pointer;user-select:none;-webkit-user-select:none}
 .tour.open{opacity:1;pointer-events:auto}
+.bgfx{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(60px)}
+.blob.b1{width:320px;height:320px;left:-90px;top:40px;background:rgba(132,94,238,.28)}
+.blob.b2{width:260px;height:260px;right:-80px;top:300px;background:rgba(245,184,74,.22)}
+.blob.b3{width:300px;height:300px;left:-100px;bottom:40px;background:rgba(155,120,255,.22)}
+.deco{position:absolute;animation:bob var(--d) ease-in-out var(--dl) infinite}
+.deco svg{display:block;width:100%;height:100%}
+.deco.soft{filter:blur(1.5px)}
+@keyframes bob{50%{transform:translateY(-14px)}}
+
 .tour .vp{position:absolute;inset:0;overflow:hidden;
-  -webkit-mask-image:linear-gradient(to bottom,transparent 96px,#000 136px,#000 560px,transparent 612px);
-          mask-image:linear-gradient(to bottom,transparent 96px,#000 136px,#000 560px,transparent 612px)}
+  -webkit-mask-image:linear-gradient(to bottom,transparent 104px,#000 150px,#000 640px,transparent 700px);
+          mask-image:linear-gradient(to bottom,transparent 104px,#000 150px,#000 640px,transparent 700px)}
 .tour.final .vp{
-  -webkit-mask-image:linear-gradient(to bottom,transparent 128px,#000 146px,#000 690px,transparent 704px);
-          mask-image:linear-gradient(to bottom,transparent 128px,#000 146px,#000 690px,transparent 704px)}
+  -webkit-mask-image:linear-gradient(to bottom,transparent 136px,#000 152px,#000 700px,transparent 716px);
+          mask-image:linear-gradient(to bottom,transparent 136px,#000 152px,#000 700px,transparent 716px)}
 .tour .cv{transition:transform 640ms ease-in-out}
 
 .tour .bar{position:absolute;top:47px;left:0;right:0;display:flex;align-items:center;gap:12px;padding:12px 12px 0 20px;z-index:2}
 .tour .prog{flex:1;display:flex;gap:4px}
-.tour .prog span{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.25);transition:background .3s}
-.tour .prog span.done{background:#fff}
-.tour .x{width:36px;height:36px;display:grid;place-items:center;color:#fff}
-.tour .skip{position:absolute;top:96px;left:12px;z-index:2;height:36px;padding:0 8px;font-size:14px;font-weight:500;color:rgba(255,255,255,.72);transition:opacity .2s}
+.tour .prog span{flex:1;height:4px;border-radius:2px;background:rgba(132,94,238,.22);transition:background .3s}
+.tour .prog span.done{background:var(--main)}
+.tour .x{width:36px;height:36px;display:grid;place-items:center;color:#5A5370}
+.tour .skip{position:absolute;top:96px;left:12px;z-index:2;height:36px;padding:0 8px;font-size:14px;font-weight:600;color:#5A5370;transition:opacity .2s}
 .tour.final .skip{opacity:0;pointer-events:none}
 
-.tour .txt{position:absolute;left:0;right:0;bottom:0;padding:0 28px 40px;text-align:center;transition:opacity .2s}
-.tour .txt .lines{min-height:96px}
+.tour .txt{position:absolute;left:16px;right:16px;bottom:22px;display:flex;flex-direction:column;align-items:center;transition:opacity .2s;z-index:2}
+.tour .tcard{width:100%;background:rgba(255,255,255,.92);border-radius:22px;padding:20px 18px;box-shadow:0 8px 24px rgba(92,58,180,.14);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);text-align:center}
+.tour .txt .lines{min-height:96px;display:flex;flex-direction:column;justify-content:center}
 .tour .txt.out .lines{opacity:0;transform:translateY(-6px);transition:opacity 120ms,transform 120ms}
 .tour .txt.in .lines{animation:fadeUp 320ms cubic-bezier(.2,.7,.3,1) both}
-.tour h3{font-size:22px;font-weight:700;line-height:1.4;word-break:keep-all}
-.tour .desc{margin-top:10px;font-size:15px;font-weight:400;line-height:1.55;color:rgba(255,255,255,.72);word-break:keep-all}
-.tour .more{margin-top:18px;height:40px;padding:0 8px;font-size:14px;color:rgba(255,255,255,.7);text-decoration:underline;text-underline-offset:3px}
+.tour h3{font-size:26px;font-weight:800;line-height:1.35;color:#1A1130;letter-spacing:-.4px;word-break:keep-all}
+.tour .desc{margin-top:8px;font-size:15px;font-weight:500;line-height:1.55;color:#5A5370;word-break:keep-all}
+.tour .more{margin-top:6px;height:40px;padding:0 8px;font-size:14px;font-weight:700;color:var(--main)}
 .tour.final .txt{opacity:0;pointer-events:none}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-.tour .fin{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s}
+.tour .fin{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;z-index:2}
 .tour.final .fin{opacity:1;pointer-events:auto;cursor:default}
-.tour .fin h3{position:absolute;top:100px;left:0;right:0;text-align:center}
-.tour .btns{position:absolute;left:20px;right:20px;bottom:44px;display:flex;gap:8px}
-.tour .btns button{flex:1;height:54px;border-radius:var(--r-lg);font-size:16px;font-weight:700}
-.tour .btns .ghost{border:1.5px solid rgba(255,255,255,.45);color:#fff}
-.tour .btns .fill{background:var(--main);color:#fff}
+.tour .fin h3{position:absolute;top:96px;left:0;right:0;text-align:center}
+.tour .btns{position:absolute;left:20px;right:20px;bottom:40px;display:flex;gap:8px}
+.tour .btns button{flex:1;height:52px;border-radius:26px;font-size:16px;font-weight:700}
+.tour .btns .ghost{background:rgba(255,255,255,.75);border:1.5px solid rgba(132,94,238,.35);color:var(--main)}
+.tour .btns .fill{background:var(--main);color:#fff;box-shadow:0 8px 20px rgba(132,54,238,.35)}
 .tour .btns .fill:active{background:var(--main-dark)}
 .tour.final .fin h3,.tour.final .btns{animation:fadeUp 320ms 180ms cubic-bezier(.2,.7,.3,1) both}
 
-@media (prefers-reduced-motion:reduce){.tour *,.tour{transition:none!important;animation:none!important}}
+@media (prefers-reduced-motion:reduce){.tour *,.tour,.ln{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -190,12 +206,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     </div>
     <button class="overview" data-act="overview">
       <div class="top"><b>한눈에 보는 프라이스픽</b><span>누르면 처음부터 봐요<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
-      <div class="mini" style="--s:.36" data-mini></div>
+      <div class="mini" style="--s:.3" data-mini></div>
     </button>
     <div class="steps" data-steps></div>
   </div>
 
   <div class="tour" data-tour>
+    <div class="bgfx" data-bgfx><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
     <div class="vp" data-vp></div>
     <div class="bar">
       <div class="prog" data-prog></div>
@@ -203,7 +220,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     </div>
     <button class="skip" data-act="skip">건너뛰기</button>
     <div class="txt" data-txt>
-      <div class="lines"><h3 data-title></h3><p class="desc" data-desc></p></div>
+      <div class="tcard"><div class="lines"><h3 data-title></h3><p class="desc" data-desc></p></div></div>
       <button class="more" data-act="more">가이드 자세히 보기 ›</button>
     </div>
     <div class="fin">
@@ -219,7 +236,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 </template>
 
 <script>
-/* 캔버스 좌표 (폭 375 기준). 노드 크기는 투명 오브젝트 실제 비율에 맞춘 값 */
+/* 캔버스 좌표 (폭 375 기준). 이미지 노드는 흰 카드(안쪽 14px) 크기, 오브젝트는 그 안에 비율대로 */
 /* 제휴몰 카드 5장 계단식 겹침: 맨 앞 쿠팡, 뒤로 G마켓·11번가·NS홈쇼핑·CJ더마켓 */
 const LOGO = f => `<span class="badge"><img src="guide-art/mall/${f}" alt=""></span>`;
 const MALLS = '<div class="malls">' +
@@ -228,70 +245,94 @@ const MALLS = '<div class="malls">' +
   `<div class="mall mb m3">${LOGO('11st.png')}<b>11번가</b></div>` +
   `<div class="mall mb m2">${LOGO('gmarket.png')}<b>G마켓</b></div>` +
   `<div class="mall m1">${LOGO('coupang.jpg')}<b>쿠팡</b><span class="go">바로가기</span></div></div>`;
-const CV_H = 1380;
+const CV_H = 1615;
 const NODES = {
-  phone:  { x: 187.5, y: 40,   w: 110, h: 150, img: 'o1' },
-  mall:   { x: 187.5, y: 280,  w: 270, h: 176,  html: MALLS },
-  bag:    { x: 187.5, y: 546,  w: 147, h: 165, img: 'o2' },
-  wait:   { x: 100,   y: 821,  w: 135, h: 105, img: 'o3' },
-  ok:     { x: 100,   y: 977,  w: 90,  h: 28,  html: '<span class="pill g">구매 확정</span>' },
-  ticket: { x: 100,   y: 1056,  w: 135, h: 82,  img: 'o4' },
-  coin:   { x: 275,   y: 821,  w: 135, h: 89,  img: 'o5' },
-  rate:   { x: 275,   y: 1083,  w: 120, h: 28,  html: '<span class="pill p">10P = 티켓 1장</span>' },
-  gift:   { x: 187.5, y: 1248, w: 165, h: 92,  img: 'o6' },
+  phone:  { x: 187.5, y: 40,   w: 153, h: 198, img: 'o1' },
+  mall:   { x: 187.5, y: 340,  w: 270, h: 176, html: MALLS },
+  bag:    { x: 187.5, y: 618,  w: 193, h: 213, img: 'o2' },
+  wait:   { x: 96,    y: 941,  w: 178, h: 144, img: 'o3' },
+  ok:     { x: 96,    y: 1136, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
+  ticket: { x: 96,    y: 1215, w: 178, h: 119, img: 'o4' },
+  coin:   { x: 279,   y: 941,  w: 178, h: 127, img: 'o5' },
+  rate:   { x: 279,   y: 1260, w: 130, h: 30,  html: '<span class="pill p">10P = 티켓 1장</span>' },
+  gift:   { x: 187.5, y: 1444, w: 213, h: 131, img: 'o6' },
 };
 /* 화살표: 끝점은 항상 아래 방향. 선은 촉 길이만큼 짧게 끝낸다 */
 const ARROWS = {
-  a1: [187.5, 200, 187.5, 272],
-  a2: [187.5, 464, 187.5, 536],
-  sl: [187.5, 721, 100, 811, 'split'],
-  sr: [187.5, 721, 275, 811, 'split'],
-  al: [100, 936, 100, 1046],
-  ar: [275, 920, 275, 1073],
-  ml: [100, 1148, 187.5, 1238, 'merge'],
-  mr: [275, 1121, 187.5, 1238, 'merge'],
+  a1: [187.5, 248, 187.5, 330],
+  a2: [187.5, 526, 187.5, 608],
+  sl: [187.5, 841, 96, 931, 'split'],
+  sr: [187.5, 841, 279, 931, 'split'],
+  al: [96, 1095, 96, 1205],
+  ar: [279, 1078, 279, 1250],
+  ml: [96, 1344, 187.5, 1434, 'merge'],
+  mr: [279, 1300, 187.5, 1434, 'merge'],
 };
 const STEPS = [
-  { t: '프라이스픽에서 출발해요', d: '쇼핑하기 전에 프라이스픽을 먼저 열어요', cam: 115,
+  { t: '프라이스픽에서 출발해요', d: '쇼핑하기 전에 프라이스픽을 먼저 열어요', cam: 139,
     seq: [['phone']] },
-  { t: "제휴몰에서 '바로가기'를 눌러요", d: '열린 창에서 평소처럼 결제하면 돼요', cam: 368,
+  { t: "제휴몰에서 '바로가기'를 눌러요", d: '열린 창에서 평소처럼 결제하면 돼요', cam: 428,
     seq: [['a1'], ['mall']] },
-  { t: '상품은 집으로 오고', d: '프라이스픽에는 티켓이 쌓여요', cam: 628,
+  { t: '상품은 집으로 오고', d: '프라이스픽에는 티켓이 쌓여요', cam: 724,
     seq: [['a2'], ['bag']] },
-  { t: '쌓인 티켓은 사용 대기예요', d: '반품·취소 기간이 지나야 확정돼요', cam: 873,
+  { t: '쌓인 티켓은 사용 대기예요', d: '반품·취소 기간이 지나야 확정돼요', cam: 1013,
     seq: [['sl'], ['wait']] },
-  { t: '확정되면 바로 쓸 수 있어요', d: '티켓이 사용 가능 상태로 바뀌어요', cam: 1050,
+  { t: '확정되면 바로 쓸 수 있어요', d: '티켓이 사용 가능 상태로 바뀌어요', cam: 1225,
     seq: [['al'], ['ok', 'ticket']] },
-  { t: '포인트 10P는 티켓 1장이 돼요', d: '다양한 방식으로 모은 포인트는 티켓으로 전환이 가능해요', cam: 970,
+  { t: '포인트 10P는 티켓 1장이 돼요', d: '다양한 방식으로 모은 포인트는 티켓으로 전환이 가능해요', cam: 1115,
     seq: [['sr'], ['coin'], ['ar'], ['rate']] },
-  { t: '티켓으로 기프티콘을 사요', d: '다양한 방법으로 모은 티켓으로 기프티콘을 구매할 수 있어요', cam: 1294,
+  { t: '티켓으로 기프티콘을 사요', d: '다양한 방법으로 모은 티켓으로 기프티콘을 구매할 수 있어요', cam: 1475,
     seq: [['ml', 'mr'], ['gift']] },
 ];
 const THUMB = ['o1', null, 'o2', 'o3', 'o4', 'o5', 'o6'];
-const DRAW = 420, GAP = 300, CAM_Y = 340;
-const FIN = { top: 146, h: 548 };
+const DRAW = 420, GAP = 300, CAM_Y = 355;
+const FIN = { top: 152, h: 544 };
 const src = k => `guide-art/${k}.png`;
 Object.values(NODES).forEach(n => n.img && (new Image().src = src(n.img)));
 
 function arrowPath([x1, y1, x2, y2, kind]) {
-  const tip = y2 - 10;
+  const tip = y2 - 12;
   if (!kind) return `M${x1} ${y1}L${x2} ${tip}`;
   const my = kind === 'split' ? y1 + 44 : y1 + 40;
   return `M${x1} ${y1}C${x1} ${my} ${x2} ${my} ${x2} ${tip}`;
 }
+let cvSeq = 0;
 function canvasHTML() {
-  const svg = Object.entries(ARROWS).map(([k, a]) =>
-    `<g class="ar" data-k="${k}"><path class="ln" d="${arrowPath(a)}"/>` +
-    `<path class="hd" d="M${a[2] - 8} ${a[3] - 12}L${a[2] + 8} ${a[3] - 12}L${a[2]} ${a[3]}Z"/></g>`).join('');
+  const id = `cv${++cvSeq}`;
+  const svg = Object.entries(ARROWS).map(([k, a]) => {
+    const d = arrowPath(a), m = `${id}-${k}`;
+    return `<g class="ar" data-k="${k}">` +
+      `<mask id="${m}" maskUnits="userSpaceOnUse" x="0" y="0" width="375" height="${CV_H}"><path class="rv" d="${d}"/></mask>` +
+      `<path class="ln" d="${d}" mask="url(#${m})"/>` +
+      `<path class="hd" d="M${a[2] - 10} ${a[3] - 14}Q${a[2]} ${a[3] - 11} ${a[2] + 10} ${a[3] - 14}L${a[2]} ${a[3]}Z"/></g>`;
+  }).join('');
   const nodes = Object.entries(NODES).map(([k, n]) =>
     `<div class="nd${n.html && k !== 'mall' ? '' : ' lift'}" data-k="${k}" style="left:${n.x - n.w / 2}px;top:${n.y}px;width:${n.w}px;height:${n.h}px;` +
-    `--gw:${n.w + 50}px;--gh:${n.h + 44}px;--fw:${Math.round(n.w * .8)}px">` +
-    `<div class="fx"><div class="pop">${n.img ? `<img src="${src(n.img)}" alt="">` : n.html}</div></div></div>`).join('');
+    `--gw:${n.w + 60}px;--gh:${n.h + 50}px;--fw:${Math.round(n.w * .72)}px">` +
+    `<div class="fx"><div class="pop">${n.img ? `<div class="ncard"><img src="${src(n.img)}" alt=""></div>` : n.html}</div></div></div>`).join('');
   return `<div class="cv"><svg width="375" height="${CV_H}" viewBox="0 0 375 ${CV_H}">${svg}</svg>${nodes}</div>`;
+}
+/* 배경에 떠다니는 장식 — 티켓·코인·반짝임 */
+const DECO_SHAPE = {
+  ticket: c => `<svg viewBox="0 0 24 16"><path fill="${c}" d="M3 0h18a3 3 0 0 1 3 3v2.5a2.5 2.5 0 0 0 0 5V13a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3v-2.5a2.5 2.5 0 0 0 0-5V3a3 3 0 0 1 3-3Z"/></svg>`,
+  coin:   c => `<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="${c}"/><circle cx="10" cy="10" r="6" fill="none" stroke="${c}" stroke-width="2"/></svg>`,
+  spark:  c => `<svg viewBox="0 0 20 20"><path fill="${c}" d="M10 0c.9 5.4 4.6 9.1 10 10-5.4.9-9.1 4.6-10 10-.9-5.4-4.6-9.1-10-10C5.4 9.1 9.1 5.4 10 0Z"/></svg>`,
+};
+const P = 'rgba(132,94,238,.18)', Y = 'rgba(245,184,74,.22)';
+const DECO = [ // [모양, x, y, 크기, 색, 주기(s), 지연(s), 흐림]
+  ['spark', 300, 92, 18, Y, 7, 0, 0], ['ticket', 28, 150, 24, P, 9, -2, 0], ['coin', 330, 200, 14, Y, 6.5, -1, 1],
+  ['spark', 52, 262, 12, P, 8, -4, 0], ['coin', 18, 380, 22, Y, 10, -3, 1], ['ticket', 318, 360, 20, P, 8.5, -5, 0],
+  ['spark', 340, 470, 26, P, 11, -1, 1], ['coin', 70, 500, 10, P, 6, -2, 0], ['ticket', 290, 560, 16, Y, 9.5, -6, 1],
+  ['spark', 24, 590, 16, Y, 7.5, -3, 0], ['coin', 345, 640, 18, P, 10.5, -4, 0], ['ticket', 120, 120, 14, Y, 8, -7, 1],
+  ['spark', 200, 610, 10, P, 6.5, -2, 1],
+];
+function decoHTML() {
+  return DECO.map(([t, x, y, sz, c, d, dl, b]) =>
+    `<span class="deco${b ? ' soft' : ''}" style="left:${x}px;top:${y}px;width:${sz}px;height:${t === 'ticket' ? Math.round(sz * .67) : sz}px;--d:${d}s;--dl:${dl}s">${DECO_SHAPE[t](c)}</span>`).join('');
 }
 
 function measure(root) {
-  root.querySelectorAll('.ln').forEach(p => {
+  root.querySelectorAll('.rv').forEach(p => {
     let L = 0;
     try { L = p.getTotalLength(); } catch (e) {}
     if (!L) { const n = p.getAttribute('d').match(/-?[\d.]+/g).map(Number); L = Math.hypot(n[n.length - 2] - n[0], n[n.length - 1] - n[1]) * 1.3; }
@@ -320,11 +361,12 @@ function mountTour(screen, onClose) {
   screen.querySelector('.page').remove();
   screen.classList.add('is-tour');
   const $ = s => screen.querySelector(s);
-  const tour = $('[data-tour]'), status = $('.status'), home = $('.homebar'), txt = $('[data-txt]');
+  const tour = $('[data-tour]'), txt = $('[data-txt]');
 
   /* 투어 */
   $('[data-vp]').innerHTML = canvasHTML();
   measure($('[data-vp]'));
+  $('[data-bgfx]').insertAdjacentHTML('beforeend', decoHTML());
   const cv = $('[data-vp] .cv');
   const el = k => cv.querySelector(`[data-k="${k}"]`);
   $('[data-prog]').innerHTML = STEPS.map(() => '<span></span>').join('');
@@ -398,7 +440,7 @@ function mountTour(screen, onClose) {
     tour.classList.remove('final');
     $('[data-title]').textContent = '';
     idx = -1; settle(i);
-    tour.classList.add('open'); status.classList.add('light'); home.classList.add('light');
+    tour.classList.add('open');
     go(i);
   }
   function close() {
@@ -415,7 +457,6 @@ function mountTour(screen, onClose) {
     idx < STEPS.length - 1 ? go(idx + 1) : final();
   });
 
-  status.classList.add('light'); home.classList.add('light');
   return { open, close, screen };
 }
 
