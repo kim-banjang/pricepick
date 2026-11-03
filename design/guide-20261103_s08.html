@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프라이스픽 쇼핑 가이드</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+<style>
+:root{
+  --main:#845EEE; --main-dark:#6C4AB6; --sub-1:#9B78FF; --sub-2:#C6AFFF; --sub-3:#E2D9FF; --sub-4:#F1EEFF;
+  --bg:#FAFAFA; --card:#FFFFFF; --text1:#1A1130; --text2:#5A5370; --text3:#9B93B0; --border:#EEEAF3; --green:#22C55E;
+  --r:12px; --r-lg:16px; --r-xl:20px;
+  --dim:rgba(26,17,48,.94);
+  --line:rgba(155,120,255,.8);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:#ECECF0}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:var(--text1);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:28px 16px 48px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* 상단 탭 (프레임 바깥) */
+.tabs{display:flex;gap:4px;padding:4px;background:#fff;border:1px solid #E2E2E8;border-radius:999px;margin-bottom:24px}
+.tabs button{height:40px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:600;color:var(--text2);transition:background .2s,color .2s}
+.tabs button.on{background:var(--text1);color:#fff}
+
+/* 아이폰 프레임 */
+.phone{width:395px;height:832px;padding:10px;border-radius:56px;background:#1B1B1F;box-shadow:0 0 0 1px #2E2E33 inset,0 24px 60px rgba(26,17,48,.18);flex:none}
+.screen{position:relative;width:375px;height:812px;border-radius:46px;overflow:hidden;background:var(--bg)}
+.screen[hidden]{display:none!important}
+.screen.is-tour{background:#1A1130}
+@media (max-width:420px){
+  body{padding:16px 0 32px;overflow-x:hidden}
+  .phone{transform:scale(calc((100vw - 8px) / 395px));transform-origin:top center;margin-bottom:calc((100vw - 403px) * 2.1)}
+}
+
+.status{position:absolute;top:0;left:0;right:0;height:47px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 34px;font-size:15px;font-weight:600;z-index:30;pointer-events:none;color:var(--text1);transition:color .2s}
+.status.light{color:#fff}
+.status .icons{display:flex;gap:6px;align-items:center}
+.island{position:absolute;top:11px;left:50%;width:120px;height:34px;margin-left:-60px;border-radius:20px;background:#000;z-index:31}
+.homebar{position:absolute;bottom:8px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:var(--text1);z-index:31;transition:background .2s}
+.homebar.light{background:#fff}
+
+/* 쇼핑 가이드 페이지 */
+.page{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding-top:47px;scrollbar-width:none}
+.page::-webkit-scrollbar{display:none}
+.appbar{position:sticky;top:0;z-index:5;height:52px;display:flex;align-items:center;gap:2px;padding:0 12px 0 6px;background:rgba(250,250,250,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.appbar .back{width:40px;height:40px;display:grid;place-items:center;color:var(--text1)}
+.appbar h1{font-size:17px;font-weight:700}
+.head{padding:12px 20px 0}
+.head h2{font-size:22px;font-weight:700;line-height:1.4;letter-spacing:-.3px;word-break:keep-all}
+.head p{margin-top:8px;font-size:14px;color:var(--text3)}
+
+.overview{display:block;width:calc(100% - 32px);margin:24px 16px 0;padding:18px 16px 20px;border-radius:var(--r-xl);background:#1A1130;text-align:left;color:#fff;transition:transform .15s}
+.overview:active{transform:scale(.985)}
+.overview .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.overview .top b{font-size:16px;font-weight:700}
+.overview .top span{display:flex;align-items:center;gap:2px;font-size:12px;color:rgba(255,255,255,.6)}
+.mini{position:relative;height:calc(1380px * var(--s));overflow:hidden;pointer-events:none}
+.mini .cv{left:50%;margin-left:-187.5px;transform:scale(var(--s));transform-origin:50% 0}
+.mini .ln{stroke-width:5}
+.mini .hd{transform:scale(1.6);transform-box:fill-box;transform-origin:50% 100%}
+
+.steps{padding:24px 16px 48px;display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:14px;align-items:center;width:100%;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);text-align:left;transition:transform .15s}
+.step:active{transform:scale(.985)}
+.step .th{flex:none;width:72px;height:72px;overflow:hidden;border-radius:var(--r);background:var(--sub-4);display:grid;place-items:center;padding:8px}
+.step .th img{max-width:100%;max-height:100%;display:block}
+.step .th .malls{flex:none;transform:scale(.21)}
+.step .tx{min-width:0}
+.step .no{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 7px;border-radius:11px;background:var(--sub-4);color:var(--main);font-size:12px;font-weight:700}
+.step b{display:block;margin-top:6px;font-size:15px;font-weight:700;line-height:1.4;word-break:keep-all}
+.step p{margin-top:2px;font-size:13px;line-height:1.5;color:var(--text2);word-break:keep-all}
+
+/* 흐름도 캔버스 (투어·축소판 공용) */
+.cv{position:absolute;top:0;left:0;width:375px;height:1380px;transform-origin:187.5px 0}
+.cv svg{position:absolute;inset:0;overflow:visible}
+.ln{fill:none;stroke:var(--line);stroke-width:3;stroke-linecap:round;stroke-dasharray:calc(var(--L) * 1px);stroke-dashoffset:calc(var(--L) * 1px);transition:stroke-dashoffset 420ms ease-out}
+.hd{fill:var(--line);opacity:0;transition:opacity 120ms 320ms}
+.ar:not(.on),.nd:not(.on){opacity:0;visibility:hidden}
+.ar{filter:drop-shadow(0 0 5px rgba(132,94,238,.75))}
+.ar.on .ln{stroke-dashoffset:0}
+.ar.on .hd{opacity:1}
+.nd{position:absolute;display:flex;align-items:center;justify-content:center}
+.nd .fx{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform 420ms ease-out,opacity 420ms ease-out}
+.nd .pop{width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(24px) scale(.88);transition:transform 520ms cubic-bezier(.34,1.45,.5,1),opacity 260ms ease-out}
+.nd.on .pop{opacity:1;transform:none}
+.nd.cur .fx{transform:scale(1.06)}
+.nd.past .fx{opacity:.55}
+.nd.lift .pop{position:relative;isolation:isolate}
+.nd.lift .pop::before{content:'';position:absolute;left:50%;top:50%;width:var(--gw);height:var(--gh);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(132,94,238,.45),rgba(132,94,238,0));filter:blur(40px);z-index:-2;pointer-events:none}
+.nd.lift .pop::after{content:'';position:absolute;left:50%;bottom:-16px;width:var(--fw);height:18px;margin-left:calc(var(--fw) / -2);border-radius:50%;background:rgba(0,0,0,.35);filter:blur(24px);z-index:-1;pointer-events:none}
+.nd img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,.28))}
+.snap,.snap *{transition:none!important}
+
+.malls{position:relative;width:270px;height:176px}
+.mall{position:absolute;left:0;bottom:0;width:270px;height:56px;border-radius:14px;background:#fff;display:flex;align-items:center;gap:10px;padding:0 9px;transform-origin:50% 100%}
+.mall.m1{z-index:5;box-shadow:0 -2px 10px rgba(0,0,0,.25),0 10px 24px rgba(0,0,0,.25)}
+.mall.mb{align-items:flex-start;padding-top:2px;gap:8px;box-shadow:0 -2px 10px rgba(0,0,0,.25)}
+.mall.m2{z-index:4;transform:translate(5px,-30px) scale(.98);filter:brightness(.92)}
+.mall.m3{z-index:3;transform:translate(-5px,-60px) scale(.96);filter:brightness(.85)}
+.mall.m4{z-index:2;transform:translate(5px,-90px) scale(.94);filter:brightness(.78)}
+.mall.m5{z-index:1;transform:translate(-5px,-120px) scale(.92);filter:brightness(.72)}
+.badge{flex:none;width:32px;height:32px;border-radius:50%;background:#fff;overflow:hidden;box-shadow:0 0 0 1px #EEEAF3;display:grid;place-items:center}
+.nd .badge img,.badge img{width:100%;height:100%;object-fit:contain;filter:none}
+.mall.mb .badge{width:26px;height:26px}
+.mall b{flex:1;font-size:15px;font-weight:700;color:#1A1130}
+.mall.mb b{font-size:13px;line-height:26px}
+.mall.m2 b{color:#2A2140}
+.mall.m3 b{color:#3A3250}
+.mall.m4 b{color:#4A4260}
+.mall.m5 b{color:#5A5370}
+.mall span.go{height:30px;padding:0 14px;border-radius:15px;background:var(--main);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center}
+.pill{height:28px;padding:0 12px;border-radius:14px;color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;white-space:nowrap;box-shadow:0 6px 14px rgba(0,0,0,.22)}
+.pill.g{background:var(--green)}
+.pill.p{background:var(--main)}
+
+/* 가이드 투어 오버레이 */
+.tour{position:absolute;inset:0;z-index:20;background:var(--dim);color:#fff;opacity:0;pointer-events:none;transition:opacity .25s;cursor:pointer;user-select:none;-webkit-user-select:none}
+.tour.open{opacity:1;pointer-events:auto}
+.tour .vp{position:absolute;inset:0;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 96px,#000 136px,#000 560px,transparent 612px);
+          mask-image:linear-gradient(to bottom,transparent 96px,#000 136px,#000 560px,transparent 612px)}
+.tour.final .vp{
+  -webkit-mask-image:linear-gradient(to bottom,transparent 128px,#000 146px,#000 690px,transparent 704px);
+          mask-image:linear-gradient(to bottom,transparent 128px,#000 146px,#000 690px,transparent 704px)}
+.tour .cv{transition:transform 640ms ease-in-out}
+
+.tour .bar{position:absolute;top:47px;left:0;right:0;display:flex;align-items:center;gap:12px;padding:12px 12px 0 20px;z-index:2}
+.tour .prog{flex:1;display:flex;gap:4px}
+.tour .prog span{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.25);transition:background .3s}
+.tour .prog span.done{background:#fff}
+.tour .x{width:36px;height:36px;display:grid;place-items:center;color:#fff}
+.tour .skip{position:absolute;top:96px;left:12px;z-index:2;height:36px;padding:0 8px;font-size:14px;font-weight:500;color:rgba(255,255,255,.72);transition:opacity .2s}
+.tour.final .skip{opacity:0;pointer-events:none}
+
+.tour .txt{position:absolute;left:0;right:0;bottom:0;padding:0 28px 40px;text-align:center;transition:opacity .2s}
+.tour .txt .lines{min-height:96px}
+.tour .txt.out .lines{opacity:0;transform:translateY(-6px);transition:opacity 120ms,transform 120ms}
+.tour .txt.in .lines{animation:fadeUp 320ms cubic-bezier(.2,.7,.3,1) both}
+.tour h3{font-size:22px;font-weight:700;line-height:1.4;word-break:keep-all}
+.tour .desc{margin-top:10px;font-size:15px;font-weight:400;line-height:1.55;color:rgba(255,255,255,.72);word-break:keep-all}
+.tour .more{margin-top:18px;height:40px;padding:0 8px;font-size:14px;color:rgba(255,255,255,.7);text-decoration:underline;text-underline-offset:3px}
+.tour.final .txt{opacity:0;pointer-events:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.tour .fin{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s}
+.tour.final .fin{opacity:1;pointer-events:auto;cursor:default}
+.tour .fin h3{position:absolute;top:100px;left:0;right:0;text-align:center}
+.tour .btns{position:absolute;left:20px;right:20px;bottom:44px;display:flex;gap:8px}
+.tour .btns button{flex:1;height:54px;border-radius:var(--r-lg);font-size:16px;font-weight:700}
+.tour .btns .ghost{border:1.5px solid rgba(255,255,255,.45);color:#fff}
+.tour .btns .fill{background:var(--main);color:#fff}
+.tour .btns .fill:active{background:var(--main-dark)}
+.tour.final .fin h3,.tour.final .btns{animation:fadeUp 320ms 180ms cubic-bezier(.2,.7,.3,1) both}
+
+@media (prefers-reduced-motion:reduce){.tour *,.tour{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="tabs" role="tablist">
+  <button role="tab" class="on" data-tab="a">가이드 투어</button>
+  <button role="tab" data-tab="b">쇼핑 가이드 페이지</button>
+</div>
+
+<div class="phone">
+  <div class="screen" id="screenA" data-panel="a"></div>
+  <div class="screen" id="screenB" data-panel="b" hidden></div>
+</div>
+
+<template id="tpl">
+  <div class="island"></div>
+  <div class="status"><span>9:41</span><span class="icons">
+    <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.3c2.3 0 4.4.9 6 2.4l1.1-1.1A10 10 0 0 0 8 .7 10 10 0 0 0 .9 3.6L2 4.7a8.5 8.5 0 0 1 6-2.4Zm0 3.2c1.4 0 2.7.5 3.7 1.4l1.1-1.1A6.9 6.9 0 0 0 8 3.9a6.9 6.9 0 0 0-4.8 1.9l1.1 1.1c1-.9 2.3-1.4 3.7-1.4Zm0 3.2c-.6 0-1.2.2-1.6.6L8 11l1.6-1.7c-.4-.4-1-.6-1.6-.6Z"/></svg>
+    <svg width="26" height="12" viewBox="0 0 26 12" fill="none"><rect x=".5" y=".5" width="22" height="11" rx="3" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor"/><path d="M24 4v4c.8-.3 1.3-1 1.3-2s-.5-1.7-1.3-2Z" fill="currentColor" opacity=".4"/></svg>
+  </span></div>
+
+  <div class="page">
+    <div class="appbar">
+      <button class="back" aria-label="뒤로"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <h1>쇼핑 가이드</h1>
+    </div>
+    <div class="head">
+      <h2>쓰던 쇼핑몰, 프라이스픽에서 들어가면 티켓이 쌓여요</h2>
+      <p>처음이라면 위에서부터 차례로 읽어 보세요</p>
+    </div>
+    <button class="overview" data-act="overview">
+      <div class="top"><b>한눈에 보는 프라이스픽</b><span>누르면 처음부터 봐요<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
+      <div class="mini" style="--s:.36" data-mini></div>
+    </button>
+    <div class="steps" data-steps></div>
+  </div>
+
+  <div class="tour" data-tour>
+    <div class="vp" data-vp></div>
+    <div class="bar">
+      <div class="prog" data-prog></div>
+      <button class="x" data-act="close" aria-label="닫기"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <button class="skip" data-act="skip">건너뛰기</button>
+    <div class="txt" data-txt>
+      <div class="lines"><h3 data-title></h3><p class="desc" data-desc></p></div>
+      <button class="more" data-act="more">가이드 자세히 보기 ›</button>
+    </div>
+    <div class="fin">
+      <h3>한눈에 보는 프라이스픽</h3>
+      <div class="btns">
+        <button class="ghost" data-act="replay">다시 보기</button>
+        <button class="fill" data-act="start">시작하기</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="homebar"></div>
+</template>
+
+<script>
+/* 캔버스 좌표 (폭 375 기준). 노드 크기는 투명 오브젝트 실제 비율에 맞춘 값 */
+/* 제휴몰 카드 5장 계단식 겹침: 맨 앞 쿠팡, 뒤로 G마켓·11번가·NS홈쇼핑·CJ더마켓 */
+const LOGO = f => `<span class="badge"><img src="guide-art/mall/${f}" alt=""></span>`;
+const MALLS = '<div class="malls">' +
+  `<div class="mall mb m5">${LOGO('cjthemarket.jpg')}<b>CJ더마켓</b></div>` +
+  `<div class="mall mb m4">${LOGO('nsmall.png')}<b>NS홈쇼핑</b></div>` +
+  `<div class="mall mb m3">${LOGO('11st.png')}<b>11번가</b></div>` +
+  `<div class="mall mb m2">${LOGO('gmarket.png')}<b>G마켓</b></div>` +
+  `<div class="mall m1">${LOGO('coupang.jpg')}<b>쿠팡</b><span class="go">바로가기</span></div></div>`;
+const CV_H = 1380;
+const NODES = {
+  phone:  { x: 187.5, y: 40,   w: 110, h: 150, img: 'o1' },
+  mall:   { x: 187.5, y: 280,  w: 270, h: 176,  html: MALLS },
+  bag:    { x: 187.5, y: 546,  w: 147, h: 165, img: 'o2' },
+  wait:   { x: 100,   y: 821,  w: 135, h: 105, img: 'o3' },
+  ok:     { x: 100,   y: 977,  w: 90,  h: 28,  html: '<span class="pill g">구매 확정</span>' },
+  ticket: { x: 100,   y: 1056,  w: 135, h: 82,  img: 'o4' },
+  coin:   { x: 275,   y: 821,  w: 135, h: 89,  img: 'o5' },
+  rate:   { x: 275,   y: 1083,  w: 120, h: 28,  html: '<span class="pill p">10P = 티켓 1장</span>' },
+  gift:   { x: 187.5, y: 1248, w: 165, h: 92,  img: 'o6' },
+};
+/* 화살표: 끝점은 항상 아래 방향. 선은 촉 길이만큼 짧게 끝낸다 */
+const ARROWS = {
+  a1: [187.5, 200, 187.5, 272],
+  a2: [187.5, 464, 187.5, 536],
+  sl: [187.5, 721, 100, 811, 'split'],
+  sr: [187.5, 721, 275, 811, 'split'],
+  al: [100, 936, 100, 1046],
+  ar: [275, 920, 275, 1073],
+  ml: [100, 1148, 187.5, 1238, 'merge'],
+  mr: [275, 1121, 187.5, 1238, 'merge'],
+};
+const STEPS = [
+  { t: '프라이스픽에서 출발해요', d: '쇼핑하기 전에 프라이스픽을 먼저 열어요', cam: 115,
+    seq: [['phone']] },
+  { t: "제휴몰에서 '바로가기'를 눌러요", d: '열린 창에서 평소처럼 결제하면 돼요', cam: 368,
+    seq: [['a1'], ['mall']] },
+  { t: '상품은 집으로 오고', d: '프라이스픽에는 티켓이 쌓여요', cam: 628,
+    seq: [['a2'], ['bag']] },
+  { t: '쌓인 티켓은 사용 대기예요', d: '반품·취소 기간이 지나야 확정돼요', cam: 873,
+    seq: [['sl'], ['wait']] },
+  { t: '확정되면 바로 쓸 수 있어요', d: '티켓이 사용 가능 상태로 바뀌어요', cam: 1050,
+    seq: [['al'], ['ok', 'ticket']] },
+  { t: '포인트 10P는 티켓 1장이 돼요', d: '다양한 방식으로 모은 포인트는 티켓으로 전환이 가능해요', cam: 970,
+    seq: [['sr'], ['coin'], ['ar'], ['rate']] },
+  { t: '티켓으로 기프티콘을 사요', d: '다양한 방법으로 모은 티켓으로 기프티콘을 구매할 수 있어요', cam: 1294,
+    seq: [['ml', 'mr'], ['gift']] },
+];
+const THUMB = ['o1', null, 'o2', 'o3', 'o4', 'o5', 'o6'];
+const DRAW = 420, GAP = 300, CAM_Y = 340;
+const FIN = { top: 146, h: 548 };
+const src = k => `guide-art/${k}.png`;
+Object.values(NODES).forEach(n => n.img && (new Image().src = src(n.img)));
+
+function arrowPath([x1, y1, x2, y2, kind]) {
+  const tip = y2 - 10;
+  if (!kind) return `M${x1} ${y1}L${x2} ${tip}`;
+  const my = kind === 'split' ? y1 + 44 : y1 + 40;
+  return `M${x1} ${y1}C${x1} ${my} ${x2} ${my} ${x2} ${tip}`;
+}
+function canvasHTML() {
+  const svg = Object.entries(ARROWS).map(([k, a]) =>
+    `<g class="ar" data-k="${k}"><path class="ln" d="${arrowPath(a)}"/>` +
+    `<path class="hd" d="M${a[2] - 8} ${a[3] - 12}L${a[2] + 8} ${a[3] - 12}L${a[2]} ${a[3]}Z"/></g>`).join('');
+  const nodes = Object.entries(NODES).map(([k, n]) =>
+    `<div class="nd${n.html && k !== 'mall' ? '' : ' lift'}" data-k="${k}" style="left:${n.x - n.w / 2}px;top:${n.y}px;width:${n.w}px;height:${n.h}px;` +
+    `--gw:${n.w + 50}px;--gh:${n.h + 44}px;--fw:${Math.round(n.w * .8)}px">` +
+    `<div class="fx"><div class="pop">${n.img ? `<img src="${src(n.img)}" alt="">` : n.html}</div></div></div>`).join('');
+  return `<div class="cv"><svg width="375" height="${CV_H}" viewBox="0 0 375 ${CV_H}">${svg}</svg>${nodes}</div>`;
+}
+
+function measure(root) {
+  root.querySelectorAll('.ln').forEach(p => {
+    let L = 0;
+    try { L = p.getTotalLength(); } catch (e) {}
+    if (!L) { const n = p.getAttribute('d').match(/-?[\d.]+/g).map(Number); L = Math.hypot(n[n.length - 2] - n[0], n[n.length - 1] - n[1]) * 1.3; }
+    p.style.setProperty('--L', Math.ceil(L) + 1);
+  });
+}
+function mountPage(screen) {
+  screen.appendChild(document.getElementById('tpl').content.cloneNode(true));
+  screen.querySelector('[data-tour]').remove();
+  const $ = s => screen.querySelector(s);
+
+  /* 페이지: 축소판 흐름도 + 단계 카드 */
+  const mini = $('[data-mini]');
+  mini.innerHTML = canvasHTML();
+  measure(mini);
+  mini.classList.add('snap');
+  mini.querySelectorAll('.ar,.nd').forEach(el => el.classList.add('on'));
+  $('[data-steps]').innerHTML = STEPS.map((s, i) =>
+    `<button class="step" data-go="${i}"><span class="th">${THUMB[i] ? `<img src="${src(THUMB[i])}" alt="">` : MALLS}</span>` +
+    `<span class="tx"><span class="no">${i + 1}</span><b>${s.t}</b><p>${s.d}</p></span></button>`).join('');
+  return { screen };
+}
+
+function mountTour(screen, onClose) {
+  screen.appendChild(document.getElementById('tpl').content.cloneNode(true));
+  screen.querySelector('.page').remove();
+  screen.classList.add('is-tour');
+  const $ = s => screen.querySelector(s);
+  const tour = $('[data-tour]'), status = $('.status'), home = $('.homebar'), txt = $('[data-txt]');
+
+  /* 투어 */
+  $('[data-vp]').innerHTML = canvasHTML();
+  measure($('[data-vp]'));
+  const cv = $('[data-vp] .cv');
+  const el = k => cv.querySelector(`[data-k="${k}"]`);
+  $('[data-prog]').innerHTML = STEPS.map(() => '<span></span>').join('');
+  const bars = [...screen.querySelectorAll('[data-prog] span')];
+
+  let idx = -1, timers = [];
+  const later = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const stop = () => { timers.forEach(clearTimeout); timers = []; };
+  const nodesOf = i => STEPS[i].seq.flat().filter(k => NODES[k]);
+  const camTo = (y, s = 1) => { cv.style.transform = `translateY(${y}px) scale(${s})`; };
+  const snap = fn => { tour.classList.add('snap'); fn(); void tour.offsetWidth; tour.classList.remove('snap'); };
+
+  function focus(i) {
+    const cur = new Set(nodesOf(i));
+    cv.querySelectorAll('.nd').forEach(n => {
+      const k = n.dataset.k;
+      n.classList.toggle('cur', cur.has(k));
+      n.classList.toggle('past', !cur.has(k) && n.classList.contains('on'));
+    });
+  }
+  function setText(i, animate) {
+    const put = () => {
+      $('[data-title]').textContent = STEPS[i].t;
+      $('[data-desc]').textContent = STEPS[i].d;
+      txt.classList.remove('out', 'in'); void txt.offsetWidth; txt.classList.add('in');
+    };
+    if (!animate) return put();
+    txt.classList.remove('in'); txt.classList.add('out');
+    later(130, put);
+  }
+  /* i 단계 이전까지는 즉시 완성 상태로 맞춘다 */
+  function settle(i) {
+    snap(() => {
+      cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.remove('on', 'cur', 'past'));
+      for (let s = 0; s < i; s++) STEPS[s].seq.flat().forEach(k => el(k).classList.add('on'));
+      if (i > 0) { focus(i - 1); camTo(CAM_Y - STEPS[i - 1].cam); } else camTo(CAM_Y - STEPS[0].cam);
+    });
+  }
+  function go(i) {
+    stop();
+    const wasFinal = tour.classList.contains('final');
+    if (wasFinal || i !== idx + 1) settle(i);
+    else if (idx >= 0) snap(() => STEPS[idx].seq.flat().forEach(k => el(k).classList.add('on')));
+    tour.classList.remove('final');
+    idx = i;
+    bars.forEach((b, k) => b.classList.toggle('done', k <= i));
+    setText(i, txt.querySelector('[data-title]').textContent !== '' && !wasFinal);
+
+    let t = 0, panned = false;
+    STEPS[i].seq.forEach(group => {
+      const isArrow = !!ARROWS[group[0]];
+      later(t, () => {
+        group.forEach((k, n) => isArrow ? el(k).classList.add('on')
+          : setTimeout(() => el(k).classList.add('on'), n * 80));
+        if (!isArrow && !panned) { panned = true; focus(i); camTo(CAM_Y - STEPS[i].cam); }
+      });
+      t += isArrow ? DRAW : GAP;
+    });
+  }
+  function final() {
+    stop();
+    idx = STEPS.length;
+    snap(() => cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.add('on')));
+    cv.querySelectorAll('.nd').forEach(n => n.classList.remove('cur', 'past'));
+    const s = FIN.h / CV_H;
+    camTo(FIN.top + (FIN.h - CV_H * s) / 2, s);
+    bars.forEach(b => b.classList.add('done'));
+    tour.classList.add('final');
+  }
+  function open(i = 0) {
+    tour.classList.remove('final');
+    $('[data-title]').textContent = '';
+    idx = -1; settle(i);
+    tour.classList.add('open'); status.classList.add('light'); home.classList.add('light');
+    go(i);
+  }
+  function close() {
+    stop();
+    tour.classList.remove('open');
+  }
+
+  tour.addEventListener('click', e => {
+    const act = e.target.closest('[data-act]')?.dataset.act;
+    if (act === 'close' || act === 'start' || act === 'more') { close(); return onClose(); }
+    if (act === 'skip') return final();
+    if (act === 'replay') return open(0);
+    if (tour.classList.contains('final')) return;
+    idx < STEPS.length - 1 ? go(idx + 1) : final();
+  });
+
+  status.classList.add('light'); home.classList.add('light');
+  return { open, close, screen };
+}
+
+const tabBtns = [...document.querySelectorAll('.tabs button')];
+function showTab(t) {
+  tabBtns.forEach(b => b.classList.toggle('on', b.dataset.tab === t));
+  document.querySelectorAll('.screen').forEach(s => s.hidden = s.dataset.panel !== t);
+}
+/* 탭 A는 투어만, 탭 B는 페이지만 그린다. 투어를 닫으면 페이지(탭 B)로 */
+const A = mountTour(document.getElementById('screenA'), () => showTab('b'));
+const B = mountPage(document.getElementById('screenB'));
+A.open(0);
+
+/* 페이지의 흐름도·단계 카드를 누르면 탭 A 투어로 재생 */
+B.screen.querySelector('[data-act="overview"]').addEventListener('click', () => { showTab('a'); A.open(0); });
+B.screen.querySelectorAll('[data-go]').forEach(b =>
+  b.addEventListener('click', () => { showTab('a'); A.open(+b.dataset.go); }));
+tabBtns.forEach(btn => btn.addEventListener('click', () => {
+  showTab(btn.dataset.tab);
+  if (btn.dataset.tab === 'a') A.open(0); else A.close();
+}));
+</script>
+</body>
+</html>
