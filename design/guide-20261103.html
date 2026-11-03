@@ -71,7 +71,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .step{display:flex;gap:12px;align-items:center;width:100%;padding:14px;background:#fff;border-radius:var(--r-lg);text-align:left;
   box-shadow:0 4px 16px rgba(132,94,238,0.13);transition:transform .15s}
 .step:active{transform:scale(.985)}
-.step .th{flex:none;width:72px;height:72px;overflow:hidden;border-radius:var(--r);background:var(--sub-4);display:grid;place-items:center;padding:8px}
+.step .th{flex:none;width:72px;height:72px;overflow:visible;display:grid;place-items:center;padding:4px}
 .step .th img{max-width:100%;max-height:100%;display:block}
 .step .th{position:relative}
 .step .th .malls{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.22)}
@@ -109,8 +109,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* 노드 뒤 보라 글로우, 아래 타원 그림자 */
 .nd.lift .pop::before{content:'';position:absolute;left:50%;top:50%;width:var(--gw);height:var(--gh);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(132,94,238,.35),rgba(132,94,238,0));filter:blur(36px);z-index:-2;pointer-events:none}
 .nd.lift .pop::after{content:'';position:absolute;left:50%;bottom:-20px;width:var(--fw);height:16px;margin-left:calc(var(--fw) / -2);border-radius:50%;background:rgba(108,74,182,.22);filter:blur(8px);z-index:-1;pointer-events:none}
-.ncard{width:100%;height:100%;padding:16px;background:var(--card);border-radius:var(--r-xl);box-shadow:var(--shadow-p)}
+/* 노드는 카드 없이 오브젝트만. 노드 박스 전체를 오브젝트가 차지, 그림자는 윤곽을 따라(drop-shadow). 글로우·바닥 타원은 .lift가 유지 */
+.ncard{width:100%;height:100%}
 .ncard img{display:block;width:100%;height:100%;object-fit:contain}
+.ncard > img,.ncard > .obj,.ncard > .tks{filter:drop-shadow(0 10px 18px rgba(108,74,182,.30))}
 /* 정면 폰 + 프라이스픽 홈 화면(이전: 3D 앱 아이콘 pricepick-appicon.png, 파일 보존). 폰 이미지(512x816)의 화면 영역 실측: left 15.2% top 9.6% w 69.7% h 82.1%
    홈 화면은 화면 영역을 꽉 채운다 */
 .obj{position:relative;display:block;width:100%;height:100%}
@@ -126,18 +128,19 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .step .th .obj img{max-width:none;max-height:none}
 .step .th .obj img:first-child{width:100%;height:100%}
 /* 티켓(김반장 2D 아이콘 ticket-gold.svg, 입체는 SVG 안에서 처리). viewBox 512 중 티켓 실체는 약 290px라 1.76배로 키워 카드를 채운다 */
-.tks{position:relative;display:block;width:100%;height:100%;container-type:size;filter:drop-shadow(0 10px 16px rgba(108,74,182,.35))}
+.tks{position:relative;display:block;width:100%;height:100%;container-type:size}
 .tks img{position:absolute;left:50%;top:50%;width:var(--s);height:var(--s);max-width:none;max-height:none;margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);transform:translate(var(--dx,0),var(--dy,0))}
 .tks.one img{--s:150cqmin}
 /* 대기: 빨강 랜덤 티켓 3장 겹침(확정 전·가지급). 구매 확정을 지나면 금색 티켓으로 바뀐다 */
 .tks.wait img{--s:128cqmin}
 .tks.wait img:nth-child(1){--dx:-13cqmin;--dy:-11cqmin}
 .tks.wait img:nth-child(3){--dx:13cqmin;--dy:11cqmin}
-/* 확정: 오른쪽 위 초록 체크 배지 */
-.tks .chk{position:absolute;left:calc(50% + 30cqmin);top:calc(50% - 58cqmin);width:28cqmin;height:28cqmin;border-radius:50%;background:var(--green);border:2px solid #fff;box-shadow:0 4px 10px rgba(34,197,94,.4);display:grid;place-items:center}
+/* 확정: 티켓 이미지 오른쪽 위 끝(스텁 모서리)에 초록 체크 배지 */
+.tks .chk{position:absolute;left:calc(50% + 23cqmin);top:calc(50% - 55cqmin);width:26cqmin;height:26cqmin;border-radius:50%;background:var(--green);border:2px solid #fff;box-shadow:0 4px 10px rgba(34,197,94,.4);display:grid;place-items:center}
 .tks .chk svg{width:58%;height:58%}
 .nd.on .chk{animation:iconIn 420ms cubic-bezier(.34,1.45,.5,1) 160ms both}
-.step .th .tks{width:56px;height:56px}
+.step .th .tks{width:64px;height:64px}
+.step .th > img,.step .th > .obj,.step .th > .tks{filter:drop-shadow(0 4px 8px rgba(108,74,182,.30))}
 .snap,.snap *{transition:none!important}
 
 /* 제휴몰 카드 5장 계단식 겹침 — 전부 순백, 층은 그림자로만 */
@@ -287,7 +290,7 @@ const NODES = {
   phone:  { x: 187.5, y: 40,   w: 135, h: 198, img: 'o1', lab: '프라이스픽', at: 'b' },
   mall:   { x: 187.5, y: 366,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
   bag:    { x: 187.5, y: 624,  w: 207, h: 228, img: 'o2', lab: '구매 완료', at: 'b' },
-  wait:   { x: 106,   y: 1008, w: 168, h: 143, img: 'tw', lab: '랜덤 티켓', at: 'b', edge: true },
+  wait:   { x: 106,   y: 1008, w: 168, h: 143, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b', edge: true },
   ok:     { x: 106,   y: 1207, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
   ticket: { x: 106,   y: 1277, w: 193, h: 163, img: 'tk', lab: '사용 가능 티켓', at: 'b', edge: true },
   coin:   { x: 284,   y: 1008, w: 168, h: 120, img: 'o5', lab: '포인트', at: 'b', edge: true },
