@@ -67,7 +67,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .step:active{transform:scale(.985)}
 .step .th{flex:none;width:72px;height:72px;overflow:hidden;border-radius:var(--r);background:var(--sub-4);display:grid;place-items:center;padding:8px}
 .step .th img{max-width:100%;max-height:100%;display:block}
-.step .th .malls{flex:none;transform:scale(.21)}
+.step .th{position:relative}
+.step .th .malls{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.22)}
+.step .th .chip{animation:none}
 .step .tx{min-width:0}
 .step .no{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 7px;border-radius:11px;background:var(--sub-4);color:var(--main);font-size:12px;font-weight:800}
 .step b{display:block;margin-top:6px;font-size:15px;font-weight:700;line-height:1.4;word-break:keep-all}
@@ -99,24 +101,21 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .snap,.snap *{transition:none!important}
 
 /* 제휴몰 카드 5장 계단식 겹침 — 전부 순백, 층은 그림자로만 */
-.malls{position:relative;width:270px;height:176px}
-.mall{position:absolute;left:0;bottom:0;width:270px;height:56px;border-radius:14px;background:#fff;display:flex;align-items:center;gap:10px;padding:0 9px;transform-origin:50% 100%;border:1px solid rgba(132,94,238,.08)}
-.mall.m1{z-index:5;box-shadow:0 -3px 12px rgba(92,58,180,.14),var(--shadow-p)}
-.mall.mb{align-items:flex-start;padding-top:2px;gap:8px;box-shadow:0 -3px 12px rgba(92,58,180,.12)}
-.mall.m2{z-index:4;transform:translate(5px,-30px) scale(.98)}
-.mall.m3{z-index:3;transform:translate(-5px,-60px) scale(.96)}
-.mall.m4{z-index:2;transform:translate(5px,-90px) scale(.94)}
-.mall.m5{z-index:1;transform:translate(-5px,-120px) scale(.92)}
-.badge{flex:none;width:32px;height:32px;border-radius:50%;background:#fff;overflow:hidden;box-shadow:0 0 0 1px #EEEAF3;display:grid;place-items:center}
+/* 2단계: 제휴몰 로고 칩 한 줄(46px x5 + 간격 10px = 270px) + 대표 카드 한 장(286x60). 폭 375 안에 좌우 여백 44px 이상 */
+.malls{width:286px;height:128px;display:flex;flex-direction:column;align-items:center}
+.chips{display:flex;gap:10px;height:46px;align-items:center}
+.chip{width:46px;height:46px;flex:none}
+.nd.on .chip{animation:chipIn 520ms cubic-bezier(.34,1.45,.5,1) calc(var(--i) * 60ms) both}
+@keyframes chipIn{from{opacity:0;transform:translateY(14px) scale(.7)}to{opacity:1;transform:none}}
+.chip .c{width:100%;height:100%;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(92,58,180,.18)}
+.chip .c img{width:34px;height:34px;border-radius:50%;object-fit:contain;display:block}
+.chip.hot .c{transform:scale(1.08);box-shadow:0 0 0 3px #845EEE,0 6px 16px rgba(92,58,180,.22)}
+.mall{margin-top:22px;width:286px;height:60px;flex:none;border-radius:18px;background:#FFFFFF;box-shadow:0 10px 26px rgba(92,58,180,.20);display:flex;align-items:center;gap:10px;padding:0 14px}
+.badge{flex:none;width:38px;height:38px;border-radius:50%;background:#fff;overflow:hidden;box-shadow:0 0 0 1px #EEEAF3;display:grid;place-items:center}
 .badge img{width:100%;height:100%;object-fit:contain}
-.mall.mb .badge{width:26px;height:26px}
-.mall b{flex:1;font-size:15px;font-weight:700;color:#1A1130}
-.mall.mb b{font-size:13px;line-height:26px}
-.mall.m2 b{color:#2A2140}
-.mall.m3 b{color:#3A3250}
-.mall.m4 b{color:#4A4260}
-.mall.m5 b{color:#5A5370}
-.mall span.go{height:30px;padding:0 14px;border-radius:15px;background:var(--main);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center}
+.mall b{flex:1;font-size:16px;font-weight:700;color:#1A1130}
+.mall span.go{height:34px;padding:0 15px;border-radius:17px;background:var(--main);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center;box-shadow:0 4px 12px rgba(132,94,238,.4);animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.06)}}
 .pill{height:30px;padding:0 13px;border-radius:15px;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;white-space:nowrap}
 .pill.g{background:var(--green);box-shadow:0 6px 16px rgba(34,197,94,.35),0 2px 4px rgba(34,197,94,.2)}
 .pill.p{background:var(--main);box-shadow:0 6px 16px rgba(132,94,238,.38),0 2px 4px rgba(132,94,238,.2)}
@@ -237,18 +236,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 <script>
 /* 캔버스 좌표 (폭 375 기준). 이미지 노드는 흰 카드(안쪽 14px) 크기, 오브젝트는 그 안에 비율대로 */
-/* 제휴몰 카드 5장 계단식 겹침: 맨 앞 쿠팡, 뒤로 G마켓·11번가·NS홈쇼핑·CJ더마켓 */
-const LOGO = f => `<span class="badge"><img src="guide-art/mall/${f}" alt=""></span>`;
-const MALLS = '<div class="malls">' +
-  `<div class="mall mb m5">${LOGO('cjthemarket.jpg')}<b>CJ더마켓</b></div>` +
-  `<div class="mall mb m4">${LOGO('nsmall.png')}<b>NS홈쇼핑</b></div>` +
-  `<div class="mall mb m3">${LOGO('11st.png')}<b>11번가</b></div>` +
-  `<div class="mall mb m2">${LOGO('gmarket.png')}<b>G마켓</b></div>` +
-  `<div class="mall m1">${LOGO('coupang.jpg')}<b>쿠팡</b><span class="go">바로가기</span></div></div>`;
+/* 2단계 제휴몰: 로고 칩 한 줄(쿠팡 강조) + 쿠팡 대표 카드 */
+const MALL_LOGOS = ['coupang.jpg', 'gmarket.png', '11st.png', 'nsmall.png', 'cjthemarket.jpg'];
+const MALLS = '<div class="malls"><div class="chips">' +
+  MALL_LOGOS.map((f, i) => `<span class="chip${i ? '' : ' hot'}" style="--i:${i}"><span class="c"><img src="guide-art/mall/${f}" alt=""></span></span>`).join('') +
+  '</div><div class="mall"><span class="badge"><img src="guide-art/mall/coupang.jpg" alt=""></span><b>쿠팡</b><span class="go">바로가기</span></div></div>';
 const CV_H = 1615;
 const NODES = {
   phone:  { x: 187.5, y: 40,   w: 153, h: 198, img: 'o1' },
-  mall:   { x: 187.5, y: 340,  w: 270, h: 176, html: MALLS },
+  mall:   { x: 187.5, y: 364,  w: 286, h: 128, html: MALLS },
   bag:    { x: 187.5, y: 618,  w: 193, h: 213, img: 'o2' },
   wait:   { x: 96,    y: 941,  w: 178, h: 144, img: 'o3' },
   ok:     { x: 96,    y: 1136, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
@@ -259,8 +255,8 @@ const NODES = {
 };
 /* 화살표: 끝점은 항상 아래 방향. 선은 촉 길이만큼 짧게 끝낸다 */
 const ARROWS = {
-  a1: [187.5, 248, 187.5, 330],
-  a2: [187.5, 526, 187.5, 608],
+  a1: [187.5, 248, 187.5, 354],
+  a2: [187.5, 502, 187.5, 608],
   sl: [187.5, 841, 96, 931, 'split'],
   sr: [187.5, 841, 279, 931, 'split'],
   al: [96, 1095, 96, 1205],
