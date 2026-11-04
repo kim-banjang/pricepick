@@ -83,7 +83,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .step p{margin-top:4px;font-size:var(--fs-body);font-weight:var(--fw-regular);line-height:1.5;color:var(--text2);word-break:keep-all}
 
 /* 흐름도 캔버스 (투어·축소판 공용) */
-.cv{position:absolute;top:0;left:0;width:375px;height:2505px;transform-origin:187.5px 0}
+.cv{position:absolute;top:0;left:0;width:375px;height:2535px;transform-origin:187.5px 0}
 .cv svg{position:absolute;inset:0;overflow:visible}
 /* 화살표: 보이는 선은 점선(아래로 흐름), 그려지는 효과는 마스크 안의 실선이 자라며 드러낸다 */
 .ln{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-dasharray:12 10;animation:flow 1.8s linear infinite}
@@ -100,7 +100,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .ar:not(.on),.nd:not(.on){opacity:0;visibility:hidden}
 .ar.on .rv{stroke-dashoffset:0}
 .ar.on .hd{opacity:1}
-.nd{position:absolute;display:flex;align-items:center;justify-content:center}
+.nd{position:absolute;display:flex;align-items:center;justify-content:center;transform:scale(var(--g,1))}
+/* 마지막 장: 전용 배치(FIN_L)로 옮기며 살짝 페이드인, 라벨은 축소하면 안 읽혀서 뺀다 */
+.tour.final .cv{animation:finIn .45s ease-out}
+@keyframes finIn{from{opacity:0}to{opacity:1}}
+.tour.final .lab{display:none}
 .nd .fx{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform 420ms ease-out,opacity 420ms ease-out}
 .nd .pop{position:relative;isolation:isolate;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(24px) scale(.88);transition:transform 520ms cubic-bezier(.34,1.45,.5,1),opacity 260ms ease-out}
 .nd.on .pop{opacity:1;transform:none}
@@ -355,6 +359,31 @@ const arrowsOf = X => ({
 });
 /* 세로 값·단계 구분용(가로는 화면마다 layoutX 로 다시 잡는다) */
 const ARROWS = arrowsOf(layoutX(CW));
+/* 마지막 장 전용 배치(캔버스 좌표, 투어와 따로). 세로로 긴 막대 대신 가로세로 비슷한 덩어리:
+   가로는 투어보다 넓게(1·5단계 왼쪽 끝, 3단계 오른쪽 끝 — 375폭에서 화면 ±0.29W), 세로는 바짝.
+   좌우로 어긋난 이웃 노드는 세로로 겹쳐도 되므로, 화살표를 앞 노드 옆구리에서 출발시켜 다음 노드를 위로 당긴다.
+   4(랜덤 티켓)·6(포인트)는 같은 높이에 좌우로, 5는 4 아래, 7은 맨 아래 가운데. g: 그림 배율(세로로 긴 스플래시만 .8) */
+const FIN_L = {
+  phone:  { x: -304, y: 0,    g: .8 },
+  mall:   { x: -20,  y: 270 },
+  bag:    { x: 304,  y: 440 },
+  wait:   { x: -254, y: 840 },
+  coin:   { x: 254,  y: 840 },
+  ok:     { x: -279, y: 1076 },
+  ticket: { x: -304, y: 1150 },
+  rate:   { x: 254,  y: 1090 },
+  gift:   { x: 0,    y: 1350 },
+};
+const FIN_ARROWS = {
+  a1: [-207, 170, -90, 262, 'curve'],
+  a2: [133, 335, 230, 432, 'curve'],
+  sl: [156, 600, -254, 832, 'curve', 'l'],
+  sr: [304, 756, 254, 832, 'curve', 'r'],
+  al: [-254, 1041, -304, 1142, 'curve', 'l'],
+  ar: [254, 1010, 254, 1082, 'wave', 'r'],
+  ml: [-165, 1260, -40, 1342, 'curve', 'l'],
+  mr: [254, 1128, 40, 1342, 'curve', 'r'],
+};
 const STEPS = [
   { t: '프라이스픽을 먼저 열어요', d: '여기를 거쳐야 티켓이 쌓여요',
     seq: [['phone']] },
@@ -430,7 +459,7 @@ function canvasHTML(X = layoutX(CW)) {
       ? `<linearGradient id="${m}-g" gradientUnits="userSpaceOnUse" x1="${a[0]}" y1="${a[1]}" x2="${a[2]}" y2="${a[3]}"><stop offset="0" stop-color="#FFD93B"/><stop offset="1" stop-color="#E6A800"/></linearGradient>`
       : '';
     return `<g class="ar${a[5] ? ' ' + a[5] : ''}" data-k="${k}">` + gold +
-      `<mask id="${m}" maskUnits="userSpaceOnUse" x="0" y="0" width="${CW}" height="${CV_H}"><path class="rv" d="${d}"/></mask>` +
+      `<mask id="${m}" maskUnits="userSpaceOnUse" x="${-CW}" y="0" width="${3 * CW}" height="${CV_H}"><path class="rv" d="${d}"/></mask>` +
       `<path class="ln" d="${d}" mask="url(#${m})"${gold ? ` style="stroke:url(#${m}-g)"` : ''}/>` +
       `<path class="hd" d="${headPath(a)}"/></g>`;
   }).join('');
@@ -442,9 +471,15 @@ function canvasHTML(X = layoutX(CW)) {
   return `<div class="cv"><svg width="${CW}" height="${CV_H}" viewBox="0 0 ${CW} ${CV_H}">${svg}</svg>${nodes}</div>`;
 }
 /* 화면 폭이 바뀌면 노드 가로 위치와 화살표 경로만 새 배치(X)로 옮긴다(켜짐·현재 상태는 그대로) */
-function placeX(cv, X) {
-  Object.entries(NODES).forEach(([k, n]) => { cv.querySelector(`.nd[data-k="${k}"]`).style.left = CX + X[k] - n.w / 2 + 'px'; });
-  Object.entries(arrowsOf(X)).forEach(([k, r]) => {
+/* fin: 마지막 장 전용 배치(FIN_L·FIN_ARROWS)로. 그림 배율 g 는 노드 가운데 기준이라 위치는 보이는 위쪽이 y 가 되게 맞춘다 */
+function placeX(cv, X, fin = false) {
+  Object.entries(NODES).forEach(([k, n]) => {
+    const e = cv.querySelector(`.nd[data-k="${k}"]`), f = fin && FIN_L[k], g = f ? f.g || 1 : 1;
+    e.style.left = CX + (f ? f.x : X[k]) - n.w / 2 + 'px';
+    e.style.top = (f ? f.y - n.h * (1 - g) / 2 : n.y) + 'px';
+    e.style.setProperty('--g', g);
+  });
+  Object.entries(fin ? FIN_ARROWS : arrowsOf(X)).forEach(([k, r]) => {
     const a = [CX + r[0], r[1], CX + r[2], r[3], ...r.slice(4)], d = arrowPath(a), g = cv.querySelector(`.ar[data-k="${k}"]`);
     g.querySelectorAll('.rv,.ln').forEach(p => p.setAttribute('d', d));
     g.querySelector('.hd').setAttribute('d', headPath(a));
@@ -526,7 +561,7 @@ function mountTour(screen, onClose) {
   const vp = $('[data-vp]'), prog = $('[data-prog]'), skipBtn = $('[data-act="skip"]'), tcard = $('.tcard');
   const toTour = v => { const t = tour.getBoundingClientRect(); return (v - t.top) * (tour.offsetHeight / (t.height || 1)); };
   const topOf = e => toTour(e.getBoundingClientRect().top), botOf = e => toTour(e.getBoundingClientRect().bottom);
-  let camIdx = 0, kx = 1, rgt = 0, X = layoutX(CW), XW = CW;
+  let camIdx = 0, kx = 1, rgt = 0, X = layoutX(CW), XW = CW, inFin = false;
   /* 가로: 화면 실제 폭(getBoundingClientRect, 축소 보정)을 재서 캔버스를 가운데에 두고,
      노드·라벨이 좌우 EDGE 안쪽에 다 들어오지 않으면 캔버스를 그만큼 줄인다(transform-origin 이 캔버스 가로 중심이라 줄여도 가운데) */
   /* keys: 이번 단계 화면에 같이 보이는 노드(FIT_KEYS). 없으면 전체(마지막 장).
@@ -534,7 +569,7 @@ function mountTour(screen, onClose) {
   function fitX(keys) {
     const t = tour.getBoundingClientRect(), W = t.width * (tour.offsetHeight / (t.height || 1));
     cv.style.left = (W - CW) / 2 + 'px';
-    if (Math.abs(W - XW) > .5) { XW = W; X = layoutX(W); placeX(cv, X); measure(vp); }
+    if (Math.abs(W - XW) > .5) { XW = W; X = layoutX(W); if (!inFin) { placeX(cv, X); measure(vp); } }
     let half = 0; rgt = -1e9;
     (keys || Object.keys(NODES)).forEach(k => {
       const d = NODES[k], lab = el(k).querySelector('.lab');
@@ -594,8 +629,12 @@ function mountTour(screen, onClose) {
     vp.style.setProperty('--f0', top - 16 + 'px'); vp.style.setProperty('--f1', top + 'px');
     vp.style.setProperty('--f2', bottom + 4 + 'px'); vp.style.setProperty('--f3', bottom + 20 + 'px');
     fitX();
-    const s = Math.min((bottom - top) / CV_H, kx);
-    camTo(top + (bottom - top - CV_H * s) / 2, s);
+    /* 전용 배치의 실제 외곽(그림 배율 g 반영, 라벨 없음)을 구간 가운데에 */
+    const bx = Object.entries(FIN_L).map(([k, f]) => { const n = NODES[k], g = f.g || 1; return { l: f.x - n.w * g / 2, r: f.x + n.w * g / 2, t: f.y, b: f.y + n.h * g }; });
+    const L = Math.min(...bx.map(o => o.l)), Rr = Math.max(...bx.map(o => o.r)), T = Math.min(...bx.map(o => o.t)), B = Math.max(...bx.map(o => o.b));
+    const t = tour.getBoundingClientRect(), W = t.width * (tour.offsetHeight / (t.height || 1));
+    const s = Math.min((bottom - top) / (B - T), (W - 2 * EDGE) / (Rr - L));
+    camTo(top + (bottom - top - (B - T) * s) / 2 - T * s, s, -s * (L + Rr) / 2);
   }
   const snap = fn => { tour.classList.add('snap'); fn(); void tour.offsetWidth; tour.classList.remove('snap'); };
 
@@ -622,6 +661,7 @@ function mountTour(screen, onClose) {
   /* i 단계 이전까지는 즉시 완성 상태로 맞춘다 */
   function settle(i) {
     snap(() => {
+      if (inFin) { inFin = false; placeX(cv, X); measure(vp); }
       cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.remove('on', 'cur', 'past'));
       for (let s = 0; s < i; s++) STEPS[s].seq.flat().forEach(k => el(k).classList.add('on'));
       if (i > 0) { focus(i - 1); camAt(i - 1); } else camAt(0);
@@ -651,9 +691,13 @@ function mountTour(screen, onClose) {
   function final() {
     stop();
     idx = STEPS.length;
-    snap(() => cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.add('on')));
-    cv.querySelectorAll('.nd').forEach(n => n.classList.remove('cur', 'past'));
-    finLayout();
+    inFin = true;
+    snap(() => {
+      cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.add('on'));
+      cv.querySelectorAll('.nd').forEach(n => n.classList.remove('cur', 'past'));
+      placeX(cv, X, true); measure(vp);
+      finLayout();
+    });
     bars.forEach(b => { b.classList.add('done'); b.classList.remove('cur'); });
     tour.classList.add('final');
   }
