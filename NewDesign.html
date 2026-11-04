@@ -4,80 +4,135 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PricePick 시안 통합본</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@1.3.9/dist/web/variable/pretendardvariable.min.css">
 <style>
+  /* 색·글자·라운드는 designsystem.html 토큰 그대로 */
+  :root {
+    --main: #845EEE; --main-dark: #6C4AB6; --sub-1: #9B78FF; --sub-2: #C6AFFF; --sub-3: #E2D9FF; --sub-4: #F1EEFF;
+    --bg: #FAFAFA; --card: #FFFFFF;
+    --text1: #1A1130; --text2: #5A5370; --text3: #9B93B0; --text4: #C4BED0;
+    --border: #EEEAF3; --border-strong: #E0D9ED;
+    --fs-caption: 13px; --fs-body: 15px;
+    --r-sm: 8px; --r: 12px; --r-lg: 16px;
+    --side-w: 228px;
+  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { height: 100%; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #14151a;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text1);
+    display: flex;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── 왼쪽 사이드 목록 — 오른쪽 시안과 따로 스크롤 ── */
+  .side {
+    flex: 0 0 var(--side-w);
+    width: var(--side-w);
+    height: 100%;
     display: flex;
     flex-direction: column;
+    background: var(--card);
+    border-right: 1px solid var(--border);
   }
-  header {
+  .side-head {
     flex: 0 0 auto;
-    background: #1c1d24;
-    border-bottom: 1px solid #2c2d36;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: space-between;
     gap: 8px;
-    padding: 10px 12px 0;
+    padding: 18px 14px 14px 18px;
+    border-bottom: 1px solid var(--border);
   }
-  .tabs {
-    display: flex;
-    gap: 4px;
+  .brand { min-width: 0; }
+  .brand a { display: block; font-size: 12px; font-weight: 700; color: var(--text3); text-decoration: none; margin-bottom: 4px; }
+  .brand a:hover { color: var(--main-dark); }
+  .brand b { display: block; font-size: 17px; font-weight: 800; letter-spacing: -.03em; color: var(--text1); white-space: nowrap; }
+  .brand b span { color: var(--main); }
+  .nav {
     flex: 1 1 auto;
-    min-width: 0;
-    overflow-x: auto;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 6px 10px 24px;
     scrollbar-width: thin;
   }
-  .tab {
+  .grp {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    color: var(--text3);
+    padding: 18px 8px 6px;
+  }
+  .item {
     appearance: none;
-    border: none;
+    border: 0;
     background: transparent;
-    color: #8a8b96;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 14px;
-    border-radius: 10px 10px 0 0;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    display: block;
+    padding: 9px 10px;
+    border-radius: var(--r-sm);
     cursor: pointer;
-    white-space: nowrap;
-    flex: 0 0 auto;
+    color: var(--text1);
     transition: background .15s ease, color .15s ease;
   }
-  .tab:hover { color: #d6d7e0; }
-  .tab.active {
-    background: #f5f5f7;
-    color: #14151a;
-  }
+  .item + .item { margin-top: 2px; }
+  .item .t { display: block; font-size: 14px; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; }
+  .item .d { display: block; margin-top: 2px; font-size: 12px; font-weight: 500; color: var(--text3); font-variant-numeric: tabular-nums; }
+  .item:hover { background: var(--bg); }
+  .item.active { background: var(--sub-4); color: var(--main-dark); }
+  .item.active .t { font-weight: 700; }
+  .item.active .d { color: var(--sub-1); }
+  .item:focus-visible { outline: 2px solid var(--main); outline-offset: -2px; }
+
+  /* ── 한·베 토글 ── */
   .lang-toggle {
     appearance: none;
-    border: none;
+    border: 1px solid var(--border-strong);
     display: inline-flex;
     align-items: center;
-    gap: 0;
-    background: #2c2d36;
+    background: var(--card);
     border-radius: 999px;
     padding: 3px;
     cursor: pointer;
     flex: 0 0 auto;
-    margin-bottom: 8px;
   }
   .lang-toggle span {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: .4px;
-    color: #8a8b96;
-    padding: 5px 12px;
+    color: var(--text3);
+    padding: 4px 9px;
     border-radius: 999px;
     line-height: 1.4;
     transition: background .15s, color .15s;
   }
-  .lang-toggle span.on { background: #845EEE; color: #fff; }
-  .frame-wrap {
-    position: relative;
+  .lang-toggle span.on { background: var(--main); color: #fff; }
+
+  /* ── 좁은 화면 상단 바 (900px 이하에서만 보인다) ── */
+  .topbar { display: none; }
+  .topbar select {
     flex: 1 1 auto;
-    background: #f5f5f7;
+    min-width: 0;
+    height: 40px;
+    padding: 0 36px 0 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r);
+    background: var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236C4AB6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--main-dark);
+    appearance: none;
+    -webkit-appearance: none;
   }
+
+  /* ── 오른쪽 시안 영역 ── */
+  .main { flex: 1 1 auto; min-width: 0; height: 100%; display: flex; flex-direction: column; }
+  .frame-wrap { position: relative; flex: 1 1 auto; background: #f5f5f7; }
   iframe {
     position: absolute;
     inset: 0;
@@ -94,62 +149,62 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #a9aab4;
-    font-size: 13px;
+    color: var(--text3);
+    font-size: var(--fs-caption);
     z-index: 1;
+    pointer-events: none;
   }
   .placeholder.hidden { display: none; }
+
+  @media (max-width: 900px) {
+    body { flex-direction: column; }
+    .side { display: none; }
+    .topbar {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+    }
+    .main { height: auto; flex: 1 1 auto; min-height: 0; }
+  }
 </style>
 </head>
 <body>
-  <header>
-    <div class="tabs">
-      <button class="tab active" data-target="splash">스플래시·로그인</button>
-      <button class="tab" data-target="home">홈</button>
-      <button class="tab" data-target="attendance">출석체크</button>
-      <button class="tab" data-target="jackpot">잭팟 룰렛</button>
-      <button class="tab" data-target="lucky">행운 룰렛</button>
-      <button class="tab" data-target="friend">친구초대</button>
-      <button class="tab" data-target="mission">연속구매 미션</button>
-      <button class="tab" data-target="ticket">티켓 교환</button>
-      <button class="tab" data-target="mytickets">내 티켓 &amp; 포인트</button>
-      <button class="tab" data-target="giftbox">매일선물상자, 랜덤선물상자 열기</button>
-      <button class="tab" data-target="giftshop">기프티샵</button>
-      <button class="tab" data-target="a2hs">홈 화면 바로가기</button>
+  <aside class="side">
+    <div class="side-head">
+      <div class="brand">
+        <a href="/new-design/">← New Design</a>
+        <b>Price<span>Pick</span> 시안</b>
+      </div>
+      <button class="lang-toggle" data-lang-toggle type="button" title="KO / VI" aria-label="KO/VI">
+        <span data-l="ko" class="on">KO</span><span data-l="vi">VI</span>
+      </button>
     </div>
-    <button id="lang-toggle" class="lang-toggle" data-lang="ko" type="button" title="KO / VI" aria-label="KO/VI">
-      <span data-l="ko" class="on">KO</span><span data-l="vi">VI</span>
-    </button>
-  </header>
-  <div class="frame-wrap">
-    <div id="ph-splash" class="placeholder">불러오는 중...</div>
-    <div id="ph-home" class="placeholder hidden">불러오는 중...</div>
-    <div id="ph-lm" class="placeholder hidden">불러오는 중...</div>
-    <div id="ph-jackpot" class="placeholder hidden">불러오는 중...</div>
-    <div id="ph-invite" class="placeholder hidden">불러오는 중...</div>
-    <div id="ph-streak" class="placeholder hidden">불러오는 중...</div>
-    <div id="ph-ticket" class="placeholder hidden">불러오는 중...</div>
-    <div id="ph-mytickets" class="placeholder hidden">불러오는 중...</div>
-    <div id="ph-giftbox" class="placeholder hidden">불러오는 중...</div>
-    <div id="ph-giftshop" class="placeholder hidden">불러오는 중...</div>
-    <div id="ph-a2hs" class="placeholder hidden">불러오는 중...</div>
-    <iframe id="frame-splash" class="active" src="design-splash-login-20260729.html" title="스플래시·로그인 시안"></iframe>
-    <iframe id="frame-home" title="홈 시안"></iframe>
-    <iframe id="frame-lm" title="출석체크 / 행운 룰렛 시안"></iframe>
-    <iframe id="frame-jackpot" title="잭팟 룰렛 시안"></iframe>
-    <iframe id="frame-invite" title="친구초대 시안"></iframe>
-    <iframe id="frame-streak" title="연속구매 미션 시안"></iframe>
-    <iframe id="frame-ticket" title="티켓 교환 시안"></iframe>
-    <iframe id="frame-mytickets" title="내 티켓 & 포인트 시안"></iframe>
-    <iframe id="frame-giftbox" title="매일선물상자, 랜덤선물상자 열기 시안"></iframe>
-    <iframe id="frame-giftshop" title="기프티샵 시안"></iframe>
-    <iframe id="frame-a2hs" title="홈 화면 바로가기 시안"></iframe>
+    <nav class="nav" id="nav" aria-label="시안 목록"></nav>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <select id="pick" aria-label="시안 선택"></select>
+      <button class="lang-toggle" data-lang-toggle type="button" title="KO / VI" aria-label="KO/VI">
+        <span data-l="ko" class="on">KO</span><span data-l="vi">VI</span>
+      </button>
+    </div>
+    <div class="frame-wrap" id="frame-wrap"></div>
   </div>
 
   <script>
+  (function () {
     /* 2026-10-15 티켓 1종 통합 개정판으로 교체 — 이전 판은 각 시안 상단 「이전 판 보기」 링크로 연다.
-       (교체 전 연결: ticket 20260803 · mytickets 20260804 · giftbox 20260825 — NewDesign_s01.html 에 남아 있다) */
+       (교체 전 연결: ticket 20260803 · mytickets 20260804 · giftbox 20260825 — NewDesign_s01.html 에 남아 있다)
+       2026-11-04 가로 탭 → 왼쪽 사이드 목록. 가로 탭 판은 NewDesign_s02.html 에 남아 있다. */
+
+    // 프레임 하나 = 시안 파일 하나. 출석체크·행운 룰렛은 07-29 파일 하나(lm)를 나눠 쓴다.
     var SRC = {
+      splash: 'design-splash-login-20260729.html',
       home: '20261015_NewDesign_home.html',
       lm: '20260729_NewDesign.html',
       jackpot: '20260731_NewDesign.html',
@@ -159,44 +214,88 @@
       mytickets: '20261015_NewDesign_mytickets.html',
       giftbox: '20261015_NewDesign_giftbox.html',
       giftshop: '20260916_NewDesign_giftshop.html',
-      a2hs: '20260922_NewDesign_a2hs.html'
+      a2hs: '20260922_NewDesign_a2hs.html',
+      guide: '20261103_NewDesign_guide.html'
     };
 
-    var FRAME_OF_TAB = {
-      splash: 'frame-splash',
-      home: 'frame-home',
-      attendance: 'frame-lm',
-      lucky: 'frame-lm',
-      jackpot: 'frame-jackpot',
-      friend: 'frame-invite',
-      mission: 'frame-streak',
-      ticket: 'frame-ticket',
-      mytickets: 'frame-mytickets',
-      giftbox: 'frame-giftbox',
-      giftshop: 'frame-giftshop',
-      a2hs: 'frame-a2hs'
-    };
-    var PLACEHOLDER_OF_FRAME = {
-      'frame-splash': 'ph-splash',
-      'frame-home': 'ph-home',
-      'frame-lm': 'ph-lm',
-      'frame-jackpot': 'ph-jackpot',
-      'frame-invite': 'ph-invite',
-      'frame-streak': 'ph-streak',
-      'frame-ticket': 'ph-ticket',
-      'frame-mytickets': 'ph-mytickets',
-      'frame-giftbox': 'ph-giftbox',
-      'frame-giftshop': 'ph-giftshop',
-      'frame-a2hs': 'ph-a2hs'
-    };
+    // 묶음 머리말 + 항목. id는 주소 뒤 #id 로도 바로 연다.
+    var GROUPS = [
+      { title: '시작·계정', items: [
+        { id: 'splash', title: '스플래시·로그인', date: '2026-07-29', frame: 'splash' },
+        { id: 'a2hs', title: '홈 화면 바로가기', date: '2026-09-22', frame: 'a2hs' }
+      ] },
+      { title: '홈', items: [
+        { id: 'home', title: '홈', date: '2026-10-15', frame: 'home' }
+      ] },
+      { title: '리워드', items: [
+        { id: 'attendance', title: '출석체크', date: '2026-07-29', frame: 'lm' },
+        { id: 'jackpot', title: '잭팟 룰렛', date: '2026-07-31', frame: 'jackpot' },
+        { id: 'lucky', title: '행운 룰렛', date: '2026-07-29', frame: 'lm' },
+        { id: 'giftbox', title: '매일선물상자, 랜덤선물상자 열기', date: '2026-10-15', frame: 'giftbox' },
+        { id: 'mission', title: '연속구매 미션', date: '2026-08-03', frame: 'streak' }
+      ] },
+      { title: '친구·교환', items: [
+        { id: 'friend', title: '친구초대', date: '2026-08-03', frame: 'invite' },
+        { id: 'ticket', title: '티켓 교환', date: '2026-10-15', frame: 'ticket' },
+        { id: 'mytickets', title: '내 티켓 & 포인트', date: '2026-10-15', frame: 'mytickets' }
+      ] },
+      { title: '기프티샵', items: [
+        { id: 'giftshop', title: '기프티샵', date: '2026-09-16', frame: 'giftshop' }
+      ] },
+      { title: '안내', items: [
+        { id: 'guide', title: '쇼핑 가이드', date: '2026-11-03', frame: 'guide' }
+      ] }
+    ];
 
-    var frames = {};
-    ['frame-splash', 'frame-home', 'frame-lm', 'frame-jackpot', 'frame-invite', 'frame-streak', 'frame-ticket', 'frame-mytickets', 'frame-giftbox', 'frame-giftshop', 'frame-a2hs'].forEach(function (id) {
-      frames[id] = document.getElementById(id);
+    var ITEMS = {}, ORDER = [];
+    GROUPS.forEach(function (g) { g.items.forEach(function (it) { ITEMS[it.id] = it; ORDER.push(it.id); }); });
+
+    // ── 목록·드롭다운·프레임 만들기 ──
+    var nav = document.getElementById('nav');
+    var pick = document.getElementById('pick');
+    var wrap = document.getElementById('frame-wrap');
+    var buttons = {};
+    GROUPS.forEach(function (g) {
+      var h = document.createElement('div');
+      h.className = 'grp';
+      h.textContent = g.title;
+      nav.appendChild(h);
+      var og = document.createElement('optgroup');
+      og.label = g.title;
+      g.items.forEach(function (it) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'item';
+        b.setAttribute('data-target', it.id);
+        b.innerHTML = '<span class="t"></span><span class="d"></span>';
+        b.querySelector('.t').textContent = it.title;
+        b.querySelector('.d').textContent = it.date;
+        b.addEventListener('click', function () { select(it.id); });
+        nav.appendChild(b);
+        buttons[it.id] = b;
+        var o = document.createElement('option');
+        o.value = it.id;
+        o.textContent = it.title + ' · ' + it.date.slice(5).replace('-', '.');
+        og.appendChild(o);
+      });
+      pick.appendChild(og);
     });
-    var placeholders = {};
-    Object.keys(PLACEHOLDER_OF_FRAME).forEach(function (fid) {
-      placeholders[fid] = document.getElementById(PLACEHOLDER_OF_FRAME[fid]);
+    pick.addEventListener('change', function () { select(pick.value); });
+
+    var frames = {}, placeholders = {}, frameState = {};
+    Object.keys(SRC).forEach(function (key) {
+      var ph = document.createElement('div');
+      ph.className = 'placeholder hidden';
+      ph.textContent = '불러오는 중...';
+      var f = document.createElement('iframe');
+      f.id = 'frame-' + key;
+      f.title = key + ' 시안';
+      wrap.appendChild(ph);
+      wrap.appendChild(f);
+      frames[key] = f;
+      placeholders[key] = ph;
+      frameState[key] = { ready: false, pendingTarget: null };
+      f.addEventListener('load', function () { onFrameLoaded(key); });
     });
 
     // ── 20260729_NewDesign.html(출석·룰렛) 내부 구조 ──
@@ -217,8 +316,8 @@
       sec04.style.display = (target === 'attendance') ? '' : 'none';
       return true;
     }
-    // 07-29 파일은 행운룰렛/출석체크 두 탭이 문서 하나(헤더 하나)를 공유한다.
-    // 파일 자체는 건드리지 않고, 탭 전환 시 wrapper가 헤더 3단(아이브로우/타이틀/리드)의
+    // 07-29 파일은 행운룰렛/출석체크 두 항목이 문서 하나(헤더 하나)를 공유한다.
+    // 파일 자체는 건드리지 않고, 항목 전환 시 wrapper가 헤더 3단(아이브로우/타이틀/리드)의
     // 텍스트+스타일을 정본 규격(ticket.html 실측치)으로 갈아끼운다. .i18n/.ko/.vi 구조를
     // 그대로 유지해서 기존 KO/VI 토글 CSS(#langsw:checked ~ ...)가 계속 먹히게 한다.
     var LM_HEADER_SELECTOR = '#dc-root > .sc-host > div > div:nth-child(1)';
@@ -252,34 +351,29 @@
       return true;
     }
 
-    // 07-29 파일 내부의 페이지 전환 네비("출석·룰렛"/"스플래시·로그인" 링크)는 wrapper 탭으로
-    // 대체되므로 숨긴다. 언어 토글(.pp-langtog 등 각 파일 자체 UI)은 더 이상 숨기지 않는다 —
-    // 개별 파일을 직접 열었을 때도 KO/VI 전환이 보여야 하기 때문(문서 참고: 토글은
-    // "개별 파일 자체 UI" + "통합본 상단 UI" 두 곳에 있고, 통합본 쪽이 #langsw를 원격 제어한다).
+    // 07-29 파일 내부의 페이지 전환 네비("출석·룰렛"/"스플래시·로그인" 링크)는 사이드 목록으로
+    // 대체되므로 숨긴다. 언어 토글(.pp-langtog 등 각 파일 자체 UI)은 숨기지 않는다 —
+    // 개별 파일을 직접 열었을 때도 KO/VI 전환이 보여야 하기 때문.
     function hideInternalChrome(doc) {
-      var els = doc.querySelectorAll('.pp-pagetog');
-      els.forEach(function (el) { el.style.display = 'none'; });
+      doc.querySelectorAll('.pp-pagetog').forEach(function (el) { el.style.display = 'none'; });
     }
 
-    var frameState = {}; // frameId -> {ready: bool, pendingTarget: string}
-    Object.keys(frames).forEach(function (id) { frameState[id] = { ready: false, pendingTarget: null }; });
-
-    function applySectionForFrame(frameId, target) {
-      var doc;
-      try { doc = frames[frameId].contentDocument; } catch (e) { doc = null; }
-      if (!doc) return;
-      if (frameId === 'frame-lm') {
-        applyLmSection(doc, target);
-        applyLmHeader(doc, target);
-      }
+    function docOf(key) {
+      try { return frames[key].contentDocument; } catch (e) { return null; }
     }
 
-    function whenFrameReady(frameId, checkFn, onReady) {
+    function applySectionForFrame(key, target) {
+      var doc = docOf(key);
+      if (!doc || key !== 'lm') return;
+      applyLmSection(doc, target);
+      applyLmHeader(doc, target);
+    }
+
+    function whenFrameReady(key, checkFn, onReady) {
       var tries = 0;
       var iv = setInterval(function () {
         tries++;
-        var doc;
-        try { doc = frames[frameId].contentDocument; } catch (e) { doc = null; }
+        var doc = docOf(key);
         var ok = doc && checkFn(doc);
         if (ok || tries > 80) {
           clearInterval(iv);
@@ -288,69 +382,51 @@
       }, 200);
     }
 
-    function onFrameLoaded(frameId, needsSectionSplit) {
-      // #langsw는 각 시안 파일의 내부 i18n 스크립트가 콘텐츠 안정화 후 만들어낸다.
+    function onFrameLoaded(key) {
+      if (!frames[key].getAttribute('src')) return;
+      // #langsw는 각 시안 파일의 내부 i18n 스크립트(또는 nd-kit.js)가 콘텐츠 안정화 후 만든다.
       // 이 시점이 곧 .pp-langtog/.pp-pagetog(있는 경우) 삽입 시점이기도 하므로,
       // 언어 토글 적용 + 내부 UI 숨김 모두 이 신호를 기다렸다가 해야 한다.
       var checkFn = function (doc) {
-        // 내 티켓 & 포인트(frame-mytickets)는 아직 자체 언어 토글이 없는 시안이라
-        // #langsw를 기다리면 매번 타임아웃까지 헛돌게 된다 — 준비되면 자동으로 반영된다.
-        if (frameId !== 'frame-mytickets' && !doc.getElementById('langsw')) return false;
-        if (frameId === 'frame-lm') return !!doc.querySelector(LM_CONTAINER_SELECTOR);
+        // 내 티켓 & 포인트는 자체 언어 토글이 없는 시안이라 #langsw를 기다리지 않는다.
+        if (key !== 'mytickets' && !doc.getElementById('langsw')) return false;
+        if (key === 'lm') return !!doc.querySelector(LM_CONTAINER_SELECTOR);
         return true;
       };
-
-      whenFrameReady(frameId, checkFn, function (doc) {
-        frameState[frameId].ready = true;
-        placeholders[frameId].classList.add('hidden');
-        if (needsSectionSplit && frameState[frameId].pendingTarget) {
-          applySectionForFrame(frameId, frameState[frameId].pendingTarget);
-        }
+      whenFrameReady(key, checkFn, function (doc) {
+        frameState[key].ready = true;
+        placeholders[key].classList.add('hidden');
+        if (key === 'lm' && frameState[key].pendingTarget) applySectionForFrame(key, frameState[key].pendingTarget);
         if (doc) hideInternalChrome(doc);
-        // 언어 상태를 방금 로드된 프레임에도 적용
-        applyLangToFrame(frameId);
-        // React 재렌더 등으로 섹션 표시/내부 UI가 되돌아오는 경우를 대비한 안전망
-        observeFrameForReapply(frameId, needsSectionSplit);
+        applyLangToFrame(key);
+        observeFrameForReapply(key);
       });
     }
 
-    function observeFrameForReapply(frameId, needsSectionSplit) {
-      var doc;
-      try { doc = frames[frameId].contentDocument; } catch (e) { doc = null; }
+    // React 재렌더 등으로 섹션 표시/내부 UI가 되돌아오는 경우를 대비한 안전망
+    function observeFrameForReapply(key) {
+      var doc = docOf(key);
       if (!doc || !window.MutationObserver) return;
       var root = doc.getElementById('dc-root') || doc.body;
       if (!root) return;
       var obs = new MutationObserver(function () {
-        // applySectionForFrame(frame-lm)이 헤더 innerHTML을 다시 쓰므로, 그 자체가 만드는
+        // applySectionForFrame(lm)이 헤더 innerHTML을 다시 쓰므로, 그 자체가 만드는
         // childList 변형을 이 옵저버가 다시 감지해 무한 루프에 빠지지 않도록 잠깐 끊는다.
         obs.disconnect();
-        if (needsSectionSplit && frameState[frameId].pendingTarget) {
-          applySectionForFrame(frameId, frameState[frameId].pendingTarget);
-        }
+        if (key === 'lm' && frameState[key].pendingTarget) applySectionForFrame(key, frameState[key].pendingTarget);
         hideInternalChrome(doc);
         obs.observe(root, { childList: true, subtree: true });
       });
       obs.observe(root, { childList: true, subtree: true });
     }
 
-    frames['frame-splash'].addEventListener('load', function () { onFrameLoaded('frame-splash', false); });
-    frames['frame-home'].addEventListener('load', function () { onFrameLoaded('frame-home', false); });
-    frames['frame-lm'].addEventListener('load', function () { onFrameLoaded('frame-lm', true); });
-    frames['frame-jackpot'].addEventListener('load', function () { onFrameLoaded('frame-jackpot', false); });
-    frames['frame-invite'].addEventListener('load', function () { onFrameLoaded('frame-invite', false); });
-    frames['frame-streak'].addEventListener('load', function () { onFrameLoaded('frame-streak', false); });
-    frames['frame-ticket'].addEventListener('load', function () { onFrameLoaded('frame-ticket', false); });
-    frames['frame-mytickets'].addEventListener('load', function () { onFrameLoaded('frame-mytickets', false); });
-    frames['frame-giftbox'].addEventListener('load', function () { onFrameLoaded('frame-giftbox', false); });
-    frames['frame-giftshop'].addEventListener('load', function () { onFrameLoaded('frame-giftshop', false); });
-
-    // ── 언어 토글: 합본 상단 단일 토글이 로드된 모든 iframe의 #langsw checkbox를 구동 ──
+    // ── 언어 토글: 단일 토글이 로드된 모든 iframe의 #langsw checkbox를 구동 ──
     var LANG_KEY = 'pp_0803_lang';
-    var currentLang = localStorage.getItem(LANG_KEY) === 'vi' ? 'vi' : 'ko';
+    var currentLang = 'ko';
+    try { currentLang = localStorage.getItem(LANG_KEY) === 'vi' ? 'vi' : 'ko'; } catch (e) {}
 
-    function applyLangToFrame(frameId) {
-      var doc;
-      try { doc = frames[frameId].contentDocument; } catch (e) { doc = null; }
+    function applyLangToFrame(key) {
+      var doc = docOf(key);
       if (!doc) return;
       var cb = doc.getElementById('langsw');
       if (!cb) return;
@@ -363,57 +439,61 @@
       cb.dispatchEvent(evt);
     }
 
-    function applyLangToAllLoadedFrames() {
-      Object.keys(frames).forEach(function (frameId) {
-        if (frameState[frameId].ready) applyLangToFrame(frameId);
-      });
-    }
-
+    var toggles = document.querySelectorAll('[data-lang-toggle]');
     function setLangToggleUI(lang) {
-      var t = document.getElementById('lang-toggle');
-      t.setAttribute('data-lang', lang);
-      var ko = t.querySelector('[data-l="ko"]'), vi = t.querySelector('[data-l="vi"]');
-      if (ko) ko.className = (lang === 'ko') ? 'on' : '';
-      if (vi) vi.className = (lang === 'vi') ? 'on' : '';
+      toggles.forEach(function (t) {
+        t.setAttribute('data-lang', lang);
+        t.querySelector('[data-l="ko"]').className = (lang === 'ko') ? 'on' : '';
+        t.querySelector('[data-l="vi"]').className = (lang === 'vi') ? 'on' : '';
+      });
     }
     setLangToggleUI(currentLang);
-
-    document.getElementById('lang-toggle').addEventListener('click', function () {
-      currentLang = (currentLang === 'vi') ? 'ko' : 'vi';
-      localStorage.setItem(LANG_KEY, currentLang);
-      setLangToggleUI(currentLang);
-      applyLangToAllLoadedFrames();
-    });
-
-    // ── 탭 전환 (지연 로딩: 최초 활성 탭만 즉시 로드, 나머지는 클릭 시점에 src 부여) ──
-    var tabs = document.querySelectorAll('.tab');
-    var currentFrameId = 'frame-splash';
-
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        var target = tab.getAttribute('data-target');
-        if (tab.classList.contains('active')) return;
-
-        tabs.forEach(function (t) { t.classList.remove('active'); });
-        tab.classList.add('active');
-
-        var frameId = FRAME_OF_TAB[target];
-        Object.keys(frames).forEach(function (fid) {
-          frames[fid].classList.toggle('active', fid === frameId);
-        });
-        currentFrameId = frameId;
-
-        var needsSectionSplit = (frameId === 'frame-lm');
-        if (needsSectionSplit) frameState[frameId].pendingTarget = target;
-
-        if (!frames[frameId].src) {
-          frames[frameId].src = SRC[frameId.replace('frame-', '')];
-        } else if (frameState[frameId].ready) {
-          placeholders[frameId].classList.add('hidden');
-          if (needsSectionSplit) applySectionForFrame(frameId, target);
-        }
+    toggles.forEach(function (t) {
+      t.addEventListener('click', function () {
+        currentLang = (currentLang === 'vi') ? 'ko' : 'vi';
+        try { localStorage.setItem(LANG_KEY, currentLang); } catch (e) {}
+        setLangToggleUI(currentLang);
+        Object.keys(frames).forEach(function (key) { if (frameState[key].ready) applyLangToFrame(key); });
       });
     });
+
+    // ── 항목 선택 (지연 로딩: 처음 고른 시안만 src 부여) ──
+    var currentId = null;
+    function select(id) {
+      var it = ITEMS[id];
+      if (!it || id === currentId) return;
+      currentId = id;
+      ORDER.forEach(function (k) { buttons[k].classList.toggle('active', k === id); });
+      buttons[id].setAttribute('aria-current', 'page');
+      ORDER.forEach(function (k) { if (k !== id) buttons[k].removeAttribute('aria-current'); });
+      pick.value = id;
+
+      var key = it.frame;
+      Object.keys(frames).forEach(function (k) {
+        frames[k].classList.toggle('active', k === key);
+        if (k !== key) placeholders[k].classList.add('hidden');
+      });
+      if (key === 'lm') frameState[key].pendingTarget = id;
+
+      if (!frames[key].getAttribute('src')) {
+        placeholders[key].classList.remove('hidden');
+        frames[key].src = SRC[key];
+      } else if (frameState[key].ready) {
+        placeholders[key].classList.add('hidden');
+        if (key === 'lm') applySectionForFrame(key, id);
+      } else {
+        placeholders[key].classList.remove('hidden');
+      }
+      try { history.replaceState(null, '', '#' + id); } catch (e) {}
+    }
+
+    var first = (location.hash || '').slice(1);
+    select(ITEMS[first] ? first : ORDER[0]);
+    window.addEventListener('hashchange', function () {
+      var h = location.hash.slice(1);
+      if (ITEMS[h]) select(h);
+    });
+  })();
   </script>
 </body>
 </html>
