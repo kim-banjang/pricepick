@@ -73,15 +73,20 @@
     width: 100%;
     text-align: left;
     font: inherit;
-    display: block;
-    padding: 6px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    padding: 5px 8px;
     border-radius: var(--r-sm);
     cursor: pointer;
     color: var(--text1);
     transition: background .15s ease, color .15s ease;
   }
-  .item .t { display: block; font-size: 13px; font-weight: 700; line-height: 1.3; letter-spacing: -.01em; word-break: keep-all; }
-  .item .d { display: block; margin-top: 2px; font-size: 11px; font-weight: 400; line-height: 1.3; color: var(--text3); font-variant-numeric: tabular-nums; }
+  /* 제목·날짜 한 줄 — 제목은 말줄임, 날짜는 오른쪽 끝(연도는 목록 맨 아래에 한 번) */
+  .item .t { flex: 1 1 auto; min-width: 0; font-size: 13px; font-weight: 700; line-height: 18px; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item .d { flex-shrink: 0; font-size: 10px; font-weight: 400; line-height: 18px; color: var(--text3); font-variant-numeric: tabular-nums; }
+  .year { padding: 14px 8px 0; font-size: 11px; font-weight: 400; color: var(--text3); }
   .item:hover { background: var(--bg); }
   .item.active { background: var(--sub-4); color: var(--main-dark); }
   .item.active .d { color: var(--sub-1); }
@@ -268,7 +273,8 @@
         b.setAttribute('data-target', it.id);
         b.innerHTML = '<span class="t"></span><span class="d"></span>';
         b.querySelector('.t').textContent = it.title;
-        b.querySelector('.d').textContent = it.date;
+        b.querySelector('.d').textContent = it.date.slice(5);
+        b.title = it.title + ' · ' + it.date;
         b.addEventListener('click', function () { select(it.id); });
         nav.appendChild(b);
         buttons[it.id] = b;
@@ -279,6 +285,10 @@
       });
       pick.appendChild(og);
     });
+    var yr = document.createElement('div');
+    yr.className = 'year';
+    yr.textContent = '날짜는 모두 2026년';
+    nav.appendChild(yr);
     pick.addEventListener('change', function () { select(pick.value); });
 
     var frames = {}, placeholders = {}, frameState = {};
