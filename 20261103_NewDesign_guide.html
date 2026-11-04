@@ -222,9 +222,66 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 @media (prefers-reduced-motion:reduce){.tour *,.tour,.ln{transition:none!important;animation:none!important}}
 
-/* New Design 시안 겉옷 — 헤더 3단(nd-kit 규격)과 시안 뿌리. 가이드 본문 규칙은 그대로 */
+/* ── New Design 시안 겉옷: 헤더 3단(nd-kit 규격)과 시안 뿌리. 가이드 본문 규칙은 그대로 ── */
 #dc-root{display:flex;flex-direction:column;align-items:center;width:100%}
 #pp-nd-header{display:flex;flex-direction:column;align-self:stretch;max-width:880px;width:100%;margin:28px auto 36px;padding:0 8px}
+
+/* ── 전체 펼쳐 보기: 여덟 장면을 그 단계 상태로 멈춰 나란히 (다른 시안의 나란히 보기와 같은 줄 배치) ── */
+.allv{align-self:stretch;width:100%;display:flex;flex-direction:column;align-items:center}
+.allv[hidden]{display:none}
+.stills{--k:.8;align-self:stretch;display:flex;gap:40px;padding:8px 40px 28px;overflow-x:auto;scrollbar-width:thin}
+.stills::before,.stills::after{content:'';flex:1 0 0}
+.still-card{flex:none;display:flex;flex-direction:column;align-items:flex-start;gap:14px;text-align:left;cursor:pointer;border-radius:24px}
+.still-card:focus-visible{outline:2px solid var(--main);outline-offset:6px}
+.still-shell{display:block;position:relative;width:calc(395px * var(--k));height:calc(832px * var(--k));transition:transform .18s ease}
+.still-card:hover .still-shell{transform:translateY(-4px)}
+.still-shell .phone{display:block;position:absolute;left:0;top:0;transform:scale(var(--k));transform-origin:0 0;pointer-events:none}
+.still-shell .screen{display:block}
+.still-cap{display:flex;align-items:center;gap:10px;margin:0 2px;max-width:calc(395px * var(--k))}
+.still-no{flex:none;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--main);color:#fff;font-size:13px;font-weight:800}
+.still-t{font-size:15px;font-weight:700;color:var(--text1);line-height:1.35;word-break:keep-all}
+.stills .phone *,.stills .phone *::before,.stills .phone *::after{animation:none!important;transition:none!important}
+.allv-hint{font-size:var(--fs-caption);color:var(--text3);margin-bottom:12px}
+@media (max-width:1100px){
+  .stills{--k:.5;display:grid;grid-template-columns:repeat(4,max-content);justify-content:center;gap:28px 20px;overflow:visible;padding:8px 16px 28px}
+  .stills::before,.stills::after{display:none}
+  .still-t{font-size:13px}
+}
+@media (max-width:860px){.stills{grid-template-columns:repeat(3,max-content)}}
+@media (max-width:660px){.stills{--k:.42;grid-template-columns:repeat(2,max-content);gap:24px 14px}}
+
+/* ── 구조 설명 (접었다 펼친다) ── */
+.ddoc{align-self:stretch;max-width:880px;width:100%;margin:12px auto 0;background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.ddoc summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;user-select:none}
+.ddoc summary::-webkit-details-marker{display:none}
+.ddoc summary b{font-size:var(--fs-section);font-weight:800;letter-spacing:-.02em;color:var(--text1)}
+.ddoc summary .hint{display:inline-flex;align-items:center;gap:4px;font-size:var(--fs-caption);font-weight:700;color:var(--main-dark);white-space:nowrap}
+.ddoc summary .hint svg{transition:transform .2s ease}
+.ddoc[open] summary .hint svg{transform:rotate(180deg)}
+.ddoc summary .hint .c{display:none}
+.ddoc[open] summary .hint .o{display:none}
+.ddoc[open] summary .hint .c{display:inline}
+.ddoc[open] summary{border-bottom:1px solid var(--border)}
+.ddoc .body{padding:4px 22px 28px;display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.ddoc section{padding-top:22px;min-width:0}
+.ddoc section.wide{grid-column:1 / -1}
+.ddoc h4{font-size:var(--fs-body);font-weight:800;color:var(--main-dark);letter-spacing:-.01em;margin-bottom:10px}
+.ddoc p,.ddoc li{font-size:14px;line-height:1.6;color:var(--text2);word-break:keep-all}
+.ddoc b{color:var(--text1);font-weight:700}
+.ddoc ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.ddoc li{position:relative;padding-left:12px}
+.ddoc li::before{content:'';position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--sub-2)}
+.ddoc p + table,.ddoc table + p{margin-top:10px}
+.ddoc table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;font-size:13px}
+.ddoc th{background:var(--sub-4);color:var(--main-dark);font-weight:700;text-align:left;padding:8px 10px;white-space:nowrap}
+.ddoc td{padding:9px 10px;border-top:1px solid var(--border);color:var(--text2);vertical-align:top;line-height:1.5;word-break:keep-all}
+.ddoc td b{display:block}
+.ddoc td.n{width:36px;text-align:center;font-weight:800;color:var(--main);font-variant-numeric:tabular-nums}
+.ddoc td.k{width:34%}
+.ddoc .tag{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:700;line-height:1.6;white-space:nowrap}
+.ddoc .tag.p{background:var(--sub-4);color:var(--main-dark)}
+.ddoc .tag.g{background:#FFF6D6;color:#9A7000}
+@media (max-width:760px){.ddoc .body{grid-template-columns:1fr;padding:4px 16px 24px}.ddoc summary{padding:16px}}
 </style>
 </head>
 <body>
@@ -237,15 +294,93 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 </div>
 
 <div class="tabs" role="tablist">
-  <button role="tab" class="on" data-tab="a">가이드 투어</button>
+  <button role="tab" class="on" data-tab="all">전체 펼쳐 보기</button>
+  <button role="tab" data-tab="a">가이드 투어</button>
   <button role="tab" data-tab="b">쇼핑 가이드 페이지</button>
 </div>
 
-<div class="phone">
+<div class="phone" id="mainPhone" hidden>
   <div class="screen" id="screenA" data-panel="a"></div>
   <div class="screen" id="screenB" data-panel="b" hidden></div>
 </div>
 
+<section class="allv" id="allView" data-panel="all">
+  <p class="allv-hint">장면을 누르면 「가이드 투어」가 그 단계부터 열려요</p>
+  <div class="stills" id="stills"></div>
+
+  <details class="ddoc" open>
+    <summary><b>구조 설명</b><span class="hint"><span class="c">접기</span><span class="o">펼치기</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+    <div class="body">
+      <section>
+        <h4>무엇인가</h4>
+        <p>경유 쇼핑으로 티켓이 쌓이는 구조를 처음 쓰는 사람에게 설명하는 안내. 화면 두 벌이다.</p>
+        <table>
+          <tr><th>화면</th><th>내용</th></tr>
+          <tr><td class="k"><b>가이드 투어</b></td><td>홈 위에 덮여 뜨는 7단계 안내</td></tr>
+          <tr><td class="k"><b>쇼핑 가이드 페이지</b></td><td>전체 흐름과 단계별 카드를 모아 둔 화면</td></tr>
+        </table>
+      </section>
+      <section>
+        <h4>어디서 열리나</h4>
+        <table>
+          <tr><th>들어오는 곳</th><th>열리는 화면</th></tr>
+          <tr><td class="k"><b>홈 상단 GUIDE 버튼</b></td><td>가이드 투어 — 언제든 처음부터</td></tr>
+          <tr><td class="k"><b>마이 › 쇼핑 적립 방법</b></td><td>쇼핑 가이드 페이지</td></tr>
+          <tr><td class="k"><b>투어 하단 「가이드 자세히 보기」</b></td><td>쇼핑 가이드 페이지</td></tr>
+          <tr><td class="k"><b>가이드 페이지의 흐름도 카드</b></td><td>가이드 투어 — 처음부터</td></tr>
+        </table>
+      </section>
+      <section class="wide">
+        <h4>언제 자동으로 뜨나</h4>
+        <table>
+          <tr><th>규칙</th><th>내용</th></tr>
+          <tr><td class="k"><b>처음 한 번</b></td><td>가입 후 홈에 처음 들어온 시점에 한 번만 자동으로 뜬다</td></tr>
+          <tr><td class="k"><b>닫으면 끝</b></td><td>건너뛰기·X·마지막 「시작하기」 어느 쪽으로 닫아도 다시 뜨지 않는다</td></tr>
+          <tr><td class="k"><b>회원 정보에 저장</b></td><td>본 시점을 회원 정보에 저장한다. 앱을 지웠다 깔거나 기기를 바꿔도 다시 안 뜬다</td></tr>
+          <tr><td class="k"><b>다시 보기</b></td><td>홈 상단 GUIDE 버튼</td></tr>
+        </table>
+      </section>
+      <section class="wide">
+        <h4>7단계 흐름</h4>
+        <p>세로로 긴 흐름도 하나를 화면이 따라 내려가며 보여준다. 노드는 지워지지 않고 쌓인 채 위로 밀려난다.</p>
+        <table>
+          <tr><th>단계</th><th>노드</th><th>제목 / 설명</th></tr>
+          <tr><td class="n">1</td><td class="k">프라이스픽 스플래시</td><td><b>프라이스픽을 먼저 열어요</b>여기를 거쳐야 티켓이 쌓여요</td></tr><tr><td class="n">2</td><td class="k">제휴몰 로고 5개 + 쿠팡 카드</td><td><b>쓰던 쇼핑몰 그대로 들어가요</b>평소처럼 사기만 하면 돼요</td></tr><tr><td class="n">3</td><td class="k">쇼핑백·택배</td><td><b>상품은 집으로, 티켓은 여기로</b>구매가 확인되면 티켓이 들어와요</td></tr><tr><td class="n">4</td><td class="k">랜덤 티켓(빨강)</td><td><b>아직은 랜덤 티켓이에요</b>구매가 확정될 때까지 기다려요</td></tr><tr><td class="n">5</td><td class="k">확정 티켓(금색) + 초록 체크</td><td><b>확정되면 바로 쓸 수 있어요</b>랜덤 티켓이 티켓으로 바뀌어요</td></tr><tr><td class="n">6</td><td class="k">포인트 코인</td><td><b>포인트도 티켓이 돼요</b>10P 모으면 티켓 한 장</td></tr><tr><td class="n">7</td><td class="k">기프티콘·커피</td><td><b>티켓으로 기프티콘을 바꿔요</b>커피부터 편의점까지</td></tr>
+        </table>
+      </section>
+      <section>
+        <h4>갈래 구조</h4>
+        <p>3단계 다음 두 갈래로 갈라졌다가 7단계에서 합류한다. 선 색으로 길을 구분한다.</p>
+        <table>
+          <tr><th>갈래</th><th>흐름</th></tr>
+          <tr><td class="k"><span class="tag p">왼쪽 · 보라</span></td><td>랜덤 티켓 → 「구매 확정」 → 확정 티켓</td></tr>
+          <tr><td class="k"><span class="tag g">오른쪽 · 골드</span></td><td>포인트 → 「10P = 티켓 1장」</td></tr>
+          <tr><td class="k"><b>합류</b></td><td>두 갈래가 기프티콘으로 모인다</td></tr>
+        </table>
+      </section>
+      <section>
+        <h4>움직임</h4>
+        <table>
+          <tr><th>순서</th><th>일어나는 일</th></tr>
+          <tr><td class="n">1</td><td>화살표가 자란다</td></tr>
+          <tr><td class="n">2</td><td>다음 노드가 튕기며 나타난다</td></tr>
+          <tr><td class="n">3</td><td>화면이 따라 내려간다</td></tr>
+          <tr><td class="n">4</td><td>지나간 노드는 흐려지고 문구 카드 위에서 사라진다</td></tr>
+        </table>
+        <p>노드 위치는 화면 실제 크기를 재서 가로·세로 가운데에 맞춘다.</p>
+      </section>
+      <section class="wide">
+        <h4>쓰인 그림</h4>
+        <table>
+          <tr><th>그림</th><th>만든 방식</th></tr>
+          <tr><td class="k"><b>오브젝트</b></td><td>이미지 생성 도구로 만든 배경 없는 입체 그림</td></tr>
+          <tr><td class="k"><b>티켓 두 종</b></td><td>김반장이 만든 2D 도안을 그대로 쓰고 두께·광택·그림자만 입혀 입체로 보이게 했다</td></tr>
+          <tr><td class="k"><b>제휴몰 로고</b></td><td>데모가 쓰는 실제 로고 파일</td></tr>
+        </table>
+      </section>
+    </div>
+  </details>
+</section>
 </div>
 
 <template id="tpl">
@@ -613,18 +748,48 @@ function mountTour(screen, onClose) {
     idx < STEPS.length - 1 ? go(idx + 1) : final();
   });
 
-  return { open, close, screen };
+  /* 전체 펼쳐 보기용: i 단계(또는 마지막 장)가 다 그려진 상태로 멈춘다 */
+  function still(i) {
+    stop();
+    tour.classList.add('open');
+    if (i >= STEPS.length) return final();
+    idx = i;
+    setText(i, false);
+    settle(i + 1);
+    bars.forEach((b, k) => b.classList.toggle('done', k <= i));
+  }
+  return { open, close, screen, still, final };
 }
 
 const tabBtns = [...document.querySelectorAll('.tabs button')];
 function showTab(t) {
   tabBtns.forEach(b => b.classList.toggle('on', b.dataset.tab === t));
-  document.querySelectorAll('.screen').forEach(s => s.hidden = s.dataset.panel !== t);
+  document.querySelectorAll('.screen[data-panel]').forEach(s => s.hidden = s.dataset.panel !== t);
+  document.getElementById('mainPhone').hidden = t === 'all';
+  document.getElementById('allView').hidden = t !== 'all';
+  if (t === 'all') stills.forEach((T, i) => T.still(i));
 }
 /* 탭 A는 투어만, 탭 B는 페이지만 그린다. 투어를 닫으면 페이지(탭 B)로 */
 const A = mountTour(document.getElementById('screenA'), () => showTab('b'));
 const B = mountPage(document.getElementById('screenB'));
-A.open(0);
+
+/* 전체 펼쳐 보기: 1~7단계 + 마지막 장을 나란히. 누르면 「가이드 투어」가 그 단계부터 */
+const stillsEl = document.getElementById('stills');
+stillsEl.innerHTML = [...STEPS.map(s => s.t), '한눈에 보는 프라이스픽'].map((t, i) =>
+  `<div class="still-card" role="button" tabindex="0" data-still="${i}" aria-label="${i + 1}단계 · ${t}">` +
+  `<span class="still-shell"><span class="phone"><span class="screen"></span></span></span>` +
+  `<span class="still-cap"><span class="still-no">${i + 1}</span><span class="still-t">${t}</span></span></div>`).join('');
+const stills = [...stillsEl.querySelectorAll('.still-card')].map(c => mountTour(c.querySelector('.screen'), () => {}));
+function openFromStill(i) {
+  showTab('a');
+  A.open(Math.min(i, STEPS.length - 1));
+  if (i >= STEPS.length) A.final();
+}
+stillsEl.querySelectorAll('.still-card').forEach(c => {
+  c.addEventListener('click', () => openFromStill(+c.dataset.still));
+  c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFromStill(+c.dataset.still); } });
+});
+showTab('all');
 
 /* 페이지의 흐름도·단계 카드를 누르면 탭 A 투어로 재생 */
 B.screen.querySelector('[data-act="overview"]').addEventListener('click', () => { showTab('a'); A.open(0); });
