@@ -113,7 +113,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nd.lift .pop::after{content:'';position:absolute;left:50%;bottom:-20px;width:var(--fw);height:16px;margin-left:calc(var(--fw) / -2);border-radius:50%;background:rgba(108,74,182,.22);filter:blur(8px);z-index:-1;pointer-events:none}
 /* 노드는 카드 없이 오브젝트만. 노드 박스 전체를 오브젝트가 차지, 그림자는 윤곽을 따라(drop-shadow). 글로우·바닥 타원은 .lift가 유지 */
 .ncard{width:100%;height:100%}
-.nd .ncard,.nd .malls{transform:rotate(var(--rot,0deg))}
 .ncard img{display:block;width:100%;height:100%;object-fit:contain}
 .ncard > img,.ncard > .obj,.ncard > .tks{filter:drop-shadow(0 10px 18px rgba(108,74,182,.30))}
 /* 정면 폰 + 프라이스픽 스플래시 화면(이전: 앱 아이콘 pricepick-appicon.png, 홈 화면 pricepick-home.png, 파일 보존). 폰 이미지(512x816)의 화면 영역 실측: left 15.2% top 9.6% w 69.7% h 82.1%
@@ -312,18 +311,17 @@ const CV_H = 2505;
    화살표 x 도 같은 기준. 캔버스(폭 CW)는 화면 실제 폭의 가운데에 놓이고 좁은 화면이면 노드·라벨이 다 들어오게 줄어든다(fitX) */
 const CW = 375, CX = CW / 2;
 /* 지그재그: 단일 노드는 가운데에서 좌우로 번갈아(1단계 -26 · 2단계 +22 · 3단계 -20 · 7단계 +18),
-   갈래(4~6단계)는 좌우 대칭(±72.5)을 유지한 채 묶음 전체를 -12 밀어 축을 흔든다.
-   rot: 그림 기울기(deg) — 라벨·알약은 수평 그대로 */
+   갈래(4~6단계)는 좌우 대칭(±72.5)을 유지한 채 묶음 전체를 -12 밀어 축을 흔든다. */
 const NODES = {
-  phone:  { x: -26,   y: 40,   w: 218, h: 472, img: 'sp', lab: '프라이스픽', at: 'b', edge: true, rot: -4 },
-  mall:   { x: 22,    y: 640,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b', rot: 3 },
-  bag:    { x: -20,   y: 898,  w: 279, h: 308, img: 'o2', lab: '구매 완료', at: 'b', rot: -6 },
-  wait:   { x: -84.5, y: 1362, w: 227, h: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b', edge: true, rot: 5 },
+  phone:  { x: -26,   y: 40,   w: 218, h: 472, img: 'sp', lab: '프라이스픽', at: 'b', edge: true },
+  mall:   { x: 22,    y: 640,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
+  bag:    { x: -20,   y: 898,  w: 279, h: 308, img: 'o2', lab: '구매 완료', at: 'b' },
+  wait:   { x: -84.5, y: 1362, w: 227, h: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b', edge: true },
   ok:     { x: -84.5, y: 1755, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
-  ticket: { x: -84.5, y: 1830, w: 261, h: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b', edge: true, rot: -3 },
-  coin:   { x: 60.5,  y: 1595, w: 227, h: 162, img: 'o5', lab: '포인트', at: 'b', edge: true, rot: 6 },
+  ticket: { x: -84.5, y: 1830, w: 261, h: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b', edge: true },
+  coin:   { x: 60.5,  y: 1595, w: 227, h: 162, img: 'o5', lab: '포인트', at: 'b', edge: true },
   rate:   { x: 60.5,  y: 1900, w: 130, h: 30,  html: '<span class="pill y">10P = 티켓 1장</span>' },
-  gift:   { x: 18,    y: 2248, w: 301, h: 185, img: 'o6', lab: '기프티콘', at: 'b', rot: -4 },
+  gift:   { x: 18,    y: 2248, w: 301, h: 185, img: 'o6', lab: '기프티콘', at: 'b' },
 };
 /* 단계별로 가로 맞춤(fitX)에 넣을 노드 — 그 단계 화면에 같이 보이는 노드. 갈래·합류 단계는 좌우 갈래를 함께 */
 const BRANCH = ['wait', 'ok', 'ticket', 'coin', 'rate'];
@@ -421,7 +419,7 @@ function canvasHTML() {
   }).join('');
   const nodes = Object.entries(NODES).map(([k, n]) =>
     `<div class="nd${n.html && k !== 'mall' ? '' : ' lift'}${n.edge ? ' edge' : ''}" data-k="${k}" style="left:${CX + n.x - n.w / 2}px;top:${n.y}px;width:${n.w}px;height:${n.h}px;` +
-    `--gw:${n.w + 60}px;--gh:${n.h + 50}px;--fw:${Math.round(n.w * .72)}px;--rot:${n.rot || 0}deg">` +
+    `--gw:${n.w + 60}px;--gh:${n.h + 50}px;--fw:${Math.round(n.w * .72)}px">` +
     `<div class="fx"><div class="pop">${n.img ? `<div class="ncard">${objHTML(n.img)}</div>` : n.html}` +
     `${n.lab ? `<span class="lab ${n.at}">${n.lab}</span>` : ''}</div></div></div>`).join('');
   return `<div class="cv"><svg width="${CW}" height="${CV_H}" viewBox="0 0 ${CW} ${CV_H}">${svg}</svg>${nodes}</div>`;
@@ -492,7 +490,7 @@ function mountTour(screen, onClose) {
   const later = (ms, fn) => timers.push(setTimeout(fn, ms));
   const stop = () => { timers.forEach(clearTimeout); timers = []; };
   const nodesOf = i => STEPS[i].seq.flat().filter(k => NODES[k]);
-  const camTo = (y, s = 1) => { cv.style.transform = `translateY(${y}px) scale(${s})`; };
+  const camTo = (y, s = 1, x = 0) => { cv.style.transform = `translate(${x}px, ${y}px) scale(${s})`; };
   /* 카메라: i 단계 노드 묶음(라벨 포함)의 세로 중앙을 「진행 바 실제 bottom ~ 문구 카드 실제 top」 구간의 세로 중앙에 둔다.
      두 기준선은 매번 화면에서 잰다(getBoundingClientRect) — 화면 높이·안전 영역·문구 줄 수가 달라도 맞는다.
      폰을 transform: scale 로 줄여 보여줘도 맞게 화면 좌표를 투어 좌표로 되돌린다.
@@ -500,20 +498,21 @@ function mountTour(screen, onClose) {
   const vp = $('[data-vp]'), prog = $('[data-prog]'), skipBtn = $('[data-act="skip"]'), tcard = $('.tcard');
   const toTour = v => { const t = tour.getBoundingClientRect(); return (v - t.top) * (tour.offsetHeight / (t.height || 1)); };
   const topOf = e => toTour(e.getBoundingClientRect().top), botOf = e => toTour(e.getBoundingClientRect().bottom);
-  let camIdx = 0, kx = 1;
+  let camIdx = 0, kx = 1, rgt = 0;
   /* 가로: 화면 실제 폭(getBoundingClientRect, 축소 보정)을 재서 캔버스를 가운데에 두고,
      노드·라벨이 좌우 EDGE 안쪽에 다 들어오지 않으면 캔버스를 그만큼 줄인다(transform-origin 이 캔버스 가로 중심이라 줄여도 가운데) */
   /* keys: 이번 단계 화면에 같이 보이는 노드(FIT_KEYS). 없으면 전체(마지막 장).
-     지그재그로 좌우가 비대칭이라 가운데에서 가장 먼 쪽 끝으로 맞춘다. 기울인 그림은 회전한 외곽 폭으로 잰다 */
+     지그재그로 좌우가 비대칭이라 가운데에서 가장 먼 쪽 끝으로 맞춘다. */
   function fitX(keys) {
     const t = tour.getBoundingClientRect(), W = t.width * (tour.offsetHeight / (t.height || 1));
     cv.style.left = (W - CW) / 2 + 'px';
-    let half = 0;
+    let half = 0; rgt = -1e9;
     (keys || Object.keys(NODES)).forEach(k => {
-      const d = NODES[k], lab = el(k).querySelector('.lab'), r = (d.rot || 0) * Math.PI / 180;
+      const d = NODES[k], lab = el(k).querySelector('.lab');
       /* 현재 단계 노드는 1.06배로 커진다(.nd.cur .fx, 가장자리 노드 제외) — 그만큼 더 잡는다 */
-      const bw = (d.w * Math.abs(Math.cos(r)) + d.h * Math.abs(Math.sin(r))) * (d.edge ? 1 : 1.06);
+      const bw = d.w * (d.edge ? 1 : 1.06);
       half = Math.max(half, Math.abs(d.x) + Math.max(bw, lab ? lab.offsetWidth : 0) / 2);
+      rgt = Math.max(rgt, d.x + Math.max(bw, lab ? lab.offsetWidth : 0) / 2);
     });
     kx = Math.min(1, (W - 2 * EDGE) / (2 * half));
   }
@@ -521,12 +520,10 @@ function mountTour(screen, onClose) {
     camIdx = i;
     if (!tour.offsetHeight) return;
     const ks = nodesOf(i);
-    /* 노드 묶음의 실제 외곽: 기울인 그림은 회전한 외곽 높이, 현재 노드 1.06배(가장자리 노드 제외), 라벨(아래 8px + 18px)까지 */
+    /* 노드 묶음의 실제 외곽: 현재 노드 1.06배(가장자리 노드 제외), 라벨(아래 8px + 18px)까지 */
     const box = ks.map(k => {
-      const d = NODES[k], r = (d.rot || 0) * Math.PI / 180, sc = d.edge ? 1 : 1.06;
-      const cy = d.y + d.h / 2, hh = (d.w * Math.abs(Math.sin(r)) + d.h * Math.abs(Math.cos(r))) * sc / 2;
-      const bw = (d.w * Math.abs(Math.cos(r)) + d.h * Math.abs(Math.sin(r))) * sc;
-      return { t: cy - hh, b: cy + Math.max(hh, (d.h / 2 + (d.lab ? 26 : 0)) * sc), l: d.x - bw / 2 };
+      const d = NODES[k], sc = d.edge ? 1 : 1.06, cy = d.y + d.h / 2, lab = el(k).querySelector('.lab');
+      return { t: cy - d.h * sc / 2, b: cy + (d.h / 2 + (d.lab ? 26 : 0)) * sc, l: d.x - Math.max(d.w, lab ? lab.offsetWidth : 0) * sc / 2 };
     });
     const top = Math.min(...box.map(o => o.t)), bot = Math.max(...box.map(o => o.b)), left = Math.min(...box.map(o => o.l));
     fitX(FIT_KEYS[i]);
@@ -534,10 +531,16 @@ function mountTour(screen, onClose) {
     const chrome = Math.max(barBot, botOf(skipBtn));
     /* 세로로 짧은 화면(예: 320x568)에서 이번 단계 노드 묶음이 진행 바~문구 카드 사이보다 크면 그 안에 들어오게 더 줄인다 */
     let k = Math.min(kx, (cardTop - barBot - 16) / (bot - top));
-    /* 지그재그로 왼쪽에 놓인 노드가 「건너뛰기」와 가로로 겹치면, 그 버튼 아래(chrome + 4)부터 들어오게 더 줄인다 */
+    /* 지그재그로 왼쪽에 놓인 노드가 「건너뛰기」와 겹치면 둘 중 덜 줄이는 쪽을 쓴다:
+       (가) 그 버튼 아래(chrome + 4)부터 들어오게 줄이거나, (나) 캔버스를 오른쪽으로 밀어 버튼 오른쪽(+8)부터 오게 한다.
+       (나)는 이번 단계에 보이는 노드(FIT_KEYS) 오른쪽 끝이 화면 안(EDGE)에 남는 만큼만 키운다 */
     const t = tour.getBoundingClientRect(), sx = tour.offsetWidth / (t.width || 1);
     const W = t.width * sx, skipR = (skipBtn.getBoundingClientRect().right - t.left) * sx;
-    if (W / 2 + k * left < skipR + 8 && mid - k * (bot - top) / 2 < chrome + 4) k = Math.min(k, 2 * (mid - chrome - 4) / (bot - top));
+    let dx = 0;
+    if (W / 2 + k * left < skipR + 8 && mid - k * (bot - top) / 2 < chrome + 4) {
+      const kv = 2 * (mid - chrome - 4) / (bot - top), kh = Math.min(k, (W - EDGE - skipR - 8) / (rgt - left));
+      if (kh > kv) { k = kh; dx = Math.max(0, skipR + 8 - (W / 2 + k * left)); } else k = Math.min(k, kv);
+    }
     const y = mid - k * (top + bot) / 2;
     /* 위쪽 흐림: 진행 바·「건너뛰기」 실제 bottom(chrome)에서 투명 → 이번 단계 첫 화살표(없으면 노드) 바로 위에서 불투명.
        구간의 70% 지점까지는 20%만 보이게 해 지나간 노드(2단계의 스플래시 등)가 잘린 조각으로 남지 않고 흐려져 사라진다.
@@ -549,7 +552,7 @@ function mountTour(screen, onClose) {
     vp.style.setProperty('--mm', m0 + (m1 - m0) * .7 + 'px');
     vp.style.setProperty('--m1', m1 + 'px');
     vp.style.setProperty('--clip', cardTop + 'px');
-    camTo(y, k);
+    camTo(y, k, dx);
   }
   /* 마지막 장: 흐름도 전체를 「제목 아래 ~ 버튼 위」 실제 구간에 맞춰 축소 */
   function finLayout() {
