@@ -80,7 +80,7 @@
     transition: background .15s ease, color .15s ease;
   }
   .item + .item { margin-top: 2px; }
-  .item .t { display: block; font-size: 14px; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; }
+  .item .t { display: block; font-size: 14px; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; word-break: keep-all; }
   .item .d { display: block; margin-top: 2px; font-size: 12px; font-weight: 500; color: var(--text3); font-variant-numeric: tabular-nums; }
   .item:hover { background: var(--bg); }
   .item.active { background: var(--sub-4); color: var(--main-dark); }
@@ -467,6 +467,8 @@
       buttons[id].setAttribute('aria-current', 'page');
       ORDER.forEach(function (k) { if (k !== id) buttons[k].removeAttribute('aria-current'); });
       pick.value = id;
+      // 목록 아래쪽 항목이 골라져도 사이드바가 따라가서 선택 표시가 보이게
+      if (buttons[id].scrollIntoView) buttons[id].scrollIntoView({ block: 'nearest' });
 
       var key = it.frame;
       Object.keys(frames).forEach(function (k) {
