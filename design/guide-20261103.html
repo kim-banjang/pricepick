@@ -64,8 +64,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mini{position:relative;height:calc(1770px * var(--s));overflow:hidden;pointer-events:none}
 .mini .cv{left:50%;margin-left:-585px;top:calc(-370px * var(--s));transform:scale(var(--s));transform-origin:50% 0}
 .mini .lab{display:none}
-.mini .fl{display:none}
-.mini .rv{stroke-width:40}
+.mini .ln{stroke-width:9;stroke-dasharray:24 18}
+.mini .hd{stroke-width:7}
+.mini .rv{stroke-width:16}
+.mini .hd{transform:scale(1.5);transform-box:fill-box;transform-origin:50% 100%}
 
 .steps{padding:24px 16px 48px;display:flex;flex-direction:column;gap:12px}
 .step{display:flex;gap:12px;align-items:center;width:100%;padding:14px;background:#fff;border-radius:var(--r-lg);text-align:left;
@@ -86,23 +88,23 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* 흐름도 캔버스 (투어·축소판 공용) */
 .cv{position:absolute;top:0;left:0;width:1170px;height:2533px;transform-origin:585px 0}
-.cv svg{position:absolute;inset:0;overflow:visible}
-/* 화살표: 바탕은 갈래 색을 연하게 한 실선(.ln, 출발 2.5px → 도착 4.5px 로 굵어지는 테이퍼 — 외곽선을 채움으로 그린다).
-   그 위로 짧은 진한 세그먼트(.fl, 전체 길이의 18%)가 선을 따라 흐른다(보라 2.0초 · 골드 2.4초).
-   그려지는 효과는 마스크 안의 실선(.rv)이 자라며 드러낸다. 화살촉(.hd)은 꼭짓점을 둥글게 깎은 삼각형, 선 끝 굵기에서 이어진다 */
-.ln{fill:var(--lnc);stroke:none}
-.fl{fill:none;stroke:var(--line);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:calc(var(--L) * .18px) calc(var(--L) * 1px);animation:flowSeg var(--fd,2s) linear infinite}
-@keyframes flowSeg{from{stroke-dashoffset:calc(var(--L) * .18px)}to{stroke-dashoffset:calc(var(--L) * -1px)}}
-.rv{fill:none;stroke:#fff;stroke-width:16;stroke-linecap:round;stroke-dasharray:calc(var(--L) * 1px);stroke-dashoffset:calc(var(--L) * 1px);transition:stroke-dashoffset 560ms ease-out}
-/* 다 그려지는 순간 흐르는 빛줄기가 한 번 굵어졌다 돌아온다(220ms) */
-.tour .ar.on .fl{animation:flowSeg var(--fd,2s) linear infinite,thick 220ms ease-in-out 560ms}
-@keyframes thick{50%{stroke-width:4.2}}
+.cv > svg{position:absolute;inset:0;overflow:visible}
+/* 화살표: 보이는 선은 점선(아래로 흐름), 그려지는 효과는 마스크 안의 실선이 자라며 드러낸다 */
+.ln{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-dasharray:12 10;animation:flow var(--fd,1.8s) linear infinite}
+.rv{fill:none;stroke:#fff;stroke-width:12;stroke-linecap:round;stroke-dasharray:calc(var(--L) * 1px);stroke-dashoffset:calc(var(--L) * 1px);transition:stroke-dashoffset 560ms ease-out}
+/* 다 그려지는 순간 선이 한 번 굵어졌다 돌아온다(4 → 5.5 → 4px, 220ms) */
+.tour .ar.on .ln{animation:flow var(--fd,1.8s) linear infinite,thick 220ms ease-in-out 560ms}
 /* 다 그려진 뒤 화살촉이 진행 방향(--hx·--hy, 2px)으로 한 번 나갔다 돌아온다, 1.8초마다 */
 .tour .ar.on .hd{animation:nudge 1.8s ease-in-out 1s infinite}
 @keyframes nudge{0%,40%,100%{transform:translate(0,0)}20%{transform:translate(var(--hx),var(--hy))}}
-.hd{fill:var(--lnc);stroke:none;opacity:0;transition:opacity 120ms 440ms}
-.ar,.ar.l{--lnc:rgba(132,94,238,.45);--line:#845EEE;--fd:2s}
-.ar.r{--lnc:rgba(230,168,0,.45);--line:#E6A800;--fd:2.4s}
+@keyframes thick{50%{stroke-width:5.5}}
+/* 화살촉: 선 끝 방향을 따라 그린 둥근 꺾쇠 */
+.hd{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity 120ms 440ms}
+@keyframes flow{to{stroke-dashoffset:-22}}
+.ar{filter:drop-shadow(0 2px 6px rgba(132,94,238,.35))}
+.ar,.ar.l{--line:#845EEE;--fd:1.6s}
+.ar.r{--fd:2s}
+.ar.r{--line:var(--gold-b);filter:drop-shadow(0 2px 6px rgba(230,168,0,.4))}
 /* 노드 라벨 */
 /* 라벨: 화면에서 항상 13px/700 text2 로 보이게 캔버스 배율을 역보정(--ik = 1/카메라 배율, --ic = 현재 1.10·지난 .94 노드 확대 역보정).
    위쪽 가운데 기준이라 노드 아래 가운데 8px 자리를 지킨다. 두 줄 라벨의 둘째 줄은 같은 13px, 색만 text3 */
@@ -301,7 +303,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes enterFade{from{opacity:0}}
 @keyframes enterUp{from{opacity:0;transform:translateY(8px)}}
 
-@media (prefers-reduced-motion:reduce){.tour *,.tour,.fl{transition:none!important;animation:none!important}}
+@media (prefers-reduced-motion:reduce){.tour *,.tour,.ln{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -494,60 +496,27 @@ function ctl([x1, y1, f1, x2, y2, f2]) {
   const [ax, ay] = NORM[f1], [bx, by] = NORM[f2];
   return [x1 + ax * len(f1), y1 + ay * len(f1), x2 + bx * len(f2), y2 + by * len(f2)];
 }
-const bez = (a, c, t) => { const u = 1 - t; return [u * u * u * a[0] + 3 * u * u * t * c[0] + 3 * u * t * t * c[2] + t * t * t * a[3], u * u * u * a[1] + 3 * u * u * t * c[1] + 3 * u * t * t * c[3] + t * t * t * a[4]]; };
-const f1 = v => v.toFixed(1);
-/* 곡선 한 개의 모양: 중심선 점·끝 접선·화살촉 자리. wm: 굵기 배율(마지막 장·축소판 2.2) */
-function arrowGeo(a, wm = 1) {
-  const c = ctl(a), N = 48, pts = [];
-  for (let j = 0; j <= N; j++) pts.push(bez(a, c, j / N));
-  let ux = a[3] - c[2], uy = a[4] - c[3];
-  const uL = Math.hypot(ux, uy) || 1; ux /= uL; uy /= uL;
-  const head = !a[9], HL = 14.4 * wm, HW = 11.2 * wm;
-  /* 화살촉이 있으면 선은 촉 밑변(끝에서 HL)에서 끝난다 */
-  let cut = pts.length - 1;
-  if (head) { let acc = 0; while (cut > 1 && acc < HL) { acc += Math.hypot(pts[cut][0] - pts[cut - 1][0], pts[cut][1] - pts[cut - 1][1]); cut--; } }
-  const line = pts.slice(0, cut + 1);
-  return { c, line, ux, uy, head, HL, HW, w0: (a[7] || 2.5) * wm, w1: (a[8] || 4.5) * wm };
+/* 화살표 모양을 그린다(ar 요소 안의 .rv·.ln·.hd) — 선은 원래 점선(12 10, 4px, 흐름), 화살촉은 선 끝 접선 방향의 둥근 꺾쇠(9px 뒤 · 좌우 7px) */
+const f1 = v => (+v).toFixed(1);
+function arrowPath(a) { const c = ctl(a); return `M${f1(a[0])} ${f1(a[1])}C${f1(c[0])} ${f1(c[1])} ${f1(c[2])} ${f1(c[3])} ${f1(a[3])} ${f1(a[4])}`; }
+function headPath(a) {
+  const c = ctl(a), tx = a[3], ty = a[4];
+  let ux = tx - c[2], uy = ty - c[3];
+  const L = Math.hypot(ux, uy) || 1; ux /= L; uy /= L;
+  const bx = tx - 9 * ux, by = ty - 9 * uy, nx = -uy * 7, ny = ux * 7;
+  return { d: `M${f1(bx + nx)} ${f1(by + ny)}L${f1(tx)} ${f1(ty)}L${f1(bx - nx)} ${f1(by - ny)}`, ux, uy };
 }
-const centerPath = pts => 'M' + pts.map(p => f1(p[0]) + ' ' + f1(p[1])).join('L');
-/* 테이퍼: 중심선 양옆으로 굵기 w0 → w1 의 외곽선을 따서 채운다. 시작은 둥근 끝 */
-function taperPath(g) {
-  const P = g.line, n = P.length, L = [], Rr = [];
-  P.forEach((p, i) => {
-    const q = P[Math.min(n - 1, i + 1)], o = P[Math.max(0, i - 1)];
-    let tx = q[0] - o[0], ty = q[1] - o[1]; const tl = Math.hypot(tx, ty) || 1; tx /= tl; ty /= tl;
-    const h = (g.w0 + (g.w1 - g.w0) * i / (n - 1)) / 2;
-    L.push([p[0] - ty * h, p[1] + tx * h]); Rr.push([p[0] + ty * h, p[1] - tx * h]);
-  });
-  const h0 = g.w0 / 2;
-  return 'M' + L.map(p => f1(p[0]) + ' ' + f1(p[1])).join('L') + 'L' + Rr.reverse().map(p => f1(p[0]) + ' ' + f1(p[1])).join('L') +
-    `A${f1(h0)} ${f1(h0)} 0 0 1 ${f1(L[0][0])} ${f1(L[0][1])}Z`;
-}
-/* 화살촉: 꼭짓점을 둥글게 깎은 삼각형(촉 끝 r 2.5, 밑변 모서리 r 3) */
-function headPath(a, g) {
-  const T = [a[3], a[4]], Bc = [T[0] - g.ux * g.HL, T[1] - g.uy * g.HL], nx = -g.uy * g.HW, ny = g.ux * g.HW;
-  const V = [T, [Bc[0] - nx, Bc[1] - ny], [Bc[0] + nx, Bc[1] + ny]], rr = [2.5, 3, 3].map(r => r * (g.HL / 14.4));
-  const toward = (p, q, r) => { const dx = q[0] - p[0], dy = q[1] - p[1], d = Math.hypot(dx, dy) || 1; return [p[0] + dx / d * r, p[1] + dy / d * r]; };
-  let d = '';
-  V.forEach((p, i) => {
-    const prev = V[(i + 2) % 3], next = V[(i + 1) % 3], pin = toward(p, prev, rr[i]), pout = toward(p, next, rr[i]);
-    d += (i ? 'L' : 'M') + f1(pin[0]) + ' ' + f1(pin[1]) + 'Q' + f1(p[0]) + ' ' + f1(p[1]) + ' ' + f1(pout[0]) + ' ' + f1(pout[1]);
-  });
-  return d + 'Z';
-}
-/* 화살표 모양을 그린다/다시 그린다(ar 요소 안의 .rv·.ln·.fl·.hd). 마지막 장·축소판은 굵게(wm 2.2) */
-function drawArrows(root, wm = 1) {
+function drawArrows(root) {
   const A = buildArrows();
   root.querySelectorAll('.ar').forEach(g => {
-    const a = A[g.dataset.k], geo = arrowGeo(a, wm), full = centerPath(geo.line.concat(geo.head ? [[a[3], a[4]]] : []));
-    g.querySelector('.rv').setAttribute('d', full);
-    g.querySelector('.rv').style.strokeWidth = 16 * wm;
-    g.querySelector('.ln').setAttribute('d', taperPath(geo));
-    g.querySelector('.fl').setAttribute('d', centerPath(geo.line));
-    g.querySelector('.fl').style.strokeWidth = (2.6 * wm).toFixed(1);
-    const hd = g.querySelector('.hd');
-    hd.setAttribute('d', geo.head ? headPath(a, geo) : '');
-    hd.style.setProperty('--hx', (geo.ux * 2).toFixed(2) + 'px'); hd.style.setProperty('--hy', (geo.uy * 2).toFixed(2) + 'px');
+    const a = A[g.dataset.k], d = arrowPath(a);
+    g.querySelector('.rv').setAttribute('d', d);
+    g.querySelector('.ln').setAttribute('d', d);
+    const lg = g.querySelector('linearGradient');
+    if (lg) { lg.setAttribute('x1', a[0]); lg.setAttribute('y1', a[1]); lg.setAttribute('x2', a[3]); lg.setAttribute('y2', a[4]); }
+    const hd = g.querySelector('.hd'), h = headPath(a);
+    hd.setAttribute('d', a[9] ? '' : h.d);
+    hd.style.setProperty('--hx', (h.ux * 2).toFixed(2) + 'px'); hd.style.setProperty('--hy', (h.uy * 2).toFixed(2) + 'px');
   });
   measure(root);
 }
@@ -556,9 +525,11 @@ function canvasHTML() {
   const id = `cv${++cvSeq}`;
   const svg = Object.entries(ARROWS).map(([k, a]) => {
     const m = `${id}-${k}`;
-    return `<g class="ar${a[6] ? ' ' + a[6] : ''}" data-k="${k}">` +
+    /* 포인트 길은 디자인 시스템 Gold 그라디언트(#FFD93B → #E6A800)를 선 방향으로 */
+    const gold = a[6] === 'r' ? `<linearGradient id="${m}-g" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFD93B"/><stop offset="1" stop-color="#E6A800"/></linearGradient>` : '';
+    return `<g class="ar${a[6] ? ' ' + a[6] : ''}" data-k="${k}">` + gold +
       `<mask id="${m}" maskUnits="userSpaceOnUse" x="-200" y="-400" width="${CW + 400}" height="${CV_H + 800}"><path class="rv"/></mask>` +
-      `<path class="ln" mask="url(#${m})"/><path class="fl" mask="url(#${m})"/><path class="hd"/></g>`;
+      `<path class="ln" mask="url(#${m})"${gold ? ` style="stroke:url(#${m}-g)"` : ''}/><path class="hd"/></g>`;
   }).join('');
   const nodes = Object.entries(NODES).map(([k, n], i) =>
     `<div class="nd${n.html && k !== 'mall' ? ' tag' : ' lift'}" data-k="${k}" style="left:${n.cx - n.w / 2}px;top:${n.cy - n.h / 2}px;width:${n.w}px;height:${n.h}px;` +
@@ -598,7 +569,7 @@ function bezierEase(x1, y1, x2, y2) {
 const camEase = bezierEase(.45, .05, .2, 1);
 
 function measure(root) {
-  root.querySelectorAll('.rv,.fl').forEach(p => {
+  root.querySelectorAll('.rv').forEach(p => {
     let L = 0;
     try { L = p.getTotalLength(); } catch (e) {}
     if (!L) { const n = p.getAttribute('d').match(/-?[\d.]+/g).map(Number); L = Math.hypot(n[n.length - 2] - n[0], n[n.length - 1] - n[1]) * 1.3; }
@@ -613,7 +584,7 @@ function mountPage(screen) {
   /* 페이지: 축소판 흐름도 + 단계 카드 */
   const mini = $('[data-mini]');
   mini.innerHTML = canvasHTML();
-  drawArrows(mini, 2.2);
+  drawArrows(mini);
   mini.classList.add('snap');
   mini.querySelectorAll('.ar,.nd').forEach(el => el.classList.add('on'));
   $('[data-steps]').innerHTML = STEPS.map((s, i) =>
@@ -680,7 +651,7 @@ function mountTour(screen, onClose) {
   const DEPTH = [1, .78, .62, .62, .78, .62, .55];
   const TW = [.72, .72, .66, .60, .60, .60, .72];
   const zOut = bezierEase(.4, 0, .9, .5), zIn = bezierEase(.16, .9, .3, 1), finEase = bezierEase(.3, .1, .25, 1);
-  const flowRate = r => cv.getAnimations({ subtree: true }).forEach(a => { if (a.animationName === 'flowSeg') a.updatePlaybackRate(r); });
+  const flowRate = r => cv.getAnimations({ subtree: true }).forEach(a => { if (a.animationName === 'flow') a.updatePlaybackRate(r); });
   function moveTo(x, y, s, yr, depth = .62, fin = false) {
     const from = cam, end = { x, y, s };
     cam = end;
@@ -826,7 +797,7 @@ function mountTour(screen, onClose) {
   /* i 단계 이전까지는 즉시 완성 상태로 맞춘다 */
   function settle(i) {
     snap(() => {
-      if (finArrows) { finArrows = false; drawArrows(cv); }
+      if (finArrows) finArrows = false;
       cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.remove('on', 'cur', 'past'));
       for (let s = 0; s < i; s++) STEPS[s].seq.flat().forEach(k => el(k).classList.add('on'));
       if (i > 0) { focus(i - 1); camAt(i - 1); } else camAt(0);
@@ -860,7 +831,7 @@ function mountTour(screen, onClose) {
   function final() {
     stop();
     idx = STEPS.length;
-    snap(() => { cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.add('on')); drawArrows(cv, 2.2); finArrows = true; });
+    snap(() => { cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.add('on')); finArrows = true; });
     cv.querySelectorAll('.nd').forEach(n => n.classList.remove('cur', 'past'));
     finLayout();
     bars.forEach(b => { b.classList.add('done'); b.classList.remove('cur'); });
