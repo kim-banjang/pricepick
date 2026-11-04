@@ -61,7 +61,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .overview .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .overview .top b{font-size:var(--fs-label);font-weight:var(--fw-bold)}
 .overview .top span{display:flex;align-items:center;gap:4px;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--main)}
-.mini{position:relative;height:calc(2505px * var(--s));overflow:hidden;pointer-events:none}
+.mini{position:relative;height:calc(2535px * var(--s));overflow:hidden;pointer-events:none}
 .mini .cv{left:50%;margin-left:-187.5px;transform:scale(var(--s));transform-origin:50% 0}
 .mini .ln{stroke-width:9;stroke-dasharray:24 18}
 .mini .hd{stroke-width:7}
@@ -213,6 +213,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   background:linear-gradient(to bottom,rgba(246,243,255,0) 0%,rgba(246,243,255,.38) 30%,rgba(246,243,255,.7) 62%,rgba(246,243,255,.85) 100%)}
 .tour.final .txtbg{opacity:0}
 .tour .txt .lines{min-height:96px;display:flex;flex-direction:column;justify-content:center}
+.tour.short .tcard{padding-top:4px}
+.tour.short .txt .lines{min-height:64px}
 .tour .txt.out .lines{opacity:0;transform:translateY(-6px);transition:opacity 120ms,transform 120ms}
 .tour .txt.in .lines{animation:fadeUp 320ms cubic-bezier(.2,.7,.3,1) both}
 .tour h3{font-size:var(--fs-title);font-weight:var(--fw-emphasis);line-height:1.4;color:var(--text1);letter-spacing:-.4px;word-break:keep-all}
@@ -303,44 +305,56 @@ const MALL_LOGOS = ['coupang.jpg', 'gmarket.png', '11st.png', 'nsmall.png', 'cjt
 const MALLS = '<div class="malls"><div class="chips">' +
   MALL_LOGOS.map((f, i) => `<span class="chip${i ? '' : ' hot'}" style="--i:${i}"><span class="c"><img src="guide-art/mall/${f}" alt=""></span></span>`).join('') +
   '</div><div class="mall"><span class="badge"><img src="guide-art/mall/coupang.jpg" alt=""></span><b>쿠팡</b><span class="go">바로가기</span></div></div>';
-const CV_H = 2505;
+const CV_H = 2535;
 /* lab: 노드 라벨 — 전부 오브젝트 아래 8px, 가운데 정렬.
    오브젝트는 1.35배(제휴몰 칩·카드 제외). 갈래 노드는 좌우로 나란히 두면 화면 폭을 넘으므로
    왼쪽(대기→확정 티켓) 사이 빈 구간 옆에 오른쪽(포인트)을 끼워 세로로 엇갈리게 둔다 */
-/* x 는 캔버스 가로 중심 기준 상대값(px). 단일 노드 0, 갈래는 왼쪽 -72.5 / 오른쪽 +72.5 로 중심 대칭.
-   화살표 x 도 같은 기준. 캔버스(폭 CW)는 화면 실제 폭의 가운데에 놓이고 좁은 화면이면 노드·라벨이 다 들어오게 줄어든다(fitX) */
+/* 캔버스(폭 CW)는 화면 실제 폭의 가운데에 놓이고 좁은 화면이면 노드·라벨이 다 들어오게 줄어든다(fitX) */
 const CW = 375, CX = CW / 2;
-/* 지그재그: 단일 노드는 가운데에서 좌우로 번갈아(1단계 -26 · 2단계 +22 · 3단계 -20 · 7단계 +18),
-   갈래(4~6단계)는 좌우 대칭(±72.5)을 유지한 채 묶음 전체를 -12 밀어 축을 흔든다. */
+/* 대각선 배치: 가로 위치 f 는 화면 폭 W 비율(캔버스 가로 중심 0). 노드가 화면 좌우를 크게 오가며 흘러내린다
+   1 -0.22W · 2 -0.02W · 3 +0.22W · 5 -0.22W · 7 +0.02W. 폭 360 미만이면 전부 0.16/0.22 로 줄여 크기를 지킨다.
+   갈래 4(랜덤 티켓)·6(포인트)는 비슷한 높이에 나란히 — 노드 폭(227)이 커서 비율로 두면 겹치므로 고정 ±PAIR px.
+   구매 확정 알약은 4→5 곡선의 한가운데, 10P 알약은 포인트 바로 아래 */
+const NARROW = 360, NARROW_K = .16 / .22, PAIR = 115;
 const NODES = {
-  phone:  { x: -26,   y: 40,   w: 218, h: 472, img: 'sp', lab: '프라이스픽', at: 'b', edge: true },
-  mall:   { x: 22,    y: 640,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
-  bag:    { x: -20,   y: 898,  w: 279, h: 308, img: 'o2', lab: '구매 완료', at: 'b' },
-  wait:   { x: -84.5, y: 1362, w: 227, h: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b', edge: true },
-  ok:     { x: -84.5, y: 1755, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
-  ticket: { x: -84.5, y: 1830, w: 261, h: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b', edge: true },
-  coin:   { x: 60.5,  y: 1595, w: 227, h: 162, img: 'o5', lab: '포인트', at: 'b', edge: true },
-  rate:   { x: 60.5,  y: 1900, w: 130, h: 30,  html: '<span class="pill y">10P = 티켓 1장</span>' },
-  gift:   { x: 18,    y: 2248, w: 301, h: 185, img: 'o6', lab: '기프티콘', at: 'b' },
+  phone:  { f: -.22, y: 40,   w: 218, h: 472, img: 'sp', lab: '프라이스픽', at: 'b', edge: true },
+  mall:   { f: -.02, y: 660,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
+  bag:    { f: .22,  y: 956,  w: 279, h: 308, img: 'o2', lab: '구매 완료', at: 'b' },
+  wait:   { x: -PAIR, y: 1500, w: 227, h: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b', edge: true },
+  ok:     { y: 1799, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
+  ticket: { f: -.22, y: 1909, w: 261, h: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b', edge: true },
+  coin:   { x: PAIR,  y: 1520, w: 227, h: 162, img: 'o5', lab: '포인트', at: 'b', edge: true },
+  rate:   { y: 1815, w: 130, h: 30,  html: '<span class="pill y">10P = 티켓 1장</span>' },
+  gift:   { f: .02,  y: 2305, w: 301, h: 185, img: 'o6', lab: '기프티콘', at: 'b' },
 };
-/* 단계별로 가로 맞춤(fitX)에 넣을 노드 — 그 단계 화면에 같이 보이는 노드. 갈래·합류 단계는 좌우 갈래를 함께 */
+/* 화면 폭 W 에서의 노드 가로 위치(캔버스 가로 중심 기준 px) */
+function layoutX(W) {
+  const r = W < NARROW ? NARROW_K : 1, X = {};
+  Object.entries(NODES).forEach(([k, n]) => { X[k] = n.f != null ? +(n.f * W * r).toFixed(1) : n.x; });
+  X.ok = (X.wait + X.ticket) / 2;
+  X.rate = X.coin;
+  return X;
+}
+/* 단계별로 가로 맞춤(fitX)에 넣을 노드 — 그 단계 화면에 같이 보이는 노드. 갈래·합류 단계는 좌우 갈래를 함께(4단계는 위에 남는 쇼핑백도) */
 const BRANCH = ['wait', 'ok', 'ticket', 'coin', 'rate'];
-const FIT_KEYS = [['phone'], ['phone', 'mall'], ['mall', 'bag'], BRANCH, BRANCH, BRANCH, [...BRANCH, 'gift']];
+const FIT_KEYS = [['phone'], ['phone', 'mall'], ['mall', 'bag'], [...BRANCH, 'bag'], BRANCH, BRANCH, [...BRANCH, 'gift']];
 /* 화살표: 끝점은 항상 아래 방향. 선은 촉 길이만큼 짧게 끝낸다.
    5번째 값: 곡선 종류, 6번째 값: 갈래 색(l 티켓 길 보라 / r 포인트 길 골드),
    7번째 값: 곡선 시작 y — 그 전까지는 수직선(합류 곡선 두 개를 같은 크기로 맞춘다)
-   8번째 값: 곡선 끝 y — 그 뒤로는 수직선(분기 곡선 두 개를 같은 크기로 맞춘다) */
-/* 직선 없이 전부 S자: 어긋난 두 노드는 'curve'(양끝 수직으로 꽂히는 S), 같은 x 끼리는 'wave'(좌우로 한 번 휘는 S) */
-const ARROWS = {
-  a1: [-26, 548, 22, 630, 'curve'],
-  a2: [22, 806, -20, 888, 'curve'],
-  sl: [-20, 1242, -84.5, 1352, 'curve', 'l'],
-  sr: [-20, 1242, 60.5, 1585, 'curve', 'r', null, 1340],
-  al: [-84.5, 1591, -84.5, 1820, 'wave', 'l'],
-  ar: [60.5, 1793, 60.5, 1890, 'wave', 'r'],
-  ml: [-84.5, 2086, 2.5, 2238, 'curve', 'l'],
-  mr: [60.5, 1940, 33.5, 2238, 'curve', 'r', 2086],
-};
+   8번째 값: 곡선 끝 y — 그 뒤로는 수직선 */
+/* 직선 없이 전부 S자: 어긋난 두 노드는 'curve'(완만한 대각선 S), 같은 x 끼리는 'wave'(좌우로 한 번 휘는 S) */
+const arrowsOf = X => ({
+  a1: [X.phone, 548, X.mall, 650, 'curve'],
+  a2: [X.mall, 826, X.bag, 946, 'curve'],
+  sl: [X.bag, 1300, X.wait, 1490, 'curve', 'l'],
+  sr: [X.bag, 1300, X.coin, 1510, 'curve', 'r'],
+  al: [X.wait, 1729, X.ticket, 1899, 'curve', 'l'],
+  ar: [X.coin, 1718, X.rate, 1805, 'wave', 'r'],
+  ml: [X.ticket, 2165, X.gift - 15, 2295, 'curve', 'l'],
+  mr: [X.rate, 1855, X.gift + 15, 2295, 'curve', 'r', 2165],
+});
+/* 세로 값·단계 구분용(가로는 화면마다 layoutX 로 다시 잡는다) */
+const ARROWS = arrowsOf(layoutX(CW));
 const STEPS = [
   { t: '프라이스픽을 먼저 열어요', d: '여기를 거쳐야 티켓이 쌓여요',
     seq: [['phone']] },
@@ -362,6 +376,7 @@ const DRAW = 420, GAP = 300;
 /* 마지막 장 흐름도 구간: 제목 아래 25px ~ 버튼 위 24px (기준 화면에서 152~696px) */
 const FIN = { gapTop: 25, gapBot: 24 };
 const EDGE = 4;   /* 노드·라벨과 화면 좌우 끝 사이 최소 여백 */
+const KMIN = .62; /* 「건너뛰기」를 피하느라 줄일 때 이 배율 밑으로는 줄이지 않고 옆으로 민다 */
 const src = k => `guide-art/${k}.png`;
 /* 오브젝트 그림. 폰(o1)은 화면 자리에 스플래시 화면을 얹는다 */
 /* 티켓: tw = 대기(빨강 랜덤 티켓 3장 겹침), tk = 확정(금색 티켓 1장 + 체크 배지) */
@@ -380,32 +395,34 @@ Object.values(NODES).forEach(n => n.img && n.img[0] === 'o' && (new Image().src 
 /* 선은 화살촉 꼭짓점(y2 - 3)까지 그린다. 촉은 선 끝 방향을 따라 꺾쇠로 얹는다 */
 const TIP = 3;
 const waveA = H => Math.min(16, H * .12);
+/* 곡선 제어점. curve: 양끝 손잡이를 세로 .42 만큼 내리고 가로로 .12 만큼 진행 방향으로 기울여 급하게 꺾이지 않는 완만한 대각선 S */
+function ctl(x1, y1, x2, tip, kind) {
+  const H = tip - y1, dx = x2 - x1;
+  if (kind === 'wave') { const A = waveA(H); return [x1 + 2 * A, y1 + H / 3, x1 - 2 * A, y1 + H * 2 / 3]; }
+  return [x1 + dx * .12, y1 + H * .42, x2 - dx * .12, tip - H * .42].map(v => +v.toFixed(1));
+}
 function arrowPath([x1, y1, x2, y2, kind, , cy, ce]) {
   const tip = y2 - TIP;
   if (ce) return arrowPath([x1, y1, x2, ce + TIP, kind]) + `L${x2} ${tip}`;
   if (cy) return `M${x1} ${y1}L${x1} ${cy}` + arrowPath([x1, cy, x2, y2, kind]).slice(`M${x1} ${cy}`.length);
-  const H = tip - y1;
-  /* 같은 x: 오른쪽으로 한 번, 왼쪽으로 한 번 휘는 S */
-  if (kind === 'wave') { const A = waveA(H); return `M${x1} ${y1}C${x1 + 2 * A} ${y1 + H / 3} ${x1 - 2 * A} ${y1 + H * 2 / 3} ${x2} ${tip}`; }
-  /* 큰 S 곡선: 시작 제어점을 아래로 당겨 어깨를 둥글게, 끝은 수직으로 꽂힌다 */
-  return `M${x1} ${y1}C${x1} ${y1 + H * .6} ${x2} ${y1 + H * .4} ${x2} ${tip}`;
+  return `M${x1} ${y1}C${ctl(x1, y1, x2, tip, kind).join(' ')} ${x2} ${tip}`;
 }
-/* 화살촉 꺾쇠: 선 끝 접선 방향(u)으로 9px 물러난 자리에서 좌우 7px */
+/* 화살촉 꺾쇠: 선 끝 접선 방향(u, 마지막 제어점 → 끝점)으로 9px 물러난 자리에서 좌우 7px */
 function headPath([x1, y1, x2, y2, kind, , cy, ce]) {
   const tx = x2, ty = y2 - TIP;
   let ux = 0, uy = 1;
-  if (kind === 'wave' && !ce) {
-    const y0 = cy || y1, H = ty - y0, A = waveA(H);
-    ux = 2 * A; uy = H / 3;
-    const L = Math.hypot(ux, uy); ux /= L; uy /= L;
+  if (!ce) {
+    const c = ctl(x1, cy || y1, x2, ty, kind);
+    ux = tx - c[2]; uy = ty - c[3];
+    const L = Math.hypot(ux, uy) || 1; ux /= L; uy /= L;
   }
   const bx = tx - 9 * ux, by = ty - 9 * uy, nx = -uy * 7, ny = ux * 7;
   return `M${(bx + nx).toFixed(1)} ${(by + ny).toFixed(1)}L${tx} ${ty}L${(bx - nx).toFixed(1)} ${(by - ny).toFixed(1)}`;
 }
 let cvSeq = 0;
-function canvasHTML() {
+function canvasHTML(X = layoutX(CW)) {
   const id = `cv${++cvSeq}`;
-  const svg = Object.entries(ARROWS).map(([k, r]) => {
+  const svg = Object.entries(arrowsOf(X)).map(([k, r]) => {
     const a = [CX + r[0], r[1], CX + r[2], r[3], ...r.slice(4)];
     const d = arrowPath(a), m = `${id}-${k}`;
     /* 포인트 길은 디자인 시스템 Gold 그라디언트(#FFD93B → #E6A800)를 선 방향으로 */
@@ -418,11 +435,22 @@ function canvasHTML() {
       `<path class="hd" d="${headPath(a)}"/></g>`;
   }).join('');
   const nodes = Object.entries(NODES).map(([k, n]) =>
-    `<div class="nd${n.html && k !== 'mall' ? '' : ' lift'}${n.edge ? ' edge' : ''}" data-k="${k}" style="left:${CX + n.x - n.w / 2}px;top:${n.y}px;width:${n.w}px;height:${n.h}px;` +
+    `<div class="nd${n.html && k !== 'mall' ? '' : ' lift'}${n.edge ? ' edge' : ''}" data-k="${k}" style="left:${CX + X[k] - n.w / 2}px;top:${n.y}px;width:${n.w}px;height:${n.h}px;` +
     `--gw:${n.w + 60}px;--gh:${n.h + 50}px;--fw:${Math.round(n.w * .72)}px">` +
     `<div class="fx"><div class="pop">${n.img ? `<div class="ncard">${objHTML(n.img)}</div>` : n.html}` +
     `${n.lab ? `<span class="lab ${n.at}">${n.lab}</span>` : ''}</div></div></div>`).join('');
   return `<div class="cv"><svg width="${CW}" height="${CV_H}" viewBox="0 0 ${CW} ${CV_H}">${svg}</svg>${nodes}</div>`;
+}
+/* 화면 폭이 바뀌면 노드 가로 위치와 화살표 경로만 새 배치(X)로 옮긴다(켜짐·현재 상태는 그대로) */
+function placeX(cv, X) {
+  Object.entries(NODES).forEach(([k, n]) => { cv.querySelector(`.nd[data-k="${k}"]`).style.left = CX + X[k] - n.w / 2 + 'px'; });
+  Object.entries(arrowsOf(X)).forEach(([k, r]) => {
+    const a = [CX + r[0], r[1], CX + r[2], r[3], ...r.slice(4)], d = arrowPath(a), g = cv.querySelector(`.ar[data-k="${k}"]`);
+    g.querySelectorAll('.rv,.ln').forEach(p => p.setAttribute('d', d));
+    g.querySelector('.hd').setAttribute('d', headPath(a));
+    const lg = g.querySelector('linearGradient');
+    if (lg) { lg.setAttribute('x1', a[0]); lg.setAttribute('x2', a[2]); }
+  });
 }
 /* 배경에 떠다니는 장식 — 티켓·코인·반짝임 */
 const DECO_SHAPE = {
@@ -498,7 +526,7 @@ function mountTour(screen, onClose) {
   const vp = $('[data-vp]'), prog = $('[data-prog]'), skipBtn = $('[data-act="skip"]'), tcard = $('.tcard');
   const toTour = v => { const t = tour.getBoundingClientRect(); return (v - t.top) * (tour.offsetHeight / (t.height || 1)); };
   const topOf = e => toTour(e.getBoundingClientRect().top), botOf = e => toTour(e.getBoundingClientRect().bottom);
-  let camIdx = 0, kx = 1, rgt = 0;
+  let camIdx = 0, kx = 1, rgt = 0, X = layoutX(CW), XW = CW;
   /* 가로: 화면 실제 폭(getBoundingClientRect, 축소 보정)을 재서 캔버스를 가운데에 두고,
      노드·라벨이 좌우 EDGE 안쪽에 다 들어오지 않으면 캔버스를 그만큼 줄인다(transform-origin 이 캔버스 가로 중심이라 줄여도 가운데) */
   /* keys: 이번 단계 화면에 같이 보이는 노드(FIT_KEYS). 없으면 전체(마지막 장).
@@ -506,13 +534,14 @@ function mountTour(screen, onClose) {
   function fitX(keys) {
     const t = tour.getBoundingClientRect(), W = t.width * (tour.offsetHeight / (t.height || 1));
     cv.style.left = (W - CW) / 2 + 'px';
+    if (Math.abs(W - XW) > .5) { XW = W; X = layoutX(W); placeX(cv, X); measure(vp); }
     let half = 0; rgt = -1e9;
     (keys || Object.keys(NODES)).forEach(k => {
       const d = NODES[k], lab = el(k).querySelector('.lab');
       /* 현재 단계 노드는 1.06배로 커진다(.nd.cur .fx, 가장자리 노드 제외) — 그만큼 더 잡는다 */
       const bw = d.w * (d.edge ? 1 : 1.06);
-      half = Math.max(half, Math.abs(d.x) + Math.max(bw, lab ? lab.offsetWidth : 0) / 2);
-      rgt = Math.max(rgt, d.x + Math.max(bw, lab ? lab.offsetWidth : 0) / 2);
+      half = Math.max(half, Math.abs(X[k]) + Math.max(bw, lab ? lab.offsetWidth : 0) / 2);
+      rgt = Math.max(rgt, X[k] + Math.max(bw, lab ? lab.offsetWidth : 0) / 2);
     });
     kx = Math.min(1, (W - 2 * EDGE) / (2 * half));
   }
@@ -520,26 +549,29 @@ function mountTour(screen, onClose) {
     camIdx = i;
     if (!tour.offsetHeight) return;
     const ks = nodesOf(i);
+    /* 세로로 짧은 화면(700 미만)은 문구 블록 위 여백·최소 높이를 줄여 그림 자리를 넓힌다 */
+    tour.classList.toggle('short', tour.offsetHeight < 700);
+    fitX(FIT_KEYS[i]);
     /* 노드 묶음의 실제 외곽: 현재 노드 1.06배(가장자리 노드 제외), 라벨(아래 8px + 18px)까지 */
     const box = ks.map(k => {
       const d = NODES[k], sc = d.edge ? 1 : 1.06, cy = d.y + d.h / 2, lab = el(k).querySelector('.lab');
-      return { t: cy - d.h * sc / 2, b: cy + (d.h / 2 + (d.lab ? 26 : 0)) * sc, l: d.x - Math.max(d.w, lab ? lab.offsetWidth : 0) * sc / 2 };
+      return { t: cy - d.h * sc / 2, b: cy + (d.h / 2 + (d.lab ? 26 : 0)) * sc, l: X[k] - Math.max(d.w, lab ? lab.offsetWidth : 0) * sc / 2 };
     });
     const top = Math.min(...box.map(o => o.t)), bot = Math.max(...box.map(o => o.b)), left = Math.min(...box.map(o => o.l));
-    fitX(FIT_KEYS[i]);
     const barBot = botOf(prog), cardTop = topOf(tcard), mid = (barBot + cardTop) / 2;
     const chrome = Math.max(barBot, botOf(skipBtn));
     /* 세로로 짧은 화면(예: 320x568)에서 이번 단계 노드 묶음이 진행 바~문구 카드 사이보다 크면 그 안에 들어오게 더 줄인다 */
     let k = Math.min(kx, (cardTop - barBot - 16) / (bot - top));
-    /* 지그재그로 왼쪽에 놓인 노드가 「건너뛰기」와 겹치면 둘 중 덜 줄이는 쪽을 쓴다:
-       (가) 그 버튼 아래(chrome + 4)부터 들어오게 줄이거나, (나) 캔버스를 오른쪽으로 밀어 버튼 오른쪽(+8)부터 오게 한다.
-       (나)는 이번 단계에 보이는 노드(FIT_KEYS) 오른쪽 끝이 화면 안(EDGE)에 남는 만큼만 키운다 */
+    /* 왼쪽에 놓인 노드가 「건너뛰기」와 겹치면 (가) 그 버튼 아래(chrome + 4)부터 들어오게 줄인다 — 왼쪽 배치가 그대로 보인다.
+       (가)로 KMIN 밑까지 작아질 때만 (나) KMIN 까지만 줄이고 캔버스를 오른쪽으로 필요한 만큼만 밀어 버튼 오른쪽(+8)부터 오게 한다.
+       (나)는 이번 단계에 보이는 노드(FIT_KEYS) 오른쪽 끝이 화면 안(EDGE)에 남는 만큼만 */
     const t = tour.getBoundingClientRect(), sx = tour.offsetWidth / (t.width || 1);
     const W = t.width * sx, skipR = (skipBtn.getBoundingClientRect().right - t.left) * sx;
     let dx = 0;
     if (W / 2 + k * left < skipR + 8 && mid - k * (bot - top) / 2 < chrome + 4) {
-      const kv = 2 * (mid - chrome - 4) / (bot - top), kh = Math.min(k, (W - EDGE - skipR - 8) / (rgt - left));
-      if (kh > kv) { k = kh; dx = Math.max(0, skipR + 8 - (W / 2 + k * left)); } else k = Math.min(k, kv);
+      const kv = 2 * (mid - chrome - 4) / (bot - top), kh = Math.min(k, KMIN, (W - EDGE - skipR - 8) / (rgt - left));
+      if (kv >= Math.min(k, KMIN) || kh <= kv) k = Math.min(k, kv);
+      else { k = kh; dx = Math.max(0, skipR + 8 - (W / 2 + k * left)); }
     }
     const y = mid - k * (top + bot) / 2;
     /* 위쪽 흐림: 진행 바·「건너뛰기」 실제 bottom(chrome)에서 투명 → 이번 단계 첫 화살표(없으면 노드) 바로 위에서 불투명.
