@@ -347,7 +347,7 @@ document.addEventListener('click',function(e){
       return;
     }
     /* 지금 상태만 칩 하나로 — 누르면 바뀐다. 색은 끝난 상태(처리 완료 · 검수 완료)에만 */
-    /* 작업자·시각은 현황에서 보이지 않는다(2026-10-29 형님 지시) — 저장 값은 그대로, 원본 검수 문서에서 보인다 */
+    /* 작업자·시각은 현황에서 보이지 않는다(2026-10-29 김반장 지시) — 저장 값은 그대로, 원본 검수 문서에서 보인다 */
     td.innerHTML='<div class="dmr"><span class="dm-lb">'+i18n('개발팀','Đội PT')+'</span>'
       +'<button type="button" class="chip chip-dev'+(r._dm==='done'?' on':'')+'">'+(r._dm==='done'?i18n('처리 완료','Đã xử lý'):i18n('미처리','Chưa xử lý'))+'</button>'
       +'</div>'+noteBox(d&&d.note)
