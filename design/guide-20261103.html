@@ -63,7 +63,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .overview .top span{display:flex;align-items:center;gap:4px;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--main)}
 .mini{position:relative;height:calc(2505px * var(--s));overflow:hidden;pointer-events:none}
 .mini .cv{left:50%;margin-left:-187.5px;transform:scale(var(--s));transform-origin:50% 0}
-.mini .ln{stroke-width:9;stroke-dasharray:20 14}
+.mini .ln{stroke-width:9;stroke-dasharray:24 18}
+.mini .hd{stroke-width:7}
 .mini .rv{stroke-width:16}
 .mini .hd{transform:scale(1.5);transform-box:fill-box;transform-origin:50% 100%}
 
@@ -85,10 +86,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .cv{position:absolute;top:0;left:0;width:375px;height:2505px;transform-origin:187.5px 0}
 .cv svg{position:absolute;inset:0;overflow:visible}
 /* 화살표: 보이는 선은 점선(아래로 흐름), 그려지는 효과는 마스크 안의 실선이 자라며 드러낸다 */
-.ln{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-dasharray:10 8;animation:flow 1.6s linear infinite}
+.ln{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-dasharray:12 10;animation:flow 1.8s linear infinite}
 .rv{fill:none;stroke:#fff;stroke-width:12;stroke-linecap:round;stroke-dasharray:calc(var(--L) * 1px);stroke-dashoffset:calc(var(--L) * 1px);transition:stroke-dashoffset 420ms ease-out}
-.hd{fill:var(--line);opacity:0;transition:opacity 120ms 320ms}
-@keyframes flow{to{stroke-dashoffset:-18}}
+/* 화살촉: 선 끝 방향을 따라 그린 둥근 꺾쇠 */
+.hd{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity 120ms 320ms}
+@keyframes flow{to{stroke-dashoffset:-22}}
 .ar{filter:drop-shadow(0 2px 6px rgba(132,94,238,.35))}
 .ar.l{--line:#845EEE}
 .ar.r{--line:var(--gold-b);filter:drop-shadow(0 2px 6px rgba(230,168,0,.4))}
@@ -111,6 +113,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nd.lift .pop::after{content:'';position:absolute;left:50%;bottom:-20px;width:var(--fw);height:16px;margin-left:calc(var(--fw) / -2);border-radius:50%;background:rgba(108,74,182,.22);filter:blur(8px);z-index:-1;pointer-events:none}
 /* 노드는 카드 없이 오브젝트만. 노드 박스 전체를 오브젝트가 차지, 그림자는 윤곽을 따라(drop-shadow). 글로우·바닥 타원은 .lift가 유지 */
 .ncard{width:100%;height:100%}
+.nd .ncard,.nd .malls{transform:rotate(var(--rot,0deg))}
 .ncard img{display:block;width:100%;height:100%;object-fit:contain}
 .ncard > img,.ncard > .obj,.ncard > .tks{filter:drop-shadow(0 10px 18px rgba(108,74,182,.30))}
 /* 정면 폰 + 프라이스픽 스플래시 화면(이전: 앱 아이콘 pricepick-appicon.png, 홈 화면 pricepick-home.png, 파일 보존). 폰 이미지(512x816)의 화면 영역 실측: left 15.2% top 9.6% w 69.7% h 82.1%
@@ -171,10 +174,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .tour{position:absolute;inset:0;z-index:20;color:var(--text1);opacity:0;pointer-events:none;transition:opacity .25s;cursor:pointer;user-select:none;-webkit-user-select:none}
 .tour.open{opacity:1;pointer-events:auto}
 .bgfx{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.blob{position:absolute;border-radius:50%;filter:blur(60px)}
-.blob.b1{width:320px;height:320px;left:-90px;top:40px;background:rgba(132,94,238,.28)}
-.blob.b2{width:260px;height:260px;right:-80px;top:300px;background:rgba(255,217,59,.22)}
-.blob.b3{width:300px;height:300px;left:-100px;bottom:40px;background:rgba(155,120,255,.22)}
+.blob{position:absolute;border-radius:50%;filter:blur(70px)}
+.blob.b1{width:400px;height:400px;left:-150px;top:-10px;background:rgba(132,94,238,.39)}
+.blob.b2{width:340px;height:340px;right:-130px;top:250px;background:rgba(255,217,59,.31)}
+.blob.b3{width:420px;height:420px;left:-170px;bottom:-40px;background:rgba(155,120,255,.31)}
+.blob.b4{width:320px;height:320px;right:-120px;bottom:150px;background:rgba(198,175,255,.42)}
+/* 노드 앞에 아주 옅게 떠 있는 장식 — 깊이감 */
+.fgfx{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.fgfx .deco{opacity:.12}
 .deco{position:absolute;animation:bob var(--d) ease-in-out var(--dl) infinite}
 .deco svg{display:block;width:100%;height:100%}
 .deco.soft{filter:blur(1.5px)}
@@ -191,16 +198,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .tour .cv{left:calc(50% - 187.5px)}
 
 .tour .bar{position:absolute;top:47px;left:0;right:0;display:flex;align-items:center;gap:20px;padding:12px 16px 0 36px;z-index:2}
-.tour .prog{flex:1;display:flex;gap:4px}
-.tour .prog span{flex:1;height:3px;border-radius:2px;background:var(--sub-3);transition:background .3s}
-.tour .prog span.done{background:var(--main)}
+.tour .prog{flex:1;display:flex;align-items:center;gap:5px}
+.tour .prog span{flex:0 0 3px;height:3px;border-radius:2px;background:var(--sub-2);transition:flex-grow .35s ease,background .3s}
+.tour .prog span.done{flex:1 1 0;background:var(--main)}
+.tour .prog span.cur{flex:1.6 1 0}
 .tour .x{width:36px;height:36px;display:grid;place-items:center;color:var(--text2)}
 .tour .skip{position:absolute;top:96px;left:8px;z-index:2;height:36px;padding:0 8px;font-size:var(--fs-body);font-weight:var(--fw-regular);color:var(--text2);transition:opacity .2s}
 .tour.final .skip{opacity:0;pointer-events:none}
 
 .tour .txt{position:absolute;left:16px;right:16px;bottom:22px;display:flex;flex-direction:column;align-items:center;transition:opacity .2s;z-index:2}
-.tour .tcard{width:100%;background:rgba(255,255,255,.80);border:1px solid rgba(255,255,255,.65);border-radius:var(--r-xl);padding:20px;box-shadow:0 8px 24px rgba(108,74,182,.14);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);text-align:center}
+.tour .tcard{width:100%;padding:20px;text-align:center}
+/* 문구는 박스 없이 배경 위에. 글자 뒤만 아래로 갈수록 옅게 밝힌다(경계선 없음) */
+.tour .txtbg{position:absolute;left:0;right:0;bottom:0;height:300px;z-index:1;pointer-events:none;transition:opacity .3s;
+  background:linear-gradient(to bottom,rgba(246,243,255,0) 0%,rgba(246,243,255,.38) 30%,rgba(246,243,255,.7) 62%,rgba(246,243,255,.85) 100%)}
+.tour.final .txtbg{opacity:0}
 .tour .txt .lines{min-height:96px;display:flex;flex-direction:column;justify-content:center}
 .tour .txt.out .lines{opacity:0;transform:translateY(-6px);transition:opacity 120ms,transform 120ms}
 .tour .txt.in .lines{animation:fadeUp 320ms cubic-bezier(.2,.7,.3,1) both}
@@ -260,13 +271,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   </div>
 
   <div class="tour" data-tour>
-    <div class="bgfx" data-bgfx><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+    <div class="bgfx" data-bgfx><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span></div>
     <div class="vp" data-vp></div>
+    <div class="fgfx" data-fgfx></div>
     <div class="bar">
       <div class="prog" data-prog></div>
       <button class="x" data-act="close" aria-label="닫기"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <button class="skip" data-act="skip">건너뛰기</button>
+    <div class="txtbg"></div>
     <div class="txt" data-txt>
       <div class="tcard"><div class="lines"><h3 data-title></h3><p class="desc" data-desc></p></div></div>
       <button class="more" data-act="more">가이드 자세히 보기 ›</button>
@@ -297,30 +310,37 @@ const CV_H = 2505;
 /* x 는 캔버스 가로 중심 기준 상대값(px). 단일 노드 0, 갈래는 왼쪽 -72.5 / 오른쪽 +72.5 로 중심 대칭.
    화살표 x 도 같은 기준. 캔버스(폭 CW)는 화면 실제 폭의 가운데에 놓이고 좁은 화면이면 노드·라벨이 다 들어오게 줄어든다(fitX) */
 const CW = 375, CX = CW / 2;
+/* 지그재그: 단일 노드는 가운데에서 좌우로 번갈아(1단계 -26 · 2단계 +22 · 3단계 -20 · 7단계 +18),
+   갈래(4~6단계)는 좌우 대칭(±72.5)을 유지한 채 묶음 전체를 -12 밀어 축을 흔든다.
+   rot: 그림 기울기(deg) — 라벨·알약은 수평 그대로 */
 const NODES = {
-  phone:  { x: 0,     y: 40,   w: 218, h: 472, img: 'sp', lab: '프라이스픽', at: 'b', edge: true },
-  mall:   { x: 0,     y: 640,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
-  bag:    { x: 0,     y: 898,  w: 279, h: 308, img: 'o2', lab: '구매 완료', at: 'b' },
-  wait:   { x: -72.5, y: 1362, w: 227, h: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b', edge: true },
-  ok:     { x: -72.5, y: 1755, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
-  ticket: { x: -72.5, y: 1830, w: 261, h: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b', edge: true },
-  coin:   { x: 72.5,  y: 1595, w: 227, h: 162, img: 'o5', lab: '포인트', at: 'b', edge: true },
-  rate:   { x: 72.5,  y: 1900, w: 130, h: 30,  html: '<span class="pill y">10P = 티켓 1장</span>' },
-  gift:   { x: 0,     y: 2248, w: 301, h: 185, img: 'o6', lab: '기프티콘', at: 'b' },
+  phone:  { x: -26,   y: 40,   w: 218, h: 472, img: 'sp', lab: '프라이스픽', at: 'b', edge: true, rot: -4 },
+  mall:   { x: 22,    y: 640,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b', rot: 3 },
+  bag:    { x: -20,   y: 898,  w: 279, h: 308, img: 'o2', lab: '구매 완료', at: 'b', rot: -6 },
+  wait:   { x: -84.5, y: 1362, w: 227, h: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b', edge: true, rot: 5 },
+  ok:     { x: -84.5, y: 1755, w: 100, h: 30,  html: '<span class="pill g">구매 확정</span>' },
+  ticket: { x: -84.5, y: 1830, w: 261, h: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b', edge: true, rot: -3 },
+  coin:   { x: 60.5,  y: 1595, w: 227, h: 162, img: 'o5', lab: '포인트', at: 'b', edge: true, rot: 6 },
+  rate:   { x: 60.5,  y: 1900, w: 130, h: 30,  html: '<span class="pill y">10P = 티켓 1장</span>' },
+  gift:   { x: 18,    y: 2248, w: 301, h: 185, img: 'o6', lab: '기프티콘', at: 'b', rot: -4 },
 };
+/* 단계별로 가로 맞춤(fitX)에 넣을 노드 — 그 단계 화면에 같이 보이는 노드. 갈래·합류 단계는 좌우 갈래를 함께 */
+const BRANCH = ['wait', 'ok', 'ticket', 'coin', 'rate'];
+const FIT_KEYS = [['phone'], ['phone', 'mall'], ['mall', 'bag'], BRANCH, BRANCH, BRANCH, [...BRANCH, 'gift']];
 /* 화살표: 끝점은 항상 아래 방향. 선은 촉 길이만큼 짧게 끝낸다.
    5번째 값: 곡선 종류, 6번째 값: 갈래 색(l 티켓 길 보라 / r 포인트 길 골드),
    7번째 값: 곡선 시작 y — 그 전까지는 수직선(합류 곡선 두 개를 같은 크기로 맞춘다)
    8번째 값: 곡선 끝 y — 그 뒤로는 수직선(분기 곡선 두 개를 같은 크기로 맞춘다) */
+/* 직선 없이 전부 S자: 어긋난 두 노드는 'curve'(양끝 수직으로 꽂히는 S), 같은 x 끼리는 'wave'(좌우로 한 번 휘는 S) */
 const ARROWS = {
-  a1: [0, 548, 0, 630],
-  a2: [0, 806, 0, 888],
-  sl: [0, 1242, -72.5, 1352, 'curve', 'l'],
-  sr: [0, 1242, 72.5, 1585, 'curve', 'r', null, 1340],
-  al: [-72.5, 1591, -72.5, 1820, null, 'l'],
-  ar: [72.5, 1793, 72.5, 1890, null, 'r'],
-  ml: [-72.5, 2086, -15.5, 2238, 'curve', 'l'],
-  mr: [72.5, 1940, 15.5, 2238, 'curve', 'r', 2086],
+  a1: [-26, 548, 22, 630, 'curve'],
+  a2: [22, 806, -20, 888, 'curve'],
+  sl: [-20, 1242, -84.5, 1352, 'curve', 'l'],
+  sr: [-20, 1242, 60.5, 1585, 'curve', 'r', null, 1340],
+  al: [-84.5, 1591, -84.5, 1820, 'wave', 'l'],
+  ar: [60.5, 1793, 60.5, 1890, 'wave', 'r'],
+  ml: [-84.5, 2086, 2.5, 2238, 'curve', 'l'],
+  mr: [60.5, 1940, 33.5, 2238, 'curve', 'r', 2086],
 };
 const STEPS = [
   { t: '프라이스픽을 먼저 열어요', d: '여기를 거쳐야 티켓이 쌓여요',
@@ -358,14 +378,30 @@ const objHTML = k => k === 'sp' ? `<span class="splash"><img src="${SPLASH}" alt
 [TK, TR, SPLASH].forEach(u => new Image().src = u);
 Object.values(NODES).forEach(n => n.img && n.img[0] === 'o' && (new Image().src = src(n.img)));
 
+/* 선은 화살촉 꼭짓점(y2 - 3)까지 그린다. 촉은 선 끝 방향을 따라 꺾쇠로 얹는다 */
+const TIP = 3;
+const waveA = H => Math.min(16, H * .12);
 function arrowPath([x1, y1, x2, y2, kind, , cy, ce]) {
-  const tip = y2 - 12;
-  if (!kind) return `M${x1} ${y1}L${x2} ${tip}`;
-  if (ce) return arrowPath([x1, y1, x2, ce + 12, kind]) + `L${x2} ${tip}`;
+  const tip = y2 - TIP;
+  if (ce) return arrowPath([x1, y1, x2, ce + TIP, kind]) + `L${x2} ${tip}`;
   if (cy) return `M${x1} ${y1}L${x1} ${cy}` + arrowPath([x1, cy, x2, y2, kind]).slice(`M${x1} ${cy}`.length);
-  /* 큰 S 곡선: 시작 제어점을 아래로 당겨 어깨를 둥글게, 끝은 수직으로 꽂힌다 */
   const H = tip - y1;
+  /* 같은 x: 오른쪽으로 한 번, 왼쪽으로 한 번 휘는 S */
+  if (kind === 'wave') { const A = waveA(H); return `M${x1} ${y1}C${x1 + 2 * A} ${y1 + H / 3} ${x1 - 2 * A} ${y1 + H * 2 / 3} ${x2} ${tip}`; }
+  /* 큰 S 곡선: 시작 제어점을 아래로 당겨 어깨를 둥글게, 끝은 수직으로 꽂힌다 */
   return `M${x1} ${y1}C${x1} ${y1 + H * .6} ${x2} ${y1 + H * .4} ${x2} ${tip}`;
+}
+/* 화살촉 꺾쇠: 선 끝 접선 방향(u)으로 9px 물러난 자리에서 좌우 7px */
+function headPath([x1, y1, x2, y2, kind, , cy, ce]) {
+  const tx = x2, ty = y2 - TIP;
+  let ux = 0, uy = 1;
+  if (kind === 'wave' && !ce) {
+    const y0 = cy || y1, H = ty - y0, A = waveA(H);
+    ux = 2 * A; uy = H / 3;
+    const L = Math.hypot(ux, uy); ux /= L; uy /= L;
+  }
+  const bx = tx - 9 * ux, by = ty - 9 * uy, nx = -uy * 7, ny = ux * 7;
+  return `M${(bx + nx).toFixed(1)} ${(by + ny).toFixed(1)}L${tx} ${ty}L${(bx - nx).toFixed(1)} ${(by - ny).toFixed(1)}`;
 }
 let cvSeq = 0;
 function canvasHTML() {
@@ -380,11 +416,11 @@ function canvasHTML() {
     return `<g class="ar${a[5] ? ' ' + a[5] : ''}" data-k="${k}">` + gold +
       `<mask id="${m}" maskUnits="userSpaceOnUse" x="0" y="0" width="${CW}" height="${CV_H}"><path class="rv" d="${d}"/></mask>` +
       `<path class="ln" d="${d}" mask="url(#${m})"${gold ? ` style="stroke:url(#${m}-g)"` : ''}/>` +
-      `<path class="hd" d="M${a[2] - 10} ${a[3] - 14}Q${a[2]} ${a[3] - 11} ${a[2] + 10} ${a[3] - 14}L${a[2]} ${a[3]}Z"/></g>`;
+      `<path class="hd" d="${headPath(a)}"/></g>`;
   }).join('');
   const nodes = Object.entries(NODES).map(([k, n]) =>
     `<div class="nd${n.html && k !== 'mall' ? '' : ' lift'}${n.edge ? ' edge' : ''}" data-k="${k}" style="left:${CX + n.x - n.w / 2}px;top:${n.y}px;width:${n.w}px;height:${n.h}px;` +
-    `--gw:${n.w + 60}px;--gh:${n.h + 50}px;--fw:${Math.round(n.w * .72)}px">` +
+    `--gw:${n.w + 60}px;--gh:${n.h + 50}px;--fw:${Math.round(n.w * .72)}px;--rot:${n.rot || 0}deg">` +
     `<div class="fx"><div class="pop">${n.img ? `<div class="ncard">${objHTML(n.img)}</div>` : n.html}` +
     `${n.lab ? `<span class="lab ${n.at}">${n.lab}</span>` : ''}</div></div></div>`).join('');
   return `<div class="cv"><svg width="${CW}" height="${CV_H}" viewBox="0 0 ${CW} ${CV_H}">${svg}</svg>${nodes}</div>`;
@@ -396,16 +432,17 @@ const DECO_SHAPE = {
   spark:  c => `<svg viewBox="0 0 20 20"><path fill="${c}" d="M10 0c.9 5.4 4.6 9.1 10 10-5.4.9-9.1 4.6-10 10-.9-5.4-4.6-9.1-10-10C5.4 9.1 9.1 5.4 10 0Z"/></svg>`,
 };
 const P = 'rgba(132,94,238,.18)', Y = 'rgba(230,168,0,.22)';
-const DECO = [ // [모양, x, y, 크기, 색, 주기(s), 지연(s), 흐림]
-  ['spark', 300, 92, 18, Y, 7, 0, 0], ['ticket', 28, 150, 24, P, 9, -2, 0], ['coin', 330, 200, 14, Y, 6.5, -1, 1],
-  ['spark', 52, 262, 12, P, 8, -4, 0], ['coin', 18, 380, 22, Y, 10, -3, 1], ['ticket', 318, 360, 20, P, 8.5, -5, 0],
-  ['spark', 340, 470, 26, P, 11, -1, 1], ['coin', 70, 500, 10, P, 6, -2, 0], ['ticket', 290, 560, 16, Y, 9.5, -6, 1],
-  ['spark', 24, 590, 16, Y, 7.5, -3, 0], ['coin', 345, 640, 18, P, 10.5, -4, 0], ['ticket', 120, 120, 14, Y, 8, -7, 1],
-  ['spark', 200, 610, 10, P, 6.5, -2, 1],
+const DECO = [ // [모양, x, y, 크기, 색, 주기(s), 지연(s), 흐림, 앞(노드 앞에 옅게)]
+  ['spark', 300, 92, 28, Y, 7, 0, 0, 0], ['ticket', 28, 150, 8, P, 9, -2, 0, 0], ['coin', 330, 200, 14, Y, 6.5, -1, 1, 0],
+  ['spark', 52, 262, 9, P, 8, -4, 0, 0], ['coin', 18, 380, 26, Y, 10, -3, 1, 1], ['ticket', 318, 360, 12, P, 8.5, -5, 0, 0],
+  ['spark', 340, 470, 22, P, 11, -1, 1, 1], ['coin', 70, 500, 8, P, 6, -2, 0, 0], ['ticket', 290, 560, 18, Y, 9.5, -6, 1, 0],
+  ['spark', 24, 590, 10, Y, 7.5, -3, 0, 0], ['coin', 345, 640, 28, P, 10.5, -4, 0, 1], ['ticket', 120, 120, 9, Y, 8, -7, 1, 0],
+  ['spark', 200, 610, 16, P, 6.5, -2, 1, 0],
 ];
-function decoHTML() {
-  return DECO.map(([t, x, y, sz, c, d, dl, b]) =>
-    `<span class="deco${b ? ' soft' : ''}" style="left:${(x / 375 * 100).toFixed(2)}%;top:${y}px;width:${sz}px;height:${t === 'ticket' ? Math.round(sz * .67) : sz}px;--d:${d}s;--dl:${dl}s">${DECO_SHAPE[t](c)}</span>`).join('');
+/* front: 노드 앞 층(.fgfx)에 둘 장식만, 아니면 뒤 층 장식만. 앞 장식은 진한 단색에 투명도 .12 */
+function decoHTML(front = false) {
+  return DECO.filter(e => !!e[8] === front).map(([t, x, y, sz, c, d, dl, b]) =>
+    `<span class="deco${b ? ' soft' : ''}" style="left:${(x / 375 * 100).toFixed(2)}%;top:${y}px;width:${sz}px;height:${t === 'ticket' ? Math.round(sz * .67) : sz}px;--d:${d}s;--dl:${dl}s">${DECO_SHAPE[t](front ? (c === Y ? '#E6A800' : '#845EEE') : c)}</span>`).join('');
 }
 
 function measure(root) {
@@ -444,6 +481,7 @@ function mountTour(screen, onClose) {
   $('[data-vp]').innerHTML = canvasHTML();
   measure($('[data-vp]'));
   $('[data-bgfx]').insertAdjacentHTML('beforeend', decoHTML());
+  $('[data-fgfx]').insertAdjacentHTML('beforeend', decoHTML(true));
   const cv = $('[data-vp] .cv');
   const el = k => cv.querySelector(`[data-k="${k}"]`);
   $('[data-prog]').innerHTML = STEPS.map(() => '<span></span>').join('');
@@ -464,13 +502,17 @@ function mountTour(screen, onClose) {
   let camIdx = 0, kx = 1;
   /* 가로: 화면 실제 폭(getBoundingClientRect, 축소 보정)을 재서 캔버스를 가운데에 두고,
      노드·라벨이 좌우 EDGE 안쪽에 다 들어오지 않으면 캔버스를 그만큼 줄인다(transform-origin 이 캔버스 가로 중심이라 줄여도 가운데) */
-  function fitX() {
+  /* keys: 이번 단계 화면에 같이 보이는 노드(FIT_KEYS). 없으면 전체(마지막 장).
+     지그재그로 좌우가 비대칭이라 가운데에서 가장 먼 쪽 끝으로 맞춘다. 기울인 그림은 회전한 외곽 폭으로 잰다 */
+  function fitX(keys) {
     const t = tour.getBoundingClientRect(), W = t.width * (tour.offsetHeight / (t.height || 1));
     cv.style.left = (W - CW) / 2 + 'px';
     let half = 0;
-    cv.querySelectorAll('.nd').forEach(n => {
-      const d = NODES[n.dataset.k], lab = n.querySelector('.lab');
-      half = Math.max(half, Math.abs(d.x) + Math.max(d.w, lab ? lab.offsetWidth : 0) / 2);
+    (keys || Object.keys(NODES)).forEach(k => {
+      const d = NODES[k], lab = el(k).querySelector('.lab'), r = (d.rot || 0) * Math.PI / 180;
+      /* 현재 단계 노드는 1.06배로 커진다(.nd.cur .fx, 가장자리 노드 제외) — 그만큼 더 잡는다 */
+      const bw = (d.w * Math.abs(Math.cos(r)) + d.h * Math.abs(Math.sin(r))) * (d.edge ? 1 : 1.06);
+      half = Math.max(half, Math.abs(d.x) + Math.max(bw, lab ? lab.offsetWidth : 0) / 2);
     });
     kx = Math.min(1, (W - 2 * EDGE) / (2 * half));
   }
@@ -478,17 +520,27 @@ function mountTour(screen, onClose) {
     camIdx = i;
     if (!tour.offsetHeight) return;
     const ks = nodesOf(i);
-    const top = Math.min(...ks.map(k => NODES[k].y));
-    const bot = Math.max(...ks.map(k => NODES[k].y + NODES[k].h + (NODES[k].lab ? 26 : 0)));
-    fitX();
-    const barBot = botOf(prog), cardTop = topOf(tcard);
+    /* 노드 묶음의 실제 외곽: 기울인 그림은 회전한 외곽 높이, 현재 노드 1.06배(가장자리 노드 제외), 라벨(아래 8px + 18px)까지 */
+    const box = ks.map(k => {
+      const d = NODES[k], r = (d.rot || 0) * Math.PI / 180, sc = d.edge ? 1 : 1.06;
+      const cy = d.y + d.h / 2, hh = (d.w * Math.abs(Math.sin(r)) + d.h * Math.abs(Math.cos(r))) * sc / 2;
+      const bw = (d.w * Math.abs(Math.cos(r)) + d.h * Math.abs(Math.sin(r))) * sc;
+      return { t: cy - hh, b: cy + Math.max(hh, (d.h / 2 + (d.lab ? 26 : 0)) * sc), l: d.x - bw / 2 };
+    });
+    const top = Math.min(...box.map(o => o.t)), bot = Math.max(...box.map(o => o.b)), left = Math.min(...box.map(o => o.l));
+    fitX(FIT_KEYS[i]);
+    const barBot = botOf(prog), cardTop = topOf(tcard), mid = (barBot + cardTop) / 2;
+    const chrome = Math.max(barBot, botOf(skipBtn));
     /* 세로로 짧은 화면(예: 320x568)에서 이번 단계 노드 묶음이 진행 바~문구 카드 사이보다 크면 그 안에 들어오게 더 줄인다 */
-    const k = Math.min(kx, (cardTop - barBot - 16) / (bot - top));
-    const y = (barBot + cardTop) / 2 - k * (top + bot) / 2;
+    let k = Math.min(kx, (cardTop - barBot - 16) / (bot - top));
+    /* 지그재그로 왼쪽에 놓인 노드가 「건너뛰기」와 가로로 겹치면, 그 버튼 아래(chrome + 4)부터 들어오게 더 줄인다 */
+    const t = tour.getBoundingClientRect(), sx = tour.offsetWidth / (t.width || 1);
+    const W = t.width * sx, skipR = (skipBtn.getBoundingClientRect().right - t.left) * sx;
+    if (W / 2 + k * left < skipR + 8 && mid - k * (bot - top) / 2 < chrome + 4) k = Math.min(k, 2 * (mid - chrome - 4) / (bot - top));
+    const y = mid - k * (top + bot) / 2;
     /* 위쪽 흐림: 진행 바·「건너뛰기」 실제 bottom(chrome)에서 투명 → 이번 단계 첫 화살표(없으면 노드) 바로 위에서 불투명.
        구간의 70% 지점까지는 20%만 보이게 해 지나간 노드(2단계의 스플래시 등)가 잘린 조각으로 남지 않고 흐려져 사라진다.
        화살표가 아주 위에서 시작하는 갈래 단계는 최소 흐림(chrome+36)만, 현재 노드는 가리지 않는다 */
-    const chrome = Math.max(barBot, botOf(skipBtn));
     const lineTop = k * Math.min(top, ...STEPS[i].seq.flat().filter(a => ARROWS[a]).map(a => ARROWS[a][1])) + y;
     const m1 = Math.min(k * top + y - 4, Math.max(chrome + 36, lineTop - 4));
     const m0 = Math.min(chrome - 8, m1 - 40);
@@ -546,7 +598,7 @@ function mountTour(screen, onClose) {
     else if (idx >= 0) snap(() => STEPS[idx].seq.flat().forEach(k => el(k).classList.add('on')));
     tour.classList.remove('final');
     idx = i;
-    bars.forEach((b, k) => b.classList.toggle('done', k <= i));
+    bars.forEach((b, k) => { b.classList.toggle('done', k <= i); b.classList.toggle('cur', k === i); });
     setText(i, txt.querySelector('[data-title]').textContent !== '' && !wasFinal);
 
     let t = 0, panned = false;
@@ -566,7 +618,7 @@ function mountTour(screen, onClose) {
     snap(() => cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.add('on')));
     cv.querySelectorAll('.nd').forEach(n => n.classList.remove('cur', 'past'));
     finLayout();
-    bars.forEach(b => b.classList.add('done'));
+    bars.forEach(b => { b.classList.add('done'); b.classList.remove('cur'); });
     tour.classList.add('final');
   }
   function open(i = 0) {
