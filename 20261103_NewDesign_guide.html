@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>쇼핑 가이드 (가이드 투어 + 가이드 페이지)</title>
+<title>쇼핑 가이드 New Design</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
 <style>
 :root{
@@ -222,36 +222,34 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 @media (prefers-reduced-motion:reduce){.tour *,.tour,.ln{transition:none!important;animation:none!important}}
 
-/* ── New Design 시안 겉옷: 헤더 3단(nd-kit 규격)과 시안 뿌리. 가이드 본문 규칙은 그대로 ── */
-#dc-root{display:flex;flex-direction:column;align-items:center;width:100%}
-#pp-nd-header{display:flex;flex-direction:column;align-self:stretch;max-width:880px;width:100%;margin:28px auto 36px;padding:0 8px}
-
-/* ── 전체 펼쳐 보기: 여덟 장면을 그 단계 상태로 멈춰 나란히 (다른 시안의 나란히 보기와 같은 줄 배치) ── */
-.allv{align-self:stretch;width:100%;display:flex;flex-direction:column;align-items:center}
-.allv[hidden]{display:none}
-.stills{--k:.8;align-self:stretch;display:flex;gap:40px;padding:8px 40px 28px;overflow-x:auto;scrollbar-width:thin}
-.stills::before,.stills::after{content:'';flex:1 0 0}
-.still-card{flex:none;display:flex;flex-direction:column;align-items:flex-start;gap:14px;text-align:left;cursor:pointer;border-radius:24px}
-.still-card:focus-visible{outline:2px solid var(--main);outline-offset:6px}
-.still-shell{display:block;position:relative;width:calc(395px * var(--k));height:calc(832px * var(--k));transition:transform .18s ease}
-.still-card:hover .still-shell{transform:translateY(-4px)}
-.still-shell .phone{display:block;position:absolute;left:0;top:0;transform:scale(var(--k));transform-origin:0 0;pointer-events:none}
-.still-shell .screen{display:block}
-.still-cap{display:flex;align-items:center;gap:10px;margin:0 2px;max-width:calc(395px * var(--k))}
-.still-no{flex:none;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--main);color:#fff;font-size:13px;font-weight:800}
-.still-t{font-size:15px;font-weight:700;color:var(--text1);line-height:1.35;word-break:keep-all}
-.stills .phone *,.stills .phone *::before,.stills .phone *::after{animation:none!important;transition:none!important}
-.allv-hint{font-size:var(--fs-caption);color:var(--text3);margin-bottom:12px}
-@media (max-width:1100px){
-  .stills{--k:.5;display:grid;grid-template-columns:repeat(4,max-content);justify-content:center;gap:28px 20px;overflow:visible;padding:8px 16px 28px}
-  .stills::before,.stills::after{display:none}
-  .still-t{font-size:13px}
-}
-@media (max-width:860px){.stills{grid-template-columns:repeat(3,max-content)}}
-@media (max-width:660px){.stills{--k:.42;grid-template-columns:repeat(2,max-content);gap:24px 14px}}
+/* ══ New Design 시안 판 — 「내 티켓 & 포인트」 시안 실측 그대로 ══
+   흰 바탕 · 안쪽 여백 56 56 72 · 머리말과 화면 줄 사이 44 · 머리말 줄 간격 10
+   화면은 390×844 · 라운드 24 · 왼쪽부터 44 간격 가로 나열(넘치면 페이지 가로 스크롤)
+   화면 위 번호 칩 22 · 라운드 7 · 남색 + 제목 13/700 */
+html,body{background:#fff}
+body{display:block;min-height:0;padding:0;align-items:initial}
+#dc-root{padding:56px 56px 72px;background:#fff;display:flex;flex-direction:column;gap:44px}
+#pp-nd-header{display:flex;flex-direction:column;gap:10px}
+.nd-rev{display:flex;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap;line-height:normal}
+.nd-badge,.nd-cap,.nd-no{line-height:normal}
+.nd-rev .nd-pill{padding:4px 10px;border-radius:999px;background:#F1ECFF;color:#845EEE;font-size:12px;font-weight:800}
+.nd-rev .nd-say{color:#5A5370;font-size:13px;font-weight:600}
+.nd-row{display:flex;gap:44px;align-items:flex-start;flex-wrap:nowrap}
+.nd-card{flex:none;display:flex;flex-direction:column;gap:12px}
+.nd-badge{display:flex;align-items:center;gap:9px;padding-left:4px}
+.nd-no{width:22px;height:22px;border-radius:7px;background:#1A1130;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.nd-cap{color:#1A1130;font-size:13px;font-weight:700}
+.nd-row .screen{width:390px;height:844px;border-radius:24px;box-shadow:0 24px 60px -24px rgba(26,17,48,.22),0 2px 8px rgba(26,17,48,.06)}
+.nd-card.still .screen{cursor:pointer}
+/* 펼쳐 둔 화면은 그 단계가 다 그려진 상태로 멈춘다 — 누르면(.live) 그 화면에서 투어가 돈다 */
+.nd-card.still:not(.live) .screen *,.nd-card.still:not(.live) .screen *::before,.nd-card.still:not(.live) .screen *::after{animation:none!important;transition:none!important}
+.nd-card.still:not(.live) .screen:hover{box-shadow:0 24px 60px -20px rgba(108,74,182,.38),0 2px 8px rgba(26,17,48,.06)}
+.nd-card .screen:focus-visible{outline:2px solid #845EEE;outline-offset:4px}
+.nd-card .playing{display:none;margin-left:2px;padding:2px 8px;border-radius:999px;background:#F1ECFF;color:#845EEE;font-size:11px;font-weight:800}
+.nd-card.live .playing{display:inline-block}
 
 /* ── 구조 설명 (접었다 펼친다) ── */
-.ddoc{align-self:stretch;max-width:880px;width:100%;margin:12px auto 0;background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.ddoc{max-width:1100px;width:100%;margin:0;background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
 .ddoc summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;user-select:none}
 .ddoc summary::-webkit-details-marker{display:none}
 .ddoc summary b{font-size:var(--fs-section);font-weight:800;letter-spacing:-.02em;color:var(--text1)}
@@ -289,24 +287,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <div id="dc-root">
 <div id="pp-nd-header">
   <div style="color: rgb(155, 147, 176); font-size: 13px; font-weight: 700; letter-spacing: 0.08em;">PRICEPICK · 쇼핑 가이드</div>
-  <div style="color: rgb(26, 17, 48); font-size: 34px; font-weight: 800; letter-spacing: -0.035em;">쇼핑 가이드 (가이드 투어 + 가이드 페이지)</div>
-  <div style="color: rgb(138, 138, 163); font-size: 15px; font-weight: 500;">경유 쇼핑 적립 구조를 일곱 단계 흐름도로 안내 · 출발 → 제휴몰 → 구매 → 랜덤 티켓·포인트 두 갈래 → 기프티콘 합류</div>
+  <div style="color: rgb(26, 17, 48); font-size: 34px; font-weight: 800; letter-spacing: -0.035em;">쇼핑 가이드 New Design</div>
+  <div style="color: rgb(138, 138, 163); font-size: 15px; font-weight: 500;">경유 쇼핑으로 티켓이 쌓이는 구조를 일곱 단계 흐름도로 — 가이드 투어 + 쇼핑 가이드 페이지</div>
+  <div class="nd-rev"><span class="nd-pill">2026-11-03 신설</span><span class="nd-say">출발 → 제휴몰 → 구매 → 랜덤 티켓·포인트 두 갈래 → 기프티콘 합류 · 화면을 누르면 그 단계부터 투어가 재생된다</span></div>
 </div>
 
-<div class="tabs" role="tablist">
-  <button role="tab" class="on" data-tab="all">전체 펼쳐 보기</button>
-  <button role="tab" data-tab="a">가이드 투어</button>
-  <button role="tab" data-tab="b">쇼핑 가이드 페이지</button>
-</div>
-
-<div class="phone" id="mainPhone" hidden>
-  <div class="screen" id="screenA" data-panel="a"></div>
-  <div class="screen" id="screenB" data-panel="b" hidden></div>
-</div>
-
-<section class="allv" id="allView" data-panel="all">
-  <p class="allv-hint">장면을 누르면 「가이드 투어」가 그 단계부터 열려요</p>
-  <div class="stills" id="stills"></div>
+<div class="nd-row" id="ndRow"></div>
 
   <details class="ddoc" open>
     <summary><b>구조 설명</b><span class="hint"><span class="c">접기</span><span class="o">펼치기</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
@@ -380,7 +366,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       </section>
     </div>
   </details>
-</section>
 </div>
 
 <template id="tpl">
@@ -748,7 +733,7 @@ function mountTour(screen, onClose) {
     idx < STEPS.length - 1 ? go(idx + 1) : final();
   });
 
-  /* 전체 펼쳐 보기용: i 단계(또는 마지막 장)가 다 그려진 상태로 멈춘다 */
+  /* 펼쳐 둔 화면용: i 단계(또는 마지막 장)가 다 그려진 상태로 멈춘다 */
   function still(i) {
     stop();
     tour.classList.add('open');
@@ -761,51 +746,46 @@ function mountTour(screen, onClose) {
   return { open, close, screen, still, final };
 }
 
-const tabBtns = [...document.querySelectorAll('.tabs button')];
-function showTab(t) {
-  tabBtns.forEach(b => b.classList.toggle('on', b.dataset.tab === t));
-  document.querySelectorAll('.screen[data-panel]').forEach(s => s.hidden = s.dataset.panel !== t);
-  document.getElementById('mainPhone').hidden = t === 'all';
-  document.getElementById('allView').hidden = t !== 'all';
-  if (t === 'all') stills.forEach((T, i) => T.still(i));
-}
-/* 탭 A는 투어만, 탭 B는 페이지만 그린다. 투어를 닫으면 페이지(탭 B)로 */
-const A = mountTour(document.getElementById('screenA'), () => showTab('b'));
-const B = mountPage(document.getElementById('screenB'));
+/* 펼쳐 보기: 1~7단계 + 마지막 장을 그 단계 상태로 멈춰 왼쪽부터 나란히, 맨 뒤에 쇼핑 가이드 페이지.
+   멈춘 화면을 누르면 그 화면에서 그 단계부터 투어가 돈다. 닫으면(X·시작하기·자세히 보기) 다시 멈춘 장면으로 */
+const row = document.getElementById('ndRow');
+const NAMES = [...STEPS.map(s => s.t), '한눈에 보는 프라이스픽'];
+row.innerHTML = NAMES.map((t, i) =>
+  `<div class="nd-card still" data-still="${i}"><div class="nd-badge"><span class="nd-no">${i + 1}</span><span class="nd-cap">${t}</span><span class="playing">재생 중</span></div>` +
+  `<div class="screen" tabindex="0" role="button" aria-label="${i + 1}단계부터 투어 재생"></div></div>`).join('') +
+  `<div class="nd-card nd-pagecard"><div class="nd-badge"><span class="nd-no">${NAMES.length + 1}</span><span class="nd-cap">쇼핑 가이드 페이지</span></div><div class="screen"></div></div>`;
 
-/* 전체 펼쳐 보기: 1~7단계 + 마지막 장을 나란히. 누르면 「가이드 투어」가 그 단계부터 */
-const stillsEl = document.getElementById('stills');
-stillsEl.innerHTML = [...STEPS.map(s => s.t), '한눈에 보는 프라이스픽'].map((t, i) =>
-  `<div class="still-card" role="button" tabindex="0" data-still="${i}" aria-label="${i + 1}단계 · ${t}">` +
-  `<span class="still-shell"><span class="phone"><span class="screen"></span></span></span>` +
-  `<span class="still-cap"><span class="still-no">${i + 1}</span><span class="still-t">${t}</span></span></div>`).join('');
-const stills = [...stillsEl.querySelectorAll('.still-card')].map(c => mountTour(c.querySelector('.screen'), () => {}));
-function openFromStill(i) {
-  showTab('a');
-  A.open(Math.min(i, STEPS.length - 1));
-  if (i >= STEPS.length) A.final();
+const cards = [...row.querySelectorAll('.nd-card.still')];
+const tours = cards.map((c, i) => mountTour(c.querySelector('.screen'), () => freeze(i)));
+function freeze(i) { cards[i].classList.remove('live'); tours[i].still(i); }
+function play(i) {
+  cards.forEach((c, k) => { if (k !== i && c.classList.contains('live')) freeze(k); });
+  cards[i].classList.add('live');
+  tours[i].open(Math.min(i, STEPS.length - 1));
+  if (i >= STEPS.length) tours[i].final();
 }
-stillsEl.querySelectorAll('.still-card').forEach(c => {
-  c.addEventListener('click', () => openFromStill(+c.dataset.still));
-  c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFromStill(+c.dataset.still); } });
+cards.forEach((c, i) => {
+  const scr = c.querySelector('.screen');
+  /* 멈춘 화면의 첫 누름은 재생 시작만 한다(투어 자체 「다음」으로 넘어가지 않게 먼저 가로챈다) */
+  scr.addEventListener('click', e => { if (!c.classList.contains('live')) { e.stopPropagation(); play(i); } }, true);
+  scr.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && !c.classList.contains('live')) { e.preventDefault(); play(i); } });
 });
-showTab('all');
+tours.forEach((T, i) => T.still(i));
 
-/* 페이지의 흐름도·단계 카드를 누르면 탭 A 투어로 재생 */
-B.screen.querySelector('[data-act="overview"]').addEventListener('click', () => { showTab('a'); A.open(0); });
-B.screen.querySelectorAll('[data-go]').forEach(b =>
-  b.addEventListener('click', () => { showTab('a'); A.open(+b.dataset.go); }));
-tabBtns.forEach(btn => btn.addEventListener('click', () => {
-  showTab(btn.dataset.tab);
-  if (btn.dataset.tab === 'a') A.open(0); else A.close();
-}));
+/* 맨 뒤 쇼핑 가이드 페이지: 흐름도·단계 카드를 누르면 해당 단계 화면에서 투어 재생 */
+const B = mountPage(row.querySelector('.nd-card.nd-pagecard .screen'));
+const goStill = i => { play(i); cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' }); };
+B.screen.querySelector('[data-act="overview"]').addEventListener('click', () => goStill(0));
+B.screen.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => goStill(+b.dataset.go)));
 </script>
-<!-- New Design 공통 덧옷 — 헤더 규격·한베 토글·번역. 가이드 본문은 한국어 시안이라 헤더만 사전에 넣었다 -->
+<!-- New Design 공통 덧옷 — 헤더 규격·한베 토글·번역. 가이드 본문은 한국어 시안이라 머리말만 사전에 넣었다 -->
 <script>
 window.ND_DICT = {
   "PRICEPICK · 쇼핑 가이드": "PRICEPICK · Hướng dẫn mua sắm",
-  "쇼핑 가이드 (가이드 투어 + 가이드 페이지)": "Hướng dẫn mua sắm (Tour hướng dẫn + Trang hướng dẫn)",
-  "경유 쇼핑 적립 구조를 일곱 단계 흐름도로 안내 · 출발 → 제휴몰 → 구매 → 랜덤 티켓·포인트 두 갈래 → 기프티콘 합류": "Giới thiệu cơ chế tích điểm khi mua sắm qua PricePick bằng sơ đồ 7 bước · Bắt đầu → Sàn liên kết → Mua hàng → Rẽ hai nhánh vé ngẫu nhiên·điểm → Hợp lại thành Gifticon"
+  "쇼핑 가이드 New Design": "Hướng dẫn mua sắm New Design",
+  "경유 쇼핑으로 티켓이 쌓이는 구조를 일곱 단계 흐름도로 — 가이드 투어 + 쇼핑 가이드 페이지": "Cơ chế tích vé khi mua sắm qua PricePick bằng sơ đồ 7 bước — Tour hướng dẫn + Trang hướng dẫn mua sắm",
+  "2026-11-03 신설": "Tạo mới 2026-11-03",
+  "출발 → 제휴몰 → 구매 → 랜덤 티켓·포인트 두 갈래 → 기프티콘 합류 · 화면을 누르면 그 단계부터 투어가 재생된다": "Bắt đầu → Sàn liên kết → Mua hàng → Rẽ hai nhánh vé ngẫu nhiên·điểm → Hợp lại thành Gifticon · Bấm vào màn hình để phát tour từ bước đó"
 };
 </script>
 <script src="/new-design/nd-kit.js"></script>
