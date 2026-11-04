@@ -104,8 +104,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .ar,.ar.l{--lnc:rgba(132,94,238,.45);--line:#845EEE;--fd:2s}
 .ar.r{--lnc:rgba(230,168,0,.45);--line:#E6A800;--fd:2.4s}
 /* 노드 라벨 */
-.lab{position:absolute;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--text2);white-space:nowrap;pointer-events:none}
-.lab.b{top:calc(100% + 8px);left:50%;transform:translateX(-50%)}
+/* 라벨: 화면에서 항상 13px/700 text2 로 보이게 캔버스 배율을 역보정(--ik = 1/카메라 배율, --ic = 현재 1.10·지난 .94 노드 확대 역보정).
+   위쪽 가운데 기준이라 노드 아래 가운데 8px 자리를 지킨다. 두 줄 라벨의 둘째 줄은 같은 13px, 색만 text3 */
+.lab{position:absolute;font-size:13px;font-weight:700;line-height:1.25;color:var(--text2);white-space:nowrap;text-align:center;pointer-events:none}
+.lab .l2{display:block;margin-top:2px;color:var(--text3)}
+.lab.b{top:calc(100% + 8px * var(--ik,1) * var(--ic,1));left:50%;transform:translateX(-50%) scale(calc(var(--ik,1) * var(--ic,1)));transform-origin:50% 0}
+.nd.cur{--ic:.9091}
+.nd.past{--ic:1.0638}
 .lab{transition:opacity .3s}
 .nd.nolab .lab{opacity:0}
 .lab.l{right:calc(100% + 8px);top:50%;transform:translateY(-50%)}
@@ -373,13 +378,14 @@ const MALLS = '<div class="malls"><div class="chips">' +
    투어 단계도 같은 캔버스. 세로 크기는 그림 원래 비율(w0 x h0), 제휴몰 묶음(HTML)은 안쪽을 g 배로 키운다.
    화살표는 이 값에서 매번 계산한다(buildArrows) — 좌표를 바꾸면 선이 저절로 따라온다 */
 const CW = 1170, CV_H = 2533, CX = CW / 2;
-/* lab: 노드 라벨 — 오브젝트 아래 8px 가운데. 뱃지(구매 확정 · 10P)는 원래 크기(높이 30) */
+/* lab: 노드 라벨 — 모두 오브젝트 아래 가운데 8px(\n 은 둘째 줄). 뱃지(구매 확정 · 10P)는 원래 크기(높이 30).
+   구매 확정은 랜덤 티켓 두 줄 라벨 + 선 자리만큼 표 값(.609)에서 .015 내렸다 */
 const NODES = {
   phone:  { fx: .232, fy: .284, fw: .309, w0: 218, h0: 472, img: 'sp', lab: '프라이스픽', at: 'b' },
   mall:   { fx: .698, fy: .225, fw: .466, w0: 286, h0: 130, html: MALLS, lab: '제휴몰', at: 'b' },
   bag:    { fx: .801, fy: .401, fw: .262, w0: 279, h0: 308, img: 'o2', lab: '구매 완료', at: 'b' },
-  wait:   { fx: .262, fy: .546, fw: .178, w0: 227, h0: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b' },
-  ok:     { fx: .246, fy: .609, w0: 100, h0: 30, html: '<span class="pill g"><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>구매 확정</span>' },
+  wait:   { fx: .262, fy: .546, fw: .178, w0: 227, h0: 193, img: 'tw', lab: '랜덤 티켓\n(구매 확정 전)', at: 'b' },
+  ok:     { fx: .246, fy: .624, w0: 100, h0: 30, html: '<span class="pill g"><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>구매 확정</span>' },
   ticket: { fx: .227, fy: .682, fw: .183, w0: 261, h0: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b' },
   coin:   { fx: .749, fy: .541, fw: .209, w0: 227, h0: 162, img: 'o5', lab: '포인트', at: 'b' },
   rate:   { fx: .749, fy: .616, w0: 130, h0: 30, html: '<span class="pill y">10P = 티켓 1장</span>' },
@@ -397,7 +403,9 @@ Object.values(NODES).forEach(n => {
    면 선택: 세로로 이어지는 연결은 아래면 → 위면, 좌우로 벌어진 3→4·5→7 은 옆면 → 옆면.
    1→2 는 제휴몰이 스플래시 오른쪽 위(중심이 더 높다)라 스플래시 오른쪽 면 → 제휴몰 아래면(아래에서 들어간다).
    3→6 은 포인트가 쇼핑백 바로 아래라 아래면 → 위면 */
-const EGAP = 12, BGAP = 6, LABH = 26;
+const EGAP = 12, BGAP = 6, LABK = .7;
+/* 라벨이 캔버스에서 차지하는 높이(역보정이라 화면 13px 고정 → 캔버스로는 배율이 작을수록 커진다. 투어 최저 배율 .7 기준으로 넉넉히) */
+const labH = n => { const L = n.lab.split('\n').length; return (8 + L * 16.25 + (L - 1) * 2) / LABK; };
 const LINKS = [
   // [이름, 출발, 출발 면, 도착, 도착 면, 갈래 색, 뱃지]
   ['a1', 'phone', 'r', 'mall', 'b'],
@@ -416,7 +424,7 @@ function facePoint(k, f, tx, ty) {
   const B = nodeBox(k), n = NODES[k];
   if (f === 't' || f === 'b') {
     const x = clamp(tx, B.l + B.w * .15, B.r - B.w * .15);
-    const lab = f === 'b' && n.lab && n.at === 'b' && Math.abs(x - B.cx) < 70 ? LABH : 0;
+    const lab = f === 'b' && n.lab && Math.abs(x - B.cx) < 90 ? labH(n) : 0;
     return [x, f === 'b' ? B.b + lab + EGAP : B.t - EGAP];
   }
   const y = clamp(ty, B.t + B.h * .15, B.b - B.h * .15);
@@ -556,7 +564,7 @@ function canvasHTML() {
     `<div class="nd${n.html && k !== 'mall' ? ' tag' : ' lift'}" data-k="${k}" style="left:${n.cx - n.w / 2}px;top:${n.cy - n.h / 2}px;width:${n.w}px;height:${n.h}px;` +
     `--gw:${n.w + 60}px;--gh:${n.h + 50}px;--fw:${Math.round(n.w * .72)}px;--g:${n.g.toFixed(4)};--bd:${(-i * .53).toFixed(2)}s">` +
     `<div class="fx"><div class="pop">${n.img ? `<div class="ncard">${objHTML(n.img)}</div>` : n.html}` +
-    `${n.lab ? `<span class="lab ${n.at}">${n.lab}</span>` : ''}</div></div></div>`).join('');
+    `${n.lab ? `<span class="lab ${n.at}">${n.lab.split('\n').map((t, j) => j ? `<span class="l2">${t}</span>` : t).join('')}</span>` : ''}</div></div></div>`).join('');
   return `<div class="cv"><svg width="${CW}" height="${CV_H}" viewBox="0 0 ${CW} ${CV_H}">${svg}</svg>${nodes}</div>`;
 }
 /* 배경에 떠다니는 장식 — 티켓·코인·반짝임 */
@@ -670,7 +678,7 @@ function mountTour(screen, onClose) {
   let kfN = 0, par0 = null, camTimers = [];
   const ANIM_MS = 1100, FIN_MS = 1200;
   const DEPTH = [1, .78, .62, .62, .78, .62, .55];
-  const TW = [.78, .78, .66, .60, .60, .60, .78];
+  const TW = [.72, .72, .66, .60, .60, .60, .72];
   const zOut = bezierEase(.4, 0, .9, .5), zIn = bezierEase(.16, .9, .3, 1), finEase = bezierEase(.3, .1, .25, 1);
   const flowRate = r => cv.getAnimations({ subtree: true }).forEach(a => { if (a.animationName === 'flowSeg') a.updatePlaybackRate(r); });
   function moveTo(x, y, s, yr, depth = .62, fin = false) {
@@ -745,16 +753,20 @@ function mountTour(screen, onClose) {
     tour.classList.toggle('short', tour.offsetHeight < 700);
     const W = tourW();
     cv.style.left = (W - CW) / 2 + 'px';
-    const ks = nodesOf(i), b = union(ks.map(k => boxOf(k, 1.1))), bw = b.r - b.l, bh = b.b - b.t;
+    const ks = nodesOf(i), b = union(ks.map(k => boxOf(k, 1.1, false))), bw = b.r - b.l, bh = b.b - b.t;
+    /* 라벨은 화면에서 크기가 고정(13px)이라 배율과 따로 잡는다: 맨 아래 노드 라벨의 화면 높이(8 + 라벨)만큼 아래 자리를 더 둔다 */
+    const lowest = ks.filter(k => NODES[k].lab).sort((p, q) => (NODES[q].cy + NODES[q].h / 2) - (NODES[p].cy + NODES[p].h / 2))[0];
+    const labX = lowest && NODES[lowest].cy + NODES[lowest].h * .55 >= b.b ? 8 + el(lowest).querySelector('.lab').offsetHeight : 0;
     const barBot = botOf(prog), cardTop = topOf(tcard), mid = (barBot + cardTop) / 2;
     const chrome = barBot;
     zm.style.transformOrigin = `${W / 2}px ${mid}px`;
-    /* 배율: 그림(라벨 제외) 폭이 화면의 TW[i] — 넓은 2·7단계 .78, 쇼핑백 .66, 티켓·코인 .60 —,
-       라벨 포함 폭은 화면의 78%(좌우 11% 여백), 높이는 진행 바 ~ 문구 사이의 82% 를 넘지 않게. 작은 그림은 1.3배까지 키운다 */
+    /* 배율: 그림 폭이 화면의 TW[i] — 넓은 2·7단계 .72, 쇼핑백 .66, 티켓·코인 .60 —, 노드 묶음 폭은 화면의 72%(좌우 14% 여백),
+       높이(라벨 포함)는 진행 바 ~ 문구 사이의 82% 를 넘지 않게. 작은 그림은 1.3배까지 키운다 */
     const wPic = Math.max(...ks.filter(k => NODES[k].fw).map(k => NODES[k].w * 1.1));
-    let k = Math.min(1.3, TW[i] * W / wPic, .78 * W / bw, .82 * (cardTop - barBot) / bh);
+    let k = Math.min(1.3, TW[i] * W / wPic, .72 * W / bw, (.82 * (cardTop - barBot) - labX) / bh);
+    cv.style.setProperty('--ik', (1 / k).toFixed(4));
     const sh = 0;
-    const x = -k * ((b.l + b.r) / 2 - CX) + sh, y = mid - k * (b.t + b.b) / 2;
+    const x = -k * ((b.l + b.r) / 2 - CX) + sh, y = mid - (k * (b.t + b.b) + labX) / 2;
     /* 위쪽 흐림: 진행 바·「건너뛰기」 실제 bottom(chrome)에서 투명 → 이번 단계 첫 화살표(없으면 노드) 바로 위에서 불투명.
        구간의 70% 지점까지는 20%만 보이게 해 지나간 노드가 잘린 조각으로 남지 않고 흐려져 사라진다. 현재 노드는 가리지 않는다 */
     const lineTop = k * Math.min(b.t, ...STEPS[i].seq.flat().filter(a => ARROWS[a]).map(a => Math.min(ARROWS[a][1], ARROWS[a][4]))) + y;
