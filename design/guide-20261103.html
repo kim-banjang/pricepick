@@ -106,6 +106,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* 노드 라벨 */
 .lab{position:absolute;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--text2);white-space:nowrap;pointer-events:none}
 .lab.b{top:calc(100% + 8px);left:50%;transform:translateX(-50%)}
+.lab{transition:opacity .3s}
+.nd.nolab .lab{opacity:0}
 .lab.l{right:calc(100% + 8px);top:50%;transform:translateY(-50%)}
 .ar:not(.on),.nd:not(.on){opacity:0;visibility:hidden}
 .ar.on .rv{stroke-dashoffset:0}
@@ -130,7 +132,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nd.tag.on .pill{animation:badgePop 420ms ease-out both,bpulse 2.4s ease-in-out 420ms infinite}
 @keyframes bpulse{50%{transform:scale(1.03)}}
 /* 구매 확정: 나타날 때 체크가 그려진다 */
-.pill .ck{display:block;flex:none;width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24}
+.pill .ck{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24}
 .nd.tag.on .ck{animation:ckDraw 320ms ease-out 260ms forwards}
 @keyframes ckDraw{to{stroke-dashoffset:0}}
 @keyframes badgePop{0%{transform:scale(0)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
@@ -200,12 +202,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mall b{flex:1;font-size:var(--fs-label);font-weight:var(--fw-bold);color:var(--text1)}
 .mall span.go{height:34px;padding:0 16px;border-radius:20px;background:var(--main);color:#fff;font-size:var(--fs-caption);font-weight:var(--fw-bold);display:grid;place-items:center;box-shadow:0 4px 14px rgba(132,94,238,0.28);animation:pulse 1.8s ease-in-out infinite}
 @keyframes pulse{50%{transform:scale(1.06)}}
-/* 뱃지 두 개는 같은 모양: 흰 바탕 + 1.5px 테두리 + 글자(테두리색), 12/700, 높이 24 · 라운드 12 · 좌우 10. 색만 갈래를 따른다 */
-.pill{flex:none;box-sizing:border-box;height:24px;padding:0 10px;border-radius:12px;background:#fff;border:1.5px solid var(--bc);color:var(--bc);font-size:12px;font-weight:700;line-height:1;display:flex;align-items:center;gap:3px;white-space:nowrap;box-shadow:0 3px 10px rgba(108,74,182,.18)}
-.pill.g{--bc:#22C55E}
+.pill{height:30px;padding:0 12px;border-radius:20px;color:#fff;font-size:var(--fs-caption);font-weight:var(--fw-bold);display:grid;place-items:center;white-space:nowrap}
+.pill.g{display:flex;align-items:center;gap:4px;background:var(--green);box-shadow:0 6px 16px rgba(34,197,94,.35),0 2px 4px rgba(34,197,94,.2)}
+.pill.y{border:2px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(90deg,var(--gold-a),var(--gold-b)) border-box;color:var(--main);box-shadow:0 6px 16px rgba(230,168,0,.35),0 2px 4px rgba(132,94,238,.15)}
 .pill.y{--bc:#E6A800}
-/* 마지막 장·탭 B 축소판에서는 뱃지를 2배로(선 끊김 자리도 그 크기에 맞춰 다시 그린다) */
-.tour.final .nd.tag .pop,.mini .nd.tag .pop{transform:scale(2)}
 
 /* 가이드 투어 */
 .tour{position:absolute;inset:0;z-index:20;color:var(--text1);opacity:0;pointer-events:none;transition:opacity .25s;cursor:pointer;user-select:none;-webkit-user-select:none}
@@ -237,7 +237,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* 캔버스(폭 375) 가로 위치·축소는 JS(fitX)가 화면 실제 폭으로 다시 잡는다. 아래는 첫 프레임용 초기값 */
 .tour .cv{left:calc(50% - 585px)}
 
-.tour .bar{position:absolute;top:47px;left:0;right:0;display:flex;align-items:center;gap:20px;padding:12px 16px 0 36px;z-index:2}
+.tour .bar{position:absolute;top:55px;left:0;right:0;display:flex;align-items:center;gap:20px;padding:12px 16px 0 36px;z-index:2}
 .tour .prog{flex:1;display:flex;align-items:center;gap:5px}
 /* 칸 길이 고정: 지난 칸 18px 채움 · 현재 칸 29px(1.6배) · 남은 칸 3px 점 — 얼마나 왔는지 길이로 읽힌다 */
 .tour .prog span{position:relative;overflow:hidden;flex:0 0 3px;height:3px;border-radius:2px;background:var(--sub-2);transition:flex-basis .35s ease}
@@ -250,8 +250,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .tour .prog span.cur::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);transform:translateX(-100%);animation:shine 900ms ease-out 380ms both}
 @keyframes shine{to{transform:translateX(100%)}}
 .tour .x{width:36px;height:36px;display:grid;place-items:center;color:var(--text2)}
-.tour .skip{position:absolute;top:96px;left:8px;z-index:2;height:36px;padding:0 8px;font-size:var(--fs-body);font-weight:var(--fw-regular);color:var(--text2);transition:opacity .2s}
+/* 건너뛰기: 하단 왼쪽, 「가이드 자세히 보기」와 같은 줄(실측으로 맞춤). 14/400 text3, 누르는 자리는 상하좌우 8px 넉넉히 */
+.tour .skip{position:absolute;bottom:22px;left:12px;z-index:3;height:40px;padding:0 8px;font-size:14px;font-weight:400;color:var(--text3);transition:opacity .2s}
 .tour.final .skip{opacity:0;pointer-events:none}
+/* 마지막 장: 진행 바(전부 채워짐)는 숨기고 그 자리에 제목 — 1번 스플래시(y .284, 폭 .309)가 제목과 겹치지 않게 */
+.tour .prog{transition:opacity .3s}
+.tour.final .prog{opacity:0}
 
 .tour .txt{position:absolute;left:16px;right:16px;bottom:22px;display:flex;flex-direction:column;align-items:center;transition:opacity .2s;z-index:2}
 .tour .tcard{width:100%;padding:20px;text-align:center}
@@ -276,7 +280,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 .tour .fin{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;z-index:2}
 .tour.final .fin{opacity:1;pointer-events:auto;cursor:default}
-.tour .fin h3{position:absolute;top:88px;left:0;right:0;text-align:center}
+.tour .fin h3{position:absolute;top:60px;left:0;right:0;text-align:center}
 .tour .btns{position:absolute;left:16px;right:16px;bottom:40px;display:flex;gap:8px}
 .tour .btns button{flex:1;height:52px;border-radius:var(--r);font-size:var(--fs-label);font-weight:var(--fw-bold)}
 .tour .btns .ghost{background:rgba(132,94,238,0.1);border:1.5px solid rgba(132,94,238,0.3);color:var(--main)}
@@ -365,48 +369,78 @@ const MALLS = '<div class="malls"><div class="chips">' +
   MALL_LOGOS.map((f, i) => `<span class="chip${i ? '' : ' hot'}" style="--i:${i}"><span class="c"><img src="guide-art/mall/${f}" alt=""></span></span>`).join('') +
   '</div><div class="mall"><span class="badge"><img src="guide-art/mall/coupang.jpg" alt=""></span><b>쿠팡</b><span class="go">바로가기</span></div></div>';
 /* 캔버스 = 마지막 장 화면(375x812 기준, 가로:세로 1:2.165)을 3.12배로 키운 것. 노드 중심(fx·fy)과 가로 크기(fw)는
-   그 화면에서 김반장 레이아웃을 잰 비율 — 마지막 장은 캔버스를 화면에 그대로 얹어(finLayout) 이 비율대로 놓인다.
+   그 화면에서 김반장 레이아웃을 잰 비율 그대로 — 마지막 장은 캔버스를 화면에 그대로 얹어(finLayout) 이 비율대로 놓인다.
    투어 단계도 같은 캔버스. 세로 크기는 그림 원래 비율(w0 x h0), 제휴몰 묶음(HTML)은 안쪽을 g 배로 키운다.
-   표 값에서 ±0.02 안으로 다듬은 것: 1번 y .284→.302·폭 .309→.289(제목과 겹침), x 전체 -.018(좌우 여백 맞춤, 2번만 +.002),
-   4·5·6·7·뱃지 y +.02(선 길이 확보) */
+   화살표는 이 값에서 매번 계산한다(buildArrows) — 좌표를 바꾸면 선이 저절로 따라온다 */
 const CW = 1170, CV_H = 2533, CX = CW / 2;
-/* lab: 노드 라벨 — 오브젝트 아래 8px 가운데(b). 랜덤 티켓만 바로 아래 구매 확정 뱃지가 붙어 있어 왼쪽(l) */
+/* lab: 노드 라벨 — 오브젝트 아래 8px 가운데. 뱃지(구매 확정 · 10P)는 원래 크기(높이 30) */
 const NODES = {
-  phone:  { fx: .214, fy: .302, fw: .289, w0: 218, h0: 472, img: 'sp', lab: '프라이스픽', at: 'b' },
-  mall:   { fx: .700, fy: .225, fw: .466, w0: 286, h0: 130, html: MALLS, lab: '제휴몰', at: 'b' },
-  bag:    { fx: .783, fy: .401, fw: .262, w0: 279, h0: 308, img: 'o2', lab: '구매 완료', at: 'b' },
-  wait:   { fx: .244, fy: .566, fw: .178, w0: 227, h0: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'l' },
-  ok:     { fx: .228, fy: .629, w0: 100, h0: 24, html: '<span class="pill g"><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>구매 확정</span>' },
-  ticket: { fx: .209, fy: .702, fw: .183, w0: 261, h0: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b' },
-  coin:   { fx: .731, fy: .561, fw: .209, w0: 227, h0: 162, img: 'o5', lab: '포인트', at: 'b' },
-  rate:   { fx: .731, fy: .636, w0: 130, h0: 24, html: '<span class="pill y">10P → 티켓 1장</span>' },
-  gift:   { fx: .691, fy: .759, fw: .445, w0: 301, h0: 185, img: 'o6', lab: '기프티콘', at: 'b' },
+  phone:  { fx: .232, fy: .284, fw: .309, w0: 218, h0: 472, img: 'sp', lab: '프라이스픽', at: 'b' },
+  mall:   { fx: .698, fy: .225, fw: .466, w0: 286, h0: 130, html: MALLS, lab: '제휴몰', at: 'b' },
+  bag:    { fx: .801, fy: .401, fw: .262, w0: 279, h0: 308, img: 'o2', lab: '구매 완료', at: 'b' },
+  wait:   { fx: .262, fy: .546, fw: .178, w0: 227, h0: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b' },
+  ok:     { fx: .246, fy: .609, w0: 100, h0: 30, html: '<span class="pill g"><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>구매 확정</span>' },
+  ticket: { fx: .227, fy: .682, fw: .183, w0: 261, h0: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b' },
+  coin:   { fx: .749, fy: .541, fw: .209, w0: 227, h0: 162, img: 'o5', lab: '포인트', at: 'b' },
+  rate:   { fx: .749, fy: .616, w0: 130, h0: 30, html: '<span class="pill y">10P = 티켓 1장</span>' },
+  gift:   { fx: .709, fy: .739, fw: .445, w0: 301, h0: 185, img: 'o6', lab: '기프티콘', at: 'b' },
 };
 Object.values(NODES).forEach(n => {
   n.w = n.fw ? n.fw * CW : n.w0; n.g = n.w / n.w0; n.h = n.h0 * n.g;
   n.cx = n.fx * CW; n.cy = n.fy * CV_H;
 });
-/* 화살표: [x1, y1, 출발 방향, x2, y2, 도착 방향, 갈래 색, 시작 굵기, 끝 굵기, 화살촉 없음] — 노드 가장자리에서 12px 띄워 시작·끝.
-   세로 연결은 아래 중앙 → 위 중앙(라벨이 있으면 라벨 아래에서 출발), 좌우로 크게 벌어진 연결(1→2, 3→4, 5→7)은 옆면 → 옆면.
-   뱃지 자리는 선을 둘로 끊는다: 위 조각은 뱃지 윗변 6px 앞에서 끝(화살촉 없음), 아래 조각은 아랫변 6px 뒤에서 시작. 선 x = 뱃지 중심 x.
-   굵기는 위 조각 2.5→3.5, 아래 조각 3.5→4.5 로 뱃지를 사이에 두고 이어진다. bs: 뱃지 배율(마지막 장·축소판 2) */
+/* 화살표 — 손으로 적은 좌표 없음. 연결 목록(LINKS)과 노드 좌표·크기에서 매번 계산한다.
+   P0 = 출발 노드 면(face)에서 12px 바깥, P3 = 도착 노드 면에서 12px 바깥. 면 위의 자리는 상대 쪽으로(면 끝 15% 안으로 제한).
+   아래로 나가는 면에 라벨이 있으면 라벨 아래(+26)에서 출발한다.
+   제어점은 각 면의 바깥 방향으로: 아래면 C1 = (P0.x, P0.y + dy*.45), 위면 C2 = (P3.x, P3.y - dy*.45). 옆면은 같은 규칙을 가로로(dx*.45).
+   뱃지(via)가 있는 연결은 선을 두 조각으로: 위 조각은 뱃지 윗변 6px 위에서 끝(화살촉 없음), 아래 조각은 아랫변 6px 아래에서 시작. 선 x = 뱃지 중심 x.
+   면 선택: 세로로 이어지는 연결은 아래면 → 위면, 좌우로 벌어진 3→4·5→7 은 옆면 → 옆면.
+   1→2 는 제휴몰이 스플래시 오른쪽 위(중심이 더 높다)라 스플래시 오른쪽 면 → 제휴몰 아래면(아래에서 들어간다).
+   3→6 은 포인트가 쇼핑백 바로 아래라 아래면 → 위면 */
 const EGAP = 12, BGAP = 6, LABH = 26;
-function buildArrows(bs = 1) {
-  const B = k => { const n = NODES[k]; return { l: n.cx - n.w / 2, r: n.cx + n.w / 2, t: n.cy - n.h / 2, b: n.cy + n.h / 2, cx: n.cx, cy: n.cy, h: n.h }; };
-  const P = k => { const n = NODES[k], h = n.h0 * bs / 2; return { t: n.cy - h - BGAP, b: n.cy + h + BGAP, cx: n.cx }; };
-  const below = k => B(k).b + (NODES[k].lab && NODES[k].at === 'b' ? LABH : 0) + EGAP;
-  const ph = B('phone'), ml = B('mall'), bg = B('bag'), wt = B('wait'), cn = B('coin'), tk = B('ticket'), gf = B('gift'), ok = P('ok'), rt = P('rate');
-  return {
-    a1: [ph.r + EGAP, ml.cy + 30, 'r', ml.l - EGAP, ml.cy, 'r'],
-    a2: [bg.cx, ml.b + EGAP, 'd', bg.cx, bg.t - EGAP, 'd'],
-    sl: [bg.l - EGAP, bg.cy + bg.h * .15, 'l', wt.r + EGAP, wt.cy, 'l', 'l'],
-    sr: [bg.cx, below('bag'), 'd', cn.cx, cn.t - EGAP, 'd', 'r'],
-    al: [ok.cx, wt.b + EGAP, 'd', ok.cx, ok.t, 'd', 'l', 2.5, 3.5, 1],
-    al2: [ok.cx, ok.b, 'd', tk.cx, tk.t - EGAP, 'd', 'l', 3.5, 4.5],
-    ar: [rt.cx, below('coin'), 'd', rt.cx, rt.t, 'd', 'r', 2.5, 3.5, 1],
-    mr: [rt.cx, rt.b, 'd', rt.cx, gf.t - EGAP, 'd', 'r', 3.5, 4.5],
-    ml: [tk.r + EGAP, tk.cy, 'r', gf.l - EGAP, gf.t + gf.h * .2, 'r', 'l'],
-  };
+const LINKS = [
+  // [이름, 출발, 출발 면, 도착, 도착 면, 갈래 색, 뱃지]
+  ['a1', 'phone', 'r', 'mall', 'b'],
+  ['a2', 'mall', 'b', 'bag', 't'],
+  ['sl', 'bag', 'l', 'wait', 'r', 'l'],
+  ['sr', 'bag', 'b', 'coin', 't', 'r'],
+  ['al', 'wait', 'b', 'ticket', 't', 'l', 'ok'],
+  ['ml', 'ticket', 'r', 'gift', 'l', 'l'],
+  ['mr', 'coin', 'b', 'gift', 't', 'r', 'rate'],
+];
+const NORM = { t: [0, -1], b: [0, 1], l: [-1, 0], r: [1, 0] };
+function nodeBox(k) { const n = NODES[k]; return { l: n.cx - n.w / 2, r: n.cx + n.w / 2, t: n.cy - n.h / 2, b: n.cy + n.h / 2, cx: n.cx, cy: n.cy, w: n.w, h: n.h }; }
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+/* 노드 k 의 면 f 위, 상대 점(tx, ty) 쪽 자리에서 12px 바깥 */
+function facePoint(k, f, tx, ty) {
+  const B = nodeBox(k), n = NODES[k];
+  if (f === 't' || f === 'b') {
+    const x = clamp(tx, B.l + B.w * .15, B.r - B.w * .15);
+    const lab = f === 'b' && n.lab && n.at === 'b' && Math.abs(x - B.cx) < 70 ? LABH : 0;
+    return [x, f === 'b' ? B.b + lab + EGAP : B.t - EGAP];
+  }
+  const y = clamp(ty, B.t + B.h * .15, B.b - B.h * .15);
+  return [f === 'r' ? B.r + EGAP : B.l - EGAP, y];
+}
+/* 한 조각: [x1, y1, 출발 면, x2, y2, 도착 면, 갈래 색, 시작 굵기, 끝 굵기, 화살촉 없음] */
+function buildArrows() {
+  const A = {};
+  LINKS.forEach(([name, a, fa, b, fb, col, via]) => {
+    const Ba = nodeBox(a), Bb = nodeBox(b);
+    if (via) {
+      const v = NODES[via], vt = v.cy - v.h0 / 2 - BGAP, vb = v.cy + v.h0 / 2 + BGAP;
+      const p0 = facePoint(a, fa, v.cx, vt), p3 = facePoint(b, fb, v.cx, vb);
+      A[name] = [p0[0], p0[1], fa, v.cx, vt, 't', col, 2.5, 3.5, 1];
+      A[name + '2'] = [v.cx, vb, 'b', p3[0], p3[1], fb, col, 3.5, 4.5];
+      return;
+    }
+    /* 출발 자리는 도착 노드 중심 쪽, 도착 자리는 출발 자리 쪽 — 세로로 거의 곧게 이어지는 연결은 같은 x 로 맞는다 */
+    let p0 = facePoint(a, fa, Bb.cx, Bb.cy), p3 = facePoint(b, fb, p0[0], p0[1]);
+    /* 옆면에서 나가 아래면으로 들어가는 연결(1→2): 도착 자리를 먼저 잡고, 출발은 그보다 60px 아래 — 선이 도착 노드 뒤로 지나가지 않게 */
+    if ((fa === 'l' || fa === 'r') && fb === 'b') { p3 = facePoint(b, fb, Ba.cx, Ba.cy); p0 = facePoint(a, fa, p3[0], p3[1] + 60); }
+    A[name] = [p0[0], p0[1], fa, p3[0], p3[1], fb, col];
+  });
+  return A;
 }
 const ARROWS = buildArrows();
 const STEPS = [
@@ -421,16 +455,15 @@ const STEPS = [
   { t: '확정되면 바로 쓸 수 있어요', d: '랜덤 티켓이 티켓으로 바뀌어요',
     seq: [['al', 'al2'], ['ok', 'ticket']] },
   { t: '포인트도 티켓이 돼요', d: '10P 모으면 티켓 한 장',
-    seq: [['sr'], ['coin'], ['ar'], ['rate']] },
+    seq: [['sr'], ['coin'], ['mr'], ['rate']] },
   { t: '티켓으로 기프티콘을 바꿔요', d: '커피부터 편의점까지',
-    seq: [['ml', 'mr'], ['gift']] },
+    seq: [['ml', 'mr2'], ['gift']] },
 ];
 const THUMB = ['sp', null, 'o2', 'tw', 'tk', 'o5', 'o6'];
 const DRAW = 560, GAP = 300, POP_AT = 700, TEXT_AT = 300;
 /* 마지막 장 흐름도 구간: 제목 아래 25px ~ 버튼 위 24px (기준 화면에서 152~696px) */
 const FIN = { gapTop: 25, gapBot: 24 };
 const EDGE = 4;   /* 노드·라벨과 화면 좌우 끝 사이 최소 여백 */
-const KMIN = .62; /* 「건너뛰기」를 피하느라 줄일 때 이 배율 밑으로는 줄이지 않고 옆으로 민다 */
 const src = k => `guide-art/${k}.png`;
 /* 오브젝트 그림. 폰(o1)은 화면 자리에 스플래시 화면을 얹는다 */
 /* 티켓: tw = 대기(빨강 랜덤 티켓 3장 겹침), tk = 확정(금색 티켓 1장 + 체크 배지) */
@@ -447,15 +480,11 @@ const objHTML = k => k === 'sp' ? `<span class="splash"><img src="${SPLASH}" alt
 Object.values(NODES).forEach(n => n.img && n.img[0] === 'o' && (new Image().src = src(n.img)));
 
 /* 선은 화살촉 꼭짓점(y2 - 3)까지 그린다. 촉은 선 끝 방향을 따라 꺾쇠로 얹는다 */
-/* S자 제어점: 세로 연결은 제어점1 = (x1, y1 + dy*.45) 출발점에서 수직 아래, 제어점2 = (x2, y2 - dy*.45) 도착점에서 수직 위.
-   가로 연결(옆면 → 옆면)은 같은 규칙을 가로로. 가로(세로) 이동이 24px 안이면 두 제어점을 서로 반대쪽으로 18px(짧은 선은 길이의 15%까지) 밀어 아주 완만한 S */
-function ctl([x1, y1, d1, x2, y2, d2]) {
-  if (d1 === 'd') {
-    const dy = y2 - y1, o = Math.abs(x2 - x1) < 24 ? Math.min(18, dy * .15) : 0;
-    return [x1 + o, y1 + dy * .45, x2 - o, y2 - dy * .45];
-  }
-  const dx = x2 - x1, o = Math.abs(y2 - y1) < 24 ? Math.min(18, Math.abs(dx) * .15) : 0;
-  return [x1 + dx * .45, y1 + o, x2 - dx * .45, y2 - o];
+/* 제어점: 각 끝점의 면 바깥 방향으로 손잡이. 위·아래 면은 세로 거리의 .45, 옆면은 가로 거리의 .45 (최소 12) */
+function ctl([x1, y1, f1, x2, y2, f2]) {
+  const len = f => Math.max(12, (f === 't' || f === 'b' ? Math.abs(y2 - y1) : Math.abs(x2 - x1)) * .45);
+  const [ax, ay] = NORM[f1], [bx, by] = NORM[f2];
+  return [x1 + ax * len(f1), y1 + ay * len(f1), x2 + bx * len(f2), y2 + by * len(f2)];
 }
 const bez = (a, c, t) => { const u = 1 - t; return [u * u * u * a[0] + 3 * u * u * t * c[0] + 3 * u * t * t * c[2] + t * t * t * a[3], u * u * u * a[1] + 3 * u * u * t * c[1] + 3 * u * t * t * c[3] + t * t * t * a[4]]; };
 const f1 = v => v.toFixed(1);
@@ -498,9 +527,9 @@ function headPath(a, g) {
   });
   return d + 'Z';
 }
-/* 화살표 모양을 그린다/다시 그린다(ar 요소 안의 .rv·.ln·.fl·.hd). 마지막 장·축소판은 굵게(wm 2.2)·뱃지 2배 자리로 */
-function drawArrows(root, wm = 1, bs = 1) {
-  const A = buildArrows(bs);
+/* 화살표 모양을 그린다/다시 그린다(ar 요소 안의 .rv·.ln·.fl·.hd). 마지막 장·축소판은 굵게(wm 2.2) */
+function drawArrows(root, wm = 1) {
+  const A = buildArrows();
   root.querySelectorAll('.ar').forEach(g => {
     const a = A[g.dataset.k], geo = arrowGeo(a, wm), full = centerPath(geo.line.concat(geo.head ? [[a[3], a[4]]] : []));
     g.querySelector('.rv').setAttribute('d', full);
@@ -576,7 +605,7 @@ function mountPage(screen) {
   /* 페이지: 축소판 흐름도 + 단계 카드 */
   const mini = $('[data-mini]');
   mini.innerHTML = canvasHTML();
-  drawArrows(mini, 2.2, 2);
+  drawArrows(mini, 2.2);
   mini.classList.add('snap');
   mini.querySelectorAll('.ar,.nd').forEach(el => el.classList.add('on'));
   $('[data-steps]').innerHTML = STEPS.map((s, i) =>
@@ -641,6 +670,7 @@ function mountTour(screen, onClose) {
   let kfN = 0, par0 = null, camTimers = [];
   const ANIM_MS = 1100, FIN_MS = 1200;
   const DEPTH = [1, .78, .62, .62, .78, .62, .55];
+  const TW = [.78, .78, .66, .60, .60, .60, .78];
   const zOut = bezierEase(.4, 0, .9, .5), zIn = bezierEase(.16, .9, .3, 1), finEase = bezierEase(.3, .1, .25, 1);
   const flowRate = r => cv.getAnimations({ subtree: true }).forEach(a => { if (a.animationName === 'flowSeg') a.updatePlaybackRate(r); });
   function moveTo(x, y, s, yr, depth = .62, fin = false) {
@@ -715,21 +745,15 @@ function mountTour(screen, onClose) {
     tour.classList.toggle('short', tour.offsetHeight < 700);
     const W = tourW();
     cv.style.left = (W - CW) / 2 + 'px';
-    const b = union(nodesOf(i).map(k => boxOf(k, 1.1))), bw = b.r - b.l, bh = b.b - b.t;
+    const ks = nodesOf(i), b = union(ks.map(k => boxOf(k, 1.1))), bw = b.r - b.l, bh = b.b - b.t;
     const barBot = botOf(prog), cardTop = topOf(tcard), mid = (barBot + cardTop) / 2;
-    const chrome = Math.max(barBot, botOf(skipBtn));
+    const chrome = barBot;
     zm.style.transformOrigin = `${W / 2}px ${mid}px`;
-    /* 배율: 1 을 넘지 않게, 좌우 EDGE 안쪽·진행 바~문구 사이(위아래 8px)에 들어오게 */
-    let k = Math.min(1, (W - 2 * EDGE) / bw, (cardTop - barBot - 16) / bh);
-    /* 노드가 「건너뛰기」와 겹치면 (가) 그 버튼 아래(chrome + 4)부터 들어오게 줄인다.
-       (가)로 KMIN 밑까지 작아질 때만 (나) KMIN 까지만 줄이고 오른쪽으로 필요한 만큼만 밀어 버튼 오른쪽(+8)부터 오게 한다 */
-    const t = tour.getBoundingClientRect(), skipR = (skipBtn.getBoundingClientRect().right - t.left) * (tour.offsetWidth / (t.width || 1));
-    let sh = 0;
-    if (W / 2 - k * bw / 2 < skipR + 8 && mid - k * bh / 2 < chrome + 4) {
-      const kv = 2 * (mid - chrome - 4) / bh, kh = Math.min(k, KMIN, (W - EDGE - skipR - 8) / bw);
-      if (kv >= Math.min(k, KMIN) || kh <= kv) k = Math.min(k, kv);
-      else { k = kh; sh = Math.max(0, skipR + 8 - (W / 2 - k * bw / 2)); }
-    }
+    /* 배율: 그림(라벨 제외) 폭이 화면의 TW[i] — 넓은 2·7단계 .78, 쇼핑백 .66, 티켓·코인 .60 —,
+       라벨 포함 폭은 화면의 78%(좌우 11% 여백), 높이는 진행 바 ~ 문구 사이의 82% 를 넘지 않게. 작은 그림은 1.3배까지 키운다 */
+    const wPic = Math.max(...ks.filter(k => NODES[k].fw).map(k => NODES[k].w * 1.1));
+    let k = Math.min(1.3, TW[i] * W / wPic, .78 * W / bw, .82 * (cardTop - barBot) / bh);
+    const sh = 0;
     const x = -k * ((b.l + b.r) / 2 - CX) + sh, y = mid - k * (b.t + b.b) / 2;
     /* 위쪽 흐림: 진행 바·「건너뛰기」 실제 bottom(chrome)에서 투명 → 이번 단계 첫 화살표(없으면 노드) 바로 위에서 불투명.
        구간의 70% 지점까지는 20%만 보이게 해 지나간 노드가 잘린 조각으로 남지 않고 흐려져 사라진다. 현재 노드는 가리지 않는다 */
@@ -739,11 +763,19 @@ function mountTour(screen, onClose) {
     vp.style.setProperty('--m0', m0 + 'px');
     vp.style.setProperty('--mm', m0 + (m1 - m0) * .7 + 'px');
     vp.style.setProperty('--m1', m1 + 'px');
+    /* 지나간 노드가 화면(위쪽 흐림이 끝나는 m1 아래 ~ 문구 위)에 30% 미만으로 걸치면 라벨을 숨긴다 — 그림 없이 글자만 떠 있지 않게 */
+    Object.keys(NODES).forEach(kk => {
+      const n = NODES[kk], e = el(kk);
+      if (!n.lab || ks.includes(kk)) return e.classList.remove('nolab');
+      const l = W / 2 + x + k * (n.cx - n.w / 2 - CX), r = l + k * n.w, t2 = y + k * (n.cy - n.h / 2), b2 = t2 + k * n.h;
+      const vis = Math.max(0, Math.min(r, W) - Math.max(l, 0)) * Math.max(0, Math.min(b2, cardTop) - Math.max(t2, m1));
+      e.classList.toggle('nolab', vis < .3 * k * n.w * k * n.h);
+    });
     vp.style.setProperty('--clip', cardTop + 'px');
     moveTo(x, y, k, mid, DEPTH[i]);
   }
   /* 마지막 장: 캔버스(= 기준 화면 375x812 의 3.12배)를 화면에 그대로 얹는다 — 노드가 표의 화면 비율대로 놓인다.
-     흐름도(라벨 없이, 뱃지 2배)가 「제목 아래 8px ~ 버튼 위 8px」·좌우 EDGE 를 벗어나는 화면(320x568 등)만 그 안으로 줄여 가운데에 */
+     흐름도(라벨 없이)가 「제목 아래 8px ~ 버튼 위 8px」·좌우 EDGE 를 벗어나는 화면(320x568 등)만 그 안으로 줄여 가운데에 */
   function finLayout() {
     if (!tour.offsetHeight) return;
     const h3 = $('.fin h3'), btns = $('.btns');
@@ -752,7 +784,7 @@ function mountTour(screen, onClose) {
     vp.style.setProperty('--f2', bottom + 4 + 'px'); vp.style.setProperty('--f3', bottom + 20 + 'px');
     const W = tourW(), H = tour.offsetHeight;
     cv.style.left = (W - CW) / 2 + 'px';
-    const b = union(Object.keys(NODES).map(k => NODES[k].html && k !== 'mall' ? (() => { const n = NODES[k]; return { l: n.cx - n.w, r: n.cx + n.w, t: n.cy - n.h, b: n.cy + n.h }; })() : boxOf(k, 1, false)));
+    const b = union(Object.keys(NODES).map(k => boxOf(k, 1, false)));
     let s = Math.min(W / CW, H / CV_H), x = 0, y = (H - CV_H * s) / 2;
     if (y + b.t * s < top || y + b.b * s > bottom || W / 2 + (b.l - CX) * s < EDGE || W / 2 + (b.r - CX) * s > W - EDGE) {
       s = Math.min((bottom - top) / (b.b - b.t), (W - 2 * EDGE) / (b.r - b.l));
@@ -816,7 +848,7 @@ function mountTour(screen, onClose) {
   function final() {
     stop();
     idx = STEPS.length;
-    snap(() => { cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.add('on')); drawArrows(cv, 2.2, 2); finArrows = true; });
+    snap(() => { cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.add('on')); drawArrows(cv, 2.2); finArrows = true; });
     cv.querySelectorAll('.nd').forEach(n => n.classList.remove('cur', 'past'));
     finLayout();
     bars.forEach(b => { b.classList.add('done'); b.classList.remove('cur'); });
