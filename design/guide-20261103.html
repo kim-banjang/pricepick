@@ -61,13 +61,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .overview .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .overview .top b{font-size:var(--fs-label);font-weight:var(--fw-bold)}
 .overview .top span{display:flex;align-items:center;gap:4px;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--main)}
-.mini{position:relative;height:calc(1500px * var(--s));overflow:hidden;pointer-events:none}
-.mini .cv{left:50%;margin-left:-550px;top:calc(186px * var(--s));transform:scale(var(--s));transform-origin:50% 0}
+.mini{position:relative;height:calc(1770px * var(--s));overflow:hidden;pointer-events:none}
+.mini .cv{left:50%;margin-left:-585px;top:calc(-370px * var(--s));transform:scale(var(--s));transform-origin:50% 0}
 .mini .lab{display:none}
-.mini .ln{stroke-width:9;stroke-dasharray:24 18}
-.mini .hd{stroke-width:7}
-.mini .rv{stroke-width:16}
-.mini .hd{transform:scale(1.5);transform-box:fill-box;transform-origin:50% 100%}
+.mini .fl{display:none}
+.mini .rv{stroke-width:40}
 
 .steps{padding:24px 16px 48px;display:flex;flex-direction:column;gap:12px}
 .step{display:flex;gap:12px;align-items:center;width:100%;padding:14px;background:#fff;border-radius:var(--r-lg);text-align:left;
@@ -87,27 +85,28 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .step p{margin-top:4px;font-size:var(--fs-body);font-weight:var(--fw-regular);line-height:1.5;color:var(--text2);word-break:keep-all}
 
 /* 흐름도 캔버스 (투어·축소판 공용) */
-.cv{position:absolute;top:0;left:0;width:1100px;height:1232px;transform-origin:550px 0}
+.cv{position:absolute;top:0;left:0;width:1170px;height:2533px;transform-origin:585px 0}
 .cv svg{position:absolute;inset:0;overflow:visible}
-/* 화살표: 보이는 선은 점선(아래로 흐름), 그려지는 효과는 마스크 안의 실선이 자라며 드러낸다 */
-.ln{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-dasharray:12 10;animation:flow var(--fd,1.8s) linear infinite}
-.rv{fill:none;stroke:#fff;stroke-width:12;stroke-linecap:round;stroke-dasharray:calc(var(--L) * 1px);stroke-dashoffset:calc(var(--L) * 1px);transition:stroke-dashoffset 560ms ease-out}
-/* 다 그려지는 순간 선이 한 번 굵어졌다 돌아온다(4 → 5.5 → 4px, 220ms) */
-.tour .ar.on .ln{animation:flow var(--fd,1.8s) linear infinite,thick 220ms ease-in-out 560ms}
+/* 화살표: 바탕은 갈래 색을 연하게 한 실선(.ln, 출발 2.5px → 도착 4.5px 로 굵어지는 테이퍼 — 외곽선을 채움으로 그린다).
+   그 위로 짧은 진한 세그먼트(.fl, 전체 길이의 18%)가 선을 따라 흐른다(보라 2.0초 · 골드 2.4초).
+   그려지는 효과는 마스크 안의 실선(.rv)이 자라며 드러낸다. 화살촉(.hd)은 꼭짓점을 둥글게 깎은 삼각형, 선 끝 굵기에서 이어진다 */
+.ln{fill:var(--lnc);stroke:none}
+.fl{fill:none;stroke:var(--line);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:calc(var(--L) * .18px) calc(var(--L) * 1px);animation:flowSeg var(--fd,2s) linear infinite}
+@keyframes flowSeg{from{stroke-dashoffset:calc(var(--L) * .18px)}to{stroke-dashoffset:calc(var(--L) * -1px)}}
+.rv{fill:none;stroke:#fff;stroke-width:16;stroke-linecap:round;stroke-dasharray:calc(var(--L) * 1px);stroke-dashoffset:calc(var(--L) * 1px);transition:stroke-dashoffset 560ms ease-out}
+/* 다 그려지는 순간 흐르는 빛줄기가 한 번 굵어졌다 돌아온다(220ms) */
+.tour .ar.on .fl{animation:flowSeg var(--fd,2s) linear infinite,thick 220ms ease-in-out 560ms}
+@keyframes thick{50%{stroke-width:4.2}}
 /* 다 그려진 뒤 화살촉이 진행 방향(--hx·--hy, 2px)으로 한 번 나갔다 돌아온다, 1.8초마다 */
 .tour .ar.on .hd{animation:nudge 1.8s ease-in-out 1s infinite}
 @keyframes nudge{0%,40%,100%{transform:translate(0,0)}20%{transform:translate(var(--hx),var(--hy))}}
-@keyframes thick{50%{stroke-width:5.5}}
-/* 화살촉: 선 끝 방향을 따라 그린 둥근 꺾쇠 */
-.hd{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity 120ms 440ms}
-@keyframes flow{to{stroke-dashoffset:-22}}
-.ar{filter:drop-shadow(0 2px 6px rgba(132,94,238,.35))}
-.ar.l{--line:#845EEE;--fd:1.6s}
-.ar.r{--fd:2s}
-.ar.r{--line:var(--gold-b);filter:drop-shadow(0 2px 6px rgba(230,168,0,.4))}
+.hd{fill:var(--lnc);stroke:none;opacity:0;transition:opacity 120ms 440ms}
+.ar,.ar.l{--lnc:rgba(132,94,238,.45);--line:#845EEE;--fd:2s}
+.ar.r{--lnc:rgba(230,168,0,.45);--line:#E6A800;--fd:2.4s}
 /* 노드 라벨 */
 .lab{position:absolute;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--text2);white-space:nowrap;pointer-events:none}
 .lab.b{top:calc(100% + 8px);left:50%;transform:translateX(-50%)}
+.lab.l{right:calc(100% + 8px);top:50%;transform:translateY(-50%)}
 .ar:not(.on),.nd:not(.on){opacity:0;visibility:hidden}
 .ar.on .rv{stroke-dashoffset:0}
 .ar.on .hd{opacity:1}
@@ -127,12 +126,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .tour .cv.wide .nd.past .fx{opacity:.8;transition:transform 420ms ease-out,opacity 240ms ease-out}
 .tour.final .nd .fx{transition:transform 1200ms ease-out,opacity 1200ms ease-out}
 /* 뱃지(구매 확정·10P): 0 → 1.15 → 1 로 팡 */
-.nd.badge .pop{transform:none}
-.nd.badge.on .pill{animation:badgePop 420ms ease-out both,bpulse 2.4s ease-in-out 420ms infinite}
+.nd.tag .pop{transform:none}
+.nd.tag.on .pill{animation:badgePop 420ms ease-out both,bpulse 2.4s ease-in-out 420ms infinite}
 @keyframes bpulse{50%{transform:scale(1.03)}}
 /* 구매 확정: 나타날 때 체크가 그려진다 */
-.pill .ck{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24}
-.nd.badge.on .ck{animation:ckDraw 320ms ease-out 260ms forwards}
+.pill .ck{display:block;flex:none;width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24}
+.nd.tag.on .ck{animation:ckDraw 320ms ease-out 260ms forwards}
 @keyframes ckDraw{to{stroke-dashoffset:0}}
 @keyframes badgePop{0%{transform:scale(0)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
 /* 노드 뒤 보라 글로우, 아래 타원 그림자 */
@@ -201,9 +200,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mall b{flex:1;font-size:var(--fs-label);font-weight:var(--fw-bold);color:var(--text1)}
 .mall span.go{height:34px;padding:0 16px;border-radius:20px;background:var(--main);color:#fff;font-size:var(--fs-caption);font-weight:var(--fw-bold);display:grid;place-items:center;box-shadow:0 4px 14px rgba(132,94,238,0.28);animation:pulse 1.8s ease-in-out infinite}
 @keyframes pulse{50%{transform:scale(1.06)}}
-.pill{height:30px;padding:0 12px;border-radius:20px;color:#fff;font-size:var(--fs-caption);font-weight:var(--fw-bold);display:grid;place-items:center;white-space:nowrap}
-.pill.g{display:flex;align-items:center;gap:4px;background:var(--green);box-shadow:0 6px 16px rgba(34,197,94,.35),0 2px 4px rgba(34,197,94,.2)}
-.pill.y{border:2px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(90deg,var(--gold-a),var(--gold-b)) border-box;color:var(--main);box-shadow:0 6px 16px rgba(230,168,0,.35),0 2px 4px rgba(132,94,238,.15)}
+/* 뱃지 두 개는 같은 모양: 흰 바탕 + 1.5px 테두리 + 글자(테두리색), 12/700, 높이 24 · 라운드 12 · 좌우 10. 색만 갈래를 따른다 */
+.pill{flex:none;box-sizing:border-box;height:24px;padding:0 10px;border-radius:12px;background:#fff;border:1.5px solid var(--bc);color:var(--bc);font-size:12px;font-weight:700;line-height:1;display:flex;align-items:center;gap:3px;white-space:nowrap;box-shadow:0 3px 10px rgba(108,74,182,.18)}
+.pill.g{--bc:#22C55E}
+.pill.y{--bc:#E6A800}
+/* 마지막 장·탭 B 축소판에서는 뱃지를 2배로(선 끊김 자리도 그 크기에 맞춰 다시 그린다) */
+.tour.final .nd.tag .pop,.mini .nd.tag .pop{transform:scale(2)}
 
 /* 가이드 투어 */
 .tour{position:absolute;inset:0;z-index:20;color:var(--text1);opacity:0;pointer-events:none;transition:opacity .25s;cursor:pointer;user-select:none;-webkit-user-select:none}
@@ -233,7 +235,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* 카메라는 단계 전환마다 JS 가 만드는 @keyframes(호 궤적·오버슈트·줌아웃·기울기, 820ms)로 움직인다(moveTo) */
 .tour .zm{position:absolute;inset:0}
 /* 캔버스(폭 375) 가로 위치·축소는 JS(fitX)가 화면 실제 폭으로 다시 잡는다. 아래는 첫 프레임용 초기값 */
-.tour .cv{left:calc(50% - 550px)}
+.tour .cv{left:calc(50% - 585px)}
 
 .tour .bar{position:absolute;top:47px;left:0;right:0;display:flex;align-items:center;gap:20px;padding:12px 16px 0 36px;z-index:2}
 .tour .prog{flex:1;display:flex;align-items:center;gap:5px}
@@ -274,7 +276,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 .tour .fin{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;z-index:2}
 .tour.final .fin{opacity:1;pointer-events:auto;cursor:default}
-.tour .fin h3{position:absolute;top:96px;left:0;right:0;text-align:center}
+.tour .fin h3{position:absolute;top:88px;left:0;right:0;text-align:center}
 .tour .btns{position:absolute;left:16px;right:16px;bottom:40px;display:flex;gap:8px}
 .tour .btns button{flex:1;height:52px;border-radius:var(--r);font-size:var(--fs-label);font-weight:var(--fw-bold)}
 .tour .btns .ghost{background:rgba(132,94,238,0.1);border:1.5px solid rgba(132,94,238,0.3);color:var(--main)}
@@ -290,7 +292,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes enterFade{from{opacity:0}}
 @keyframes enterUp{from{opacity:0;transform:translateY(8px)}}
 
-@media (prefers-reduced-motion:reduce){.tour *,.tour,.ln{transition:none!important;animation:none!important}}
+@media (prefers-reduced-motion:reduce){.tour *,.tour,.fl{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -324,7 +326,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     </div>
     <button class="overview" data-act="overview">
       <div class="top"><b>한눈에 보는 프라이스픽</b><span>누르면 처음부터 봐요<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
-      <div class="mini" style="--s:.27" data-mini></div>
+      <div class="mini" style="--s:.25" data-mini></div>
     </button>
     <div class="steps" data-steps></div>
   </div>
@@ -362,39 +364,51 @@ const MALL_LOGOS = ['coupang.jpg', 'gmarket.png', '11st.png', 'nsmall.png', 'cjt
 const MALLS = '<div class="malls"><div class="chips">' +
   MALL_LOGOS.map((f, i) => `<span class="chip${i ? '' : ' hot'}" style="--i:${i}"><span class="c"><img src="guide-art/mall/${f}" alt=""></span></span>`).join('') +
   '</div><div class="mall"><span class="badge"><img src="guide-art/mall/coupang.jpg" alt=""></span><b>쿠팡</b><span class="go">바로가기</span></div></div>';
-/* 캔버스: 가로:세로 = 1 : 1.12 (김반장이 직접 맞춘 레이아웃 실측). 노드 중심(fx·fy)과 가로 크기(fw)는 캔버스 폭·높이에 대한 비율 —
-   투어·마지막 장·탭 B 축소판 공용. 세로 크기는 그림 원래 비율(w0 x h0)대로, 제휴몰 묶음(HTML)은 안쪽을 g 배로 키운다.
-   폭 1100px 은 노드가 원래 그림 크기(랜덤 티켓 227px 등)와 비슷해지는 크기. 스플래시는 세로로 길어 위쪽이 캔버스 위로 나간다 */
-const CW = 1100, CV_H = 1232, CX = CW / 2;
-/* lab: 노드 라벨 — 오브젝트 아래 8px, 가운데 정렬. 뱃지(구매 확정·10P)는 원래 크기 */
+/* 캔버스 = 마지막 장 화면(375x812 기준, 가로:세로 1:2.165)을 3.12배로 키운 것. 노드 중심(fx·fy)과 가로 크기(fw)는
+   그 화면에서 김반장 레이아웃을 잰 비율 — 마지막 장은 캔버스를 화면에 그대로 얹어(finLayout) 이 비율대로 놓인다.
+   투어 단계도 같은 캔버스. 세로 크기는 그림 원래 비율(w0 x h0), 제휴몰 묶음(HTML)은 안쪽을 g 배로 키운다.
+   표 값에서 ±0.02 안으로 다듬은 것: 1번 y .284→.302·폭 .309→.289(제목과 겹침), x 전체 -.018(좌우 여백 맞춤, 2번만 +.002),
+   4·5·6·7·뱃지 y +.02(선 길이 확보) */
+const CW = 1170, CV_H = 2533, CX = CW / 2;
+/* lab: 노드 라벨 — 오브젝트 아래 8px 가운데(b). 랜덤 티켓만 바로 아래 구매 확정 뱃지가 붙어 있어 왼쪽(l) */
 const NODES = {
-  phone:  { fx: .22, fy: .16, fw: .315, w0: 218, h0: 472, img: 'sp', lab: '프라이스픽', at: 'b' },
-  mall:   { fx: .70, fy: .08, fw: .47,  w0: 286, h0: 130, html: MALLS, lab: '제휴몰', at: 'b' },
-  bag:    { fx: .81, fy: .36, fw: .256, w0: 279, h0: 308, img: 'o2', lab: '구매 완료', at: 'b' },
-  wait:   { fx: .26, fy: .60, fw: .203, w0: 227, h0: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b' },
-  ok:     { fx: .24, fy: .71, w0: 100, h0: 30, html: '<span class="pill g"><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>구매 확정</span>' },
-  ticket: { fx: .22, fy: .83, fw: .203, w0: 261, h0: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b' },
-  coin:   { fx: .75, fy: .60, fw: .203, w0: 227, h0: 162, img: 'o5', lab: '포인트', at: 'b' },
-  rate:   { fx: .75, fy: .72, w0: 130, h0: 30, html: '<span class="pill y">10P = 티켓 1장</span>' },
-  gift:   { fx: .71, fy: .92, fw: .416, w0: 301, h0: 185, img: 'o6', lab: '기프티콘', at: 'b' },
+  phone:  { fx: .214, fy: .302, fw: .289, w0: 218, h0: 472, img: 'sp', lab: '프라이스픽', at: 'b' },
+  mall:   { fx: .700, fy: .225, fw: .466, w0: 286, h0: 130, html: MALLS, lab: '제휴몰', at: 'b' },
+  bag:    { fx: .783, fy: .401, fw: .262, w0: 279, h0: 308, img: 'o2', lab: '구매 완료', at: 'b' },
+  wait:   { fx: .244, fy: .566, fw: .178, w0: 227, h0: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'l' },
+  ok:     { fx: .228, fy: .629, w0: 100, h0: 24, html: '<span class="pill g"><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>구매 확정</span>' },
+  ticket: { fx: .209, fy: .702, fw: .183, w0: 261, h0: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b' },
+  coin:   { fx: .731, fy: .561, fw: .209, w0: 227, h0: 162, img: 'o5', lab: '포인트', at: 'b' },
+  rate:   { fx: .731, fy: .636, w0: 130, h0: 24, html: '<span class="pill y">10P → 티켓 1장</span>' },
+  gift:   { fx: .691, fy: .759, fw: .445, w0: 301, h0: 185, img: 'o6', lab: '기프티콘', at: 'b' },
 };
 Object.values(NODES).forEach(n => {
   n.w = n.fw ? n.fw * CW : n.w0; n.g = n.w / n.w0; n.h = n.h0 * n.g;
   n.cx = n.fx * CW; n.cy = n.fy * CV_H;
 });
-/* 화살표: [x1, y1, 출발 방향, x2, y2, 도착 방향, 갈래 색] (캔버스 px). 방향 d 아래 · r 오른쪽 · l 왼쪽 · w 같은 x 에서 한 번 휘는 S.
-   1→2 는 스플래시 오른쪽 위에서 제휴몰 왼쪽으로 짧게. 4→5 선 위에 구매 확정, 포인트→10P 는 오른쪽으로 돌아 들어간다.
-   색: l 티켓 길 보라 / r 포인트 길 골드 */
-const ARROWS = {
-  a1: [423, 70, 'r', 503, 99, 'r'],
-  a2: [865, 224, 'd', 891, 280, 'd'],
-  sl: [742, 470, 'l', 300, 636, 'd', 'l'],
-  sr: [850, 607, 'd', 825, 652, 'd', 'r'],
-  al: [166, 745, 'l', 230, 920, 'd', 'l'],
-  ar: [945, 740, 'r', 898, 887, 'l', 'r'],
-  ml: [362, 1030, 'r', 544, 1133, 'r', 'l'],
-  mr: [825, 910, 'd', 800, 985, 'd', 'r'],
-};
+/* 화살표: [x1, y1, 출발 방향, x2, y2, 도착 방향, 갈래 색, 시작 굵기, 끝 굵기, 화살촉 없음] — 노드 가장자리에서 12px 띄워 시작·끝.
+   세로 연결은 아래 중앙 → 위 중앙(라벨이 있으면 라벨 아래에서 출발), 좌우로 크게 벌어진 연결(1→2, 3→4, 5→7)은 옆면 → 옆면.
+   뱃지 자리는 선을 둘로 끊는다: 위 조각은 뱃지 윗변 6px 앞에서 끝(화살촉 없음), 아래 조각은 아랫변 6px 뒤에서 시작. 선 x = 뱃지 중심 x.
+   굵기는 위 조각 2.5→3.5, 아래 조각 3.5→4.5 로 뱃지를 사이에 두고 이어진다. bs: 뱃지 배율(마지막 장·축소판 2) */
+const EGAP = 12, BGAP = 6, LABH = 26;
+function buildArrows(bs = 1) {
+  const B = k => { const n = NODES[k]; return { l: n.cx - n.w / 2, r: n.cx + n.w / 2, t: n.cy - n.h / 2, b: n.cy + n.h / 2, cx: n.cx, cy: n.cy, h: n.h }; };
+  const P = k => { const n = NODES[k], h = n.h0 * bs / 2; return { t: n.cy - h - BGAP, b: n.cy + h + BGAP, cx: n.cx }; };
+  const below = k => B(k).b + (NODES[k].lab && NODES[k].at === 'b' ? LABH : 0) + EGAP;
+  const ph = B('phone'), ml = B('mall'), bg = B('bag'), wt = B('wait'), cn = B('coin'), tk = B('ticket'), gf = B('gift'), ok = P('ok'), rt = P('rate');
+  return {
+    a1: [ph.r + EGAP, ml.cy + 30, 'r', ml.l - EGAP, ml.cy, 'r'],
+    a2: [bg.cx, ml.b + EGAP, 'd', bg.cx, bg.t - EGAP, 'd'],
+    sl: [bg.l - EGAP, bg.cy + bg.h * .15, 'l', wt.r + EGAP, wt.cy, 'l', 'l'],
+    sr: [bg.cx, below('bag'), 'd', cn.cx, cn.t - EGAP, 'd', 'r'],
+    al: [ok.cx, wt.b + EGAP, 'd', ok.cx, ok.t, 'd', 'l', 2.5, 3.5, 1],
+    al2: [ok.cx, ok.b, 'd', tk.cx, tk.t - EGAP, 'd', 'l', 3.5, 4.5],
+    ar: [rt.cx, below('coin'), 'd', rt.cx, rt.t, 'd', 'r', 2.5, 3.5, 1],
+    mr: [rt.cx, rt.b, 'd', rt.cx, gf.t - EGAP, 'd', 'r', 3.5, 4.5],
+    ml: [tk.r + EGAP, tk.cy, 'r', gf.l - EGAP, gf.t + gf.h * .2, 'r', 'l'],
+  };
+}
+const ARROWS = buildArrows();
 const STEPS = [
   { t: '프라이스픽을 먼저 열어요', d: '여기를 거쳐야 티켓이 쌓여요',
     seq: [['phone']] },
@@ -405,7 +419,7 @@ const STEPS = [
   { t: '아직은 랜덤 티켓이에요', d: '구매가 확정될 때까지 기다려요',
     seq: [['sl'], ['wait']] },
   { t: '확정되면 바로 쓸 수 있어요', d: '랜덤 티켓이 티켓으로 바뀌어요',
-    seq: [['al'], ['ok', 'ticket']] },
+    seq: [['al', 'al2'], ['ok', 'ticket']] },
   { t: '포인트도 티켓이 돼요', d: '10P 모으면 티켓 한 장',
     seq: [['sr'], ['coin'], ['ar'], ['rate']] },
   { t: '티켓으로 기프티콘을 바꿔요', d: '커피부터 편의점까지',
@@ -433,44 +447,84 @@ const objHTML = k => k === 'sp' ? `<span class="splash"><img src="${SPLASH}" alt
 Object.values(NODES).forEach(n => n.img && n.img[0] === 'o' && (new Image().src = src(n.img)));
 
 /* 선은 화살촉 꼭짓점(y2 - 3)까지 그린다. 촉은 선 끝 방향을 따라 꺾쇠로 얹는다 */
-const DIR = { d: [0, 1], r: [1, 0], l: [-1, 0] };
-const waveA = H => Math.min(16, H * .12);
-/* 제어점: 출발·도착 방향으로 손잡이를 뻗는다(세로 방향은 세로 거리의 .5, 가로 방향은 가로 거리의 .5) — 급하게 꺾이지 않는 S */
+/* S자 제어점: 세로 연결은 제어점1 = (x1, y1 + dy*.45) 출발점에서 수직 아래, 제어점2 = (x2, y2 - dy*.45) 도착점에서 수직 위.
+   가로 연결(옆면 → 옆면)은 같은 규칙을 가로로. 가로(세로) 이동이 24px 안이면 두 제어점을 서로 반대쪽으로 18px(짧은 선은 길이의 15%까지) 밀어 아주 완만한 S */
 function ctl([x1, y1, d1, x2, y2, d2]) {
-  const H = y2 - y1, Wd = x2 - x1;
-  if (d1 === 'w') { const A = waveA(H); return [x1 + 2 * A, y1 + H / 3, x1 - 2 * A, y1 + H * 2 / 3]; }
-  const len = d => Math.max(24, (d === 'd' ? Math.abs(H) : Math.abs(Wd)) * .5);
-  const [ax, ay] = DIR[d1], [bx, by] = DIR[d2];
-  return [x1 + ax * len(d1), y1 + ay * len(d1), x2 - bx * len(d2), y2 - by * len(d2)].map(v => +v.toFixed(1));
+  if (d1 === 'd') {
+    const dy = y2 - y1, o = Math.abs(x2 - x1) < 24 ? Math.min(18, dy * .15) : 0;
+    return [x1 + o, y1 + dy * .45, x2 - o, y2 - dy * .45];
+  }
+  const dx = x2 - x1, o = Math.abs(y2 - y1) < 24 ? Math.min(18, Math.abs(dx) * .15) : 0;
+  return [x1 + dx * .45, y1 + o, x2 - dx * .45, y2 - o];
 }
-/* 화살촉 까딱 방향: 선 끝 접선 방향 2px */
-const tan = a => { const c = ctl(a), x = a[3] - c[2], y = a[4] - c[3], L = Math.hypot(x, y) || 1; return [x / L, y / L]; };
-const hx = a => (tan(a)[0] * 2).toFixed(2), hy = a => (tan(a)[1] * 2).toFixed(2);
-const arrowPath = a => `M${a[0]} ${a[1]}C${ctl(a).join(' ')} ${a[3]} ${a[4]}`;
-/* 화살촉 꺾쇠: 선 끝 접선 방향(마지막 제어점 → 끝점)으로 9px 물러난 자리에서 좌우 7px */
-function headPath(a) {
-  const c = ctl(a), tx = a[3], ty = a[4];
-  let ux = tx - c[2], uy = ty - c[3];
-  const L = Math.hypot(ux, uy) || 1; ux /= L; uy /= L;
-  const bx = tx - 9 * ux, by = ty - 9 * uy, nx = -uy * 7, ny = ux * 7;
-  return `M${(bx + nx).toFixed(1)} ${(by + ny).toFixed(1)}L${tx} ${ty}L${(bx - nx).toFixed(1)} ${(by - ny).toFixed(1)}`;
+const bez = (a, c, t) => { const u = 1 - t; return [u * u * u * a[0] + 3 * u * u * t * c[0] + 3 * u * t * t * c[2] + t * t * t * a[3], u * u * u * a[1] + 3 * u * u * t * c[1] + 3 * u * t * t * c[3] + t * t * t * a[4]]; };
+const f1 = v => v.toFixed(1);
+/* 곡선 한 개의 모양: 중심선 점·끝 접선·화살촉 자리. wm: 굵기 배율(마지막 장·축소판 2.2) */
+function arrowGeo(a, wm = 1) {
+  const c = ctl(a), N = 48, pts = [];
+  for (let j = 0; j <= N; j++) pts.push(bez(a, c, j / N));
+  let ux = a[3] - c[2], uy = a[4] - c[3];
+  const uL = Math.hypot(ux, uy) || 1; ux /= uL; uy /= uL;
+  const head = !a[9], HL = 14.4 * wm, HW = 11.2 * wm;
+  /* 화살촉이 있으면 선은 촉 밑변(끝에서 HL)에서 끝난다 */
+  let cut = pts.length - 1;
+  if (head) { let acc = 0; while (cut > 1 && acc < HL) { acc += Math.hypot(pts[cut][0] - pts[cut - 1][0], pts[cut][1] - pts[cut - 1][1]); cut--; } }
+  const line = pts.slice(0, cut + 1);
+  return { c, line, ux, uy, head, HL, HW, w0: (a[7] || 2.5) * wm, w1: (a[8] || 4.5) * wm };
+}
+const centerPath = pts => 'M' + pts.map(p => f1(p[0]) + ' ' + f1(p[1])).join('L');
+/* 테이퍼: 중심선 양옆으로 굵기 w0 → w1 의 외곽선을 따서 채운다. 시작은 둥근 끝 */
+function taperPath(g) {
+  const P = g.line, n = P.length, L = [], Rr = [];
+  P.forEach((p, i) => {
+    const q = P[Math.min(n - 1, i + 1)], o = P[Math.max(0, i - 1)];
+    let tx = q[0] - o[0], ty = q[1] - o[1]; const tl = Math.hypot(tx, ty) || 1; tx /= tl; ty /= tl;
+    const h = (g.w0 + (g.w1 - g.w0) * i / (n - 1)) / 2;
+    L.push([p[0] - ty * h, p[1] + tx * h]); Rr.push([p[0] + ty * h, p[1] - tx * h]);
+  });
+  const h0 = g.w0 / 2;
+  return 'M' + L.map(p => f1(p[0]) + ' ' + f1(p[1])).join('L') + 'L' + Rr.reverse().map(p => f1(p[0]) + ' ' + f1(p[1])).join('L') +
+    `A${f1(h0)} ${f1(h0)} 0 0 1 ${f1(L[0][0])} ${f1(L[0][1])}Z`;
+}
+/* 화살촉: 꼭짓점을 둥글게 깎은 삼각형(촉 끝 r 2.5, 밑변 모서리 r 3) */
+function headPath(a, g) {
+  const T = [a[3], a[4]], Bc = [T[0] - g.ux * g.HL, T[1] - g.uy * g.HL], nx = -g.uy * g.HW, ny = g.ux * g.HW;
+  const V = [T, [Bc[0] - nx, Bc[1] - ny], [Bc[0] + nx, Bc[1] + ny]], rr = [2.5, 3, 3].map(r => r * (g.HL / 14.4));
+  const toward = (p, q, r) => { const dx = q[0] - p[0], dy = q[1] - p[1], d = Math.hypot(dx, dy) || 1; return [p[0] + dx / d * r, p[1] + dy / d * r]; };
+  let d = '';
+  V.forEach((p, i) => {
+    const prev = V[(i + 2) % 3], next = V[(i + 1) % 3], pin = toward(p, prev, rr[i]), pout = toward(p, next, rr[i]);
+    d += (i ? 'L' : 'M') + f1(pin[0]) + ' ' + f1(pin[1]) + 'Q' + f1(p[0]) + ' ' + f1(p[1]) + ' ' + f1(pout[0]) + ' ' + f1(pout[1]);
+  });
+  return d + 'Z';
+}
+/* 화살표 모양을 그린다/다시 그린다(ar 요소 안의 .rv·.ln·.fl·.hd). 마지막 장·축소판은 굵게(wm 2.2)·뱃지 2배 자리로 */
+function drawArrows(root, wm = 1, bs = 1) {
+  const A = buildArrows(bs);
+  root.querySelectorAll('.ar').forEach(g => {
+    const a = A[g.dataset.k], geo = arrowGeo(a, wm), full = centerPath(geo.line.concat(geo.head ? [[a[3], a[4]]] : []));
+    g.querySelector('.rv').setAttribute('d', full);
+    g.querySelector('.rv').style.strokeWidth = 16 * wm;
+    g.querySelector('.ln').setAttribute('d', taperPath(geo));
+    g.querySelector('.fl').setAttribute('d', centerPath(geo.line));
+    g.querySelector('.fl').style.strokeWidth = (2.6 * wm).toFixed(1);
+    const hd = g.querySelector('.hd');
+    hd.setAttribute('d', geo.head ? headPath(a, geo) : '');
+    hd.style.setProperty('--hx', (geo.ux * 2).toFixed(2) + 'px'); hd.style.setProperty('--hy', (geo.uy * 2).toFixed(2) + 'px');
+  });
+  measure(root);
 }
 let cvSeq = 0;
 function canvasHTML() {
   const id = `cv${++cvSeq}`;
   const svg = Object.entries(ARROWS).map(([k, a]) => {
-    const d = arrowPath(a), m = `${id}-${k}`;
-    /* 포인트 길은 디자인 시스템 Gold 그라디언트(#FFD93B → #E6A800)를 선 방향으로 */
-    const gold = a[6] === 'r'
-      ? `<linearGradient id="${m}-g" gradientUnits="userSpaceOnUse" x1="${a[0]}" y1="${a[1]}" x2="${a[3]}" y2="${a[4]}"><stop offset="0" stop-color="#FFD93B"/><stop offset="1" stop-color="#E6A800"/></linearGradient>`
-      : '';
-    return `<g class="ar${a[6] ? ' ' + a[6] : ''}" data-k="${k}">` + gold +
-      `<mask id="${m}" maskUnits="userSpaceOnUse" x="0" y="0" width="${CW}" height="${CV_H}"><path class="rv" d="${d}"/></mask>` +
-      `<path class="ln" d="${d}" mask="url(#${m})"${gold ? ` style="stroke:url(#${m}-g)"` : ''}/>` +
-      `<path class="hd" d="${headPath(a)}" style="--hx:${hx(a)}px;--hy:${hy(a)}px"/></g>`;
+    const m = `${id}-${k}`;
+    return `<g class="ar${a[6] ? ' ' + a[6] : ''}" data-k="${k}">` +
+      `<mask id="${m}" maskUnits="userSpaceOnUse" x="-200" y="-400" width="${CW + 400}" height="${CV_H + 800}"><path class="rv"/></mask>` +
+      `<path class="ln" mask="url(#${m})"/><path class="fl" mask="url(#${m})"/><path class="hd"/></g>`;
   }).join('');
   const nodes = Object.entries(NODES).map(([k, n], i) =>
-    `<div class="nd${n.html && k !== 'mall' ? ' badge' : ' lift'}" data-k="${k}" style="left:${n.cx - n.w / 2}px;top:${n.cy - n.h / 2}px;width:${n.w}px;height:${n.h}px;` +
+    `<div class="nd${n.html && k !== 'mall' ? ' tag' : ' lift'}" data-k="${k}" style="left:${n.cx - n.w / 2}px;top:${n.cy - n.h / 2}px;width:${n.w}px;height:${n.h}px;` +
     `--gw:${n.w + 60}px;--gh:${n.h + 50}px;--fw:${Math.round(n.w * .72)}px;--g:${n.g.toFixed(4)};--bd:${(-i * .53).toFixed(2)}s">` +
     `<div class="fx"><div class="pop">${n.img ? `<div class="ncard">${objHTML(n.img)}</div>` : n.html}` +
     `${n.lab ? `<span class="lab ${n.at}">${n.lab}</span>` : ''}</div></div></div>`).join('');
@@ -507,7 +561,7 @@ function bezierEase(x1, y1, x2, y2) {
 const camEase = bezierEase(.45, .05, .2, 1);
 
 function measure(root) {
-  root.querySelectorAll('.rv').forEach(p => {
+  root.querySelectorAll('.rv,.fl').forEach(p => {
     let L = 0;
     try { L = p.getTotalLength(); } catch (e) {}
     if (!L) { const n = p.getAttribute('d').match(/-?[\d.]+/g).map(Number); L = Math.hypot(n[n.length - 2] - n[0], n[n.length - 1] - n[1]) * 1.3; }
@@ -522,7 +576,7 @@ function mountPage(screen) {
   /* 페이지: 축소판 흐름도 + 단계 카드 */
   const mini = $('[data-mini]');
   mini.innerHTML = canvasHTML();
-  measure(mini);
+  drawArrows(mini, 2.2, 2);
   mini.classList.add('snap');
   mini.querySelectorAll('.ar,.nd').forEach(el => el.classList.add('on'));
   $('[data-steps]').innerHTML = STEPS.map((s, i) =>
@@ -540,7 +594,7 @@ function mountTour(screen, onClose) {
 
   /* 투어 */
   $('[data-vp]').innerHTML = `<div class="zm">${canvasHTML()}</div>`;
-  measure($('[data-vp]'));
+  drawArrows($('[data-vp]'));
   const pars = [...screen.querySelectorAll('[data-par]')];
   pars.forEach((e, n) => { e.innerHTML = decoHTML(LAYERS[n]); e.dataset.f = LAYERS[n].f; });
   const cv = $('[data-vp] .cv');
@@ -561,10 +615,12 @@ function mountTour(screen, onClose) {
   const toTour = v => { const t = tour.getBoundingClientRect(); return (v - t.top) * (tour.offsetHeight / (t.height || 1)); };
   const topOf = e => toTour(e.getBoundingClientRect().top), botOf = e => toTour(e.getBoundingClientRect().bottom);
   const tourW = () => { const t = tour.getBoundingClientRect(); return t.width * (tour.offsetHeight / (t.height || 1)); };
-  let camIdx = 0, cam = null;
+  let camIdx = 0, cam = null, finArrows = false;
   /* 노드 외곽(캔버스 px): 현재 노드는 1.10배, 라벨(아래 8px + 18px)까지. lab=false 면 라벨 빼고(마지막 장) */
   function boxOf(k, sc = 1, withLab = true) {
-    const n = NODES[k], lab = withLab && n.lab ? el(k).querySelector('.lab') : null, w = Math.max(n.w, lab ? lab.offsetWidth : 0);
+    const n = NODES[k], lab = withLab && n.lab ? el(k).querySelector('.lab') : null;
+    if (lab && n.at === 'l') return { l: n.cx - (n.w / 2 + 8 + lab.offsetWidth) * sc, r: n.cx + n.w * sc / 2, t: n.cy - n.h * sc / 2, b: n.cy + n.h * sc / 2 };
+    const w = Math.max(n.w, lab ? lab.offsetWidth : 0);
     return { l: n.cx - w * sc / 2, r: n.cx + w * sc / 2, t: n.cy - n.h * sc / 2, b: n.cy + (n.h / 2 + (lab ? 26 : 0)) * sc };
   }
   const union = a => ({ l: Math.min(...a.map(o => o.l)), r: Math.max(...a.map(o => o.r)), t: Math.min(...a.map(o => o.t)), b: Math.max(...a.map(o => o.b)) });
@@ -586,7 +642,7 @@ function mountTour(screen, onClose) {
   const ANIM_MS = 1100, FIN_MS = 1200;
   const DEPTH = [1, .78, .62, .62, .78, .62, .55];
   const zOut = bezierEase(.4, 0, .9, .5), zIn = bezierEase(.16, .9, .3, 1), finEase = bezierEase(.3, .1, .25, 1);
-  const flowRate = r => cv.getAnimations({ subtree: true }).forEach(a => { if (a.animationName === 'flow') a.updatePlaybackRate(r); });
+  const flowRate = r => cv.getAnimations({ subtree: true }).forEach(a => { if (a.animationName === 'flowSeg') a.updatePlaybackRate(r); });
   function moveTo(x, y, s, yr, depth = .62, fin = false) {
     const from = cam, end = { x, y, s };
     cam = end;
@@ -686,19 +742,24 @@ function mountTour(screen, onClose) {
     vp.style.setProperty('--clip', cardTop + 'px');
     moveTo(x, y, k, mid, DEPTH[i]);
   }
-  /* 마지막 장: 같은 캔버스 전체(라벨 없이)를 「제목 아래 ~ 버튼 위」 실제 구간에 맞춰 축소 */
+  /* 마지막 장: 캔버스(= 기준 화면 375x812 의 3.12배)를 화면에 그대로 얹는다 — 노드가 표의 화면 비율대로 놓인다.
+     흐름도(라벨 없이, 뱃지 2배)가 「제목 아래 8px ~ 버튼 위 8px」·좌우 EDGE 를 벗어나는 화면(320x568 등)만 그 안으로 줄여 가운데에 */
   function finLayout() {
     if (!tour.offsetHeight) return;
     const h3 = $('.fin h3'), btns = $('.btns');
-    const top = h3.offsetTop + h3.offsetHeight + FIN.gapTop, bottom = btns.offsetTop - FIN.gapBot;
+    const top = h3.offsetTop + h3.offsetHeight + 8, bottom = btns.offsetTop - 8;
     vp.style.setProperty('--f0', top - 16 + 'px'); vp.style.setProperty('--f1', top + 'px');
     vp.style.setProperty('--f2', bottom + 4 + 'px'); vp.style.setProperty('--f3', bottom + 20 + 'px');
-    const W = tourW();
+    const W = tourW(), H = tour.offsetHeight;
     cv.style.left = (W - CW) / 2 + 'px';
-    const b = union(Object.keys(NODES).map(k => boxOf(k, 1, false)));
-    const s = Math.min((bottom - top) / (b.b - b.t), (W - 2 * EDGE) / (b.r - b.l));
+    const b = union(Object.keys(NODES).map(k => NODES[k].html && k !== 'mall' ? (() => { const n = NODES[k]; return { l: n.cx - n.w, r: n.cx + n.w, t: n.cy - n.h, b: n.cy + n.h }; })() : boxOf(k, 1, false)));
+    let s = Math.min(W / CW, H / CV_H), x = 0, y = (H - CV_H * s) / 2;
+    if (y + b.t * s < top || y + b.b * s > bottom || W / 2 + (b.l - CX) * s < EDGE || W / 2 + (b.r - CX) * s > W - EDGE) {
+      s = Math.min((bottom - top) / (b.b - b.t), (W - 2 * EDGE) / (b.r - b.l));
+      x = -s * ((b.l + b.r) / 2 - CX); y = top + (bottom - top - (b.b - b.t) * s) / 2 - b.t * s;
+    }
     zm.style.transformOrigin = `${W / 2}px ${(top + bottom) / 2}px`;
-    moveTo(-s * ((b.l + b.r) / 2 - CX), top + (bottom - top - (b.b - b.t) * s) / 2 - b.t * s, s, (top + bottom) / 2, 1, true);
+    moveTo(x, y, s, (top + bottom) / 2, 1, true);
   }
   const snap = fn => { tour.classList.add('snap'); fn(); void tour.offsetWidth; tour.classList.remove('snap'); };
 
@@ -721,6 +782,7 @@ function mountTour(screen, onClose) {
   /* i 단계 이전까지는 즉시 완성 상태로 맞춘다 */
   function settle(i) {
     snap(() => {
+      if (finArrows) { finArrows = false; drawArrows(cv); }
       cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.remove('on', 'cur', 'past'));
       for (let s = 0; s < i; s++) STEPS[s].seq.flat().forEach(k => el(k).classList.add('on'));
       if (i > 0) { focus(i - 1); camAt(i - 1); } else camAt(0);
@@ -754,7 +816,7 @@ function mountTour(screen, onClose) {
   function final() {
     stop();
     idx = STEPS.length;
-    snap(() => cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.add('on')));
+    snap(() => { cv.querySelectorAll('.ar,.nd').forEach(n => n.classList.add('on')); drawArrows(cv, 2.2, 2); finArrows = true; });
     cv.querySelectorAll('.nd').forEach(n => n.classList.remove('cur', 'past'));
     finLayout();
     bars.forEach(b => { b.classList.add('done'); b.classList.remove('cur'); });
