@@ -132,7 +132,64 @@
 
   /* ── 오른쪽 시안 영역 ── */
   .main { flex: 1 1 auto; min-width: 0; height: 100%; display: flex; flex-direction: column; }
-  .frame-wrap { position: relative; flex: 1 1 auto; background: #f5f5f7; }
+  .stage { flex: 1 1 auto; min-height: 0; display: flex; }
+  .frame-wrap { position: relative; flex: 1 1 auto; min-width: 0; background: #f5f5f7; }
+
+  /* ── 구조 설명 (설명이 있는 항목만, 시안 오른쪽에서 접었다 편다) ── */
+  .doc {
+    flex: 0 0 400px;
+    width: 400px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border-left: 1px solid var(--border);
+  }
+  .doc[hidden] { display: none; }
+  .doc-head {
+    appearance: none;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    font: inherit;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 16px 18px;
+    cursor: pointer;
+    color: var(--text1);
+    text-align: left;
+  }
+  .doc-head b { font-size: var(--fs-body); font-weight: 800; letter-spacing: -.02em; }
+  .doc-head .hint { font-size: 12px; font-weight: 700; color: var(--main-dark); display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .doc-head svg { transition: transform .2s ease; }
+  .doc-head:hover .hint { color: var(--main); }
+  .doc-body { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; padding: 4px 20px 32px; scrollbar-width: thin; }
+  .doc.collapsed { flex-basis: 48px; width: 48px; }
+  .doc.collapsed .doc-body { display: none; }
+  .doc.collapsed .doc-head { flex: 1 1 auto; flex-direction: column; justify-content: flex-start; padding: 16px 0; border-bottom: 0; }
+  .doc.collapsed .doc-head b { writing-mode: vertical-rl; font-size: 14px; letter-spacing: .1em; }
+  .doc.collapsed .doc-head .hint span { display: none; }
+  .doc.collapsed .doc-head svg { transform: rotate(180deg); }
+  .doc-body section { padding-top: 22px; }
+  .doc-body h4 { font-size: 14px; font-weight: 800; color: var(--main-dark); letter-spacing: -.01em; margin-bottom: 8px; }
+  .doc-body p, .doc-body li { font-size: 13.5px; line-height: 1.6; color: var(--text2); word-break: keep-all; }
+  .doc-body b { color: var(--text1); font-weight: 700; }
+  .doc-body ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .doc-body li { position: relative; padding-left: 12px; }
+  .doc-body li::before { content: ''; position: absolute; left: 0; top: .62em; width: 4px; height: 4px; border-radius: 50%; background: var(--sub-2); }
+  .doc-body p + ul, .doc-body p + table, .doc-body ul + p { margin-top: 8px; }
+  .doc-body table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; font-size: 12.5px; }
+  .doc-body th { background: var(--sub-4); color: var(--main-dark); font-weight: 700; text-align: left; padding: 7px 8px; white-space: nowrap; }
+  .doc-body td { padding: 8px; border-top: 1px solid var(--border); color: var(--text2); vertical-align: top; line-height: 1.45; word-break: keep-all; }
+  .doc-body td.n { width: 28px; text-align: center; font-weight: 800; color: var(--main); font-variant-numeric: tabular-nums; }
+  .doc-body td.k { width: 104px; }
+  .doc-body td b { display: block; color: var(--text1); }
+  .doc-body .tag { display: inline-block; padding: 1px 7px; border-radius: 999px; font-size: 12px; font-weight: 700; line-height: 1.6; }
+  .doc-body .tag.p { background: var(--sub-4); color: var(--main-dark); }
+  .doc-body .tag.g { background: #FFF6D6; color: #9A7000; }
   iframe {
     position: absolute;
     inset: 0;
@@ -169,6 +226,14 @@
       border-bottom: 1px solid var(--border);
     }
     .main { height: auto; flex: 1 1 auto; min-height: 0; }
+    .stage { flex-direction: column; }
+    .doc { flex: 0 0 auto; width: auto; max-height: 55%; border-left: 0; border-top: 1px solid var(--border); }
+    .doc.collapsed { flex-basis: auto; width: auto; }
+    .doc.collapsed .doc-head { flex-direction: row; justify-content: space-between; padding: 14px 18px; }
+    .doc.collapsed .doc-head b { writing-mode: horizontal-tb; font-size: var(--fs-body); letter-spacing: -.02em; }
+    .doc.collapsed .doc-head .hint span { display: inline; }
+    .doc-head svg { transform: rotate(90deg); }
+    .doc.collapsed .doc-head svg { transform: rotate(-90deg); }
   }
 </style>
 </head>
@@ -193,8 +258,93 @@
         <span data-l="ko" class="on">KO</span><span data-l="vi">VI</span>
       </button>
     </div>
-    <div class="frame-wrap" id="frame-wrap"></div>
+    <div class="stage">
+      <div class="frame-wrap" id="frame-wrap"></div>
+      <aside class="doc" id="doc" hidden aria-label="구조 설명">
+        <button class="doc-head" id="doc-head" type="button" aria-expanded="true">
+          <b>구조 설명</b>
+          <span class="hint"><span id="doc-hint">접기</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </button>
+        <div class="doc-body" id="doc-body"></div>
+      </aside>
+    </div>
   </div>
+
+  <!-- 항목별 구조 설명. 항목에 doc: '이름' 을 달면 이 틀(doc-이름)을 시안 옆에 펼쳐 보여 준다 -->
+  <template id="doc-guide">
+    <section>
+      <h4>무엇인가</h4>
+      <p>경유 쇼핑으로 티켓이 쌓이는 구조를 처음 쓰는 사람에게 설명하는 안내. 화면 두 벌이다.</p>
+      <table>
+        <tr><th>화면</th><th>내용</th></tr>
+        <tr><td class="k"><b>가이드 투어</b></td><td>홈 위에 덮여 뜨는 7단계 안내</td></tr>
+        <tr><td class="k"><b>쇼핑 가이드 페이지</b></td><td>전체 흐름과 단계별 카드를 모아 둔 화면</td></tr>
+      </table>
+    </section>
+    <section>
+      <h4>어디서 열리나</h4>
+      <table>
+        <tr><th>들어오는 곳</th><th>열리는 화면</th></tr>
+        <tr><td class="k"><b>홈 상단 GUIDE 버튼</b></td><td>가이드 투어 — 언제든 처음부터</td></tr>
+        <tr><td class="k"><b>마이 › 쇼핑 적립 방법</b></td><td>쇼핑 가이드 페이지</td></tr>
+        <tr><td class="k"><b>투어 하단 「가이드 자세히 보기」</b></td><td>쇼핑 가이드 페이지</td></tr>
+        <tr><td class="k"><b>가이드 페이지의 흐름도 카드</b></td><td>가이드 투어 — 처음부터</td></tr>
+      </table>
+    </section>
+    <section>
+      <h4>언제 자동으로 뜨나</h4>
+      <ul>
+        <li>가입 후 <b>홈에 처음 들어온 시점에 한 번만</b> 자동으로 뜬다</li>
+        <li>건너뛰기·X·마지막 「시작하기」 <b>어느 쪽으로 닫아도 다시 뜨지 않는다</b></li>
+        <li>본 시점을 <b>회원 정보에 저장</b>한다. 앱을 지웠다 깔거나 기기를 바꿔도 다시 안 뜬다</li>
+        <li>다시 보려면 <b>GUIDE 버튼</b></li>
+      </ul>
+    </section>
+    <section>
+      <h4>7단계 흐름</h4>
+      <p>세로로 긴 흐름도 하나를 화면이 따라 내려가며 보여준다. 노드는 지워지지 않고 쌓인 채 위로 밀려난다.</p>
+      <table>
+        <tr><th>단계</th><th>노드</th><th>제목 / 설명</th></tr>
+        <tr><td class="n">1</td><td class="k">프라이스픽 스플래시</td><td><b>프라이스픽을 먼저 열어요</b>여기를 거쳐야 티켓이 쌓여요</td></tr>
+        <tr><td class="n">2</td><td class="k">제휴몰 로고 5개 + 쿠팡 카드</td><td><b>쓰던 쇼핑몰 그대로 들어가요</b>평소처럼 사기만 하면 돼요</td></tr>
+        <tr><td class="n">3</td><td class="k">쇼핑백·택배</td><td><b>상품은 집으로, 티켓은 여기로</b>산 만큼 자동으로 들어와요</td></tr>
+        <tr><td class="n">4</td><td class="k">랜덤 티켓(빨강)</td><td><b>아직은 랜덤 티켓이에요</b>구매가 확정될 때까지 기다려요</td></tr>
+        <tr><td class="n">5</td><td class="k">확정 티켓(금색) + 초록 체크</td><td><b>확정되면 바로 쓸 수 있어요</b>랜덤 티켓이 티켓으로 바뀌어요</td></tr>
+        <tr><td class="n">6</td><td class="k">포인트 코인</td><td><b>포인트도 티켓이 돼요</b>10P 모으면 티켓 한 장</td></tr>
+        <tr><td class="n">7</td><td class="k">기프티콘·커피</td><td><b>티켓으로 기프티콘을 바꿔요</b>커피부터 편의점까지</td></tr>
+      </table>
+    </section>
+    <section>
+      <h4>갈래 구조</h4>
+      <p>3단계 다음 두 갈래로 갈라졌다가 7단계에서 합류한다. 선 색으로 길을 구분한다.</p>
+      <table>
+        <tr><th>갈래</th><th>흐름</th></tr>
+        <tr><td class="k"><span class="tag p">왼쪽 · 보라</span></td><td>랜덤 티켓 → 「구매 확정」 → 확정 티켓</td></tr>
+        <tr><td class="k"><span class="tag g">오른쪽 · 골드</span></td><td>포인트 → 「10P = 티켓 1장」</td></tr>
+        <tr><td class="k"><b>합류</b></td><td>두 갈래가 기프티콘으로 모인다</td></tr>
+      </table>
+    </section>
+    <section>
+      <h4>움직임</h4>
+      <table>
+        <tr><th>순서</th><th>일어나는 일</th></tr>
+        <tr><td class="n">1</td><td>화살표가 자란다</td></tr>
+        <tr><td class="n">2</td><td>다음 노드가 튕기며 나타난다</td></tr>
+        <tr><td class="n">3</td><td>화면이 따라 내려간다</td></tr>
+        <tr><td class="n">4</td><td>지나간 노드는 흐려지고 문구 카드 위에서 사라진다</td></tr>
+      </table>
+      <p>노드 위치는 화면 실제 크기를 재서 가로·세로 가운데에 맞춘다.</p>
+    </section>
+    <section>
+      <h4>쓰인 그림</h4>
+      <table>
+        <tr><th>그림</th><th>만든 방식</th></tr>
+        <tr><td class="k"><b>오브젝트</b></td><td>이미지 생성 도구로 만든 배경 없는 입체 그림</td></tr>
+        <tr><td class="k"><b>티켓 두 종</b></td><td>김반장이 만든 2D 도안을 그대로 쓰고 두께·광택·그림자만 입혀 입체로 보이게 함</td></tr>
+        <tr><td class="k"><b>제휴몰 로고</b></td><td>데모가 쓰는 실제 로고 파일</td></tr>
+      </table>
+    </section>
+  </template>
 
   <script>
   (function () {
@@ -243,7 +393,7 @@
         { id: 'giftshop', title: '기프티샵', date: '2026-09-16', frame: 'giftshop' }
       ] },
       { title: '안내', items: [
-        { id: 'guide', title: '쇼핑 가이드', date: '2026-11-03', frame: 'guide' }
+        { id: 'guide', title: '쇼핑 가이드', date: '2026-11-03', frame: 'guide', doc: 'guide' }
       ] }
     ];
 
@@ -457,12 +607,37 @@
       });
     });
 
+    // ── 구조 설명: 설명이 달린 항목에서만 보인다. 접힘 상태는 이 브라우저에 기억한다 ──
+    var docEl = document.getElementById('doc'), docBody = document.getElementById('doc-body');
+    var docHead = document.getElementById('doc-head'), docHint = document.getElementById('doc-hint');
+    var DOC_KEY = 'pp_nd_doc_collapsed';
+    function setDocCollapsed(c) {
+      docEl.classList.toggle('collapsed', c);
+      docHead.setAttribute('aria-expanded', c ? 'false' : 'true');
+      docHint.textContent = c ? '펼치기' : '접기';
+    }
+    var docCollapsed = false;
+    try { docCollapsed = localStorage.getItem(DOC_KEY) === '1'; } catch (e) {}
+    setDocCollapsed(docCollapsed);
+    docHead.addEventListener('click', function () {
+      docCollapsed = !docEl.classList.contains('collapsed');
+      setDocCollapsed(docCollapsed);
+      try { localStorage.setItem(DOC_KEY, docCollapsed ? '1' : '0'); } catch (e) {}
+    });
+    function showDoc(name) {
+      var tpl = name && document.getElementById('doc-' + name);
+      docEl.hidden = !tpl;
+      docBody.innerHTML = '';
+      if (tpl) { docBody.appendChild(tpl.content.cloneNode(true)); docBody.scrollTop = 0; }
+    }
+
     // ── 항목 선택 (지연 로딩: 처음 고른 시안만 src 부여) ──
     var currentId = null;
     function select(id) {
       var it = ITEMS[id];
       if (!it || id === currentId) return;
       currentId = id;
+      showDoc(it.doc);
       ORDER.forEach(function (k) { buttons[k].classList.toggle('active', k === id); });
       buttons[id].setAttribute('aria-current', 'page');
       ORDER.forEach(function (k) { if (k !== id) buttons[k].removeAttribute('aria-current'); });
