@@ -61,8 +61,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .overview .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .overview .top b{font-size:var(--fs-label);font-weight:var(--fw-bold)}
 .overview .top span{display:flex;align-items:center;gap:4px;font-size:var(--fs-caption);font-weight:var(--fw-bold);color:var(--main)}
-.mini{position:relative;height:calc(1590px * var(--s));overflow:hidden;pointer-events:none}
-.mini .cv{left:50%;margin-left:-700px;top:calc(46px * var(--s));transform:scale(var(--s));transform-origin:50% 0}
+.mini{position:relative;height:calc(1500px * var(--s));overflow:hidden;pointer-events:none}
+.mini .cv{left:50%;margin-left:-550px;top:calc(186px * var(--s));transform:scale(var(--s));transform-origin:50% 0}
 .mini .lab{display:none}
 .mini .ln{stroke-width:9;stroke-dasharray:24 18}
 .mini .hd{stroke-width:7}
@@ -87,7 +87,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .step p{margin-top:4px;font-size:var(--fs-body);font-weight:var(--fw-regular);line-height:1.5;color:var(--text2);word-break:keep-all}
 
 /* 흐름도 캔버스 (투어·축소판 공용) */
-.cv{position:absolute;top:0;left:0;width:1400px;height:1652px;transform-origin:700px 0}
+.cv{position:absolute;top:0;left:0;width:1100px;height:1232px;transform-origin:550px 0}
 .cv svg{position:absolute;inset:0;overflow:visible}
 /* 화살표: 보이는 선은 점선(아래로 흐름), 그려지는 효과는 마스크 안의 실선이 자라며 드러낸다 */
 .ln{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-dasharray:12 10;animation:flow var(--fd,1.8s) linear infinite}
@@ -122,6 +122,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes curBounce{0%{transform:scale(1.1)}35%{transform:scale(1.04)}70%{transform:scale(1.08)}100%{transform:scale(1.1)}}
 /* 지나간 노드: 흐려지며 줄고, 카메라 이동 반대쪽(화면이 흘러가는 쪽)으로 10px 더 흘러간다(--px·--py, camAt) */
 .nd.past .fx{opacity:.55;transform:translate(var(--px,0px),var(--py,0px)) scale(.94)}
+/* 줌아웃 구간(.cv.wide)에는 지나온 노드가 .80 으로 또렷해졌다가(240ms) 줌인되며 .55 로(330ms). 마지막 장은 1200ms 에 걸쳐 전부 또렷하게 */
+.tour .cv .nd.past .fx{transition:transform 420ms ease-out,opacity 330ms ease-out}
+.tour .cv.wide .nd.past .fx{opacity:.8;transition:transform 420ms ease-out,opacity 240ms ease-out}
+.tour.final .nd .fx{transition:transform 1200ms ease-out,opacity 1200ms ease-out}
 /* 뱃지(구매 확정·10P): 0 → 1.15 → 1 로 팡 */
 .nd.badge .pop{transform:none}
 .nd.badge.on .pill{animation:badgePop 420ms ease-out both,bpulse 2.4s ease-in-out 420ms infinite}
@@ -183,6 +187,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* 제휴몰 카드 5장 계단식 겹침 — 전부 순백, 층은 그림자로만 */
 /* 2단계: 제휴몰 로고 칩 한 줄(46px x5 + 간격 10px = 270px) + 대표 카드 한 장(286x60). 폭 375 안에 좌우 여백 44px 이상 */
 .malls{width:286px;height:128px;display:flex;flex-direction:column;align-items:center}
+.nd .malls{flex:none;transform:scale(var(--g,1))}
 .chips{display:flex;gap:10px;height:46px;align-items:center}
 .chip{width:46px;height:46px;flex:none}
 .nd.on .chip{animation:chipIn 520ms cubic-bezier(.34,1.45,.5,1) calc(var(--i) * 60ms) both}
@@ -228,7 +233,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* 카메라는 단계 전환마다 JS 가 만드는 @keyframes(호 궤적·오버슈트·줌아웃·기울기, 820ms)로 움직인다(moveTo) */
 .tour .zm{position:absolute;inset:0}
 /* 캔버스(폭 375) 가로 위치·축소는 JS(fitX)가 화면 실제 폭으로 다시 잡는다. 아래는 첫 프레임용 초기값 */
-.tour .cv{left:calc(50% - 700px)}
+.tour .cv{left:calc(50% - 550px)}
 
 .tour .bar{position:absolute;top:47px;left:0;right:0;display:flex;align-items:center;gap:20px;padding:12px 16px 0 36px;z-index:2}
 .tour .prog{flex:1;display:flex;align-items:center;gap:5px}
@@ -453,7 +458,7 @@ body{display:block;min-height:0;padding:0;align-items:initial}
     </div>
     <button class="overview" data-act="overview">
       <div class="top"><b>한눈에 보는 프라이스픽</b><span>누르면 처음부터 봐요<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
-      <div class="mini" style="--s:.3" data-mini></div>
+      <div class="mini" style="--s:.27" data-mini></div>
     </button>
     <div class="steps" data-steps></div>
   </div>
@@ -491,34 +496,38 @@ const MALL_LOGOS = ['coupang.jpg', 'gmarket.png', '11st.png', 'nsmall.png', 'cjt
 const MALLS = '<div class="malls"><div class="chips">' +
   MALL_LOGOS.map((f, i) => `<span class="chip${i ? '' : ' hot'}" style="--i:${i}"><span class="c"><img src="design/guide-art/mall/${f}" alt=""></span></span>`).join('') +
   '</div><div class="mall"><span class="badge"><img src="design/guide-art/mall/coupang.jpg" alt=""></span><b>쿠팡</b><span class="go">바로가기</span></div></div>';
-/* 캔버스: 가로:세로 = 1 : 1.18 (김반장 그림 비율). 노드 위치는 캔버스 폭·높이에 대한 비율(fx·fy, 노드 중심) — 투어와 마지막 장 공용.
-   폭 1400px 은 노드(실제 크기)끼리 안 겹치는 최소 크기. 화면에는 카메라가 그 단계 노드로 가로·세로 함께 이동해 맞춘다 */
-const CW = 1400, CV_H = 1652, CX = CW / 2;
-/* lab: 노드 라벨 — 오브젝트 아래 8px, 가운데 정렬. 1번 스플래시(218x472 의 1.35배)·7번 기프티콘(301x185 의 1.30배)은 존재감 때문에 키웠다. 구매 확정 알약은 4→5 곡선 한가운데, 10P 알약은 포인트 아래 */
+/* 캔버스: 가로:세로 = 1 : 1.12 (김반장이 직접 맞춘 레이아웃 실측). 노드 중심(fx·fy)과 가로 크기(fw)는 캔버스 폭·높이에 대한 비율 —
+   투어·마지막 장·탭 B 축소판 공용. 세로 크기는 그림 원래 비율(w0 x h0)대로, 제휴몰 묶음(HTML)은 안쪽을 g 배로 키운다.
+   폭 1100px 은 노드가 원래 그림 크기(랜덤 티켓 227px 등)와 비슷해지는 크기. 스플래시는 세로로 길어 위쪽이 캔버스 위로 나간다 */
+const CW = 1100, CV_H = 1232, CX = CW / 2;
+/* lab: 노드 라벨 — 오브젝트 아래 8px, 가운데 정렬. 뱃지(구매 확정·10P)는 원래 크기 */
 const NODES = {
-  phone:  { fx: .22,  fy: .17,  w: 294, h: 637, img: 'sp', lab: '프라이스픽', at: 'b' },
-  mall:   { fx: .48,  fy: .27,  w: 286, h: 130, html: MALLS, lab: '제휴몰', at: 'b' },
-  bag:    { fx: .73,  fy: .33,  w: 279, h: 308, img: 'o2', lab: '구매 완료', at: 'b' },
-  wait:   { fx: .51,  fy: .50,  w: 227, h: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b' },
-  ok:     { fx: 508 / CW, fy: 869 / CV_H, w: 100, h: 30, html: '<span class="pill g"><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>구매 확정</span>' },
-  ticket: { fx: .29,  fy: .65,  w: 261, h: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b' },
-  coin:   { fx: .76,  fy: .57,  w: 227, h: 162, img: 'o5', lab: '포인트', at: 'b' },
-  rate:   { fx: .76,  fy: 1145 / CV_H, w: 130, h: 30, html: '<span class="pill y">10P = 티켓 1장</span>' },
-  gift:   { fx: .53,  fy: .84,  w: 391, h: 241, img: 'o6', lab: '기프티콘', at: 'b' },
+  phone:  { fx: .22, fy: .16, fw: .315, w0: 218, h0: 472, img: 'sp', lab: '프라이스픽', at: 'b' },
+  mall:   { fx: .70, fy: .08, fw: .47,  w0: 286, h0: 130, html: MALLS, lab: '제휴몰', at: 'b' },
+  bag:    { fx: .81, fy: .36, fw: .256, w0: 279, h0: 308, img: 'o2', lab: '구매 완료', at: 'b' },
+  wait:   { fx: .26, fy: .60, fw: .203, w0: 227, h0: 193, img: 'tw', lab: '랜덤 티켓(구매 확정 전)', at: 'b' },
+  ok:     { fx: .24, fy: .71, w0: 100, h0: 30, html: '<span class="pill g"><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>구매 확정</span>' },
+  ticket: { fx: .22, fy: .83, fw: .203, w0: 261, h0: 220, img: 'tk', lab: '사용 가능 티켓', at: 'b' },
+  coin:   { fx: .75, fy: .60, fw: .203, w0: 227, h0: 162, img: 'o5', lab: '포인트', at: 'b' },
+  rate:   { fx: .75, fy: .72, w0: 130, h0: 30, html: '<span class="pill y">10P = 티켓 1장</span>' },
+  gift:   { fx: .71, fy: .92, fw: .416, w0: 301, h0: 185, img: 'o6', lab: '기프티콘', at: 'b' },
 };
-Object.values(NODES).forEach(n => { n.cx = n.fx * CW; n.cy = n.fy * CV_H; });
+Object.values(NODES).forEach(n => {
+  n.w = n.fw ? n.fw * CW : n.w0; n.g = n.w / n.w0; n.h = n.h0 * n.g;
+  n.cx = n.fx * CW; n.cy = n.fy * CV_H;
+});
 /* 화살표: [x1, y1, 출발 방향, x2, y2, 도착 방향, 갈래 색] (캔버스 px). 방향 d 아래 · r 오른쪽 · l 왼쪽 · w 같은 x 에서 한 번 휘는 S.
-   좌우로 어긋난 이웃이 비슷한 높이에 있으면 앞 노드 옆구리에서 출발하거나 다음 노드 옆구리로 들어간다.
+   1→2 는 스플래시 오른쪽 위에서 제휴몰 왼쪽으로 짧게. 4→5 선 위에 구매 확정, 포인트→10P 는 오른쪽으로 돌아 들어간다.
    색: l 티켓 길 보라 / r 포인트 길 골드 */
 const ARROWS = {
-  a1: [463, 200, 'r', 610, 371, 'd'],
-  a2: [730, 521, 'd', 872, 630, 'r'],
-  sl: [930, 709, 'd', 836, 810, 'l', 'l'],
-  sr: [1080, 712, 'd', 1090, 851, 'd', 'r'],
-  al: [592, 830, 'l', 470, 954, 'd', 'l'],
-  ar: [1064, 1057, 'w', 1064, 1122, 'd', 'r'],
-  ml: [545, 1100, 'r', 690, 1258, 'd', 'l'],
-  mr: [1064, 1168, 'd', 945, 1390, 'l', 'r'],
+  a1: [423, 70, 'r', 503, 99, 'r'],
+  a2: [865, 224, 'd', 891, 280, 'd'],
+  sl: [742, 470, 'l', 300, 636, 'd', 'l'],
+  sr: [850, 607, 'd', 825, 652, 'd', 'r'],
+  al: [166, 745, 'l', 230, 920, 'd', 'l'],
+  ar: [945, 740, 'r', 898, 887, 'l', 'r'],
+  ml: [362, 1030, 'r', 544, 1133, 'r', 'l'],
+  mr: [825, 910, 'd', 800, 985, 'd', 'r'],
 };
 const STEPS = [
   { t: '프라이스픽을 먼저 열어요', d: '여기를 거쳐야 티켓이 쌓여요',
@@ -537,7 +546,7 @@ const STEPS = [
     seq: [['ml', 'mr'], ['gift']] },
 ];
 const THUMB = ['sp', null, 'o2', 'tw', 'tk', 'o5', 'o6'];
-const DRAW = 560, GAP = 300, POP_AT = 380, TEXT_AT = 300;
+const DRAW = 560, GAP = 300, POP_AT = 700, TEXT_AT = 300;
 /* 마지막 장 흐름도 구간: 제목 아래 25px ~ 버튼 위 24px (기준 화면에서 152~696px) */
 const FIN = { gapTop: 25, gapBot: 24 };
 const EDGE = 4;   /* 노드·라벨과 화면 좌우 끝 사이 최소 여백 */
@@ -596,7 +605,7 @@ function canvasHTML() {
   }).join('');
   const nodes = Object.entries(NODES).map(([k, n], i) =>
     `<div class="nd${n.html && k !== 'mall' ? ' badge' : ' lift'}" data-k="${k}" style="left:${n.cx - n.w / 2}px;top:${n.cy - n.h / 2}px;width:${n.w}px;height:${n.h}px;` +
-    `--gw:${n.w + 60}px;--gh:${n.h + 50}px;--fw:${Math.round(n.w * .72)}px;--bd:${(-i * .53).toFixed(2)}s">` +
+    `--gw:${n.w + 60}px;--gh:${n.h + 50}px;--fw:${Math.round(n.w * .72)}px;--g:${n.g.toFixed(4)};--bd:${(-i * .53).toFixed(2)}s">` +
     `<div class="fx"><div class="pop">${n.img ? `<div class="ncard">${objHTML(n.img)}</div>` : n.html}` +
     `${n.lab ? `<span class="lab ${n.at}">${n.lab}</span>` : ''}</div></div></div>`).join('');
   return `<div class="cv"><svg width="${CW}" height="${CV_H}" viewBox="0 0 ${CW} ${CV_H}">${svg}</svg>${nodes}</div>`;
@@ -693,24 +702,33 @@ function mountTour(screen, onClose) {
     return { l: n.cx - w * sc / 2, r: n.cx + w * sc / 2, t: n.cy - n.h * sc / 2, b: n.cy + (n.h / 2 + (lab ? 26 : 0)) * sc };
   }
   const union = a => ({ l: Math.min(...a.map(o => o.l)), r: Math.max(...a.map(o => o.r)), t: Math.min(...a.map(o => o.t)), b: Math.max(...a.map(o => o.b)) });
-  /* 카메라 이동(820ms, linear 로 41개 지점을 찍은 @keyframes — 이징 cubic-bezier(.45,.05,.2,1)은 지점 계산에 넣었다):
-     호 — 화면 가운데가 보는 캔버스 점(look)을 A → B 로 옮기되, 직선 중간점을 바깥(위쪽 수직 방향)으로 거리의 18% 밀어 돈다.
-       우하 이동이면 오른쪽 위, 좌하 이동이면 왼쪽 위로 부푼 호.
-     관성 — 80% 지점에서 목표를 거리의 4% 지나쳤다가 마지막 160ms 에 정위치.
-     줌아웃·기울기 — 45% 지점에서 0.94배·최대 1.2도(오른쪽 +, 왼쪽 -, 가로 성분 비례), 100% 에서 1·0도(.zm, 화면 가운데 기준).
-     그림자는 기울기 반대로 최대 2px(--shx). 장식 세 층은 카메라 이동량 × f 로 따라가며 가운데에서 8px 위로 밀렸다 돌아온다.
-     지나간 노드는 화면이 흘러가는 쪽으로 10px 더(--px·--py). 끝나면 animation·will-change 를 떼어 정위치(최종 transform)만 남는다 */
+  /* 카메라 이동 — 단계 전환 1100ms, 줌인 → 줌아웃 → 줌인 리듬(JS 가 만드는 @keyframes, linear 로 61개 지점):
+       0~22%   현재 노드를 화면 가운데에 둔 채 줌아웃(배율 × depth, 이징 cubic-bezier(.4,0,.9,.5)).
+               depth 는 전환마다 다르다 — 가까운 이동 .78, 먼 대각선 .62, 합류(→7) .55 (DEPTH)
+       22~70%  줌아웃 상태로 호를 그리며 이동(cubic-bezier(.45,.05,.2,1)) — 화면 가운데가 보는 캔버스 점(look)을 A → B 로,
+               직선 중간점을 바깥(위쪽 수직 방향)으로 거리의 18% 밀어 돈다. 이동 중 진행 방향으로 최대 1.2도 기울었다 편다(.zm).
+       70~100% 새 노드로 줌인(cubic-bezier(.16,.9,.3,1)) — 92% 지점에서 1.03배까지 살짝 지나쳤다 100% 에서 정확히 1.
+     줌은 화면 가운데(= 지금 보는 노드) 기준이라 이동하면서 기준점이 현재 노드에서 다음 노드로 옮겨 간다.
+     줌아웃 동안(0~70%) 지나온 노드가 .80 으로 또렷해지고 점선 흐름이 1.6배 빨라졌다가 돌아온다.
+     마지막 장(fin): 줌아웃만 1200ms — 회전·호 없이 천천히 전체 배율로, 모든 노드가 또렷해진다.
+     그림자는 기울기 반대로 최대 2px(--shx). 장식 세 층은 카메라 이동량 × f 로 따라가며 이동 중간에 8px 위로 밀렸다 돌아온다.
+     지나간 노드는 화면이 흘러가는 쪽으로 10px 더(--px·--py). 끝나면 animation·will-change 를 떼어 최종 transform 만 남는다 */
   const kfStyle = document.createElement('style');
   screen.appendChild(kfStyle);
   const kfId = `cam${++cvSeq}`, RM = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : null;
-  let kfN = 0, par0 = null;
-  const ANIM_MS = 820;
-  function moveTo(x, y, s, yr) {
+  let kfN = 0, par0 = null, camTimers = [];
+  const ANIM_MS = 1100, FIN_MS = 1200;
+  const DEPTH = [1, .78, .62, .62, .78, .62, .55];
+  const zOut = bezierEase(.4, 0, .9, .5), zIn = bezierEase(.16, .9, .3, 1), finEase = bezierEase(.3, .1, .25, 1);
+  const flowRate = r => cv.getAnimations({ subtree: true }).forEach(a => { if (a.animationName === 'flow') a.updatePlaybackRate(r); });
+  function moveTo(x, y, s, yr, depth = .62, fin = false) {
     const from = cam, end = { x, y, s };
     cam = end;
     if (!par0) par0 = { x, y };
     const parT = (c, f, up = 0) => `translate(${(f * (c.x - par0.x)).toFixed(1)}px, ${(f * (c.y - par0.y) - up).toFixed(1)}px)`;
     const movers = [cv, zm, ...pars];
+    camTimers.forEach(clearTimeout); camTimers = [];
+    cv.classList.remove('wide'); flowRate(1);
     movers.forEach(e => { e.style.animation = ''; e.style.willChange = ''; });
     camTo(y, s, x);
     zm.style.transform = '';
@@ -722,28 +740,39 @@ function mountTour(screen, onClose) {
     const ux = L ? Dx / L : 0, uy = L ? Dy / L : 0;
     let nx = uy, ny = -ux;
     if (ny > 0) { nx = -nx; ny = -ny; }
-    /* over: 80% 지점의 실제 지나침이 거리의 4% 가 되게(그 시점 이동률이 아직 1 에 못 미친 만큼 더한다) */
-    const bend = .18 * L, over = (.04 + 1 - camEase(.8)) * L, rot = 1.2 * ux;
+    const bend = .18 * L, rot = 1.2 * ux, dur = fin ? FIN_MS : ANIM_MS;
     cv.style.setProperty('--px', (-ux * 10).toFixed(1) + 'px');
     cv.style.setProperty('--py', (-uy * 10).toFixed(1) + 'px');
-    const N = 40, kc = [], kz = [], kp = pars.map(() => []);
+    const N = 60, kc = [], kz = [], kp = pars.map(() => []);
     for (let j = 0; j <= N; j++) {
-      const t = j / N, u = camEase(t), pc = (t * 100).toFixed(1) + '%';
-      const b = 4 * u * (1 - u) * bend;
-      const o = t < .5 ? 0 : t < .8 ? Math.sin((t - .5) / .3 * Math.PI / 2) : Math.cos((t - .8) / .2 * Math.PI / 2);
-      const w = t < .45 ? Math.sin(t / .45 * Math.PI / 2) : Math.cos((t - .45) / .55 * Math.PI / 2);
-      const sc = from.s + (s - from.s) * u;
-      const P = { x: P0.x + Dx * u + nx * b + ux * over * o, y: P0.y + Dy * u + ny * b + uy * over * o };
-      const c = j === N ? end : { x: -sc * (P.x - CX), y: yr - sc * P.y, s: sc };
+      const t = j / N, pc = (t * 100).toFixed(2) + '%';
+      let P, S, w = 0, up = 0;
+      if (fin) {
+        const u = finEase(t);
+        P = { x: P0.x + Dx * u, y: P0.y + Dy * u };
+        S = from.s + (s - from.s) * u;
+      } else if (t < .22) {
+        P = P0; S = from.s * (1 - (1 - depth) * zOut(t / .22));
+      } else if (t < .7) {
+        const m = camEase((t - .22) / .48), b = 4 * m * (1 - m) * bend;
+        P = { x: P0.x + Dx * m + nx * b, y: P0.y + Dy * m + ny * b };
+        S = (from.s + (s - from.s) * m) * depth;
+        w = Math.sin(Math.PI * m); up = 8 * w;
+      } else {
+        /* 70~92% 줌인해 1.03 배까지, 92~100% 1.03 → 1 로 부드럽게 안착 */
+        P = P1;
+        S = s * (t < .92 ? depth + (1.03 - depth) * zIn((t - .7) / .22) : 1.03 - .03 * (1 - Math.cos(Math.PI * (t - .92) / .08)) / 2);
+      }
+      const c = j === N ? end : { x: -S * (P.x - CX), y: yr - S * P.y, s: S };
       kc.push(`${pc}{transform:translate(${c.x.toFixed(2)}px, ${c.y.toFixed(2)}px) scale(${c.s.toFixed(4)});--shx:${j === N ? 0 : (-2 * rot / 1.2 * w).toFixed(2)}px}`);
-      kz.push(`${pc}{transform:${j === N ? 'none' : `scale(${(1 - .06 * w).toFixed(4)}) rotate(${(rot * w).toFixed(3)}deg)`}}`);
-      pars.forEach((e, n) => kp[n].push(`${pc}{transform:${parT(c, +e.dataset.f, j === N ? 0 : 8 * Math.sin(Math.PI * t))}}`));
+      kz.push(`${pc}{transform:${j === N || !w ? 'none' : `rotate(${(rot * w).toFixed(3)}deg)`}}`);
+      pars.forEach((e, n) => kp[n].push(`${pc}{transform:${parT(c, +e.dataset.f, j === N ? 0 : up)}}`));
     }
     const nm = `${kfId}-${++kfN}`;
     kfStyle.textContent = `@keyframes ${nm}c{${kc.join('')}}@keyframes ${nm}z{${kz.join('')}}` + kp.map((k, n) => `@keyframes ${nm}p${n}{${k.join('')}}`).join('');
     const run = (e, name) => {
       e.style.willChange = 'transform';
-      e.style.animation = `${name} ${ANIM_MS}ms linear`;
+      e.style.animation = `${name} ${dur}ms linear`;
       e.addEventListener('animationend', function done(ev) {
         if (ev.target !== e) return;
         e.removeEventListener('animationend', done);
@@ -752,6 +781,10 @@ function mountTour(screen, onClose) {
     };
     run(cv, nm + 'c'); run(zm, nm + 'z');
     pars.forEach((e, n) => run(e, `${nm}p${n}`));
+    if (!fin) {
+      cv.classList.add('wide'); flowRate(1.6);
+      camTimers.push(setTimeout(() => { cv.classList.remove('wide'); flowRate(1); }, dur * .7));
+    }
   }
   function camAt(i) {
     camIdx = i;
@@ -785,7 +818,7 @@ function mountTour(screen, onClose) {
     vp.style.setProperty('--mm', m0 + (m1 - m0) * .7 + 'px');
     vp.style.setProperty('--m1', m1 + 'px');
     vp.style.setProperty('--clip', cardTop + 'px');
-    moveTo(x, y, k, mid);
+    moveTo(x, y, k, mid, DEPTH[i]);
   }
   /* 마지막 장: 같은 캔버스 전체(라벨 없이)를 「제목 아래 ~ 버튼 위」 실제 구간에 맞춰 축소 */
   function finLayout() {
@@ -799,7 +832,7 @@ function mountTour(screen, onClose) {
     const b = union(Object.keys(NODES).map(k => boxOf(k, 1, false)));
     const s = Math.min((bottom - top) / (b.b - b.t), (W - 2 * EDGE) / (b.r - b.l));
     zm.style.transformOrigin = `${W / 2}px ${(top + bottom) / 2}px`;
-    moveTo(-s * ((b.l + b.r) / 2 - CX), top + (bottom - top - (b.b - b.t) * s) / 2 - b.t * s, s, (top + bottom) / 2);
+    moveTo(-s * ((b.l + b.r) / 2 - CX), top + (bottom - top - (b.b - b.t) * s) / 2 - b.t * s, s, (top + bottom) / 2, 1, true);
   }
   const snap = fn => { tour.classList.add('snap'); fn(); void tour.offsetWidth; tour.classList.remove('snap'); };
 
@@ -837,7 +870,7 @@ function mountTour(screen, onClose) {
     bars.forEach((b, k) => { b.classList.toggle('done', k <= i); b.classList.toggle('cur', k === i); });
     txt.classList.remove('in'); txt.classList.add('out');
 
-    /* 순서: 화살표가 길을 내고(560ms) → 카메라가 호를 그리며 이동(820ms) → 이동 380ms 째 새 노드가 튀어 오르고(680ms)
+    /* 순서: 화살표가 길을 내고(560ms) → 카메라가 줌아웃·호 이동·줌인(1100ms) → 줌인이 시작되는 700ms 째 새 노드가 튀어 오르고(680ms)
        → 그 300ms 뒤 문구(제목 → 설명) */
     let t = 0, panned = false, first = true;
     STEPS[i].seq.forEach(group => {
