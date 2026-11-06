@@ -29,6 +29,9 @@ a{color:var(--pp-d);word-break:break-all}
 table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
 th,td{border:1px solid var(--line);padding:5px 9px;text-align:left;vertical-align:top}
 th{background:var(--pp-l);width:26%;font-weight:800}
+.key{margin:4px 0 2px;border:1.5px solid var(--pp);background:#faf8ff;border-radius:10px;padding:8px 14px 8px}
+.kh{font-weight:800;color:var(--pp-d);font-size:13px;margin-bottom:2px}
+.kn{font-size:12px;color:var(--ink2);margin-top:4px;padding-top:4px;border-top:1px dashed var(--line)}
 .note{font-size:11.5px;color:var(--ink3);margin-top:6px}
 @media (max-width:640px){.page{margin:0;border-radius:0;border:none;padding:22px 18px}.langtog{position:static;display:inline-flex;margin-bottom:10px}}
 @media print{body{background:#fff}.page{margin:0;border:none;padding:0}.langtog{display:none}}
@@ -70,10 +73,7 @@ th{background:var(--pp-l);width:26%;font-weight:800}
 <li><span class="ko">행을 누르면 수신자 목록이 열리고, 회원별로 같은 네 가지 결과와 사유가 나옵니다.</span><span class="vi">Bấm vào dòng thì mở danh sách người nhận, hiển thị 4 loại kết quả đó và lý do cho từng hội viên.</span></li>
 </ul>
 <h3><span class="ko">자동 알림 문구</span><span class="vi">Nội dung thông báo tự động</span> <a href="https://pricepick-demo.vercel.app/cms/#notifications/templates" target="_blank" rel="noopener">#notifications/templates</a></h3>
-<ul>
-<li><span class="ko">서버 소스(inetkr/pricepick-backend)에 있는 실제 알림 문구를 읽어 보여 주는 화면입니다.</span><span class="vi">Đây là màn hình đọc và hiển thị nội dung thông báo thực tế có trong source server (inetkr/pricepick-backend).</span></li>
-<li><span class="ko">운영자가 고칠 수 없는 조회 전용 화면입니다. 문구 변경은 개발 배포로 하고, 배포할 때 이 화면의 문구도 함께 맞춥니다.</span><span class="vi">Đây là màn hình chỉ xem, quản trị viên không sửa được. Đổi nội dung thực hiện bằng deploy phát triển, khi deploy thì cập nhật cùng nội dung trên màn hình này.</span></li>
-</ul>
+<div class="key"><div class="kh"><span class="ko">핵심 요구사항 — 실제 문구와 실시간 연동</span><span class="vi">Yêu cầu cốt lõi — liên kết theo thời gian thực với nội dung thực tế</span></div><ul><li><span class="ko">이 화면은 <b>서버 소스(inetkr/pricepick-backend)에 들어 있는 실제 알림 문구를 읽어 보여 줍니다.</b></span><span class="vi">Màn hình này <b>đọc và hiển thị nội dung thông báo thực tế có trong source server (inetkr/pricepick-backend).</b></span></li><li><span class="ko">개발자가 알림 문구를 고치면 <b>이 화면도 따라 바뀌어야 합니다.</b> 화면에 사람이 문구를 옮겨 적어 두면 시간이 지나면서 실제와 달라집니다.</span><span class="vi">Khi lập trình viên sửa nội dung thông báo thì <b>màn hình này cũng phải thay đổi theo.</b> Nếu người chép tay nội dung lên màn hình thì theo thời gian sẽ khác với thực tế.</span></li><li><span class="ko">화면에 <b>어느 시점 기준인지</b> 함께 표시해 주십시오.</span><span class="vi">Xin hiển thị cùng trên màn hình <b>nội dung theo mốc thời điểm nào</b>.</span></li><li><span class="ko">운영자가 고칠 수 없는 조회 전용 화면입니다. 문구 변경은 개발 배포가 필요합니다.</span><span class="vi">Đây là màn hình chỉ xem, quản trị viên không sửa được. Đổi nội dung cần deploy phát triển.</span></li></ul><p class="kn"><span class="ko">데모는 화면 구성을 보여 주기 위해 문구를 한 번 뽑아 넣은 고정본입니다. 실제로는 소스를 읽어 오도록 만들어 주십시오.</span><span class="vi">Demo là bản cố định đã trích nội dung một lần để thể hiện bố cục màn hình. Bản thật xin làm sao cho đọc từ source.</span></p></div>
 
 <h2><span class="ko">주의</span><span class="vi">Lưu ý</span></h2>
 <table>
