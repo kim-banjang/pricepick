@@ -188,6 +188,8 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 .rf-btn:hover{border-color:#a3a3a3;color:#171717}
 .rf-btn:disabled{cursor:wait;background:#f5f5f5;color:#a3a3a3}
 .rf-btn .rf-busy{display:none}.rf-btn[aria-busy="true"] .rf-idle{display:none}.rf-btn[aria-busy="true"] .rf-busy{display:inline}
+.wk-tr{white-space:pre-line;word-break:break-word;font-size:12px;line-height:1.5;color:#4B5563;background:#F7F7FA;border-radius:6px;padding:6px 9px;margin:0 0 6px;max-height:9em;overflow:auto}
+#langsw:checked ~ .wrap .wk-tr{display:none}
 </style></head><body>
 <input type="checkbox" id="langsw"><input type="radio" name="sec" id="t01" checked>
 <header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
@@ -253,6 +255,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
     var p=function(n){return String(n).padStart(2,'0');};
     return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());
   }
+  var MEMO_KO={"Server Company: Flex Networks\nCountry: South Korea\nRegion: Seoul-teukbyeolsi\n\nNguồn: curl -s https://ipkit.dev/111.67.210.110\n{\n  \"schema\": \"ipkit.v1\",\n  \"ip\": \"111.67.210.110\",\n  \"type\": \"IPv4\",\n  \"source\": \"ipregistry\",\n  \"location\": {\n    \"continent\": \"Asia\",\n    \"country\": \"South Korea\",\n    \"countryCode\": \"KR\",\n    \"region\": \"Seoul-teukbyeolsi\",\n    \"regionCode\": \"KR-11\",\n    \"city\": \"Jongno-gu\",\n    \"postalCode\": \"04524\",\n    \"latitude\": 37.5663,\n    \"longitude\": 126.9772,\n    \"timezone\": null\n  },\n  \"network\": {\n    \"asn\": \"AS38676\",\n    \"organization\": \"flexnetworks\",\n    \"domain\": \"nic.or.kr\",\n    \"route\": \"111.67.210.0/24\",\n    \"usage\": \"hosting\",\n    \"carrier\": null\n  }\n}": "Server Company: Flex Networks\nCountry: South Korea\nRegion: Seoul-teukbyeolsi\n\n출처: curl -s https://ipkit.dev/111.67.210.110\n{\n  \"schema\": \"ipkit.v1\",\n  \"ip\": \"111.67.210.110\",\n  \"type\": \"IPv4\",\n  \"source\": \"ipregistry\",\n  \"location\": {\n    \"continent\": \"Asia\",\n    \"country\": \"South Korea\",\n    \"countryCode\": \"KR\",\n    \"region\": \"Seoul-teukbyeolsi\",\n    \"regionCode\": \"KR-11\",\n    \"city\": \"Jongno-gu\",\n    \"postalCode\": \"04524\",\n    \"latitude\": 37.5663,\n    \"longitude\": 126.9772,\n    \"timezone\": null\n  },\n  \"network\": {\n    \"asn\": \"AS38676\",\n    \"organization\": \"flexnetworks\",\n    \"domain\": \"nic.or.kr\",\n    \"route\": \"111.67.210.0/24\",\n    \"usage\": \"hosting\",\n    \"carrier\": null\n  }\n}", "Có. Domain https://pricepick.co.kr có đang đi qua Cloudflare\n\nCloudflare Nameservers:\nNS: sri.ns.cloudflare.com\nNS: stephane.ns.cloudflare.com": "예. Domain https://pricepick.co.kr 은 Cloudflare를 거치고 있음\n\nCloudflare Nameservers:\nNS: sri.ns.cloudflare.com\nNS: stephane.ns.cloudflare.com", "App hiện chỉ dùng các dịch vụ Firebase không cho chọn region: Crashlytics, FCM, Remote Config. Dữ liệu của chúng nằm trên hạ tầng toàn cầu do Google quản lý. Theo tài liệu của Google, dữ liệu Crashlytics được xử lý và lưu chủ yếu ở Mỹ;": "App은 현재 region을 선택할 수 없는 Firebase 서비스만 사용함: Crashlytics, FCM, Remote Config. 이 서비스들의 데이터는 Google이 관리하는 글로벌 인프라에 있음. Google 문서에 따르면 Crashlytics 데이터는 주로 미국에서 처리·저장됨;"};
   function paintOne(wk){
     var d=state[wk.dataset.id]||{};
     var st=stOf(d);
@@ -261,6 +264,9 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
     if(art){ art.classList.remove('st-todo','st-doing','st-done'); art.classList.add('st-'+st); }
     var n=wk.querySelector('.wk-note');
     if(document.activeElement!==n) n.value=d.note||'';
+    /* 개발팀 메모 한국어 번역 — 저장된 원문은 그대로(textarea), 한국어 화면에서 번역을 원문 위에 보인다(2026-11-06). 원문 → 번역 */
+    var tk=MEMO_KO[String(d.note||'').trim()], tr=wk.querySelector('.wk-tr');
+    if(tk){ if(!tr){ tr=document.createElement('div'); tr.className='wk-tr'; n.parentNode.insertBefore(tr,n); } tr.textContent=tk; } else if(tr) tr.remove();
     var m=wk.querySelector('.wk-meta');
     m.textContent=(st==='done'&&(d.updatedBy||d.updatedAt))?((d.updatedBy||'')+(d.updatedAt?' · '+fmt(d.updatedAt):'')):'';
   }
