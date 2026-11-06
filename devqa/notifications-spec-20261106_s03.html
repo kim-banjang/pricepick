@@ -1,0 +1,99 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PricePick 알림 관리 작업 지시서 2026-11-06</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{--pp:#7c3aed;--pp-d:#5b21b6;--pp-l:#ede9fe;--ink:#1a1130;--ink2:#4b5563;--ink3:#8b93a7;--line:#e6e3ef;--bg:#f7f6fb}
+*{box-sizing:border-box}
+body{margin:0;font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;font-size:13.2px}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+.vi{display:none}
+#langsw:checked ~ * .ko{display:none}
+#langsw:checked ~ * .vi{display:inline}
+.page{max-width:794px;margin:24px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 38px 26px;position:relative}
+.langtog{position:absolute;right:24px;top:24px;display:flex;background:var(--pp-l);border-radius:14px;padding:3px;cursor:pointer;user-select:none}
+.langtog span{font-size:11.5px;font-weight:800;padding:2px 11px;border-radius:11px;color:var(--pp-d)}
+.langtog .sk{background:var(--pp);color:#fff}
+#langsw:checked ~ .page .langtog .sk{background:none;color:var(--pp-d)}
+#langsw:checked ~ .page .langtog .sv{background:var(--pp);color:#fff}
+.kick{font-size:10.5px;font-weight:800;letter-spacing:.14em;color:var(--pp)}
+h1{margin:4px 0 2px;font-size:22px;line-height:1.3}
+.sub{font-size:12px;color:var(--ink3);margin-bottom:10px}
+h2{font-size:14.5px;margin:13px 0 4px;color:var(--pp-d)}
+h3{font-size:13px;margin:8px 0 1px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+h3 a{font-size:11.5px;font-weight:700;color:var(--pp-d)}
+p{margin:2px 0}
+ul{margin:2px 0 0;padding-left:18px}
+li{margin:1px 0}
+a{color:var(--pp-d);word-break:break-all}
+.url{font-weight:800}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+th,td{border:1px solid var(--line);padding:5px 9px;text-align:left;vertical-align:top}
+th{background:var(--pp-l);width:26%;font-weight:800}
+.key{margin:4px 0 2px;border:1.5px solid var(--pp);background:#faf8ff;border-radius:10px;padding:8px 14px 8px}
+.kh{font-weight:800;color:var(--pp-d);font-size:13px;margin-bottom:2px}
+.kn{font-size:12px;color:var(--ink2);margin-top:4px;padding-top:4px;border-top:1px dashed var(--line)}
+.part{margin:22px 0 4px;padding:6px 12px;border-radius:8px;background:var(--pp);color:#fff;font-size:15px;font-weight:800}
+.part:first-of-type{margin-top:6px}
+.note{font-size:11.5px;color:var(--ink3);margin-top:6px}
+@media (max-width:640px){.page{margin:0;border-radius:0;border:none;padding:22px 18px}.langtog{position:static;display:inline-flex;margin-bottom:10px}}
+@media print{body{background:#fff}.page{margin:0;border:none;padding:0}.langtog{display:none}}
+</style></head><body>
+<input type="checkbox" id="langsw">
+<div class="page">
+<label class="langtog" for="langsw"><span class="sk">KO</span><span class="sv">VI</span></label>
+<div class="kick">WORK ORDER · 2026-11-06</div>
+<h1><span class="ko">알림 관리 작업 지시서</span><span class="vi">Chỉ thị công việc Quản lý thông báo</span></h1>
+<div class="sub"><span class="ko">PricePick CMS · 김반장 → 개발팀</span><span class="vi">PricePick CMS · Mr Mark → Đội phát triển</span></div>
+
+<div class="part"><span class="ko">1부 · 알림 관리</span><span class="vi">Phần 1 · Quản lý thông báo</span></div>
+<h2><span class="ko">목적</span><span class="vi">Mục đích</span></h2>
+<p><span class="ko">STG 알림 관리를 데모와 동일하게 변경합니다.</span><span class="vi">Đổi Quản lý thông báo trên STG giống hệt demo.</span></p>
+
+<h2><span class="ko">기준</span><span class="vi">Chuẩn</span></h2>
+<p><a class="url" href="https://pricepick-demo.vercel.app/cms/#notifications" target="_blank" rel="noopener">https://pricepick-demo.vercel.app/cms/#notifications</a></p>
+<p><span class="ko">이 화면을 열어 그대로 맞춰 주십시오.</span><span class="vi">Xin mở màn hình này và làm y như vậy.</span></p>
+<p><span class="ko">STG 현재:</span><span class="vi">STG hiện tại:</span> <a href="https://admin-stg.pricepick.co.kr/notifications/" target="_blank" rel="noopener">https://admin-stg.pricepick.co.kr/notifications/</a></p>
+
+<h2><span class="ko">화면 구조</span><span class="vi">Cấu trúc màn hình</span></h2>
+<ul>
+<li><span class="ko">알림 관리는 「수동 발송 / 발송 기록」 탭 두 개로 나뉩니다.</span><span class="vi">Quản lý thông báo chia thành 2 tab 「수동 발송 / 발송 기록」 (Gửi thủ công / Lịch sử gửi).</span></li>
+<li><span class="ko">탭 위에 「이번달 발송」·「예약 대기」 집계 카드가 공통으로 있습니다.</span><span class="vi">Phía trên các tab có chung 2 thẻ thống kê 「이번달 발송」·「예약 대기」 (Gửi tháng này · Chờ đặt lịch).</span></li>
+<li><span class="ko">선택한 탭은 주소에 남아 새로고침해도 같은 탭이 열립니다.</span><span class="vi">Tab đang chọn được giữ trên địa chỉ, tải lại trang vẫn mở đúng tab đó.</span></li>
+</ul>
+
+<h2><span class="ko">탭별 핵심</span><span class="vi">Điểm chính theo tab</span></h2>
+<h3><span class="ko">수동 발송</span><span class="vi">Gửi thủ công</span> <a href="https://pricepick-demo.vercel.app/cms/#notifications" target="_blank" rel="noopener">#notifications</a></h3>
+<ul>
+<li><span class="ko">「발송」을 누르면 발송 확인창을 거칩니다. 확인창에는 회원 화면 미리보기, 실제 수신 인원, 미동의 제외 인원, 발송 시점이 나옵니다.</span><span class="vi">Bấm 「발송」 thì luôn qua hộp xác nhận gửi. Hộp này hiển thị xem trước màn hình hội viên, số người nhận thực tế, số người không đồng ý bị loại và thời điểm gửi.</span></li>
+<li><span class="ko">제목·내용이 비었거나 수신 대상이 0명이면 발송을 막습니다.</span><span class="vi">Tiêu đề·nội dung còn trống hoặc đối tượng nhận là 0 người thì chặn gửi.</span></li>
+<li><span class="ko">{닉네임}·{보유티켓}은 받는 회원의 실제 값으로 바뀌어 나갑니다.</span><span class="vi">{닉네임}·{보유티켓} được thay bằng giá trị thực của hội viên nhận rồi mới gửi đi.</span></li>
+<li><span class="ko">마케팅 알림은 수신 동의 회원에게만 가며, 대상 수도 수신 동의 회원 기준입니다.</span><span class="vi">Thông báo marketing chỉ gửi cho hội viên đồng ý nhận, số đối tượng cũng tính theo hội viên đồng ý.</span></li>
+</ul>
+<h3><span class="ko">발송 기록</span><span class="vi">Lịch sử gửi</span> <a href="https://pricepick-demo.vercel.app/cms/#notifications/history" target="_blank" rel="noopener">#notifications/history</a></h3>
+<ul>
+<li><span class="ko">발송 결과를 성공·실패·미처리·확인 불가 넷으로 나누고, 네 칸의 합은 대상 수와 같습니다. 실패는 보냈으나 거절된 것, 미처리는 보낼 주소가 없어 시도하지 못한 것, 확인 불가는 결과를 알 수 없는 것입니다(「성공」 칸 머리의 물음표).</span><span class="vi">Kết quả gửi chia 4 loại thành công · thất bại · chưa xử lý · không thể xác nhận, tổng 4 cột bằng số đối tượng. Thất bại là đã gửi nhưng bị từ chối, chưa xử lý là không có địa chỉ để gửi nên không thử được, không thể xác nhận là không biết kết quả (dấu hỏi ở đầu cột 「성공」).</span></li>
+<li><span class="ko">예약 건은 나갈 시각을 「발송 예정」으로 보여 주고, 등록 시각을 「예약 등록」으로 따로 적습니다.</span><span class="vi">Tin đặt lịch hiển thị giờ sẽ gửi là 「발송 예정」 (Dự kiến gửi) và ghi riêng giờ đăng ký là 「예약 등록」 (Đăng ký đặt lịch).</span></li>
+<li><span class="ko">행을 누르면 수신자 목록이 열리고, 회원별로 같은 네 가지 결과와 사유가 나옵니다.</span><span class="vi">Bấm vào dòng thì mở danh sách người nhận, hiển thị 4 loại kết quả đó và lý do cho từng hội viên.</span></li>
+</ul>
+<div class="part"><span class="ko">2부 · 자동 알림 문구 — 신설 메뉴</span><span class="vi">Phần 2 · Nội dung thông báo tự động — menu mới</span></div>
+<h2><span class="ko">메뉴 위치</span><span class="vi">Vị trí menu</span></h2>
+<p><span class="ko">좌측 메뉴 「콘텐츠 &gt; 알림 관리」 <b>바로 아래</b>에 새 메뉴로 만듭니다.</span><span class="vi">Tạo menu mới <b>ngay dưới</b> 「콘텐츠 &gt; 알림 관리」 (Nội dung &gt; Quản lý thông báo) ở menu bên trái.</span></p>
+<p><span class="ko">알림 관리는 운영자가 직접 보내는 화면이고, 이 화면은 서버가 자동으로 보내는 문구를 확인하는 화면입니다. 성격이 달라 메뉴를 나눕니다.</span><span class="vi">Quản lý thông báo là màn hình quản trị viên tự gửi, còn màn hình này là nơi kiểm tra nội dung server tự động gửi. Tính chất khác nhau nên tách menu.</span></p>
+<h2><span class="ko">데모에서 보기</span><span class="vi">Xem trên demo</span></h2>
+<p><a class="url" href="https://pricepick-demo.vercel.app/cms/#notif-templates" target="_blank" rel="noopener">https://pricepick-demo.vercel.app/cms/#notif-templates</a></p>
+<div class="key"><div class="kh"><span class="ko">핵심 요구사항 — 실제 문구와 실시간 연동</span><span class="vi">Yêu cầu cốt lõi — liên kết theo thời gian thực với nội dung thực tế</span></div><ul><li><span class="ko">이 화면은 <b>서버 소스(inetkr/pricepick-backend)에 들어 있는 실제 알림 문구를 읽어 보여 줍니다.</b></span><span class="vi">Màn hình này <b>đọc và hiển thị nội dung thông báo thực tế có trong source server (inetkr/pricepick-backend).</b></span></li><li><span class="ko">개발자가 알림 문구를 고치면 <b>이 화면도 따라 바뀌어야 합니다.</b> 화면에 사람이 문구를 옮겨 적어 두면 시간이 지나면서 실제와 달라집니다.</span><span class="vi">Khi lập trình viên sửa nội dung thông báo thì <b>màn hình này cũng phải thay đổi theo.</b> Nếu người chép tay nội dung lên màn hình thì theo thời gian sẽ khác với thực tế.</span></li><li><span class="ko">화면에 <b>어느 시점 기준인지</b> 함께 표시해 주십시오.</span><span class="vi">Xin hiển thị cùng trên màn hình <b>nội dung theo mốc thời điểm nào</b>.</span></li><li><span class="ko">운영자가 고칠 수 없는 조회 전용 화면입니다. 문구 변경은 개발 배포가 필요합니다.</span><span class="vi">Đây là màn hình chỉ xem, quản trị viên không sửa được. Đổi nội dung cần deploy phát triển.</span></li></ul><p class="kn"><span class="ko">데모는 화면 구성을 보여 주기 위해 문구를 한 번 뽑아 넣은 고정본입니다. 실제로는 소스를 읽어 오도록 만들어 주십시오.</span><span class="vi">Demo là bản cố định đã trích nội dung một lần để thể hiện bố cục màn hình. Bản thật xin làm sao cho đọc từ source.</span></p></div>
+<div class="part"><span class="ko">공통</span><span class="vi">Chung</span></div>
+<h2><span class="ko">주의</span><span class="vi">Lưu ý</span></h2>
+<table>
+<tr><th><span class="ko">STG에 이미 있음</span><span class="vi">STG đã có</span></th><td><span class="ko">빈 칸 경고, 검색 줄, 수신자 목록 「실패 사유」 칸, 마케팅 동의 거르기(서버)</span><span class="vi">Cảnh báo ô trống, dòng tìm kiếm, cột 「실패 사유」 trong danh sách người nhận, lọc đồng ý marketing (server)</span></td></tr>
+<tr><th><span class="ko">STG 것을 그대로 둘 것</span><span class="vi">Giữ nguyên của STG</span></th><td><span class="ko">예약 발송 과거 일시 검증. 데모에는 없으나 STG 처리가 맞습니다.</span><span class="vi">Kiểm tra ngày giờ đã qua khi gửi đặt lịch. Demo không có nhưng cách xử lý của STG là đúng.</span></td></tr>
+<tr><th><span class="ko">데모에만 있는 것</span><span class="vi">Chỉ demo có</span></th><td><span class="ko">{닉네임}·{보유티켓} 치환. STG는 글자 그대로 나갑니다.</span><span class="vi">Thay biến {닉네임}·{보유티켓}. STG đang gửi nguyên chữ.</span></td></tr>
+</table>
+<p class="note"><span class="ko">STG 현재 상태는 CMS inetkr/pricepick-cms staging dc03dd2 · 백엔드 inetkr/pricepick-backend stg 2c8a103 소스로 확인했습니다.</span><span class="vi">Trạng thái STG hiện tại được xác nhận qua source CMS inetkr/pricepick-cms staging dc03dd2 · backend inetkr/pricepick-backend stg 2c8a103.</span></p>
+</div>
+<script>
+(function(){var c=document.getElementById('langsw');try{c.checked=localStorage.getItem('ppqa_lang')==='vi';}catch(e){}
+document.documentElement.lang=c.checked?'vi':'ko';
+c.addEventListener('change',function(){document.documentElement.lang=c.checked?'vi':'ko';try{localStorage.setItem('ppqa_lang',c.checked?'vi':'ko');}catch(e){}});})();
+</script>
+</body></html>

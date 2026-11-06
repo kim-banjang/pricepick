@@ -29,11 +29,6 @@ a{color:var(--pp-d);word-break:break-all}
 table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
 th,td{border:1px solid var(--line);padding:5px 9px;text-align:left;vertical-align:top}
 th{background:var(--pp-l);width:26%;font-weight:800}
-.key{margin:4px 0 2px;border:1.5px solid var(--pp);background:#faf8ff;border-radius:10px;padding:8px 14px 8px}
-.kh{font-weight:800;color:var(--pp-d);font-size:13px;margin-bottom:2px}
-.kn{font-size:12px;color:var(--ink2);margin-top:4px;padding-top:4px;border-top:1px dashed var(--line)}
-.part{margin:22px 0 4px;padding:6px 12px;border-radius:8px;background:var(--pp);color:#fff;font-size:15px;font-weight:800}
-.part:first-of-type{margin-top:6px}
 .note{font-size:11.5px;color:var(--ink3);margin-top:6px}
 @media (max-width:640px){.page{margin:0;border-radius:0;border:none;padding:22px 18px}.langtog{position:static;display:inline-flex;margin-bottom:10px}}
 @media print{body{background:#fff}.page{margin:0;border:none;padding:0}.langtog{display:none}}
@@ -45,7 +40,6 @@ th{background:var(--pp-l);width:26%;font-weight:800}
 <h1><span class="ko">알림 관리 작업 지시서</span><span class="vi">Chỉ thị công việc Quản lý thông báo</span></h1>
 <div class="sub"><span class="ko">PricePick CMS · 김반장 → 개발팀</span><span class="vi">PricePick CMS · Mr Mark → Đội phát triển</span></div>
 
-<div class="part"><span class="ko">1부 · 알림 관리</span><span class="vi">Phần 1 · Quản lý thông báo</span></div>
 <h2><span class="ko">목적</span><span class="vi">Mục đích</span></h2>
 <p><span class="ko">STG 알림 관리를 데모와 동일하게 변경합니다.</span><span class="vi">Đổi Quản lý thông báo trên STG giống hệt demo.</span></p>
 
@@ -75,14 +69,6 @@ th{background:var(--pp-l);width:26%;font-weight:800}
 <li><span class="ko">예약 건은 나갈 시각을 「발송 예정」으로 보여 주고, 등록 시각을 「예약 등록」으로 따로 적습니다.</span><span class="vi">Tin đặt lịch hiển thị giờ sẽ gửi là 「발송 예정」 (Dự kiến gửi) và ghi riêng giờ đăng ký là 「예약 등록」 (Đăng ký đặt lịch).</span></li>
 <li><span class="ko">행을 누르면 수신자 목록이 열리고, 회원별로 같은 네 가지 결과와 사유가 나옵니다.</span><span class="vi">Bấm vào dòng thì mở danh sách người nhận, hiển thị 4 loại kết quả đó và lý do cho từng hội viên.</span></li>
 </ul>
-<div class="part"><span class="ko">2부 · 자동 알림 문구 — 신설 메뉴</span><span class="vi">Phần 2 · Nội dung thông báo tự động — menu mới</span></div>
-<h2><span class="ko">메뉴 위치</span><span class="vi">Vị trí menu</span></h2>
-<p><span class="ko">좌측 메뉴 「콘텐츠 &gt; 알림 관리」 <b>바로 아래</b>에 새 메뉴로 만듭니다.</span><span class="vi">Tạo menu mới <b>ngay dưới</b> 「콘텐츠 &gt; 알림 관리」 (Nội dung &gt; Quản lý thông báo) ở menu bên trái.</span></p>
-<p><span class="ko">알림 관리는 운영자가 직접 보내는 화면이고, 이 화면은 서버가 자동으로 보내는 문구를 확인하는 화면입니다. 성격이 달라 메뉴를 나눕니다.</span><span class="vi">Quản lý thông báo là màn hình quản trị viên tự gửi, còn màn hình này là nơi kiểm tra nội dung server tự động gửi. Tính chất khác nhau nên tách menu.</span></p>
-<h2><span class="ko">데모에서 보기</span><span class="vi">Xem trên demo</span></h2>
-<p><a class="url" href="https://pricepick-demo.vercel.app/cms/#notif-templates" target="_blank" rel="noopener">https://pricepick-demo.vercel.app/cms/#notif-templates</a></p>
-<div class="key"><div class="kh"><span class="ko">핵심 요구사항 — 실제 문구와 실시간 연동</span><span class="vi">Yêu cầu cốt lõi — liên kết theo thời gian thực với nội dung thực tế</span></div><ul><li><span class="ko">이 화면은 <b>서버 소스(inetkr/pricepick-backend)에 들어 있는 실제 알림 문구를 읽어 보여 줍니다.</b></span><span class="vi">Màn hình này <b>đọc và hiển thị nội dung thông báo thực tế có trong source server (inetkr/pricepick-backend).</b></span></li><li><span class="ko">개발자가 알림 문구를 고치면 <b>이 화면도 따라 바뀌어야 합니다.</b> 화면에 사람이 문구를 옮겨 적어 두면 시간이 지나면서 실제와 달라집니다.</span><span class="vi">Khi lập trình viên sửa nội dung thông báo thì <b>màn hình này cũng phải thay đổi theo.</b> Nếu người chép tay nội dung lên màn hình thì theo thời gian sẽ khác với thực tế.</span></li><li><span class="ko">화면에 <b>어느 시점 기준인지</b> 함께 표시해 주십시오.</span><span class="vi">Xin hiển thị cùng trên màn hình <b>nội dung theo mốc thời điểm nào</b>.</span></li><li><span class="ko">운영자가 고칠 수 없는 조회 전용 화면입니다. 문구 변경은 개발 배포가 필요합니다.</span><span class="vi">Đây là màn hình chỉ xem, quản trị viên không sửa được. Đổi nội dung cần deploy phát triển.</span></li></ul><p class="kn"><span class="ko">데모는 화면 구성을 보여 주기 위해 문구를 한 번 뽑아 넣은 고정본입니다. 실제로는 소스를 읽어 오도록 만들어 주십시오.</span><span class="vi">Demo là bản cố định đã trích nội dung một lần để thể hiện bố cục màn hình. Bản thật xin làm sao cho đọc từ source.</span></p></div>
-<div class="part"><span class="ko">공통</span><span class="vi">Chung</span></div>
 <h2><span class="ko">주의</span><span class="vi">Lưu ý</span></h2>
 <table>
 <tr><th><span class="ko">STG에 이미 있음</span><span class="vi">STG đã có</span></th><td><span class="ko">빈 칸 경고, 검색 줄, 수신자 목록 「실패 사유」 칸, 마케팅 동의 거르기(서버)</span><span class="vi">Cảnh báo ô trống, dòng tìm kiếm, cột 「실패 사유」 trong danh sách người nhận, lọc đồng ý marketing (server)</span></td></tr>
