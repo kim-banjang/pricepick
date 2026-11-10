@@ -340,7 +340,7 @@ html[lang="vi"] .cp-scope .vi{display:inline}
       <a class="qcell" href="/policy-07-account.html" title="07 계정 생애주기"><div class="k">닉네임</div><div class="v">중복 불가 · 2~10자 · UID 앞 8자 노출</div></a>
       <a class="qcell" href="/policy-07-account.html" title="07 계정 생애주기"><div class="k">재가입 쿨타임</div><div class="v">제한 없음 (어뷰징 계정은 제한 가능)</div></a>
       <a class="qcell" href="/policy-11-settlement.html" title="11 본인인증 · 정산"><div class="k">본인인증</div><div class="v">기프티콘 첫 교환 시 1회 · 이후 유지</div></a>
-      <a class="qcell" href="/policy-11-settlement.html" title="11 본인인증 · 정산"><div class="k">탈퇴 / 정산 보관</div><div class="v">즉시 탈퇴 · PII 파기(최소식별정보 30일) · 정산 5년</div></a>
+      <a class="qcell" href="/policy-11-settlement.html" title="11 본인인증 · 정산"><div class="k">탈퇴 / 정산 보관</div><div class="v">즉시 탈퇴 · 카카오 연동 정보 즉시 파기 · 법정 기간 보관(정산 5년)</div></a>
       <a class="qcell" href="/policy-12-cms.html" title="12 CMS 운영값"><div class="k">CMS 관리자 역할</div><div class="v">슈퍼어드민 · 운영자 2단계</div></a>
     </div>
   </div>
@@ -366,6 +366,7 @@ html[lang="vi"] .cp-scope .vi{display:inline}
       <table class="hist">
         <thead><tr><th style="width:13%">날짜</th><th style="width:24%">변경 항목</th><th style="width:33%">이전 → 이후</th><th style="width:30%">결정 근거</th></tr></thead>
         <tbody>
+          <tr><td class="date">2026-11-10</td><td>탈퇴 시 개인정보 처리 정정</td><td>닉네임·카카오 식별값 즉시 파기 · 최소식별정보 30일 보관 후 파기 <span class="arrow">&rarr;</span> <b>카카오 연동 정보(카카오 회원번호·카카오 닉네임·카카오계정 이메일) 즉시 파기 · 닉네임은 회원 문서에 남김 · 거래 기록 등 관계 법령에서 정한 정보는 그 법정 기간 동안 보관</b></td><td>김반장 지시(2026-11-10) — STG 백엔드 탈퇴 처리(userService.deleteUser)와 같게 맞춤. 30일 보관 후 파기하는 기능은 데모·STG 어디에도 없어 문구에서 뺐다. 전문은 <a href="/policy-07-account.html">계정</a>·앱 내 개인정보처리방침.</td></tr>
           <tr><td class="date">2026-11-04</td><td>온보딩 가이드 1회 노출 신설</td><td>없음 <span class="arrow">&rarr;</span> <b>가입 후 홈 첫 진입 시 1회 자동 노출 · 닫는 방법과 무관하게 재노출 없음 · 본 시점은 회원 정보에 기록(재설치·기기 변경 후에도 유지)</b></td><td>김반장 확정(2026-11-04). 전문은 <a href="/policy-05-engage.html">참여 5번 영역 6번 절</a>.</td></tr>
           <tr><td class="date">2026-11-02</td><td>재설치·카카오 연동 시 계정 처리 확정</td><td>재설치 시 기준 미확정(검수 10-05 05-25 정책 확정 대기) <span class="arrow">&rarr;</span> <b>미연동 계정 삭제 시 적립 내역 소멸 · 재설치는 새 계정(가입 보상 지급) · 연동 이력 있는 카카오로 연동 시 기존 카카오 데이터 사용, 미연동 데이터 폐기(합산 없음) · 기기 단위 보상 제한 없음</b></td><td>김반장 지시(Dispatch, 2026-11-02) — 미연동 계정은 앱 삭제 시 적립 내역(포인트·티켓 포함)과 함께 소멸하며 복구하지 않는다. 재설치해 미연동으로 다시 시작하면 새 계정으로 보고 가입 보상을 지급한다. 이 상태에서 연동 이력이 있는 카카오 계정으로 연동하면 기존 카카오 계정의 데이터를 사용하고 현재 미연동 계정의 데이터는 버리며, 두 계정의 적립 내역을 합산하지 않는다. 미연동 계정의 적립 내역이 삭제와 함께 사라지므로 재설치를 반복해도 보상이 누적되지 않아 기기 단위 보상 제한은 따로 두지 않는다.</td></tr>
           <tr><td class="date">2026-10-21</td><td>친구초대 보상</td><td>양쪽 각 50P <span class="arrow">&rarr;</span> <b>양쪽 각 500P</b> · 지급 시점(피초대자 첫 구매 성사 시) · 한도(초대자 월 50명) 유지</td><td>김반장 확정(2026-10-21) — 보상 금액만 바꾸고 지급 시점과 한도는 그대로 둔다. 전문은 <a href="/policy-05-engage.html">참여</a>.</td></tr>
