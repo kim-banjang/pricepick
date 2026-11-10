@@ -457,8 +457,8 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
 })();
 </script>
 <script>
-/* 최종 검수 재료 — 항목마다 우리 판정(검수 반영 현황의 STG·DEMO 상태)과 판정 근거, 확인 화면 바로가기.
-   판정은 검수 반영 현황 문서를 그때그때 읽어 온다 — 여기 따로 적어 두지 않는다(어긋나지 않게). */
+/* 최종 검수 재료 — 항목마다 답변(검수 반영 현황의 STG·DEMO 상태)과 답변 근거, 확인 화면 바로가기.
+   답변은 검수 반영 현황 문서를 그때그때 읽어 온다 — 여기 따로 적어 두지 않는다(어긋나지 않게). */
 (function(){
   var DOC=location.pathname.split('/').pop().replace('.html','');
   var STG='https://admin-stg.pricepick.co.kr', DEMO='https://pricepick-demo.vercel.app/cms/#';
@@ -495,7 +495,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
     var vi=!!sb.closest('.vi');
     sb.insertAdjacentHTML('beforeend','<span class="golinks">'+links(names,vi)+'</span>');
   });
-  /* 우리 판정 · 판정 근거 */
+  /* 답변 · 답변 근거 */
   fetch('qa-verify-20261026.html',{cache:'no-store'}).then(function(r){ return r.text(); }).then(function(html){
     var d=new DOMParser().parseFromString(html,'text/html'), seen={};
     d.querySelectorAll('tr[id^="r"]').forEach(function(tr){
@@ -508,8 +508,8 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
       scr.split(/\n|(?=CMS)/).forEach(function(p){ screensOf(p).forEach(function(n){ if(names.indexOf(n)<0) names.push(n); }); });
       var bko=tr.getAttribute('data-basis')||'근거 없음', bvi=tr.getAttribute('data-basis-vi')||'Không có căn cứ';
       var box='<div class="vbox">'
-        +'<div><span class="vl">'+i18n('우리 판정','Đánh giá')+'</span>STG <b class="vs '+cls(stg)+'">'+i18n(k(stg),v(stg))+'</b> · DEMO <b class="vs '+cls(dem)+'">'+i18n(k(dem),v(dem))+'</b></div>'
-        +'<div><span class="vl">'+i18n('판정 근거','Căn cứ')+'</span>'+i18n(esc(bko),esc(bvi))+'</div>'
+        +'<div><span class="vl">'+i18n('답변','Trả lời')+'</span>STG <b class="vs '+cls(stg)+'">'+i18n(k(stg),v(stg))+'</b> · DEMO <b class="vs '+cls(dem)+'">'+i18n(k(dem),v(dem))+'</b></div>'
+        +'<div><span class="vl">'+i18n('답변 근거','Căn cứ trả lời')+'</span>'+i18n(esc(bko),esc(bvi))+'</div>'
         +'<div><span class="vl">'+i18n('확인 화면','Màn hình')+'</span>'+i18n(k(td[1])+(names.length?'<span class="golinks">'+links(names,false)+'</span>':''),v(td[1])+(names.length?'<span class="golinks">'+links(names,true)+'</span>':''))+'</div>'
         +'<div><span class="vl">'+i18n('STG 현재','STG hiện tại')+'</span>'+i18n(k(td[4]),v(td[4]))+'</div>'
         +'</div>';
@@ -519,7 +519,7 @@ input[name=sec]{position:absolute;opacity:0;pointer-events:none}
     document.querySelectorAll('article.qa').forEach(function(art){
       if(seen[art.id]) return;
       var wk=art.querySelector('.wkx')||art.querySelector('.wk');
-      var box='<div class="vbox"><span class="vl">'+i18n('우리 판정','Đánh giá')+'</span>'+i18n('검수 반영 현황에 이 항목 판정 없음','Bảng tình trạng phản ánh chưa có đánh giá cho mục này')+'</div>';
+      var box='<div class="vbox"><span class="vl">'+i18n('답변','Trả lời')+'</span>'+i18n('검수 반영 현황에 이 항목 답변 없음','Bảng tình trạng phản ánh chưa có trả lời cho mục này')+'</div>';
       if(wk) wk.insertAdjacentHTML('beforebegin',box);
     });
   }).catch(function(e){ console.error('[qa] verdict load failed',e); });
