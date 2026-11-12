@@ -1,0 +1,453 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PricePick 11-11 홈페이지 수정 요청 반영 현황</title><style>:root{--pp:#845EEE;--pp-d:#5b39b8;--pp-l:#efe9fd;--ink1:#1f2330;--ink2:#3f4658;--ink3:#8b93a7;--line:#e9e7f2;--bg:#faf9fe;--ok:#2f9e9e;--ck:#e8943a;--hold:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:-apple-system,'Apple SD Gothic Neo',Pretendard,sans-serif;color:var(--ink1);background:var(--bg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 80px}
+header{background:linear-gradient(120deg,#845EEE,#6a45d4);color:#fff;padding:28px 0 24px;position:relative}
+.htitle{font-size:23px;font-weight:800} .hsub{font-size:13px;opacity:.85;margin-top:6px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px;font-size:12.5px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;color:var(--ink2)}
+h2.grp{font-size:14px;color:var(--pp-d);margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+.qno{font-weight:800;color:var(--pp);font-variant-numeric:tabular-nums;font-size:13px;background:var(--pp-l);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.qtxt{font-weight:500;font-size:14px;color:var(--ink1);flex:1;white-space:pre-wrap}
+.bd{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bd.ok{background:#e6f5f5;color:var(--ok)}
+.arow{display:flex;gap:10px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.alabel{font-size:10.5px;font-weight:800;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:6px;height:fit-content;white-space:nowrap}
+.atxt{font-size:13.3px;color:var(--ink2);white-space:pre-wrap}
+.atxt b{color:var(--ink1)}
+.ref-box{background:#f4f5f8;border-left:3px solid #8b93a7;border-radius:8px;padding:9px 13px;margin-top:9px;font-size:12px;color:#3f4658;white-space:pre-wrap}
+.ref-box .ref-label{font-size:10px;font-weight:800;color:#8b93a7;letter-spacing:.06em;margin-bottom:4px;display:block}
+.ref-box a{color:var(--pp-d);font-weight:700}
+.tblwrap{overflow-x:auto;margin-top:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.3px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--pp-l);color:var(--pp-d);font-weight:800;font-size:11.5px;white-space:nowrap}
+.msg{display:block;background:#fff;border:1px solid var(--line);border-left:3px solid var(--pp);border-radius:8px;padding:8px 11px;font-size:12.6px;color:var(--ink1);white-space:normal;margin-top:4px}
+.msg .mh{display:block;font-weight:800;color:var(--ink1);margin-bottom:2px}
+.msg .mb{display:block;color:var(--ink2)}
+.gloss{display:block;font-size:11.6px;color:#8b93a7;margin-top:4px}
+.chipbadge{display:inline-block;padding:3px 8px;border-radius:7px;font-size:11.5px;font-weight:400;white-space:nowrap}
+.foot{margin-top:24px;font-size:11.5px;color:var(--ink3)}
+.vi{display:none}
+#langsw{position:absolute;opacity:0;pointer-events:none}
+#langsw:checked ~ header .ko, #langsw:checked ~ .wrap .ko{display:none}
+#langsw:checked ~ header .vi, #langsw:checked ~ .wrap .vi{display:inline}
+.langtog{display:inline-flex;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;gap:2px;cursor:pointer;position:absolute;top:20px;right:22px}
+.langtog .seg{font-size:12px;font-weight:700;color:#fff;padding:4px 13px;border-radius:16px;opacity:.7}
+.langtog .sk{background:#fff;color:var(--pp-d);opacity:1}
+#langsw:checked ~ header .langtog .sk{background:none;color:#fff;opacity:.7}
+#langsw:checked ~ header .langtog .sv{background:#fff;color:var(--pp-d);opacity:1}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:10px;font-size:12.4px;color:var(--ink2)}
+.note-box b{color:var(--ink1)}
+.depnote{background:#FFF6E9;border:2px solid #E8943A;border-radius:12px;padding:13px 16px;margin-top:16px;font-size:13.2px;color:#3f4658;line-height:1.65}.depnote .dt{display:block;font-size:11.5px;font-weight:800;color:#C2701C;letter-spacing:.05em;margin-bottom:5px}.depnote b{color:#1f2330}.depnote a{color:#5b39b8;font-weight:700}
+
+.qsrc{display:block;margin-top:7px;font-size:11.8px;color:var(--ink3)}
+.mtbl{width:100%;border-collapse:collapse;font-size:12.6px;background:#fff;margin-top:8px}
+.mtbl td{border:1px solid var(--line);padding:7px 10px;vertical-align:top}
+.mtbl td.k{width:200px;font-weight:800;color:var(--pp-d);background:#fbfaff;white-space:nowrap}
+.mtbl td.v{font:12.4px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink1)}
+.wn{margin-top:10px;padding:9px 12px;background:#fffaef;border:1px solid #eddcb4;border-left:3px solid #95690c;border-radius:8px;font-size:12.6px;color:#7a5a11;font-weight:600}
+.sub-h{font-size:12px;font-weight:800;color:var(--pp-d);margin-top:12px}
+.pre{margin-top:8px;padding:11px 13px;background:#f6f5fb;border:1px solid var(--line);border-radius:8px;font:12.2px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink2);white-space:pre-wrap}
+.rules{margin:9px 0 0 18px;font-size:12.8px;color:var(--ink2)}.rules li{margin-top:3px}
+.wn{margin-top:10px;padding:9px 12px;background:#fffaef;border:1px solid #eddcb4;border-left:3px solid #95690c;border-radius:8px;font-size:12.6px;color:#7a5a11;font-weight:600}
+.tbl td.k{font-weight:800;color:var(--pp-d);background:#fbfaff;white-space:nowrap}
+.tbl code{font:11.6px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink1)}
+.bds{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.bd.pri{background:#fdecec;color:#B42318}
+.bd.rep{background:#fff3e0;color:#C2701C}
+.qa.qa-pri{border:2px solid #E5484D}
+.pri-box{background:#fff5f5;border:1px solid #f3c4c4;border-left:4px solid #B42318;border-radius:8px;padding:10px 13px;margin-top:10px;font-size:13px;color:#3f4658}
+.pri-box .pri-label{display:block;font-size:11px;font-weight:800;color:#B42318;letter-spacing:.04em;margin-bottom:4px}
+.pri-box b{color:#1f2330}
+.rep-box{background:#FFF6E9;border:1px solid #f0d3a8;border-left:4px solid #E8943A;border-radius:8px;padding:10px 13px;margin-top:10px;font-size:13px;color:#1f2330;font-weight:700}
+.rep-box .rep-label{display:block;font-size:11px;font-weight:800;color:#C2701C;letter-spacing:.04em;margin-bottom:3px}
+.atxt .rules{margin:6px 0 6px 18px;white-space:normal}
+.atxt code,.qtxt code{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink1)}
+.tbl a{color:var(--pp-d);font-weight:700;text-decoration:none}
+.tbl td.no{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:800;color:var(--pp-d)}
+.tbl td.no .same{display:block;margin-top:3px;font-size:11px;font-weight:400;color:var(--ink3);white-space:normal}
+.tbl td.loc{color:var(--ink3);font-size:11.8px}
+.chip a{color:var(--pp-d);font-weight:700}
+.menulist{margin:6px 0 0 18px;font-size:12.8px;color:var(--ink2)}.menulist li{margin-top:3px}
+
+.lead{font-size:19px;font-weight:800;color:var(--ink1);margin:26px 0 4px}
+.lead em{font-style:normal;color:#B42318}
+.tbl td.scr{white-space:nowrap;font-weight:700;color:var(--ink1)}
+.tbl td.who{white-space:nowrap;font-weight:700}
+.tbl td.ref,.tbl th.ref{white-space:nowrap;font-size:10.5px;color:var(--ink3);font-weight:400}
+.tbl td.ref a{color:var(--ink3);text-decoration:none}
+.tbl td.ref .src{display:block;font-size:10px;color:#aab0bf;margin-top:2px}
+h2.sec{font-size:15px;color:var(--ink1);margin:30px 0 4px;padding-bottom:6px;border-bottom:2px solid var(--pp-l)}
+h2.sec.hot{border-bottom-color:#f3c4c4}
+details.fold{margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details.fold summary{cursor:pointer;font-size:15px;font-weight:800;color:var(--ink1)}
+details.fold[open] summary{margin-bottom:6px}
+
+.tbl.list td.no{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:800}
+.tbl.list td.no a{color:var(--pp-d);text-decoration:none}
+.tbl.list td.no .src{display:block;font-size:10px;color:#aab0bf;font-weight:400;margin-top:2px}
+.tbl.list td.st{white-space:nowrap}
+.tbl.list td.scr{white-space:normal}
+tr.st-ng td{background:#fff5f5} tr.st-ng td.st{color:#B42318;font-weight:800}
+tr.st-unk td.st{color:#6b7280;font-weight:700}
+tr.st-ok td{color:#6b7280} tr.st-ok td.st{color:#1f7a4d;font-weight:800} tr.st-ok td.scr{color:#6b7280;font-weight:700}
+tr.st-gap td{color:#aab0bf}
+tr:target td{outline:2px solid var(--pp);outline-offset:-2px}
+.summary{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-top:12px}
+.sumrow{display:flex;gap:12px;padding:6px 0;border-top:1px solid var(--line);font-size:12.5px}
+.sumrow:first-child{border-top:0}
+.sumlabel{white-space:nowrap;font-weight:800;min-width:190px}
+.sumnums a{color:var(--pp-d);text-decoration:none;font-variant-numeric:tabular-nums}
+.srcdoc{font-size:11px;font-weight:400;margin-left:6px} .srcdoc a{color:var(--ink3)}
+@media (max-width:640px){.sumrow{flex-direction:column;gap:2px}.sumlabel{min-width:0}}
+a.ext{color:var(--pp-d);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(91,57,184,.45)}a.ext:hover{text-decoration-color:currentColor}a.ext::after{content:'';display:inline-block;width:9px;height:9px;margin-left:2px;vertical-align:1px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h6v6'/%3E%3Cpath d='M20 4l-9 9'/%3E%3Cpath d='M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'/%3E%3C/svg%3E") no-repeat center/contain;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h6v6'/%3E%3Cpath d='M20 4l-9 9'/%3E%3Cpath d='M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'/%3E%3C/svg%3E") no-repeat center/contain;opacity:.7}
+.wrap{max-width:1240px}
+.tbl.list th.demo,.tbl.list td.demo{background:#f6f7f9;color:#4b5563}
+.tbl.list th.stcol{background:#ece6fb;color:var(--pp-d)}
+.tbl.list td.st{border-left:2px solid #d9cff5}
+.tbl.list tr[data-diff] td.demo{background:#FFF1B8;color:#5c4400}
+.tbl.list tr[data-diff] td.no{box-shadow:inset 3px 0 0 #E8A200}
+.sumrow.diff .sumlabel{color:#8a5a00}
+.fbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 0;margin-top:8px;background:var(--bg)}
+.fc{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font:inherit;font-size:12px;color:#374151;cursor:pointer;white-space:nowrap}
+.fc .fn{font-variant-numeric:tabular-nums;color:var(--pp-d);margin-left:2px}
+.fc.on{background:var(--pp-d);border-color:var(--pp-d);color:#fff}.fc.on .fn{color:#fff}
+.fc[data-v="all"].on{background:#374151;border-color:#374151}
+.fsep{width:1px;height:18px;background:#d6d9e2;margin:0 4px}
+tr.fhide{display:none}
+/* 가로 스크롤 없이 화면 폭 안에 — 좁은 칸(번호·상태·담당·개발팀 표시)은 고정, 글이 긴 칸이 남는 폭을 나눠 쓰고 줄바꿈으로 흐른다 (2026-10-28) */
+.tbl.list{width:100%;min-width:0;table-layout:fixed}
+.tbl.list th{white-space:normal}
+.tbl.list td{overflow-wrap:anywhere}
+.tbl.list th:nth-child(1){width:58px}
+.tbl.list th:nth-child(2){width:13%}
+.tbl.list th:nth-child(4),.tbl.list th:nth-child(7){width:68px}
+
+.tbl.list th:nth-child(8){width:132px}
+.tbl.list td.who,.tbl.list td.st{white-space:normal}
+.tbl.list td.dm{white-space:normal}
+.tbl.list td.st.s-ng{color:#B42318;font-weight:800}
+.tbl.list td.st.s-unk{color:#6b7280;font-weight:700}
+.tbl.list td.st.s-ok{color:#1f7a4d;font-weight:800}
+.tbl.list td.dst{background:#f6f7f9;font-weight:600}
+.tbl.list td.dst.s-ng,.tbl.list td.dst.s-ok{font-weight:700}
+.tbl.list tr[data-diff] td.dst,.tbl.list tr[data-diff] td.sst{background:#FFF1B8}
+.tbl.list td.dst.s-na{color:#9aa1ad;font-weight:600}
+.wrap{max-width:none;padding:0 28px 80px}
+.tbl.list{table-layout:fixed;width:100%;min-width:0}
+.tbl.list td{overflow-wrap:anywhere}
+.tbl.list td.st,.tbl.list td.no{overflow-wrap:normal}
+@media (max-width:640px){.wrap{padding:0 16px 60px}.hin{padding:0 16px!important}}
+.tbl td.dm{font-size:11.8px}.tbl td.dm .dm-by{display:block;color:var(--ink3);font-size:11px;margin-top:2px}
+.secnote{font-size:12px;color:var(--ink3);margin:2px 0 0}
+.rfwrap{margin-left:auto;display:inline-flex;align-items:baseline;white-space:nowrap}
+.rf-at{font-size:12px;color:#a3a3a3}
+.rf-btn{margin-left:6px;border:1px solid #e5e5e5;border-radius:4px;background:#fff;padding:2px 6px;font:inherit;font-size:11px;color:#737373;cursor:pointer}
+.rf-btn:hover{border-color:#a3a3a3;color:#171717}
+.rf-btn:disabled{cursor:wait;background:#f5f5f5;color:#a3a3a3}
+.rf-btn .rf-busy{display:none}.rf-btn[aria-busy="true"] .rf-idle{display:none}.rf-btn[aria-busy="true"] .rf-busy{display:inline}
+/* 개발팀 표시 토글 — 검수 원본 문서와 같은 모양(원본 CSS 그대로) */
+:root{--s-todo:#6B7488;--s-doing:#E08A1E;--s-done:#1F9D6B}
+.wk-st{display:inline-flex;gap:5px}
+.stb{font:700 11.8px inherit;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+.stb:hover{border-color:var(--pp)}
+.sg{font-style:normal;font-weight:800;margin-right:4px}
+.stb[data-v=todo] .sg::before{content:'\25CB'}
+.stb[data-v=done] .sg::before{content:'\2713'}
+.stb[data-v=todo] .sg{color:var(--s-todo)}
+.stb[data-v=done] .sg{color:var(--s-done)}
+.stb.on[data-v=todo]{background:var(--s-todo);border-color:var(--s-todo);color:#fff}
+.stb.on[data-v=done]{background:var(--s-done);border-color:var(--s-done);color:#fff}
+.stb.on .sg{color:#fff}
+.tbl td.dm .wk-st{flex-direction:column;align-items:flex-start;gap:4px}
+.tbl td.dm .stb{padding:3px 10px;font-size:11.4px;white-space:nowrap}
+.tbl td.dm .dm-none{display:block;color:var(--ink3);font-size:11px;margin-top:4px}
+.wkb-l{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:10px}
+.wkb-lb{font-size:11.5px;font-weight:800;color:var(--ink3)}
+#wkWho{font:600 12.5px inherit;color:var(--ink1);background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+#wkWho.need{border-color:#9A4A4A;box-shadow:0 0 0 2px rgba(154,74,74,.18)}
+/* 처리 상태 칸 — 한 줄에 라벨 · 지금 상태 칩 · 작업자와 날짜. 두 줄로 끝 */
+.tbl td.dm .dmr{display:flex;align-items:center;gap:5px;flex-wrap:nowrap;line-height:1.3;white-space:nowrap}
+.tbl td.dm .dmr+.dmr{margin-top:5px}
+.tbl td.dm .dm-lb{font-size:10.8px;font-weight:700;color:var(--ink3);min-width:30px}
+.tbl td.dm .dm-by{display:inline;margin:0;color:var(--ink3);font-size:10.8px;white-space:nowrap}
+@media (max-width:760px){.tbl td.dm .dmr{flex-wrap:wrap;white-space:normal}.tbl.list th:nth-child(8){width:112px}}
+.tbl td.dm .dm-note{margin:3px 0 0;font-size:10.8px;line-height:1.4;color:#4B5563;background:#F7F7FA;border-radius:5px;padding:3px 6px;white-space:pre-line;word-break:break-word;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;cursor:pointer}
+.tbl td.dm .dm-note.open{-webkit-line-clamp:unset;display:block}
+.tbl td.dm .nt-miss{color:#b42318;font-weight:700}
+.memo-miss{margin:6px 0 0;font-size:12px;color:#b42318}
+/* 화면별 최종 검수 문서에서 항목 번호로 들어오면 그 줄을 보이게 */
+.tbl.list tr{scroll-margin-top:140px}.tbl.list tr:target td{background:#FFF4CC!important}
+.chip{font:700 11.2px inherit;border-radius:999px;padding:2px 9px;cursor:pointer;white-space:nowrap;background:#F3F4F6;color:#6B7280;border:1px solid #E5E7EB}
+.chip:hover{border-color:#9CA3AF}
+.chip-dev.on{background:var(--s-done);border-color:var(--s-done);color:#fff}
+.chip-fin.on{background:#6D28D9;border-color:#6D28D9;color:#fff}
+.finsum{font-size:12.4px;font-weight:800;color:#5B21B6;margin-left:12px}
+.dm-flash{display:block;font-size:11px;font-weight:700;color:#9A4A4A;margin-top:3px}
+
+/* 수정 유형 — 단순 문구 수정이 가장 가볍게, 기능 개발이 가장 무겁게 보인다 */
+.ftlegend{margin-top:10px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:8px;display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:center;font-size:12.4px}
+.ftlegend .ftl-h{grid-column:1/-1;font-size:11.5px;font-weight:800;color:var(--ink3,#6b7280)}
+.ftlegend .ftl-d{color:#374151;font-weight:600}
+.ftp{display:block;font-weight:800;white-space:nowrap;line-height:1.3;margin-bottom:1px}.ftp.ft-text{color:#22C55E}.ftp.ft-disp{color:#1D4ED8}.ftp.ft-feat{color:#6D28D9}.ftp.ft-chk{color:#B45309}
+.ptabs{display:inline-flex;flex-wrap:wrap;gap:2px;background:rgba(255,255,255,.18);border-radius:20px;padding:3px;margin-bottom:12px;max-width:calc(100% - 110px)}.ptabs a{font-size:12.5px;font-weight:700;color:#fff;padding:5px 14px;border-radius:16px;text-decoration:none;opacity:.75;white-space:nowrap}.ptabs a:hover{opacity:1}.ptabs a.on{background:#fff;color:#5b39b8;opacity:1;cursor:default}
+#hubv{display:none}body.hub-emb #hubv{display:block}body.hub-emb>:not(header):not(#hubv){display:none!important}body.hub-emb{overflow:hidden}body.hub-emb header .htitle,body.hub-emb header .hsub,body.hub-emb header .langtog{display:none}body.hub-emb header{padding:14px 0 2px}#hubv iframe{display:block;width:100%;height:100%;border:0;background:#fff}#hubv iframe[hidden]{display:none}
+/* QA 작업 순서 5단계 — 머리말 제목 아래, 집계 칩보다 작게. 좁으면 설명 숨김 */
+.qflow{display:flex;align-items:stretch;gap:4px;margin-top:12px;max-width:100%}
+.qf-s{flex:1 1 0;min-width:0;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:6px 9px;line-height:1.35}
+.qf-h{display:flex;align-items:baseline;gap:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qf-n{font-size:10px;font-weight:800;letter-spacing:.04em;opacity:.7}
+.qf-t{font-size:11.5px;font-weight:800}
+.qf-d{font-size:10.5px;opacity:.82;margin-top:2px}
+.qf-a{display:flex;align-items:center;flex:0 0 auto;opacity:.55}
+@media (max-width:860px){.qf-d{display:none}.qf-s{padding:5px 8px}}
+@media (max-width:520px){.qflow{flex-wrap:wrap}.qf-s{flex:1 1 40%}.qf-a{display:none}}
+body.hub-emb header .qflow{display:none}
+.emb .ptabs{display:none}
+</style><script>if(window.self!==window.top)document.documentElement.className+=' emb';</script></head>
+<body>
+<input type="checkbox" id="langsw">
+<header><label class="langtog" for="langsw"><span class="seg sk">KO</span><span class="seg sv">VI</span></label>
+<div class="hin" style="margin:0 auto;padding:0 28px"><nav class="ptabs"><span class="ptgw" style="display:inline-flex;align-items:center;flex-wrap:nowrap;gap:2px"><a class="ptg" href="files/homepage-request-20261111.pdf" target="_blank" rel="noopener" style="font-size:10.5px;font-weight:800;color:#fff;opacity:.72;padding:5px 4px 5px 10px;align-self:center;white-space:nowrap"><span class="i18n"><span class="ko">11-11 수정 요청 ↗</span><span class="vi">Yêu cầu sửa 11/11 ↗</span></span></a><a href="qa-homepage-20261111.html#tab-hreq" data-tab="tab-hreq"><span class="i18n"><span class="ko">수정 요청</span><span class="vi">Yêu cầu sửa</span></span></a><a href="qa-homepage-20261111.html#tab-hv" data-tab="tab-hv" class="on" aria-current="page"><span class="i18n"><span class="ko">반영 현황</span><span class="vi">Tình trạng phản ánh</span></span></a><a href="qa-homepage-20261111.html#tab-hf" data-tab="tab-hf"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></a></span></nav><div class="htitle"><span class="i18n"><span class="ko">PricePick 11-11 홈페이지 수정 요청 반영 현황</span><span class="vi">Tình trạng phản ánh yêu cầu sửa trang chủ 11/11 PricePick</span></span></div>
+<div class="hsub"><span class="i18n"><span class="ko">홈페이지 수정 요청 2026-11-11 · 9건 · 대상 운영 홈페이지 pricepick.co.kr · 이용약관 terms.html · 데모 pricepick-demo.vercel.app/web</span><span class="vi">Yêu cầu sửa trang chủ 11/11/2026 · 9 mục · Đối tượng: trang chủ production pricepick.co.kr · điều khoản terms.html · demo pricepick-demo.vercel.app/web</span></span></div><div class="orig" style="margin-top:6px;font-size:12px;line-height:1.4"><a href="files/homepage-request-20261111.pdf" target="_blank" rel="noopener" style="color:#fff;font-weight:800;text-decoration:underline;text-underline-offset:2px"><span class="i18n"><span class="ko">원본 보기 ↗</span><span class="vi">Xem bản gốc ↗</span></span></a> <span style="opacity:.75;font-size:11px;margin-left:4px"><span class="i18n"><span class="ko">2026-11-11 접수 원본 (PDF)</span><span class="vi">Bản gốc tiếp nhận 11/11/2026 (PDF)</span></span></span></div><div class="qflow" role="list" aria-label="QA 작업 순서"><div class="qf-s"><div class="qf-h"><b class="qf-n">01</b><span class="qf-t"><span class="i18n"><span class="ko">요청 접수</span><span class="vi">Tiếp nhận yêu cầu</span></span></span></div><div class="qf-d"><span class="i18n"><span class="ko">운영 홈페이지·이용약관 문구를 검토해 항목을 올린다</span><span class="vi">Rà soát câu chữ trang chủ·điều khoản đang chạy và đăng mục</span></span></div></div><div class="qf-a" aria-hidden="true"><svg viewBox="0 0 8 12" width="7" height="11"><path d="M1.5 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="qf-s"><div class="qf-h"><b class="qf-n">02</b><span class="qf-t"><span class="i18n"><span class="ko">데모 반영</span><span class="vi">Phản ánh demo</span></span></span></div><div class="qf-d"><span class="i18n"><span class="ko">데모(pricepick-demo)를 요청대로 먼저 맞춘다</span><span class="vi">Sửa demo (pricepick-demo) theo yêu cầu trước</span></span></div></div><div class="qf-a" aria-hidden="true"><svg viewBox="0 0 8 12" width="7" height="11"><path d="M1.5 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="qf-s"><div class="qf-h"><b class="qf-n">03</b><span class="qf-t"><span class="i18n"><span class="ko">개발팀 수정</span><span class="vi">Đội PT sửa</span></span></span></div><div class="qf-d"><span class="i18n"><span class="ko">개발팀이 고치고 「처리 완료」로 표시한다</span><span class="vi">Đội phát triển sửa và đánh dấu 「Đã xử lý」</span></span></div></div><div class="qf-a" aria-hidden="true"><svg viewBox="0 0 8 12" width="7" height="11"><path d="M1.5 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="qf-s"><div class="qf-h"><b class="qf-n">04</b><span class="qf-t"><span class="i18n"><span class="ko">운영 반영 확인</span><span class="vi">Xác nhận trên production</span></span></span></div><div class="qf-d"><span class="i18n"><span class="ko">pricepick.co.kr에서 바뀐 문구를 확인한다</span><span class="vi">Kiểm tra câu chữ đã đổi trên pricepick.co.kr</span></span></div></div><div class="qf-a" aria-hidden="true"><svg viewBox="0 0 8 12" width="7" height="11"><path d="M1.5 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="qf-s"><div class="qf-h"><b class="qf-n">05</b><span class="qf-t"><span class="i18n"><span class="ko">최종 검수</span><span class="vi">Kiểm thử cuối</span></span></span></div><div class="qf-d"><span class="i18n"><span class="ko">확인한 뒤 「검수 완료」로 바꾼다</span><span class="vi">Xác nhận xong thì chuyển sang 「Đã kiểm thử」</span></span></div></div></div></div></header>
+<div id="hubv"></div>
+<div class="wrap">
+<div class="wkb-l"><label class="wkb-lb" for="wkWho"><span class="i18n"><span class="ko">작업자</span><span class="vi">Người thực hiện</span></span></label><select id="wkWho"><option value="">작업자 선택 / Chọn người thực hiện</option><option value="빈 (Nguyen Vuong)">빈 (Nguyen Vuong) / Vin (Nguyen Vuong)</option><option value="존 (John)">존 (John) / John</option><option value="해리 (Harry)">해리 (Harry) / Harry</option><option value="켈빈 (Kelvin)">켈빈 (Kelvin) / Kelvin</option><option value="이부장">이부장 / Trưởng phòng Lee</option><option value="김반장">김반장 / Mr Mark</option></select><span class="finsum" id="finSum"></span></div>
+<div class="fbar" id="fbar"><button type="button" class="fc" data-k="st" data-v="all"><span class="i18n"><span class="ko">전체</span><span class="vi">Tất cả</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="unk"><span class="i18n"><span class="ko">미확인</span><span class="vi">Chưa xác nhận</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="st" data-v="ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc fc-d" data-k="dst" data-v="ng"><span class="i18n"><span class="ko">DEMO 미반영</span><span class="vi">DEMO chưa phản ánh</span></span> <b class="fn"></b></button><span class="fsep"></span><button type="button" class="fc" data-k="dm" data-v="done"><span class="i18n"><span class="ko">개발팀 표시 처리 완료</span><span class="vi">Đội PT: đã xử lý</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="dm" data-v="todo"><span class="i18n"><span class="ko">개발팀 표시 미처리</span><span class="vi">Đội PT: chưa xử lý</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="fin" data-v="pre"><span class="i18n"><span class="ko">최종 검수 전</span><span class="vi">Chưa kiểm thử cuối</span></span> <b class="fn"></b></button><button type="button" class="fc" data-k="fin" data-v="okpre"><span class="i18n"><span class="ko">반영 + 검수 전</span><span class="vi">Đã phản ánh + chưa kiểm thử</span></span> <b class="fn"></b></button><span class="rfwrap"><span class="rf-at"><span class="i18n"><span class="ko">마지막 갱신 </span><span class="vi">Cập nhật lần cuối </span></span><span id="rfAt">—</span></span><button type="button" class="rf-btn" id="rfBtn"><span class="rf-idle"><span class="i18n"><span class="ko">새로고침</span><span class="vi">Làm mới</span></span></span><span class="rf-busy"><span class="i18n"><span class="ko">조회 중</span><span class="vi">Đang tải</span></span></span></button></span></div>
+
+<div class="memo-miss" id="memoMiss" hidden></div>
+<h2 class="sec" id="d1111"><span class="i18n"><span class="ko">홈페이지 수정 요청 2026-11-11 — 9건</span><span class="vi">Yêu cầu sửa trang chủ 11/11/2026 — 9 mục</span></span> <span class="srcdoc"><a href="https://pricepick.vercel.app/devqa/qa-homepage-20261111.html" target="_blank" rel="noopener noreferrer">qa-homepage-20261111.html</a></span></h2>
+<div class="tblwrap"><table class="tbl list"><thead><tr><th class="no"><span class="i18n"><span class="ko">번호</span><span class="vi">Số</span></span></th><th><span class="i18n"><span class="ko">위치</span><span class="vi">Vị trí</span></span></th><th class="demo"><span class="i18n"><span class="ko">DEMO 현재 표기</span><span class="vi">Hiển thị hiện tại DEMO</span></span></th><th class="demo"><span class="i18n"><span class="ko">DEMO 상태</span><span class="vi">Trạng thái DEMO</span></span></th><th><span class="i18n"><span class="ko">운영 현재 표기</span><span class="vi">Hiển thị hiện tại production</span></span></th><th><span class="i18n"><span class="ko">운영 수정 후 표기</span><span class="vi">Hiển thị sau khi sửa production</span></span></th><th class="stcol"><span class="i18n"><span class="ko">운영 상태</span><span class="vi">Trạng thái production</span></span></th><th class="dmcol"><span class="i18n"><span class="ko">처리 상태</span><span class="vi">Trạng thái xử lý</span></span></th></tr></thead><tbody>
+<tr id="r1111-A-1" class="st-ng" data-diff="1" data-basis="운영 홈페이지 직접 확인 · 2026-11-12" data-basis-vi="Kiểm tra trực tiếp trang chủ production · 12/11/2026"><td class="no"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-homepage-20261111.html#r1111-A-1" target="_blank" rel="noopener noreferrer">A-1</a></td><td class="scr"><span class="i18n"><span class="ko">홈페이지 → 자주 묻는 질문 → 첫 번째</span><span class="vi">Trang chủ → Câu hỏi thường gặp → câu thứ nhất</span></span></td><td class="demo"><span class="i18n"><span class="ko">[고친 곳: 홈페이지] 질문 「티켓 적립에 추가 비용이 드나요?」, 답변 「티켓 적립을 위해 따로 내는 비용은 없어요. 적립 대상과 조건은 앱에서 확인해 주세요」. 제휴 수수료 문장 삭제</span><span class="vi">[Chỗ sửa: Trang chủ] Câu hỏi 「티켓 적립에 추가 비용이 드나요?」, trả lời 「티켓 적립을 위해 따로 내는 비용은 없어요. 적립 대상과 조건은 앱에서 확인해 주세요」. Đã xóa câu về phí hoa hồng liên kết</span></span></td><td class="st dst s-ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span></td><td><span class="i18n"><span class="ko">2026-11-12 확인: 「쇼핑몰이 프라이스픽에 주는 제휴 수수료에서 나와요. 그 일부를 티켓으로 돌려드려요」 그대로</span><span class="vi">Kiểm tra 12/11/2026: vẫn là 「쇼핑몰이 프라이스픽에 주는 제휴 수수료에서 나와요. 그 일부를 티켓으로 돌려드려요」</span></span></td><td><span class="i18n"><span class="ko"><span class="ftp ft-text">[단순 문구 수정]</span></span><span class="vi"><span class="ftp ft-text">[Chỉ sửa chữ]</span></span></span><span class="i18n"><span class="ko">질문 「티켓 적립에 추가 비용이 드나요?」, 답변 「티켓 적립을 위해 따로 내는 비용은 없어요. 적립 대상과 조건은 앱에서 확인해 주세요」</span><span class="vi">Câu hỏi 「티켓 적립에 추가 비용이 드나요?」 (Tích lũy vé có tốn thêm chi phí không?), trả lời 「티켓 적립을 위해 따로 내는 비용은 없어요. 적립 대상과 조건은 앱에서 확인해 주세요」</span></span></td><td class="st sst s-ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span></td></tr>
+<tr id="r1111-A-2" class="st-ng" data-diff="1" data-basis="운영 홈페이지 직접 확인 · 2026-11-12" data-basis-vi="Kiểm tra trực tiếp trang chủ production · 12/11/2026"><td class="no"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-homepage-20261111.html#r1111-A-2" target="_blank" rel="noopener noreferrer">A-2</a></td><td class="scr"><span class="i18n"><span class="ko">홈페이지 → 이용 방법 → 4단계</span><span class="vi">Trang chủ → Cách sử dụng → bước 4</span></span></td><td class="demo"><span class="i18n"><span class="ko">[고친 곳: 홈페이지] 제목 「티켓이 들어와요」, 설명 「구매가 확인되면 티켓이 들어와요.」 「많이 살수록 많이 받아요」 삭제</span><span class="vi">[Chỗ sửa: Trang chủ] Tiêu đề 「티켓이 들어와요」, mô tả 「구매가 확인되면 티켓이 들어와요.」 Đã xóa 「많이 살수록 많이 받아요」</span></span></td><td class="st dst s-ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span></td><td><span class="i18n"><span class="ko">2026-11-12 확인: 「랜덤 티켓이 티켓으로 바뀌어요. 많이 살수록 많이 받아요」 그대로</span><span class="vi">Kiểm tra 12/11/2026: vẫn là 「랜덤 티켓이 티켓으로 바뀌어요. 많이 살수록 많이 받아요」</span></span></td><td><span class="i18n"><span class="ko"><span class="ftp ft-text">[단순 문구 수정]</span></span><span class="vi"><span class="ftp ft-text">[Chỉ sửa chữ]</span></span></span><span class="i18n"><span class="ko">제목 「티켓이 들어와요」, 설명 「구매가 확인되면 티켓이 들어와요」. 「많이 살수록 많이 받아요」 삭제</span><span class="vi">Tiêu đề 「티켓이 들어와요」 (Vé được cộng vào), mô tả 「구매가 확인되면 티켓이 들어와요」. Xóa 「많이 살수록 많이 받아요」</span></span></td><td class="st sst s-ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span></td></tr>
+<tr id="r1111-A-3" class="st-ng" data-diff="1" data-basis="운영 홈페이지 직접 확인 · 2026-11-12" data-basis-vi="Kiểm tra trực tiếp trang chủ production · 12/11/2026"><td class="no"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-homepage-20261111.html#r1111-A-3" target="_blank" rel="noopener noreferrer">A-3</a></td><td class="scr"><span class="i18n"><span class="ko">홈페이지 → 티켓·포인트 → 랜덤 티켓 설명</span><span class="vi">Trang chủ → Vé·Điểm → mô tả Vé ngẫu nhiên</span></span></td><td class="demo"><span class="i18n"><span class="ko">[고친 곳: 홈페이지] 「구매가 확인되면 받는 대기 티켓이에요. 구매가 확정되면 티켓으로 바뀌어요」</span><span class="vi">[Chỗ sửa: Trang chủ] 「구매가 확인되면 받는 대기 티켓이에요. 구매가 확정되면 티켓으로 바뀌어요」</span></span></td><td class="st dst s-ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span></td><td><span class="i18n"><span class="ko">2026-11-12 확인: 「사자마자 받는 티켓이에요」 그대로</span><span class="vi">Kiểm tra 12/11/2026: vẫn là 「사자마자 받는 티켓이에요」</span></span></td><td><span class="i18n"><span class="ko"><span class="ftp ft-text">[단순 문구 수정]</span></span><span class="vi"><span class="ftp ft-text">[Chỉ sửa chữ]</span></span></span><span class="i18n"><span class="ko">「구매가 확인되면 받는 대기 티켓이에요. 구매가 확정되면 티켓으로 바뀌어요」</span><span class="vi">「구매가 확인되면 받는 대기 티켓이에요. 구매가 확정되면 티켓으로 바뀌어요」 (Là vé chờ nhận được khi đơn mua được xác nhận. Khi đơn được chốt thì đổi thành vé)</span></span></td><td class="st sst s-ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span></td></tr>
+<tr id="r1111-A-4" class="st-ng" data-diff="1" data-basis="운영 홈페이지 직접 확인 · 2026-11-12" data-basis-vi="Kiểm tra trực tiếp trang chủ production · 12/11/2026"><td class="no"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-homepage-20261111.html#r1111-A-4" target="_blank" rel="noopener noreferrer">A-4</a></td><td class="scr"><span class="i18n"><span class="ko">홈페이지 → 혜택 → 랜덤 선물 상자 카드</span><span class="vi">Trang chủ → Ưu đãi → thẻ Hộp quà ngẫu nhiên</span></span></td><td class="demo"><span class="i18n"><span class="ko">[고친 곳: 홈페이지] 큰 글씨 「하루 최대 10회」, 설명 「열 때마다 이벤트 티켓 1장이 사용돼요.」</span><span class="vi">[Chỗ sửa: Trang chủ] Chữ lớn 「하루 최대 10회」, mô tả 「열 때마다 이벤트 티켓 1장이 사용돼요.」</span></span></td><td class="st dst s-ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span></td><td><span class="i18n"><span class="ko">2026-11-12 확인: 큰 글씨 「이벤트 티켓 1장으로 10회까지」, 설명 「이벤트 티켓 1장으로 한 번 열어요. 하루 최대 10회.」 그대로</span><span class="vi">Kiểm tra 12/11/2026: vẫn là chữ lớn 「이벤트 티켓 1장으로 10회까지」, mô tả 「이벤트 티켓 1장으로 한 번 열어요. 하루 최대 10회.」</span></span></td><td><span class="i18n"><span class="ko"><span class="ftp ft-text">[단순 문구 수정]</span></span><span class="vi"><span class="ftp ft-text">[Chỉ sửa chữ]</span></span></span><span class="i18n"><span class="ko">상단 「하루 최대 10회」, 아래 설명 「열 때마다 이벤트 티켓 1장이 사용돼요」</span><span class="vi">Phía trên 「하루 최대 10회」 (Tối đa 10 lần mỗi ngày), mô tả bên dưới 「열 때마다 이벤트 티켓 1장이 사용돼요」 (Mỗi lần mở dùng 1 vé sự kiện)</span></span></td><td class="st sst s-ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span></td></tr>
+<tr id="r1111-A-5" class="st-ng" data-diff="1" data-basis="운영 홈페이지 직접 확인 · 2026-11-12" data-basis-vi="Kiểm tra trực tiếp trang chủ production · 12/11/2026"><td class="no"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-homepage-20261111.html#r1111-A-5" target="_blank" rel="noopener noreferrer">A-5</a></td><td class="scr"><span class="i18n"><span class="ko">홈페이지 → 카카오 연동, 왜 하나요? → ③</span><span class="vi">Trang chủ → Vì sao liên kết Kakao → ③</span></span></td><td class="demo"><span class="i18n"><span class="ko">[고친 곳: 홈페이지] 「쿠팡에서 산 티켓은 연동하면 더 빨리 쓸 수 있어요」</span><span class="vi">[Chỗ sửa: Trang chủ] 「쿠팡에서 산 티켓은 연동하면 더 빨리 쓸 수 있어요」</span></span></td><td class="st dst s-ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span></td><td><span class="i18n"><span class="ko">2026-11-12 확인: 「연동하면 구매가 확정된 티켓을 더 빨리 쓸 수 있어요」 그대로</span><span class="vi">Kiểm tra 12/11/2026: vẫn là 「연동하면 구매가 확정된 티켓을 더 빨리 쓸 수 있어요」</span></span></td><td><span class="i18n"><span class="ko"><span class="ftp ft-text">[단순 문구 수정]</span></span><span class="vi"><span class="ftp ft-text">[Chỉ sửa chữ]</span></span></span><span class="i18n"><span class="ko">「쿠팡에서 산 티켓은 연동하면 더 빨리 쓸 수 있어요」</span><span class="vi">「쿠팡에서 산 티켓은 연동하면 더 빨리 쓸 수 있어요」 (Vé từ đơn mua ở Coupang thì liên kết sẽ dùng được nhanh hơn)</span></span></td><td class="st sst s-ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span></td></tr>
+<tr id="r1111-A-6" class="st-ng" data-diff="1" data-basis="운영 홈페이지 직접 확인 · 2026-11-12" data-basis-vi="Kiểm tra trực tiếp trang chủ production · 12/11/2026"><td class="no"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-homepage-20261111.html#r1111-A-6" target="_blank" rel="noopener noreferrer">A-6</a></td><td class="scr"><span class="i18n"><span class="ko">홈페이지 → 자주 묻는 질문 → 적립이 안 되는 경우 두 번째</span><span class="vi">Trang chủ → Câu hỏi thường gặp → Trường hợp không được tích lũy, mục thứ hai</span></span></td><td class="demo"><span class="i18n"><span class="ko">[고친 곳: 홈페이지] 「바로가기로 들어간 뒤 쇼핑몰이 정한 인정 시간이 지나서 한 구매」, 아래에 「사기 직전에 프라이스픽을 거쳐 주세요.」 추가</span><span class="vi">[Chỗ sửa: Trang chủ] 「바로가기로 들어간 뒤 쇼핑몰이 정한 인정 시간이 지나서 한 구매」, thêm bên dưới 「사기 직전에 프라이스픽을 거쳐 주세요.」</span></span></td><td class="st dst s-ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span></td><td><span class="i18n"><span class="ko">2026-11-12 확인: 「바로가기로 들어간 뒤 한참 지나서 한 구매」 그대로</span><span class="vi">Kiểm tra 12/11/2026: vẫn là 「바로가기로 들어간 뒤 한참 지나서 한 구매」</span></span></td><td><span class="i18n"><span class="ko"><span class="ftp ft-text">[단순 문구 수정]</span></span><span class="vi"><span class="ftp ft-text">[Chỉ sửa chữ]</span></span></span><span class="i18n"><span class="ko">「바로가기로 들어간 뒤 쇼핑몰이 정한 인정 시간이 지나서 한 구매」 + 아래에 「사기 직전에 프라이스픽을 거쳐 주세요」</span><span class="vi">「바로가기로 들어간 뒤 쇼핑몰이 정한 인정 시간이 지나서 한 구매」 + thêm bên dưới 「사기 직전에 프라이스픽을 거쳐 주세요」 (Hãy đi qua PricePick ngay trước khi mua)</span></span></td><td class="st sst s-ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span></td></tr>
+<tr id="r1111-A-7" class="st-ng" data-diff="1" data-basis="운영 홈페이지 직접 확인 · 2026-11-12" data-basis-vi="Kiểm tra trực tiếp trang chủ production · 12/11/2026"><td class="no"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-homepage-20261111.html#r1111-A-7" target="_blank" rel="noopener noreferrer">A-7</a></td><td class="scr"><span class="i18n"><span class="ko">홈페이지 → 맨 아래 사업자 정보</span><span class="vi">Trang chủ → Thông tin doanh nghiệp ở cuối trang</span></span></td><td class="demo"><span class="i18n"><span class="ko">[고친 곳: 홈페이지] 값이 빈 줄(대표자 · 사업자등록번호 · 통신판매업 신고번호 · 주소)은 화면에 내지 않음. :has 를 못 쓰는 브라우저에서도 숨김. 값을 넣으면 보임</span><span class="vi">[Chỗ sửa: Trang chủ] Không hiển thị các dòng trống (Người đại diện · Số ĐKKD · Số đăng ký bán hàng trực tuyến · Địa chỉ). Ẩn cả trên trình duyệt không hỗ trợ :has. Điền giá trị thì sẽ hiện</span></span></td><td class="st dst s-ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span></td><td><span class="i18n"><span class="ko">2026-11-12 확인: 네 줄 모두 값이 비어 있음. 빈 줄 숨김은 :has 를 지원하는 브라우저에서만 동작</span><span class="vi">Kiểm tra 12/11/2026: cả 4 dòng đều trống. Việc ẩn dòng trống chỉ chạy trên trình duyệt hỗ trợ :has</span></span></td><td><span class="i18n"><span class="ko"><span class="ftp ft-disp">[표시·동작 수정]</span></span><span class="vi"><span class="ftp ft-disp">[Sửa hiển thị·hoạt động]</span></span></span><span class="i18n"><span class="ko">값이 확정되면 채우고, 확정 전에는 빈 줄을 숨김. 값은 회사에서 전달하며 개발팀이 임의로 채우지 않음</span><span class="vi">Khi giá trị được chốt thì điền, trước khi chốt thì ẩn dòng trống. Giá trị do công ty gửi, đội phát triển không tự điền</span></span></td><td class="st sst s-ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span></td></tr>
+<tr id="r1111-A-8" class="st-ng" data-diff="1" data-basis="운영 홈페이지 직접 확인 · 2026-11-12" data-basis-vi="Kiểm tra trực tiếp trang chủ production · 12/11/2026"><td class="no"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-homepage-20261111.html#r1111-A-8" target="_blank" rel="noopener noreferrer">A-8</a></td><td class="scr"><span class="i18n"><span class="ko">홈페이지 → 카카오 연동, 왜 하나요? → ④</span><span class="vi">Trang chủ → Vì sao liên kết Kakao → ④</span></span></td><td class="demo"><span class="i18n"><span class="ko">[고친 곳: 홈페이지] 설명 「연동하면 앱을 지우거나 폰을 바꿔도 기록이 남아요. 연동 전에 앱을 지우면 복구되지 않아요」</span><span class="vi">[Chỗ sửa: Trang chủ] Mô tả 「연동하면 앱을 지우거나 폰을 바꿔도 기록이 남아요. 연동 전에 앱을 지우면 복구되지 않아요」</span></span></td><td class="st dst s-ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span></td><td><span class="i18n"><span class="ko">2026-11-12 확인: 제목 「앱을 지워도 그대로」, 설명 「연동 전 기록은 이 기기에만 남아요」 그대로</span><span class="vi">Kiểm tra 12/11/2026: vẫn là tiêu đề 「앱을 지워도 그대로」, mô tả 「연동 전 기록은 이 기기에만 남아요」</span></span></td><td><span class="i18n"><span class="ko"><span class="ftp ft-text">[단순 문구 수정]</span></span><span class="vi"><span class="ftp ft-text">[Chỉ sửa chữ]</span></span></span><span class="i18n"><span class="ko">설명 「연동하면 앱을 지우거나 폰을 바꿔도 기록이 남아요. 연동 전에 앱을 지우면 복구되지 않아요」</span><span class="vi">Mô tả 「연동하면 앱을 지우거나 폰을 바꿔도 기록이 남아요. 연동 전에 앱을 지우면 복구되지 않아요」 (Liên kết thì xóa app hay đổi điện thoại dữ liệu vẫn còn. Xóa app trước khi liên kết thì không khôi phục được)</span></span></td><td class="st sst s-ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span></td></tr>
+<tr id="r1111-A-9" class="st-ng" data-diff="1" data-basis="운영 홈페이지 직접 확인 · 2026-11-12" data-basis-vi="Kiểm tra trực tiếp trang chủ production · 12/11/2026"><td class="no"><a class="ext" href="https://pricepick.vercel.app/devqa/qa-homepage-20261111.html#r1111-A-9" target="_blank" rel="noopener noreferrer">A-9</a></td><td class="scr"><span class="i18n"><span class="ko">이용약관 → 제7조 1항</span><span class="vi">Điều khoản sử dụng → Điều 7 khoản 1</span></span></td><td class="demo"><span class="i18n"><span class="ko">[고친 곳: 이용약관] 「티켓은 경유 구매가 확인되면 지급되며, 지급 장수는 구매 확정 시 서비스 내에서 안내합니다」</span><span class="vi">[Chỗ sửa: Điều khoản] 「티켓은 경유 구매가 확인되면 지급되며, 지급 장수는 구매 확정 시 서비스 내에서 안내합니다」</span></span></td><td class="st dst s-ok"><span class="i18n"><span class="ko">반영</span><span class="vi">Đã phản ánh</span></span></td><td><span class="i18n"><span class="ko">2026-11-12 확인: 「티켓은 경유 구매 금액에 따라 지급되며」 그대로</span><span class="vi">Kiểm tra 12/11/2026: vẫn là 「티켓은 경유 구매 금액에 따라 지급되며」</span></span></td><td><span class="i18n"><span class="ko"><span class="ftp ft-text">[단순 문구 수정]</span></span><span class="vi"><span class="ftp ft-text">[Chỉ sửa chữ]</span></span></span><span class="i18n"><span class="ko">「티켓은 경유 구매가 확인되면 지급되며, 지급 장수는 구매 확정 시 서비스 내에서 안내합니다」. 약관 개정은 회사 확인 후 반영하고 제3조에 따라 공지</span><span class="vi">「티켓은 경유 구매가 확인되면 지급되며, 지급 장수는 구매 확정 시 서비스 내에서 안내합니다」. Sửa điều khoản chỉ áp dụng sau khi công ty xác nhận và thông báo theo Điều 3</span></span></td><td class="st sst s-ng"><span class="i18n"><span class="ko">미반영</span><span class="vi">Chưa phản ánh</span></span></td></tr>
+</tbody></table></div>
+
+<div class="foot"><span class="i18n"><span class="ko">PricePick · 11-11 홈페이지 수정 요청 반영 현황 · DEMO 칸은 2026-11-12 데모 확인 기준 · 운영 칸은 2026-11-12 pricepick.co.kr 확인 기준</span><span class="vi">PricePick · Tình trạng phản ánh yêu cầu sửa trang chủ 11/11 · Cột DEMO theo kiểm tra demo 12/11/2026 · Cột production theo kiểm tra pricepick.co.kr 12/11/2026</span></span></div></div>
+<script>
+/* 번호 링크 — 원본 검수 문서를 크기를 지정한 별도 창으로 연다. 창 이름을 고정해 같은 창을 다시 쓴다.
+   같은 사이트 문서라 창을 재사용하려면 noopener 를 쓸 수 없다(noopener 는 이름 재사용을 막는다). 대신 열린 뒤 opener 를 끊는다. */
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a.ext'); if(!a) return;
+  if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+  e.preventDefault();
+  var w=Math.min(1100,screen.availWidth-40), h=Math.min(900,screen.availHeight-60);
+  var l=Math.max(0,screen.availWidth-w-20), t=Math.max(0,Math.round((screen.availHeight-h)/2));
+  var win=window.open(a.href,'ppqa_source','popup=yes,width='+w+',height='+h+',left='+l+',top='+t+',resizable=yes,scrollbars=yes');
+  if(!win) return;  /* 팝업이 막힌 경우 — 보던 자리를 떠나지 않는다. 브라우저의 팝업 허용 안내로 처리 */
+  try{ win.opener=null; }catch(_){}
+  win.focus();
+});
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+/* 표 위 건수 필터 — 상태 · 담당 · 검수 문서. 같은 단추를 다시 누르면 해제 */
+(function(){
+  var f={st:null,who:null,dst:null,dm:null,fin:null};
+  /* 표 바로 위의 절 제목(h2) — 사이에 절 머리 문구(.secnote)가 있어도 찾는다 */
+  function secHead(t){ var h=t&&t.previousElementSibling; while(h&&h.tagName!=='H2') h=h.previousElementSibling; return h; }
+  var all=[].slice.call(document.querySelectorAll('table.list tbody tr'));
+  var rows=all.filter(function(r){return !r.classList.contains('st-gap');});
+  var gaps=all.filter(function(r){return r.classList.contains('st-gap');});
+  rows.forEach(function(r){
+    var m=r.className.match(/st-([a-z]+)/); r._st=m?m[1]:'';
+    var w=r.querySelector('td.who .ko'); w=w?w.textContent:'';
+    r._dev=w.indexOf('개발팀')>=0; r._me=w.indexOf('김반장')>=0||w.indexOf('문구 작성')>=0;
+    r._dm='none';
+    r.appendChild(document.createElement('td')).className='dm';
+    var d=r.querySelector('td.dst'), dm=d&&d.className.match(/s-([a-z]+)/); r._dst=dm?dm[1]:'';
+  });
+  gaps.forEach(function(r){ r.appendChild(document.createElement('td')); });
+  function hit(r,k,v){
+    if(!v) return true;
+    if(k==='st') return v==='all'||r._st===v;
+    if(k==='dm') return r._dm===v;
+    if(k==='who') return v==='dev'?r._dev:r._me;
+    if(k==='dst') return r._dst===v;
+    if(k==='fin') return v==='okpre'?(r._st==='ok'&&r._fin==='pre'):r._fin===v;
+    return true;
+  }
+  function pass(r,skip){ return (skip==='st'||hit(r,'st',f.st))&&(skip==='who'||hit(r,'who',f.who))&&(skip==='dst'||hit(r,'dst',f.dst))&&(skip==='fin'||hit(r,'fin',f.fin))&&(skip==='dm'||hit(r,'dm',f.dm)); }
+  var chips=[].slice.call(document.querySelectorAll('#fbar .fc'));
+  function paint(){
+    var n=0, any=!!(f.st||f.who||f.dst||f.dm||f.fin);
+    rows.forEach(function(r){var ok=pass(r); r.classList.toggle('fhide',!ok); if(ok)n++;});
+    gaps.forEach(function(r){r.classList.toggle('fhide',any);});
+    document.querySelectorAll('.tblwrap').forEach(function(t){
+      var vis=!!t.querySelector('tbody tr:not(.fhide)'); t.hidden=!vis; var h=secHead(t); if(h) h.hidden=!vis; var n=t.previousElementSibling; if(n&&n.classList.contains('secnote')) n.hidden=!vis;
+    });
+    chips.forEach(function(c){
+      var k=c.dataset.k,v=c.dataset.v;
+      c.querySelector('.fn').textContent=rows.filter(function(r){return hit(r,k,v)&&pass(r,k);}).length;
+      c.classList.toggle('on', k==='st'&&v==='all' ? !f.st : f[k]===v);
+    });
+  }
+  var RFK='ppqa_rf:'+location.pathname;
+  try{ var sv=JSON.parse(sessionStorage.getItem(RFK)||'null'); sessionStorage.removeItem(RFK);
+    if(sv&&sv.f){ f=sv.f; setTimeout(function(){ window.scrollTo(0, sv.y||0); },0); } }catch(_){}
+  var rfAt=document.getElementById('rfAt');
+  if(rfAt) rfAt.textContent=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date());
+  var rfBtn=document.getElementById('rfBtn');
+  if(rfBtn) rfBtn.addEventListener('click',function(){
+    rfBtn.disabled=true; rfBtn.setAttribute('aria-busy','true');
+    try{ sessionStorage.setItem(RFK, JSON.stringify({f:f, y:window.scrollY})); }catch(_){}
+    location.reload();
+  });
+  /* 개발팀 표시 — 각 검수 문서에 개발팀이 남긴 처리 상태(처리 완료 · 미처리 · 기록 없음)와 처리자·시각. 판정은 STG 상태 하나다 — 이 값으로 절을 나누지 않는다 */
+  /* 11-11 홈페이지 수정 요청만 — 다른 검수 저장소는 읽지 않는다(데이터 분리). 수정 요청 문서와 같은 저장소 */
+  var DEVCOL={'qa-homepage-20261111':'qa_homepage_20261111'};
+  function i18n(ko,vi){ return '<span class="i18n"><span class="ko">'+ko+'</span><span class="vi">'+vi+'</span></span>'; }
+  function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  var NOREC=i18n('기록 없음','Không có bản ghi');
+  var atFmt=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+  /* 원본 검수 문서(qa-extra-20261002 · qa-review-20261005 · qa-extra-20261021)와 같은 저장소를 실시간으로 읽는다.
+     값을 따로 복사해 두지 않는다 — 원본에서 바꾸면 여기에, 여기서 바꾸면 원본에 그대로 보인다.
+     쓰기는 원본 문서의 save() 와 같다: status · updatedBy(작업자) · updatedAt(서버 시각)만 merge. 다른 필드(메모·최종 검수)는 건드리지 않는다. */
+  var db=null;
+  try{
+    firebase.initializeApp({apiKey:"AIzaSyCElUPJAitnMZxttVYjboV0j4s_qpErAgA",authDomain:"pricepick-demo.firebaseapp.com",projectId:"pricepick-demo",storageBucket:"pricepick-demo.firebasestorage.app",messagingSenderId:"505137396208",appId:"1:505137396208:web:cea9d208c7745854e14535"});
+    db=firebase.firestore();
+  }catch(e){ db=null; }
+  var KW='ppqa_who';
+  function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
+  var whoSel=document.getElementById('wkWho');
+  var savedWho=ls(KW); if(savedWho) whoSel.value=savedWho;
+  whoSel.addEventListener('change',function(){ ls(KW,this.value); this.classList.remove('need'); });
+  var DEV={};   /* 문서별 실시간 값: DEV[원본 문서][항목] = {status, by, at} */
+  /* 개발팀에 넘길 것이 없는 항목(요청이 「변경 없음」 등)은 번호 칸의 data-fsrc(문서:저장 id)로 검수 칸만 둔다 — 개발팀 칸은 비운다 */
+  function srcOf(r){
+    var a=r.querySelector('td.no a.ext'), m=a&&a.getAttribute('href').match(/devqa\/([a-z0-9-]+)\.html/);
+    if(m&&DEVCOL[m[1]]) return {doc:m[1],col:DEVCOL[m[1]],id:(a.getAttribute('data-id')||a.textContent.trim())};
+    var f=r.querySelector('td.no[data-fsrc]'), p=f&&f.getAttribute('data-fsrc').split(':');
+    return (p&&DEVCOL[p[0]])?{doc:p[0],col:DEVCOL[p[0]],id:p[1],finOnly:true}:null;
+  }
+  /* 시각 — 원본 문서의 fmt() 그대로(보는 사람 컴퓨터 시각). 원본과 같은 시각이 보여야 한다 */
+  function fmt(d){ var p=function(n){return String(n).padStart(2,'0');}; return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes()); }
+  function paintDm(r){
+    var td=r.querySelector('td.dm'), src=r._src;
+    if(!src){ r._dm='na'; r._fin='na'; td.innerHTML='—'; return; }
+    var d=(DEV[src.doc]||{})[src.id]||null, st=d&&d.status;
+    r._dm=src.finOnly?'na':((st==='done')?'done':'todo');
+    r._fin=(d&&d.final)?'fin':'pre';
+    if(src.finOnly){
+      td.innerHTML='<div class="dmr"><span class="dm-lb">'+i18n('개발팀','Đội PT')+'</span>—</div>'
+        +'<div class="dmr"><span class="dm-lb">'+i18n('검수','Kiểm thử')+'</span>'
+        +'<button type="button" class="chip chip-fin'+(r._fin==='fin'?' on':'')+'">'+(r._fin==='fin'?i18n('검수 완료','Đã kiểm thử'):i18n('검수 전','Chưa kiểm thử'))+'</button>'
+        +'</div>'+noteBox(d&&d.fnote);
+      return;
+    }
+    /* 지금 상태만 칩 하나로 — 누르면 바뀐다. 색은 끝난 상태(처리 완료 · 검수 완료)에만 */
+    /* 작업자·시각은 현황에서 보이지 않는다(2026-10-29 김반장 지시) — 저장 값은 그대로, 원본 검수 문서에서 보인다 */
+    td.innerHTML='<div class="dmr"><span class="dm-lb">'+i18n('개발팀','Đội PT')+'</span>'
+      +'<button type="button" class="chip chip-dev'+(r._dm==='done'?' on':'')+'">'+(r._dm==='done'?i18n('처리 완료','Đã xử lý'):i18n('미처리','Chưa xử lý'))+'</button>'
+      +'</div>'+noteBox(d&&d.note)
+      +'<div class="dmr"><span class="dm-lb">'+i18n('검수','Kiểm thử')+'</span>'
+      +'<button type="button" class="chip chip-fin'+(r._fin==='fin'?' on':'')+'">'+(r._fin==='fin'?i18n('검수 완료','Đã kiểm thử'):i18n('검수 전','Chưa kiểm thử'))+'</button>'
+      +'</div>'+noteBox(d&&d.fnote);
+  }
+  /* 메모 — 원본 검수 문서에 적은 개발팀·최종 검수 메모를 읽기만 한다. 없으면 아무것도 그리지 않는다. 길면 세 줄까지 보이고 누르면 펼친다 */
+  /* 메모 한국어 번역 — 저장된 원문은 그대로 두고 한국어 화면에서만 번역을 보인다(2026-10-29). 원문 → 번역. 표에 없는 메모와 한국어 메모는 원문 그대로 */
+  var MEMO_KO={"App: Đã cập nhật hiển thị theo demo": "App: 데모 기준으로 표시를 업데이트함", "App: Đã kiểm tra và hiển thị đúng sort lịch sử hoạt động": "App: 활동 내역 정렬을 확인했고 올바르게 표시됨", "App: Đã sửa text hiển thị mới theo demo": "App: 데모 기준으로 새 표시 문구로 수정함", "App: Đã sửa thông tin hạn điểm khớp giữa phần tóm tắt và chi tiết": "App: 포인트 만료 정보를 요약과 상세가 일치하도록 수정함", "Backend: Đã thay đổi giá trị cho mỗi bên từ 50P thành 500P\nCMS: Đã cập nhật text trên CMS STG từ CMS demo\nApp: Đã cập nhật hiển thị text": "백엔드: 양쪽 값을 50P에서 500P로 변경함\nCMS: CMS 데모 기준으로 CMS STG 문구를 업데이트함\nApp: 표시 문구를 업데이트함", "CMS > Nội dung > Quản lý thông báo: Đã update khớp với tổng trong lịch sử thông báo (Tổng Test và Sent thực tế)": "CMS > 콘텐츠 > 알림 관리: 알림 이력의 합계와 일치하도록 업데이트함(테스트 합계와 실제 발송)", "CMS STG: Đã cập nhật Text trên CMS STG từ CMS demo \nApp: Đã cập nhật hiển thị thêm thông tin theo demo": "CMS STG: CMS 데모 기준으로 CMS STG 문구를 업데이트함\nApp: 데모 기준으로 정보 표시를 추가함", "CMS: Quản lý điểm → Lịch sử điểm — cấu trúc cột: Đã thêm cột Lý Do như CMS Demo\nCMS: Danh sách hội viên -> Chi tiết hội viên -> Khu vực thêm, trừ vé: Đã thêm ô nhập ý do. Đã thêm lịch sử thay đổi trạng thái": "CMS: 포인트 관리 → 포인트 내역 — 열 구성: CMS 데모처럼 사유 열을 추가함\nCMS: 회원 목록 -> 회원 상세 -> 티켓 지급·차감 영역: 사유 입력칸을 추가함. 상태 변경 이력을 추가함", "CMS: Đã thêm màn hình xem cài đặt nhiệm vụ mua liên tiếp (Url: /streak-mission)": "CMS: 연속구매 미션 설정 조회 화면을 추가함 (URL: /streak-mission)", "Các đơn mua hàng vào ngày 01/10 không về postback trên môi trường STG do auth_key hiện tại LinkPrice Support chỉ cung cấp cho 1 môi trường. Lúc đó, đã sử dụng cho môi trường Dev nên STG không nhận được. Sau đó, thay đổi auth_key và af_code tương ứng sử dụng cho môi trường STG và đã nhận postback thành công trên STG. Ngày 13/10 test mua hàng với 3 đơn trên LinkPrice và đều về Postback thành công": "10/01 주문은 STG 환경에서 포스트백이 오지 않음. 당시 링크프라이스 지원팀이 auth_key를 한 환경에만 제공했고, 그때 Dev 환경에 쓰고 있어 STG에서 받지 못함. 이후 STG용 auth_key와 af_code로 바꿔 STG에서 포스트백을 정상 수신함. 10/13 링크프라이스에서 3건 구매 테스트를 했고 모두 포스트백 정상 수신", "Hiển thị với dạng input readonly cho phần Coupang": "쿠팡 부분은 읽기 전용 입력칸으로 표시", "Đang chờ QA": "QA 대기 중", "đang chờ QA": "QA 대기 중", "Đã cập nhật nội dung trên Admin STG từ Admin CMS demo": "데모 CMS 내용으로 STG 관리자 화면 내용을 업데이트함", "Đã remove cửa hàng thử nghiệm (ngoài Linkprice, trước đây có chức năng thêm cửa hàng ngoài Linkprice nhưng bây giờ đã remove). Cửa hàng không thuộc Linkprice hiện tại chỉ có Coupang": "시험용 쇼핑몰을 삭제함(링크프라이스 외 쇼핑몰을 추가하는 기능이 있었으나 지금은 삭제함). 현재 링크프라이스에 속하지 않는 쇼핑몰은 쿠팡뿐임", "Đã remove nickname của các hội viên đã hủy tài khoản": "탈퇴한 회원의 닉네임을 삭제함", "Đã sửa nội dung ở url: https://admin-stg.pricepick.co.kr/point-attendance/\nvà https://admin-stg.pricepick.co.kr/op-policy/": "다음 URL의 내용을 수정함: https://admin-stg.pricepick.co.kr/point-attendance/ 와 https://admin-stg.pricepick.co.kr/op-policy/", "Đã thêm tính năng lưu lịch sử thay đổi trạng thái thành viên và lý do": "회원 상태 변경 이력과 사유를 저장하는 기능을 추가함", "Đã vô hiệu hóa trang xử lý màn hình bốc thăm hàng tuần (Do tạm ẩn chức năng này và không có trong Menu). Nếu user cố tình truy cập url này sẽ auto redirect về trang Dashboard": "주간 추첨 처리 화면을 비활성화함(이 기능을 잠시 숨겨 메뉴에 없음). 사용자가 이 URL로 직접 들어오면 대시보드로 자동 이동함", "Ẩn tính năng thêm Affliate, nên không cần xử lý xóa affliate sai. Vì tất cả đều được quản lý bởi Backend": "제휴몰 추가 기능을 숨겼으므로 잘못된 제휴몰 삭제 처리는 필요 없음. 모두 백엔드에서 관리함", "Ẩn tính năng thêm affliate": "제휴몰 추가 기능을 숨김", "CMS > Quản lý hội viên > Danh sách hội viên: Đã sửa thành 차단\nCMS > Hệ thống > Log postback: Đã thêm cột 회원\n연결": "CMS > 회원 관리 > 회원 목록: 「차단」으로 수정함\nCMS > 시스템 > 포스트백 로그: 「회원 연결」 열을 추가함", "giữ 「정지」 là khớp với thiết kế": "「정지」 유지가 설계와 맞음", "Đổi thành 「동의 / 거부」": "「동의 / 거부」로 변경함", "QA 기다리는 중입니다.\n(đang chờ QA)": "QA 기다리는 중입니다.", "Đã thêm tính năng lưu lịch sử thay đổi trạng thái thành viên và lý do\n\nĐã thêm tính năng thời hạn Block (Vĩnh viễn, 7 ngày, 30 ngày)": "회원 상태 변경 이력과 사유를 저장하는 기능을 추가함\n\n차단 기간(영구, 7일, 30일) 기능을 추가함", "Đã cập nhật STG với các số lượng thành viên (normal, block, delete) theo CMS demo": "CMS demo 기준으로 STG의 회원 수(정상, 차단, 탈퇴)를 업데이트함", "CMS STG đã update nội dung giống CMS demo": "CMS STG 내용을 CMS demo와 같게 업데이트함", "CMS STG: Đã cập nhật cột 회원 연결 giống CMS demo": "CMS STG: 「회원 연결」 열을 CMS demo와 같게 업데이트함", "CMS STG đã update ô lý do khi cấp vé (thu hồi) trong mục Danh sách hội viên giống CMS demo": "CMS STG 회원 목록에서 티켓 지급(회수) 때 사유 입력란을 CMS demo와 같게 업데이트함", "CMS STG đã cập nhật pagination chính xác": "CMS STG 페이지 나누기(pagination)를 정확하게 수정함", "CMS STG hay App Stg là môi trường Staging nội bộ đê chúng ta test. Khi lên Production dữ liệu hoàn toàn mới: User mới, đơn hàng mới...Không liên quan gì đến môi trường Staging": "CMS STG와 App STG는 우리가 테스트하는 내부 스테이징 환경임. 운영(Production)에 올라가면 데이터는 완전히 새로 시작함: 새 사용자, 새 주문 등. 스테이징 환경과는 아무 관련 없음", "CMS STG đã update số lượng Ticket và Event Ticket giống CMS demo": "CMS STG 티켓 수와 이벤트 티켓 수를 CMS demo와 같게 업데이트함", "Khi test các đơn hàng ngày 13/10/2026 thì hmall và nsseshop có Postback với Product name data. Nhưng với Gmarket thì Product name  bằng rỗng (Không có dữ liệu) nên Gmarket không có Tên sản phẩm\n\nPostback Hmall:\n[2026-10-13T07:20:42.889Z] [info][linkprice.js] [linkprice.postback] Received data - {\"body\":{\"day\":\"20261013\",\"time\":\"162042\",\"merchant_id\":\"hmall\",\"order_code\":\"20261013061847\",\"product_code\":\"2218211416\",\"product_name\":\"%EC%95%8C%EB%A0%88%EB%B3%B4%20%EB%B8%8C%EB%A6%AC%EC%95%99%20%EC%96%91%EC%8B%9D%EA%B8%B0%20%ED%8F%AC%ED%81%AC%20%EB%82%98%EC%9D%B4%ED%94%84%202%EC%9D%B8%EC%A1%B0%20%EC%8A%A4%ED%85%90%20%EC%BB%A4%ED%8A%B8%EB%9F%AC%EB%A6%AC%20%EC%84%B8%ED%8A%B8\",\"category_code\":\"mobile\",\"item_count\":1,\"price\":14900,\"commision\":215,\"affiliate_user_id\":\"91c9bb20-84b5-11f1-b820-d3b05b507cd4\",\"base_commission\":\"1.44%\",\"incentive_commission\":\"0%\",\"trlog_id\":18000667119483,\"uniq_id\":\"6acddbcac6fd4\",\"affiliate_id\":\"A100706012\"},\"headers\":{\"host\":\"server-stg.pricepick.co.kr\",\"x-forwarded-for\":\"13.124.188.166, 104.22.158.43\",\"x-real-ip\":\"104.22.158.43\",\"x-forwarded-proto\":\"https\",\"connection\":\"upgrade\",\"content-length\":\"636\",\"content-type\":\"application/json\",\"accept\":\"*/*\",\"accept-encoding\":\"gzip, br\",\"cf-ray\":\"a49c9553dc0c2f83-ICN\",\"cdn-loop\":\"cloudflare; loops=1\",\"cf-connecting-ip\":\"13.124.188.166\",\"cf-ipcountry\":\"KR\",\"cf-visitor\":\"{\\\"scheme\\\":\\\"https\\\"}\"}}\n\nPostback Gmarket: [2026-10-14T00:36:03.382Z] [info][linkprice.js] [linkprice.postback] Received data - {\"body\":{\"day\":\"20261013\",\"time\":\"000000\",\"merchant_id\":\"gmarket\",\"order_code\":\"4503074603\",\"product_code\":\"1507411134\",\"product_name\":\"\",\"category_code\":\"\",\"item_count\":1,\"price\":10290,\"commision\":62,\"affiliate_user_id\":\"91c9bb20-84b5-11f1-b820-d3b05b507cd4\",\"base_commission\":\"0.6%\",\"incentive_commission\":\"0%\",\"trlog_id\":18000667180043,\"uniq_id\":\"6acece734efd4\",\"affiliate_id\":\"A100706012\"},\"headers\":{\"host\":\"server-stg.pricepick.co.kr\",\"x-forwarded-for\":\"13.124.188.166, 162.158.138.150\",\"x-real-ip\":\"162.158.138.150\",\"x-forwarded-proto\":\"https\",\"connection\":\"upgrade\",\"content-length\":\"385\",\"content-type\":\"application/json\",\"accept\":\"*/*\",\"accept-encoding\":\"gzip, br\",\"cf-ray\":\"a4a281f0fc6b327b-ICN\",\"cdn-loop\":\"cloudflare; loops=1\",\"cf-connecting-ip\":\"13.124.188.166\",\"cf-ipcountry\":\"KR\",\"cf-visitor\":\"{\\\"scheme\\\":\\\"https\\\"}\"}}": "2026-10-13 주문 테스트 때 hmall과 nsseshop은 상품명 데이터가 담긴 포스트백이 왔음. 그러나 Gmarket은 상품명이 빈 값(데이터 없음)이라 Gmarket에는 상품명이 없음\n\nHmall 포스트백:\n[2026-10-13T07:20:42.889Z] [info][linkprice.js] [linkprice.postback] Received data - {\"body\":{\"day\":\"20261013\",\"time\":\"162042\",\"merchant_id\":\"hmall\",\"order_code\":\"20261013061847\",\"product_code\":\"2218211416\",\"product_name\":\"%EC%95%8C%EB%A0%88%EB%B3%B4%20%EB%B8%8C%EB%A6%AC%EC%95%99%20%EC%96%91%EC%8B%9D%EA%B8%B0%20%ED%8F%AC%ED%81%AC%20%EB%82%98%EC%9D%B4%ED%94%84%202%EC%9D%B8%EC%A1%B0%20%EC%8A%A4%ED%85%90%20%EC%BB%A4%ED%8A%B8%EB%9F%AC%EB%A6%AC%20%EC%84%B8%ED%8A%B8\",\"category_code\":\"mobile\",\"item_count\":1,\"price\":14900,\"commision\":215,\"affiliate_user_id\":\"91c9bb20-84b5-11f1-b820-d3b05b507cd4\",\"base_commission\":\"1.44%\",\"incentive_commission\":\"0%\",\"trlog_id\":18000667119483,\"uniq_id\":\"6acddbcac6fd4\",\"affiliate_id\":\"A100706012\"},\"headers\":{\"host\":\"server-stg.pricepick.co.kr\",\"x-forwarded-for\":\"13.124.188.166, 104.22.158.43\",\"x-real-ip\":\"104.22.158.43\",\"x-forwarded-proto\":\"https\",\"connection\":\"upgrade\",\"content-length\":\"636\",\"content-type\":\"application/json\",\"accept\":\"*/*\",\"accept-encoding\":\"gzip, br\",\"cf-ray\":\"a49c9553dc0c2f83-ICN\",\"cdn-loop\":\"cloudflare; loops=1\",\"cf-connecting-ip\":\"13.124.188.166\",\"cf-ipcountry\":\"KR\",\"cf-visitor\":\"{\\\"scheme\\\":\\\"https\\\"}\"}}\n\nGmarket 포스트백: [2026-10-14T00:36:03.382Z] [info][linkprice.js] [linkprice.postback] Received data - {\"body\":{\"day\":\"20261013\",\"time\":\"000000\",\"merchant_id\":\"gmarket\",\"order_code\":\"4503074603\",\"product_code\":\"1507411134\",\"product_name\":\"\",\"category_code\":\"\",\"item_count\":1,\"price\":10290,\"commision\":62,\"affiliate_user_id\":\"91c9bb20-84b5-11f1-b820-d3b05b507cd4\",\"base_commission\":\"0.6%\",\"incentive_commission\":\"0%\",\"trlog_id\":18000667180043,\"uniq_id\":\"6acece734efd4\",\"affiliate_id\":\"A100706012\"},\"headers\":{\"host\":\"server-stg.pricepick.co.kr\",\"x-forwarded-for\":\"13.124.188.166, 162.158.138.150\",\"x-real-ip\":\"162.158.138.150\",\"x-forwarded-proto\":\"https\",\"connection\":\"upgrade\",\"content-length\":\"385\",\"content-type\":\"application/json\",\"accept\":\"*/*\",\"accept-encoding\":\"gzip, br\",\"cf-ray\":\"a4a281f0fc6b327b-ICN\",\"cdn-loop\":\"cloudflare; loops=1\",\"cf-connecting-ip\":\"13.124.188.166\",\"cf-ipcountry\":\"KR\",\"cf-visitor\":\"{\\\"scheme\\\":\\\"https\\\"}\"}}", "CMS STG: Đã sửa text thành 차단 giống với CMS demo": "CMS STG: 문구를 CMS demo와 같게 「차단」으로 수정함", "CMS STG đã update chức năng trừ vé và thêm lý do": "CMS STG 티켓 차감 기능과 사유 입력을 업데이트함", "CMS STG đã thêm các cột mới giống CMS demo": "CMS STG에 CMS demo와 같게 새 열을 추가함", "CMS STG Đã thêm số lương Point đang giữ cho chi tiết hội viên": "CMS STG 회원 상세에 보유 포인트 수를 추가함", "CMS STG đã update nội dung giống CMS Demo": "CMS STG 내용을 CMS Demo와 같게 업데이트함", "CMS STG đã thêm menu nhiệm vụ mua hàng liên tiếp giống CMS demo": "CMS STG에 CMS demo와 같게 연속 구매 미션 메뉴를 추가함", "CMS STG đã cập nhật giống CMS demo\n\nNội dung này Admin có thể thay đổi trong CMS": "CMS STG를 CMS demo와 같게 업데이트함\n\n이 내용은 관리자가 CMS에서 바꿀 수 있음", "- Doanh thu mua sắm (Coupang + LinkPrice) trong tháng hiện tại: Chỉ tính các đơn đã unlock vé cho user\n- Lợi nhuận mua sắm (Coupang + LinkPrice) trong tháng hiện tại: Chỉ tính các đớn đa unlock vé cho user\n- Tích lũy cho người dùng từ mua sắm: Chỉ tính các vé đã về ví của user. Không tính các vé thưởng, admin cấp...": "- 이번 달 쇼핑 매출 (Coupang + LinkPrice): user에게 티켓이 unlock된 주문만 계산\n- 이번 달 쇼핑 수익 (Coupang + LinkPrice): user에게 티켓이 unlock된 주문만 계산\n- 쇼핑으로 인한 user 적립: user 지갑에 들어온 티켓만 계산. 보너스 티켓, admin이 지급한 티켓 등은 계산하지 않음...", "Đã đổi text giống CMS demo cho 2 mục của sidebar bên trái": "왼쪽 sidebar의 2개 항목 text를 CMS demo와 같게 변경함", "Đã đổi text giống CMS demo cho nội dung của popup Notice trong cài đặt tích lũy vé": "티켓 적립 설정의 Notice popup 내용 text를 CMS demo와 같게 변경함", "Đã đổi text giống CMS demo cho phần mô tả phía trên trong Cài đặt giá trị vé": "티켓 가치 설정 상단 설명 부분의 text를 CMS demo와 같게 변경함", "Đã đổi text giống CMS demo: 이번달 구매 적립 기준": "text를 CMS demo와 같게 변경함: 이번달 구매 적립 기준", "Nguyên nhân do 1 user được gửi trước đó bị xóa (Có thể User này chưa liên kết Kakao sau đó liên kết với tài khoản Kakao đã được sử dụng bởi user khác trước đó nên user mới này bị xóa) \nTạm thời, tôi sẽ giảm lượt gửi xuống nếu user bị xóa. Nếu có thay đổi logic, tôi sẽ update sau": "원인은 이전에 발송 대상이었던 user 1명이 삭제되었기 때문임 (이 user가 Kakao를 연동하지 않은 상태였다가, 이후 이전에 다른 user가 이미 사용한 Kakao 계정과 연동해서 이 새 user가 삭제되었을 수 있음)\n당분간은 user가 삭제되면 발송 수를 줄이겠음. logic이 바뀌면 나중에 update하겠음", "Server Company: Flex Networks\nCountry: South Korea\nRegion: Seoul-teukbyeolsi\n\nNguồn: curl -s https://ipkit.dev/111.67.210.110\n{\n  \"schema\": \"ipkit.v1\",\n  \"ip\": \"111.67.210.110\",\n  \"type\": \"IPv4\",\n  \"source\": \"ipregistry\",\n  \"location\": {\n    \"continent\": \"Asia\",\n    \"country\": \"South Korea\",\n    \"countryCode\": \"KR\",\n    \"region\": \"Seoul-teukbyeolsi\",\n    \"regionCode\": \"KR-11\",\n    \"city\": \"Jongno-gu\",\n    \"postalCode\": \"04524\",\n    \"latitude\": 37.5663,\n    \"longitude\": 126.9772,\n    \"timezone\": null\n  },\n  \"network\": {\n    \"asn\": \"AS38676\",\n    \"organization\": \"flexnetworks\",\n    \"domain\": \"nic.or.kr\",\n    \"route\": \"111.67.210.0/24\",\n    \"usage\": \"hosting\",\n    \"carrier\": null\n  }\n}": "Server Company: Flex Networks\nCountry: South Korea\nRegion: Seoul-teukbyeolsi\n\n출처: curl -s https://ipkit.dev/111.67.210.110\n{\n  \"schema\": \"ipkit.v1\",\n  \"ip\": \"111.67.210.110\",\n  \"type\": \"IPv4\",\n  \"source\": \"ipregistry\",\n  \"location\": {\n    \"continent\": \"Asia\",\n    \"country\": \"South Korea\",\n    \"countryCode\": \"KR\",\n    \"region\": \"Seoul-teukbyeolsi\",\n    \"regionCode\": \"KR-11\",\n    \"city\": \"Jongno-gu\",\n    \"postalCode\": \"04524\",\n    \"latitude\": 37.5663,\n    \"longitude\": 126.9772,\n    \"timezone\": null\n  },\n  \"network\": {\n    \"asn\": \"AS38676\",\n    \"organization\": \"flexnetworks\",\n    \"domain\": \"nic.or.kr\",\n    \"route\": \"111.67.210.0/24\",\n    \"usage\": \"hosting\",\n    \"carrier\": null\n  }\n}", "Có. Domain https://pricepick.co.kr có đang đi qua Cloudflare\n\nCloudflare Nameservers:\nNS: sri.ns.cloudflare.com\nNS: stephane.ns.cloudflare.com": "예. Domain https://pricepick.co.kr 은 Cloudflare를 거치고 있음\n\nCloudflare Nameservers:\nNS: sri.ns.cloudflare.com\nNS: stephane.ns.cloudflare.com", "App hiện chỉ dùng các dịch vụ Firebase không cho chọn region: Crashlytics, FCM, Remote Config. Dữ liệu của chúng nằm trên hạ tầng toàn cầu do Google quản lý. Theo tài liệu của Google, dữ liệu Crashlytics được xử lý và lưu chủ yếu ở Mỹ;": "App은 현재 region을 선택할 수 없는 Firebase 서비스만 사용함: Crashlytics, FCM, Remote Config. 이 서비스들의 데이터는 Google이 관리하는 글로벌 인프라에 있음. Google 문서에 따르면 Crashlytics 데이터는 주로 미국에서 처리·저장됨;"};
+  /* 번역 없는 베트남어 메모 — 한국어 화면에서 「번역 없음」 꼬리표, 표 위 한 줄에 건수·번호. 새 메모가 들어오면 여기 걸린다 → MEMO_KO 에 추가 */
+  var VIRX=/[ăđơưạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]/i;
+  function noMemoKo(t){ t=String(t||'').trim(); return !!t&&!MEMO_KO[t]&&VIRX.test(t); }
+  function noteBox(t){ t=String(t||'').trim(); if(!t) return ''; var k=MEMO_KO[t]; return '<div class="dm-note">'+(k?i18n(esc(k),esc(t)):(noMemoKo(t)?i18n('<b class="nt-miss">번역 없음</b> '+esc(t),esc(t)):esc(t)))+'</div>'; }
+  function memoMiss(){
+    var el=document.getElementById('memoMiss'); if(!el) return;
+    var l=rows.filter(function(r){ var d=r._src&&(DEV[r._src.doc]||{})[r._src.id]; return d&&(noMemoKo(d.note)||noMemoKo(d.fnote)); })
+      .map(function(r){ var m=r._src.doc.match(/(\d{2})(\d{2})$/); return m[1]+'-'+m[2]+' '+r._src.id; });
+    el.hidden=!l.length; el.innerHTML=i18n('번역 없는 메모 <b>'+l.length+'</b>건: '+l.join(' · '),'Ghi chú chưa dịch tiếng Hàn <b>'+l.length+'</b>: '+l.join(' · '));
+  }
+  function md(t){ return fmt(t).slice(5,10); }
+  /* 작업자 이름은 앞부분만 — 「존 (John)」 → 「존」. 한 줄에 들어가게 */
+  function nm(t){ return String(t).replace(/\s*\(.*\)\s*$/,''); }
+  function finSum(){
+    var el=document.getElementById('finSum'); if(!el) return;
+    /* 최종 검수 진행 — 반영 항목 중 검수 완료 수 */
+    var ok=rows.filter(function(r){return r._src&&r._st==='ok';}), fin=ok.filter(function(r){return r._fin==='fin';}).length;
+    el.innerHTML=i18n('검수 완료','Đã kiểm thử')+' '+fin+' / '+i18n('반영','Đã phản ánh')+' '+ok.length;
+  }
+  rows.forEach(function(r){ r._src=srcOf(r); paintDm(r); });
+  function loadDev(){
+    if(!db){ rows.forEach(function(r){ r.querySelector('td.dm').innerHTML=i18n('불러오지 못함','Không tải được'); }); return; }
+    Object.keys(DEVCOL).forEach(function(doc){
+      db.collection(DEVCOL[doc]).onSnapshot(function(snap){
+        var m={};
+        snap.forEach(function(x){ var v=x.data(); m[x.id]={status:v.status||'',by:v.updatedBy||'',at:(v.updatedAt&&v.updatedAt.toDate)?v.updatedAt.toDate():null,
+          final:!!v.final_done,fby:v.final_by||'',note:v.note||'',fnote:v.final_note||'',fat:(v.final_updated_at&&v.final_updated_at.toDate)?v.final_updated_at.toDate():null}; });
+        DEV[doc]=m;
+        rows.forEach(function(r){ if(r._src&&r._src.doc===doc) paintDm(r); });
+        finSum(); memoMiss(); paint();
+      },function(e){ console.error('[qa-homepage-verify] dev status load failed',doc,e); });
+    });
+  }
+  document.addEventListener('click',function(e){ var n=e.target.closest('td.dm .dm-note'); if(n) n.classList.toggle('open'); });
+  document.addEventListener('click',async function(e){
+    var fb=e.target.closest('td.dm .chip-fin'); if(fb){ saveFinal(fb); return; }
+    var b=e.target.closest('td.dm .chip-dev'); if(!b) return;
+    var r=b.closest('tr'), src=r&&r._src; if(!src||!db) return;
+    var td=r.querySelector('td.dm'), isVi=document.getElementById('langsw').checked, toTodo=(r._dm==='done');
+    var say=function(msg){ var f=td.querySelector('.dm-flash'); if(!f){ td.insertAdjacentHTML('beforeend','<span class="dm-flash"></span>'); f=td.querySelector('.dm-flash'); } f.textContent=msg; };
+    if(!toTodo&&!whoSel.value){
+      whoSel.classList.add('need'); try{ whoSel.focus({preventScroll:true}); }catch(_){}
+      say(isVi?'Xin chọn người thực hiện trước.':'작업자를 먼저 선택하십시오.');
+      return;
+    }
+    try{
+      await db.collection(src.col).doc(src.id).set(toTodo?{status:'todo'}:{status:'done',updatedBy:whoSel.value,updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});
+    }catch(err){
+      console.error('[qa-homepage-verify] save failed',src,err);
+      say(isVi?'Lưu thất bại':'저장 실패');
+    }
+  });
+  /* 최종 검수 저장 — 원본 문서의 saveFinal 과 같은 필드(final_done · final_updated_at)에 쓴다. 완료로 바꿀 때만 작업자(final_by)를 남기고, 전으로 되돌리면 지운다 */
+  /* 검수 저장 — 원본 문서와 같은 필드(final_done · final_updated_at). 검수는 김반장만 한다(2026-10-29 확정) — 작업자를 묻지 않고, 완료면 「김반장」, 전으로 되돌리면 지운다 */
+  async function saveFinal(b){
+    var r=b.closest('tr'), src=r&&r._src; if(!src||!db) return;
+    var td=r.querySelector('td.dm'), isVi=document.getElementById('langsw').checked, toFin=(r._fin!=='fin');
+    var FV=firebase.firestore.FieldValue;
+    try{
+      await db.collection(src.col).doc(src.id).set(toFin?{final_done:true,final_by:'김반장',final_updated_at:FV.serverTimestamp()}:{final_done:false,final_by:FV.delete(),final_updated_at:FV.serverTimestamp()},{merge:true});
+    }catch(err){
+      console.error('[qa-homepage-verify] final save failed',src,err);
+      var f=td.querySelector('.dm-flash'); if(!f){ td.insertAdjacentHTML('beforeend','<span class="dm-flash"></span>'); f=td.querySelector('.dm-flash'); }
+      f.textContent=isVi?'Lưu thất bại':'저장 실패';
+    }
+  }
+  loadDev();
+  document.getElementById('fbar').addEventListener('click',function(e){
+    var c=e.target.closest('.fc'); if(!c) return;
+    var k=c.dataset.k,v=c.dataset.v;
+    if(k==='st'&&v==='all') f.st=null; else f[k]=(f[k]===v?null:v);
+    paint();
+  });
+  paint();
+})();
+</script>
+
+<script>
+/* 이 문서는 허브가 아니다 — 탭은 모두 qa-homepage-20261111.html 허브로 간다. 여기서는 자기 탭만 켜 둔다 */
+(function(){
+  var DOC={};
+  var hd=document.querySelector('header'), box=document.getElementById('hubv'), fr={};
+  function fit(){ if(document.body.classList.contains('hub-emb')) box.style.height=(window.innerHeight-hd.offsetHeight)+'px'; }
+  function show(){
+    var h=location.hash.slice(1), u=DOC[h], cur=u?h:'tab-hv';
+    [].forEach.call(document.querySelectorAll('.ptabs a[data-tab]'),function(a){ var on=a.getAttribute('data-tab')===cur; a.classList.toggle('on',on); if(on) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+    document.body.classList.toggle('hub-emb',!!u);
+    Object.keys(fr).forEach(function(k){ fr[k].hidden=(k!==h); });
+    if(u){ if(!fr[h]){ var f=document.createElement('iframe'); f.src=u; f.title=h; box.appendChild(f); fr[h]=f; } fit(); window.scrollTo(0,0); }
+  }
+  window.addEventListener('hashchange',show); window.addEventListener('resize',fit); show();
+})();
+</script>
+</body></html>
